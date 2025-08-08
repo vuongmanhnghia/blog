@@ -1,0 +1,59 @@
+baseURL = "https://blog.nagih.io.vn/"
+publicDir = "public"
+languageCode = "en-us"
+title = "Nagih's blog"
+theme = "github-style"
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+[params]
+  author = "Nagih"
+  description = "In solitude, where we are least alone."
+  github = "vuongmanhnghia"
+  facebook = "vmn.isme"
+  twitter = "nagihdayo"
+  linkedin = "vuongmanhnghia"
+  instagram = "nagihdayo"
+  email = "vuongmanhnghia@gmail.com"
+  url = "https://nagih.io.vn"
+  keywords = "blog, google analytics"
+  rss = true
+  lastmod = true
+  userStatusEmoji = "🥶"
+  favicon = "/images/avatar.png"
+  avatar = "https://avatars.githubusercontent.com/u/123850496?v=4"
+  headerIcon = "https://avatars.githubusercontent.com/u/123850496?v=4"
+  location = "Ha Noi"
+  custom_css = ["css/custom.css"]
+  custom_js = ["js/custom.js"]
+  enableGitalk = true
+  enableSearch = true
+
+  [params.gitalk]
+    clientID = "Ov23li9UG1K7XEEbH2rX"
+    clientSecret = "314c5b3c2437a868e716ca4bd2ee12ca9eb200e3"
+    repo = "blog"
+    owner = "vuongmanhnghia"
+    admin = "vuongmanhnghia"
+    id = "location.pathname"
+    labels = "gitalk"
+    perPage = 15
+    pagerDirection = "last"
+    createIssueManually = true
+    distractionFreeMode = false
+    language = "vi"
+
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":default"]
+
+[services]
+  [services.googleAnalytics]
+    ID = "UA-123456-789"
+
+[outputs]
+  home = ["html", "json"]
+
+[outputFormats.json]
+  mediaType = "application/json"
+  baseName = "index"
+  isPlainText = false

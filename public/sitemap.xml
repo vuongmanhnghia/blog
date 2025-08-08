@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://blog.nagih.io.vn/post/microservices/</loc>
+    <lastmod>2025-08-08T11:52:40+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/</loc>
+    <lastmod>2025-08-08T11:52:40+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/post/</loc>
+    <lastmod>2025-08-08T11:52:40+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/post/my-blog-pipeline/</loc>
+    <lastmod>2025-08-08T11:52:40+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/readme/</loc>
+    <lastmod>2025-08-08T10:53:27+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/categories/</loc>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/tags/</loc>
+  </url>
+</urlset>
