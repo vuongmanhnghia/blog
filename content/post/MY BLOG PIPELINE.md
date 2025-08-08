@@ -1,3 +1,10 @@
+---
+title: MY BLOG PIPELINE
+date: 2019-10-22T18:46:47+08:00
+draft: false
+---
+Obsidian - Why I love it
+<!--more-->
 # Obsidian - Why I love it
 
 - Obsidian is the BEST notes application in the world. Go download it: [https://obsidian.md/](https://obsidian.md/)

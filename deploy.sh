@@ -30,11 +30,14 @@ rm -rf public/*
 echo "Generating site"
 env HUGO_ENV="production" hugo -t github-style
 
+echo "Create file CNAME"
+echo "blog.nagih.io.vn" > public/CNAME
+
 echo "Updating deploy branch"
 cd public && git add --all && git commit -m "Publishing to deploy (publish.sh)"
 
 echo "Pushing to github"
 # git push --all --force
-git push origin deploy
+git push origin deploy -f
 
 cd ..
