@@ -1,6 +1,6 @@
 ---
 title: Microservices
-date: 2019-10-22T18:46:47+08:00
+date: 2025-08-07
 draft: false
 ---
 Tổng quan về kiến trúc microservices
@@ -15,14 +15,14 @@ Hãy tưởng tượng bạn đang xây một ngôi nhà.
 - **Kiến trúc Microservices:** Bạn xây ngôi nhà bằng những viên gạch LEGO. Mỗi phòng (phòng khách, phòng ngủ, nhà bếp) là một khối LEGO riêng. Nếu muốn sửa bếp, bạn chỉ cần nhấc khối LEGO "nhà bếp" ra, sửa nó, rồi đặt lại mà không ảnh hưởng gì đến các phòng khác.
 
 
-Trong thế giới phần mềm, **kiến trúc microservices** là phương pháp chia một ứng dụng lớn thành **nhiều dịch vụ (service) nhỏ, độc lập**. Mỗi service đảm nhiệm một chức năng kinh doanh cụ thể, có cơ sở dữ liệu riêng, và được phát triển, triển khai, nâng cấp độc lập với các service khác.
+Trong phần mềm, **kiến trúc microservices** là phương pháp chia một ứng dụng lớn thành **nhiều dịch vụ (service) nhỏ, độc lập**. Mỗi service đảm nhiệm một chức năng cụ thể, có database riêng, và được phát triển, triển khai, nâng cấp độc lập với các service khác.
 
 ![Image Description](/images/Pasted%20image%2020250807092251.png)
 ### 2. Các Service giao tiếp với nhau ra sao? Có giống Frontend gọi tới Backend không?
 
 Đây là câu hỏi cốt lõi và quan trọng nhất. Các service (vốn là các backend) giao tiếp với nhau qua mạng. Có hai kiểu giao tiếp chính:
 
-#### **a. Giao tiếp Đồng bộ (Synchronous)**
+#### **Giao tiếp Đồng bộ (Synchronous)**
 
 Giống như một cuộc gọi điện thoại. Service A gọi đến Service B và phải **chờ** Service B trả lời rồi mới làm việc tiếp.
 
@@ -33,7 +33,7 @@ Giống như một cuộc gọi điện thoại. Service A gọi đến Service 
 - **Giống Frontend gọi Backend không?** Về mặt kỹ thuật (dùng REST API) thì **giống**, nhưng bản chất là **khác**. Đây là giao tiếp **giữa các backend với nhau (backend-to-backend)**, diễn ra bên trong hệ thống mà người dùng không nhìn thấy.
     
 
-#### **b. Giao tiếp Bất đồng bộ (Asynchronous)**
+#### **Giao tiếp Bất đồng bộ (Asynchronous)**
 
 Giống như gửi email hoặc tin nhắn. Service A gửi một "thông điệp" (message) cho Service B rồi tiếp tục công việc của mình ngay lập tức, **không cần chờ** B trả lời. Service B sẽ nhận và xử lý thông điệp đó khi nào sẵn sàng.
 
