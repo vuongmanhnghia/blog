@@ -16,7 +16,7 @@ echo "Deleting old images"
 rm -rf /home/nagih/blog/static/images/*
 
 echo "Syncing post from obsidian"
-rsync -av --delete "/home/nagih/Documents/Obsidian Vault/posts/" "/home/nagih/blog/content/post/"
+rsync -av --delete "/home/nagih/Documents/blog/posts/" "/home/nagih/blog/content/post/"
 
 echo "Syncing images"
 python images.py
