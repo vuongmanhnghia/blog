@@ -17,7 +17,7 @@ Hãy tưởng tượng bạn đang xây một ngôi nhà.
 
 Trong phần mềm, **kiến trúc microservices** là phương pháp chia một ứng dụng lớn thành **nhiều dịch vụ (service) nhỏ, độc lập**. Mỗi service đảm nhiệm một chức năng cụ thể, có database riêng, và được phát triển, triển khai, nâng cấp độc lập với các service khác.
 
-!![Image Description](/images/Pasted%20image%2020250807092251.png)
+![Image Description](/images/Pasted%20image%2020250807092251.png)
 ### 2. Các Service giao tiếp với nhau ra sao? Có giống Frontend gọi tới Backend không?
 
 Đây là câu hỏi cốt lõi và quan trọng nhất. Các service (vốn là các backend) giao tiếp với nhau qua mạng. Có hai kiểu giao tiếp chính:

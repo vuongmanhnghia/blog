@@ -199,9 +199,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 10 Aug 2025 14:24:12 &#43;0700"
+                  Modified <relative-time datetime="Sun, 10 Aug 2025 14:27:38 &#43;0700"
                     class="no-wrap">
-                    Sun, 10 Aug 2025 14:24:12 &#43;0700</relative-time>
+                    Sun, 10 Aug 2025 14:27:38 &#43;0700</relative-time>
                   
                 </div>
               </div>
@@ -231,7 +231,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      5180 Words
+                      5177 Words
                     
 
                   </div>
@@ -537,7 +537,7 @@
 <p>Khi ghi dữ liệu, ứng dụng thường sẽ cập nhật database trước, sau đó <strong>vô hiệu hóa (invalidate)</strong> mục tương ứng trong cache.</p>
 </li>
 </ol>
-<p>!<img src="/images/Pasted%20image%2020250810134139.png" alt="Image Description"></p>
+<p><img src="/images/Pasted%20image%2020250810134139.png" alt="Image Description"></p>
 </li>
 <li>
 <p><strong>Ưu điểm:</strong> Ứng dụng có toàn quyền kiểm soát. Cache chỉ lưu những dữ liệu thực sự được yêu cầu, giúp tiết kiệm không gian. Hệ thống có khả năng chống chịu lỗi cache tốt (nếu cache sập, ứng dụng có thể đọc trực tiếp từ database).</p>
@@ -641,7 +641,7 @@
 </li>
 <li>
 <p><strong>Kết quả:</strong> Cache bây giờ chứa dữ liệu X đã lỗi thời, và lệnh vô hiệu hóa của tiến trình B trở nên vô nghĩa. Dữ liệu lỗi thời này sẽ tồn tại trong cache cho đến khi TTL hết hạn.
-!<img src="/images/Pasted%20image%2020250810134758.png" alt="Image Description"></p>
+<img src="/images/Pasted%20image%2020250810134758.png" alt="Image Description"></p>
 </li>
 </ol>
 <p>Đây không phải là lỗi của một công cụ cụ thể, mà là một lỗ hổng cơ bản trong việc định thời của các hoạt động phân tán. Các giải pháp cho vấn đề này, như sử dụng <strong>phiên bản (versioning)</strong> cho dữ liệu hoặc <strong>cơ chế cho thuê (lease)</strong>, không còn là các kỹ thuật vô hiệu hóa đơn giản nữa. Chúng là các cơ chế kiểm soát tương tranh (concurrency control) phức tạp. Ví dụ, với cơ chế lease mà Facebook sử dụng, chỉ tiến trình nào nhận được &ldquo;hợp đồng thuê&rdquo; khi bị cache miss mới có quyền ghi lại vào cache. Nếu một lệnh vô hiệu hóa xảy ra trong thời gian đó, &ldquo;hợp đồng thuê&rdquo; sẽ bị thu hồi, và thao tác ghi dữ liệu cũ của tiến trình A sẽ bị từ chối.</p>
@@ -660,7 +660,7 @@
 </li>
 <li>
 <p><strong>Mô hình tối ưu nhất mà tôi biết</strong>
-!<img src="/images/Pasted%20image%2020250810135418.png" alt="Image Description"></p>
+<img src="/images/Pasted%20image%2020250810135418.png" alt="Image Description"></p>
 </li>
 </ul>
 <p>Không có câu trả lời nào là đúng cho mọi trường hợp. Một hệ thống yêu cầu tính nhất quán tuyệt đối sẽ phải hy sinh một phần hiệu năng ghi (sử dụng Write-Through). Một hệ thống cần hiệu năng ghi tối đa có thể phải chấp nhận rủi ro về dữ liệu (sử dụng Write-Back).</p>
