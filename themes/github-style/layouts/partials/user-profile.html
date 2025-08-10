@@ -20,12 +20,12 @@
         <div class="clearfix d-flex d-md-block flex-items-center mb-4 mb-md-0">
           <div class="position-relative d-inline-block col-2 col-md-12 mr-3 mr-md-0 flex-shrink-0" style="z-index:4;">
             {{ with $.Site.Params.avatar }}
-            <a href="{{ $.Site.Params.avatar }}">
+            <a href="{{ $.Site.Params.avatar }}" target="_blank">
               <img style="height:auto;" alt="Avatar" width="260" height="260" id="headerImg"
                 class="avatar avatar-user width-full border bg-white" src="{{ $.Site.Params.avatar }}">
             </a>
             {{ else }}
-            <a href="{{ "images/avatar.png" | absURL }}">
+            <a href="{{ "images/avatar.png" | absURL }}" target="_blank">
               <img style="height:auto;" alt="Avatar" width="260" height="260" id="headerImg"
                 class="avatar avatar-user width-full border bg-white" src="{{ "images/avatar.png" | absURL }}">
             </a>
@@ -84,7 +84,7 @@
                     d="M1.75 2A1.75 1.75 0 000 3.75v.736a.75.75 0 000 .027v7.737C0 13.216.784 14 1.75 14h12.5A1.75 1.75 0 0016 12.25v-8.5A1.75 1.75 0 0014.25 2H1.75zM14.5 4.07v-.32a.25.25 0 00-.25-.25H1.75a.25.25 0 00-.25.25v.32L8 7.88l6.5-3.81zm-13 1.74v6.441c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.809L8.38 9.397a.75.75 0 01-.76 0L1.5 5.809z">
                   </path>
                 </svg>
-                <a class="u-email link-gray-dark " href="mailto:{{ .Site.Params.Email }}">{{ .Site.Params.Email }}</a>
+                <a class="u-email link-gray-dark " href="mailto:{{ .Site.Params.Email }}" target="_blank">{{ .Site.Params.Email }}</a>
               </li>
               {{ end }}
 
@@ -95,9 +95,9 @@
                   </path>
                 </svg>
                 {{ if .Site.Params.url }}
-                <a rel="nofollow me" class="link-gray-dark" href="{{ .Site.Params.url }}">{{ .Site.Params.url }}</a>
+                <a rel="nofollow me" class="link-gray-dark" href="{{ .Site.Params.url }}" target="_blank">{{ .Site.Params.url }}</a>
                 {{ else }}
-                <a rel="nofollow me" class="link-gray-dark" href="{{ .Site.BaseURL }}">{{ .Site.BaseURL }}</a>
+                <a rel="nofollow me" class="link-gray-dark" href="{{ .Site.BaseURL }}" target="_blank">{{ .Site.BaseURL }}</a>
                 {{ end }}
               </li>
             </ul>
@@ -108,7 +108,7 @@
           <h2 class="mb-2 h4">Organizations</h2>
           <div style="display:flex;justify-content:flex-start;flex-wrap:wrap;margin-bottom:3px;">
           {{ if .Site.Params.github}}
-          <a style="margin: 0 10px 10px 0;" href="https://github.com/{{ .Site.Params.github }}">
+          <a style="margin: 0 10px 10px 0;" href="https://github.com/{{ .Site.Params.github }}" target="_blank">
             <svg id="github-icon" viewBox="0 0 16 16" version="1.1" width="32" height="32" fill="#24292e">
               <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
               </path>
@@ -117,7 +117,7 @@
           {{ end }}
 
           {{ if .Site.Params.twitter}}
-          <a style="margin: 0 10px 10px 0;" href="https://twitter.com/{{ .Site.Params.twitter }}">
+          <a style="margin: 0 10px 10px 0;" href="https://twitter.com/{{ .Site.Params.twitter }}" target="_blank">
             <svg  width="32" height="32" viewBox="0 0 1200 1227" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path id="twitter-icon" d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" fill="white"/>
             </svg>
@@ -125,37 +125,37 @@
           {{ end }}
 
           {{ if .Site.Params.facebook}}
-          <a style="margin: 0 10px 10px 0;" href="https://facebook.com/{{ .Site.Params.facebook }}">
+          <a style="margin: 0 10px 10px 0;" href="https://facebook.com/{{ .Site.Params.facebook }}" target="_blank">
             <img alt="@facebook" width="32" height="32" src="{{ "images/facebook.png" | absURL }}" class="avatar">
           </a>
           {{ end }}
 
           {{ if .Site.Params.linkedin }}
-          <a style="margin: 0 10px 10px 0;" href="https://linkedin.com/in/{{ .Site.Params.linkedin }}">
+          <a style="margin: 0 10px 10px 0;" href="https://linkedin.com/in/{{ .Site.Params.linkedin }}" target="_blank">
             <img alt="@linkedin" width="32" height="32" src="{{ "images/linkedin.png" | absURL }}" class="avatar">
           </a>
           {{ end }}
 
           {{ if .Site.Params.instagram }}
-          <a style="margin: 0 10px 10px 0;" href="https://instagram.com/{{ .Site.Params.instagram }}">
+          <a style="margin: 0 10px 10px 0;" href="https://instagram.com/{{ .Site.Params.instagram }}" target="_blank">
             <img alt="@instagram" width="32" height="32" src="{{ "images/instagram.png" | absURL }}" class="avatar">
           </a>
           {{ end }}
 
           {{ if .Site.Params.tumblr }}
-          <a style="margin: 0 10px 10px 0;" href="https://{{ .Site.Params.tumblr }}.tumblr.com/">
+          <a style="margin: 0 10px 10px 0;" href="https://{{ .Site.Params.tumblr }}.tumblr.com/" target="_blank">
             <img alt="@tumblr" width="32" height="32" src="{{ "images/tumblr.png" | absURL }}" class="avatar">
           </a>
           {{ end }}
 
           {{ if .Site.Params.stackoverflow }}
-          <a style="margin: 0 10px 10px 0;" href="https://stackoverflow.com/u/{{ .Site.Params.stackoverflow }}">
+          <a style="margin: 0 10px 10px 0;" href="https://stackoverflow.com/u/{{ .Site.Params.stackoverflow }}" target="_blank">
             <img alt="@stackoverflow" width="32" height="32" src="{{ "images/stackoverflow.png" | absURL }}" class="avatar">
           </a>
           {{ end }}
 
           {{ if .Site.Params.bluesky}}
-          <a style="margin: 0 10px 10px 0;" href="https://bsky.app/profile/{{ .Site.Params.bluesky }}">
+          <a style="margin: 0 10px 10px 0;" href="https://bsky.app/profile/{{ .Site.Params.bluesky }}" target="_blank">
             <img alt="@bluesky" width="32" height="32" src="{{ "images/bluesky.png" | absURL }}" class="avatar">
           </a>
           {{ end }}
@@ -163,11 +163,11 @@
           {{ if .Site.Params.links }}
           {{ range .Site.Params.links }}
           {{ if .icon }}
-          <a style="margin: 0 10px 10px 0;" href="{{ .href }}">
+          <a style="margin: 0 10px 10px 0;" href="{{ .href }}" target="_blank">
             <img alt="@{{ .title }}" width="32" height="32" src="{{ .icon }}" class="avatar">
           </a>
           {{ else }}
-          <a style="margin: 0 10px 10px 0;" href="{{ .href }}">
+          <a style="margin: 0 10px 10px 0;" href="{{ .href }}" target="_blank">
             <img alt="@{{ .title }}" width="32" height="32" src='{{ "images/link.png" | absURL }}' class="avatar">
           </a>
           {{ end }}
@@ -175,7 +175,7 @@
           {{ end }}
 
           {{ if .Site.Params.rss }}
-          <a style="margin: 0 10px 10px 0;" href="{{ "index.xml" | absURL }}">
+          <a style="margin: 0 10px 10px 0;" href="{{ "index.xml" | absURL }}" target="_blank">
             <img alt="@rss" width="32" height="32" src="{{ "images/rss.png" | absURL }}" class="avatar">
           </a>
           {{ end }}
