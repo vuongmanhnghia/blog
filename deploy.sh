@@ -3,7 +3,15 @@
 if [ "`git status -s`" ]
 then
     echo "The working directory is dirty. Please commit any pending changes."
-    exit 1;
+    echo "Do you want to continue? (y/n)"
+    read answer
+    if [ "$answer" != "y" ]; then
+        exit 1
+    fi
+    echo "Adding all files to git..."
+    git add --all
+    echo "Committing all files to git"
+    git commit -m "Publishing to deploy (deploy.sh)"
 fi
 
 echo "Deleting old publication"
