@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Nagih&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 09 Aug 2025 19:08:47 +0700</lastBuildDate>
+    <lastBuildDate>Sun, 10 Aug 2025 12:40:28 +0700</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kafka</title>
@@ -21,6 +21,13 @@
       <pubDate>Thu, 07 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/post/microservices/</guid>
       <description>&lt;p&gt;Tổng quan về kiến trúc microservices&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://blog.nagih.io.vn/post/design-system/cache/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/post/design-system/cache/</guid>
+      <description>&lt;h1 id=&#34;cache-toàn-tập-từ-chiếc-tủ-lạnh-mini-đến-trái-tim-của-hệ-thống-hiệu-năng-cao&#34;&gt;Cache Toàn Tập: Từ Chiếc Tủ Lạnh Mini Đến Trái Tim Của Hệ Thống Hiệu Năng Cao&lt;/h1&gt;&#xA;&lt;p&gt;Chào các bạn, những người đồng nghiệp và những tâm hồn đam mê công nghệ!&lt;/p&gt;&#xA;&lt;p&gt;Trong thế giới phát triển phần mềm, chúng ta luôn bị ám ảnh bởi một từ khóa: &lt;strong&gt;hiệu năng&lt;/strong&gt;. Làm thế nào để ứng dụng chạy nhanh hơn? Làm sao để trang web tải trong chớp mắt? Làm sao để hệ thống chịu được hàng triệu lượt truy cập mà không sụp đổ? Giữa vô vàn câu trả lời, có một khái niệm nền tảng, một kỹ thuật được áp dụng ở mọi quy mô, từ con chip nhỏ bé trong CPU đến các hệ thống phân tán toàn cầu. Đó chính là &lt;strong&gt;Cache&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
