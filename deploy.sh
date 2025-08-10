@@ -20,8 +20,8 @@ mkdir public
 git worktree prune
 rm -rf .git/worktrees/public/
 
-echo "Deleting old images"
-rm -rf /home/nagih/blog/static/images/*
+# echo "Deleting old images"
+# rm -rf /home/nagih/blog/static/images/*
 
 echo "Syncing post from obsidian"
 rsync -av --delete "/home/nagih/Documents/blog/posts/" "/home/nagih/blog/content/post/"
