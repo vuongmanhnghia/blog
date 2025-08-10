@@ -75,7 +75,7 @@ Loại cache nhanh nhất, cơ bản nhất nằm ở cấp độ phần cứng,
 Code snippet
 
 ```
-	(1) Register 
+(1) Register 
     (2) L1 Cache
     (3) L2 Cache
     (4) L3 Cache
@@ -228,15 +228,15 @@ Hiểu được mối liên kết nhân quả này giúp các nhà phát triển
 
 - **Quy trình:**
     
-    1. Ứng dụng cần đọc dữ liệu, nó sẽ kiểm tra cache trước.
+    -  Ứng dụng cần đọc dữ liệu, nó sẽ kiểm tra cache trước.
         
-    2. Nếu có (cache hit), dữ liệu được trả về.
+    -  Nếu có (cache hit), dữ liệu được trả về.
         
-    3. Nếu không có (cache miss), **ứng dụng** sẽ đọc dữ liệu từ database.
+    -  Nếu không có (cache miss), **ứng dụng** sẽ đọc dữ liệu từ database.
         
-    4. Sau đó, **ứng dụng** sẽ ghi dữ liệu vừa đọc được vào cache.
+    -  Sau đó, **ứng dụng** sẽ ghi dữ liệu vừa đọc được vào cache.
         
-    5. Khi ghi dữ liệu, ứng dụng thường sẽ cập nhật database trước, sau đó **vô hiệu hóa (invalidate)** mục tương ứng trong cache.
+    -  Khi ghi dữ liệu, ứng dụng thường sẽ cập nhật database trước, sau đó **vô hiệu hóa (invalidate)** mục tương ứng trong cache.
         
     ![Image Description](/images/Pasted%20image%2020250810134139.png)
 
@@ -251,11 +251,11 @@ Mẫu này trừu tượng hóa database khỏi ứng dụng. Ứng dụng chỉ
 
 - **Quy trình:**
     
-    1. Ứng dụng yêu cầu dữ liệu từ cache.
+    -  Ứng dụng yêu cầu dữ liệu từ cache.
         
-    2. Nếu cache có, nó sẽ trả về.
+    -  Nếu cache có, nó sẽ trả về.
         
-    3. Nếu cache không có, **chính cache** sẽ chịu trách nhiệm đi lấy dữ liệu từ database, lưu lại rồi trả về cho ứng dụng.
+    -  Nếu cache không có, **chính cache** sẽ chịu trách nhiệm đi lấy dữ liệu từ database, lưu lại rồi trả về cho ứng dụng.
         
 - **Ưu điểm:** Đơn giản hóa code ứng dụng vì logic caching được đóng gói trong cache provider.
     
