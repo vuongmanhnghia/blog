@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://blog.nagih.io.vn/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/github.min.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/github-style.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/light.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/dark.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/syntax.css' />
+    <title>Cache - Nagih&#39;s blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    <link rel="stylesheet" href="https://blog.nagih.io.vn/css/custom.css">
+    <script type="text/javascript" src="https://blog.nagih.io.vn/js/custom.js"></script>
+
+    
+    <meta name="description"
+  content="Overview of Cache
+" />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://blog.nagih.io.vn/post/design-system/cache/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Cache - Nagih&#39;s blog" />
+<meta name="twitter:description"
+  content="Overview of Cache
+" />
+<meta name="twitter:site" content="https://blog.nagih.io.vn/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://blog.nagih.io.vn/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Cache - Nagih&#39;s blog">
+<meta property="og:description"
+  content="Overview of Cache
+" />
+<meta property="og:url" content="https://blog.nagih.io.vn/post/design-system/cache/" />
+<meta property="og:site_name" content="Cache" />
+<meta property="og:image"
+  content="https://blog.nagih.io.vn/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2025-08-10 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://blog.nagih.io.vn/">
+        <img class="octicon" height="32" width="32" src="https://avatars.githubusercontent.com/u/123850496?v=4">
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          
+          <form target="_blank" id="search-form" action="" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+            </label>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://blog.nagih.io.vn/">
+        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="https://avatars.githubusercontent.com/u/123850496?v=4">
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+
+  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
+</div>
+
+  
+<div class="application-main">
+  <div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://blog.nagih.io.vn/">
+                  <img class=" avatar-user"
+                    src="https://avatars.githubusercontent.com/u/123850496?v=4"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://blog.nagih.io.vn/">Nagih</a>
+                  </span>
+                  <span class="path-divider">/</span>
+                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
+                    <a href="https://blog.nagih.io.vn/post/design-system/cache/">Cache</a>
+                  </strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Sun, 10 Aug 2025 00:00:00 &#43;0000"
+                    class="no-wrap">
+                    Sun, 10 Aug 2025 00:00:00 &#43;0000</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Sun, 10 Aug 2025 14:18:48 &#43;0700"
+                    class="no-wrap">
+                    Sun, 10 Aug 2025 14:18:48 &#43;0700</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      5180 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><p>Overview of Cache</p>
+<p>Trong thế giới phát triển phần mềm, chúng ta luôn bị ám ảnh bởi một từ khóa: <strong>hiệu năng</strong>. Làm thế nào để ứng dụng chạy nhanh hơn? Làm sao để trang web tải trong chớp mắt? Làm sao để hệ thống chịu được hàng triệu lượt truy cập mà không sụp đổ? Giữa vô vàn câu trả lời, có một khái niệm nền tảng, một kỹ thuật được áp dụng ở mọi quy mô, từ con chip nhỏ trong CPU đến các hệ thống phân tán toàn cầu. Đó chính là <strong>Cache</strong>.</p>
+<p>Nhiều người đã nghe về cache, có thể là &ldquo;xóa cache trình duyệt&rdquo; hay &ldquo;cache của CPU&rdquo;. Nhưng cache thực sự là gì? Nó hoạt động ra sao và tại sao nó lại quan trọng đến vậy?</p>
+<p>Bài viết này sẽ đưa bạn đi từ những khái niệm cơ bản nhất đến các chiến lược chuyên sâu trong thiết kế hệ thống. Hy vọng rằng sau khi đọc xong, bạn sẽ có một cái nhìn rõ ràng và sâu sắc về &ldquo;vũ khí bí mật&rdquo; mang tên cache.</p>
+<p>Hãy cùng bắt đầu!</p>
+<h2 id="cache-là-gì">Cache Là Gì?</h2>
+<p>Để hiểu về cache, hãy bắt đầu bằng một câu chuyện đơn giản.</p>
+<h3 id="câu-chuyện-về-thư-viện-và-chiếc-bàn-làm-việc">Câu chuyện về Thư viện và Chiếc bàn làm việc</h3>
+<p>Hãy tưởng tượng bạn là một nhà nghiên cứu cần rất nhiều sách cho công việc của mình. Toàn bộ sách được lưu trữ trong một thư viện khổng lồ ở phía bên kia thành phố. Mỗi khi cần một thông tin, bạn phải mất công di chuyển đến thư viện, tìm đúng cuốn sách, đọc, rồi lại đi về. Quá trình này rất chậm chạp và tốn thời gian.</p>
+<p>Bây giờ, bạn nghĩ ra một giải pháp thông minh hơn. Thay vì mỗi lần cần lại chạy đi, bạn sẽ mang những cuốn sách hay dùng nhất về đặt ngay trên chiếc bàn làm việc của mình. Chiếc bàn này tuy nhỏ, không thể chứa cả thư viện, nhưng nó ở ngay trước mặt bạn. Lần tới, khi cần thông tin từ những cuốn sách đó, bạn chỉ cần với tay là có ngay, nhanh hơn gấp trăm lần so với việc đi đến thư viện.</p>
+<p>Trong thế giới máy tính, câu chuyện này diễn ra liên tục.</p>
+<ul>
+<li>
+<p><strong>Thư viện khổng lồ</strong> chính là nơi lưu trữ dữ liệu chính, ví dụ như ổ cứng (HDD/SSD) hoặc Database. Nơi này có dung lượng lớn nhưng tốc độ truy cập khá chậm.</p>
+</li>
+<li>
+<p><strong>Chiếc bàn làm việc</strong> của bạn chính là <strong>Cache</strong>.</p>
+</li>
+</ul>
+<p><strong>Cache</strong> là một lớp lưu trữ dữ liệu tốc độ cao, có kích thước nhỏ, dùng để chứa một tập hợp con của dữ liệu gốc. Mục đích của nó là để các yêu cầu truy xuất dữ liệu trong tương lai được phục vụ nhanh hơn rất nhiều so với việc phải lấy dữ liệu từ database. Về cơ bản, cache cho phép chúng ta tái sử dụng một cách hiệu quả những dữ liệu đã được truy xuất hoặc tính toán trước đó.</p>
+<h3 id="tại-sao-cache-lại-quan-trọng-đến-vậy">Tại sao Cache lại quan trọng đến vậy?</h3>
+<p>Sử dụng cache mang lại 3 lợi ích cốt lõi, biến nó trở thành một kỹ thuật không thể thiếu trong hầu hết mọi hệ thống máy tính hiện đại.</p>
+<ol>
+<li>
+<p><strong>Tăng tốc độ một cách chóng mặt (Performance):</strong> Đây là mục đích chính. Cache thường được triển khai trên các phần cứng truy cập nhanh như RAM (Bộ nhớ truy cập ngẫu nhiên). Tốc độ truy cập RAM nhanh hơn hàng trăm, thậm chí hàng nghìn lần so với ổ đĩa. Việc phục vụ dữ liệu từ cache giúp giảm độ trễ (latency) và tăng số lượng thao tác I/O mỗi giây (IOPS) một cách đáng kể, làm cho ứng dụng trở nên mượt mà và phản hồi nhanh hơn.</p>
+</li>
+<li>
+<p><strong>Giảm tải cho hệ thống Backend:</strong> Cache hoạt động như một tấm khiên, che chắn cho cơ sở dữ liệu hoặc các dịch vụ API. Thay vì mọi yêu cầu đều phải truy cập vào cơ sở dữ liệu, phần lớn các yêu cầu đọc sẽ được cache xử lý. Điều này giúp cơ sở dữ liệu không bị quá tải, đặc biệt là trong những thời điểm có lưu lượng truy cập tăng đột biến, và giữ cho toàn bộ hệ thống ổn định.</p>
+</li>
+<li>
+<p><strong>Tiết kiệm chi phí (Cost Efficiency):</strong> Ở quy mô lớn, việc phục vụ dữ liệu từ cache trong bộ nhớ (in-memory) có thể rẻ hơn đáng kể so với việc phải nâng cấp liên tục các máy chủ cơ sở dữ liệu hoặc trả chi phí cho lưu lượng mạng cao khi truy xuất dữ liệu từ các dịch vụ đám mây.</p>
+</li>
+</ol>
+<h3 id="cache-hit-và-cache-miss">Cache Hit và Cache Miss</h3>
+<p>Hoạt động của cache xoay quanh hai kịch bản chính: <strong>Cache Hit</strong> và <strong>Cache Miss</strong>. Khi một client (có thể là CPU, trình duyệt web, hoặc ứng dụng của bạn) cần dữ liệu, nó sẽ luôn hỏi cache trước tiên.</p>
+<ul>
+<li>
+<p><strong>Cache Hit (Tìm thấy trong Cache):</strong> Đây là kịch bản lý tưởng. Dữ liệu được yêu cầu có tồn tại trong cache. Cache sẽ ngay lập tức trả về dữ liệu này cho client. Quá trình này cực kỳ nhanh chóng.</p>
+</li>
+<li>
+<p><strong>Cache Miss (Không tìm thấy trong Cache):</strong> Đây là kịch bản không mong muốn. Dữ liệu được yêu cầu không có trong cache. Khi đó, hệ thống buộc phải truy cập đến database để lấy dữ liệu. Sau khi lấy được, dữ liệu này sẽ được sao chép một bản vào cache để những lần yêu cầu sau sẽ trở thành cache hit, rồi mới được trả về cho client.</p>
+</li>
+</ul>
+<p>Một điểm cực kỳ quan trọng cần nhận thức ở đây là sự tồn tại của &ldquo;Cache Miss&rdquo; cho thấy một sự thật nền tảng: cache không phải là một phép màu tăng tốc miễn phí. Nó đi kèm với sự đánh đổi và chi phí. Một cache miss vốn dĩ còn <strong>chậm hơn</strong> một hệ thống không có cache. Bởi vì trong một hệ thống không cache, thời gian truy xuất chỉ đơn giản là thời gian lấy dữ liệu từ nguồn chính. Còn trong một cache miss, tổng thời gian là <code>Thời gian kiểm tra cache (và thất bại)</code> + <code>Thời gian lấy dữ liệu từ database</code>.</p>
+<p>Do đó, mục tiêu của mọi chiến lược caching không chỉ đơn giản là &ldquo;có cache&rdquo;, mà là thiết kế một hệ thống nơi tổng thời gian tiết kiệm được từ vô số các cache hit phải lớn hơn rất nhiều so với tổng thời gian bị mất đi do các cache miss không thể tránh khỏi. Điều này biến caching từ một công cụ đơn thuần thành một bài toán tối ưu hóa chiến lược.</p>
+<h3 id="tỷ-lệ-cache-hit-cache-hit-ratio">Tỷ lệ Cache Hit (Cache Hit Ratio)</h3>
+<p>Để biết cache của chúng ta có hoạt động hiệu quả hay không, chúng ta cần một thước đo. Thước đo quan trọng nhất chính là <strong>Tỷ lệ Cache Hit (Cache Hit Ratio)</strong>.</p>
+<p>Công thức tính rất đơn giản</p>
+<p>Tỷ lệ Cache Hit= Cache Hit​ / (Cache Hit + Cache Miss)</p>
+<p>Tỷ lệ này, thường được biểu diễn dưới dạng phần trăm, cho biết có bao nhiêu phần trăm yêu cầu được phục vụ nhanh chóng từ cache. Một tỷ lệ cache hit cao (thường từ 80-95% trở lên đối với nội dung tĩnh) cho thấy cache đang hoạt động rất hiệu quả. Ngược lại, một tỷ lệ thấp cho thấy cache đang không được sử dụng tốt, có thể do cấu hình sai, chính sách dọn dẹp không phù hợp, hoặc kích thước cache quá nhỏ.</p>
+<h3 id="cache-phần-cứng-cpu-cache">Cache Phần cứng (CPU Cache)</h3>
+<p>Loại cache nhanh nhất, cơ bản nhất nằm ở cấp độ phần cứng, được tích hợp trực tiếp CPU. Mục đích của nó là để bắc một cây cầu qua &ldquo;vực thẳm&rdquo; tốc độ giữa một CPU siêu nhanh và RAM chậm hơn nhiều.</p>
+<p>Để hiểu điều này, chúng ta cần biết về <strong>Hệ thống phân cấp bộ nhớ (Memory Hierarchy)</strong>. Đây là một mô hình tổ chức bộ nhớ trong máy tính thành nhiều cấp, giống như một kim tự tháp. Càng ở đỉnh kim tự tháp, bộ nhớ càng nhanh, càng đắt và dung lượng càng nhỏ. Càng xuống đáy, bộ nhớ càng chậm, càng rẻ và dung lượng càng lớn.</p>
+<p>Code snippet</p>
+<pre tabindex="0"><code>	(1) Register 
+    (2) L1 Cache
+    (3) L2 Cache
+    (4) L3 Cache
+    (5) RAM &lt;- Redis
+    (6) SSD
+    (7) HDD
+</code></pre><p>CPU cache được chia thành nhiều cấp (Level), thường là L1, L2, và L3:</p>
+<ul>
+<li>
+<p><strong>L1 Cache (Level 1):</strong> Đây là bộ nhớ cache nhỏ nhất và nhanh nhất, được tích hợp ngay trong từng nhân (core) của CPU</p>
+</li>
+<li>
+<p><strong>L2 Cache (Level 2):</strong> Lớn hơn L1 nhưng chậm hơn một chút. L2 cache có thể nằm riêng cho từng nhân hoặc chung cho một vài nhân, tùy vào kiến trúc CPU.</p>
+</li>
+<li>
+<p><strong>L3 Cache (Level 3):</strong> Lớn nhất và chậm nhất trong các cấp CPU cache. L3 cache thường được dùng chung cho tất cả các nhân trên một con chip. Nó giúp tăng tốc độ giao tiếp giữa các nhân và giảm thiểu việc phải truy cập ra RAM.</p>
+</li>
+</ul>
+<h3 id="cache-phần-mềm">Cache Phần mềm</h3>
+<p>Ngoài phần cứng, caching là một kỹ thuật được quản lý bởi phần mềm ở nhiều lớp khác nhau trong một ứng dụng. Đây là những loại cache mà các lập trình viên chúng ta thường xuyên tương tác và thiết kế.</p>
+<ul>
+<li>
+<p><strong>Cache Trình duyệt (Browser Cache):</strong> Khi bạn truy cập một trang web, trình duyệt của bạn sẽ tự động lưu các tài nguyên tĩnh như hình ảnh, file CSS, JavaScript vào một thư mục trên ổ cứng. Lần sau khi bạn quay lại trang đó, trình duyệt sẽ tải các tài nguyên này từ ổ cứng thay vì phải tải lại từ server, giúp trang web hiển thị gần như ngay lập tức. Đây là một dạng cache phía client (client-side), riêng tư cho mỗi người dùng.</p>
+</li>
+<li>
+<p><strong>Cache Mạng Phân phối Nội dung (CDN - Content Delivery Network):</strong> Đây là một mạng lưới các máy chủ proxy được đặt ở nhiều vị trí địa lý trên toàn cầu. Các máy chủ này lưu trữ (cache) bản sao của nội dung trang web (như video, hình ảnh, file tĩnh). Ví dụ điển hình là Netflix hay YouTube. Khi bạn ở Việt Nam và xem một video, rất có thể bạn đang nhận dữ liệu từ một máy chủ CDN đặt tại Singapore hoặc Hồng Kông, chứ không phải từ máy chủ gốc ở Mỹ. Điều này giúp giảm đáng kể độ trễ và tăng tốc độ tải.</p>
+</li>
+<li>
+<p><strong>Cache Cơ sở dữ liệu (Database Cache):</strong> Hầu hết các hệ quản trị cơ sở dữ liệu như MySQL, PostgreSQL đều có một bộ đệm cache nội bộ. Nó lưu lại kết quả của các câu truy vấn (query) được thực thi thường xuyên. Khi nhận được một câu truy vấn giống hệt, thay vì phải quét lại toàn bộ bảng dữ liệu, database sẽ trả về kết quả từ cache của nó.</p>
+</li>
+<li>
+<p><strong>Cache Ứng dụng (Application Cache / In-Memory Cache):</strong> Đây là lớp cache mà các lập trình viên chủ động thêm vào kiến trúc ứng dụng của mình, thường sử dụng các công cụ chuyên dụng như <strong>Redis</strong> hoặc <strong>Memcached</strong>. Lớp cache này có thể lưu trữ bất cứ thứ gì: kết quả của các phép tính toán phức tạp, phản hồi từ các API, các đối tượng dữ liệu đã được định dạng sẵn&hellip; Việc này giúp ứng dụng không phải tính toán lại hoặc truy vấn lại những thông tin tốn kém trên mỗi yêu cầu.</p>
+</li>
+</ul>
+<p>Hãy xem xét cấu trúc: <code>Client -&gt; Cache -&gt; Nguồn</code>.</p>
+<ul>
+<li>
+<p>Với CPU: Client là nhân xử lý, Cache là L1, Nguồn là RAM.</p>
+</li>
+<li>
+<p>Với Web: Client là công cụ render, Cache là ổ cứng cục bộ, Nguồn là web server.</p>
+</li>
+<li>
+<p>Với CDN: Client là trình duyệt, Cache là máy chủ biên (edge server), Nguồn là máy chủ gốc (origin server).</p>
+</li>
+<li>
+<p>Với App: Client là logic nghiệp vụ, Cache là Redis/Memcached, Nguồn là Database.</p>
+</li>
+</ul>
+<h2 id="khi-cache-bị-đầy-các-chính-sách-dọn-dẹp">Khi Cache Bị Đầy: Các Chính Sách &ldquo;Dọn Dẹp&rdquo;</h2>
+<p>Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.</p>
+<p>Điều này dẫn đến một vấn đề không thể tránh khỏi: khi cache đã đầy và một mục dữ liệu mới cần được thêm vào, hệ thống phải quyết định loại bỏ một mục dữ liệu cũ để nhường chỗ. Quá trình này được gọi là <strong>Eviction</strong> (dọn dẹp/loại bỏ).</p>
+<p>Thuật toán được sử dụng để quyết định <em>mục nào</em> sẽ bị loại bỏ được gọi là <strong>Chính sách dọn dẹp (Eviction Policy)</strong>. Quay lại với câu chuyện thư viện, khi bàn làm việc của bạn đã chật kín sách, bạn sẽ phải chọn một cuốn để trả lại thư viện trước khi mang cuốn mới về. Bạn chọn cuốn nào? Sự lựa chọn của bạn chính là một chính sách dọn dẹp.</p>
+<p>Dưới đây là các chiến lược dọn dẹp phổ biến nhất.</p>
+<h3 id="các-chiến-lược-dọn-dẹp-phổ-biến">Các chiến lược dọn dẹp phổ biến</h3>
+<ul>
+<li>
+<p><strong>FIFO (First-In, First-Out - Vào trước, Ra trước):</strong></p>
+<ul>
+<li>
+<p><strong>Nguyên tắc:</strong> Đây là chính sách đơn giản nhất. Nó loại bỏ mục dữ liệu cũ nhất, tức là mục đã nằm trong cache lâu nhất, bất kể nó có được sử dụng thường xuyên hay không. Nó hoạt động giống như một hàng đợi (queue).</p>
+</li>
+<li>
+<p><strong>Ưu điểm:</strong> Rất dễ cài đặt và có chi phí quản lý thấp.</p>
+</li>
+<li>
+<p><strong>Nhược điểm:</strong> Thường không hiệu quả vì nó có thể loại bỏ một mục rất phổ biến chỉ vì nó được nạp vào cache từ lâu.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>LRU (Least Recently Used - Ít được sử dụng gần đây nhất):</strong></p>
+<ul>
+<li>
+<p><strong>Nguyên tắc:</strong> Chính sách này loại bỏ mục dữ liệu mà đã không được truy cập trong khoảng thời gian dài nhất. Nó hoạt động dựa trên nguyên tắc <strong>tính cục bộ về thời gian (temporal locality)</strong></p>
+</li>
+<li>
+<p><strong>Ưu điểm:</strong> Hiệu quả hơn FIFO rất nhiều trong hầu hết các trường hợp thực tế, vì nó giữ lại những dữ liệu đang được sử dụng tích cực.</p>
+</li>
+<li>
+<p><strong>Nhược điểm:</strong> Phức tạp hơn trong việc triển khai vì nó đòi hỏi phải theo dõi thời gian truy cập của mỗi mục, gây tốn thêm một chút bộ nhớ và xử lý.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>LFU (Least Frequently Used - Ít được sử dụng thường xuyên nhất):</strong></p>
+<ul>
+<li>
+<p><strong>Nguyên tắc:</strong> Chính sách này loại bỏ mục dữ liệu được truy cập với số lần ít nhất. Nó dựa trên nguyên tắc <strong>tính cục bộ về tần suất (frequency locality)</strong> – ý tưởng rằng có một số dữ liệu vốn dĩ đã phổ biến hơn những dữ liệu khác.</p>
+</li>
+<li>
+<p><strong>Ưu điểm:</strong> Rất tốt trong việc xác định và giữ lại các mục dữ liệu &ldquo;hot&rdquo; (phổ biến) trong một thời gian dài, ngay cả khi chúng không được truy cập gần đây.</p>
+</li>
+<li>
+<p><strong>Nhược điểm:</strong> Phức tạp để triển khai hiệu quả. Nó có thể không thích ứng nhanh với các mẫu truy cập thay đổi (ví dụ: một mục từng rất hot nhưng giờ không còn ai dùng nữa vẫn có thể chiếm chỗ trong cache một thời gian dài). Nó cũng có thể loại bỏ một mục mới được thêm vào nhưng chưa có cơ hội tích lũy đủ số lần truy cập.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="bảng-so-sánh-các-chính-sách-dọn-dẹp">Bảng so sánh các chính sách dọn dẹp</h3>
+<p>Để giúp bạn dễ dàng lựa chọn, đây là bảng so sánh các chính sách phổ biến:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Chính sách</th>
+          <th>Nguyên tắc cốt lõi</th>
+          <th>Ví dụ tương tự</th>
+          <th>Ưu điểm</th>
+          <th>Nhược điểm</th>
+          <th>Phù hợp nhất cho</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>FIFO</strong></td>
+          <td>Loại bỏ mục vào cache sớm nhất.</td>
+          <td>Xếp hàng mua vé: người đến trước được phục vụ trước.</td>
+          <td>Đơn giản, chi phí thấp.</td>
+          <td>Không thông minh, có thể loại bỏ dữ liệu quan trọng.</td>
+          <td>Các hệ thống có mẫu truy cập tuần tự, không lặp lại.</td>
+      </tr>
+      <tr>
+          <td><strong>LRU</strong></td>
+          <td>Loại bỏ mục ít được dùng đến gần đây nhất.</td>
+          <td>Dọn dẹp bàn làm việc: trả lại cuốn sách bạn không đụng đến lâu nhất.</td>
+          <td>Hiệu quả cao trong hầu hết các trường hợp, thích ứng tốt với sự thay đổi.</td>
+          <td>Phức tạp hơn, cần theo dõi thời gian truy cập.</td>
+          <td>Các ứng dụng thông thường, nơi dữ liệu gần đây có khả năng được tái sử dụng cao (ví dụ: trang tin tức, mạng xã hội).</td>
+      </tr>
+      <tr>
+          <td><strong>LFU</strong></td>
+          <td>Loại bỏ mục có số lần truy cập ít nhất.</td>
+          <td>Thư viện cho mượn sách: loại bỏ những cuốn ít người mượn nhất.</td>
+          <td>Giữ lại được các mục &ldquo;hot&rdquo; một cách ổn định.</td>
+          <td>Phức tạp, có thể giữ lại dữ liệu &ldquo;hot&rdquo; đã lỗi thời, không thích ứng nhanh.</td>
+          <td>Các hệ thống có một số dữ liệu cực kỳ phổ biến và ổn định (ví dụ: sản phẩm bán chạy, video viral).</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="giữ-cho-dữ-liệu-đồng-nhất-các-chính-sách-ghi">Giữ Cho Dữ Liệu Đồng Nhất: Các Chính Sách Ghi</h2>
+<p>Khi một ứng dụng thực hiện thao tác ghi (write) hoặc cập nhật (update), một vấn đề nghiêm trọng nảy sinh. Bây giờ chúng ta có hai bản sao của cùng một dữ liệu: một trong cache và một trong cơ sở dữ liệu. Nếu chúng không được cập nhật đồng bộ, cache sẽ chứa dữ liệu cũ. Việc phục vụ stale data cho người dùng có thể dẫn đến các lỗi nghiêm trọng, thông tin sai lệch và trải nghiệm tồi tệ.</p>
+<p><strong>Chính sách ghi (Write Policy)</strong> là quy tắc xác định cách hệ thống xử lý các thao tác ghi để giải quyết vấn đề về tính nhất quán này.</p>
+<h3 id="các-chính-sách-ghi-cốt-lõi">Các chính sách ghi cốt lõi</h3>
+<ul>
+<li>
+<p><strong>Write-Through (Ghi Xuyên)</strong></p>
+<ul>
+<li>
+<p><strong>Quy trình:</strong> Khi ứng dụng ghi dữ liệu, nó sẽ ghi <strong>đồng thời</strong> vào cả cache và cơ sở dữ liệu. Thao tác chỉ được coi là hoàn tất khi cả hai nơi đều đã ghi xong.</p>
+</li>
+<li>
+<p><strong>Lưu đồ:</strong> <code>Ứng dụng -&gt; Ghi vào Cache -&gt; Ghi vào Database -&gt; Hoàn tất</code></p>
+</li>
+<li>
+<p><strong>Ưu điểm:</strong> Tính nhất quán dữ liệu rất cao. Cache và database luôn đồng bộ. Đơn giản để triển khai và đáng tin cậy.</p>
+</li>
+<li>
+<p><strong>Nhược điểm:</strong> Độ trễ của thao tác ghi cao, vì ứng dụng phải chờ cả hai thao tác ghi hoàn tất.</p>
+</li>
+<li>
+<p><strong>Trường hợp sử dụng:</strong> Các ứng dụng quan trọng nơi tính nhất quán dữ liệu là tối thượng, ví dụ như hệ thống ngân hàng, quản lý kho hàng.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Write-Back (Ghi Sau / Write-Behind)</strong></p>
+<ul>
+<li>
+<p><strong>Quy trình:</strong> Khi ứng dụng ghi dữ liệu, nó chỉ ghi vào cache tốc độ cao trước. Thao tác được xác nhận hoàn tất ngay lập tức. Việc ghi vào cơ sở dữ liệu sẽ được trì hoãn và thực hiện sau đó, có thể là sau một khoảng thời gian nhất định hoặc khi mục cache đó sắp bị dọn dẹp. Hệ thống thường dùng một &ldquo;bit bẩn&rdquo; (dirty bit) để đánh dấu các mục trong cache đã bị thay đổi và cần được ghi lại vào database.</p>
+</li>
+<li>
+<p><strong>Lưu đồ:</strong> <code>Ứng dụng -&gt; Ghi vào Cache -&gt; Hoàn tất. (Background: Cache -&gt; Ghi vào Database)</code></p>
+</li>
+<li>
+<p><strong>Ưu điểm:</strong> Độ trễ ghi cực thấp và thông lượng cao. Giảm tải cho database bằng cách gộp nhiều lần ghi vào cùng một đối tượng thành một lần ghi duy nhất (write-coalescing).</p>
+</li>
+<li>
+<p><strong>Nhược điểm:</strong> Có nguy cơ mất dữ liệu nếu cache bị lỗi trước khi dữ liệu kịp ghi vào database. Phức tạp hơn để triển khai.</p>
+</li>
+<li>
+<p><strong>Trường hợp sử dụng:</strong> Các ứng dụng có lượng ghi lớn, nơi hiệu năng là ưu tiên hàng đầu và có thể chấp nhận một rủi ro nhỏ về mất mát dữ liệu, ví dụ như ghi log hành vi người dùng, cập nhật số lượt xem bài viết.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Write-Around (Ghi Vòng)</strong></p>
+<ul>
+<li>
+<p><strong>Quy trình:</strong> Khi ứng dụng ghi dữ liệu, nó sẽ ghi <strong>trực tiếp</strong> vào cơ sở dữ liệu, hoàn toàn bỏ qua cache. Dữ liệu chỉ được nạp vào cache sau này, khi có một yêu cầu đọc bị cache miss.</p>
+</li>
+<li>
+<p><strong>Lưu đồ:</strong> <code>Ứng dụng -&gt; Ghi vào Database -&gt; Hoàn tất</code></p>
+</li>
+<li>
+<p><strong>Ưu điểm:</strong> Tránh &ldquo;làm ô nhiễm&rdquo; cache bằng những dữ liệu có thể không bao giờ được đọc lại.</p>
+</li>
+<li>
+<p><strong>Nhược điểm:</strong> Một yêu cầu đọc ngay sau khi ghi sẽ luôn luôn là cache miss, dẫn đến độ trễ đọc cao cho dữ liệu vừa được ghi.</p>
+</li>
+<li>
+<p><strong>Trường hợp sử dụng:</strong> Các ứng dụng ghi dữ liệu nhưng hiếm khi đọc lại ngay sau đó, ví dụ như các hệ thống nhập dữ liệu hàng loạt (bulk data ingestion), lưu trữ log.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Các chính sách ghi không tồn tại một cách độc lập. Chúng liên kết chặt chẽ với cách hệ thống xử lý một <strong>write miss</strong> (khi ứng dụng muốn ghi vào một mục không có trong cache). Có hai lựa chọn:</p>
+<ol>
+<li>
+<p><strong>Write Allocate (Fetch on Write):</strong> Khi có write miss, hệ thống sẽ tải khối dữ liệu đó từ database vào cache trước, rồi mới thực hiện thao tác ghi.</p>
+</li>
+<li>
+<p><strong>No-Write Allocate:</strong> Khi có write miss, hệ thống sẽ ghi thẳng vào database, không tải dữ liệu đó vào cache.</p>
+</li>
+</ol>
+<p>Sự kết hợp giữa chính sách ghi và chính sách write miss tạo ra các chiến lược hoàn chỉnh. Ví dụ, một hệ thống <strong>Write-Back</strong> thường đi kèm với <strong>Write Allocate</strong>. Triết lý của Write-Back là hấp thụ các thao tác ghi để tăng hiệu năng, với giả định rằng dữ liệu đó sẽ sớm được truy cập lại. Vì vậy, khi có write miss, việc tải dữ liệu vào cache trước là hợp lý để các thao tác sau đó có thể hưởng lợi từ cache. Ngược lại, một hệ thống <strong>Write-Through</strong> thường sử dụng <strong>No-Write Allocate</strong> (chính là chiến lược Write-Around). Triết lý của Write-Through là an toàn dữ liệu. Nếu có write miss, việc tải dữ liệu vào cache chỉ để ghi nó ngay lập tức ra database là không hiệu quả. Sẽ đơn giản hơn nếu ghi thẳng vào database và tránh làm ô nhiễm cache.</p>
+<p>Hiểu được mối liên kết nhân quả này giúp các nhà phát triển đưa ra quyết định kiến trúc mạch lạc và tối ưu hơn, thay vì chọn hai chính sách một cách ngẫu nhiên.</p>
+<h2 id="xây-dựng-hệ-thống-với-cache-các-mẫu-thiết-kế">Xây Dựng Hệ Thống Với Cache: Các Mẫu Thiết Kế</h2>
+<h3 id="mẫu-1-cache-aside-lazy-loading">Mẫu 1: Cache-Aside (Lazy Loading)</h3>
+<p>Đây là mẫu thiết kế phổ biến và trực quan nhất. Trong mẫu này, logic của ứng dụng chịu trách nhiệm hoàn toàn cho việc quản lý cache.</p>
+<ul>
+<li>
+<p><strong>Quy trình:</strong></p>
+<ol>
+<li>
+<p>Ứng dụng cần đọc dữ liệu, nó sẽ kiểm tra cache trước.</p>
+</li>
+<li>
+<p>Nếu có (cache hit), dữ liệu được trả về.</p>
+</li>
+<li>
+<p>Nếu không có (cache miss), <strong>ứng dụng</strong> sẽ đọc dữ liệu từ database.</p>
+</li>
+<li>
+<p>Sau đó, <strong>ứng dụng</strong> sẽ ghi dữ liệu vừa đọc được vào cache.</p>
+</li>
+<li>
+<p>Khi ghi dữ liệu, ứng dụng thường sẽ cập nhật database trước, sau đó <strong>vô hiệu hóa (invalidate)</strong> mục tương ứng trong cache.</p>
+</li>
+</ol>
+<p>!<img src="/images/Pasted%20image%2020250810134139.png" alt="Image Description"></p>
+</li>
+<li>
+<p><strong>Ưu điểm:</strong> Ứng dụng có toàn quyền kiểm soát. Cache chỉ lưu những dữ liệu thực sự được yêu cầu, giúp tiết kiệm không gian. Hệ thống có khả năng chống chịu lỗi cache tốt (nếu cache sập, ứng dụng có thể đọc trực tiếp từ database).</p>
+</li>
+<li>
+<p><strong>Nhược điểm:</strong> Yêu cầu đầu tiên cho bất kỳ dữ liệu nào cũng sẽ là cache miss. Code của ứng dụng phức tạp hơn vì phải chứa logic quản lý cache.</p>
+</li>
+</ul>
+<h3 id="mẫu-2-read-through">Mẫu 2: Read-Through</h3>
+<p>Mẫu này trừu tượng hóa database khỏi ứng dụng. Ứng dụng chỉ cần &ldquo;nói chuyện&rdquo; với cache.</p>
+<ul>
+<li>
+<p><strong>Quy trình:</strong></p>
+<ol>
+<li>
+<p>Ứng dụng yêu cầu dữ liệu từ cache.</p>
+</li>
+<li>
+<p>Nếu cache có, nó sẽ trả về.</p>
+</li>
+<li>
+<p>Nếu cache không có, <strong>chính cache</strong> sẽ chịu trách nhiệm đi lấy dữ liệu từ database, lưu lại rồi trả về cho ứng dụng.</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Ưu điểm:</strong> Đơn giản hóa code ứng dụng vì logic caching được đóng gói trong cache provider.</p>
+</li>
+<li>
+<p><strong>Nhược điểm:</strong> Kém linh hoạt hơn. Cache provider phải hỗ trợ mẫu này.</p>
+</li>
+</ul>
+<h3 id="mẫu-3--4-write-through-và-write-behind-write-back">Mẫu 3 &amp; 4: Write-Through và Write-Behind (Write-Back)</h3>
+<p>Đây là các mẫu tập trung vào việc ghi, thường đi đôi với Read-Through.</p>
+<ul>
+<li>
+<p><strong>Write-Through:</strong> Ứng dụng ghi dữ liệu vào cache, và <strong>cache</strong> sẽ chịu trách nhiệm ghi đồng bộ dữ liệu đó vào database. Điều này đảm bảo tính nhất quán cao.</p>
+</li>
+<li>
+<p><strong>Write-Behind:</strong> Ứng dụng ghi dữ liệu vào cache, và <strong>cache</strong> sẽ ghi dữ liệu đó vào database một cách bất đồng bộ (trong nền). Điều này cho hiệu năng ghi rất cao.</p>
+</li>
+</ul>
+<p>Sự lựa chọn giữa Cache-Aside và các mẫu Read/Write-Through không chỉ là chi tiết kỹ thuật, mà là một quyết định kiến trúc nền tảng về <strong>sự phân tách trách nhiệm (separation of concerns)</strong>.</p>
+<ul>
+<li>
+<p><strong>Cache-Aside</strong> đặt trách nhiệm điều phối dữ liệu lên vai ứng dụng. Ứng dụng &ldquo;biết&rdquo; cả về cache và database.</p>
+</li>
+<li>
+<p><strong>Read/Write-Through</strong> coi cache như một lớp mặt tiền (facade) cho database. Ứng dụng chỉ cần biết &ldquo;lấy dữ liệu&rdquo; hoặc &ldquo;ghi dữ liệu&rdquo; tại một điểm duy nhất là cache.</p>
+</li>
+</ul>
+<p>Mô hình Read-Through thúc đẩy sự phân tách trách nhiệm sạch sẽ hơn, dẫn đến code ứng dụng đơn giản và dễ bảo trì hơn. Tuy nhiên, nó lại ràng buộc chặt chẽ cache với database, khiến việc thay đổi database hoặc sử dụng cache cho các nguồn dữ liệu khác trở nên khó khăn. Ngược lại, Cache-Aside linh hoạt hơn – cache có thể chứa dữ liệu từ nhiều nguồn (database, API, file,&hellip;) – nhưng phải trả giá bằng sự phức tạp tăng lên trong code ứng dụng. Đây là một sự đánh đổi kinh điển giữa đơn giản/đóng gói và linh hoạt/kiểm soát.</p>
+<h2 id="thách-thức-lớn-nhất-dữ-liệu-cũ-và-vô-hiệu-hóa-cache">Thách Thức Lớn Nhất: Dữ Liệu Cũ và Vô Hiệu Hóa Cache</h2>
+<p>Vấn đề cốt lõi vẫn là <strong>stale data</strong>. Khi dữ liệu trong nguồn chính bị thay đổi bởi một tiến trình khác mà cache không hề hay biết, cache sẽ trở nên lỗi thời. Phục vụ dữ liệu lỗi thời này có thể gây ra những hậu quả tai hại.</p>
+<p><strong>Cache Invalidation</strong> là quá trình đánh dấu hoặc loại bỏ dữ liệu trong cache để nó không còn hợp lệ nữa.</p>
+<h3 id="các-chiến-lược-vô-hiệu-hóa-cache">Các chiến lược vô hiệu hóa cache</h3>
+<ul>
+<li>
+<p><strong>Time-To-Live (TTL) Expiration (Hết hạn theo thời gian):</strong></p>
+<ul>
+<li>
+<p><strong>Quy trình:</strong> Đây là chiến lược đơn giản nhất. Khi dữ liệu được lưu vào cache, nó được gán một &ldquo;tuổi thọ&rdquo;, ví dụ 5 phút. Sau 5 phút, dữ liệu này tự động bị coi là không hợp lệ và sẽ bị xóa hoặc bỏ qua trong lần truy cập tiếp theo, buộc hệ thống phải lấy lại dữ liệu mới từ database.</p>
+</li>
+<li>
+<p><strong>Ưu điểm:</strong> Dễ triển khai, đảm bảo dữ liệu cuối cùng sẽ nhất quán.</p>
+</li>
+<li>
+<p><strong>Nhược điểm:</strong> Dữ liệu có thể bị lỗi thời trong suốt khoảng thời gian TTL. Việc chọn TTL phù hợp là một nghệ thuật cân bằng khó khăn: TTL quá ngắn sẽ làm giảm tỷ lệ cache hit, TTL quá dài sẽ tăng nguy cơ stale data.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Event-Driven Invalidation (Active Deletion - Xóa chủ động):</strong></p>
+<ul>
+<li>
+<p><strong>Quy trình:</strong> Một cách tiếp cận chủ động hơn. Khi dữ liệu trong database được cập nhật (ví dụ, người dùng đổi ảnh đại diện), ứng dụng sẽ gửi một lệnh <code>DELETE</code> hoặc <code>INVALIDATE</code> rõ ràng đến cache để xóa mục tương ứng.</p>
+</li>
+<li>
+<p><strong>Ưu điểm:</strong> Đảm bảo dữ liệu được vô hiệu hóa gần như ngay lập tức, mang lại tính nhất quán cao hơn nhiều so với TTL.</p>
+</li>
+<li>
+<p><strong>Nhược điểm:</strong> Phức tạp hơn để triển khai. Nó đòi hỏi sự liên kết chặt chẽ giữa code ghi vào database và cache. Trong một hệ thống phân tán, nó rất dễ gặp phải các vấn đề về <strong>race condition</strong> (tranh chấp) hoặc lỗi mạng.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Vấn đề &ldquo;khó&rdquo; của cache invalidation không chỉ nằm ở việc <em>khi nào</em> cần vô hiệu hóa, mà là làm thế nào để đảm bảo việc vô hiệu hóa đó là <em>chính xác</em> và <em>nguyên tử</em> trong một môi trường có nhiều tiến trình chạy đồng thời. Đây là lúc chúng ta đối mặt với một vấn đề kinh điển về race condition.</p>
+<p>Hãy xem xét kịch bản sau trong mẫu Cache-Aside:</p>
+<ol>
+<li>
+<p>Tiến trình A đọc dữ liệu X. Bị cache miss.</p>
+</li>
+<li>
+<p>Tiến trình A đi đến database để đọc dữ liệu X (phiên bản cũ).</p>
+</li>
+<li>
+<p>Trong lúc đó, tiến trình B cập nhật dữ liệu X trong database và ngay lập tức gửi lệnh vô hiệu hóa cache cho X.</p>
+</li>
+<li>
+<p>Tiến trình A, sau khi đọc xong dữ liệu X (phiên bản cũ) từ database, giờ đây lại ghi nó vào cache.</p>
+</li>
+<li>
+<p><strong>Kết quả:</strong> Cache bây giờ chứa dữ liệu X đã lỗi thời, và lệnh vô hiệu hóa của tiến trình B trở nên vô nghĩa. Dữ liệu lỗi thời này sẽ tồn tại trong cache cho đến khi TTL hết hạn.
+!<img src="/images/Pasted%20image%2020250810134758.png" alt="Image Description"></p>
+</li>
+</ol>
+<p>Đây không phải là lỗi của một công cụ cụ thể, mà là một lỗ hổng cơ bản trong việc định thời của các hoạt động phân tán. Các giải pháp cho vấn đề này, như sử dụng <strong>phiên bản (versioning)</strong> cho dữ liệu hoặc <strong>cơ chế cho thuê (lease)</strong>, không còn là các kỹ thuật vô hiệu hóa đơn giản nữa. Chúng là các cơ chế kiểm soát tương tranh (concurrency control) phức tạp. Ví dụ, với cơ chế lease mà Facebook sử dụng, chỉ tiến trình nào nhận được &ldquo;hợp đồng thuê&rdquo; khi bị cache miss mới có quyền ghi lại vào cache. Nếu một lệnh vô hiệu hóa xảy ra trong thời gian đó, &ldquo;hợp đồng thuê&rdquo; sẽ bị thu hồi, và thao tác ghi dữ liệu cũ của tiến trình A sẽ bị từ chối.</p>
+<h2 id="kết-luận-cache---sự-đánh-đổi-thông-minh">Kết luận: Cache - Sự Đánh Đổi Thông Minh</h2>
+<p>Nếu có một điều cần đọng lại, đó là: <strong>Cache không phải là một viên đạn bạc, mà là một kỹ thuật mạnh mẽ đòi hỏi sự đánh đổi thông minh.</strong></p>
+<p>Mỗi quyết định bạn đưa ra – chọn loại cache nào, chính sách dọn dẹp ra sao, chính sách ghi nào, mẫu thiết kế nào – đều là một sự cân bằng giữa các yếu tố:</p>
+<ul>
+<li>
+<p><strong>Hiệu năng</strong> và <strong>Chi phí</strong></p>
+</li>
+<li>
+<p><strong>Độ phức tạp</strong> và <strong>Tính đơn giản</strong></p>
+</li>
+<li>
+<p><strong>Tính nhất quán dữ liệu</strong> và <strong>Độ trễ</strong></p>
+</li>
+<li>
+<p><strong>Mô hình tối ưu nhất mà tôi biết</strong>
+!<img src="/images/Pasted%20image%2020250810135418.png" alt="Image Description"></p>
+</li>
+</ul>
+<p>Không có câu trả lời nào là đúng cho mọi trường hợp. Một hệ thống yêu cầu tính nhất quán tuyệt đối sẽ phải hy sinh một phần hiệu năng ghi (sử dụng Write-Through). Một hệ thống cần hiệu năng ghi tối đa có thể phải chấp nhận rủi ro về dữ liệu (sử dụng Write-Back).</p>
+<p>Hiểu rõ các khái niệm và chiến lược này không phải để tìm ra một &ldquo;công thức hoàn hảo&rdquo;, mà là để trang bị cho bạn một bộ công cụ mạnh mẽ. Với bộ công cụ này, bạn có thể phân tích yêu cầu của ứng dụng, dự đoán các mẫu truy cập, và đưa ra những quyết định kiến trúc sáng suốt, phù hợp nhất với bài toán cụ thể của mình.</p>
+<p>Chúc bạn thành công trên con đường xây dựng những hệ thống nhanh hơn, mạnh hơn và hiệu quả hơn!</p></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://blog.nagih.io.vn/js/toc.js'></script>
+<link rel="stylesheet" href='https://blog.nagih.io.vn/css/toc.css' />
+
+  
+<div id="gitalk-container" class="gitalk-container"></div>
+<link rel="stylesheet" href='https://blog.nagih.io.vn/css/gitalk.css'>
+<script src='https://blog.nagih.io.vn/js/gitalk.min.js'></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'Ov23li9UG1K7XEEbH2rX',
+    clientSecret: '314c5b3c2437a868e716ca4bd2ee12ca9eb200e3',
+    repo: 'blog',
+    owner: 'vuongmanhnghia',
+    admin: ['vuongmanhnghia'],
+    id: eval("location.pathname"), 
+    distractionFreeMode: false 
+  });
+  (function() {
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+</div>
+
+  <div class="footer container-xl width-full p-responsive">
+	<div
+		class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light">
+		<a
+			aria-label="Homepage"
+			title="GitHub"
+			class="footer-octicon d-none d-lg-block mr-lg-4"
+			href="https://blog.nagih.io.vn/">
+			<svg
+				height="24"
+				class="octicon octicon-mark-github"
+				viewBox="0 0 16 16"
+				version="1.1"
+				width="24">
+				<path
+					fill-rule="evenodd"
+					d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+			</svg>
+		</a>
+		<ul
+			class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+			
+			<li class="mr-3 mr-lg-0">
+				<a href="https://github.com/vuongmanhnghia">Vuong Manh Nghia</a>
+			</li>
+			
+			<li class="mr-3 mr-lg-0">
+				GitHub and the Invertocat logo are trademarks of
+				<a href="https://github.com/">GitHub, Inc.</a>
+			</li>
+		</ul>
+	</div>
+	<div class="d-flex flex-justify-center pb-6">
+		<span class="f6 text-gray-light"></span>
+	</div>
+</div>
+
+</body>
+
+<script type="application/javascript" src="https://blog.nagih.io.vn/js/github-style.js"></script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script type="application/javascript" src='https://blog.nagih.io.vn/js/search.js'></script>
+
+
+
+</html>
