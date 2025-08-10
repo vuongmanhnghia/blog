@@ -199,9 +199,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 10 Aug 2025 14:27:38 &#43;0700"
+                  Modified <relative-time datetime="Sun, 10 Aug 2025 14:30:53 &#43;0700"
                     class="no-wrap">
-                    Sun, 10 Aug 2025 14:27:38 &#43;0700</relative-time>
+                    Sun, 10 Aug 2025 14:30:53 &#43;0700</relative-time>
                   
                 </div>
               </div>
@@ -297,7 +297,7 @@
 <p>Loại cache nhanh nhất, cơ bản nhất nằm ở cấp độ phần cứng, được tích hợp trực tiếp CPU. Mục đích của nó là để bắc một cây cầu qua &ldquo;vực thẳm&rdquo; tốc độ giữa một CPU siêu nhanh và RAM chậm hơn nhiều.</p>
 <p>Để hiểu điều này, chúng ta cần biết về <strong>Hệ thống phân cấp bộ nhớ (Memory Hierarchy)</strong>. Đây là một mô hình tổ chức bộ nhớ trong máy tính thành nhiều cấp, giống như một kim tự tháp. Càng ở đỉnh kim tự tháp, bộ nhớ càng nhanh, càng đắt và dung lượng càng nhỏ. Càng xuống đáy, bộ nhớ càng chậm, càng rẻ và dung lượng càng lớn.</p>
 <p>Code snippet</p>
-<pre tabindex="0"><code>	(1) Register 
+<pre tabindex="0"><code>(1) Register 
     (2) L1 Cache
     (3) L2 Cache
     (4) L3 Cache
@@ -520,7 +520,7 @@
 <ul>
 <li>
 <p><strong>Quy trình:</strong></p>
-<ol>
+<ul>
 <li>
 <p>Ứng dụng cần đọc dữ liệu, nó sẽ kiểm tra cache trước.</p>
 </li>
@@ -536,7 +536,7 @@
 <li>
 <p>Khi ghi dữ liệu, ứng dụng thường sẽ cập nhật database trước, sau đó <strong>vô hiệu hóa (invalidate)</strong> mục tương ứng trong cache.</p>
 </li>
-</ol>
+</ul>
 <p><img src="/images/Pasted%20image%2020250810134139.png" alt="Image Description"></p>
 </li>
 <li>
@@ -551,7 +551,7 @@
 <ul>
 <li>
 <p><strong>Quy trình:</strong></p>
-<ol>
+<ul>
 <li>
 <p>Ứng dụng yêu cầu dữ liệu từ cache.</p>
 </li>
@@ -561,7 +561,7 @@
 <li>
 <p>Nếu cache không có, <strong>chính cache</strong> sẽ chịu trách nhiệm đi lấy dữ liệu từ database, lưu lại rồi trả về cho ứng dụng.</p>
 </li>
-</ol>
+</ul>
 </li>
 <li>
 <p><strong>Ưu điểm:</strong> Đơn giản hóa code ứng dụng vì logic caching được đóng gói trong cache provider.</p>
