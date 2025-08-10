@@ -1,6 +1,6 @@
 ---
 title: Cache
-date: 2025-08-07
+date: 2025-10-07
 draft: false
 ---
 Overview of Cache
