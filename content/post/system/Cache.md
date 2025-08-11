@@ -2,6 +2,9 @@
 title: Cache
 date: 2025-08-10
 draft: false
+tags:
+  - system
+  - vi
 ---
 Overview of Cache
 <!--more-->

@@ -2,6 +2,9 @@
 title: Kafka
 date: 2025-08-09
 draft: false
+tags:
+  - system
+  - vi
 ---
 Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
 <!--more-->

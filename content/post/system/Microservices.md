@@ -2,6 +2,9 @@
 title: Microservices
 date: 2025-08-07
 draft: false
+tags:
+  - system
+  - vi
 ---
 Tổng quan về kiến trúc microservices
 <!--more-->
