@@ -76,12 +76,12 @@ Code snippet
 
 ```
 (1) Register 
-    (2) L1 Cache
-    (3) L2 Cache
-    (4) L3 Cache
-    (5) RAM <- Redis
-    (6) SSD
-    (7) HDD
+(2) L1 Cache
+(3) L2 Cache
+(4) L3 Cache
+(5) RAM <- Redis
+(6) SSD
+(7) HDD
 ```
 
 CPU cache được chia thành nhiều cấp (Level), thường là L1, L2, và L3:
