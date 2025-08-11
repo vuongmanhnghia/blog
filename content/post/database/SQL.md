@@ -4,6 +4,7 @@ date: 2025-08-11
 draft: false
 tags:
   - database
+  - sql
   - vi
 ---
 Các kiến trức trọng tâm và tất cả các lệnh SQL
