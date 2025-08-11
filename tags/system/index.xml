@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Nagih&#39;s blog</title>
-    <link>https://blog.nagih.io.vn/post/</link>
-    <description>Recent content in Posts on Nagih&#39;s blog</description>
+    <title>System on Nagih&#39;s blog</title>
+    <link>https://blog.nagih.io.vn/tags/system/</link>
+    <description>Recent content in System on Nagih&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 11 Aug 2025 07:53:38 +0700</lastBuildDate>
-    <atom:link href="https://blog.nagih.io.vn/post/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Kafka</title>
-      <link>https://blog.nagih.io.vn/post/database/sql/</link>
-      <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/post/database/sql/</guid>
-      <description>&lt;p&gt;Các kiến trức trọng tâm và tất cả các lệnh SQL&lt;/p&gt;</description>
-    </item>
+    <atom:link href="https://blog.nagih.io.vn/tags/system/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cache</title>
       <link>https://blog.nagih.io.vn/post/system/cache/</link>
