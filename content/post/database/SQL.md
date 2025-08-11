@@ -1,5 +1,5 @@
 ---
-title: Kafka
+title: SQL
 date: 2025-08-11
 draft: false
 tags:

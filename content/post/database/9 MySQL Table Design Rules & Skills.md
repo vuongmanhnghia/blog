@@ -1,5 +1,5 @@
 ---
-title: Kafka
+title: 9 MySQL Table Design Rules & Skills
 date: 2025-08-12
 draft: false
 tags:
