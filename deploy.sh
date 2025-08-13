@@ -45,7 +45,7 @@ echo "Updating deploy branch"
 cd public && git add --all && git commit -m "Publishing to deploy (publish.sh)"
 
 echo "Pushing to github"
-# git push --all --force
-git push origin deploy -f
+git push --all --force
+# git push origin deploy -f
 
 cd ..
