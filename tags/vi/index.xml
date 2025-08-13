@@ -6,7 +6,7 @@
     <description>Recent content in Vi on Nagih&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 Aug 2025 16:17:12 +0700</lastBuildDate>
+    <lastBuildDate>Wed, 13 Aug 2025 16:22:43 +0700</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/vi/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker</title>
@@ -34,7 +34,7 @@
       <link>https://blog.nagih.io.vn/post/database/9-mysql-table-design-rules--skills/</link>
       <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/post/database/9-mysql-table-design-rules--skills/</guid>
-      <description>&lt;p&gt;9 NGUYÊN TẮC VÀ KỸ NĂNG MỞ RỘNG KHI THIẾT KẾ TABLE MYSQL TRONG PHÁT TRIỂN BACKEND&lt;/p&gt;</description>
+      <description>&lt;p&gt;Principles and skills to extend MySQL table design&lt;/p&gt;</description>
     </item>
     <item>
       <title>SQL</title>
