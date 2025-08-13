@@ -7,7 +7,7 @@ tags:
   - sql
   - vi
 ---
-9 NGUYÊN TẮC VÀ KỸ NĂNG MỞ RỘNG KHI THIẾT KẾ TABLE MYSQL TRONG PHÁT TRIỂN BACKEND
+Principles and skills to extend MySQL table design
 <!--more-->
 Trong thế giới phát triển ứng dụng Backend, việc thiết kế cơ sở dữ liệu (database) không chỉ là một công việc kỹ thuật mà còn là một nghệ thuật đòi hỏi sự tỉ mỉ, hiểu biết sâu sắc về dữ liệu và tầm nhìn dài hạn về tính mở rộng của hệ thống. Đặc biệt, đối với các ứng dụng có nhiều kịch bản phức tạp như chat nhóm (chat group) với nhiều người dùng tham gia, việc lưu trữ dữ liệu đòi hỏi một phương pháp tiếp cận có nguyên tắc.
 
