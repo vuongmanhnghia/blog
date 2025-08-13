@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/light.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/dark.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/syntax.css' />
-    <title>Microservices - Nagih&#39;s blog</title>
+    <title>9 MySQL Table Design Rules &amp; Skills - Nagih&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
     
@@ -21,18 +21,18 @@
 
     
     <meta name="description"
-  content="Tổng quan về kiến trúc microservices
+  content="9 NGUYÊN TẮC VÀ KỸ NĂNG MỞ RỘNG KHI THIẾT KẾ TABLE MYSQL TRONG PHÁT TRIỂN BACKEND
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://blog.nagih.io.vn/post/system/microservices/" />
+<link rel="canonical" href="https://blog.nagih.io.vn/post/database/9-mysql-table-design-rules--skills/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Microservices - Nagih&#39;s blog" />
+<meta name="twitter:title" content="9 MySQL Table Design Rules &amp; Skills - Nagih&#39;s blog" />
 <meta name="twitter:description"
-  content="Tổng quan về kiến trúc microservices
+  content="9 NGUYÊN TẮC VÀ KỸ NĂNG MỞ RỘNG KHI THIẾT KẾ TABLE MYSQL TRONG PHÁT TRIỂN BACKEND
 " />
 <meta name="twitter:site" content="https://blog.nagih.io.vn/" />
 <meta name="twitter:creator" content="" />
@@ -41,18 +41,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Microservices - Nagih&#39;s blog">
+<meta property="og:title" content="9 MySQL Table Design Rules &amp; Skills - Nagih&#39;s blog">
 <meta property="og:description"
-  content="Tổng quan về kiến trúc microservices
+  content="9 NGUYÊN TẮC VÀ KỸ NĂNG MỞ RỘNG KHI THIẾT KẾ TABLE MYSQL TRONG PHÁT TRIỂN BACKEND
 " />
-<meta property="og:url" content="https://blog.nagih.io.vn/post/system/microservices/" />
-<meta property="og:site_name" content="Microservices" />
+<meta property="og:url" content="https://blog.nagih.io.vn/post/database/9-mysql-table-design-rules--skills/" />
+<meta property="og:site_name" content="9 MySQL Table Design Rules &amp; Skills" />
 <meta property="og:image"
   content="https://blog.nagih.io.vn/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2025-08-07 00:00:00 &#43;0000 UTC" />
+<meta property="article:published_time" content="2025-08-12 00:00:00 &#43;0000 UTC" />
 
 
 
@@ -188,13 +188,13 @@
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="https://blog.nagih.io.vn/post/system/microservices/">Microservices</a>
+                    <a href="https://blog.nagih.io.vn/post/database/9-mysql-table-design-rules--skills/">9 MySQL Table Design Rules &amp; Skills</a>
                   </strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Thu, 07 Aug 2025 00:00:00 &#43;0000"
+                  Created <relative-time datetime="Tue, 12 Aug 2025 00:00:00 &#43;0000"
                     class="no-wrap">
-                    Thu, 07 Aug 2025 00:00:00 &#43;0000</relative-time>
+                    Tue, 12 Aug 2025 00:00:00 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -230,20 +230,29 @@
                         </div>
                       </div>
                     </details-menu>
-                      981 Words
+                      1508 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
                     
-                    <a class="muted-link mr-3" href="/tags/system">
+                    <a class="muted-link mr-3" href="/tags/database">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      system
+                      database
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/sql">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      sql
                     </a>
                     
                     <a class="muted-link mr-3" href="/tags/vi">
@@ -262,80 +271,73 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>Tổng quan về kiến trúc microservices</p>
-<h3 id="1-kiến-trúc-microservices-là-gì">1. Kiến trúc Microservices là gì?</h3>
-<p>Hãy tưởng tượng bạn đang xây một ngôi nhà.</p>
-<ul>
+                <article class="markdown-body entry-content container-lg"><p>9 NGUYÊN TẮC VÀ KỸ NĂNG MỞ RỘNG KHI THIẾT KẾ TABLE MYSQL TRONG PHÁT TRIỂN BACKEND</p>
+<p>Trong thế giới phát triển ứng dụng Backend, việc thiết kế cơ sở dữ liệu (database) không chỉ là một công việc kỹ thuật mà còn là một nghệ thuật đòi hỏi sự tỉ mỉ, hiểu biết sâu sắc về dữ liệu và tầm nhìn dài hạn về tính mở rộng của hệ thống. Đặc biệt, đối với các ứng dụng có nhiều kịch bản phức tạp như chat nhóm (chat group) với nhiều người dùng tham gia, việc lưu trữ dữ liệu đòi hỏi một phương pháp tiếp cận có nguyên tắc.</p>
+<p>Dưới đây là 9 nguyên tắc cốt lõi và một số kỹ năng mở rộng mà mọi lập trình viên Backend cần nắm vững khi khởi tạo bảng trong MySQL, đảm bảo ứng dụng không chỉ chạy đúng mà còn hiệu quả và dễ bảo trì:</p>
+<p><strong>1. Mọi Table Luôn Phải Có Các Column Mặc Định</strong></p>
+<p>Một thiết kế table hoàn chỉnh cần có ít nhất 5 trường mặc định để theo dõi lịch sử và tính nhất quán của dữ liệu:</p>
+<p>• <strong>version</strong>: Ghi lại số lần chỉnh sửa của table, đồng thời liên quan đến các khái niệm khóa lạc quan (optimistic lock) và khóa bi quan (pessimistic lock)</p>
+<p>• <strong>creator_id</strong>: (Tùy chọn, tùy thuộc vào công ty) Ai là người tạo bản ghi này</p>
+<p>• <strong>modifier</strong>: Ai là người cuối cùng sửa đổi bản ghi, quan trọng để biết hành động cuối cùng trên table</p>
+<p>• <strong>create_at</strong>: Thời gian bản ghi được tạo</p>
+<p>• <strong>update_at</strong>: Thời gian bản ghi được cập nhật lần cuối</p>
+<p><strong>2. Giải Thích Ngữ Nghĩa Các Column Bằng Comment</strong></p>
+<p>Khi viết DDL (Data Definition Language) cho MySQL, PostgreSQL, hoặc bất kỳ hệ quản trị cơ sở dữ liệu nào, <strong>hãy luôn thêm comment giải thích ý nghĩa của từng column</strong>. Điều này đặc biệt quan trọng cho các trường kiểu liệt kê (enumeration) như <code>status</code> (ví dụ: 1 là private, 2 là public, 3 là friends, 4 là only me). Việc comment rõ ràng giúp các thành viên mới gia nhập team dễ dàng hiểu và làm quen với cấu trúc dữ liệu, tránh sự hiểu lầm về ngữ nghĩa của các trường</p>
+<p><strong>3. Xóa Dữ Liệu Không Phải Xóa &ldquo;Bay&rdquo; (Xóa Logic)</strong></p>
+<p><strong>Không bao giờ sử dụng lệnh</strong> <strong>DELETE</strong> <strong>để xóa vật lý dữ liệu trực tiếp trong môi trường sản phẩm</strong>. Thay vào đó, hãy sử dụng phương pháp <strong>xóa logic (soft delete)</strong> bằng cách thêm một trường để đánh dấu bản ghi đã bị xóa hay chưa, và thời gian xóa</p>
+<p>• Ban đầu có thể sử dụng hai trường: <code>is_deleted</code> (0: hoạt động, 1: đã xóa) và <code>deleted_at</code> (thời gian xóa)</p>
+<p>• Cách tối ưu hơn là <strong>chỉ sử dụng một trường</strong> <strong>deleted_at</strong>: Nếu giá trị là <code>NULL</code> nghĩa là bản ghi chưa bị xóa; nếu có giá trị thời gian, đó là thời gian bản ghi bị xóa</p>
+<p>• <strong>Lưu ý</strong>: Giá trị <code>NULL</code> có thể gây nhược điểm nghiêm trọng về hiệu suất index khi dữ liệu lớn, do đó cần cân nhắc kỹ hoặc tìm hiểu sâu hơn về <code>NULL</code> trong database</p>
+<p><strong>4. Quy Ước Đặt Tên Với Prefix (Tiền Tố)</strong></p>
+<p>Các trường (field) trong table nên có các tiền tố (prefix) để dễ dàng xác định nguồn gốc khi các bảng được join lại với nhau. Ví dụ, bảng <code>account</code> có thể có trường <code>acc_number</code>. Việc này cực kỳ quan trọng vì trong thực tế, chúng ta ít khi làm việc với dữ liệu độc lập mà thường phải join nhiều bảng (ít nhất 3 bảng là nguyên tắc làm việc). Nếu không có prefix, việc phân biệt <code>ID</code> hay <code>create_at</code> thuộc về bảng nào khi join sẽ gây ra sự hiểu nhầm và lỗi</p>
+<p><strong>5. Tách Bảng Khi Có Quá Nhiều Trường (Vertical Partitioning)</strong></p>
+<p>Một table không nên có quá nhiều trường (column), <strong>tối đa khoảng 20 trường</strong>. Nếu vượt quá, cần phải tách bảng dọc (vertical partition). Bảng có nhiều trường sẽ làm dữ liệu lưu trữ lớn, giảm hiệu suất truy vấn và tốn bộ nhớ</p>
+<p>• <strong>Tách bảng</strong>: Chia thành một bảng chính chứa các trường được truy cập thường xuyên và quan trọng (ví dụ: <code>title</code>, <code>status</code>, <code>thumbnail</code> của một bài post), và một bảng chi tiết chứa các trường ít quan trọng hơn hoặc chỉ hiển thị khi người dùng click vào (ví dụ: <code>content</code>, <code>description</code>)</p>
+<p>• Mối quan hệ giữa hai bảng này thường là <strong>1-1</strong>, giúp việc join đơn giản và hiệu quả, không ảnh hưởng đến hiệu suất</p>
+<p><strong>6. Chọn Kiểu Dữ Liệu và Độ Dài Thích Hợp</strong></p>
+<p>Một hệ thống tốt không chỉ chạy đúng mà còn phải chạy hiệu quả. Việc chọn kiểu dữ liệu và độ dài phù hợp giúp:</p>
+<p>• <strong>Tiết kiệm bộ nhớ (memory)</strong> và dung lượng đĩa (disk)</p>
+<p>• <strong>Tối ưu tốc độ query</strong></p>
+<p>• <strong>Giảm tỷ lệ Input/Output (I/O)</strong>. Ví dụ:</p>
+<ol>
 <li>
-<p><strong>Kiến trúc nguyên khối (Monolith):</strong> Bạn xây toàn bộ ngôi nhà bằng một khối bê tông khổng lồ duy nhất. Mọi thứ dính liền với nhau. Nếu bạn muốn sửa đường ống nước trong bếp, bạn có thể phải đục cả bức tường lớn, ảnh hưởng đến phòng khách bên cạnh.</p>
+<p>Trường <code>title</code> không nên để <code>VARCHAR(255)</code> nếu độ dài thực tế chỉ khoảng 100 ký tự (như tiêu đề video YouTube/TikTok)</p>
 </li>
 <li>
-<p><strong>Kiến trúc Microservices:</strong> Bạn xây ngôi nhà bằng những viên gạch LEGO. Mỗi phòng (phòng khách, phòng ngủ, nhà bếp) là một khối LEGO riêng. Nếu muốn sửa bếp, bạn chỉ cần nhấc khối LEGO &ldquo;nhà bếp&rdquo; ra, sửa nó, rồi đặt lại mà không ảnh hưởng gì đến các phòng khác.</p>
-</li>
-</ul>
-<p>Trong phần mềm, <strong>kiến trúc microservices</strong> là phương pháp chia một ứng dụng lớn thành <strong>nhiều dịch vụ (service) nhỏ, độc lập</strong>. Mỗi service đảm nhiệm một chức năng cụ thể, có database riêng, và được phát triển, triển khai, nâng cấp độc lập với các service khác.</p>
-<p><img src="/images/Pasted%20image%2020250807092251.png" alt="Image Description"></p>
-<h3 id="2-các-service-giao-tiếp-với-nhau-ra-sao-có-giống-frontend-gọi-tới-backend-không">2. Các Service giao tiếp với nhau ra sao? Có giống Frontend gọi tới Backend không?</h3>
-<p>Đây là câu hỏi cốt lõi và quan trọng nhất. Các service (vốn là các backend) giao tiếp với nhau qua mạng. Có hai kiểu giao tiếp chính:</p>
-<h4 id="giao-tiếp-đồng-bộ-synchronous"><strong>Giao tiếp Đồng bộ (Synchronous)</strong></h4>
-<p>Giống như một cuộc gọi điện thoại. Service A gọi đến Service B và phải <strong>chờ</strong> Service B trả lời rồi mới làm việc tiếp.</p>
-<ul>
-<li>
-<p><strong>Cách thức:</strong> Thường sử dụng các giao thức như <strong>REST API (qua HTTP/S)</strong> hoặc <strong>gRPC</strong>.</p>
+<p>Trường <code>language</code> chỉ cần <code>CHAR(2)</code> (ví dụ: &ldquo;en&rdquo;, &ldquo;vi&rdquo;) thay vì <code>VARCHAR</code> dài</p>
 </li>
 <li>
-<p><strong>Ví dụ:</strong> Khi bạn đặt hàng, <code>Service Đơn Hàng</code> sẽ gọi trực tiếp đến <code>Service Kho Hàng</code> để hỏi &ldquo;Sản phẩm X còn hàng không?&rdquo;. <code>Service Đơn Hàng</code> sẽ phải đợi câu trả lời từ <code>Service Kho Hàng</code> rồi mới cho phép khách đặt hàng.</p>
+<p>Trường <code>status</code> chỉ nên dùng <strong>TINYINT</strong> (kích thước 1 byte, lưu trữ 0-255) thay vì <code>INT</code> (kích thước 4 byte, lưu trữ 0-4 tỷ ID) nếu các giá trị chỉ là 1, 2, 3</p>
+</li>
+</ol>
+<p><strong>7. Nguyên Tắc Not NULL</strong></p>
+<p><strong>Không nên cho phép giá trị</strong> <strong>NULL</strong> <strong>bừa bãi</strong>. <code>NULL</code> không phải là một số, một chuỗi hay một biến boolean; nó là một vùng không xác định. <code>NULL</code> có thể:</p>
+<p>• Làm hỏng logic nghiệp vụ nếu quên xử lý</p>
+<p>• Gây lỗi index khi so sánh bằng <code>NULL</code> (ví dụ <code>WHERE column IS NULL</code> thường không sử dụng index hiệu quả). Các trường bắt buộc phải có giá trị (như <code>title</code>, <code>status</code>, <code>create_at</code>) nên được khai báo là <strong>NOT NULL</strong>. Khi không có giá trị, hãy sử dụng <strong>DEFAULT</strong> đi kèm với <code>NOT NULL</code></p>
+<p><strong>8. Chiến Lược Đánh Index</strong></p>
+<p>Index là chìa khóa để tối ưu hiệu suất truy vấn</p>
+<p>• <strong>Nên đánh index</strong> cho các trường ít trùng lặp và thường xuyên được sử dụng trong truy vấn, ví dụ: <code>creator_id</code> và <code>create_at</code> (quan trọng khi truy vấn theo thời gian). Luôn có prefix <code>idx_</code> cho các index</p>
+<p>• <strong>Trường</strong> <strong>deleted_at</strong> <strong>luôn cần được đánh index</strong> để tránh hiển thị các bản ghi đã bị xóa ra công khai, điều này có thể dẫn đến các vấn đề pháp lý (ví dụ: GDPR của Châu Âu)</p>
+<p>• <strong>QUY TẮC VÀNG</strong>: <strong>Không nên đánh index cho các trường có dữ liệu lặp lại quá nhiều</strong> (ví dụ: trường <code>status</code> mà 90% bản ghi có cùng một giá trị). Việc đánh index trong trường hợp này thậm chí có thể làm chậm truy vấn hơn so với không đánh index, vì database sẽ quét toàn bộ table thay vì sử dụng index</p>
+<p>• <strong>Giải pháp thay thế khi cần truy vấn các trường có nhiều giá trị trùng lặp</strong>:</p>
+<ol>
+<li>
+<p><strong>Thêm trường tiền tố phạm vi thời gian</strong>: Ví dụ, kết hợp <code>status</code> với <code>create_at</code> theo phạm vi thời gian (<code>WHERE status = 1 AND create_at BETWEEN '2025-06-15 00:00 :00' AND '2025-06-15 23:59:59'</code>) để giúp index hoạt động hiệu quả hơn</p>
 </li>
 <li>
-<p><strong>Giống Frontend gọi Backend không?</strong> Về mặt kỹ thuật (dùng REST API) thì <strong>giống</strong>, nhưng bản chất là <strong>khác</strong>. Đây là giao tiếp <strong>giữa các backend với nhau (backend-to-backend)</strong>, diễn ra bên trong hệ thống mà người dùng không nhìn thấy.</p>
-</li>
-</ul>
-<h4 id="giao-tiếp-bất-đồng-bộ-asynchronous"><strong>Giao tiếp Bất đồng bộ (Asynchronous)</strong></h4>
-<p>Giống như gửi email hoặc tin nhắn. Service A gửi một &ldquo;thông điệp&rdquo; (message) cho Service B rồi tiếp tục công việc của mình ngay lập tức, <strong>không cần chờ</strong> B trả lời. Service B sẽ nhận và xử lý thông điệp đó khi nào sẵn sàng.</p>
-<ul>
-<li>
-<p><strong>Cách thức:</strong> Sử dụng một hệ thống trung gian gọi là <strong>Message Broker</strong> (hoặc Message Queue) như <strong>RabbitMQ, Kafka</strong>.</p>
+<p><strong>Chia table thành các phân vùng (Partition)</strong>: Phù hợp với dữ liệu lớn, giúp chia nhỏ dữ liệu. Tuy nhiên, Partition không thay thế được index và có nhược điểm riêng, chỉ nên dùng khi thực sự cần và hiểu rõ</p>
 </li>
 <li>
-<p><strong>Ví dụ:</strong> Sau khi bạn đặt hàng thành công, <code>Service Đơn Hàng</code> sẽ gửi một thông điệp có nội dung &ldquo;Đơn hàng #123 đã được tạo&rdquo; vào một hàng đợi (queue). <code>Service Thông Báo</code> sẽ lắng nghe hàng đợi này, thấy có thông điệp mới liền lấy ra và gửi email xác nhận cho bạn. <code>Service Đơn Hàng</code> không cần quan tâm <code>Service Thông Báo</code> đã gửi email hay chưa.</p>
+<p><strong>Tạo View</strong>: View có thể hoạt động rất tốt trong các truy vấn với stored procedure hoặc function, giúp truy vấn nhanh hơn khi dữ liệu được lặp lại và cảm thấy đúng đánh lặp lại</p>
 </li>
-<li>
-<p><strong>Ưu điểm:</strong> Giúp các service <strong>hoàn toàn độc lập</strong> (decoupled). Nếu <code>Service Thông Báo</code> bị lỗi, các đơn hàng vẫn được tạo bình thường, các thông điệp sẽ nằm chờ trong queue để được xử lý sau.</p>
-</li>
-</ul>
-<hr>
-<h3 id="3-có-phải-microservices-là-kiến-trúc-ở-backend-frontend-chỉ-cần-1-service">3. Có phải Microservices là kiến trúc ở Backend? Frontend chỉ cần 1 service?</h3>
-<p>Đúng vậy, <strong>Microservices chủ yếu là một kiến trúc cho phần backend</strong>. Tuy nhiên, việc có nhiều service backend nhỏ lẻ lại tạo ra một vấn đề cho frontend: &ldquo;Frontend nên gọi đến service nào?&rdquo;.</p>
-<p>Không thể để frontend (ứng dụng web, mobile) gọi trực tiếp đến 10 service backend khác nhau. Điều này rất phức tạp, khó quản lý và không an toàn. Giải pháp phổ biến nhất là sử dụng một <strong>API Gateway</strong>.</p>
-<h4 id="api-gateway-là-gì"><strong>API Gateway là gì?</strong></h4>
-<p>Hãy coi API Gateway như một <strong>anh chàng lễ tân</strong> của toàn bộ hệ thống.</p>
-<ul>
-<li>
-<p>Frontend chỉ cần nói chuyện với &ldquo;anh lễ tân&rdquo; này thôi.</p>
-</li>
-<li>
-<p>&ldquo;Anh lễ tân&rdquo; sẽ chịu trách nhiệm xác thực yêu cầu, sau đó xem xét yêu cầu này thuộc về phòng ban nào (service nào) và chuyển tiếp đến đúng nơi.</p>
-</li>
-<li>
-<p>Nó cũng có thể tổng hợp thông tin từ nhiều service trước khi trả về cho frontend.</p>
-</li>
-</ul>
-<p><strong>Ví dụ:</strong> Để hiển thị trang chi tiết sản phẩm, frontend chỉ cần gửi 1 yêu cầu duy nhất đến API Gateway. API Gateway sẽ tự động gọi đến <code>Service Sản Phẩm</code> để lấy thông tin sản phẩm và gọi đến <code>Service Đánh Giá</code> để lấy các bình luận, sau đó gộp hai kết quả này lại và trả về cho frontend.</p>
-<p>Vậy câu trả lời là: <strong>Backend được chia thành nhiều microservices, và thường có một lớp API Gateway làm điểm vào duy nhất cho tất cả các client (web, mobile&hellip;).</strong></p>
-<hr>
-<h3 id="4-vấn-đề-về-dữ-liệu-mỗi-service-một-database">4. Vấn đề về Dữ liệu: Mỗi Service một Database?</h3>
-<p>Đây là một trong những quy tắc vàng và cũng là thách thức lớn nhất của microservices: <strong>Mỗi microservice phải sở hữu và quản lý cơ sở dữ liệu (database) của riêng mình.</strong></p>
-<ul>
-<li>
-<p><strong>Tại sao?</strong> Để đảm bảo tính độc lập tuyệt đối. Nếu <code>Service A</code> và <code>Service B</code> dùng chung một database, khi <code>Service A</code> muốn thay đổi cấu trúc bảng, nó có thể làm sập <code>Service B</code>. Như vậy thì không còn gọi là độc lập nữa.</p>
-</li>
-<li>
-<p><strong>Thách thức:</strong> Làm sao để thực hiện một nghiệp vụ yêu cầu dữ liệu từ nhiều service? Ví dụ: làm sao để đảm bảo khi tạo đơn hàng (Service Đơn Hàng) thì số lượng tồn kho (Service Kho Hàng) cũng phải được trừ đi một cách nhất quán?</p>
-</li>
-<li>
-<p><strong>Giải pháp:</strong> Cần sử dụng các pattern nâng cao như <strong>Saga Pattern</strong> để quản lý các giao dịch phân tán (distributed transactions). Đây là một chủ đề phức tạp, nhưng ý tưởng cơ bản là mỗi service sẽ thực hiện phần việc của mình và phát ra sự kiện để service tiếp theo thực hiện phần việc của nó.</p>
-</li>
-</ul></article>
+</ol>
+<p><strong>9. Nguyên Tắc Normal Form (3NF, 4NF, 5NF)</strong></p>
+<p>Normalization là một nguyên tắc cơ bản trong thiết kế database nhằm giảm thiểu sự dư thừa dữ liệu và cải thiện tính toàn vẹn dữ liệu</p>
+<p>• <strong>3NF (Third Normal Form)</strong> là một nguyên tắc cơ bản cần nắm vững</p>
+<p>• Ngoài ra, còn có các dạng chuẩn mở rộng hơn như <strong>4NF (Fourth Normal Form)</strong> và <strong>5NF (Fifth Normal Form)</strong>, giúp tối ưu hóa hơn nữa về sự mở rộng và tính linh hoạt của database</p>
+<p>. Việc tìm hiểu sâu về các Normal Form này sẽ giúp bạn thiết kế database hiệu quả hơn cho các mô hình kinh doanh phức tạp</p>
+<p><strong>Kết Luận</strong></p>
+<p>Các nguyên tắc là kim chỉ nam quan trọng, nhưng chúng ta cũng cần linh hoạt mở rộng chúng để phục vụ cho mô hình kinh doanh cụ thể của dự án. Nguyên tắc có thể bị phá vỡ bởi một nguyên tắc khác tốt hơn trong một hoàn cảnh cụ thể, nhưng nếu chưa có lý do chính đáng để phá vỡ, hãy cố gắng tuân thủ chúng. Việc nắm vững và áp dụng những nguyên tắc này sẽ giúp bạn xây dựng những ứng dụng Backend mạnh mẽ, ổn định và dễ dàng mở rộng trong tương lai.</p></article>
               </div>
             </div>
           </div>

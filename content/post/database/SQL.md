@@ -1,6 +1,6 @@
 ---
 title: SQL
-date: 2025-08-11
+date: 2025-08-12
 draft: false
 tags:
   - database
