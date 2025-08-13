@@ -6,12 +6,19 @@
     <description>Recent content in Database on Nagih&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Aug 2025 09:01:52 +0700</lastBuildDate>
+    <lastBuildDate>Wed, 13 Aug 2025 15:43:20 +0700</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>9 MySQL Table Design Rules &amp; Skills</title>
+      <link>https://blog.nagih.io.vn/post/database/9-mysql-table-design-rules--skills/</link>
+      <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/post/database/9-mysql-table-design-rules--skills/</guid>
+      <description>&lt;p&gt;9 NGUYÊN TẮC VÀ KỸ NĂNG MỞ RỘNG KHI THIẾT KẾ TABLE MYSQL TRONG PHÁT TRIỂN BACKEND&lt;/p&gt;</description>
+    </item>
     <item>
       <title>SQL</title>
       <link>https://blog.nagih.io.vn/post/database/sql/</link>
-      <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/post/database/sql/</guid>
       <description>&lt;p&gt;Các kiến trức trọng tâm và tất cả các lệnh SQL&lt;/p&gt;</description>
     </item>
