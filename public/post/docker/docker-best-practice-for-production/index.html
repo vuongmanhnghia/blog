@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/light.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/dark.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/syntax.css' />
-    <title>Kafka - Nagih&#39;s blog</title>
+    <title>Docker Best Practice for Production - Nagih&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
     
@@ -21,18 +21,18 @@
 
     
     <meta name="description"
-  content="Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
+  content="Các Thực tiễn Tốt nhất cho Môi trường Production
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://blog.nagih.io.vn/post/system/kafka/" />
+<link rel="canonical" href="https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Kafka - Nagih&#39;s blog" />
+<meta name="twitter:title" content="Docker Best Practice for Production - Nagih&#39;s blog" />
 <meta name="twitter:description"
-  content="Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
+  content="Các Thực tiễn Tốt nhất cho Môi trường Production
 " />
 <meta name="twitter:site" content="https://blog.nagih.io.vn/" />
 <meta name="twitter:creator" content="" />
@@ -41,18 +41,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Kafka - Nagih&#39;s blog">
+<meta property="og:title" content="Docker Best Practice for Production - Nagih&#39;s blog">
 <meta property="og:description"
-  content="Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
+  content="Các Thực tiễn Tốt nhất cho Môi trường Production
 " />
-<meta property="og:url" content="https://blog.nagih.io.vn/post/system/kafka/" />
-<meta property="og:site_name" content="Kafka" />
+<meta property="og:url" content="https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/" />
+<meta property="og:site_name" content="Docker Best Practice for Production" />
 <meta property="og:image"
   content="https://blog.nagih.io.vn/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2025-08-09 00:00:00 &#43;0000 UTC" />
+<meta property="article:published_time" content="2025-08-15 00:00:00 &#43;0000 UTC" />
 
 
 
@@ -190,13 +190,13 @@
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="https://blog.nagih.io.vn/post/system/kafka/">Kafka</a>
+                    <a href="https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/">Docker Best Practice for Production</a>
                   </strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Sat, 09 Aug 2025 00:00:00 &#43;0000"
+                  Created <relative-time datetime="Fri, 15 Aug 2025 00:00:00 &#43;0000"
                     class="no-wrap">
-                    Sat, 09 Aug 2025 00:00:00 &#43;0000</relative-time>
+                    Fri, 15 Aug 2025 00:00:00 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -232,20 +232,20 @@
                         </div>
                       </div>
                     </details-menu>
-                      569 Words
+                      961 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
                     
-                    <a class="muted-link mr-3" href="/tags/system">
+                    <a class="muted-link mr-3" href="/tags/docker">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      system
+                      docker
                     </a>
                     
                     <a class="muted-link mr-3" href="/tags/vi">
@@ -264,24 +264,102 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka</p>
-<h1 id="kafka-được-dùng-khi-nào-">KAFKA ĐƯỢC DÙNG KHI NÀO ?</h1>
-<h3 id="kiến-trúc-truyền-thống---lập-trình-nối-tiếp">Kiến trúc truyền thống - Lập trình nối tiếp</h3>
-<p><img src="/images/Pasted%20image%2020250809165924.png" alt="Image Description"></p>
-<p><strong>Các function quá lệ thuộc vào nhau:</strong> Nếu 1 ngày nào đó, tính năng update cart của 1 nhân viên B bị lỗi thì khi user save order -&gt; update cart nhưng bị lỗi ở đây và trả về lỗi, thực tế nếu hệ thống bỏ qua bước này và cho tới bước update inventory thì có được hay không ? Thực tế, mọi trang thương mại điện tử hiện nay đều có thể xử lý lỗi thành công, <strong>miễn là cho user có trải nghiệm tốt là được</strong>. Nếu xảy ra lỗi. Các hệ thống sẽ trả cho user phần bù đắp thiệt hại cho user (1 vourcher chẳng hạn) chứ không nên để cho user đặt hàng không thành công.</p>
-<p><strong>Trong hình ảnh tiếp theo, tôi đã cung cấp thêm thời gian phản hồi, có thể thấy mỗi 1 request sẽ mất 150ms</strong></p>
-<p><img src="/images/Pasted%20image%2020250809171312.png" alt="Image Description"></p>
-<p><strong>Giả sử nhân viên B phụ trách tính năng update cart nhưng code yếu thì làm sao ? Tức là tính năng update cart được tính toán nhiều quá, không hiệu quả, và kết quả là bị tắc đường ở đó.</strong> Và tất nhiên hệ thống phải đồng bộ. Chẳng hạn khi có 10.000 users bị tắc nghẽn ở đó thì phải làm như thế nào ?</p>
-<p><img src="/images/Pasted%20image%2020250809171727.png" alt="Image Description"></p>
-<p><strong>Và một ngày nào đó, lượng users tăng cao, và cần thêm tính năng mới - Thống kê.</strong> Tính năng này thống kê điểm tích lũy cho user để có thể tặng quà cho những người mua hàng nhiều nhất, tích điểm,&hellip; Thì khi thêm 1 tính năng bất kỳ, đồng nghĩa với việc sẽ tăng thêm thời gian phản hồi, nguy cơ tăng lỗi cũng sẽ cao hơn</p>
-<h3 id="kiến-trúc-phân-tán">Kiến trúc phân tán</h3>
-<p><img src="/images/Pasted%20image%2020250809172709.png" alt="Image Description"></p>
-<p>Có thể thấy, tất cả các order đều được đẩy vào <strong>Message Queue</strong>, và ngay lập tức trả về response cho user, không cần quan tâm tới những tác vụ còn lại. Và tất nhiên các tác vụ update cart, update inventory, save payment, save shopping vẫn được tiến hành và được tiến hành theo đúng trình tự.</p>
-<p><strong>Và nhắc lại trường hợp khi nãy, giả sử tính năng update inventory bị lỗi thì chuyện gì sẽ xảy ra?</strong> Điều đầu tiên là sẽ không ảnh hưởng tới trải nghiệm người dùng, tiếp theo là message queue có cơ chế tự động sửa lỗi những message bị error, nếu cố gắng sửa đổi trong vòng (10) lần mà không thành công, khi đó sẽ đưa con người vào trực tiếp tham gia quá trình sửa đổi này</p>
-<p><strong>Tỉ lệ phản hồi thay vì 150ms như kiến trúc truyền thống thì sẽ chỉ mất 20ms + 5ms từ save order tới message queue, ngay lập tức phản hồi tới user</strong></p>
-<p><img src="/images/Pasted%20image%2020250809173646.png" alt="Image Description"></p>
-<p><strong>Trong kiến trúc phân tán, ta có thể quy định hệ thống làm việc với cường độ 100 orders/time, đến khi nào order hết trong MQ</strong>, hay có thể nói là chỉ chỉ đưa cho 100 reqs để làm mà thôi, không được vội vàng, còn lại phải xếp hàng lần lượt, cứ như vậy cho đến hết.</p>
-<p><strong>Và bây giờ, nếu lượng users tăng cao và cần thêm tính năng mới thì cũng không hề ảnh hưởng tới dây chuyền sản xuất</strong></p></article>
+                <article class="markdown-body entry-content container-lg"><p>Các Thực tiễn Tốt nhất cho Môi trường Production</p>
+<p>*Phần 1: [[Docker]]
+Phần 2: [[Docker CLI]]
+Phần 3: [[Docker Compose]]
+Phần 4: [[Docker Practical Guide]]
+Phần 5: [[Docker Fullstack Example]]
+Phần 6: [[Docker Best Practice for Production]]</p>
+<h2 id="phần-6-các-thực-tiễn-tốt-nhất-cho-môi-trường-production">Phần 6: Các Thực tiễn Tốt nhất cho Môi trường Production</h2>
+<p>Việc đưa các ứng dụng container hóa vào môi trường production đòi hỏi một mức độ cẩn trọng và tối ưu hóa cao hơn so với môi trường phát triển. Phần này sẽ cung cấp các thực tiễn tốt nhất, giúp bạn xây dựng các image nhỏ gọn, an toàn và các tệp Compose có khả năng bảo trì cao, sẵn sàng cho việc triển khai thực tế.</p>
+<h3 id="61-tối-ưu-hóa-kích-thước-và-tốc-độ-multi-stage-builds">6.1 Tối ưu hóa Kích thước và Tốc độ: Multi-Stage Builds</h3>
+<p>Một trong những vấn đề phổ biến nhất với các Docker image là chúng trở nên cồng kềnh. Một image lớn không chỉ chiếm nhiều dung lượng lưu trữ mà còn làm tăng thời gian tải về và triển khai. Tệ hơn nữa, nó thường chứa các công cụ xây dựng (như JDK, Go toolchain, <code>build-essentials</code>) và các dependencies chỉ cần thiết cho quá trình biên dịch, không cần thiết cho việc chạy ứng dụng. Những thành phần thừa này làm tăng bề mặt tấn công của image một cách không cần thiết.</p>
+<p><strong>Multi-stage builds</strong> là một tính năng mạnh mẽ của Docker để giải quyết vấn đề này. Kỹ thuật này cho phép bạn sử dụng nhiều lệnh</p>
+<p><code>FROM</code> trong cùng một <code>Dockerfile</code>. Mỗi lệnh <code>FROM</code> bắt đầu một &ldquo;stage&rdquo; (giai đoạn) xây dựng mới.</p>
+<p>Cách hoạt động rất đơn giản và hiệu quả:</p>
+<ol>
+<li>
+<p><strong>Stage 1 (Build Stage):</strong> Bạn sử dụng một image cơ sở đầy đủ (ví dụ: <code>golang:1.21</code>) có tất cả các công cụ cần thiết để biên dịch, kiểm thử và đóng gói ứng dụng của bạn. Giai đoạn này được đặt tên (ví dụ: <code>AS builder</code>).</p>
+</li>
+<li>
+<p><strong>Stage 2 (Final Stage):</strong> Bạn bắt đầu một giai đoạn mới với một image cơ sở tối giản (ví dụ: <code>alpine:latest</code> hoặc thậm chí <code>scratch</code>—một image trống).</p>
+</li>
+<li>
+<p><strong>Copy Artifacts:</strong> Bạn sử dụng lệnh <code>COPY --from=builder</code> để sao chép chỉ những tạo tác (artifacts) cần thiết—chẳng hạn như tệp nhị phân đã biên dịch hoặc các tệp đã được thu nhỏ—từ giai đoạn xây dựng vào giai đoạn cuối cùng.</p>
+</li>
+</ol>
+<p>Ví dụ với ứng dụng Go từ Phần 4 đã minh họa hoàn hảo điều này. Image cuối cùng chỉ chứa tệp nhị phân thực thi và image Alpine cơ sở, giảm kích thước từ hàng trăm MB xuống chỉ còn vài MB.</p>
+<h3 id="62-tăng-cường-bảo-mật">6.2 Tăng cường Bảo mật</h3>
+<p>Bảo mật là yếu tố không thể bỏ qua khi triển khai. <code>Dockerfile</code> của bạn là tuyến phòng thủ đầu tiên.</p>
+<ul>
+<li>
+<p><strong>Chạy với người dùng không phải root:</strong> Mặc định, các container chạy với người dùng <code>root</code>, điều này tạo ra một rủi ro bảo mật nghiêm trọng. Nếu một kẻ tấn công khai thác được một lỗ hổng trong ứng dụng của bạn và thoát ra khỏi container, chúng có thể có quyền <code>root</code> trên máy chủ. Hãy luôn tạo một người dùng và nhóm không có đặc quyền bên trong <code>Dockerfile</code> và sử dụng lệnh <code>USER</code> để chuyển sang người dùng đó trước khi chạy ứng dụng.</p>
+<p>Dockerfile</p>
+<pre tabindex="0"><code># Create a non-root user
+RUN addgroup -S appgroup &amp;&amp; adduser -S appuser -G appgroup
+
+#... copy files and set permissions...
+RUN chown -R appuser:appgroup /app
+
+# Switch to the non-root user
+USER appuser
+
+CMD [&#34;/app/my-binary&#34;]
+</code></pre></li>
+<li>
+<p><strong>Chọn base image tối giản:</strong> Nguyên tắc là &ldquo;càng ít càng tốt&rdquo;. Một image cơ sở tối giản như <code>alpine</code>, <code>distroless</code>, hoặc <code>scratch</code> chứa ít thành phần hơn, đồng nghĩa với việc có ít lỗ hổng tiềm tàng hơn và bề mặt tấn công nhỏ hơn.</p>
+</li>
+<li>
+<p><strong>Sử dụng <code>.dockerignore</code>:</strong> Tương tự như <code>.gitignore</code>, tệp <code>.dockerignore</code> ngăn chặn các tệp và thư mục không cần thiết (như <code>.git</code>, <code>node_modules</code>, các tệp log cục bộ, tệp bí mật) được gửi đến Docker daemon trong quá trình xây dựng. Điều này không chỉ giúp image nhỏ hơn mà còn ngăn chặn việc vô tình rò rỉ thông tin nhạy cảm vào image.</p>
+</li>
+</ul>
+<h3 id="63-quản-lý-các-file-compose-có-thể-bảo-trì">6.3 Quản lý các file Compose có thể bảo trì</h3>
+<p>Khi dự án phát triển, việc quản lý cấu hình cho các môi trường khác nhau (phát triển, kiểm thử, sản xuất) trở nên quan trọng.</p>
+<ul>
+<li>
+<p><strong>Sử dụng biến môi trường và tệp <code>.env</code>:</strong> <strong>Không bao giờ</strong> ghi cứng các giá trị nhạy cảm như mật khẩu, khóa API, hoặc thông tin đăng nhập cơ sở dữ liệu trực tiếp vào tệp <code>docker-compose.yml</code>. Thay vào đó, hãy tham chiếu chúng dưới dạng biến môi trường. Docker Compose sẽ tự động tải các biến từ một tệp <code>.env</code> trong cùng thư mục. Tệp <code>.env</code> này nên được thêm vào <code>.gitignore</code> để đảm bảo nó không được đưa vào hệ thống quản lý phiên bản.</p>
+<ul>
+<li>
+<p>Trong <code>docker-compose.yml</code>:</p>
+<p>YAML</p>
+<pre tabindex="0"><code>environment:
+  - DB_PASSWORD=${POSTGRES_PASSWORD}
+</code></pre></li>
+<li>
+<p>Trong tệp <code>.env</code>:</p>
+<p>Code snippet</p>
+<pre tabindex="0"><code>POSTGRES_PASSWORD=supersecret
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p><strong>Quản lý các môi trường khác nhau (Dev vs. Prod):</strong> Thay vì duy trì nhiều tệp Compose gần như giống hệt nhau, hãy sử dụng một tệp <code>docker-compose.yml</code> cơ sở cho các cấu hình chung và một tệp <code>docker-compose.override.yml</code> cho các cấu hình dành riêng cho môi trường phát triển. Docker Compose tự động đọc và hợp nhất cả hai tệp này.</p>
+<ul>
+<li>
+<p><strong><code>docker-compose.yml</code> (cơ sở, cho production):</strong></p>
+<p>YAML</p>
+<pre tabindex="0"><code>services:
+  web:
+    image: my-app:latest
+    ports: [&#34;80:8000&#34;]
+</code></pre></li>
+<li>
+<p><strong><code>docker-compose.override.yml</code> (cho development, không commit vào Git):</strong></p>
+<p>YAML</p>
+<pre tabindex="0"><code>services:
+  web:
+    build:.
+    volumes:
+      -.:/app  # Mount source code for live reload
+    ports:
+      - &#34;8000:8000&#34;
+    command: npm run dev
+</code></pre></li>
+</ul>
+<p>Khi bạn chạy <code>docker compose up</code>, Compose sẽ hợp nhất hai tệp này, tạo ra một cấu hình phát triển hoàn chỉnh. Trong môi trường production, bạn chỉ cần triển khai tệp <code>docker-compose.yml</code> cơ sở.</p>
+</li>
+</ul></article>
               </div>
             </div>
           </div>
