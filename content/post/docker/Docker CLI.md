@@ -9,7 +9,7 @@ tags:
 Làm chủ Docker Command Line (CLI)
 <!--more-->
 
-Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) 
+*Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) 
 ## Phần 2: Làm Chủ Docker Command Line (CLI)
 
 Giao diện dòng lệnh (CLI) là công cụ chính để tương tác với Docker Daemon. Thay vì chỉ liệt kê các lệnh một cách khô khan, phần này sẽ tổ chức chúng theo các quy trình làm việc (workflow) mà một lập trình viên thường gặp phải hàng ngày, giúp hiểu rõ hơn về bối cảnh và mục đích sử dụng của từng lệnh.
@@ -111,7 +111,10 @@ Bảng dưới đây tóm tắt các lệnh Docker CLI quan trọng nhất để
 | `docker logs`         | Xem nhật ký của một container. Sử dụng `-f` để theo dõi.         | `docker logs -f web`                      |
 | `docker system prune` | Dọn dẹp các container, network và image không sử dụng.           | `docker system prune -a --volumes`        |
 
-Phần 3: [Docker Compose](https://blog.nagih.io.vn/post/docker/docker-compose/)
-Phần 4: [Docker Practical Guide](https://blog.nagih.io.vn/post/docker/docker-practical-guide/)
-Phần 5: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)
-Phần 6: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)
+*Phần 3: [Docker Compose](https://blog.nagih.io.vn/post/docker/docker-compose/)
+
+*Phần 4: [Docker Practical Guide](https://blog.nagih.io.vn/post/docker/docker-practical-guide/)
+
+*Phần 5: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)
+
+*Phần 6: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)

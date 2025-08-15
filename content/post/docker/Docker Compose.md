@@ -9,8 +9,9 @@ tags:
 Điều phối Ứng dụng với Docker Compose
 <!--more-->
 
-Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) 
-Phần 2: [Docker CLI](https://blog.nagih.io.vn/post/docker/docker-cli/)
+*Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) 
+
+*Phần 2: [Docker CLI](https://blog.nagih.io.vn/post/docker/docker-cli/)
 
 ## Phần 3: Điều phối Ứng dụng với Docker Compose
 
@@ -83,6 +84,8 @@ Sau khi đã định nghĩa ứng dụng trong tệp `docker-compose.yml`, bạn
         
 
 
-Phần 4: [Docker Practical Guide](https://blog.nagih.io.vn/post/docker/docker-practical-guide/)
-Phần 5: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)
-Phần 6: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)
+*Phần 4: [Docker Practical Guide](https://blog.nagih.io.vn/post/docker/docker-practical-guide/)
+
+*Phần 5: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)
+
+*Phần 6: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)
