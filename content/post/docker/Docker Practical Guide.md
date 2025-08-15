@@ -8,6 +8,11 @@ tags:
 ---
 Hướng dẫn Thực hành: Container hóa Ứng dụng Dịch vụ đơn
 <!--more-->
+
+Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) 
+Phần 2: [Docker CLI](https://blog.nagih.io.vn/post/docker/docker-cli/)
+Phần 3: [Docker Compose](https://blog.nagih.io.vn/post/docker/docker-compose/)
+
 ## Phần 4: Hướng dẫn Thực hành: Container hóa Ứng dụng Dịch vụ đơn
 
 Lý thuyết là nền tảng, nhưng thực hành mới là cách tốt nhất để củng cố kiến thức. Phần này cung cấp các hướng dẫn từng bước để container hóa các ứng dụng đơn giản được viết bằng Go, Node.js và Python, ba trong số các ngôn ngữ phổ biến nhất trong phát triển web hiện đại.
@@ -273,3 +278,6 @@ docker run -p 8000:8000 python-api
 ```
 
 Truy cập `http://localhost:8000` để xem kết quả.
+
+Phần 5: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)
+Phần 6: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)

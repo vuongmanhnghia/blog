@@ -9,12 +9,11 @@ tags:
 Các Thực tiễn Tốt nhất cho Môi trường Production
 <!--more-->
 
-*Phần 1: [[Docker]] 
-Phần 2: [[Docker CLI]]
-Phần 3: [[Docker Compose]]
-Phần 4: [[Docker Practical Guide]]
-Phần 5: [[Docker Fullstack Example]]
-Phần 6: [[Docker Best Practice for Production]]
+Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) 
+Phần 2: [Docker CLI](https://blog.nagih.io.vn/post/docker/docker-cli/)
+Phần 3: [Docker Compose](https://blog.nagih.io.vn/post/docker/docker-compose/)
+Phần 4: [Docker Practical Guide](https://blog.nagih.io.vn/post/docker/docker-practical-guide/)
+Phần 5: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)
 
 ## Phần 6: Các Thực tiễn Tốt nhất cho Môi trường Production
 

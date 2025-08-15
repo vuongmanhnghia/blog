@@ -9,10 +9,10 @@ tags:
 Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose
 <!--more-->
 
-*Phần 1: [[Docker]] 
-Phần 2: [[Docker CLI]]
-Phần 3: [[Docker Compose]]
-Phần 4: [[Docker Practical Guide]]
+Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) 
+Phần 2: [Docker CLI](https://blog.nagih.io.vn/post/docker/docker-cli/)
+Phần 3: [Docker Compose](https://blog.nagih.io.vn/post/docker/docker-compose/)
+Phần 4: [Docker Practical Guide](https://blog.nagih.io.vn/post/docker/docker-practical-guide/)
 
 ## Phần 5: Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose
 
@@ -190,4 +190,4 @@ docker compose down --volumes
 ```
 
 
-*Phần 6: [[Docker Best Practice for Production]]
+Phần 6: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)
