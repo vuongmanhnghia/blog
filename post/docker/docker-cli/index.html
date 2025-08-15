@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/light.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/dark.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/syntax.css' />
-    <title>Kafka - Nagih&#39;s blog</title>
+    <title>Docker CLI - Nagih&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
     
@@ -21,18 +21,18 @@
 
     
     <meta name="description"
-  content="Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
+  content="Làm chủ Docker Command Line (CLI)
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://blog.nagih.io.vn/post/system/kafka/" />
+<link rel="canonical" href="https://blog.nagih.io.vn/post/docker/docker-cli/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Kafka - Nagih&#39;s blog" />
+<meta name="twitter:title" content="Docker CLI - Nagih&#39;s blog" />
 <meta name="twitter:description"
-  content="Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
+  content="Làm chủ Docker Command Line (CLI)
 " />
 <meta name="twitter:site" content="https://blog.nagih.io.vn/" />
 <meta name="twitter:creator" content="" />
@@ -41,18 +41,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Kafka - Nagih&#39;s blog">
+<meta property="og:title" content="Docker CLI - Nagih&#39;s blog">
 <meta property="og:description"
-  content="Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
+  content="Làm chủ Docker Command Line (CLI)
 " />
-<meta property="og:url" content="https://blog.nagih.io.vn/post/system/kafka/" />
-<meta property="og:site_name" content="Kafka" />
+<meta property="og:url" content="https://blog.nagih.io.vn/post/docker/docker-cli/" />
+<meta property="og:site_name" content="Docker CLI" />
 <meta property="og:image"
   content="https://blog.nagih.io.vn/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2025-08-09 00:00:00 &#43;0000 UTC" />
+<meta property="article:published_time" content="2025-08-13 00:00:00 &#43;0000 UTC" />
 
 
 
@@ -190,13 +190,13 @@
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="https://blog.nagih.io.vn/post/system/kafka/">Kafka</a>
+                    <a href="https://blog.nagih.io.vn/post/docker/docker-cli/">Docker CLI</a>
                   </strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Sat, 09 Aug 2025 00:00:00 &#43;0000"
+                  Created <relative-time datetime="Wed, 13 Aug 2025 00:00:00 &#43;0000"
                     class="no-wrap">
-                    Sat, 09 Aug 2025 00:00:00 &#43;0000</relative-time>
+                    Wed, 13 Aug 2025 00:00:00 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -232,20 +232,20 @@
                         </div>
                       </div>
                     </details-menu>
-                      569 Words
+                      1068 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
                     
-                    <a class="muted-link mr-3" href="/tags/system">
+                    <a class="muted-link mr-3" href="/tags/docker">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      system
+                      docker
                     </a>
                     
                     <a class="muted-link mr-3" href="/tags/vi">
@@ -264,24 +264,194 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka</p>
-<h1 id="kafka-được-dùng-khi-nào-">KAFKA ĐƯỢC DÙNG KHI NÀO ?</h1>
-<h3 id="kiến-trúc-truyền-thống---lập-trình-nối-tiếp">Kiến trúc truyền thống - Lập trình nối tiếp</h3>
-<p><img src="/images/Pasted%20image%2020250809165924.png" alt="Image Description"></p>
-<p><strong>Các function quá lệ thuộc vào nhau:</strong> Nếu 1 ngày nào đó, tính năng update cart của 1 nhân viên B bị lỗi thì khi user save order -&gt; update cart nhưng bị lỗi ở đây và trả về lỗi, thực tế nếu hệ thống bỏ qua bước này và cho tới bước update inventory thì có được hay không ? Thực tế, mọi trang thương mại điện tử hiện nay đều có thể xử lý lỗi thành công, <strong>miễn là cho user có trải nghiệm tốt là được</strong>. Nếu xảy ra lỗi. Các hệ thống sẽ trả cho user phần bù đắp thiệt hại cho user (1 vourcher chẳng hạn) chứ không nên để cho user đặt hàng không thành công.</p>
-<p><strong>Trong hình ảnh tiếp theo, tôi đã cung cấp thêm thời gian phản hồi, có thể thấy mỗi 1 request sẽ mất 150ms</strong></p>
-<p><img src="/images/Pasted%20image%2020250809171312.png" alt="Image Description"></p>
-<p><strong>Giả sử nhân viên B phụ trách tính năng update cart nhưng code yếu thì làm sao ? Tức là tính năng update cart được tính toán nhiều quá, không hiệu quả, và kết quả là bị tắc đường ở đó.</strong> Và tất nhiên hệ thống phải đồng bộ. Chẳng hạn khi có 10.000 users bị tắc nghẽn ở đó thì phải làm như thế nào ?</p>
-<p><img src="/images/Pasted%20image%2020250809171727.png" alt="Image Description"></p>
-<p><strong>Và một ngày nào đó, lượng users tăng cao, và cần thêm tính năng mới - Thống kê.</strong> Tính năng này thống kê điểm tích lũy cho user để có thể tặng quà cho những người mua hàng nhiều nhất, tích điểm,&hellip; Thì khi thêm 1 tính năng bất kỳ, đồng nghĩa với việc sẽ tăng thêm thời gian phản hồi, nguy cơ tăng lỗi cũng sẽ cao hơn</p>
-<h3 id="kiến-trúc-phân-tán">Kiến trúc phân tán</h3>
-<p><img src="/images/Pasted%20image%2020250809172709.png" alt="Image Description"></p>
-<p>Có thể thấy, tất cả các order đều được đẩy vào <strong>Message Queue</strong>, và ngay lập tức trả về response cho user, không cần quan tâm tới những tác vụ còn lại. Và tất nhiên các tác vụ update cart, update inventory, save payment, save shopping vẫn được tiến hành và được tiến hành theo đúng trình tự.</p>
-<p><strong>Và nhắc lại trường hợp khi nãy, giả sử tính năng update inventory bị lỗi thì chuyện gì sẽ xảy ra?</strong> Điều đầu tiên là sẽ không ảnh hưởng tới trải nghiệm người dùng, tiếp theo là message queue có cơ chế tự động sửa lỗi những message bị error, nếu cố gắng sửa đổi trong vòng (10) lần mà không thành công, khi đó sẽ đưa con người vào trực tiếp tham gia quá trình sửa đổi này</p>
-<p><strong>Tỉ lệ phản hồi thay vì 150ms như kiến trúc truyền thống thì sẽ chỉ mất 20ms + 5ms từ save order tới message queue, ngay lập tức phản hồi tới user</strong></p>
-<p><img src="/images/Pasted%20image%2020250809173646.png" alt="Image Description"></p>
-<p><strong>Trong kiến trúc phân tán, ta có thể quy định hệ thống làm việc với cường độ 100 orders/time, đến khi nào order hết trong MQ</strong>, hay có thể nói là chỉ chỉ đưa cho 100 reqs để làm mà thôi, không được vội vàng, còn lại phải xếp hàng lần lượt, cứ như vậy cho đến hết.</p>
-<p><strong>Và bây giờ, nếu lượng users tăng cao và cần thêm tính năng mới thì cũng không hề ảnh hưởng tới dây chuyền sản xuất</strong></p></article>
+                <article class="markdown-body entry-content container-lg"><p>Làm chủ Docker Command Line (CLI)</p>
+<p>*Phần 1: [[Docker]]</p>
+<h2 id="phần-2-làm-chủ-docker-command-line-cli">Phần 2: Làm Chủ Docker Command Line (CLI)</h2>
+<p>Giao diện dòng lệnh (CLI) là công cụ chính để tương tác với Docker Daemon. Thay vì chỉ liệt kê các lệnh một cách khô khan, phần này sẽ tổ chức chúng theo các quy trình làm việc (workflow) mà một lập trình viên thường gặp phải hàng ngày, giúp hiểu rõ hơn về bối cảnh và mục đích sử dụng của từng lệnh.</p>
+<h3 id="21-quản-lý-image">2.1 Quản lý Image</h3>
+<p>Quản lý image là bước đầu tiên trong mọi quy trình làm việc với Docker. Đây là quá trình tạo, phân phối và duy trì các &ldquo;bản thiết kế&rdquo; cho ứng dụng của bạn.</p>
+<ul>
+<li>
+<p><code>docker build</code>: Lệnh này xây dựng một Docker image từ một <code>Dockerfile</code> và một &ldquo;bối cảnh&rdquo; (context). Bối cảnh là tập hợp các tệp tại đường dẫn được chỉ định. Cờ <code>-t</code> (tag) được sử dụng để đặt tên và phiên bản cho image, giúp dễ dàng nhận dạng.</p>
+<ul>
+<li>Ví dụ: <code>docker build -t my-app:1.0.</code></li>
+</ul>
+</li>
+<li>
+<p><code>docker images</code> (hoặc <code>docker image ls</code>): Liệt kê tất cả các image hiện có trên máy cục bộ của bạn, hiển thị thông tin như REPOSITORY, TAG, IMAGE ID, và SIZE.</p>
+</li>
+<li>
+<p><code>docker pull</code>: Tải một image hoặc một kho lưu trữ (repository) từ một registry, mặc định là Docker Hub.</p>
+<ul>
+<li>Ví dụ: <code>docker pull postgres:15-alpine</code></li>
+</ul>
+</li>
+<li>
+<p><code>docker push</code>: Tải một image từ máy cục bộ của bạn lên một registry, cho phép chia sẻ với những người khác hoặc sử dụng trong môi trường production.</p>
+<ul>
+<li>Ví dụ: <code>docker push your-username/my-app:1.0</code></li>
+</ul>
+</li>
+<li>
+<p><code>docker rmi</code> (hoặc <code>docker image rm</code>): Xóa một hoặc nhiều image khỏi máy cục bộ để giải phóng dung lượng đĩa.</p>
+<ul>
+<li>Ví dụ: <code>docker rmi my-app:1.0</code></li>
+</ul>
+</li>
+<li>
+<p><code>docker inspect &lt;image&gt;</code>: Cung cấp thông tin chi tiết, ở cấp độ thấp về một image, bao gồm các lớp của nó và siêu dữ liệu (metadata).</p>
+</li>
+</ul>
+<h3 id="22-vòng-đời-container">2.2 Vòng đời Container</h3>
+<p>Sau khi có image, bước tiếp theo là tạo và quản lý các thực thể chạy của nó - các container.</p>
+<ul>
+<li>
+<p><code>docker run</code>: Đây là lệnh trung tâm, kết hợp việc tạo và khởi chạy một container mới từ một image. Nó có nhiều cờ tùy chọn mạnh mẽ:</p>
+<ul>
+<li>
+<p><code>-d</code> hoặc <code>--detach</code>: Chạy container ở chế độ nền (detached mode) và in ra ID của container.</p>
+</li>
+<li>
+<p><code>-p &lt;host_port&gt;:&lt;container_port&gt;</code>: Ánh xạ một cổng trên máy chủ (host) tới một cổng bên trong container, cho phép truy cập ứng dụng từ bên ngoài. Ví dụ: <code>-p 8080:80</code>.</p>
+</li>
+<li>
+<p><code>--name &lt;container_name&gt;</code>: Gán một tên cụ thể cho container để dễ dàng tham chiếu thay vì sử dụng ID ngẫu nhiên.</p>
+</li>
+<li>
+<p><code>-v &lt;host_path_or_volume_name&gt;:&lt;container_path&gt;</code>: Gắn một volume hoặc một thư mục từ máy chủ vào container.</p>
+</li>
+<li>
+<p><code>-e &lt;VAR_NAME&gt;=&lt;value&gt;</code>: Thiết lập một biến môi trường bên trong container.</p>
+</li>
+<li>
+<p>Ví dụ đầy đủ: <code>docker run -d -p 8080:80 --name webserver -e APP_MODE=production nginx:latest</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>docker ps</code>: Liệt kê tất cả các container đang chạy. Sử dụng cờ <code>-a</code> để hiển thị tất cả các container, bao gồm cả những container đã dừng.</p>
+</li>
+<li>
+<p><code>docker stop &lt;container_name_or_id&gt;</code>: Dừng một hoặc nhiều container đang chạy một cách nhẹ nhàng (gửi tín hiệu SIGTERM).</p>
+</li>
+<li>
+<p><code>docker start &lt;container_name_or_id&gt;</code>: Khởi động lại một hoặc nhiều container đã bị dừng.</p>
+</li>
+<li>
+<p><code>docker restart &lt;container_name_or_id&gt;</code>: Dừng và sau đó khởi động lại một container.</p>
+</li>
+<li>
+<p><code>docker rm &lt;container_name_or_id&gt;</code>: Xóa một hoặc nhiều container đã dừng. Sử dụng cờ <code>-f</code> để buộc xóa một container đang chạy.</p>
+</li>
+</ul>
+<h3 id="23-tương-tác-và-gỡ-lỗi-container">2.3 Tương tác và Gỡ lỗi Container</h3>
+<p>Khi container đang chạy, bạn thường cần phải &ldquo;nhìn vào bên trong&rdquo; để gỡ lỗi hoặc thực hiện các tác vụ quản trị.</p>
+<ul>
+<li>
+<p><code>docker logs &lt;container&gt;</code>: Lấy và hiển thị nhật ký (logs) được tạo ra bởi một container. Cờ <code>-f</code> (follow) rất hữu ích để theo dõi luồng log trong thời gian thực, tương tự như lệnh <code>tail -f</code> trong Linux.</p>
+</li>
+<li>
+<p><code>docker exec -it &lt;container&gt; &lt;command&gt;</code>: Thực thi một lệnh bên trong một container đang chạy. Cờ <code>-it</code> (<code>-i</code> cho interactive và <code>-t</code> cho TTY) cho phép bạn có một phiên làm việc tương tác. Đây là cách phổ biến nhất để &ldquo;vào&rdquo; một container.</p>
+<ul>
+<li>Ví dụ: <code>docker exec -it webserver bash</code> sẽ mở một phiên shell Bash tương tác bên trong container tên là <code>webserver</code>.</li>
+</ul>
+</li>
+<li>
+<p><code>docker stats</code>: Hiển thị một luồng trực tiếp về việc sử dụng tài nguyên (CPU, bộ nhớ, mạng I/O) của các container đang chạy, rất hữu ích để theo dõi hiệu suất.</p>
+</li>
+</ul>
+<h3 id="24-dọn-dẹp-hệ-thống">2.4 Dọn dẹp hệ thống</h3>
+<p>Theo thời gian, Docker có thể tích tụ nhiều đối tượng không sử dụng (container đã dừng, image cũ, volume không được gắn), chiếm dụng không gian đĩa.</p>
+<ul>
+<li>
+<p><code>docker system prune</code>: Một lệnh dọn dẹp mạnh mẽ, theo mặc định sẽ xóa tất cả các container đã dừng, các mạng không được sử dụng, các image lơ lửng (dangling images - những image không có tag và không được container nào sử dụng), và build cache.</p>
+<ul>
+<li>
+<p><code>docker system prune -a</code>: Mở rộng việc dọn dẹp để xóa tất cả các image không được sử dụng (không chỉ là dangling).</p>
+</li>
+<li>
+<p><code>docker system prune --volumes</code>: Bao gồm cả việc xóa các volume không được sử dụng.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="bảng-tra-cứu-nhanh-các-lệnh-docker-cli-thiết-yếu">Bảng tra cứu nhanh các lệnh Docker CLI thiết yếu</h3>
+<p>Bảng dưới đây tóm tắt các lệnh Docker CLI quan trọng nhất để tham khảo nhanh.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Lệnh</th>
+          <th>Mô tả</th>
+          <th>Ví dụ sử dụng</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>docker build</code></td>
+          <td>Xây dựng một image từ một Dockerfile.</td>
+          <td><code>docker build -t my-app:latest.</code></td>
+      </tr>
+      <tr>
+          <td><code>docker run</code></td>
+          <td>Tạo và khởi chạy một container mới từ một image.</td>
+          <td><code>docker run -d -p 80:80 --name web nginx</code></td>
+      </tr>
+      <tr>
+          <td><code>docker ps</code></td>
+          <td>Liệt kê các container đang chạy. Sử dụng <code>-a</code> để liệt kê tất cả.</td>
+          <td><code>docker ps -a</code></td>
+      </tr>
+      <tr>
+          <td><code>docker stop</code></td>
+          <td>Dừng một container đang chạy.</td>
+          <td><code>docker stop web</code></td>
+      </tr>
+      <tr>
+          <td><code>docker rm</code></td>
+          <td>Xóa một container đã dừng.</td>
+          <td><code>docker rm web</code></td>
+      </tr>
+      <tr>
+          <td><code>docker images</code></td>
+          <td>Liệt kê các image trên máy.</td>
+          <td><code>docker images</code></td>
+      </tr>
+      <tr>
+          <td><code>docker rmi</code></td>
+          <td>Xóa một image.</td>
+          <td><code>docker rmi nginx</code></td>
+      </tr>
+      <tr>
+          <td><code>docker pull</code></td>
+          <td>Tải một image từ registry.</td>
+          <td><code>docker pull ubuntu:22.04</code></td>
+      </tr>
+      <tr>
+          <td><code>docker push</code></td>
+          <td>Đẩy một image lên registry.</td>
+          <td><code>docker push my-username/my-app</code></td>
+      </tr>
+      <tr>
+          <td><code>docker exec</code></td>
+          <td>Chạy một lệnh bên trong một container đang chạy.</td>
+          <td><code>docker exec -it web bash</code></td>
+      </tr>
+      <tr>
+          <td><code>docker logs</code></td>
+          <td>Xem nhật ký của một container. Sử dụng <code>-f</code> để theo dõi.</td>
+          <td><code>docker logs -f web</code></td>
+      </tr>
+      <tr>
+          <td><code>docker system prune</code></td>
+          <td>Dọn dẹp các container, network và image không sử dụng.</td>
+          <td><code>docker system prune -a --volumes</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>*Phần 3: [[Docker Compose]]
+Phần 4: [[Docker Practical Guide]]
+Phần 5: [[Docker Fullstack Example]]
+Phần 6: [[Docker Best Practice for Production]]</p></article>
               </div>
             </div>
           </div>

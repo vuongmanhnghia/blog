@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/light.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/dark.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/syntax.css' />
-    <title>Kafka - Nagih&#39;s blog</title>
+    <title>Docker Fullstack Example - Nagih&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
     
@@ -21,18 +21,18 @@
 
     
     <meta name="description"
-  content="Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
+  content="Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://blog.nagih.io.vn/post/system/kafka/" />
+<link rel="canonical" href="https://blog.nagih.io.vn/post/docker/docker-fullstack-example/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Kafka - Nagih&#39;s blog" />
+<meta name="twitter:title" content="Docker Fullstack Example - Nagih&#39;s blog" />
 <meta name="twitter:description"
-  content="Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
+  content="Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose
 " />
 <meta name="twitter:site" content="https://blog.nagih.io.vn/" />
 <meta name="twitter:creator" content="" />
@@ -41,18 +41,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Kafka - Nagih&#39;s blog">
+<meta property="og:title" content="Docker Fullstack Example - Nagih&#39;s blog">
 <meta property="og:description"
-  content="Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
+  content="Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose
 " />
-<meta property="og:url" content="https://blog.nagih.io.vn/post/system/kafka/" />
-<meta property="og:site_name" content="Kafka" />
+<meta property="og:url" content="https://blog.nagih.io.vn/post/docker/docker-fullstack-example/" />
+<meta property="og:site_name" content="Docker Fullstack Example" />
 <meta property="og:image"
   content="https://blog.nagih.io.vn/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2025-08-09 00:00:00 &#43;0000 UTC" />
+<meta property="article:published_time" content="2025-08-15 00:00:00 &#43;0000 UTC" />
 
 
 
@@ -190,13 +190,13 @@
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="https://blog.nagih.io.vn/post/system/kafka/">Kafka</a>
+                    <a href="https://blog.nagih.io.vn/post/docker/docker-fullstack-example/">Docker Fullstack Example</a>
                   </strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Sat, 09 Aug 2025 00:00:00 &#43;0000"
+                  Created <relative-time datetime="Fri, 15 Aug 2025 00:00:00 &#43;0000"
                     class="no-wrap">
-                    Sat, 09 Aug 2025 00:00:00 &#43;0000</relative-time>
+                    Fri, 15 Aug 2025 00:00:00 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -232,20 +232,20 @@
                         </div>
                       </div>
                     </details-menu>
-                      569 Words
+                      1127 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
                     
-                    <a class="muted-link mr-3" href="/tags/system">
+                    <a class="muted-link mr-3" href="/tags/docker">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      system
+                      docker
                     </a>
                     
                     <a class="muted-link mr-3" href="/tags/vi">
@@ -264,24 +264,183 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka</p>
-<h1 id="kafka-được-dùng-khi-nào-">KAFKA ĐƯỢC DÙNG KHI NÀO ?</h1>
-<h3 id="kiến-trúc-truyền-thống---lập-trình-nối-tiếp">Kiến trúc truyền thống - Lập trình nối tiếp</h3>
-<p><img src="/images/Pasted%20image%2020250809165924.png" alt="Image Description"></p>
-<p><strong>Các function quá lệ thuộc vào nhau:</strong> Nếu 1 ngày nào đó, tính năng update cart của 1 nhân viên B bị lỗi thì khi user save order -&gt; update cart nhưng bị lỗi ở đây và trả về lỗi, thực tế nếu hệ thống bỏ qua bước này và cho tới bước update inventory thì có được hay không ? Thực tế, mọi trang thương mại điện tử hiện nay đều có thể xử lý lỗi thành công, <strong>miễn là cho user có trải nghiệm tốt là được</strong>. Nếu xảy ra lỗi. Các hệ thống sẽ trả cho user phần bù đắp thiệt hại cho user (1 vourcher chẳng hạn) chứ không nên để cho user đặt hàng không thành công.</p>
-<p><strong>Trong hình ảnh tiếp theo, tôi đã cung cấp thêm thời gian phản hồi, có thể thấy mỗi 1 request sẽ mất 150ms</strong></p>
-<p><img src="/images/Pasted%20image%2020250809171312.png" alt="Image Description"></p>
-<p><strong>Giả sử nhân viên B phụ trách tính năng update cart nhưng code yếu thì làm sao ? Tức là tính năng update cart được tính toán nhiều quá, không hiệu quả, và kết quả là bị tắc đường ở đó.</strong> Và tất nhiên hệ thống phải đồng bộ. Chẳng hạn khi có 10.000 users bị tắc nghẽn ở đó thì phải làm như thế nào ?</p>
-<p><img src="/images/Pasted%20image%2020250809171727.png" alt="Image Description"></p>
-<p><strong>Và một ngày nào đó, lượng users tăng cao, và cần thêm tính năng mới - Thống kê.</strong> Tính năng này thống kê điểm tích lũy cho user để có thể tặng quà cho những người mua hàng nhiều nhất, tích điểm,&hellip; Thì khi thêm 1 tính năng bất kỳ, đồng nghĩa với việc sẽ tăng thêm thời gian phản hồi, nguy cơ tăng lỗi cũng sẽ cao hơn</p>
-<h3 id="kiến-trúc-phân-tán">Kiến trúc phân tán</h3>
-<p><img src="/images/Pasted%20image%2020250809172709.png" alt="Image Description"></p>
-<p>Có thể thấy, tất cả các order đều được đẩy vào <strong>Message Queue</strong>, và ngay lập tức trả về response cho user, không cần quan tâm tới những tác vụ còn lại. Và tất nhiên các tác vụ update cart, update inventory, save payment, save shopping vẫn được tiến hành và được tiến hành theo đúng trình tự.</p>
-<p><strong>Và nhắc lại trường hợp khi nãy, giả sử tính năng update inventory bị lỗi thì chuyện gì sẽ xảy ra?</strong> Điều đầu tiên là sẽ không ảnh hưởng tới trải nghiệm người dùng, tiếp theo là message queue có cơ chế tự động sửa lỗi những message bị error, nếu cố gắng sửa đổi trong vòng (10) lần mà không thành công, khi đó sẽ đưa con người vào trực tiếp tham gia quá trình sửa đổi này</p>
-<p><strong>Tỉ lệ phản hồi thay vì 150ms như kiến trúc truyền thống thì sẽ chỉ mất 20ms + 5ms từ save order tới message queue, ngay lập tức phản hồi tới user</strong></p>
-<p><img src="/images/Pasted%20image%2020250809173646.png" alt="Image Description"></p>
-<p><strong>Trong kiến trúc phân tán, ta có thể quy định hệ thống làm việc với cường độ 100 orders/time, đến khi nào order hết trong MQ</strong>, hay có thể nói là chỉ chỉ đưa cho 100 reqs để làm mà thôi, không được vội vàng, còn lại phải xếp hàng lần lượt, cứ như vậy cho đến hết.</p>
-<p><strong>Và bây giờ, nếu lượng users tăng cao và cần thêm tính năng mới thì cũng không hề ảnh hưởng tới dây chuyền sản xuất</strong></p></article>
+                <article class="markdown-body entry-content container-lg"><p>Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose</p>
+<p>*Phần 1: [[Docker]]
+Phần 2: [[Docker CLI]]
+Phần 3: [[Docker Compose]]
+Phần 4: [[Docker Practical Guide]]</p>
+<h2 id="phần-5-triển-khai-full-stack-wordpress-với-postgresql-bằng-docker-compose">Phần 5: Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose</h2>
+<p>Đây là phần tổng hợp, nơi chúng ta sẽ áp dụng tất cả các kiến thức đã học để triển khai một ứng dụng web hoàn chỉnh và thực tế: một trang web WordPress được hỗ trợ bởi cơ sở dữ liệu PostgreSQL. Ví dụ này thể hiện sức mạnh thực sự của Docker Compose trong việc điều phối nhiều dịch vụ phụ thuộc lẫn nhau. Đáng chú ý, chúng ta sẽ sử dụng PostgreSQL theo yêu cầu cụ thể, một lựa chọn ít phổ biến hơn so với MySQL/MariaDB trong các hướng dẫn WordPress thông thường, nhưng hoàn toàn khả thi và mạnh mẽ.</p>
+<h3 id="51-kiến-trúc-ứng-dụng">5.1 Kiến trúc ứng dụng</h3>
+<p>Hệ thống của chúng ta sẽ bao gồm các thành phần sau, tất cả được định nghĩa và kết nối trong một tệp <code>docker-compose.yml</code> duy nhất:</p>
+<ul>
+<li>
+<p><strong>Dịch vụ 1 (<code>db</code>):</strong> Một container chạy PostgreSQL, sử dụng image chính thức <code>postgres:15-alpine</code>. Đây sẽ là nơi lưu trữ tất cả nội dung của trang WordPress (bài viết, trang, người dùng, v.v.).</p>
+</li>
+<li>
+<p><strong>Dịch vụ 2 (<code>wordpress</code>):</strong> Một container chạy WordPress, sử dụng image chính thức <code>wordpress:latest</code>. Dịch vụ này sẽ chứa máy chủ web (Apache) và PHP để chạy ứng dụng WordPress.</p>
+</li>
+<li>
+<p><strong>Volume 1 (<code>db_data</code>):</strong> Một named volume để lưu trữ dữ liệu của PostgreSQL. Điều này đảm bảo rằng cơ sở dữ liệu của bạn sẽ tồn tại ngay cả khi container <code>db</code> bị xóa và tạo lại.</p>
+</li>
+<li>
+<p><strong>Volume 2 (<code>wp_content</code>):</strong> Một named volume để lưu trữ các tệp của WordPress, bao gồm themes, plugins và các tệp được tải lên. Điều này cho phép bạn cập nhật phiên bản WordPress mà không làm mất các tùy chỉnh và nội dung của mình.</p>
+</li>
+<li>
+<p><strong>Network (<code>app_net</code>):</strong> Một mạng bridge tùy chỉnh để hai dịch vụ có thể giao tiếp với nhau một cách an toàn và đáng tin cậy, tách biệt với các container khác có thể đang chạy trên cùng một máy chủ.</p>
+</li>
+</ul>
+<p>Việc sử dụng một tệp <code>docker-compose.yml</code> để định nghĩa toàn bộ kiến trúc này biến nó thành một dạng &ldquo;cơ sở hạ tầng dưới dạng mã&rdquo; (Infrastructure as Code). Tệp này trở thành nguồn chân lý duy nhất cho toàn bộ ứng dụng, có thể được quản lý phiên bản trong Git, chia sẻ với các thành viên trong nhóm và đảm bảo rằng mọi người đều có thể khởi tạo một môi trường giống hệt nhau chỉ bằng một lệnh duy nhất, giúp cải thiện đáng kể quá trình giới thiệu thành viên mới và tính nhất quán.</p>
+<h3 id="52-phân-tích-chi-tiết-docker-composeyml">5.2 Phân tích chi tiết <code>docker-compose.yml</code></h3>
+<p>Tạo một thư mục cho dự án của bạn, ví dụ <code>my-wordpress-site</code>. Bên trong thư mục đó, tạo một tệp có tên <code>docker-compose.yml</code> với nội dung sau:</p>
+<p>YAML</p>
+<pre tabindex="0"><code>version: &#39;3.8&#39;
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: wordpress_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    restart: always
+    networks:
+      - app_net
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    container_name: wordpress_app
+    ports:
+      - &#34;8000:80&#34;
+    volumes:
+      - wp_content:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db:5432
+      WORDPRESS_DB_USER: ${POSTGRES_USER}
+      WORDPRESS_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      WORDPRESS_DB_NAME: ${POSTGRES_DB}
+    restart: always
+    networks:
+      - app_net
+
+volumes:
+  db_data:
+  wp_content:
+
+networks:
+  app_net:
+    driver: bridge
+</code></pre><p><strong>Giải thích chi tiết:</strong></p>
+<ul>
+<li>
+<p><strong><code>services:</code></strong>: Định nghĩa hai dịch vụ của chúng ta là <code>db</code> và <code>wordpress</code>.</p>
+</li>
+<li>
+<p><strong><code>db</code> service:</strong></p>
+<ul>
+<li>
+<p><code>image: postgres:15-alpine</code>: Sử dụng phiên bản 15 của PostgreSQL trên nền Alpine Linux để có kích thước nhỏ.</p>
+</li>
+<li>
+<p><code>volumes: - db_data:/var/lib/postgresql/data</code>: Ánh xạ named volume <code>db_data</code> vào thư mục dữ liệu mặc định của PostgreSQL bên trong container.</p>
+</li>
+<li>
+<p><code>environment:</code>: Cấu hình cơ sở dữ liệu. Các giá trị <code>${...}</code> sẽ được Docker Compose thay thế bằng các biến môi trường từ một tệp <code>.env</code> hoặc từ shell, một thực tiễn tốt để giữ bí mật an toàn.</p>
+</li>
+<li>
+<p><code>restart: always</code>: Tự động khởi động lại container này nếu nó bị dừng.</p>
+</li>
+<li>
+<p><code>networks: - app_net</code>: Kết nối dịch vụ này vào mạng <code>app_net</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>wordpress</code> service:</strong></p>
+<ul>
+<li>
+<p><code>depends_on: - db</code>: Yêu cầu Compose khởi động dịch vụ <code>db</code> trước dịch vụ <code>wordpress</code>.</p>
+</li>
+<li>
+<p><code>ports: - &quot;8000:80&quot;</code>: Ánh xạ cổng 8000 trên máy chủ của bạn tới cổng 80 (cổng web mặc định) bên trong container WordPress.</p>
+</li>
+<li>
+<p><code>volumes: - wp_content:/var/www/html</code>: Ánh xạ named volume <code>wp_content</code> vào thư mục gốc của WordPress.</p>
+</li>
+<li>
+<p><code>environment:</code>: Cung cấp cho WordPress thông tin cần thiết để kết nối với cơ sở dữ liệu. Lưu ý <code>WORDPRESS_DB_HOST: db:5432</code>. Ở đây, <code>db</code> là tên của dịch vụ cơ sở dữ liệu, và Docker Compose sẽ đảm bảo rằng tên này được phân giải thành địa chỉ IP nội bộ của container <code>db</code> trên mạng <code>app_net</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>volumes:</code></strong> (cấp cao nhất): Khai báo hai named volumes <code>db_data</code> và <code>wp_content</code> để Docker quản lý.</p>
+</li>
+<li>
+<p><strong><code>networks:</code></strong> (cấp cao nhất): Khai báo mạng tùy chỉnh <code>app_net</code> sử dụng driver <code>bridge</code> mặc định.</p>
+</li>
+</ul>
+<h3 id="53-triển-khai-và-quản-lý">5.3 Triển khai và Quản lý</h3>
+<ol>
+<li>Tạo tệp Biến môi trường (.env)</li>
+</ol>
+<p>Trong cùng thư mục với docker-compose.yml, tạo một tệp tên là .env. Tệp này sẽ chứa các thông tin nhạy cảm. Docker Compose sẽ tự động đọc tệp này.</p>
+<p>Lưu ý: Hãy thêm .env vào tệp .gitignore của bạn để không vô tình đưa thông tin đăng nhập vào kho mã nguồn.</p>
+<p>Code snippet</p>
+<pre tabindex="0"><code>#.env file
+# PostgreSQL Credentials
+POSTGRES_DB=wordpress
+POSTGRES_USER=wp_user
+POSTGRES_PASSWORD=your_strong_password
+</code></pre><p>Thay <code>your_strong_password</code> bằng một mật khẩu mạnh và an toàn.</p>
+<ol start="2">
+<li>Khởi động hệ thống</li>
+</ol>
+<p>Mở terminal trong thư mục dự án và chạy lệnh sau:</p>
+<p>Bash</p>
+<pre tabindex="0"><code>docker compose up -d
+</code></pre><p>Docker Compose sẽ:</p>
+<ol>
+<li>
+<p>Tải về các image <code>postgres:15-alpine</code> và <code>wordpress:latest</code> nếu chúng chưa có trên máy.</p>
+</li>
+<li>
+<p>Tạo mạng <code>app_net</code>.</p>
+</li>
+<li>
+<p>Tạo các volume <code>db_data</code> và <code>wp_content</code>.</p>
+</li>
+<li>
+<p>Khởi động container <code>db</code> trước.</p>
+</li>
+<li>
+<p>Sau đó, khởi động container <code>wordpress</code>.</p>
+</li>
+<li>
+<p>Tất cả sẽ chạy ở chế độ nền (<code>-d</code>).</p>
+</li>
+</ol>
+<p>Bạn có thể kiểm tra trạng thái của các container bằng lệnh <code>docker compose ps</code>.</p>
+<ol start="3">
+<li>Hoàn tất cài đặt WordPress</li>
+</ol>
+<p>Mở trình duyệt web và truy cập http://localhost:8000. Bạn sẽ thấy màn hình cài đặt WordPress quen thuộc. Hãy làm theo các bước để chọn ngôn ngữ, đặt tên trang web, tạo tài khoản quản trị viên. Tất cả thông tin này sẽ được lưu trữ trong cơ sở dữ liệu PostgreSQL đang chạy trong container</p>
+<p><code>db</code>.</p>
+<ol start="4">
+<li>Dừng và Dọn dẹp</li>
+</ol>
+<p>Khi bạn muốn dừng ứng dụng, hãy chạy:</p>
+<p>Bash</p>
+<pre tabindex="0"><code>docker compose down
+</code></pre><p>Lệnh này sẽ dừng và xóa các container và mạng. Tuy nhiên, các volume (<code>db_data</code> và <code>wp_content</code>) sẽ vẫn còn. Điều này có nghĩa là nếu bạn chạy lại <code>docker compose up -d</code>, trang web của bạn sẽ trở lại với tất cả dữ liệu và tệp tin còn nguyên vẹn.</p>
+<p>Để xóa mọi thứ, bao gồm cả dữ liệu, hãy chạy:</p>
+<p>Bash</p>
+<pre tabindex="0"><code>docker compose down --volumes
+</code></pre><p>*Phần 6: [[Docker Best Practice for Production]]</p></article>
               </div>
             </div>
           </div>

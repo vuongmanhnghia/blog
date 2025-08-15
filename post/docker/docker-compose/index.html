@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/light.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/dark.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/syntax.css' />
-    <title>Kafka - Nagih&#39;s blog</title>
+    <title>Docker Compose - Nagih&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
     
@@ -21,18 +21,18 @@
 
     
     <meta name="description"
-  content="Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
+  content="Điều phối Ứng dụng với Docker Compose
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://blog.nagih.io.vn/post/system/kafka/" />
+<link rel="canonical" href="https://blog.nagih.io.vn/post/docker/docker-compose/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Kafka - Nagih&#39;s blog" />
+<meta name="twitter:title" content="Docker Compose - Nagih&#39;s blog" />
 <meta name="twitter:description"
-  content="Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
+  content="Điều phối Ứng dụng với Docker Compose
 " />
 <meta name="twitter:site" content="https://blog.nagih.io.vn/" />
 <meta name="twitter:creator" content="" />
@@ -41,18 +41,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Kafka - Nagih&#39;s blog">
+<meta property="og:title" content="Docker Compose - Nagih&#39;s blog">
 <meta property="og:description"
-  content="Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
+  content="Điều phối Ứng dụng với Docker Compose
 " />
-<meta property="og:url" content="https://blog.nagih.io.vn/post/system/kafka/" />
-<meta property="og:site_name" content="Kafka" />
+<meta property="og:url" content="https://blog.nagih.io.vn/post/docker/docker-compose/" />
+<meta property="og:site_name" content="Docker Compose" />
 <meta property="og:image"
   content="https://blog.nagih.io.vn/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2025-08-09 00:00:00 &#43;0000 UTC" />
+<meta property="article:published_time" content="2025-08-14 00:00:00 &#43;0000 UTC" />
 
 
 
@@ -190,13 +190,13 @@
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="https://blog.nagih.io.vn/post/system/kafka/">Kafka</a>
+                    <a href="https://blog.nagih.io.vn/post/docker/docker-compose/">Docker Compose</a>
                   </strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Sat, 09 Aug 2025 00:00:00 &#43;0000"
+                  Created <relative-time datetime="Thu, 14 Aug 2025 00:00:00 &#43;0000"
                     class="no-wrap">
-                    Sat, 09 Aug 2025 00:00:00 &#43;0000</relative-time>
+                    Thu, 14 Aug 2025 00:00:00 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -232,20 +232,20 @@
                         </div>
                       </div>
                     </details-menu>
-                      569 Words
+                      1005 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
                     
-                    <a class="muted-link mr-3" href="/tags/system">
+                    <a class="muted-link mr-3" href="/tags/docker">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      system
+                      docker
                     </a>
                     
                     <a class="muted-link mr-3" href="/tags/vi">
@@ -264,24 +264,131 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka</p>
-<h1 id="kafka-được-dùng-khi-nào-">KAFKA ĐƯỢC DÙNG KHI NÀO ?</h1>
-<h3 id="kiến-trúc-truyền-thống---lập-trình-nối-tiếp">Kiến trúc truyền thống - Lập trình nối tiếp</h3>
-<p><img src="/images/Pasted%20image%2020250809165924.png" alt="Image Description"></p>
-<p><strong>Các function quá lệ thuộc vào nhau:</strong> Nếu 1 ngày nào đó, tính năng update cart của 1 nhân viên B bị lỗi thì khi user save order -&gt; update cart nhưng bị lỗi ở đây và trả về lỗi, thực tế nếu hệ thống bỏ qua bước này và cho tới bước update inventory thì có được hay không ? Thực tế, mọi trang thương mại điện tử hiện nay đều có thể xử lý lỗi thành công, <strong>miễn là cho user có trải nghiệm tốt là được</strong>. Nếu xảy ra lỗi. Các hệ thống sẽ trả cho user phần bù đắp thiệt hại cho user (1 vourcher chẳng hạn) chứ không nên để cho user đặt hàng không thành công.</p>
-<p><strong>Trong hình ảnh tiếp theo, tôi đã cung cấp thêm thời gian phản hồi, có thể thấy mỗi 1 request sẽ mất 150ms</strong></p>
-<p><img src="/images/Pasted%20image%2020250809171312.png" alt="Image Description"></p>
-<p><strong>Giả sử nhân viên B phụ trách tính năng update cart nhưng code yếu thì làm sao ? Tức là tính năng update cart được tính toán nhiều quá, không hiệu quả, và kết quả là bị tắc đường ở đó.</strong> Và tất nhiên hệ thống phải đồng bộ. Chẳng hạn khi có 10.000 users bị tắc nghẽn ở đó thì phải làm như thế nào ?</p>
-<p><img src="/images/Pasted%20image%2020250809171727.png" alt="Image Description"></p>
-<p><strong>Và một ngày nào đó, lượng users tăng cao, và cần thêm tính năng mới - Thống kê.</strong> Tính năng này thống kê điểm tích lũy cho user để có thể tặng quà cho những người mua hàng nhiều nhất, tích điểm,&hellip; Thì khi thêm 1 tính năng bất kỳ, đồng nghĩa với việc sẽ tăng thêm thời gian phản hồi, nguy cơ tăng lỗi cũng sẽ cao hơn</p>
-<h3 id="kiến-trúc-phân-tán">Kiến trúc phân tán</h3>
-<p><img src="/images/Pasted%20image%2020250809172709.png" alt="Image Description"></p>
-<p>Có thể thấy, tất cả các order đều được đẩy vào <strong>Message Queue</strong>, và ngay lập tức trả về response cho user, không cần quan tâm tới những tác vụ còn lại. Và tất nhiên các tác vụ update cart, update inventory, save payment, save shopping vẫn được tiến hành và được tiến hành theo đúng trình tự.</p>
-<p><strong>Và nhắc lại trường hợp khi nãy, giả sử tính năng update inventory bị lỗi thì chuyện gì sẽ xảy ra?</strong> Điều đầu tiên là sẽ không ảnh hưởng tới trải nghiệm người dùng, tiếp theo là message queue có cơ chế tự động sửa lỗi những message bị error, nếu cố gắng sửa đổi trong vòng (10) lần mà không thành công, khi đó sẽ đưa con người vào trực tiếp tham gia quá trình sửa đổi này</p>
-<p><strong>Tỉ lệ phản hồi thay vì 150ms như kiến trúc truyền thống thì sẽ chỉ mất 20ms + 5ms từ save order tới message queue, ngay lập tức phản hồi tới user</strong></p>
-<p><img src="/images/Pasted%20image%2020250809173646.png" alt="Image Description"></p>
-<p><strong>Trong kiến trúc phân tán, ta có thể quy định hệ thống làm việc với cường độ 100 orders/time, đến khi nào order hết trong MQ</strong>, hay có thể nói là chỉ chỉ đưa cho 100 reqs để làm mà thôi, không được vội vàng, còn lại phải xếp hàng lần lượt, cứ như vậy cho đến hết.</p>
-<p><strong>Và bây giờ, nếu lượng users tăng cao và cần thêm tính năng mới thì cũng không hề ảnh hưởng tới dây chuyền sản xuất</strong></p></article>
+                <article class="markdown-body entry-content container-lg"><p>Điều phối Ứng dụng với Docker Compose</p>
+<p>*Phần 1: [[Docker]]
+Phần 2: [[Docker CLI]]</p>
+<h2 id="phần-3-điều-phối-ứng-dụng-với-docker-compose">Phần 3: Điều phối Ứng dụng với Docker Compose</h2>
+<p>Khi các ứng dụng trở nên phức tạp hơn, chúng thường bao gồm nhiều thành phần phụ thuộc lẫn nhau—một máy chủ web, một API backend, một cơ sở dữ liệu, một hàng đợi tin nhắn, v.v. Việc quản lý từng container riêng lẻ bằng các lệnh <code>docker run</code> dài dòng và phức tạp trở nên không thực tế và dễ gây ra lỗi.</p>
+<p>Đây là lúc Docker Compose tỏa sáng. Docker Compose là một công cụ cho phép định nghĩa và chạy các ứng dụng Docker đa container một cách dễ dàng. Với Compose, bạn sử dụng một tệp YAML duy nhất (thường là</p>
+<p><code>docker-compose.yml</code>) để cấu hình tất cả các dịch vụ, mạng và volume của ứng dụng. Sau đó, chỉ với một lệnh duy nhất, bạn có thể khởi động hoặc gỡ bỏ toàn bộ hệ thống.</p>
+<h3 id="31-cấu-trúc-của-tệp-docker-composeyml">3.1 Cấu trúc của tệp <code>docker-compose.yml</code></h3>
+<p>Tệp <code>docker-compose.yml</code> là trung tâm của việc quản lý ứng dụng với Compose. Nó có cấu trúc khai báo, nghĩa là bạn mô tả &ldquo;trạng thái mong muốn&rdquo; của hệ thống, và Compose sẽ thực hiện các bước cần thiết để đạt được trạng thái đó. Các thành phần chính bao gồm:</p>
+<ul>
+<li>
+<p><strong><code>services</code></strong>: Đây là khối chính, nơi bạn định nghĩa mỗi thành phần của ứng dụng như một &ldquo;dịch vụ&rdquo;. Mỗi dịch vụ tương ứng với một hoặc nhiều container chạy cùng một image.</p>
+<ul>
+<li>
+<p><strong><code>image: &lt;image_name&gt;:&lt;tag&gt;</code></strong>: Chỉ định image Docker sẽ được sử dụng để tạo container cho dịch vụ này. Compose sẽ tìm image này trên máy cục bộ hoặc tải về từ Docker Hub.</p>
+</li>
+<li>
+<p><strong><code>build: &lt;path_to_context&gt;</code></strong>: Thay vì sử dụng một image có sẵn, bạn có thể yêu cầu Compose xây dựng một image tại chỗ từ một <code>Dockerfile</code>. Giá trị này là đường dẫn đến thư mục chứa <code>Dockerfile</code> (ví dụ: <code>build:.</code>).</p>
+</li>
+<li>
+<p><strong><code>ports: - &quot;&lt;host_port&gt;:&lt;container_port&gt;&quot;</code></strong>: Ánh xạ cổng giữa máy chủ và container, tương tự cờ <code>-p</code> trong <code>docker run</code>.</p>
+</li>
+<li>
+<p><strong><code>volumes: - &lt;volume_name_or_host_path&gt;:&lt;container_path&gt;</code></strong>: Gắn một volume hoặc một thư mục từ máy chủ vào container. Đây là cách để lưu trữ dữ liệu bền bỉ hoặc chia sẻ tệp giữa máy chủ và container.</p>
+</li>
+<li>
+<p><strong><code>environment: - &lt;VAR_NAME&gt;=&lt;value&gt;</code></strong>: Thiết lập các biến môi trường bên trong container. Đây là cách phổ biến để truyền các thông tin cấu hình như thông tin đăng nhập cơ sở dữ liệu, khóa API, v.v..</p>
+</li>
+<li>
+<p><strong><code>networks: - &lt;network_name&gt;</code></strong>: Kết nối dịch vụ vào một hoặc nhiều mạng được định nghĩa. Compose tự động tạo một mạng mặc định cho tất cả các dịch vụ trong tệp, nhưng việc định nghĩa mạng tùy chỉnh mang lại sự kiểm soát tốt hơn.</p>
+</li>
+<li>
+<p><strong><code>depends_on: - &lt;service_name&gt;</code></strong>: Xác định sự phụ thuộc giữa các dịch vụ. Ví dụ, bạn có thể yêu cầu dịch vụ web chỉ khởi động sau khi dịch vụ cơ sở dữ liệu đã khởi động.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>volumes</code></strong> (cấp cao nhất): Nơi bạn định nghĩa các &ldquo;named volumes&rdquo;. Việc khai báo chúng ở đây cho phép chúng được tái sử dụng và quản lý dễ dàng bởi Compose.</p>
+</li>
+<li>
+<p><strong><code>networks</code></strong> (cấp cao nhất): Nơi bạn định nghĩa các mạng tùy chỉnh. Điều này cho phép bạn tạo ra các cấu trúc liên kết mạng phức tạp hơn và cô lập các nhóm dịch vụ.</p>
+</li>
+</ul>
+<h3 id="32-từ-docker-run-đến-docker-composeyml">3.2 Từ <code>docker run</code> đến <code>docker-compose.yml</code></h3>
+<p>Để làm rõ mối liên hệ giữa CLI và Compose, bảng dưới đây sẽ ánh xạ các cờ phổ biến của lệnh <code>docker run</code> sang các khóa tương đương trong tệp <code>docker-compose.yml</code>. Việc hiểu rõ sự tương ứng này giúp quá trình chuyển đổi từ việc quản lý container đơn lẻ sang điều phối toàn bộ ứng dụng trở nên trực quan hơn. Nó cho thấy <code>docker-compose.yml</code> không phải là một ngôn ngữ hoàn toàn mới, mà là một cách khai báo, có cấu trúc để thể hiện những cấu hình tương tự.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Cờ <code>docker run</code></th>
+          <th>Khóa <code>docker-compose.yml</code></th>
+          <th>Ví dụ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>-d</code></td>
+          <td>(Mặc định khi dùng <code>up -d</code>)</td>
+          <td><code>docker compose up -d</code></td>
+      </tr>
+      <tr>
+          <td><code>-p 8080:80</code></td>
+          <td><code>ports</code></td>
+          <td><code>ports: [&quot;8080:80&quot;]</code></td>
+      </tr>
+      <tr>
+          <td><code>-v my-data:/data</code></td>
+          <td><code>volumes</code></td>
+          <td><code>volumes: [&quot;my-data:/data&quot;]</code></td>
+      </tr>
+      <tr>
+          <td><code>-e VAR=value</code></td>
+          <td><code>environment</code></td>
+          <td><code>environment:</code></td>
+      </tr>
+      <tr>
+          <td><code>--name my-app</code></td>
+          <td><code>container_name</code></td>
+          <td><code>container_name: my-app</code></td>
+      </tr>
+      <tr>
+          <td><code>--network my-net</code></td>
+          <td><code>networks</code></td>
+          <td><code>networks: [&quot;my-net&quot;]</code></td>
+      </tr>
+      <tr>
+          <td><code>--restart=always</code></td>
+          <td><code>restart</code></td>
+          <td><code>restart: always</code></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="33-các-lệnh-docker-compose-cốt-lõi">3.3 Các lệnh Docker Compose cốt lõi</h3>
+<p>Sau khi đã định nghĩa ứng dụng trong tệp <code>docker-compose.yml</code>, bạn sử dụng một vài lệnh đơn giản để quản lý toàn bộ vòng đời của nó.</p>
+<ul>
+<li>
+<p><code>docker compose up</code>: Lệnh này là trái tim của Compose. Nó đọc tệp <code>docker-compose.yml</code>, xây dựng các image cần thiết, tạo và khởi chạy tất cả các container dịch vụ, và tạo các network và volume tương ứng. Nếu không có cờ <code>-d</code>, nó sẽ chạy ở chế độ foreground và hiển thị log tổng hợp từ tất cả các container.</p>
+<ul>
+<li><code>docker compose up -d</code>: Chạy ứng dụng ở chế độ nền (detached). Đây là cách sử dụng phổ biến nhất trong môi trường phát triển và sản xuất.</li>
+</ul>
+</li>
+<li>
+<p><code>docker compose down</code>: Lệnh này là đối nghịch của <code>up</code>. Nó sẽ dừng và xóa tất cả các container, cùng với các network được tạo bởi Compose.</p>
+<ul>
+<li><code>docker compose down --volumes</code>: Thêm cờ này để xóa cả các named volumes đã được định nghĩa trong tệp Compose. Hãy cẩn thận vì điều này sẽ xóa vĩnh viễn dữ liệu.</li>
+</ul>
+</li>
+<li>
+<p><code>docker compose build</code>: Nếu bạn đã thay đổi <code>Dockerfile</code> của một dịch vụ, lệnh này sẽ buộc xây dựng lại image cho dịch vụ đó trước khi chạy <code>up</code>.</p>
+</li>
+<li>
+<p><code>docker compose logs</code>: Hiển thị log từ các container dịch vụ.</p>
+<ul>
+<li><code>docker compose logs -f &lt;service_name&gt;</code>: Theo dõi log của một dịch vụ cụ thể trong thời gian thực.</li>
+</ul>
+</li>
+<li>
+<p><code>docker compose exec &lt;service_name&gt; &lt;command&gt;</code>: Thực thi một lệnh bên trong một container của một dịch vụ đang chạy. Rất hữu ích để chạy các tác vụ quản trị hoặc mở một shell để gỡ lỗi.</p>
+<ul>
+<li>Ví dụ: <code>docker compose exec web sh</code></li>
+</ul>
+</li>
+</ul>
+<p>*Phần 4: [[Docker Practical Guide]]
+Phần 5: [[Docker Fullstack Example]]
+Phần 6: [[Docker Best Practice for Production]]</p></article>
               </div>
             </div>
           </div>
