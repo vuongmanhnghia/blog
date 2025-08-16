@@ -6,20 +6,27 @@
     <description>Recent content in Tags on Nagih&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 16 Aug 2025 08:03:59 +0700</lastBuildDate>
+    <lastBuildDate>Sat, 16 Aug 2025 08:37:44 +0700</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Docker</title>
-      <link>https://blog.nagih.io.vn/tags/docker/</link>
-      <pubDate>Fri, 15 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/tags/docker/</guid>
+      <title>Deploy</title>
+      <link>https://blog.nagih.io.vn/tags/deploy/</link>
+      <pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/tags/deploy/</guid>
       <description></description>
     </item>
     <item>
       <title>Vi</title>
       <link>https://blog.nagih.io.vn/tags/vi/</link>
-      <pubDate>Fri, 15 Aug 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/tags/vi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>https://blog.nagih.io.vn/tags/docker/</link>
+      <pubDate>Fri, 15 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/tags/docker/</guid>
       <description></description>
     </item>
     <item>
