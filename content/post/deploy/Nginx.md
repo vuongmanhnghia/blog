@@ -481,6 +481,4 @@ brotli_static on; # Phục vụ các tệp.br nếu tồn tại
 
 ---
 
-## Kết Luận
-
-Báo cáo này kết thúc bằng cách tóm tắt sự liên quan bền bỉ của Nginx. Mặc dù đã có tuổi đời, kiến trúc nền tảng của nó vẫn hoàn toàn phù hợp với các yêu cầu của web hiện đại—từ việc xử lý các đợt truy cập khổng lồ đến việc đóng vai trò là rìa thông minh của một lưới microservices phức tạp. Đối với một kỹ sư DevOps, việc làm chủ Nginx không chỉ là học một công cụ, mà là hiểu một trụ cột cốt lõi của cơ sở hạ tầng web hiệu năng cao.
+*Nếu thấy hay, hãy để lại cho mình xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!*
