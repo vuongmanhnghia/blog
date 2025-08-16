@@ -4,7 +4,6 @@ date: 2025-08-07
 draft: false
 tags:
   - system
-  - vi
 ---
 Tổng quan về kiến trúc microservices
 <!--more-->
@@ -81,3 +80,7 @@ Vậy câu trả lời là: **Backend được chia thành nhiều microservices
 - **Thách thức:** Làm sao để thực hiện một nghiệp vụ yêu cầu dữ liệu từ nhiều service? Ví dụ: làm sao để đảm bảo khi tạo đơn hàng (Service Đơn Hàng) thì số lượng tồn kho (Service Kho Hàng) cũng phải được trừ đi một cách nhất quán?
     
 - **Giải pháp:** Cần sử dụng các pattern nâng cao như **Saga Pattern** để quản lý các giao dịch phân tán (distributed transactions). Đây là một chủ đề phức tạp, nhưng ý tưởng cơ bản là mỗi service sẽ thực hiện phần việc của mình và phát ra sự kiện để service tiếp theo thực hiện phần việc của nó.
+
+---
+
+*Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!*

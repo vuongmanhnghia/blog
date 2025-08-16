@@ -4,7 +4,6 @@ date: 2025-08-15
 draft: false
 tags:
   - docker
-  - vi
 ---
 Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose
 <!--more-->
@@ -197,3 +196,7 @@ docker compose down --volumes
 
 
 Phần 7: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)
+
+---
+
+*Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!*

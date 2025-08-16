@@ -4,7 +4,6 @@ date: 2025-08-09
 draft: false
 tags:
   - system
-  - vi
 ---
 Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
 <!--more-->
@@ -42,3 +41,7 @@ Có thể thấy, tất cả các order đều được đẩy vào **Message Qu
 **Trong kiến trúc phân tán, ta có thể quy định hệ thống làm việc với cường độ 100 orders/time, đến khi nào order hết trong MQ**, hay có thể nói là chỉ chỉ đưa cho 100 reqs để làm mà thôi, không được vội vàng, còn lại phải xếp hàng lần lượt, cứ như vậy cho đến hết.
 
 **Và bây giờ, nếu lượng users tăng cao và cần thêm tính năng mới thì cũng không hề ảnh hưởng tới dây chuyền sản xuất**
+
+---
+
+*Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!*

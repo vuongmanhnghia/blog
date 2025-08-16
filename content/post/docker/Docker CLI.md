@@ -4,7 +4,6 @@ date: 2025-08-13
 draft: false
 tags:
   - docker
-  - vi
 ---
 Làm chủ Docker Command Line (CLI)
 <!--more-->
@@ -120,3 +119,7 @@ Phần 5: [Docker Practical Guide](https://blog.nagih.io.vn/post/docker/docker-p
 Phần 6: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)
 
 Phần 7: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)
+
+---
+
+*Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!*

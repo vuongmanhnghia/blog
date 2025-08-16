@@ -4,7 +4,6 @@ date: 2025-08-14
 draft: false
 tags:
   - docker
-  - vi
 ---
 Hướng dẫn Thực hành: Container hóa Ứng dụng Dịch vụ đơn
 <!--more-->
@@ -287,3 +286,7 @@ Truy cập `http://localhost:8000` để xem kết quả.
 Phần 6: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)
 
 Phần 7: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)
+
+---
+
+*Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!*

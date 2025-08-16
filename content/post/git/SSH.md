@@ -5,7 +5,6 @@ draft: false
 tags:
   - ssh
   - git
-  - vi
 ---
 SSH and GitHub Tutorial
 <!--more-->
@@ -394,3 +393,7 @@ Làm chủ SSH không chỉ dừng lại ở việc thiết lập thành công. 
 Hành trình từ việc hiểu rõ giá trị của SSH đến việc thiết lập, quản lý chuyên nghiệp và xử lý sự cố là một quá trình đầu tư vào kỹ năng cốt lõi của một nhà phát triển phần mềm. Việc làm chủ SSH không chỉ là một biện pháp tăng cường bảo mật; đó là một tuyên bố về sự chuyên nghiệp, một cam kết về hiệu quả và là nền tảng cho một quy trình làm việc an toàn, liền mạch và năng suất hơn trên GitHub và xa hơn nữa. Bằng cách áp dụng các kiến thức và thực hành tốt nhất được trình bày trong báo cáo này, các nhà phát triển có thể tự tin tương tác với các hệ thống từ xa, biết rằng danh tính số và tài sản trí tuệ của họ được bảo vệ bởi một trong những tiêu chuẩn vàng của ngành công nghệ.
 
 *Nếu thấy hay, hãy để lại cho mình xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!*
+
+---
+
+*Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!*

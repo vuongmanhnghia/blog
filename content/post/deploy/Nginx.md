@@ -4,7 +4,6 @@ date: 2025-08-16
 draft: false
 tags:
   - deploy
-  - vi
 ---
 Nginx - Từ C10k Đến Containers
 <!--more-->
@@ -481,4 +480,4 @@ brotli_static on; # Phục vụ các tệp.br nếu tồn tại
 
 ---
 
-*Nếu thấy hay, hãy để lại cho mình xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!*
+*Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!*

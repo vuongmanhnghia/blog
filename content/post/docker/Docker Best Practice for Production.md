@@ -4,7 +4,6 @@ date: 2025-08-15
 draft: false
 tags:
   - docker
-  - vi
 ---
 Các Thực tiễn Tốt nhất cho Môi trường Production
 <!--more-->
@@ -123,3 +122,7 @@ Khi dự án phát triển, việc quản lý cấu hình cho các môi trườn
         
     
     Khi bạn chạy `docker compose up`, Compose sẽ hợp nhất hai tệp này, tạo ra một cấu hình phát triển hoàn chỉnh. Trong môi trường production, bạn chỉ cần triển khai tệp `docker-compose.yml` cơ sở.
+
+---
+
+*Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!*
