@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/light.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/dark.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/syntax.css' />
-    <title>9 MySQL Table Design Rules &amp; Skills - Nagih&#39;s blog</title>
+    <title>Docker Dockerfile - Nagih&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
     
@@ -21,18 +21,18 @@
 
     
     <meta name="description"
-  content="Principles and skills to extend MySQL table design
+  content="Nghệ Thuật Viết Dockerfile - Tối Ưu và Bảo Mật
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://blog.nagih.io.vn/post/database/9-mysql-table-design-rules--skills/" />
+<link rel="canonical" href="https://blog.nagih.io.vn/post/docker/docker-dockerfile/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="9 MySQL Table Design Rules &amp; Skills - Nagih&#39;s blog" />
+<meta name="twitter:title" content="Docker Dockerfile - Nagih&#39;s blog" />
 <meta name="twitter:description"
-  content="Principles and skills to extend MySQL table design
+  content="Nghệ Thuật Viết Dockerfile - Tối Ưu và Bảo Mật
 " />
 <meta name="twitter:site" content="https://blog.nagih.io.vn/" />
 <meta name="twitter:creator" content="" />
@@ -41,18 +41,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="9 MySQL Table Design Rules &amp; Skills - Nagih&#39;s blog">
+<meta property="og:title" content="Docker Dockerfile - Nagih&#39;s blog">
 <meta property="og:description"
-  content="Principles and skills to extend MySQL table design
+  content="Nghệ Thuật Viết Dockerfile - Tối Ưu và Bảo Mật
 " />
-<meta property="og:url" content="https://blog.nagih.io.vn/post/database/9-mysql-table-design-rules--skills/" />
-<meta property="og:site_name" content="9 MySQL Table Design Rules &amp; Skills" />
+<meta property="og:url" content="https://blog.nagih.io.vn/post/docker/docker-dockerfile/" />
+<meta property="og:site_name" content="Docker Dockerfile" />
 <meta property="og:image"
   content="https://blog.nagih.io.vn/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2025-08-12 00:00:00 &#43;0000 UTC" />
+<meta property="article:published_time" content="2025-08-14 00:00:00 &#43;0000 UTC" />
 
 
 
@@ -190,13 +190,13 @@
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="https://blog.nagih.io.vn/post/database/9-mysql-table-design-rules--skills/">9 MySQL Table Design Rules &amp; Skills</a>
+                    <a href="https://blog.nagih.io.vn/post/docker/docker-dockerfile/">Docker Dockerfile</a>
                   </strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Tue, 12 Aug 2025 00:00:00 &#43;0000"
+                  Created <relative-time datetime="Thu, 14 Aug 2025 00:00:00 &#43;0000"
                     class="no-wrap">
-                    Tue, 12 Aug 2025 00:00:00 &#43;0000</relative-time>
+                    Thu, 14 Aug 2025 00:00:00 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -232,29 +232,20 @@
                         </div>
                       </div>
                     </details-menu>
-                      1499 Words
+                      1436 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
                     
-                    <a class="muted-link mr-3" href="/tags/database">
+                    <a class="muted-link mr-3" href="/tags/docker">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      database
-                    </a>
-                    
-                    <a class="muted-link mr-3" href="/tags/sql">
-                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                        <path fill-rule="evenodd"
-                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                        </path>
-                      </svg>
-                      sql
+                      docker
                     </a>
                     
                     <a class="muted-link mr-3" href="/tags/vi">
@@ -273,73 +264,127 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>Principles and skills to extend MySQL table design</p>
-<p>Trong thế giới phát triển ứng dụng Backend, việc thiết kế cơ sở dữ liệu (database) không chỉ là một công việc kỹ thuật mà còn là một nghệ thuật đòi hỏi sự tỉ mỉ, hiểu biết sâu sắc về dữ liệu và tầm nhìn dài hạn về tính mở rộng của hệ thống. Đặc biệt, đối với các ứng dụng có nhiều kịch bản phức tạp như chat nhóm (chat group) với nhiều người dùng tham gia, việc lưu trữ dữ liệu đòi hỏi một phương pháp tiếp cận có nguyên tắc.</p>
-<p>Dưới đây là 9 nguyên tắc cốt lõi và một số kỹ năng mở rộng mà mọi lập trình viên Backend cần nắm vững khi khởi tạo bảng trong MySQL, đảm bảo ứng dụng không chỉ chạy đúng mà còn hiệu quả và dễ bảo trì:</p>
-<p><strong>1. Mọi Table Luôn Phải Có Các Column Mặc Định</strong></p>
-<p>Một thiết kế table hoàn chỉnh cần có ít nhất 5 trường mặc định để theo dõi lịch sử và tính nhất quán của dữ liệu:</p>
-<p>• <strong>version</strong>: Ghi lại số lần chỉnh sửa của table, đồng thời liên quan đến các khái niệm khóa lạc quan (optimistic lock) và khóa bi quan (pessimistic lock)</p>
-<p>• <strong>creator_id</strong>: (Tùy chọn, tùy thuộc vào công ty) Ai là người tạo bản ghi này</p>
-<p>• <strong>modifier</strong>: Ai là người cuối cùng sửa đổi bản ghi, quan trọng để biết hành động cuối cùng trên table</p>
-<p>• <strong>create_at</strong>: Thời gian bản ghi được tạo</p>
-<p>• <strong>update_at</strong>: Thời gian bản ghi được cập nhật lần cuối</p>
-<p><strong>2. Giải Thích Ngữ Nghĩa Các Column Bằng Comment</strong></p>
-<p>Khi viết DDL (Data Definition Language) cho MySQL, PostgreSQL, hoặc bất kỳ hệ quản trị cơ sở dữ liệu nào, <strong>hãy luôn thêm comment giải thích ý nghĩa của từng column</strong>. Điều này đặc biệt quan trọng cho các trường kiểu liệt kê (enumeration) như <code>status</code> (ví dụ: 1 là private, 2 là public, 3 là friends, 4 là only me). Việc comment rõ ràng giúp các thành viên mới gia nhập team dễ dàng hiểu và làm quen với cấu trúc dữ liệu, tránh sự hiểu lầm về ngữ nghĩa của các trường</p>
-<p><strong>3. Xóa Dữ Liệu Không Phải Xóa &ldquo;Bay&rdquo; (Xóa Logic)</strong></p>
-<p><strong>Không bao giờ sử dụng lệnh</strong> <strong>DELETE</strong> <strong>để xóa vật lý dữ liệu trực tiếp trong môi trường sản phẩm</strong>. Thay vào đó, hãy sử dụng phương pháp <strong>xóa logic (soft delete)</strong> bằng cách thêm một trường để đánh dấu bản ghi đã bị xóa hay chưa, và thời gian xóa</p>
-<p>• Ban đầu có thể sử dụng hai trường: <code>is_deleted</code> (0: hoạt động, 1: đã xóa) và <code>deleted_at</code> (thời gian xóa)</p>
-<p>• Cách tối ưu hơn là <strong>chỉ sử dụng một trường</strong> <strong>deleted_at</strong>: Nếu giá trị là <code>NULL</code> nghĩa là bản ghi chưa bị xóa; nếu có giá trị thời gian, đó là thời gian bản ghi bị xóa</p>
-<p>• <strong>Lưu ý</strong>: Giá trị <code>NULL</code> có thể gây nhược điểm nghiêm trọng về hiệu suất index khi dữ liệu lớn, do đó cần cân nhắc kỹ hoặc tìm hiểu sâu hơn về <code>NULL</code> trong database</p>
-<p><strong>4. Quy Ước Đặt Tên Với Prefix (Tiền Tố)</strong></p>
-<p>Các trường (field) trong table nên có các tiền tố (prefix) để dễ dàng xác định nguồn gốc khi các bảng được join lại với nhau. Ví dụ, bảng <code>account</code> có thể có trường <code>acc_number</code>. Việc này cực kỳ quan trọng vì trong thực tế, chúng ta ít khi làm việc với dữ liệu độc lập mà thường phải join nhiều bảng (ít nhất 3 bảng là nguyên tắc làm việc). Nếu không có prefix, việc phân biệt <code>ID</code> hay <code>create_at</code> thuộc về bảng nào khi join sẽ gây ra sự hiểu nhầm và lỗi</p>
-<p><strong>5. Tách Bảng Khi Có Quá Nhiều Trường (Vertical Partitioning)</strong></p>
-<p>Một table không nên có quá nhiều trường (column), <strong>tối đa khoảng 20 trường</strong>. Nếu vượt quá, cần phải tách bảng dọc (vertical partition). Bảng có nhiều trường sẽ làm dữ liệu lưu trữ lớn, giảm hiệu suất truy vấn và tốn bộ nhớ</p>
-<p>• <strong>Tách bảng</strong>: Chia thành một bảng chính chứa các trường được truy cập thường xuyên và quan trọng (ví dụ: <code>title</code>, <code>status</code>, <code>thumbnail</code> của một bài post), và một bảng chi tiết chứa các trường ít quan trọng hơn hoặc chỉ hiển thị khi người dùng click vào (ví dụ: <code>content</code>, <code>description</code>)</p>
-<p>• Mối quan hệ giữa hai bảng này thường là <strong>1-1</strong>, giúp việc join đơn giản và hiệu quả, không ảnh hưởng đến hiệu suất</p>
-<p><strong>6. Chọn Kiểu Dữ Liệu và Độ Dài Thích Hợp</strong></p>
-<p>Một hệ thống tốt không chỉ chạy đúng mà còn phải chạy hiệu quả. Việc chọn kiểu dữ liệu và độ dài phù hợp giúp:</p>
-<p>• <strong>Tiết kiệm bộ nhớ (memory)</strong> và dung lượng đĩa (disk)</p>
-<p>• <strong>Tối ưu tốc độ query</strong></p>
-<p>• <strong>Giảm tỷ lệ Input/Output (I/O)</strong>. Ví dụ:</p>
+                <article class="markdown-body entry-content container-lg"><p>Nghệ Thuật Viết Dockerfile - Tối Ưu và Bảo Mật</p>
+<p>Phần 1: <a href="https://blog.nagih.io.vn/post/docker/docker/">Docker Principle</a></p>
+<p>Phần 2: <a href="https://blog.nagih.io.vn/post/docker/docker-cli/">Docker CLI</a></p>
+<h2 id="phần-3-nghệ-thuật-viết-dockerfile---tối-ưu-và-bảo-mật">Phần 3: Nghệ Thuật Viết Dockerfile - Tối Ưu và Bảo Mật</h2>
+<p><code>Dockerfile</code> là một tệp văn bản chứa một loạt các chỉ thị, hướng dẫn Docker cách xây dựng một image. Viết một <code>Dockerfile</code> tốt không chỉ là làm cho nó hoạt động, mà còn là về việc tạo ra các image nhỏ gọn, an toàn và xây dựng nhanh chóng.</p>
+<h3 id="31-cấu-trúc-và-các-chỉ-thị-quan-trọng">3.1. Cấu trúc và các chỉ thị quan trọng</h3>
+<p>Một <code>Dockerfile</code> điển hình bao gồm các chỉ thị sau 48:</p>
+<ul>
+<li>
+<p><code>FROM</code>: Luôn là chỉ thị đầu tiên. Nó xác định image cơ sở (base image) mà bạn sẽ xây dựng lên trên. Ví dụ: <code>FROM python:3.9-slim</code>.</p>
+</li>
+<li>
+<p><code>WORKDIR</code>: Thiết lập thư mục làm việc cho các chỉ thị tiếp theo như <code>RUN</code>, <code>COPY</code>, <code>CMD</code>. Nếu thư mục không tồn tại, nó sẽ được tạo. Ví dụ: <code>WORKDIR /app</code>.</p>
+</li>
+<li>
+<p><code>COPY</code>: Sao chép tệp và thư mục từ bối cảnh xây dựng (thư mục chứa <code>Dockerfile</code>) vào hệ thống tệp của image. Ví dụ: <code>COPY. /app</code>.</p>
+</li>
+<li>
+<p><code>RUN</code>: Thực thi các lệnh trong một lớp (layer) mới trên đỉnh của image hiện tại. Thường được sử dụng để cài đặt các gói phần mềm. Ví dụ: <code>RUN pip install -r requirements.txt</code>.</p>
+</li>
+<li>
+<p><code>EXPOSE</code>: Thông báo cho Docker rằng container sẽ lắng nghe trên các cổng mạng được chỉ định khi chạy. Đây chỉ là một hình thức tài liệu; nó không thực sự public cổng. Ví dụ: <code>EXPOSE 8000</code>.</p>
+</li>
+<li>
+<p><code>ENV</code>: Thiết lập các biến môi trường. Các biến này có sẵn cho các chỉ thị tiếp theo trong <code>Dockerfile</code> và cho ứng dụng khi container chạy. Ví dụ: <code>ENV APP_HOME /app</code>.</p>
+</li>
+<li>
+<p><code>ARG</code>: Định nghĩa các biến chỉ tồn tại trong quá trình xây dựng image (build-time). Chúng có thể được truyền vào từ dòng lệnh <code>docker build</code> với cờ <code>--build-arg</code>. Ví dụ: <code>ARG APP_VERSION=1.0</code>.</p>
+</li>
+</ul>
+<h3 id="32-cmd-vs-entrypoint">3.2. <code>CMD</code> vs. <code>ENTRYPOINT</code></h3>
+<p>Đây là hai chỉ thị thường gây nhầm lẫn nhưng có mục đích khác nhau rõ rệt.</p>
+<ul>
+<li>
+<p><code>ENTRYPOINT</code>: Cấu hình một container sẽ chạy như một tệp thực thi. Nó xác định lệnh chính sẽ luôn được thực thi khi container khởi động.</p>
+</li>
+<li>
+<p><code>CMD</code>: Cung cấp các đối số mặc định cho <code>ENTRYPOINT</code>. Nếu không có <code>ENTRYPOINT</code>, <code>CMD</code> sẽ được thực thi như lệnh chính.</p>
+</li>
+</ul>
+<p>Khi chạy <code>docker run my-image arg1 arg2</code>, các đối số <code>arg1 arg2</code> sẽ <strong>ghi đè</strong> hoàn toàn <code>CMD</code>, nhưng sẽ được <strong>nối vào sau</strong> <code>ENTRYPOINT</code>.</p>
+<p>Cách sử dụng tốt nhất là kết hợp cả hai:</p>
+<p>Sử dụng ENTRYPOINT để chỉ định tệp thực thi chính và CMD để cung cấp các đối số mặc định. Điều này tạo ra một image linh hoạt, cho phép người dùng dễ dàng truyền các đối số khác nhau mà không cần phải biết tên của tệp thực thi.</p>
+<p>Ví dụ:</p>
+<p>Dockerfile</p>
+<pre tabindex="0"><code>ENTRYPOINT [&#34;/usr/bin/python3&#34;, &#34;app.py&#34;]
+CMD [&#34;--mode&#34;, &#34;production&#34;]
+</code></pre><ul>
+<li>
+<p><code>docker run my-image</code>: Sẽ chạy <code>/usr/bin/python3 app.py --mode production</code>.</p>
+</li>
+<li>
+<p><code>docker run my-image --mode debug</code>: Sẽ chạy <code>/usr/bin/python3 app.py --mode debug</code> (ghi đè <code>CMD</code>).</p>
+</li>
+</ul>
+<p>Cả hai chỉ thị nên được viết ở dạng &ldquo;exec form&rdquo; (mảng JSON) thay vì &ldquo;shell form&rdquo; (chuỗi lệnh) để tránh các vấn đề về phân tích cú pháp của shell và đảm bảo tín hiệu hệ thống được xử lý đúng cách.</p>
+<h3 id="33-copy-vs-add">3.3. <code>COPY</code> vs. <code>ADD</code></h3>
+<p>Cả hai lệnh đều sao chép tệp vào image, nhưng có một sự khác biệt quan trọng.</p>
+<ul>
+<li>
+<p><code>COPY</code>: Đơn giản và dễ đoán. Nó chỉ sao chép các tệp và thư mục cục bộ từ bối cảnh xây dựng vào container.</p>
+</li>
+<li>
+<p><code>ADD</code>: Có thêm hai tính năng &ldquo;ma thuật&rdquo;:</p>
 <ol>
 <li>
-<p>Trường <code>title</code> không nên để <code>VARCHAR(255)</code> nếu độ dài thực tế chỉ khoảng 100 ký tự (như tiêu đề video YouTube/TikTok)</p>
+<p>Nó có thể tải xuống tệp từ một URL.</p>
 </li>
 <li>
-<p>Trường <code>language</code> chỉ cần <code>CHAR(2)</code> (ví dụ: &ldquo;en&rdquo;, &ldquo;vi&rdquo;) thay vì <code>VARCHAR</code> dài</p>
-</li>
-<li>
-<p>Trường <code>status</code> chỉ nên dùng <strong>TINYINT</strong> (kích thước 1 byte, lưu trữ 0-255) thay vì <code>INT</code> (kích thước 4 byte, lưu trữ 0-4 tỷ ID) nếu các giá trị chỉ là 1, 2, 3</p>
+<p>Nó có thể tự động giải nén các tệp lưu trữ (như tar, gzip) nếu nguồn là một tệp cục bộ.</p>
 </li>
 </ol>
-<p><strong>7. Nguyên Tắc Not NULL</strong></p>
-<p><strong>Không nên cho phép giá trị</strong> <strong>NULL</strong> <strong>bừa bãi</strong>. <code>NULL</code> không phải là một số, một chuỗi hay một biến boolean; nó là một vùng không xác định. <code>NULL</code> có thể:</p>
-<p>• Làm hỏng logic nghiệp vụ nếu quên xử lý</p>
-<p>• Gây lỗi index khi so sánh bằng <code>NULL</code> (ví dụ <code>WHERE column IS NULL</code> thường không sử dụng index hiệu quả). Các trường bắt buộc phải có giá trị (như <code>title</code>, <code>status</code>, <code>create_at</code>) nên được khai báo là <strong>NOT NULL</strong>. Khi không có giá trị, hãy sử dụng <strong>DEFAULT</strong> đi kèm với <code>NOT NULL</code></p>
-<p><strong>8. Chiến Lược Đánh Index</strong></p>
-<p>Index là chìa khóa để tối ưu hiệu suất truy vấn</p>
-<p>• <strong>Nên đánh index</strong> cho các trường ít trùng lặp và thường xuyên được sử dụng trong truy vấn, ví dụ: <code>creator_id</code> và <code>create_at</code> (quan trọng khi truy vấn theo thời gian). Luôn có prefix <code>idx_</code> cho các index</p>
-<p>• <strong>Trường</strong> <strong>deleted_at</strong> <strong>luôn cần được đánh index</strong> để tránh hiển thị các bản ghi đã bị xóa ra công khai, điều này có thể dẫn đến các vấn đề pháp lý (ví dụ: GDPR của Châu Âu)</p>
-<p>• <strong>QUY TẮC VÀNG</strong>: <strong>Không nên đánh index cho các trường có dữ liệu lặp lại quá nhiều</strong> (ví dụ: trường <code>status</code> mà 90% bản ghi có cùng một giá trị). Việc đánh index trong trường hợp này thậm chí có thể làm chậm truy vấn hơn so với không đánh index, vì database sẽ quét toàn bộ table thay vì sử dụng index</p>
-<p>• <strong>Giải pháp thay thế khi cần truy vấn các trường có nhiều giá trị trùng lặp</strong>:</p>
-<ol>
+</li>
+</ul>
+<p><strong>Cách sử dụng tốt nhất</strong>: <strong>Luôn ưu tiên <code>COPY</code></strong>. Sự rõ ràng và dễ đoán của</p>
+<p><code>COPY</code> làm cho <code>Dockerfile</code> của bạn dễ bảo trì hơn. Các tính năng bổ sung của <code>ADD</code> có thể dẫn đến hành vi không mong muốn, làm tăng kích thước image một cách không cần thiết và tạo ra các rủi ro bảo mật (ví dụ: tải xuống tệp từ một URL không đáng tin cậy). Chỉ sử dụng <code>ADD</code> khi bạn thực sự cần tính năng tự động giải nén một tệp tar cục bộ. Để tải xuống từ URL, cách tốt hơn là sử dụng <code>RUN curl...</code> hoặc <code>RUN wget...</code> để bạn có thể kiểm tra và dọn dẹp tệp trong cùng một lớp.</p>
+<h3 id="34-tối-ưu-hóa-kích-thước-image-với-multi-stage-builds">3.4. Tối ưu hóa kích thước Image với Multi-Stage Builds</h3>
+<p>Đây là kỹ thuật quan trọng nhất để tạo ra các image sản xuất nhỏ gọn và an toàn. Ý tưởng là tách biệt môi trường xây dựng (build environment) và môi trường chạy (runtime environment) trong cùng một <code>Dockerfile</code>.</p>
+<ul>
 <li>
-<p><strong>Thêm trường tiền tố phạm vi thời gian</strong>: Ví dụ, kết hợp <code>status</code> với <code>create_at</code> theo phạm vi thời gian (<code>WHERE status = 1 AND create_at BETWEEN '2025-06-15 00:00 :00' AND '2025-06-15 23:59:59'</code>) để giúp index hoạt động hiệu quả hơn</p>
+<p><strong>Cách hoạt động</strong>: Một <code>Dockerfile</code> đa giai đoạn (multi-stage) có nhiều chỉ thị <code>FROM</code>. Mỗi <code>FROM</code> bắt đầu một giai đoạn mới.</p>
+<ul>
+<li>
+<p><strong>Giai đoạn 1 (Build Stage)</strong>: Bạn bắt đầu với một image lớn chứa tất cả các công cụ cần thiết để biên dịch ứng dụng của mình (ví dụ: <code>golang:1.24</code> hoặc <code>node:20</code>). Giai đoạn này được đặt tên bằng cách sử dụng <code>AS builder</code>.</p>
 </li>
 <li>
-<p><strong>Chia table thành các phân vùng (Partition)</strong>: Phù hợp với dữ liệu lớn, giúp chia nhỏ dữ liệu. Tuy nhiên, Partition không thay thế được index và có nhược điểm riêng, chỉ nên dùng khi thực sự cần và hiểu rõ</p>
+<p><strong>Giai đoạn 2 (Final Stage)</strong>: Bạn bắt đầu một giai đoạn mới với một image cơ sở tối giản, chỉ chứa những gì cần thiết để chạy ứng dụng (ví dụ: <code>scratch</code> - một image trống, hoặc <code>alpine</code> - một bản phân phối Linux siêu nhẹ).</p>
 </li>
 <li>
-<p><strong>Tạo View</strong>: View có thể hoạt động rất tốt trong các truy vấn với stored procedure hoặc function, giúp truy vấn nhanh hơn khi dữ liệu được lặp lại và cảm thấy đúng đánh lặp lại</p>
+<p><strong>Sao chép tạo phẩm</strong>: Bạn sử dụng chỉ thị <code>COPY --from=builder &lt;đường_dẫn_tạo_phẩm&gt; &lt;đích&gt;</code> để sao chép chỉ kết quả biên dịch (ví dụ: một tệp nhị phân duy nhất) từ giai đoạn xây dựng vào giai đoạn cuối cùng.</p>
 </li>
-</ol>
-<p><strong>9. Nguyên Tắc Normal Form (3NF, 4NF, 5NF)</strong></p>
-<p>Normalization là một nguyên tắc cơ bản trong thiết kế database nhằm giảm thiểu sự dư thừa dữ liệu và cải thiện tính toàn vẹn dữ liệu</p>
-<p>• <strong>3NF (Third Normal Form)</strong> là một nguyên tắc cơ bản cần nắm vững</p>
-<p>• Ngoài ra, còn có các dạng chuẩn mở rộng hơn như <strong>4NF (Fourth Normal Form)</strong> và <strong>5NF (Fifth Normal Form)</strong>, giúp tối ưu hóa hơn nữa về sự mở rộng và tính linh hoạt của database</p>
-<p>. Việc tìm hiểu sâu về các Normal Form này sẽ giúp bạn thiết kế database hiệu quả hơn cho các mô hình kinh doanh phức tạp</p>
-<p><strong>Kết Luận</strong></p>
-<p>Các nguyên tắc là kim chỉ nam quan trọng, nhưng chúng ta cũng cần linh hoạt mở rộng chúng để phục vụ cho mô hình kinh doanh cụ thể của dự án. Nguyên tắc có thể bị phá vỡ bởi một nguyên tắc khác tốt hơn trong một hoàn cảnh cụ thể, nhưng nếu chưa có lý do chính đáng để phá vỡ, hãy cố gắng tuân thủ chúng. Việc nắm vững và áp dụng những nguyên tắc này sẽ giúp bạn xây dựng những ứng dụng Backend mạnh mẽ, ổn định và dễ dàng mở rộng trong tương lai.</p></article>
+</ul>
+</li>
+<li>
+<p><strong>Lợi ích</strong>: Image cuối cùng chỉ chứa ứng dụng đã biên dịch và các phụ thuộc thời gian chạy tối thiểu, loại bỏ hoàn toàn SDK, công cụ xây dựng và các tệp trung gian. Điều này giúp giảm đáng kể kích thước image (có thể từ hàng trăm MB xuống chỉ còn vài MB) và giảm bề mặt tấn công bảo mật.</p>
+</li>
+</ul>
+<h3 id="35-các-phương-pháp-tốt-nhất-best-practices">3.5. Các phương pháp tốt nhất (Best Practices)</h3>
+<p>Một <code>Dockerfile</code> được viết tốt không chỉ là một tập lệnh; nó là một bản hợp đồng. Nó định nghĩa một cách tường minh trạng thái chính xác của môi trường ứng dụng. Khi kết hợp với việc ghim phiên bản cụ thể (ví dụ: <code>node:20.9.0-slim</code>), nó đảm bảo rằng bất kỳ ai, ở bất kỳ đâu, khi chạy <code>docker build</code> trên tệp này sẽ nhận được một image giống hệt nhau, từng bit một.5 Bản hợp đồng này là nền tảng của cơ sở hạ tầng bất biến (immutable infrastructure). Bạn không vá một container đang chạy (một &ldquo;thú cưng&rdquo;); bạn xây dựng một image mới, đã được vá từ bản hợp đồng đã cập nhật và triển khai một container mới (một &ldquo;gia súc&rdquo;).</p>
+<p>Dưới đây là một số quy tắc vàng để viết các <code>Dockerfile</code> chất lượng cao:</p>
+<ul>
+<li>
+<p><strong>Giảm thiểu số lớp (Limit Layers)</strong>: Mỗi chỉ thị <code>RUN</code>, <code>COPY</code>, <code>ADD</code> tạo ra một lớp mới. Kết hợp các lệnh liên quan vào một chỉ thị <code>RUN</code> duy nhất bằng cách sử dụng <code>&amp;&amp;</code> để giảm số lượng lớp, giúp image nhỏ hơn.</p>
+</li>
+<li>
+<p><strong>Tận dụng bộ đệm (Leverage Cache)</strong>: Docker xây dựng image theo từng lớp và lưu vào bộ đệm. Để tận dụng tối đa bộ đệm, hãy sắp xếp các chỉ thị từ ít thay đổi nhất đến thay đổi thường xuyên nhất. Ví dụ, sao chép <code>package.json</code> và chạy <code>npm install</code> trước khi sao chép toàn bộ mã nguồn của bạn (<code>COPY..</code>).</p>
+</li>
+<li>
+<p><strong>Sử dụng <code>.dockerignore</code></strong>: Tạo một tệp <code>.dockerignore</code> để loại trừ các tệp và thư mục không cần thiết (như <code>.git</code>, <code>node_modules</code>, các tệp nhật ký) khỏi bối cảnh xây dựng. Điều này giúp tăng tốc độ xây dựng và giữ cho image gọn gàng.</p>
+</li>
+<li>
+<p><strong>Sử dụng thẻ cụ thể (Use Specific Tags)</strong>: Tránh sử dụng thẻ <code>:latest</code>. Nó không thể đoán trước và có thể phá vỡ các bản dựng của bạn. Luôn sử dụng các thẻ phiên bản cụ thể (ví dụ: <code>python:3.9.7-slim</code>) để đảm bảo các bản dựng có thể tái tạo.</p>
+</li>
+<li>
+<p><strong>Chạy với người dùng không phải root (Run as Non-Root User)</strong>: Vì lý do bảo mật, hãy tránh chạy các container với người dùng <code>root</code>. Tạo một người dùng và nhóm riêng cho ứng dụng của bạn trong <code>Dockerfile</code> và chuyển sang người dùng đó bằng chỉ thị <code>USER</code>.</p>
+</li>
+</ul>
+<p>Phần 4: <a href="https://blog.nagih.io.vn/post/docker/docker-compose/">Docker Compose</a></p>
+<p>Phần 5: <a href="https://blog.nagih.io.vn/post/docker/docker-practical-guide/">Docker Practical Guide</a></p>
+<p>Phần 6: <a href="https://blog.nagih.io.vn/post/docker/docker-fullstack-example/">Docker Fullstack Example</a></p>
+<p>Phần 7: <a href="https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/">Docker Best Practice for Production</a></p></article>
               </div>
             </div>
           </div>

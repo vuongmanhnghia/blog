@@ -9,11 +9,13 @@ tags:
 Điều phối Ứng dụng với Docker Compose
 <!--more-->
 
-*Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) *
+Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) 
 
-*Phần 2: [Docker CLI](https://blog.nagih.io.vn/post/docker/docker-cli/)*
+Phần 2: [Docker CLI](https://blog.nagih.io.vn/post/docker/docker-cli/)
 
-## Phần 3: Điều phối Ứng dụng với Docker Compose
+Phần 3: [Docker Dockerfile](https://blog.nagih.io.vn/post/docker/docker-dockerfile/)
+
+## Phần 4: Điều phối Ứng dụng với Docker Compose
 
 Khi các ứng dụng trở nên phức tạp hơn, chúng thường bao gồm nhiều thành phần phụ thuộc lẫn nhau—một máy chủ web, một API backend, một cơ sở dữ liệu, một hàng đợi tin nhắn, v.v. Việc quản lý từng container riêng lẻ bằng các lệnh `docker run` dài dòng và phức tạp trở nên không thực tế và dễ gây ra lỗi.
 
@@ -23,7 +25,7 @@ Khi các ứng dụng trở nên phức tạp hơn, chúng thường bao gồm n
 
 ### 3.1 Cấu trúc của tệp `docker-compose.yml`
 
-Tệp `docker-compose.yml` là trung tâm của việc quản lý ứng dụng với Compose. Nó có cấu trúc khai báo, nghĩa là bạn mô tả "trạng thái mong muốn" của hệ thống, và Compose sẽ thực hiện các bước cần thiết để đạt được trạng thái đó. Các thành phần chính bao gồm:
+File `docker-compose.yml` là trung tâm của việc quản lý ứng dụng với Compose. Nó có cấu trúc khai báo, nghĩa là bạn mô tả "trạng thái mong muốn" của hệ thống, và Compose sẽ thực hiện các bước cần thiết để đạt được trạng thái đó. Các thành phần chính bao gồm:
 
 - **`services`**: Đây là khối chính, nơi bạn định nghĩa mỗi thành phần của ứng dụng như một "dịch vụ". Mỗi dịch vụ tương ứng với một hoặc nhiều container chạy cùng một image.
     
@@ -84,8 +86,8 @@ Sau khi đã định nghĩa ứng dụng trong tệp `docker-compose.yml`, bạn
         
 
 
-*Phần 4: [Docker Practical Guide](https://blog.nagih.io.vn/post/docker/docker-practical-guide/)*
+Phần 5: [Docker Practical Guide](https://blog.nagih.io.vn/post/docker/docker-practical-guide/)
 
-*Phần 5: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)*
+Phần 6: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)
 
-*Phần 6: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)*
+Phần 7: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)

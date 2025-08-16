@@ -9,15 +9,17 @@ tags:
 Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose
 <!--more-->
 
-*Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) *
+Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) 
 
-*Phần 2: [Docker CLI](https://blog.nagih.io.vn/post/docker/docker-cli/)*
+Phần 2: [Docker CLI](https://blog.nagih.io.vn/post/docker/docker-cli/)
 
-*Phần 3: [Docker Compose](https://blog.nagih.io.vn/post/docker/docker-compose/)*
+Phần 3: [Docker Dockerfile](https://blog.nagih.io.vn/post/docker/docker-dockerfile/)
 
-*Phần 4: [Docker Practical Guide](https://blog.nagih.io.vn/post/docker/docker-practical-guide/)*
+Phần 4: [Docker Compose](https://blog.nagih.io.vn/post/docker/docker-compose/)
 
-## Phần 5: Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose
+Phần 5: [Docker Practical Guide](https://blog.nagih.io.vn/post/docker/docker-practical-guide/)
+
+## Phần 6: Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose
 
 Đây là phần tổng hợp, nơi chúng ta sẽ áp dụng tất cả các kiến thức đã học để triển khai một ứng dụng web hoàn chỉnh và thực tế: một trang web WordPress được hỗ trợ bởi cơ sở dữ liệu PostgreSQL. Ví dụ này thể hiện sức mạnh thực sự của Docker Compose trong việc điều phối nhiều dịch vụ phụ thuộc lẫn nhau. Đáng chú ý, chúng ta sẽ sử dụng PostgreSQL theo yêu cầu cụ thể, một lựa chọn ít phổ biến hơn so với MySQL/MariaDB trong các hướng dẫn WordPress thông thường, nhưng hoàn toàn khả thi và mạnh mẽ.
 
@@ -193,4 +195,5 @@ docker compose down --volumes
 ```
 
 
-*Phần 6: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)*
+
+Phần 7: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)

@@ -9,15 +9,17 @@ tags:
 Các Thực tiễn Tốt nhất cho Môi trường Production
 <!--more-->
 
-*Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) *
+Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) 
 
-*Phần 2: [Docker CLI](https://blog.nagih.io.vn/post/docker/docker-cli/)*
+Phần 2: [Docker CLI](https://blog.nagih.io.vn/post/docker/docker-cli/)
 
-*Phần 3: [Docker Compose](https://blog.nagih.io.vn/post/docker/docker-compose/)*
+Phần 3: [Docker Dockerfile](https://blog.nagih.io.vn/post/docker/docker-dockerfile/)
 
-*Phần 4: [Docker Practical Guide](https://blog.nagih.io.vn/post/docker/docker-practical-guide/)*
+Phần 4: [Docker Compose](https://blog.nagih.io.vn/post/docker/docker-compose/)
 
-*Phần 5: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)*
+Phần 5: [Docker Practical Guide](https://blog.nagih.io.vn/post/docker/docker-practical-guide/)
+
+Phần 6: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)
 
 ## Phần 6: Các Thực tiễn Tốt nhất cho Môi trường Production
 
