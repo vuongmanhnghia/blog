@@ -9,11 +9,11 @@ tags:
 Hướng dẫn Thực hành: Container hóa Ứng dụng Dịch vụ đơn
 <!--more-->
 
-*Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) 
+*Phần 1: [Docker Principle](https://blog.nagih.io.vn/post/docker/docker/) *
 
-*Phần 2: [Docker CLI](https://blog.nagih.io.vn/post/docker/docker-cli/)
+*Phần 2: [Docker CLI](https://blog.nagih.io.vn/post/docker/docker-cli/)*
 
-*Phần 3: [Docker Compose](https://blog.nagih.io.vn/post/docker/docker-compose/)
+*Phần 3: [Docker Compose](https://blog.nagih.io.vn/post/docker/docker-compose/)*
 
 ## Phần 4: Hướng dẫn Thực hành: Container hóa Ứng dụng Dịch vụ đơn
 
@@ -281,6 +281,6 @@ docker run -p 8000:8000 python-api
 
 Truy cập `http://localhost:8000` để xem kết quả.
 
-*Phần 5: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)
+*Phần 5: [Docker Fullstack Example](https://blog.nagih.io.vn/post/docker/docker-fullstack-example/)*
 
-*Phần 6: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)
+*Phần 6: [Docker Best Practice for Production](https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/)*
