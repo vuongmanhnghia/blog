@@ -8,7 +8,7 @@ tags:
 6 Cấp Độ Trưởng Thành Từ Deploy Thủ Công Đến Vận Hành Tinh Gọn
 <!--more-->
 
-## Giới thiệu - Hành Trình Trưởng Thành DevOps: Từ Hỗn Loạn Đến Tiên Đoán
+## Hành Trình Trưởng Thành DevOps
 
 Trong thế giới phát triển phần mềm hiện đại, DevOps không chỉ là một chức danh công việc mà là một triết lý văn hóa và một tập hợp các phương pháp kỹ thuật. Mục tiêu cốt lõi của DevOps là rút ngắn vòng đời phát triển phần mềm và cung cấp sản phẩm một cách liên tục với chất lượng cao, thông qua việc phá vỡ các rào cản giữa đội ngũ Phát triển (Development - Dev) và Vận hành (Operations - Ops), thúc đẩy sự hợp tác, chia sẻ trách nhiệm và giao tiếp hiệu quả
 
