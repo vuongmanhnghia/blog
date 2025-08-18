@@ -6,8 +6,15 @@
     <description>Recent content in Deploy on Nagih&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 16 Aug 2025 14:59:06 +0700</lastBuildDate>
+    <lastBuildDate>Mon, 18 Aug 2025 09:31:58 +0700</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/deploy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>6 Level Deploy</title>
+      <link>https://blog.nagih.io.vn/post/deploy/6-level-deploy/</link>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/post/deploy/6-level-deploy/</guid>
+      <description>&lt;p&gt;6 Cấp Độ Trưởng Thành Từ Deploy Thủ Công Đến Vận Hành Tinh Gọn&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Nginx Overview</title>
       <link>https://blog.nagih.io.vn/post/deploy/nginx/</link>
