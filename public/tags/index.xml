@@ -6,12 +6,26 @@
     <description>Recent content in Tags on Nagih&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 16 Aug 2025 14:59:06 +0700</lastBuildDate>
+    <lastBuildDate>Mon, 18 Aug 2025 09:31:59 +0700</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microservices</title>
+      <link>https://blog.nagih.io.vn/tags/microservices/</link>
+      <pubDate>Mon, 18 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/tags/microservices/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>System</title>
+      <link>https://blog.nagih.io.vn/tags/system/</link>
+      <pubDate>Mon, 18 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/tags/system/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Deploy</title>
       <link>https://blog.nagih.io.vn/tags/deploy/</link>
-      <pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/tags/deploy/</guid>
       <description></description>
     </item>
@@ -55,13 +69,6 @@
       <link>https://blog.nagih.io.vn/tags/sql/</link>
       <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/tags/sql/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>System</title>
-      <link>https://blog.nagih.io.vn/tags/system/</link>
-      <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/tags/system/</guid>
       <description></description>
     </item>
   </channel>
