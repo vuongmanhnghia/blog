@@ -6,19 +6,40 @@
     <description>Recent content in Tags on Nagih&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 Aug 2025 09:31:59 +0700</lastBuildDate>
+    <lastBuildDate>Wed, 27 Aug 2025 08:04:15 +0700</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Architechture</title>
+      <link>https://blog.nagih.io.vn/tags/architechture/</link>
+      <pubDate>Wed, 27 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/tags/architechture/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Go</title>
+      <link>https://blog.nagih.io.vn/tags/go/</link>
+      <pubDate>Wed, 27 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/tags/go/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Microservices</title>
       <link>https://blog.nagih.io.vn/tags/microservices/</link>
-      <pubDate>Mon, 18 Aug 2025 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 27 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/tags/microservices/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Network</title>
+      <link>https://blog.nagih.io.vn/tags/network/</link>
+      <pubDate>Sat, 23 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/tags/network/</guid>
       <description></description>
     </item>
     <item>
       <title>System</title>
       <link>https://blog.nagih.io.vn/tags/system/</link>
-      <pubDate>Mon, 18 Aug 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 23 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/tags/system/</guid>
       <description></description>
     </item>
@@ -44,13 +65,6 @@
       <description></description>
     </item>
     <item>
-      <title>Network</title>
-      <link>https://blog.nagih.io.vn/tags/network/</link>
-      <pubDate>Wed, 13 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/tags/network/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Ssh</title>
       <link>https://blog.nagih.io.vn/tags/ssh/</link>
       <pubDate>Wed, 13 Aug 2025 00:00:00 +0000</pubDate>
@@ -69,6 +83,13 @@
       <link>https://blog.nagih.io.vn/tags/sql/</link>
       <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/tags/sql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vi</title>
+      <link>https://blog.nagih.io.vn/tags/vi/</link>
+      <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/tags/vi/</guid>
       <description></description>
     </item>
   </channel>

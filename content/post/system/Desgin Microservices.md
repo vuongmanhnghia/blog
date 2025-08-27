@@ -1,12 +1,12 @@
 ---
-title: Kafka
+title: Desgin Microservices
 date: 2025-08-18
 draft: false
 tags:
   - system
   - microservices
 ---
-Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
+Hướng dẫn thiết kế kiến trúc Microservices
 <!--more-->
 # Kiến trúc Microservices Toàn tập: Từ Quy chuẩn Đặt tên đến Các Mẫu Thiết kế Nâng cao
 
