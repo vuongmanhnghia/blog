@@ -200,9 +200,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 18 Aug 2025 12:20:58 &#43;0700"
+                  Modified <relative-time datetime="Wed, 27 Aug 2025 08:04:15 &#43;0700"
                     class="no-wrap">
-                    Mon, 18 Aug 2025 12:20:58 &#43;0700</relative-time>
+                    Wed, 27 Aug 2025 08:04:15 &#43;0700</relative-time>
                   
                 </div>
               </div>
@@ -232,7 +232,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      8566 Words
+                      8487 Words
                     
 
                   </div>
@@ -258,7 +258,7 @@
                 <article class="markdown-body entry-content container-lg"><p>Mastering Internet Protocol Addresses</p>
 <p>Đối với một người dùng Linux, dù bạn là nhà phát triển, quản trị viên hệ thống hay chỉ là một người đam mê công nghệ, việc hiểu sâu và làm chủ địa chỉ IP không chỉ là một kỹ năng hữu ích mà còn là một yêu cầu thiết yếu.</p>
 <p>Bài viết này sẽ là kim chỉ nam của bạn, dẫn dắt bạn đi từ những khái niệm cơ bản nhất như &ldquo;Địa chỉ IP là gì?&rdquo; đến các kỹ thuật nâng cao như cấu hình mạng, quét tìm thiết bị và thiết lập kết nối từ xa an toàn. Chúng ta sẽ cùng nhau &ldquo;mổ xẻ&rdquo; các lệnh, khám phá các công cụ và áp dụng chúng vào những kịch bản thực tế, giúp bạn tự tin điều hướng trong không gian mạng rộng lớn bằng sức mạnh của dòng lệnh Linux.</p>
-<h2 id="phần-1-giải-phẫu-địa-chỉ-ip-nền-tảng-của-thế-giới-số">Phần 1: Giải Phẫu Địa Chỉ IP: Nền Tảng của Thế Giới Số</h2>
+<h2 id="phần-1-giải-phẫu-địa-chỉ-ip">Phần 1: Giải Phẫu Địa Chỉ IP</h2>
 <p>Trước khi đi sâu vào các câu lệnh và cấu hình, việc xây dựng một nền tảng kiến thức vững chắc về bản chất của địa chỉ IP là vô cùng quan trọng. Phần này sẽ giải mã các khái niệm cốt lõi, giúp bạn hiểu rõ &ldquo;tại sao&rdquo; và &ldquo;như thế nào&rdquo; trước khi học &ldquo;làm gì&rdquo;.</p>
 <h3 id="11-địa-chỉ-ip-là-gì-hơn-cả-những-con-số">1.1. Địa chỉ IP là gì? Hơn Cả những Con Số</h3>
 <p><strong>Vai trò Cốt lõi: &ldquo;Địa chỉ Nhà Kỹ thuật số&rdquo; của Thiết bị</strong></p>
@@ -826,25 +826,25 @@ Starting arp-scan 1.9.7 with 256 hosts (https://github.com/royhills/arp-scan)
 <p><strong>Khám phá Máy chủ (Ping Scan):</strong> Nhanh chóng xác định các máy chủ nào đang &ldquo;sống&rdquo; trong một dải mạng mà không cần quét cổng.</p>
 <p>Bash</p>
 <pre tabindex="0"><code>nmap -sn 192.168.1.0/24
-</code></pre><p>Tùy chọn <code>-sn</code> (scan no port) chỉ thực hiện khám phá máy chủ.75</p>
+</code></pre><p>Tùy chọn <code>-sn</code> (scan no port) chỉ thực hiện khám phá máy chủ.</p>
 </li>
 <li>
 <p><strong>Quét các Cổng phổ biến:</strong> Đây là kiểu quét mặc định của <code>nmap</code>. Nó sẽ quét 1000 cổng TCP phổ biến nhất trên một mục tiêu.</p>
 <p>Bash</p>
 <pre tabindex="0"><code>nmap 192.168.1.50
-</code></pre><p>Kết quả sẽ liệt kê các cổng ở trạng thái <code>open</code> (đang có dịch vụ lắng nghe), <code>closed</code> (không có dịch vụ), hoặc <code>filtered</code> (bị tường lửa chặn).76</p>
+</code></pre><p>Kết quả sẽ liệt kê các cổng ở trạng thái <code>open</code> (đang có dịch vụ lắng nghe), <code>closed</code> (không có dịch vụ), hoặc <code>filtered</code> (bị tường lửa chặn).</p>
 </li>
 <li>
 <p><strong>Các loại quét cổng khác:</strong></p>
 <ul>
 <li>
-<p><code>nmap -sT 192.168.1.50</code>: TCP Connect Scan. Hoàn thành một bắt tay TCP đầy đủ. Đáng tin cậy nhưng dễ bị ghi lại trong log.77</p>
+<p><code>nmap -sT 192.168.1.50</code>: TCP Connect Scan. Hoàn thành một bắt tay TCP đầy đủ. Đáng tin cậy nhưng dễ bị ghi lại trong log.</p>
 </li>
 <li>
-<p><code>sudo nmap -sS 192.168.1.50</code>: SYN &ldquo;Stealth&rdquo; Scan. Chỉ gửi gói SYN đầu tiên của bắt tay TCP. Nhanh hơn, &ldquo;kín đáo&rdquo; hơn, nhưng yêu cầu quyền root.77</p>
+<p><code>sudo nmap -sS 192.168.1.50</code>: SYN &ldquo;Stealth&rdquo; Scan. Chỉ gửi gói SYN đầu tiên của bắt tay TCP. Nhanh hơn, &ldquo;kín đáo&rdquo; hơn, nhưng yêu cầu quyền root.</p>
 </li>
 <li>
-<p><code>sudo nmap -sU 192.168.1.50</code>: Quét các cổng UDP. Chậm hơn và khó xác định hơn TCP.75</p>
+<p><code>sudo nmap -sU 192.168.1.50</code>: Quét các cổng UDP. Chậm hơn và khó xác định hơn TCP.</p>
 </li>
 </ul>
 </li>
@@ -900,12 +900,12 @@ sudo apt install openssh-server
 <li>
 <p>Kết nối bằng cặp khóa SSH (Cách chuyên nghiệp và an toàn hơn):</p>
 <p>Phương pháp này sử dụng một cặp khóa mã hóa: một khóa riêng tư (private key) được giữ bí mật trên máy khách của bạn, và một khóa công khai (public key) được đặt trên máy chủ.</p>
-<ol>
+<ul>
 <li>
 <p><strong>Tạo cặp khóa trên máy khách của bạn:</strong></p>
 <p>Bash</p>
 <pre tabindex="0"><code>ssh-keygen -t rsa -b 4096
-</code></pre><p>Lệnh này sẽ tạo ra một cặp khóa RSA với độ dài 4096 bit. Bạn sẽ được hỏi nơi lưu khóa (cứ nhấn Enter để dùng vị trí mặc định <code>~/.ssh/id_rsa</code>) và một cụm mật khẩu (passphrase) để bảo vệ thêm cho khóa riêng tư của bạn (bạn có thể bỏ trống).79</p>
+</code></pre><p>Lệnh này sẽ tạo ra một cặp khóa RSA với độ dài 4096 bit. Bạn sẽ được hỏi nơi lưu khóa (cứ nhấn Enter để dùng vị trí mặc định <code>~/.ssh/id_rsa</code>) và một cụm mật khẩu (passphrase) để bảo vệ thêm cho khóa riêng tư của bạn (bạn có thể bỏ trống).</p>
 </li>
 <li>
 <p><strong>Sao chép khóa công khai lên máy chủ:</strong> Cách dễ nhất là sử dụng lệnh <code>ssh-copy-id</code>.</p>
@@ -916,7 +916,7 @@ sudo apt install openssh-server
 <li>
 <p><strong>Đăng nhập:</strong> Bây giờ, khi bạn chạy lại lệnh <code>ssh username@ip_address</code>, máy chủ sẽ nhận ra khóa công khai của bạn và cho phép bạn đăng nhập mà không cần mật khẩu.</p>
 </li>
-</ol>
+</ul>
 </li>
 </ul>
 <p><strong>Tăng cường Bảo mật cho Máy chủ SSH</strong></p>
@@ -954,12 +954,12 @@ sudo apt install tightvncserver
 <p><strong>Chạy VNC Server lần đầu:</strong> Chạy lệnh <code>vncserver</code> để thiết lập. Nó sẽ yêu cầu bạn tạo một mật khẩu chỉ dành cho VNC (tối đa 8 ký tự).</p>
 <p>Bash</p>
 <pre tabindex="0"><code>vncserver
-</code></pre><p>Sau khi thiết lập mật khẩu, nó sẽ khởi động một phiên VNC mới và cho bạn biết số hiệu màn hình (display number), ví dụ: <code>New 'X' desktop is your-hostname:1</code>. Số <code>:1</code> này tương ứng với cổng TCP <code>5901</code> (cổng mặc định của VNC là 5900 + số hiệu màn hình).91</p>
+</code></pre><p>Sau khi thiết lập mật khẩu, nó sẽ khởi động một phiên VNC mới và cho bạn biết số hiệu màn hình (display number), ví dụ: <code>New 'X' desktop is your-hostname:1</code>. Số <code>:1</code> này tương ứng với cổng TCP <code>5901</code> (cổng mặc định của VNC là 5900 + số hiệu màn hình).</p>
 </li>
 </ol>
 <p><strong>Kết nối từ Máy Client bằng một Trình xem VNC</strong></p>
 <p>Trên máy tính cục bộ của bạn (Windows, macOS, hoặc Linux khác), bạn cần cài đặt một phần mềm VNC Viewer. Có rất nhiều lựa chọn miễn phí như TightVNC Viewer, RealVNC Viewer, hoặc UltraVNC.</p>
-<p>Mở VNC Viewer của bạn và nhập địa chỉ của máy chủ VNC theo định dạng <code>IP_máy_chủ:số_hiệu_màn_hình</code>, ví dụ: <code>192.168.1.100:1</code>. Sau đó, nhập mật khẩu VNC bạn đã tạo ở bước trên để kết nối.91</p>
+<p>Mở VNC Viewer của bạn và nhập địa chỉ của máy chủ VNC theo định dạng <code>IP_máy_chủ:số_hiệu_màn_hình</code>, ví dụ: <code>192.168.1.100:1</code>. Sau đó, nhập mật khẩu VNC bạn đã tạo ở bước trên để kết nối.</p>
 <h3 id="53-vượt-tường-lửa-an-toàn-giới-thiệu-về-ssh-tunneling-port-forwarding">5.3. Vượt Tường lửa An toàn: Giới thiệu về SSH Tunneling (Port Forwarding)</h3>
 <p>Đây là một kỹ thuật cực kỳ quan trọng, kết hợp sức mạnh của cả SSH và VNC. Vấn đề cốt lõi là giao thức VNC nguyên bản <strong>không được mã hóa</strong>. Mọi thứ bạn gõ và mọi thứ hiển thị trên màn hình đều được truyền đi dưới dạng văn bản thuần túy, khiến nó rất không an toàn khi sử dụng qua một mạng không tin cậy như Internet.</p>
 <p>Việc mở trực tiếp cổng VNC (5901, 5902,&hellip;) ra Internet là một rủi ro bảo mật nghiêm trọng. Một người mới có thể làm điều này, nhưng một chuyên gia thì không. Cách tiếp cận chuyên nghiệp và an toàn là <strong>không bao giờ phơi bày một dịch vụ không an toàn ra ngoài</strong>. Thay vào đó, chúng ta sẽ sử dụng SSH, vốn đã là một kênh giao tiếp an toàn, để tạo một &ldquo;đường hầm&rdquo; được mã hóa và cho lưu lượng VNC đi qua đó. Đây không phải là một &ldquo;mẹo&rdquo;, mà là một <strong>tiêu chuẩn bắt buộc</strong> khi làm việc với các giao thức không an toàn qua mạng công cộng.</p>
@@ -1001,7 +1001,6 @@ sudo apt install tightvncserver
 <p>Kết nối VNC của bạn bây giờ sẽ đi qua đường hầm SSH đã được mã hóa, đảm bảo an toàn tuyệt đối cho phiên làm việc từ xa của bạn.</p>
 <h2 id="phần-6-kết-luận-và-các-bước-tiếp-theo">Phần 6: Kết luận và các Bước Tiếp theo</h2>
 <p>Chúng ta đã cùng nhau trải qua một hành trình dài và chi tiết, từ việc giải phẫu những khái niệm cơ bản nhất của địa chỉ IP, phân loại chúng, cho đến việc sử dụng các công cụ dòng lệnh mạnh mẽ của Linux để tương tác với mạng. Bạn đã học cách tìm địa chỉ IP của mình, kiểm tra sức khỏe mạng, cấu hình IP tĩnh cho các bản phân phối phổ biến, quét tìm các thiết bị khác, và quan trọng nhất là thiết lập các kết nối từ xa an toàn bằng SSH và VNC kết hợp với SSH tunneling.</p>
-<p>Việc nắm vững những kỹ năng này không chỉ giúp bạn giải quyết các vấn đề mạng hàng ngày mà còn đặt một nền móng vững chắc để bạn trở thành một người dùng Linux, một nhà phát triển hay một quản trị viên hệ thống có năng lực hơn.</p>
 <p>Kiến thức về mạng là vô tận. Những gì bạn đã học được ở đây là những khối xây dựng cơ bản. Để tiếp tục phát triển kỹ năng của mình, bạn có thể khám phá các chủ đề nâng cao sau:</p>
 <ul>
 <li>
@@ -1017,7 +1016,7 @@ sudo apt install tightvncserver
 <p><strong>Các khái niệm Mạng Nâng cao:</strong> Khám phá các chủ đề như Network Namespaces (để cô lập các môi trường mạng, nền tảng của container), các giao thức định tuyến động, và cấu hình mạng phức tạp hơn.</p>
 </li>
 </ul>
-<p>Thế giới Linux và mạng máy tính luôn luôn phát triển. Hãy tiếp tục học hỏi, thực hành và không ngừng khám phá. Chúc bạn thành công trên con đường làm chủ hệ thống của mình!</p>
+<p>Chúc bạn thành công trên con đường làm chủ hệ thống của mình!</p>
 <hr>
 <p><em>Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!</em></p></article>
               </div>
