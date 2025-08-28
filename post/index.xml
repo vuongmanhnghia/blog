@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Nagih&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Aug 2025 09:21:52 +0700</lastBuildDate>
+    <lastBuildDate>Thu, 28 Aug 2025 15:52:39 +0700</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>REST và gRPC</title>
+      <link>https://blog.nagih.io.vn/post/architechture/rest-v%C3%A0-grpc/</link>
+      <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/post/architechture/rest-v%C3%A0-grpc/</guid>
+      <description>&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại&lt;/p&gt;</description>
+    </item>
     <item>
       <title>DDD (Domain-Driven Design)</title>
       <link>https://blog.nagih.io.vn/post/architechture/ddd-domain-driven-design/</link>
