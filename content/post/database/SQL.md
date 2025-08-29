@@ -6,19 +6,14 @@ tags:
   - database
   - sql
 ---
-Các kiến trức trọng tâm và tất cả các lệnh SQL
+Từ Zero Đến Hero - Tổng Hợp Tất Cả Các Lệnh SQL Quan Trọng
 <!--more-->
-# Cẩm Nang SQL Toàn Tập: Từ Zero Đến Hero - Tổng Hợp Tất Cả Các Lệnh SQL Quan Trọng
-
-Trong thế giới số hiện đại, dữ liệu được ví như "dầu mỏ" mới, và SQL chính là công cụ thiết yếu để khai thác và tinh chế nguồn tài nguyên quý giá đó. Tuy nhiên, đối với người mới bắt đầu, việc học SQL có thể trở nên khó khăn khi phải đối mặt với vô số tài liệu rời rạc và thiếu cấu trúc. Bài viết này được biên soạn như một cuốn cẩm nang toàn diện, cung cấp một lộ trình học tập có hệ thống, từ những viên gạch nền móng đầu tiên như định nghĩa dữ liệu, cho đến các kỹ thuật truy vấn và tối ưu hóa phức tạp. Mục tiêu là trang bị cho người đọc một kiến thức vững chắc và một cái nhìn tổng quan, mạch lạc về Ngôn ngữ Truy vấn có Cấu trúc.
 
 ## Phần 1: Giới Thiệu - SQL Là Gì và Tại Sao Bạn Cần Phải Học Nó?
 
-Để bắt đầu hành trình làm chủ dữ liệu, điều đầu tiên cần hiểu rõ là công cụ cốt lõi mà chúng ta sẽ sử dụng.
-
 ### SQL là gì?
 
-SQL, viết tắt của **Structured Query Language** (Ngôn ngữ Truy vấn có Cấu trúc), là ngôn ngữ tiêu chuẩn được sử dụng để giao tiếp, quản lý và thao tác với các cơ sở dữ liệu quan hệ. Cần phải nhấn mạnh rằng SQL không phải là một ngôn ngữ lập trình đa năng như Python hay Java, mà là một ngôn ngữ chuyên dụng, được thiết kế riêng cho mục đích làm việc với dữ liệu. Một trong những ưu điểm lớn nhất của SQL là nó không đòi hỏi kỹ năng mã hóa phức tạp; thay vào đó, nó sử dụng các từ khóa tiếng Anh gần gũi và dễ hiểu như
+SQL, viết tắt của **Structured Query Language** (Ngôn ngữ Truy vấn có Cấu trúc), là ngôn ngữ tiêu chuẩn được sử dụng để giao tiếp, quản lý và thao tác với các cơ sở dữ liệu quan hệ. Cần phải nhấn mạnh rằng SQL không phải là một ngôn ngữ lập trình đa năng như Python hay Java, mà là một ngôn ngữ chuyên dụng, được thiết kế riêng cho mục đích làm việc với dữ liệu. Một trong những ưu điểm lớn nhất của SQL là nó không đòi hỏi kỹ năng mã hóa phức tạp, thay vào đó, nó sử dụng các từ khóa tiếng Anh gần gũi và dễ hiểu như
 
 `SELECT`, `INSERT`, `UPDATE`, giúp người dùng dễ dàng tiếp cận và sử dụng.
 
@@ -163,8 +158,6 @@ Các lệnh DDL là những công cụ đầu tiên bạn cần đến khi bắt
 - `ALTER TABLE`: Lệnh này cho phép sửa đổi cấu trúc của một bảng đã tồn tại. Các thao tác phổ biến bao gồm thêm cột (`ADD COLUMN`), xóa cột (`DROP COLUMN`), hoặc thay đổi kiểu dữ liệu của một cột (`MODIFY COLUMN` hoặc `ALTER COLUMN`).
     
     - Ví dụ thêm cột:
-        
-        SQL
         
         ```
         ALTER TABLE SinhVien ADD Email VARCHAR(255);
