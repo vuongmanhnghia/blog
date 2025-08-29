@@ -200,9 +200,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Thu, 28 Aug 2025 15:52:39 &#43;0700"
+                  Modified <relative-time datetime="Fri, 29 Aug 2025 07:42:39 &#43;0700"
                     class="no-wrap">
-                    Thu, 28 Aug 2025 15:52:39 &#43;0700</relative-time>
+                    Fri, 29 Aug 2025 07:42:39 &#43;0700</relative-time>
                   
                 </div>
               </div>
@@ -232,7 +232,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      3198 Words
+                      3086 Words
                     
 
                   </div>
@@ -276,9 +276,6 @@
                 <article class="markdown-body entry-content container-lg"><p>Architecture Overview Domain-Driven Design(DDD)</p>
 <h2 id="phần-i-các-nguyên-tắc-cốt-lõi-của-ddd">Phần I: Các Nguyên tắc Cốt lõi của DDD</h2>
 <h3 id="thiết-kế-chiến-lược-lập-bản-đồ-context-nghiệp-vụ">Thiết kế Chiến lược: Lập bản đồ Context Nghiệp vụ</h3>
-<p>DDD bắt đầu ở cấp độ cao, tập trung vào toàn bộ lĩnh vực nghiệp vụ.</p>
-<h4 id="ngôn-ngữ-phổ-biến-ubiquitous-language">Ngôn ngữ Phổ biến (Ubiquitous Language)</h4>
-<p>Đây là nền tảng. Đó là một ngôn ngữ chung, được chia sẻ và phát triển thông qua sự hợp tác giữa các nhà phát triển và chuyên gia lĩnh vực. Ngôn ngữ này được sử dụng trong mọi hình thức giao tiếp, từ các cuộc họp nhóm đến chính mã nguồn (tên biến, hàm, lớp), đảm bảo không có layer nào có thể gây ra sự mơ hồ.</p>
 <h4 id="context-giới-hạn-bounded-contexts">Context Giới hạn (Bounded Contexts)</h4>
 <p>Các hệ thống lớn hiếm khi có một mô hình duy nhất, thống nhất. Thuật ngữ &ldquo;Người dùng&rdquo; có thể có ý nghĩa khác nhau trong layer &ldquo;Xác thực&rdquo; so với context &ldquo;Hỗ trợ Kỹ thuật&rdquo;. Bounded Context là một ranh giới rõ ràng mà trong đó một mô hình miền cụ thể và Ngôn ngữ Phổ biến của nó là nhất quán và hợp lệ. Chiến lược &ldquo;chia để trị&rdquo; này là câu trả lời của DDD để quản lý sự phức tạp trong các tổ chức lớn. Việc xác định các context này là mục tiêu chính của Thiết kế Chiến lược và rất quan trọng để xác định ranh giới của các microservice.</p>
 <p>Toàn bộ cấu trúc của một hệ thống phức tạp bắt nguồn trực tiếp từ những sự mơ hồ về ngôn ngữ được phát hiện trong quá trình thiết kế chiến lược. Quá trình này diễn ra như sau: đầu tiên, các chuyên gia lĩnh vực và nhà phát triển nhận ra rằng một thuật ngữ duy nhất (ví dụ: &ldquo;Khách hàng&rdquo;) có nhiều ý nghĩa mâu thuẫn giữa các phòng ban (hiện tượng đa nghĩa). Xung đột ngôn ngữ này làm cho việc xây dựng một mô hình miền thống nhất duy nhất trở nên bất khả thi nếu không muốn tạo ra sự nhầm lẫn và lỗi. Để giải quyết vấn đề này, họ áp dụng mẫu Bounded Context, vẽ ra các ranh giới rõ ràng xung quanh các khu vực mà ngôn ngữ là nhất quán. Ví dụ, một &ldquo;Context Bán hàng&rdquo; và một &ldquo;Context Hỗ trợ&rdquo; được xác định. Các Bounded Context này sau đó trở thành những ứng cử viên tự nhiên cho các service hoặc module riêng biệt trong kiến trúc phần mềm. Do đó, kiến trúc ở cấp độ cao (ví dụ: việc phân chia thành các microservice) là một hệ quả trực tiếp của việc giải quyết các vấn đề giao tiếp và định nghĩa một Ngôn ngữ Phổ biến rõ ràng. Kiến trúc không phải là một quyết định kỹ thuật tùy tiện; nó là một giải pháp cho một vấn đề giao tiếp nghiệp vụ.</p>
@@ -287,14 +284,13 @@
 <ul>
 <li>
 <p><strong>Entities (Thực thể):</strong> Các đối tượng được xác định không phải bởi các thuộc tính của chúng, mà bởi định danh duy nhất và sự tồn tại liên tục theo thời gian (ví dụ: một <code>Customer</code> với một ID duy nhất). Chúng có thể thay đổi, nhưng các thay đổi trạng thái nên được mô hình hóa như các hoạt động nghiệp vụ rõ ràng (ví dụ:</p>
-<p><code>customer.ChangeAddress()</code>, không phải <code>customer.setAddress()</code>).</p>
+<p><code>customer.ChangeAddress()</code>, không phải <code>customer.setAddress()</code>.</p>
 </li>
 <li>
-<p><strong>Value Objects (Đối tượng Giá trị):</strong> Các đối tượng đại diện cho một khía cạnh mô tả của miền và không có định danh khái niệm (ví dụ: <code>Money</code>, <code>Address</code>, <code>Color</code>). Chúng được định nghĩa bởi các thuộc tính của chúng, là bất biến, và sự bằng nhau của chúng dựa trên giá trị, không phải định danh.</p>
+<p><strong>Value Objects (Đối tượng Giá trị):</strong> Các đối tượng đại diện cho một khía cạnh mô tả của miền và không có định danh khái niệm (ví dụ: <code>Money</code>, <code>Address</code>, <code>Color</code>). Được định nghĩa bởi các thuộc tính của chúng, là bất biến, và sự bằng nhau của chúng dựa trên giá trị, không phải định danh.</p>
 </li>
 <li>
-<p><strong>Aggregates (Tập hợp):</strong> Một cụm các đối tượng liên quan (Entities và Value Objects) được coi là một đơn vị duy nhất cho các thay đổi dữ liệu. Mỗi Aggregate có một Entity gốc, được gọi là</p>
-<p><strong>Aggregate Root</strong>. Aggregate Root là thành viên duy nhất của Aggregate mà các đối tượng bên ngoài được phép giữ tham chiếu đến. Nó chịu trách nhiệm thực thi các quy tắc nghiệp vụ (bất biến) cho toàn bộ cụm. Mẫu này xác định các ranh giới nhất quán giao dịch.</p>
+<p><strong>Aggregates (Tập hợp):</strong> Một cụm các đối tượng liên quan (Entities và Value Objects) được coi là một đơn vị duy nhất cho các thay đổi dữ liệu. Mỗi Aggregate có một Entity gốc, được gọi là <strong>Aggregate Root</strong>. Aggregate Root là thành viên duy nhất của Aggregate mà các đối tượng bên ngoài được phép giữ tham chiếu đến. Nó chịu trách nhiệm thực thi các quy tắc nghiệp vụ (bất biến) cho toàn bộ cụm. Mẫu này xác định các ranh giới nhất quán giao dịch.</p>
 </li>
 <li>
 <p><strong>Domain Services (Dịch vụ Miền):</strong> Khi một logic miền nào đó không tự nhiên thuộc về một Entity hoặc Value Object (ví dụ: một quy trình liên quan đến nhiều Aggregate), nó có thể được mô hình hóa trong một Domain Service không trạng thái.</p>
@@ -306,7 +302,6 @@
 <p><strong>Repositories (Kho chứa) và Factories (Nhà máy):</strong> Repositories cung cấp ảo giác về một bộ sưu tập các Aggregate trong bộ nhớ, trừu tượng hóa cơ chế lưu trữ. Factories đóng gói logic để tạo ra các đối tượng hoặc Aggregate phức tạp.</p>
 </li>
 </ul>
-<p>Bảng dưới đây cung cấp một tài liệu tham khảo nhanh về các khối xây dựng chiến thuật cốt lõi.</p>
 <table>
   <thead>
       <tr>
@@ -376,7 +371,7 @@
 </ul>
 <h3 id="cấu-trúc-lõi-ứng-dụng">Cấu trúc Lõi Ứng dụng</h3>
 <p><strong>Kiến trúc Sạch (Clean Architecture):</strong> Được trình bày như một sự phát triển chi tiết hơn của Kiến trúc Lục giác, tổ chức lõi thành các lớp đồng tâm.</p>
-<p><strong>Quy tắc Phụ thuộc:</strong> Đây là quy tắc quan trọng nhất: các phụ thuộc mã nguồn chỉ có thể trỏ vào trong.16 Logic miền ở trung tâm không biết gì về các lớp bên ngoài.</p>
+<p><strong>Quy tắc Phụ thuộc:</strong> Đây là quy tắc quan trọng nhất: các phụ thuộc mã nguồn chỉ có thể trỏ vào trong. Logic miền ở trung tâm không biết gì về các lớp bên ngoài.</p>
 <p><strong>Giải thích các Lớp:</strong></p>
 <ul>
 <li>
@@ -461,167 +456,167 @@
 <h4 id="định-nghĩa-port-lớp-miền">Định nghĩa Port (Lớp Miền)</h4>
 <p>Đây là mã nguồn cho interface <code>Repository</code>. Interface này nằm trong package <code>domain</code> vì nó định nghĩa một hợp đồng mà lõi nghiệp vụ yêu cầu, nhưng nó không quan tâm đến cách hợp đồng đó được thực hiện. Nó hoàn toàn độc lập với công nghệ.</p>
 <p>Go</p>
-<pre tabindex="0"><code>// trong /internal/domain/hour/repository.go
-package hour
-
-import (
-    &#34;context&#34;
-    &#34;time&#34;
-)
-
-type Repository interface {
-    GetOrCreateHour(ctx context.Context, hourTime time.Time) (*Hour, error)
-    UpdateHour(
-        ctx context.Context,
-        hourTime time.Time,
-        updateFn func(h *Hour) (*Hour, error),
-    ) error
-}
-</code></pre><h4 id="triển-khai-các-adapter-lớp-hạ-tầng">Triển khai các Adapter (Lớp Hạ tầng)</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// trong /internal/domain/hour/repository.go</span>
+</span></span><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">hour</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;context&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;time&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Repository</span> <span class="kd">interface</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">GetOrCreateHour</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">hourTime</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">Hour</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">UpdateHour</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">hourTime</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">updateFn</span> <span class="kd">func</span><span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">Hour</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">Hour</span><span class="p">,</span> <span class="kt">error</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="triển-khai-các-adapter-lớp-hạ-tầng">Triển khai các Adapter (Lớp Hạ tầng)</h4>
 <h5 id="adapter-trong-bộ-nhớ-in-memory">Adapter Trong bộ nhớ (In-Memory)</h5>
 <p>Triển khai này sử dụng một map của Go để mô phỏng một cơ sở dữ liệu. Nó rất quan trọng để cho phép các bài kiểm thử đơn vị (unit test) nhanh chóng và đáng tin cậy cho các dịch vụ ứng dụng mà không cần đến một cơ sở dữ liệu thực sự.</p>
 <p>Go</p>
-<pre tabindex="0"><code>// trong /internal/infrastructure/repository/hour_memory.go
-package repository
-
-import (
-    //... imports
-)
-
-type MemoryHourRepository struct {
-    hours maphour.Hour
-    lock  *sync.RWMutex
-    hourFactory hour.Factory
-}
-
-func NewMemoryHourRepository(hourFactory hour.Factory) *MemoryHourRepository {
-    //...
-    return &amp;MemoryHourRepository{
-        hours:       maphour.Hour{},
-        lock:        &amp;sync.RWMutex{},
-        hourFactory: hourFactory,
-    }
-}
-
-func (m *MemoryHourRepository) UpdateHour(
-    _ context.Context,
-    hourTime time.Time,
-    updateFn func(h *hour.Hour) (*hour.Hour, error),
-) error {
-    m.lock.Lock()
-    defer m.lock.Unlock()
-
-    currentHour, err := m.getOrCreateHour(hourTime)
-    if err!= nil {
-        return err
-    }
-
-    updatedHour, err := updateFn(currentHour)
-    if err!= nil {
-        return err
-    }
-
-    m.hours = *updatedHour
-    return nil
-}
-//... các phương thức khác
-</code></pre><h5 id="adapter-mysql">Adapter MySQL</h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// trong /internal/infrastructure/repository/hour_memory.go</span>
+</span></span><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">repository</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//... imports</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">MemoryHourRepository</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hours</span> <span class="nx">maphour</span><span class="p">.</span><span class="nx">Hour</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">lock</span>  <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hourFactory</span> <span class="nx">hour</span><span class="p">.</span><span class="nx">Factory</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">NewMemoryHourRepository</span><span class="p">(</span><span class="nx">hourFactory</span> <span class="nx">hour</span><span class="p">.</span><span class="nx">Factory</span><span class="p">)</span> <span class="o">*</span><span class="nx">MemoryHourRepository</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">MemoryHourRepository</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">hours</span><span class="p">:</span>       <span class="nx">maphour</span><span class="p">.</span><span class="nx">Hour</span><span class="p">{},</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">lock</span><span class="p">:</span>        <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span><span class="p">{},</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">hourFactory</span><span class="p">:</span> <span class="nx">hourFactory</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="o">*</span><span class="nx">MemoryHourRepository</span><span class="p">)</span> <span class="nf">UpdateHour</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">_</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hourTime</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">updateFn</span> <span class="kd">func</span><span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">hour</span><span class="p">.</span><span class="nx">Hour</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">hour</span><span class="p">.</span><span class="nx">Hour</span><span class="p">,</span> <span class="kt">error</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">m</span><span class="p">.</span><span class="nx">lock</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">defer</span> <span class="nx">m</span><span class="p">.</span><span class="nx">lock</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">currentHour</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">.</span><span class="nf">getOrCreateHour</span><span class="p">(</span><span class="nx">hourTime</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span><span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">updatedHour</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">updateFn</span><span class="p">(</span><span class="nx">currentHour</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span><span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">m</span><span class="p">.</span><span class="nx">hours</span> <span class="p">=</span> <span class="o">*</span><span class="nx">updatedHour</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//... các phương thức khác</span>
+</span></span></code></pre></div><h5 id="adapter-mysql">Adapter MySQL</h5>
 <p>Đây là một triển khai sẵn sàng cho môi trường production, bao gồm cả việc quản lý giao dịch để đảm bảo tính nhất quán của dữ liệu.</p>
 <p>Go</p>
-<pre tabindex="0"><code>// trong /internal/infrastructure/repository/hour_mysql.go
-package repository
-
-import (
-    //... imports
-)
-
-type MySQLHourRepository struct {
-    db *sqlx.DB
-    hourFactory hour.Factory
-}
-
-//... NewMySQLHourRepository
-
-func (m MySQLHourRepository) UpdateHour(
-    ctx context.Context,
-    hourTime time.Time,
-    updateFn func(h *hour.Hour) (*hour.Hour, error),
-) (err error) {
-    tx, err := m.db.Beginx()
-    if err!= nil {
-        return errors.Wrap(err, &#34;unable to start transaction&#34;)
-    }
-    defer func() {
-        err = m.finishTransaction(err, tx)
-    }()
-
-    existingHour, err := m.getOrCreateHour(ctx, tx, hourTime, true) // forUpdate = true
-    if err!= nil {
-        return err
-    }
-
-    updatedHour, err := updateFn(existingHour)
-    if err!= nil {
-        return err
-    }
-
-    if err := m.upsertHour(tx, updatedHour); err!= nil {
-        return err
-    }
-
-    return nil
-}
-
-func (m MySQLHourRepository) getOrCreateHour(
-    ctx context.Context,
-    db sqlContextGetter,
-    hourTime time.Time,
-    forUpdate bool,
-) (*hour.Hour, error) {
-    //...
-    query := &#34;SELECT * FROM `hours` WHERE `hour` =?&#34;
-    if forUpdate {
-        query += &#34; FOR UPDATE&#34;
-    }
-    //...
-}
-//... các phương thức khác
-</code></pre><h4 id="kết-nối-các-lớp-ví-dụ-về-một-use-case">Kết nối các Lớp: Ví dụ về một Use Case</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// trong /internal/infrastructure/repository/hour_mysql.go</span>
+</span></span><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">repository</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//... imports</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">MySQLHourRepository</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">db</span> <span class="o">*</span><span class="nx">sqlx</span><span class="p">.</span><span class="nx">DB</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hourFactory</span> <span class="nx">hour</span><span class="p">.</span><span class="nx">Factory</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//... NewMySQLHourRepository</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="nx">MySQLHourRepository</span><span class="p">)</span> <span class="nf">UpdateHour</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hourTime</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">updateFn</span> <span class="kd">func</span><span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">hour</span><span class="p">.</span><span class="nx">Hour</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">hour</span><span class="p">.</span><span class="nx">Hour</span><span class="p">,</span> <span class="kt">error</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">tx</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nf">Beginx</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span><span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">Wrap</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;unable to start transaction&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">err</span> <span class="p">=</span> <span class="nx">m</span><span class="p">.</span><span class="nf">finishTransaction</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">tx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">existingHour</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">.</span><span class="nf">getOrCreateHour</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">tx</span><span class="p">,</span> <span class="nx">hourTime</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span> <span class="c1">// forUpdate = true</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span><span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">updatedHour</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">updateFn</span><span class="p">(</span><span class="nx">existingHour</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span><span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">.</span><span class="nf">upsertHour</span><span class="p">(</span><span class="nx">tx</span><span class="p">,</span> <span class="nx">updatedHour</span><span class="p">);</span> <span class="nx">err</span><span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="nx">MySQLHourRepository</span><span class="p">)</span> <span class="nf">getOrCreateHour</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">db</span> <span class="nx">sqlContextGetter</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hourTime</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">forUpdate</span> <span class="kt">bool</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">hour</span><span class="p">.</span><span class="nx">Hour</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">query</span> <span class="o">:=</span> <span class="s">&#34;SELECT * FROM `hours` WHERE `hour` =?&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">forUpdate</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">query</span> <span class="o">+=</span> <span class="s">&#34; FOR UPDATE&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//... các phương thức khác</span>
+</span></span></code></pre></div><h4 id="kết-nối-các-lớp-ví-dụ-về-một-use-case">Kết nối các Lớp: Ví dụ về một Use Case</h4>
 <p>Một <code>Application Service</code> sẽ sử dụng interface <code>hour.Repository</code> thông qua dependency injection. Nó không biết và không quan tâm đến việc triển khai cụ thể là in-memory hay MySQL.</p>
 <p>Go</p>
-<pre tabindex="0"><code>// trong /internal/application/booking/service.go
-package booking
-
-type Service struct {
-    hourRepo hour.Repository
-}
-
-func (s Service) ScheduleTraining(ctx context.Context, hourTime time.Time) error {
-    err := s.hourRepo.UpdateHour(ctx, hourTime, func(h *hour.Hour) (*hour.Hour, error) {
-        if err := h.ScheduleTraining(); err!= nil {
-            return nil, err
-        }
-        return h, nil
-    })
-    return err
-}
-</code></pre><p>Cuối cùng, tệp <code>main.go</code> là nơi ứng dụng được khởi tạo. Đây là nơi &ldquo;kết nối&rdquo; xảy ra: một <code>MySQLHourRepository</code> cụ thể được khởi tạo và được tiêm vào <code>Application Service</code>, thỏa mãn interface <code>hour.Repository</code>. Điều này minh họa cơ chế dependency injection làm cho toàn bộ kiến trúc hoạt động.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// trong /internal/application/booking/service.go</span>
+</span></span><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">booking</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Service</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hourRepo</span> <span class="nx">hour</span><span class="p">.</span><span class="nx">Repository</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">Service</span><span class="p">)</span> <span class="nf">ScheduleTraining</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">hourTime</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">err</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">hourRepo</span><span class="p">.</span><span class="nf">UpdateHour</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">hourTime</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">hour</span><span class="p">.</span><span class="nx">Hour</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">hour</span><span class="p">.</span><span class="nx">Hour</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">h</span><span class="p">.</span><span class="nf">ScheduleTraining</span><span class="p">();</span> <span class="nx">err</span><span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">h</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Cuối cùng, tệp <code>main.go</code> là nơi ứng dụng được khởi tạo. Đây là nơi &ldquo;kết nối&rdquo; xảy ra: một <code>MySQLHourRepository</code> cụ thể được khởi tạo và được tiêm vào <code>Application Service</code>, thỏa mãn interface <code>hour.Repository</code>. Điều này minh họa cơ chế dependency injection làm cho toàn bộ kiến trúc hoạt động.</p>
 <p>Go</p>
-<pre tabindex="0"><code>// trong /cmd/app/main.go
-package main
-
-func main() {
-    //... thiết lập kết nối cơ sở dữ liệu (db)
-
-    hourFactory := hour.NewFactory()
-    // Tiêm triển khai MySQL cụ thể
-    hourRepo := repository.NewMySQLHourRepository(db, hourFactory)
-
-    bookingService := booking.NewService(hourRepo)
-
-    //... khởi tạo và chạy máy chủ HTTP với bookingService
-}
-</code></pre><h2 id="phần-iv-phân-tích-và-khuyến-nghị---sự-đánh-đổi-của-ddd-trong-go">Phần IV: Phân tích và Khuyến nghị - Sự Đánh đổi của DDD trong Go</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// trong /cmd/app/main.go</span>
+</span></span><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//... thiết lập kết nối cơ sở dữ liệu (db)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">hourFactory</span> <span class="o">:=</span> <span class="nx">hour</span><span class="p">.</span><span class="nf">NewFactory</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Tiêm triển khai MySQL cụ thể</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hourRepo</span> <span class="o">:=</span> <span class="nx">repository</span><span class="p">.</span><span class="nf">NewMySQLHourRepository</span><span class="p">(</span><span class="nx">db</span><span class="p">,</span> <span class="nx">hourFactory</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">bookingService</span> <span class="o">:=</span> <span class="nx">booking</span><span class="p">.</span><span class="nf">NewService</span><span class="p">(</span><span class="nx">hourRepo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//... khởi tạo và chạy máy chủ HTTP với bookingService</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="phần-iv-phân-tích-và-khuyến-nghị---sự-đánh-đổi-của-ddd-trong-go">Phần IV: Phân tích và Khuyến nghị - Sự Đánh đổi của DDD trong Go</h2>
 <h3 id="đánh-giá-lợi-ích-pros">Đánh giá Lợi ích (&ldquo;Pros&rdquo;)</h3>
 <ul>
 <li>
