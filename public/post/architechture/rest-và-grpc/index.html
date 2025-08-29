@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://blog.nagih.io.vn/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/github.min.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/github-style.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/light.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/dark.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/syntax.css' />
+    <title>REST và gRPC - Nagih&#39;s blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    <link rel="stylesheet" href="https://blog.nagih.io.vn/css/custom.css">
+    <script type="text/javascript" src="https://blog.nagih.io.vn/js/custom.js"></script>
+
+    
+    <meta name="description"
+  content="Phân Tích về Kiến Trúc API Hiện Đại
+" />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://blog.nagih.io.vn/post/architechture/rest-v%C3%A0-grpc/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="REST và gRPC - Nagih&#39;s blog" />
+<meta name="twitter:description"
+  content="Phân Tích về Kiến Trúc API Hiện Đại
+" />
+<meta name="twitter:site" content="https://blog.nagih.io.vn/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://blog.nagih.io.vn/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="REST và gRPC - Nagih&#39;s blog">
+<meta property="og:description"
+  content="Phân Tích về Kiến Trúc API Hiện Đại
+" />
+<meta property="og:url" content="https://blog.nagih.io.vn/post/architechture/rest-v%C3%A0-grpc/" />
+<meta property="og:site_name" content="REST và gRPC" />
+<meta property="og:image"
+  content="https://blog.nagih.io.vn/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2025-08-28 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body>
+  <div style="position: relative">
+	<header
+		class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+		<div
+			class="Header-item mobile-none"
+			style="margin-top: -4px; margin-bottom: -4px">
+			<a class="Header-link" href="https://blog.nagih.io.vn/">
+				<img
+					class="octicon"
+					height="32"
+					width="32"
+					src="https://avatars.githubusercontent.com/u/123850496?v=4" />
+			</a>
+		</div>
+		<div class="Header-item d-md-none">
+			<button
+				class="Header-link btn-link js-details-target"
+				type="button"
+				onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+				<svg
+					height="24"
+					class="octicon octicon-three-bars"
+					viewBox="0 0 16 16"
+					version="1.1"
+					width="24">
+					<path
+						fill-rule="evenodd"
+						d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+				</svg>
+			</button>
+		</div>
+		<div
+			style="display: none"
+			id="header-search"
+			class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+			<div
+				class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+				<div class="position-relative">
+					
+					<form
+						id="search-form"
+						action=""
+						accept-charset="UTF-8"
+						method="get"
+						autocomplete="off">
+						<label
+							class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+							<input
+								type="text"
+								class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+								name="q"
+								value=""
+								placeholder="Search"
+								autocomplete="off" />
+						</label>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+
+		<div
+			class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+			<a class="Header-link" href="https://blog.nagih.io.vn/">
+				<img
+					class="octicon octicon-mark-github v-align-middle"
+					height="32"
+					width="32"
+					src="https://avatars.githubusercontent.com/u/123850496?v=4" />
+			</a>
+		</div>
+		<div class="Header-item" style="margin-right: 0">
+			<a
+				href="javascript:void(0)"
+				class="Header-link no-select"
+				onclick="switchTheme()">
+				<svg
+					style="fill: var(--color-profile-color-modes-toggle-moon)"
+					class="no-select"
+					viewBox="0 0 16 16"
+					version="1.1"
+					width="16"
+					height="16">
+					<path
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+						d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z"></path>
+				</svg>
+			</a>
+		</div>
+	</header>
+</div>
+
+  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
+</div>
+
+  
+<div class="application-main">
+  <div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://blog.nagih.io.vn/">
+                  <img class=" avatar-user"
+                    src="https://avatars.githubusercontent.com/u/123850496?v=4"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <strong>
+                      <a href="https://blog.nagih.io.vn/">Nagih</a>
+                    </strong>
+                  </span>
+                  <span class="path-divider">/</span>
+                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
+                    <a href="https://blog.nagih.io.vn/post/architechture/rest-v%C3%A0-grpc/">REST và gRPC</a>
+                  </strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Thu, 28 Aug 2025 00:00:00 &#43;0000"
+                    class="no-wrap">
+                    Thu, 28 Aug 2025 00:00:00 &#43;0000</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Thu, 28 Aug 2025 15:52:39 &#43;0700"
+                    class="no-wrap">
+                    Thu, 28 Aug 2025 15:52:39 &#43;0700</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      4517 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/architechture">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      architechture
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/microservices">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      microservices
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><p>Phân Tích về Kiến Trúc API Hiện Đại</p>
+<h2 id="giới-thiệu">Giới thiệu</h2>
+<p>Trong thế giới phát triển phần mềm, việc lựa chọn kiến trúc API không đơn thuần là một quyết định kỹ thuật, đó là một lựa chọn chiến lược định hình cách các hệ thống tương tác, phát triển và mở rộng. Cuộc tranh luận giữa REST và gRPC không phải là câu hỏi &ldquo;cái nào tốt hơn&rdquo;, mà là việc lựa chọn giữa hai triết lý thiết kế mạnh mẽ nhưng khác biệt cơ bản. REST, với tư cách là một kiểu kiến trúc, đã định hình nên các API web trong hơn hai thập kỷ, trở thành tiêu chuẩn de facto nhờ tính linh hoạt và khả năng tiếp cận phổ quát. Mặt khác, gRPC, một framework mã nguồn mở hiệu suất cao do Google phát triển, nổi lên như một giải pháp được thiết kế đặc biệt cho kỷ nguyên microservice, nơi hiệu suất, độ trễ thấp và các hợp đồng dịch vụ nghiêm ngặt là tối quan trọng.</p>
+<p>Sự trỗi dậy của gRPC không phải là một nỗ lực nhằm thay thế hoàn toàn REST. Thay vào đó, nó phản ánh một xu hướng rộng lớn hơn trong kiến trúc phần mềm: sự chuyên môn hóa của các công cụ cho các bối cảnh cụ thể. Sự phát triển của kiến trúc microservices đã tạo ra một loạt các thách thức mới - chẳng hạn như giao tiếp đa ngôn ngữ, độ trễ cực thấp giữa các dịch vụ nội bộ và nhu cầu về các hợp đồng API chặt chẽ - mà REST không được thiết kế rõ ràng để giải quyết. Khoảng trống này đã tạo ra một &ldquo;thị trường ngách&rdquo; để gRPC phát triển mạnh mẽ, cung cấp một bộ giải pháp được tối ưu hóa cho những thách thức này.</p>
+<h2 id="mô-hình-rest">Mô Hình REST</h2>
+<p>Để hiểu rõ về REST, điều quan trọng là phải nhận ra rằng nó không phải là một giao thức hay một tiêu chuẩn, mà là một <em>kiểu kiến trúc</em> (architectural style) được định nghĩa bởi Roy Fielding vào năm 2000. Một hệ thống được coi là &ldquo;RESTful&rdquo; khi nó tuân thủ một tập hợp các ràng buộc kiến trúc được thiết kế để tối ưu hóa cho một hệ thống phân tán quy mô lớn như World Wide Web.</p>
+<p><em>p/s: Nếu bất ngờ vì trước giờ nghĩ REST là một giao thức thì để lại 1 comment nhé =))</em></p>
+<h3 id="kiến-trúc-cốt-lõi-của-rest">Kiến Trúc Cốt Lõi của REST</h3>
+<p>Sức mạnh và sự phổ biến của REST bắt nguồn từ sáu ràng buộc sau:</p>
+<ul>
+<li>
+<p><strong>Tách Biệt Client-Server (Client-Server Decoupling):</strong> Ràng buộc này yêu cầu sự tách biệt rõ ràng về mối quan tâm giữa client và server. Server và client chỉ tương tác thông qua một giao diện chuẩn hóa. Sự tách biệt này cho phép chúng phát triển độc lập - client không cần biết về logic nghiệp vụ của server, và server không cần biết về giao diện cuar client miễn là hợp đồng giao diện không thay đổi.</p>
+</li>
+<li>
+<p><strong>Vô Trạng Thái (Statelessness):</strong> Trong kiến trúc REST, mỗi yêu cầu từ client đến server phải chứa tất cả thông tin cần thiết để server hiểu và xử lý nó. Server không lưu trữ bất kỳ trạng thái phiên nào của client giữa các yêu cầu. Điều này giúp cải thiện đáng kể khả năng mở rộng, độ tin cậy và khả năng hiển thị của hệ thống, vì mỗi yêu cầu có thể được xử lý độc lập mà không cần ngữ cảnh từ các yêu cầu trước đó.</p>
+</li>
+<li>
+<p><strong>Giao Diện Đồng Nhất (Uniform Interface):</strong> Đây là ràng buộc trung tâm và mang tính định danh nhất của REST, được thiết kế để đơn giản hóa và tách rời kiến trúc. Nó bao gồm 4 ràng buộc con:</p>
+<ul>
+<li>
+<p><strong>Định danh tài nguyên (Identification of resources):</strong> Mọi tài nguyên đều được định danh duy nhất thông qua một URI (Uniform Resource Identifier). Ví dụ: https://&hellip;/osers/123 thì 123 là ID duy nhất của order đó.</p>
+</li>
+<li>
+<p><strong>Thao tác tài nguyên thông qua các biểu diễn (Manipulation of resources through representations):</strong> Client tương tác với tài nguyên thông qua các biểu diễn của chúng (ví dụ: một tài liệu JSON hoặc XML). Biểu diễn này chứa đủ thông tin để client có thể sửa đổi hoặc xóa tài nguyên trên server.</p>
+</li>
+<li>
+<p><strong>Thông điệp tự mô tả (Self-descriptive messages):</strong> Mỗi thông điệp chứa đủ thông tin để mô tả cách xử lý nó. Ví dụ, một header <code>Content-Type</code> cho biết định dạng media của thông điệp.</p>
+</li>
+<li>
+<p><strong>Hypermedia as the Engine of Application State (HATEOAS):</strong> Client chỉ cần biết URI khởi đầu. Sau đó, tất cả các hành động và tài nguyên trong tương lai mà client có thể truy cập đều được khám phá thông qua các siêu liên kết có trong các phản hồi từ server.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Khả Năng Lưu Cache (Cacheability):</strong> Các phản hồi từ server phải được đánh dấu rõ ràng là có thể lưu cache hay không. Điều này cho phép client hoặc các máy chủ trung gian lưu trữ các phản hồi, giúp giảm độ trễ và tải cho server, một tính năng quan trọng để cải thiện hiệu suất trên web.</p>
+</li>
+<li>
+<p><strong>Hệ Thống Phân Lớp (Layered System):</strong> Client không thể biết liệu nó đang kết nối trực tiếp đến server cuối cùng hay một máy chủ trung gian <em>(microservices ấy)</em>. Kiến trúc phân lớp này cho phép triển khai các thành phần trung gian như proxy, gateway để cân bằng tải, bảo mật hoặc lưu cache mà không ảnh hưởng đến client hoặc server.</p>
+</li>
+<li>
+<p><strong>Mã Lệnh Theo Yêu Cầu (Code on Demand - Tùy chọn):</strong> Đây là ràng buộc duy nhất không bắt buộc. Nó cho phép server tạm thời mở rộng hoặc tùy chỉnh chức năng của client bằng cách truyền mã thực thi (ví dụ: JavaScript).</p>
+</li>
+</ul>
+<p>Trong thực tế, nguyên tắc &ldquo;Giao Diện Đồng Nhất&rdquo;, đặc biệt là HATEOAS, là khía cạnh mạnh mẽ nhất nhưng lại thường bị bỏ qua nhất của REST. Mục đích thực sự của HATEOAS là cho phép sự kết hợp cực kỳ lỏng lẻo, cho phép server phát triển cấu trúc API của mình (ví dụ: thay đổi mẫu URI) mà không làm hỏng các client, vì client khám phá các hành động một cách linh hoạt thông qua các liên kết được cung cấp trong phản hồi. Tuy nhiên, hầu hết các API được gọi là &ldquo;REST&rdquo; trong thực tế lại không tuân thủ triệt để nguyên tắc này. Thay vì khám phá các hành động một cách linh hoạt, các client thường mã hóa cứng các URI dựa trên tài liệu API. Điều này tạo ra một sự khác biệt quan trọng: một API Web sử dụng các động từ HTTP và JSON không nhất thiết là một hệ thống RESTful thực sự, và do đó, có thể không tận dụng được toàn bộ tiềm năng về khả năng tiến hóa lâu dài mà REST mang lại.</p>
+<h3 id="triển-khai-điển-hình">Triển Khai Điển Hình</h3>
+<p>Thông thường, REST được triển khai trên giao thức HTTP/1.1. Các tài nguyên (danh từ, ví dụ <code>/users</code>) được thao tác bằng các động từ HTTP tiêu chuẩn (GET, POST, PUT, DELETE), và dữ liệu thường được trao đổi bằng định dạng JSON có thể dễ dàng đọc được bởi con người.</p>
+<h2 id="framework-grpc---hiệu-suất-và-gọi-thủ-tục-từ-xa">Framework gRPC - Hiệu Suất và Gọi Thủ Tục Từ Xa</h2>
+<p>gRPC (gRPC Remote Procedure Call) là một framework RPC hiện đại <em>(cũng không phải giao thức :)) )</em>, có chính kiến, được xây dựng trên nền tảng các công nghệ hiệu suất cao. Thay vì tập trung vào tài nguyên, gRPC tập trung vào các dịch vụ và các thủ tục (hàm) mà client có thể gọi từ xa. Kiến trúc của nó được xây dựng trên ba trụ cột chính: Protocol Buffers, HTTP/2, và các mô hình streaming tiên tiến.</p>
+<p><em>p/s: Client - Server trong gRPC thực chất vẫn là các server giao tiếp với nhau, không phải web/app/&hellip; tới server</em></p>
+<h3 id="mô-hình-rpc">Mô Hình RPC</h3>
+<p>Cốt lõi của gRPC là mô hình Gọi Thủ Tục Từ Xa (Remote Procedure Call). Ý tưởng là cho phép một client gọi một hàm trên một server từ xa một cách minh bạch, như thể nó là một lời gọi hàm cục bộ. Framework sẽ trừu tượng hóa toàn bộ quá trình giao tiếp mạng phức tạp, bao gồm tuần tự hóa dữ liệu, kết nối và xử lý lỗi.</p>
+<h3 id="trụ-cột-1-protocol-buffers-protobuf">Trụ Cột 1: Protocol Buffers (Protobuf)</h3>
+<p>Protobuf là Ngôn ngữ Định nghĩa Giao diện (Interface Definition Language - IDL) mặc định của gRPC. Nó đóng vai trò là bản thiết kế cho cả dịch vụ và cấu trúc dữ liệu.</p>
+<ul>
+<li>
+<p><strong>Quy trình &ldquo;Thiết kế trước&rdquo; (Design-first):</strong> Với gRPC, các nhà phát triển bắt đầu bằng cách định nghĩa các dịch vụ và các thông điệp (cấu trúc dữ liệu) trong một tệp <code>.proto</code>. Tệp này hoạt động như một hợp đồng chính thức giữa client và server.</p>
+</li>
+<li>
+<p><strong>Tạo mã tự động:</strong> Trình biên dịch <code>protoc</code> của Protobuf sau đó sẽ đọc tệp <code>.proto</code> này và tự động tạo ra các client stub (phía client) và server skeleton (phía server) với kiểu dữ liệu mạnh (strongly-typed). Quá trình này tự động hóa việc tuần tự hóa/giải tuần tự hóa, giúp tăng năng suất của nhà phát triển và giảm thiểu lỗi.</p>
+</li>
+</ul>
+<h3 id="trụ-cột-2-giao-thức-vận-chuyển-http2">Trụ Cột 2: Giao Thức Vận Chuyển HTTP/2</h3>
+<p>gRPC được xây dựng nguyên bản trên HTTP/2, một bản nâng cấp lớn so với HTTP/1.1, và tận dụng triệt để các tính năng của nó để đạt được hiệu suất vượt trội.</p>
+<ul>
+<li>
+<p><strong>Đóng khung nhị phân (Binary Framing):</strong> HTTP/2 truyền dữ liệu dưới dạng các khung nhị phân, hiệu quả hơn so với định dạng văn bản của HTTP/1.1.</p>
+</li>
+<li>
+<p><strong>Ghép kênh hoàn toàn (Full Multiplexing):</strong> Đây là tính năng đột phá nhất. HTTP/2 cho phép gửi và nhận nhiều yêu cầu và phản hồi đồng thời trên một kết nối TCP duy nhất, loại bỏ hoàn toàn vấn đề &ldquo;chặn đầu hàng&rdquo; (head-of-line blocking) của HTTP/1.1.</p>
+</li>
+<li>
+<p><strong>Nén header (Header Compression):</strong> Sử dụng thuật toán HPACK, HTTP/2 nén các header của yêu cầu và phản hồi, giảm đáng kể dữ liệu dư thừa và chi phí mạng.</p>
+</li>
+<li>
+<p><strong>Hỗ trợ streaming nguyên bản:</strong> HTTP/2 được thiết kế để hỗ trợ streaming dữ liệu, một nền tảng cơ bản cho các mô hình giao tiếp tiên tiến của gRPC.</p>
+</li>
+</ul>
+<h3 id="trụ-cột-3-các-mô-hình-streaming-tiên-tiến">Trụ Cột 3: Các Mô Hình Streaming Tiên Tiến</h3>
+<p>Nhờ vào nền tảng HTTP/2, gRPC hỗ trợ bốn mô hình giao tiếp, mang lại sự linh hoạt vượt trội so với mô hình yêu cầu-phản hồi đơn lẻ của REST 3:</p>
+<ul>
+<li>
+<p><strong>Unary RPC:</strong> Mô hình yêu cầu-phản hồi cổ điển, tương tự như một lời gọi REST. Client gửi một yêu cầu duy nhất và nhận lại một phản hồi duy nhất.</p>
+</li>
+<li>
+<p><strong>Server Streaming RPC:</strong> Client gửi một yêu cầu và nhận lại một luồng (stream) các phản hồi từ server. Rất hữu ích cho các trường hợp như đăng ký nhận thông báo hoặc cập nhật dữ liệu trực tiếp.</p>
+</li>
+<li>
+<p><strong>Client Streaming RPC:</strong> Client gửi một luồng các thông điệp đến server, và server sẽ phản hồi bằng một thông điệp duy nhất sau khi đã nhận tất cả. Thích hợp cho việc tải lên các tệp lớn hoặc gửi dữ liệu đo lường từ xa.</p>
+</li>
+<li>
+<p><strong>Bidirectional Streaming RPC:</strong> Cả client và server đều có thể gửi các luồng thông điệp cho nhau một cách độc lập trên cùng một kết nối. Mô hình này lý tưởng cho các ứng dụng tương tác thời gian thực như chat hoặc game nhiều người chơi.</p>
+</li>
+</ul>
+<p>gRPC không chỉ là một framework RPC; nó là một <em>hệ thống</em> toàn diện nơi Protobuf, HTTP/2 và mô hình RPC được tích hợp một cách hiệp đồng. Việc lựa chọn HTTP/2 cho phép streaming hiệu quả, một tính năng cốt lõi của định nghĩa dịch vụ gRPC. Việc sử dụng định dạng nhị phân của Protobuf hoàn toàn phù hợp với lớp đóng khung nhị phân của HTTP/2. Sự tích hợp chặt chẽ này là nguồn gốc của hiệu suất vượt trội của gRPC, nhưng cũng là nguyên nhân cho sự cứng nhắc của nó so với REST. Ngược lại, REST không phụ thuộc vào giao thức, và việc triển khai phổ biến của nó trên HTTP/1.1 là một sự kết hợp tiện lợi hơn là một hệ thống tích hợp sâu. Ngay cả khi REST chạy trên HTTP/2, nó cũng không thay đổi cơ bản mô hình yêu cầu-phản hồi đơn lẻ của mình để tận dụng streaming một cách nguyên bản.</p>
+<h2 id="đối-đầu-trực-tiếp-so-sánh-kiến-trúc-đa-diện">Đối Đầu Trực Tiếp: So Sánh Kiến Trúc Đa Diện</h2>
+<p>Phần này sẽ đi sâu vào việc so sánh một cách có hệ thống giữa REST và gRPC trên nhiều khía cạnh kiến trúc quan trọng, sử dụng dữ liệu và các ví dụ cụ thể để làm rõ các đánh đổi.</p>
+<h3 id="bảng-so-sánh-tổng-quan">Bảng So Sánh Tổng Quan</h3>
+<p>Bảng dưới đây cung cấp một cái nhìn tổng quan nhanh về các khác biệt chính giữa hai phương pháp, đóng vai trò như một bản tóm tắt cho các phân tích chi tiết sau đây.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Tiêu Chí</th>
+          <th>REST</th>
+          <th>gRPC</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Mô hình</strong></td>
+          <td>Dựa trên tài nguyên (Resource-based)</td>
+          <td>Gọi thủ tục từ xa (RPC)</td>
+      </tr>
+      <tr>
+          <td><strong>Tiêu chuẩn hóa</strong></td>
+          <td>Không có tiêu chuẩn chính thức, là một tập hợp các nguyên tắc</td>
+          <td>Được định nghĩa rõ ràng và chi tiết</td>
+      </tr>
+      <tr>
+          <td><strong>Giao thức vận chuyển</strong></td>
+          <td>Thường là HTTP/1.1 (có thể dùng HTTP/2)</td>
+          <td>HTTP/2</td>
+      </tr>
+      <tr>
+          <td><strong>Định dạng dữ liệu mặc định</strong></td>
+          <td>JSON (cũng hỗ trợ XML, text, v.v.)</td>
+          <td>Protocol Buffers (Protobuf)</td>
+      </tr>
+      <tr>
+          <td><strong>Các chế độ dịch vụ</strong></td>
+          <td>Chỉ Unary (yêu cầu-phản hồi đơn lẻ)</td>
+          <td>Unary, Client streaming, Server streaming, Bidirectional streaming</td>
+      </tr>
+      <tr>
+          <td><strong>Thiết kế API</strong></td>
+          <td>Thường là Code-first (mã trước)</td>
+          <td>Design-first (thiết kế trước)</td>
+      </tr>
+      <tr>
+          <td><strong>Mức độ ghép nối</strong></td>
+          <td>Ghép nối lỏng (Loosely coupled)</td>
+          <td>Ghép nối chặt (Tightly coupled)</td>
+      </tr>
+      <tr>
+          <td><strong>Tạo mã</strong></td>
+          <td>Yêu cầu công cụ bên thứ ba (ví dụ: OpenAPI Generator)</td>
+          <td>Tích hợp sẵn (thông qua trình biên dịch <code>protoc</code>)</td>
+      </tr>
+      <tr>
+          <td><strong>Hỗ trợ trình duyệt</strong></td>
+          <td>Hỗ trợ nguyên bản và phổ quát</td>
+          <td>Yêu cầu lớp proxy (gRPC-Web)</td>
+      </tr>
+      <tr>
+          <td><strong>Lưu cache</strong></td>
+          <td>Hỗ trợ tốt thông qua các cơ chế HTTP tiêu chuẩn</td>
+          <td>Không hỗ trợ mặc định, cần tự triển khai</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="triết-lý-và-thiết-kế">Triết Lý và Thiết Kế</h3>
+<p>Sự khác biệt cơ bản nhất giữa REST và gRPC nằm ở triết lý thiết kế của chúng: &ldquo;cái gì&rdquo; so với &ldquo;làm gì&rdquo;.</p>
+<ul>
+<li>
+<p><strong>REST:</strong> Tập trung vào việc phơi bày các <em>thực thể</em> hoặc <em>tài nguyên</em> (danh từ). Client tương tác với các tài nguyên này bằng một bộ động từ nhỏ, cố định (GET, POST, PUT, DELETE). Đây là một thiết kế hướng thực thể, rất phù hợp với các hoạt động CRUD (Create, Read, Update, Delete) và các nguyên tắc lập trình hướng đối tượng.</p>
+</li>
+<li>
+<p><strong>gRPC:</strong> Tập trung vào việc phơi bày các <em>hành động</em> hoặc <em>thủ tục</em> (động từ). Client gọi các hàm cụ thể trên server, ví dụ <code>CreateUser(user_details)</code>. Đây là một thiết kế hướng dịch vụ, ánh xạ trực tiếp đến logic ứng dụng.</p>
+</li>
+</ul>
+<p>Mô hình tài nguyên của REST có thể trở nên khó xử đối với các hành động phức tạp, phi CRUD (ví dụ: &ldquo;kích hoạt thời gian dùng thử cho người dùng&rdquo;). Điều này thường dẫn đến các cuộc tranh luận về cách thiết kế endpoint, chẳng hạn như tạo một endpoint hành động tùy chỉnh như <code>POST /users/123/activate-trial</code>. Ngược lại, mô hình thủ tục của gRPC xử lý những trường hợp này một cách tự nhiên và rõ ràng (<code>rpc ActivateUserTrial(user_id)</code>), làm cho nó trở thành một lựa chọn phù hợp hơn cho các logic nghiệp vụ phức tạp.</p>
+<h5 id="giải-thích-một-chút-về-phần-phía-trên">Giải thích một chút về phần phía trên</h5>
+<p>REST hoạt động tốt với CRUD đơn giản:</p>
+<ul>
+<li>GET /users/123           → Lấy thông tin user</li>
+<li>POST /users                → Tạo user mới</li>
+<li>PUT /users/123           → Cập nhật user</li>
+<li>DELETE /users/123     → Xóa user</li>
+</ul>
+<p>Nhưng gặp khó khăn với logic phức tạp: Giả sử bạn cần thực hiện hành động &ldquo;Kích hoạt thời gian dùng thử cho user&rdquo;. Đây không phải là thao tác CRUD đơn thuần mà là một quy trình nghiệp vụ phức tạp có thể bao gồm:</p>
+<ul>
+<li>Kiểm tra user có đủ điều kiện không</li>
+<li>Tạo bản ghi trial</li>
+<li>Gửi email thông báo</li>
+<li>Cập nhật trạng thái user</li>
+<li>Ghi log hệ thống</li>
+</ul>
+<p>REST buộc phải &ldquo;nhồi nhét&rdquo; vào mô hình tài nguyên:</p>
+<ul>
+<li>POST /users/123/activate-trial     → Có hợp lý không?</li>
+<li>POST /users/123/trial                    → Tạo trial hay kích hoạt?</li>
+<li>PUT /users/123/trial-status           → Cập nhật gì?</li>
+<li>POST /trials                                     → Body phải chứa gì?</li>
+</ul>
+<p>gRPC xử lý tự nhiên hơn:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-protobuf" data-lang="protobuf"><span class="line"><span class="cl"><span class="kd">service</span> <span class="n">UserService</span> <span class="p">{</span> <span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>	<span class="k">rpc</span> <span class="n">ActivateUserTrial</span><span class="p">(</span><span class="n">ActivateTrialRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">ActivateTrialResponse</span><span class="p">);</span> <span class="p">}</span><span class="err">
+</span></span></span></code></pre></div><h3 id="lớp-vận-chuyển---http11-và-http2">Lớp Vận Chuyển - HTTP/1.1 và HTTP/2</h3>
+<p>Sự chênh lệch về hiệu suất giữa REST và gRPC phần lớn bắt nguồn từ giao thức vận chuyển mà chúng sử dụng.</p>
+<ul>
+<li>
+<p><strong>HTTP/1.1 (Mặc định của REST):</strong> Giao thức này bị ảnh hưởng bởi vấn đề &ldquo;chặn đầu hàng&rdquo;, nơi một yêu cầu chậm có thể chặn tất cả các yêu cầu khác trên cùng một kết nối. Các trình duyệt giải quyết vấn đề này bằng cách mở nhiều kết nối TCP song song (thường là 4-8 kết nối cho mỗi origin), nhưng điều này lại tạo ra chi phí riêng về tài nguyên và thời gian thiết lập kết nối.</p>
+</li>
+<li>
+<p><strong>HTTP/2 (Nền tảng của gRPC):</strong> Tính năng ghép kênh (multiplexing) của HTTP/2 cho phép nhiều luồng yêu cầu và phản hồi được xen kẽ trên một kết nối TCP duy nhất, loại bỏ hoàn toàn vấn đề chặn đầu hàng ở lớp ứng dụng. Cùng với việc sử dụng giao thức nhị phân và nén header HPACK, HTTP/2 mang lại hiệu suất vượt trội.</p>
+</li>
+</ul>
+<p>Một điểm cần làm rõ là các API REST <em>có thể</em> được phục vụ qua HTTP/2. Tuy nhiên, chúng không thay đổi bản chất mô hình request - response của mình để tận dụng các tính năng nâng cao như streaming hai chiều. Lợi ích chính mà REST nhận được từ HTTP/2 là ghép kênh, chứ không phải là một sự thay đổi mô hình. Do đó, khoảng cách hiệu suất vẫn tồn tại vì gRPC được thiết kế</p>
+<p><em>cho</em> HTTP/2, trong khi REST chỉ đơn giản là chạy <em>trên</em> nó. Toàn bộ framework gRPC, từ IDL đến lớp vận chuyển, được thiết kế để khai thác các tính năng mạnh mẽ nhất của HTTP/2.</p>
+<h3 id="payload-và-schema---json-và-protobuf">Payload và Schema - JSON và Protobuf</h3>
+<p>Định dạng dữ liệu là một yếu tố khác biệt quan trọng, ảnh hưởng đến hiệu suất, khả năng đọc và độ tin cậy.</p>
+<ul>
+<li>
+<p><strong>JSON (REST):</strong></p>
+<ul>
+<li>
+<p><strong>Ưu điểm:</strong> Có thể đọc được bởi con người, linh hoạt (không yêu cầu schema), được hỗ trợ phổ quát và là định dạng gốc trong môi trường JavaScript.</p>
+</li>
+<li>
+<p><strong>Nhược điểm:</strong> Dài dòng (kích thước payload lớn hơn), phân tích chậm hơn (dựa trên văn bản), và việc thiếu kiểu dữ liệu nghiêm ngặt có thể dẫn đến lỗi runtime.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Protobuf (gRPC):</strong></p>
+<ul>
+<li>
+<p><strong>Ưu điểm:</strong> Cực kỳ nhỏ gọn (định dạng nhị phân), tuần tự hóa/giải tuần tự hóa rất nhanh, kiểu dữ liệu nghiêm ngặt (schema được thực thi), tương thích ngược/tiến thông qua số thứ tự trường.</p>
+</li>
+<li>
+<p><strong>Nhược điểm:</strong> Không thể đọc được bởi con người, yêu cầu một bước biên dịch và tệp <code>.proto</code> để giải mã, hệ sinh thái nhỏ hơn.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Các benchmark hiệu suất cho thấy sự khác biệt đáng kể. Protobuf có thể nhanh hơn từ 4-6 lần trong việc tuần tự hóa và giải tuần tự hóa, với các thông điệp nhỏ hơn tới 34% so với JSON. Trong các thử nghiệm giao tiếp Java-to-Java, Protobuf thực hiện nhanh hơn từ 5 đến 6 lần so với JSON.</p>
+<p>Sự lựa chọn giữa JSON và Protobuf là một sự đánh đổi kinh điển giữa sự tiện lợi/linh hoạt cho nhà phát triển và hiệu suất/độ tin cậy của máy. Đối với các API công cộng nơi các nhà phát triển có thể cần gỡ lỗi từ trình duyệt, khả năng đọc của JSON là một lợi thế lớn. Đối với các microservice nội bộ có lưu lượng cao, hiệu suất và an toàn kiểu dữ liệu tại thời điểm biên dịch của Protobuf lại có giá trị hơn nhiều, giúp ngăn chặn cả một lớp lỗi liên quan đến dữ liệu.</p>
+<h3 id="trải-nghiệm-nhà-phát-triển-và-hệ-sinh-thái">Trải Nghiệm Nhà Phát Triển và Hệ Sinh Thái</h3>
+<ul>
+<li>
+<p><strong>Ghép nối (Coupling):</strong> REST được thiết kế để ghép nối lỏng, cho phép server và client phát triển độc lập. gRPC có tính ghép nối chặt; client và server phải chia sẻ cùng một hợp đồng</p>
+<p><code>.proto</code>. Bất kỳ thay đổi nào đối với hợp đồng đều yêu cầu cập nhật cả hai phía.</p>
+</li>
+<li>
+<p><strong>Tạo mã (Code Generation):</strong> gRPC có tính năng tạo mã tự động mạnh mẽ, được tích hợp sẵn thông qua <code>protoc</code>, giúp tăng năng suất đáng kể. REST yêu cầu các công cụ của bên thứ ba như OpenAPI Generator, có thể kém tích hợp hơn.</p>
+</li>
+<li>
+<p><strong>Hỗ trợ trình duyệt (Browser Support):</strong> REST có hỗ trợ nguyên bản, phổ quát trên mọi trình duyệt. gRPC yêu cầu một lớp proxy như gRPC-Web để chuyển đổi lưu lượng, làm tăng thêm độ phức tạp cho các ứng dụng web.</p>
+</li>
+<li>
+<p><strong>Khả năng gỡ lỗi (Debuggability):</strong> REST dễ gỡ lỗi bằng các công cụ tiêu chuẩn như cURL hoặc các công cụ phát triển của trình duyệt vì nó dựa trên HTTP văn bản. gRPC khó gỡ lỗi hơn do giao thức nhị phân của nó, đòi hỏi các công cụ chuyên dụng như Kreya hoặc grpcurl.</p>
+</li>
+</ul>
+<p>Có một mối quan hệ nghịch đảo giữa sự dễ dàng trong thiết lập/gỡ lỗi ban đầu và khả năng bảo trì lâu dài trong các hệ thống đa ngôn ngữ. REST rất dễ bắt đầu, nhưng có thể dẫn đến các vấn đề tích hợp sau này do thiếu một hợp đồng chính thức. gRPC đòi hỏi nhiều công sức thiết lập hơn (định nghĩa tệp <code>.proto</code>, tạo mã), nhưng nó cung cấp một nền tảng vững chắc, an toàn về kiểu dữ liệu giúp ngăn ngừa các lỗi tích hợp, đặc biệt là trong kiến trúc microservices với nhiều nhóm và ngôn ngữ khác nhau. Sự phức tạp ban đầu của gRPC sẽ &ldquo;được đền đáp&rdquo; trong các hệ thống lớn, phức tạp bằng cách cải thiện độ tin cậy và giảm thiểu lỗi tích hợp.</p>
+<h2 id="khung-quyết-định-lựa-chọn-công-cụ-phù-hợp">Khung Quyết Định: Lựa Chọn Công Cụ Phù Hợp</h2>
+<p>Sau khi phân tích các khía cạnh kỹ thuật, phần này tổng hợp lại thành một hướng dẫn thực tế, dựa trên các trường hợp sử dụng cụ thể.</p>
+<h3 id="khi-nào-nên-chọn-rest">Khi nào nên chọn REST?</h3>
+<ul>
+<li>
+<p><strong>API công cộng (Public-Facing APIs):</strong> Khi API của bạn cần được tiêu thụ bởi các nhà phát triển bên ngoài, các đối tác hoặc các ứng dụng của bên thứ ba. Sự hỗ trợ client phổ quát, dễ sử dụng và định dạng có thể đọc được của JSON là những yếu tố quyết định.</p>
+</li>
+<li>
+<p><strong>Ứng dụng dựa trên trình duyệt (Browser-Based Applications):</strong> Hỗ trợ trình duyệt trực tiếp mà không cần proxy là một lợi thế lớn. REST là lựa chọn tự nhiên cho các ứng dụng web giao tiếp với backend.</p>
+</li>
+<li>
+<p><strong>Các dịch vụ dựa trên CRUD đơn giản:</strong> Mô hình tài nguyên của REST rất phù hợp cho các ứng dụng có logic xoay quanh việc quản lý dữ liệu đơn giản.</p>
+</li>
+<li>
+<p><strong>Các dự án ưu tiên sự đơn giản và lặp lại nhanh:</strong> Hệ sinh thái trưởng thành và rào cản gia nhập thấp làm cho REST trở thành lựa chọn lý tưởng để nhanh chóng xây dựng và triển khai các dịch vụ.</p>
+</li>
+</ul>
+<h3 id="khi-nào-nên-chọn-grpc">Khi nào nên chọn gRPC?</h3>
+<ul>
+<li>
+<p><strong>Giao tiếp microservice nội bộ:</strong> Đây là &ldquo;điểm ngọt&rdquo; chính của gRPC. Trong một hệ thống nội bộ được kiểm soát, hiệu suất, độ trễ thấp và các hợp đồng nghiêm ngặt là quan trọng nhất.</p>
+</li>
+<li>
+<p><strong>Ứng dụng streaming thời gian thực:</strong> Hỗ trợ nguyên bản cho streaming hai chiều là một tính năng mạnh mẽ cho các ứng dụng như nguồn cấp dữ liệu trực tiếp, chat, IoT, hoặc giao dịch tài chính.</p>
+</li>
+<li>
+<p><strong>Môi trường đa ngôn ngữ (Polyglot Environments):</strong> Tính năng tạo mã tự động đảm bảo giao tiếp liền mạch và an toàn về kiểu dữ liệu giữa các dịch vụ được viết bằng các ngôn ngữ lập trình khác nhau.</p>
+</li>
+<li>
+<p><strong>Môi trường mạng bị hạn chế:</strong> Payload Protobuf nhỏ gọn là lý tưởng cho các thiết bị di động hoặc IoT có băng thông hoặc thời lượng pin hạn chế.</p>
+</li>
+</ul>
+<h3 id="chiến-lược-kết-hợp-tận-dụng-ưu-điểm-của-cả-hai">Chiến Lược Kết Hợp: Tận Dụng Ưu Điểm Của Cả Hai</h3>
+<p>Một mô hình kiến trúc mạnh mẽ và ngày càng phổ biến là sử dụng REST cho các API hướng ra bên ngoài, công cộng (các dịch vụ &ldquo;biên&rdquo; - edge services) và sử dụng gRPC cho tất cả các giao tiếp nội bộ giữa các dịch vụ. Trong mô hình này, một API Gateway có thể đóng vai trò trung tâm, chuyển đổi các lời gọi REST/JSON từ bên ngoài thành các lời gọi gRPC hiệu suất cao trong nội bộ. Kiến trúc này tối đa hóa khả năng tiếp cận bên ngoài (thế mạnh của REST) và hiệu suất/độ tin cậy bên trong (thế mạnh của gRPC), giải quyết xung đột rõ ràng giữa hai công nghệ.</p>
+<h2 id="kết-luận">Kết luận</h2>
+<p>Tóm lại, sự lựa chọn giữa REST và gRPC là một sự đánh đổi cơ bản: REST ưu tiên khả năng tiếp cận phổ quát, ghép nối lỏng và khả năng đọc của con người; trong khi gRPC ưu tiên hiệu suất thô, hợp đồng nghiêm ngặt và hiệu quả máy móc. Không có câu trả lời nào là đúng cho mọi trường hợp. Một kiến trúc sư hiện đại phải thành thạo cả hai để xây dựng các hệ thống hiệu quả.</p>
+<p>Nhìn xa hơn, thế giới API không chỉ có REST và gRPC. Tương lai của thiết kế API không phải là một người chiến thắng duy nhất mà là một &ldquo;doanh nghiệp có khả năng kết hợp&rdquo; (composable enterprise), nơi các kiểu API khác nhau được sử dụng như những khối xây dựng. Các mô hình khác đang ngày càng đóng vai trò quan trọng.</p>
+<ul>
+<li>
+<p><strong>GraphQL:</strong> Cho phép client yêu cầu chính xác dữ liệu họ cần, thách thức REST trong giao tiếp front-end-to-back-end.</p>
+</li>
+<li>
+<p><strong>API bất đồng bộ/hướng sự kiện (ví dụ: AsyncAPI):</strong> Dành cho giao tiếp không chặn, thời gian thực, đặc biệt trong các kiến trúc hướng sự kiện.</p>
+</li>
+</ul>
+<p>Xu hướng đang hướng tới việc sử dụng công cụ chuyên biệt và hiệu quả nhất cho từng nhu cầu giao tiếp cụ thể trong một hệ thống lớn hơn. Do đó, việc hiểu rõ về REST và gRPC không chỉ là so sánh hai công nghệ, mà là một phần của một kỹ năng lớn hơn: hiểu toàn bộ phổ công nghệ API và biết cách kết hợp chúng một cách hiệu quả để giải quyết các vấn đề kinh doanh phức tạp.</p>
+<hr>
+<p><em>Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!</em></p></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://blog.nagih.io.vn/js/toc.js'></script>
+<link rel="stylesheet" href='https://blog.nagih.io.vn/css/toc.css' />
+
+  
+<div id="gitalk-container" class="gitalk-container"></div>
+<link rel="stylesheet" href='https://blog.nagih.io.vn/css/gitalk.css'>
+<script src='https://blog.nagih.io.vn/js/gitalk.min.js'></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'Ov23li9UG1K7XEEbH2rX',
+    clientSecret: '314c5b3c2437a868e716ca4bd2ee12ca9eb200e3',
+    repo: 'blog',
+    owner: 'vuongmanhnghia',
+    admin: ['vuongmanhnghia'],
+    id: eval("location.pathname"), 
+    distractionFreeMode: false 
+  });
+  (function() {
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+</div>
+
+  <div class="footer container-xl width-full p-responsive">
+	<div
+		class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light">
+		<a
+			target="_blank"
+			aria-label="Homepage"
+			title="GitHub"
+			class="footer-octicon d-none d-lg-block mr-lg-4"
+			href="https://blog.nagih.io.vn/">
+			<svg
+				height="24"
+				class="octicon octicon-mark-github"
+				viewBox="0 0 16 16"
+				version="1.1"
+				width="24">
+				<path
+					fill-rule="evenodd"
+					d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+			</svg>
+		</a>
+		<ul
+			class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+			
+			<li class="mr-3 mr-lg-0">
+				<a href="https://github.com/vuongmanhnghia" target="_blank"
+					>Vuong Manh Nghia</a
+				>
+			</li>
+			
+			<li class="mr-3 mr-lg-0">
+				GitHub and the Invertocat logo are trademarks of
+				<a href="https://github.com/" target="_blank">GitHub, Inc.</a>
+			</li>
+		</ul>
+	</div>
+	<div class="d-flex flex-justify-center pb-6">
+		<span class="f6 text-gray-light"></span>
+	</div>
+</div>
+
+</body>
+
+<script type="application/javascript" src="https://blog.nagih.io.vn/js/github-style.js"></script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script type="application/javascript" src='https://blog.nagih.io.vn/js/search.js'></script>
+
+
+
+</html>
