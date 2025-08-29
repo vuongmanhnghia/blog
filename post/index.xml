@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Nagih&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Aug 2025 07:42:39 +0700</lastBuildDate>
+    <lastBuildDate>Fri, 29 Aug 2025 07:51:52 +0700</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>REST và gRPC</title>
@@ -132,7 +132,7 @@
       <link>https://blog.nagih.io.vn/post/database/sql/</link>
       <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/post/database/sql/</guid>
-      <description>&lt;p&gt;Các kiến trức trọng tâm và tất cả các lệnh SQL&lt;/p&gt;</description>
+      <description>&lt;p&gt;Từ Zero Đến Hero - Tổng Hợp Tất Cả Các Lệnh SQL Quan Trọng&lt;/p&gt;</description>
     </item>
     <item>
       <title>Cache</title>
