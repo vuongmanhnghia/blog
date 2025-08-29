@@ -26,7 +26,7 @@
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://blog.nagih.io.vn/post/architechture/ddd-domain-driven-design/" />
+<link rel="canonical" href="https://blog.nagih.io.vn/post/architechture/ddd/overview/" />
 
 
 <meta name="twitter:card" content="summary" />
@@ -45,7 +45,7 @@
 <meta property="og:description"
   content="Architecture Overview Domain-Driven Design(DDD)
 " />
-<meta property="og:url" content="https://blog.nagih.io.vn/post/architechture/ddd-domain-driven-design/" />
+<meta property="og:url" content="https://blog.nagih.io.vn/post/architechture/ddd/overview/" />
 <meta property="og:site_name" content="DDD (Domain-Driven Design)" />
 <meta property="og:image"
   content="https://blog.nagih.io.vn/">
@@ -190,7 +190,7 @@
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="https://blog.nagih.io.vn/post/architechture/ddd-domain-driven-design/">DDD (Domain-Driven Design)</a>
+                    <a href="https://blog.nagih.io.vn/post/architechture/ddd/overview/">DDD (Domain-Driven Design)</a>
                   </strong>
                 </h1>
                 <div class="note m-0">
@@ -200,9 +200,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Fri, 29 Aug 2025 07:51:52 &#43;0700"
+                  Modified <relative-time datetime="Fri, 29 Aug 2025 14:26:57 &#43;0700"
                     class="no-wrap">
-                    Fri, 29 Aug 2025 07:51:52 &#43;0700</relative-time>
+                    Fri, 29 Aug 2025 14:26:57 &#43;0700</relative-time>
                   
                 </div>
               </div>
@@ -232,7 +232,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      3086 Words
+                      2865 Words
                     
 
                   </div>
@@ -277,10 +277,11 @@
 <h2 id="phần-i-các-nguyên-tắc-cốt-lõi-của-ddd">Phần I: Các Nguyên tắc Cốt lõi của DDD</h2>
 <h3 id="thiết-kế-chiến-lược-lập-bản-đồ-context-nghiệp-vụ">Thiết kế Chiến lược: Lập bản đồ Context Nghiệp vụ</h3>
 <h4 id="context-giới-hạn-bounded-contexts">Context Giới hạn (Bounded Contexts)</h4>
-<p>Các hệ thống lớn hiếm khi có một mô hình duy nhất, thống nhất. Thuật ngữ &ldquo;Người dùng&rdquo; có thể có ý nghĩa khác nhau trong layer &ldquo;Xác thực&rdquo; so với context &ldquo;Hỗ trợ Kỹ thuật&rdquo;. Bounded Context là một ranh giới rõ ràng mà trong đó một mô hình miền cụ thể và Ngôn ngữ Phổ biến của nó là nhất quán và hợp lệ. Chiến lược &ldquo;chia để trị&rdquo; này là câu trả lời của DDD để quản lý sự phức tạp trong các tổ chức lớn. Việc xác định các context này là mục tiêu chính của Thiết kế Chiến lược và rất quan trọng để xác định ranh giới của các microservice.</p>
-<p>Toàn bộ cấu trúc của một hệ thống phức tạp bắt nguồn trực tiếp từ những sự mơ hồ về ngôn ngữ được phát hiện trong quá trình thiết kế chiến lược. Quá trình này diễn ra như sau: đầu tiên, các chuyên gia lĩnh vực và nhà phát triển nhận ra rằng một thuật ngữ duy nhất (ví dụ: &ldquo;Khách hàng&rdquo;) có nhiều ý nghĩa mâu thuẫn giữa các phòng ban (hiện tượng đa nghĩa). Xung đột ngôn ngữ này làm cho việc xây dựng một mô hình miền thống nhất duy nhất trở nên bất khả thi nếu không muốn tạo ra sự nhầm lẫn và lỗi. Để giải quyết vấn đề này, họ áp dụng mẫu Bounded Context, vẽ ra các ranh giới rõ ràng xung quanh các khu vực mà ngôn ngữ là nhất quán. Ví dụ, một &ldquo;Context Bán hàng&rdquo; và một &ldquo;Context Hỗ trợ&rdquo; được xác định. Các Bounded Context này sau đó trở thành những ứng cử viên tự nhiên cho các service hoặc module riêng biệt trong kiến trúc phần mềm. Do đó, kiến trúc ở cấp độ cao (ví dụ: việc phân chia thành các microservice) là một hệ quả trực tiếp của việc giải quyết các vấn đề giao tiếp và định nghĩa một Ngôn ngữ Phổ biến rõ ràng. Kiến trúc không phải là một quyết định kỹ thuật tùy tiện; nó là một giải pháp cho một vấn đề giao tiếp nghiệp vụ.</p>
-<h3 id="thiết-kế-chiến-thuật-các-khối-xây-dựng-miền">Thiết kế Chiến thuật: Các Khối Xây dựng Miền</h3>
-<p>Thiết kế Chiến thuật cung cấp các mẫu để xây dựng một mô hình miền phong phú, biểu cảm <em>bên trong</em> một Bounded Context duy nhất.</p>
+<p>Các hệ thống lớn hiếm khi có một mô hình <strong>duy nhất, thống nhất</strong>. Thuật ngữ &ldquo;Người dùng&rdquo; có thể có ý nghĩa khác nhau trong layer &ldquo;Xác thực&rdquo; so với context &ldquo;Hỗ trợ Kỹ thuật&rdquo;. Chiến lược &ldquo;chia để trị&rdquo; này là câu trả lời của DDD để quản lý sự phức tạp trong các tổ chức lớn. Việc xác định các context là mục tiêu chính của Thiết kế Chiến lược và rất quan trọng để xác định ranh giới của các microservice.</p>
+<p>Toàn bộ cấu trúc của một hệ thống phức tạp bắt nguồn trực tiếp từ những sự mơ hồ về ngôn ngữ được phát hiện trong quá trình thiết kế. Quá trình này diễn ra như sau: đầu tiên, các nhà phát triển nhận ra rằng một thuật ngữ duy nhất (ví dụ: &ldquo;Khách hàng&rdquo;) có nhiều ý nghĩa mâu thuẫn giữa các phòng ban (hiện tượng đa nghĩa). Để giải quyết vấn đề này, họ áp dụng mẫu Bounded Context, vẽ ra các ranh giới rõ ràng xung quanh các khu vực mà ngôn ngữ là nhất quán. Ví dụ, một &ldquo;Context Bán hàng&rdquo; và một &ldquo;Context Hỗ trợ&rdquo; được xác định. Các Bounded Context này sau đó trở thành các service hoặc module riêng biệt trong kiến trúc.</p>
+<p><em>p/s: Bounded Context được hiểu là 1 context bị giới hạn</em></p>
+<h3 id="thiết-kế">Thiết kế</h3>
+<p>Cung cấp các mẫu để xây dựng một mô hình miền phong phú <em>bên trong</em> một Bounded Context duy nhất.</p>
 <ul>
 <li>
 <p><strong>Entities (Thực thể):</strong> Các đối tượng được xác định không phải bởi các thuộc tính của chúng, mà bởi định danh duy nhất và sự tồn tại liên tục theo thời gian (ví dụ: một <code>Customer</code> với một ID duy nhất). Chúng có thể thay đổi, nhưng các thay đổi trạng thái nên được mô hình hóa như các hoạt động nghiệp vụ rõ ràng (ví dụ:</p>
@@ -356,8 +357,9 @@
       </tr>
   </tbody>
 </table>
+<p><em><a href="https://blog.nagih.io.vn/post/architechture/ddd/internal-separation/">Phân biệt rõ các tác vụ trong Internal</a></em></p>
 <h2 id="phần-ii-clean-và-hexagonal-architectures">Phần II: Clean và Hexagonal Architectures</h2>
-<p>Phần này sẽ bắc cầu từ &ldquo;cái gì&rdquo; (khái niệm DDD) đến &ldquo;làm thế nào&rdquo; (cấu trúc project).</p>
+<p>Phần này sẽ bắc cầu từ khái niệm DDD đến cấu trúc project.</p>
 <h3 id="nguyên-tắc-đảo-ngược-phụ-thuộc">Nguyên tắc Đảo ngược Phụ thuộc</h3>
 <p>Vấn đề với kiến trúc phân lớp truyền thống là logic nghiệp vụ thường trở nên phụ thuộc vào cơ sở dữ liệu.</p>
 <p><strong>Kiến trúc Lục giác (Ports and Adapters):</strong> Mẫu này được giới thiệu như là giải pháp. Ý tưởng cốt lõi là cô lập logic nghiệp vụ của ứng dụng (&ldquo;hình lục giác&rdquo;) khỏi thế giới bên ngoài (UI, cơ sở dữ liệu, API bên ngoài).</p>
@@ -384,10 +386,10 @@
 <p><strong>Lớp Hạ tầng/Giao diện (Infrastructure/Interfaces Layer - Adapters):</strong> Lớp ngoài cùng. Chứa mọi thứ tương tác với thế giới bên ngoài: cơ sở dữ liệu, web frameworks, hàng đợi tin nhắn. Lớp này phụ thuộc vào các lớp bên trong, triển khai các interface (ports) mà chúng định nghĩa.</p>
 </li>
 </ul>
-<p>Cấu trúc phân lớp của Clean Architecture về cơ bản là một chiến lược giảm thiểu rủi ro. Các lớp được tổ chức dựa trên tốc độ thay đổi và tầm quan trọng đối với nghiệp vụ. Phần ổn định và quan trọng nhất của ứng dụng là các quy tắc nghiệp vụ cốt lõi (miền). Những quy tắc này lý tưởng chỉ nên thay đổi khi chính nghiệp vụ thay đổi. Ngược lại, các phần dễ thay đổi và ít độc đáo nhất là các chi tiết triển khai: cơ sở dữ liệu cụ thể, web framework, API của bên thứ ba. Quy tắc Phụ thuộc đảm bảo rằng những thay đổi trong các thành phần dễ thay đổi (lớp ngoài) không thể phá vỡ các thành phần ổn định (lớp trong). Việc chuyển từ PostgreSQL sang MongoDB không nên đòi hỏi thay đổi một dòng mã nào trong lớp miền hoặc lớp ứng dụng. Do đó, kiến trúc được thiết kế để bảo vệ tài sản quý giá nhất (logic nghiệp vụ) khỏi các thành phần có rủi ro cao nhất (chi tiết triển khai). Nó hoạt động như một bức tường lửa kiến trúc, làm cho hệ thống trở nên kiên cường hơn trước sự thay đổi công nghệ và dễ bảo trì hơn trong dài hạn.</p>
+<p>Cấu trúc phân lớp của Clean Architecture về cơ bản là một chiến lược giảm thiểu rủi ro. Phần ổn định và quan trọng nhất của ứng dụng là các quy tắc nghiệp vụ cốt lõi (miền). Những quy tắc này lý tưởng chỉ nên thay đổi khi chính nghiệp vụ thay đổi. Ngược lại, các phần dễ thay đổi và ít độc đáo nhất là các chi tiết triển khai: cơ sở dữ liệu cụ thể, web framework, API của bên thứ ba. Quy tắc Phụ thuộc đảm bảo rằng những thay đổi trong các thành phần dễ thay đổi (lớp ngoài) không thể phá vỡ các thành phần ổn định (lớp trong). Việc chuyển từ PostgreSQL sang MongoDB không nên đòi hỏi thay đổi một dòng mã nào trong lớp miền hoặc lớp ứng dụng. Do đó, kiến trúc được thiết kế để bảo vệ tài sản quý giá nhất (logic nghiệp vụ) khỏi các thành phần có rủi ro cao nhất (chi tiết triển khai). Nó hoạt động như một bức tường lửa kiến trúc, làm cho hệ thống trở nên kiên cường hơn trước sự thay đổi công nghệ và dễ bảo trì hơn trong dài hạn.</p>
 <h2 id="phần-iii-triển-khai-thực-tế">Phần III: Triển khai Thực tế</h2>
-<h3 id="giải-phẫu-một-project-go-ddd">Giải phẫu một Project Go DDD</h3>
-<p>Phần này trình bày một cấu trúc project Go kinh điển, được tổng hợp từ nhiều ví dụ chất lượng cao. Cấu trúc này tuân thủ các quy ước của Go và các thực tiễn tốt nhất của cộng đồng (ví dụ: sử dụng thư mục <code>/internal</code>).</p>
+<h3 id="cấu-trúc-project-go-ddd">Cấu trúc Project Go DDD</h3>
+<p>Phần này trình bày một cấu trúc project Go kinh điển, được tổng hợp từ nhiều ví dụ. Cấu trúc này tuân thủ các quy ước của Go và các thực tiễn tốt nhất của cộng đồng (ví dụ: sử dụng thư mục <code>/internal</code>).</p>
 <p><strong>Cấu trúc Thư mục Đề xuất:</strong></p>
 <pre tabindex="0"><code>/cmd
   /app
@@ -451,8 +453,7 @@
       </tr>
   </tbody>
 </table>
-<h3 id="code-trong-thực-tế-triển-khai-mẫu-repository">Code trong Thực tế: Triển khai Mẫu Repository</h3>
-<p>Phần này cung cấp một phân tích chi tiết về một triển khai hoàn chỉnh, sử dụng ví dụ xuất sắc từ blog của Three Dots Labs. Mẫu này được chọn vì nó minh họa hoàn hảo nguyên tắc đảo ngược phụ thuộc ở trung tâm của kiến trúc.</p>
+<h3 id="triển-khai-mẫu-repository">Triển khai Mẫu Repository</h3>
 <h4 id="định-nghĩa-port-lớp-miền">Định nghĩa Port (Lớp Miền)</h4>
 <p>Đây là mã nguồn cho interface <code>Repository</code>. Interface này nằm trong package <code>domain</code> vì nó định nghĩa một hợp đồng mà lõi nghiệp vụ yêu cầu, nhưng nó không quan tâm đến cách hợp đồng đó được thực hiện. Nó hoàn toàn độc lập với công nghệ.</p>
 <p>Go</p>
