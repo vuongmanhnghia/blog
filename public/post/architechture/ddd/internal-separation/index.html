@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/light.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/dark.css' />
     <link rel="stylesheet" href='https://blog.nagih.io.vn/css/syntax.css' />
-    <title>Microservices - Nagih&#39;s blog</title>
+    <title>Internal Separation - Nagih&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
     
@@ -21,18 +21,18 @@
 
     
     <meta name="description"
-  content="Tổng quan về kiến trúc microservices
+  content="Phân biệt rõ các tác vụ trong Internal
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://blog.nagih.io.vn/post/system/microservices/" />
+<link rel="canonical" href="https://blog.nagih.io.vn/post/architechture/ddd/internal-separation/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Microservices - Nagih&#39;s blog" />
+<meta name="twitter:title" content="Internal Separation - Nagih&#39;s blog" />
 <meta name="twitter:description"
-  content="Tổng quan về kiến trúc microservices
+  content="Phân biệt rõ các tác vụ trong Internal
 " />
 <meta name="twitter:site" content="https://blog.nagih.io.vn/" />
 <meta name="twitter:creator" content="" />
@@ -41,18 +41,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Microservices - Nagih&#39;s blog">
+<meta property="og:title" content="Internal Separation - Nagih&#39;s blog">
 <meta property="og:description"
-  content="Tổng quan về kiến trúc microservices
+  content="Phân biệt rõ các tác vụ trong Internal
 " />
-<meta property="og:url" content="https://blog.nagih.io.vn/post/system/microservices/" />
-<meta property="og:site_name" content="Microservices" />
+<meta property="og:url" content="https://blog.nagih.io.vn/post/architechture/ddd/internal-separation/" />
+<meta property="og:site_name" content="Internal Separation" />
 <meta property="og:image"
   content="https://blog.nagih.io.vn/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2025-08-07 00:00:00 &#43;0000 UTC" />
+<meta property="article:published_time" content="2025-08-29 00:00:00 &#43;0000 UTC" />
 
 
 
@@ -190,13 +190,13 @@
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="https://blog.nagih.io.vn/post/system/microservices/">Microservices</a>
+                    <a href="https://blog.nagih.io.vn/post/architechture/ddd/internal-separation/">Internal Separation</a>
                   </strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Thu, 07 Aug 2025 00:00:00 &#43;0000"
+                  Created <relative-time datetime="Fri, 29 Aug 2025 00:00:00 &#43;0000"
                     class="no-wrap">
-                    Thu, 07 Aug 2025 00:00:00 &#43;0000</relative-time>
+                    Fri, 29 Aug 2025 00:00:00 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -232,20 +232,20 @@
                         </div>
                       </div>
                     </details-menu>
-                      1007 Words
+                      999 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
                     
-                    <a class="muted-link mr-3" href="/tags/system">
+                    <a class="muted-link mr-3" href="/tags/architechture">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      system
+                      architechture
                     </a>
                     
                     <a class="muted-link mr-3" href="/tags/microservices">
@@ -257,6 +257,15 @@
                       microservices
                     </a>
                     
+                    <a class="muted-link mr-3" href="/tags/ddd">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      ddd
+                    </a>
+                    
                     
                   </div>
                 </div>
@@ -264,80 +273,184 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>Tổng quan về kiến trúc microservices</p>
-<h3 id="1-kiến-trúc-microservices-là-gì">1. Kiến trúc Microservices là gì?</h3>
-<p>Hãy tưởng tượng bạn đang xây một ngôi nhà.</p>
+                <article class="markdown-body entry-content container-lg"><p>Phân biệt rõ các tác vụ trong Internal</p>
+<p>Việc phân chia các tác vụ trong cấu trúc thư mục của một dự án DDD nhằm mục đích <strong>tách biệt các mối quan tâm (Separation of Concerns)</strong>. Mỗi lớp có một trách nhiệm duy nhất và các quy tắc phụ thuộc chặt chẽ.</p>
+<p>Hãy tưởng tượng bạn đang xây một nhà hàng cao cấp:</p>
 <ul>
 <li>
-<p><strong>Kiến trúc nguyên khối (Monolith):</strong> Bạn xây toàn bộ ngôi nhà bằng một khối bê tông khổng lồ duy nhất. Mọi thứ dính liền với nhau. Nếu bạn muốn sửa đường ống nước trong bếp, bạn có thể phải đục cả bức tường lớn, ảnh hưởng đến phòng khách bên cạnh.</p>
+<p><strong>Domain:</strong> Bếp trưởng và các công thức nấu ăn bí mật. Đây là trái tim, là giá trị cốt lõi.</p>
 </li>
 <li>
-<p><strong>Kiến trúc Microservices:</strong> Bạn xây ngôi nhà bằng những viên gạch LEGO. Mỗi phòng (phòng khách, phòng ngủ, nhà bếp) là một khối LEGO riêng. Nếu muốn sửa bếp, bạn chỉ cần nhấc khối LEGO &ldquo;nhà bếp&rdquo; ra, sửa nó, rồi đặt lại mà không ảnh hưởng gì đến các phòng khác.</p>
+<p><strong>Application:</strong> Người phục vụ nhận yêu cầu từ khách, chuyển cho bếp và mang món ăn ra. Họ điều phối, không nấu ăn.</p>
+</li>
+<li>
+<p><strong>Infrastructure:</strong> Hệ thống điện, nước, nhà cung cấp nguyên liệu. Họ cung cấp kỹ thuật và dịch vụ bên ngoài.</p>
+</li>
+<li>
+<p><strong>Shared:</strong> Các dụng cụ làm bếp cơ bản, gia vị chung, quy định an toàn vệ sinh. Ai cũng cần dùng.</p>
 </li>
 </ul>
-<p>Trong phần mềm, <strong>kiến trúc microservices</strong> là phương pháp chia một ứng dụng lớn thành <strong>nhiều dịch vụ (service) nhỏ, độc lập</strong>. Mỗi service đảm nhiệm một chức năng cụ thể, có database riêng, và được phát triển, triển khai, nâng cấp độc lập với các service khác.</p>
-<p><img src="/images/Pasted%20image%2020250807092251.png" alt="Image Description"></p>
-<h3 id="2-các-service-giao-tiếp-với-nhau-ra-sao-có-giống-frontend-gọi-tới-backend-không">2. Các Service giao tiếp với nhau ra sao? Có giống Frontend gọi tới Backend không?</h3>
-<p>Đây là câu hỏi cốt lõi và quan trọng nhất. Các service (vốn là các backend) giao tiếp với nhau qua mạng. Có hai kiểu giao tiếp chính:</p>
-<h4 id="giao-tiếp-đồng-bộ-synchronous"><strong>Giao tiếp Đồng bộ (Synchronous)</strong></h4>
-<p>Giống như một cuộc gọi điện thoại. Service A gọi đến Service B và phải <strong>chờ</strong> Service B trả lời rồi mới làm việc tiếp.</p>
+<h2 id="domain-layer-trái-tim-của-nghiệp-vụ">Domain Layer: Trái tim của nghiệp vụ</h2>
+<p>Đây là lớp quan trọng nhất, chứa đựng toàn bộ logic, quy tắc và mô hình của bài toán nghiệp vụ mà phần mềm đang giải quyết.</p>
+<h3 id="vai-trò-chính">Vai trò chính</h3>
 <ul>
 <li>
-<p><strong>Cách thức:</strong> Thường sử dụng các giao thức như <strong>REST API (qua HTTP/S)</strong> hoặc <strong>gRPC</strong>.</p>
+<p>Định nghĩa các khái niệm nghiệp vụ (ví dụ: <code>Order</code>, <code>Product</code>, <code>Customer</code>).</p>
 </li>
 <li>
-<p><strong>Ví dụ:</strong> Khi bạn đặt hàng, <code>Service Đơn Hàng</code> sẽ gọi trực tiếp đến <code>Service Kho Hàng</code> để hỏi &ldquo;Sản phẩm X còn hàng không?&rdquo;. <code>Service Đơn Hàng</code> sẽ phải đợi câu trả lời từ <code>Service Kho Hàng</code> rồi mới cho phép khách đặt hàng.</p>
+<p>Thực thi các quy tắc nghiệp vụ (ví dụ: &ldquo;một đơn hàng không thể có tổng giá trị âm&rdquo;, &ldquo;khách hàng VIP được giảm giá 10%&rdquo;).</p>
 </li>
 <li>
-<p><strong>Giống Frontend gọi Backend không?</strong> Về mặt kỹ thuật (dùng REST API) thì <strong>giống</strong>, nhưng bản chất là <strong>khác</strong>. Đây là giao tiếp <strong>giữa các backend với nhau (backend-to-backend)</strong>, diễn ra bên trong hệ thống mà người dùng không nhìn thấy.</p>
+<p>Đảm bảo trạng thái của các đối tượng luôn nhất quán và hợp lệ.</p>
 </li>
 </ul>
-<h4 id="giao-tiếp-bất-đồng-bộ-asynchronous"><strong>Giao tiếp Bất đồng bộ (Asynchronous)</strong></h4>
-<p>Giống như gửi email hoặc tin nhắn. Service A gửi một &ldquo;thông điệp&rdquo; (message) cho Service B rồi tiếp tục công việc của mình ngay lập tức, <strong>không cần chờ</strong> B trả lời. Service B sẽ nhận và xử lý thông điệp đó khi nào sẵn sàng.</p>
+<h3 id="bao-gồm-những-gì-">Bao gồm những gì ?</h3>
 <ul>
 <li>
-<p><strong>Cách thức:</strong> Sử dụng một hệ thống trung gian gọi là <strong>Message Broker</strong> (hoặc Message Queue) như <strong>RabbitMQ, Kafka</strong>.</p>
+<p><strong>Entities &amp; Aggregates:</strong> Các đối tượng có định danh và vòng đời, là trung tâm của logic nghiệp vụ (ví dụ: <code>OrderAggregate</code>).</p>
 </li>
 <li>
-<p><strong>Ví dụ:</strong> Sau khi bạn đặt hàng thành công, <code>Service Đơn Hàng</code> sẽ gửi một thông điệp có nội dung &ldquo;Đơn hàng #123 đã được tạo&rdquo; vào một hàng đợi (queue). <code>Service Thông Báo</code> sẽ lắng nghe hàng đợi này, thấy có thông điệp mới liền lấy ra và gửi email xác nhận cho bạn. <code>Service Đơn Hàng</code> không cần quan tâm <code>Service Thông Báo</code> đã gửi email hay chưa.</p>
+<p><strong>Value Objects:</strong> Các đối tượng mô tả thuộc tính, không có định danh (ví dụ: <code>Address</code>, <code>Money</code>).</p>
 </li>
 <li>
-<p><strong>Ưu điểm:</strong> Giúp các service <strong>hoàn toàn độc lập</strong> (decoupled). Nếu <code>Service Thông Báo</code> bị lỗi, các đơn hàng vẫn được tạo bình thường, các thông điệp sẽ nằm chờ trong queue để được xử lý sau.</p>
+<p><strong>Domain Services:</strong> Chứa các logic nghiệp vụ không thuộc về bất kỳ Entity nào.</p>
+</li>
+<li>
+<p><strong>Repository Interfaces:</strong> Các hợp đồng (interface) định nghĩa cách truy xuất dữ liệu, nhưng <strong>không có code cài đặt</strong>.</p>
+</li>
+<li>
+<p><strong>Domain Events:</strong> Các sự kiện xảy ra trong miền nghiệp vụ (ví dụ: <code>OrderPlacedEvent</code>).</p>
 </li>
 </ul>
-<hr>
-<h3 id="3-có-phải-microservices-là-kiến-trúc-ở-backend-frontend-chỉ-cần-1-service">3. Có phải Microservices là kiến trúc ở Backend? Frontend chỉ cần 1 service?</h3>
-<p>Đúng vậy, <strong>Microservices chủ yếu là một kiến trúc cho phần backend</strong>. Tuy nhiên, việc có nhiều service backend nhỏ lẻ lại tạo ra một vấn đề cho frontend: &ldquo;Frontend nên gọi đến service nào?&rdquo;.</p>
-<p>Không thể để frontend (ứng dụng web, mobile) gọi trực tiếp đến 10 service backend khác nhau. Điều này rất phức tạp, khó quản lý và không an toàn. Giải pháp phổ biến nhất là sử dụng một <strong>API Gateway</strong>.</p>
-<h4 id="api-gateway-là-gì"><strong>API Gateway là gì?</strong></h4>
-<p>Hãy coi API Gateway như một <strong>anh chàng lễ tân</strong> của toàn bộ hệ thống.</p>
+<h3 id="quy-tắc-vàng">Quy tắc vàng</h3>
+<p>Lớp <strong>Domain</strong> không được phụ thuộc vào bất kỳ lớp nào khác. Nó hoàn toàn trong sáng và không biết gì về database, API hay giao diện người dùng.</p>
+<h2 id="application-layer-bộ-điều-phối-các-tác-vụ">Application Layer: Bộ điều phối các tác vụ</h2>
+<p>Lớp này đóng vai trò như một kịch bản, điều phối các đối tượng trong lớp Domain để thực hiện một yêu cầu cụ thể từ bên ngoài (use case).</p>
+<h3 id="vai-trò-chính-1">Vai trò chính</h3>
 <ul>
 <li>
-<p>Frontend chỉ cần nói chuyện với &ldquo;anh lễ tân&rdquo; này thôi.</p>
+<p>Nhận yêu cầu từ bên ngoài (ví dụ: từ API Controller, UI).</p>
 </li>
 <li>
-<p>&ldquo;Anh lễ tân&rdquo; sẽ chịu trách nhiệm xác thực yêu cầu, sau đó xem xét yêu cầu này thuộc về phòng ban nào (service nào) và chuyển tiếp đến đúng nơi.</p>
+<p>Sử dụng các Repository để lấy ra các Aggregate từ database.</p>
 </li>
 <li>
-<p>Nó cũng có thể tổng hợp thông tin từ nhiều service trước khi trả về cho frontend.</p>
+<p>Gọi các phương thức trên Aggregate để thực thi logic nghiệp vụ.</p>
+</li>
+<li>
+<p>Sử dụng Repository để lưu lại trạng thái của Aggregate.</p>
+</li>
+<li>
+<p>Điều phối các tác vụ liên quan đến cơ sở hạ tầng (ví dụ: gửi email sau khi đặt hàng thành công).</p>
 </li>
 </ul>
-<p><strong>Ví dụ:</strong> Để hiển thị trang chi tiết sản phẩm, frontend chỉ cần gửi 1 yêu cầu duy nhất đến API Gateway. API Gateway sẽ tự động gọi đến <code>Service Sản Phẩm</code> để lấy thông tin sản phẩm và gọi đến <code>Service Đánh Giá</code> để lấy các bình luận, sau đó gộp hai kết quả này lại và trả về cho frontend.</p>
-<p>Vậy câu trả lời là: <strong>Backend được chia thành nhiều microservices, và thường có một lớp API Gateway làm điểm vào duy nhất cho tất cả các client (web, mobile&hellip;).</strong></p>
-<hr>
-<h3 id="4-vấn-đề-về-dữ-liệu-mỗi-service-một-database">4. Vấn đề về Dữ liệu: Mỗi Service một Database?</h3>
-<p>Đây là một trong những quy tắc vàng và cũng là thách thức lớn nhất của microservices: <strong>Mỗi microservice phải sở hữu và quản lý cơ sở dữ liệu (database) của riêng mình.</strong></p>
+<h3 id="bao-gồm-những-gì--1">Bao gồm những gì ?</h3>
 <ul>
 <li>
-<p><strong>Tại sao?</strong> Để đảm bảo tính độc lập tuyệt đối. Nếu <code>Service A</code> và <code>Service B</code> dùng chung một database, khi <code>Service A</code> muốn thay đổi cấu trúc bảng, nó có thể làm sập <code>Service B</code>. Như vậy thì không còn gọi là độc lập nữa.</p>
+<p><strong>Application Services:</strong> Các class xử lý một use case cụ thể (ví dụ: <code>OrderService</code> với phương thức <code>PlaceOrder(PlaceOrderCommand)</code>).</p>
 </li>
 <li>
-<p><strong>Thách thức:</strong> Làm sao để thực hiện một nghiệp vụ yêu cầu dữ liệu từ nhiều service? Ví dụ: làm sao để đảm bảo khi tạo đơn hàng (Service Đơn Hàng) thì số lượng tồn kho (Service Kho Hàng) cũng phải được trừ đi một cách nhất quán?</p>
+<p><strong>Commands &amp; Queries:</strong> Các đối tượng DTOs đại diện cho ý định thay đổi hệ thống hoặc truy vấn dữ liệu (mô hình CQRS).</p>
 </li>
 <li>
-<p><strong>Giải pháp:</strong> Cần sử dụng các pattern nâng cao như <strong>Saga Pattern</strong> để quản lý các giao dịch phân tán (distributed transactions). Đây là một chủ đề phức tạp, nhưng ý tưởng cơ bản là mỗi service sẽ thực hiện phần việc của mình và phát ra sự kiện để service tiếp theo thực hiện phần việc của nó.</p>
+<p><strong>Data Transfer Objects (DTOs):</strong> Các đối tượng dùng để truyền dữ liệu vào và ra khỏi lớp Application.</p>
 </li>
 </ul>
+<h3 id="quy-tắc-vàng-1">Quy tắc vàng</h3>
+<p>Lớp <strong>Application</strong> <strong>không chứa logic nghiệp vụ</strong>. Nó chỉ điều phối. Nếu bạn thấy có câu lệnh <code>if/else</code> liên quan đến nghiệp vụ ở đây, rất có thể bạn đã đặt sai chỗ.</p>
+<h2 id="infrastructure-layer-lớp-keo-dán-kỹ-thuật">Infrastructure Layer: Lớp keo dán kỹ thuật</h2>
+<p>Lớp này chứa tất cả các chi tiết kỹ thuật về việc giao tiếp với thế giới bên ngoài. Nó là phần cài đặt cụ thể cho các hợp đồng được định nghĩa ở lớp Domain và Application.</p>
+<h3 id="vai-trò-chính-2">Vai trò chính</h3>
+<ul>
+<li>
+<p>Cung cấp các cài đặt cụ thể cho việc lưu trữ dữ liệu (database).</p>
+</li>
+<li>
+<p>Tương tác với các hệ thống bên ngoài như message queue, dịch vụ email, hệ thống file, cache&hellip;</p>
+</li>
+<li>
+<p>Triển khai các framework và thư viện cụ thể.</p>
+</li>
+</ul>
+<h3 id="bao-gồm-những-gì--2">Bao gồm những gì ?</h3>
+<ul>
+<li>
+<p><strong>Repository Implementations:</strong> Cài đặt cụ thể các Repository interface từ lớp Domain (ví dụ: <code>OrderRepository</code> sử dụng Entity Framework Core).</p>
+</li>
+<li>
+<p><strong>ORM/Database Context:</strong> Các class liên quan đến ORM như <code>DbContext</code>.</p>
+</li>
+<li>
+<p><strong>File Access, Email Sender, Message Bus Clients&hellip;:</strong> Các class cụ thể để làm việc với các dịch lỹ thuật.</p>
+</li>
+</ul>
+<h3 id="quy-tắc-vàng-2">Quy tắc vàng</h3>
+<p>Lớp <strong>Infrastructure</strong> phụ thuộc vào <strong>Domain</strong> và <strong>Application</strong>, nhưng các lớp đó không biết gì về sự tồn tại của Infrastructure (thông qua nguyên lý Đảo ngược phụ thuộc - Dependency Inversion).</p>
+<h2 id="shared-kernel-hoặc-coreshared-hộp-công-cụ-chung">Shared Kernel (hoặc Core/Shared): Hộp công cụ chung</h2>
+<p>Đây là một &ldquo;lớp&rdquo; đặc biệt, chứa các code và tiện ích được sử dụng chung bởi tất cả các lớp khác.</p>
+<h3 id="vai-trò-chính-3">Vai trò chính</h3>
+<ul>
+<li>
+<p>Cung cấp các thành phần cơ sở, dùng chung để tránh lặp lại code.</p>
+</li>
+<li>
+<p>Định nghĩa các hợp đồng hoặc hằng số dùng xuyên suốt dự án.</p>
+</li>
+</ul>
+<h3 id="bao-gồm-những-gì--3">Bao gồm những gì ?</h3>
+<ul>
+<li>
+<p>Các lớp cơ sở (ví dụ: <code>BaseEntity</code>, <code>BaseRepository</code>).</p>
+</li>
+<li>
+<p>Các hàm tiện ích (helper functions), các extension method.</p>
+</li>
+<li>
+<p>Các Exception tùy chỉnh dùng chung.</p>
+</li>
+<li>
+<p>Các thành phần cross-cutting concerns như logging, authentication contracts.</p>
+</li>
+</ul>
+<h3 id="quy-tắc-vàng-3">Quy tắc vàng</h3>
+<p>Phải rất ổn định và ít khi thay đổi. Một thay đổi ở lớp này có thể ảnh hưởng đến toàn bộ dự án.</p>
+<h3 id="bảng-tóm-tắt-phân-biệt"><strong>Bảng tóm tắt phân biệt</strong></h3>
+<table>
+  <thead>
+      <tr>
+          <th>Lớp</th>
+          <th>Trách nhiệm chính</th>
+          <th>Ví dụ thành phần</th>
+          <th>&ldquo;Không được phép&rdquo; làm gì?</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Domain</strong></td>
+          <td>Trái tim nghiệp vụ, các quy tắc và mô hình</td>
+          <td><code>Aggregate</code>, <code>Entity</code>, <code>Value Object</code>, <code>Repository Interface</code></td>
+          <td>Phụ thuộc vào các lớp khác; biết về database/UI.</td>
+      </tr>
+      <tr>
+          <td><strong>Application</strong></td>
+          <td>Điều phối các tác vụ, xử lý use case</td>
+          <td><code>Application Service</code>, <code>Command</code>, <code>Query</code>, <code>DTO</code></td>
+          <td>Chứa logic nghiệp vụ.</td>
+      </tr>
+      <tr>
+          <td><strong>Infrastructure</strong></td>
+          <td>Cài đặt chi tiết kỹ thuật, giao tiếp bên ngoài</td>
+          <td><code>EFCoreDbContext</code>, <code>OrderRepository (EF)</code>, <code>EmailSender</code></td>
+          <td>Chứa logic nghiệp vụ.</td>
+      </tr>
+      <tr>
+          <td><strong>Shared</strong></td>
+          <td>Các tiện ích và code dùng chung</td>
+          <td><code>BaseEntity</code>, <code>Helper Functions</code>, <code>Custom Exceptions</code></td>
+          <td>Chứa logic cụ thể của một nghiệp vụ.</td>
+      </tr>
+  </tbody>
+</table>
 <hr>
 <p><em>Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!</em></p></article>
               </div>

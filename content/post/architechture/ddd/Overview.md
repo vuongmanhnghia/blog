@@ -16,13 +16,14 @@ Architecture Overview Domain-Driven Design(DDD)
 
 #### Context Giới hạn (Bounded Contexts)
 
-Các hệ thống lớn hiếm khi có một mô hình duy nhất, thống nhất. Thuật ngữ "Người dùng" có thể có ý nghĩa khác nhau trong layer "Xác thực" so với context "Hỗ trợ Kỹ thuật". Bounded Context là một ranh giới rõ ràng mà trong đó một mô hình miền cụ thể và Ngôn ngữ Phổ biến của nó là nhất quán và hợp lệ. Chiến lược "chia để trị" này là câu trả lời của DDD để quản lý sự phức tạp trong các tổ chức lớn. Việc xác định các context này là mục tiêu chính của Thiết kế Chiến lược và rất quan trọng để xác định ranh giới của các microservice.
+Các hệ thống lớn hiếm khi có một mô hình **duy nhất, thống nhất**. Thuật ngữ "Người dùng" có thể có ý nghĩa khác nhau trong layer "Xác thực" so với context "Hỗ trợ Kỹ thuật". Chiến lược "chia để trị" này là câu trả lời của DDD để quản lý sự phức tạp trong các tổ chức lớn. Việc xác định các context là mục tiêu chính của Thiết kế Chiến lược và rất quan trọng để xác định ranh giới của các microservice.
 
-Toàn bộ cấu trúc của một hệ thống phức tạp bắt nguồn trực tiếp từ những sự mơ hồ về ngôn ngữ được phát hiện trong quá trình thiết kế chiến lược. Quá trình này diễn ra như sau: đầu tiên, các chuyên gia lĩnh vực và nhà phát triển nhận ra rằng một thuật ngữ duy nhất (ví dụ: "Khách hàng") có nhiều ý nghĩa mâu thuẫn giữa các phòng ban (hiện tượng đa nghĩa). Xung đột ngôn ngữ này làm cho việc xây dựng một mô hình miền thống nhất duy nhất trở nên bất khả thi nếu không muốn tạo ra sự nhầm lẫn và lỗi. Để giải quyết vấn đề này, họ áp dụng mẫu Bounded Context, vẽ ra các ranh giới rõ ràng xung quanh các khu vực mà ngôn ngữ là nhất quán. Ví dụ, một "Context Bán hàng" và một "Context Hỗ trợ" được xác định. Các Bounded Context này sau đó trở thành những ứng cử viên tự nhiên cho các service hoặc module riêng biệt trong kiến trúc phần mềm. Do đó, kiến trúc ở cấp độ cao (ví dụ: việc phân chia thành các microservice) là một hệ quả trực tiếp của việc giải quyết các vấn đề giao tiếp và định nghĩa một Ngôn ngữ Phổ biến rõ ràng. Kiến trúc không phải là một quyết định kỹ thuật tùy tiện; nó là một giải pháp cho một vấn đề giao tiếp nghiệp vụ.
+Toàn bộ cấu trúc của một hệ thống phức tạp bắt nguồn trực tiếp từ những sự mơ hồ về ngôn ngữ được phát hiện trong quá trình thiết kế. Quá trình này diễn ra như sau: đầu tiên, các nhà phát triển nhận ra rằng một thuật ngữ duy nhất (ví dụ: "Khách hàng") có nhiều ý nghĩa mâu thuẫn giữa các phòng ban (hiện tượng đa nghĩa). Để giải quyết vấn đề này, họ áp dụng mẫu Bounded Context, vẽ ra các ranh giới rõ ràng xung quanh các khu vực mà ngôn ngữ là nhất quán. Ví dụ, một "Context Bán hàng" và một "Context Hỗ trợ" được xác định. Các Bounded Context này sau đó trở thành các service hoặc module riêng biệt trong kiến trúc. 
 
-### Thiết kế Chiến thuật: Các Khối Xây dựng Miền
+*p/s: Bounded Context được hiểu là 1 context bị giới hạn*
+### Thiết kế
 
-Thiết kế Chiến thuật cung cấp các mẫu để xây dựng một mô hình miền phong phú, biểu cảm _bên trong_ một Bounded Context duy nhất.
+Cung cấp các mẫu để xây dựng một mô hình miền phong phú _bên trong_ một Bounded Context duy nhất.
 
 - **Entities (Thực thể):** Các đối tượng được xác định không phải bởi các thuộc tính của chúng, mà bởi định danh duy nhất và sự tồn tại liên tục theo thời gian (ví dụ: một `Customer` với một ID duy nhất). Chúng có thể thay đổi, nhưng các thay đổi trạng thái nên được mô hình hóa như các hoạt động nghiệp vụ rõ ràng (ví dụ:
     
@@ -49,9 +50,10 @@ Thiết kế Chiến thuật cung cấp các mẫu để xây dựng một mô h
 | **Repository**     | Trừu tượng hóa việc truy cập và lưu trữ các Aggregate.  | Cung cấp giao diện giống như bộ sưu tập, ẩn chi tiết cơ sở dữ liệu. | `CustomerRepository`, `OrderRepository`                   |
 | **Factory**        | Đóng gói logic tạo đối tượng phức tạp.                  | Đảm bảo các đối tượng được tạo ra ở trạng thái hợp lệ.              | `OrderFactory` tạo một `Order` từ các thông tin đầu vào.  |
 
+*[Phân biệt rõ các tác vụ trong Internal](https://blog.nagih.io.vn/post/architechture/ddd/internal-separation/)*
 ## Phần II: Clean và Hexagonal Architectures
 
-Phần này sẽ bắc cầu từ "cái gì" (khái niệm DDD) đến "làm thế nào" (cấu trúc project).
+Phần này sẽ bắc cầu từ khái niệm DDD đến cấu trúc project.
 
 ### Nguyên tắc Đảo ngược Phụ thuộc
 
@@ -79,12 +81,12 @@ Vấn đề với kiến trúc phân lớp truyền thống là logic nghiệp v
 - **Lớp Hạ tầng/Giao diện (Infrastructure/Interfaces Layer - Adapters):** Lớp ngoài cùng. Chứa mọi thứ tương tác với thế giới bên ngoài: cơ sở dữ liệu, web frameworks, hàng đợi tin nhắn. Lớp này phụ thuộc vào các lớp bên trong, triển khai các interface (ports) mà chúng định nghĩa.
     
 
-Cấu trúc phân lớp của Clean Architecture về cơ bản là một chiến lược giảm thiểu rủi ro. Các lớp được tổ chức dựa trên tốc độ thay đổi và tầm quan trọng đối với nghiệp vụ. Phần ổn định và quan trọng nhất của ứng dụng là các quy tắc nghiệp vụ cốt lõi (miền). Những quy tắc này lý tưởng chỉ nên thay đổi khi chính nghiệp vụ thay đổi. Ngược lại, các phần dễ thay đổi và ít độc đáo nhất là các chi tiết triển khai: cơ sở dữ liệu cụ thể, web framework, API của bên thứ ba. Quy tắc Phụ thuộc đảm bảo rằng những thay đổi trong các thành phần dễ thay đổi (lớp ngoài) không thể phá vỡ các thành phần ổn định (lớp trong). Việc chuyển từ PostgreSQL sang MongoDB không nên đòi hỏi thay đổi một dòng mã nào trong lớp miền hoặc lớp ứng dụng. Do đó, kiến trúc được thiết kế để bảo vệ tài sản quý giá nhất (logic nghiệp vụ) khỏi các thành phần có rủi ro cao nhất (chi tiết triển khai). Nó hoạt động như một bức tường lửa kiến trúc, làm cho hệ thống trở nên kiên cường hơn trước sự thay đổi công nghệ và dễ bảo trì hơn trong dài hạn.
+Cấu trúc phân lớp của Clean Architecture về cơ bản là một chiến lược giảm thiểu rủi ro. Phần ổn định và quan trọng nhất của ứng dụng là các quy tắc nghiệp vụ cốt lõi (miền). Những quy tắc này lý tưởng chỉ nên thay đổi khi chính nghiệp vụ thay đổi. Ngược lại, các phần dễ thay đổi và ít độc đáo nhất là các chi tiết triển khai: cơ sở dữ liệu cụ thể, web framework, API của bên thứ ba. Quy tắc Phụ thuộc đảm bảo rằng những thay đổi trong các thành phần dễ thay đổi (lớp ngoài) không thể phá vỡ các thành phần ổn định (lớp trong). Việc chuyển từ PostgreSQL sang MongoDB không nên đòi hỏi thay đổi một dòng mã nào trong lớp miền hoặc lớp ứng dụng. Do đó, kiến trúc được thiết kế để bảo vệ tài sản quý giá nhất (logic nghiệp vụ) khỏi các thành phần có rủi ro cao nhất (chi tiết triển khai). Nó hoạt động như một bức tường lửa kiến trúc, làm cho hệ thống trở nên kiên cường hơn trước sự thay đổi công nghệ và dễ bảo trì hơn trong dài hạn.
 
 ## Phần III: Triển khai Thực tế
-### Giải phẫu một Project Go DDD
+### Cấu trúc Project Go DDD
 
-Phần này trình bày một cấu trúc project Go kinh điển, được tổng hợp từ nhiều ví dụ chất lượng cao. Cấu trúc này tuân thủ các quy ước của Go và các thực tiễn tốt nhất của cộng đồng (ví dụ: sử dụng thư mục `/internal`).
+Phần này trình bày một cấu trúc project Go kinh điển, được tổng hợp từ nhiều ví dụ. Cấu trúc này tuân thủ các quy ước của Go và các thực tiễn tốt nhất của cộng đồng (ví dụ: sử dụng thư mục `/internal`). 
 
 **Cấu trúc Thư mục Đề xuất:**
 
@@ -120,9 +122,7 @@ Bảng sau đây tạo ra một liên kết rõ ràng giữa các khái niệm t
 | **Repository Implementation** | Adapter (Driven)          | Triển khai cụ thể việc lưu trữ (ví dụ: PostgreSQL, MongoDB).  | `/internal/infrastructure/repository/user_mysql.go` |
 | **HTTP Handler**              | Adapter (Driving)         | Dịch các yêu cầu HTTP thành các lệnh gọi Application Service. | `/internal/interfaces/http/handler.go`              |
 
-### Code trong Thực tế: Triển khai Mẫu Repository
-
-Phần này cung cấp một phân tích chi tiết về một triển khai hoàn chỉnh, sử dụng ví dụ xuất sắc từ blog của Three Dots Labs. Mẫu này được chọn vì nó minh họa hoàn hảo nguyên tắc đảo ngược phụ thuộc ở trung tâm của kiến trúc.
+### Triển khai Mẫu Repository
 
 #### Định nghĩa Port (Lớp Miền)
 
