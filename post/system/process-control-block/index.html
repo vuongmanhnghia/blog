@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://blog.nagih.io.vn/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/github.min.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/github-style.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/light.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/dark.css' />
+    <link rel="stylesheet" href='https://blog.nagih.io.vn/css/syntax.css' />
+    <title>Process Control Block - Nagih&#39;s blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    <link rel="stylesheet" href="https://blog.nagih.io.vn/css/custom.css">
+    <script type="text/javascript" src="https://blog.nagih.io.vn/js/custom.js"></script>
+
+    
+    <meta name="description"
+  content="Khối Quản lý Tiến trình (PCB) - &ldquo;CMND&rdquo; của Mọi Chương trình trong Máy tính
+" />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://blog.nagih.io.vn/post/system/process-control-block/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Process Control Block - Nagih&#39;s blog" />
+<meta name="twitter:description"
+  content="Khối Quản lý Tiến trình (PCB) - &ldquo;CMND&rdquo; của Mọi Chương trình trong Máy tính
+" />
+<meta name="twitter:site" content="https://blog.nagih.io.vn/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://blog.nagih.io.vn/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Process Control Block - Nagih&#39;s blog">
+<meta property="og:description"
+  content="Khối Quản lý Tiến trình (PCB) - &ldquo;CMND&rdquo; của Mọi Chương trình trong Máy tính
+" />
+<meta property="og:url" content="https://blog.nagih.io.vn/post/system/process-control-block/" />
+<meta property="og:site_name" content="Process Control Block" />
+<meta property="og:image"
+  content="https://blog.nagih.io.vn/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2025-09-05 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body>
+  <div style="position: relative">
+	<header
+		class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+		<div
+			class="Header-item mobile-none"
+			style="margin-top: -4px; margin-bottom: -4px">
+			<a class="Header-link" href="https://blog.nagih.io.vn/">
+				<img
+					class="octicon"
+					height="32"
+					width="32"
+					src="https://avatars.githubusercontent.com/u/123850496?v=4" />
+			</a>
+		</div>
+		<div class="Header-item d-md-none">
+			<button
+				class="Header-link btn-link js-details-target"
+				type="button"
+				onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+				<svg
+					height="24"
+					class="octicon octicon-three-bars"
+					viewBox="0 0 16 16"
+					version="1.1"
+					width="24">
+					<path
+						fill-rule="evenodd"
+						d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+				</svg>
+			</button>
+		</div>
+		<div
+			style="display: none"
+			id="header-search"
+			class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+			<div
+				class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+				<div class="position-relative">
+					
+					<form
+						id="search-form"
+						action=""
+						accept-charset="UTF-8"
+						method="get"
+						autocomplete="off">
+						<label
+							class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+							<input
+								type="text"
+								class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+								name="q"
+								value=""
+								placeholder="Search"
+								autocomplete="off" />
+						</label>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+
+		<div
+			class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+			<a class="Header-link" href="https://blog.nagih.io.vn/">
+				<img
+					class="octicon octicon-mark-github v-align-middle"
+					height="32"
+					width="32"
+					src="https://avatars.githubusercontent.com/u/123850496?v=4" />
+			</a>
+		</div>
+		<div class="Header-item" style="margin-right: 0">
+			<a
+				href="javascript:void(0)"
+				class="Header-link no-select"
+				onclick="switchTheme()">
+				<svg
+					style="fill: var(--color-profile-color-modes-toggle-moon)"
+					class="no-select"
+					viewBox="0 0 16 16"
+					version="1.1"
+					width="16"
+					height="16">
+					<path
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+						d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z"></path>
+				</svg>
+			</a>
+		</div>
+	</header>
+</div>
+
+  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
+</div>
+
+  
+<div class="application-main">
+  <div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://blog.nagih.io.vn/">
+                  <img class=" avatar-user"
+                    src="https://avatars.githubusercontent.com/u/123850496?v=4"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <strong>
+                      <a href="https://blog.nagih.io.vn/">Nagih</a>
+                    </strong>
+                  </span>
+                  <span class="path-divider">/</span>
+                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
+                    <a href="https://blog.nagih.io.vn/post/system/process-control-block/">Process Control Block</a>
+                  </strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Fri, 05 Sep 2025 00:00:00 &#43;0000"
+                    class="no-wrap">
+                    Fri, 05 Sep 2025 00:00:00 &#43;0000</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Fri, 05 Sep 2025 13:14:52 &#43;0700"
+                    class="no-wrap">
+                    Fri, 05 Sep 2025 13:14:52 &#43;0700</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      3264 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/system">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      system
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><p>Khối Quản lý Tiến trình (PCB) - &ldquo;CMND&rdquo; của Mọi Chương trình trong Máy tính</p>
+<h2 id="giới-thiệu">Giới thiệu</h2>
+<p>Hệ điều hành (Operating System - OS). Để quản lý từng mỗi chương trình đang chạy, hay còn gọi là <strong>process</strong>, <strong>process</strong> cần một bản thông tin chi tiết về từng thành viên. Bản thông tin này chính là Khối Quản lý Tiến trình (Process Control Block - PCB).</p>
+<p>Để dễ hình dung nhất, hãy coi PCB chính là &ldquo;Chứng minh nhân dân&rdquo; (CMND) hay &ldquo;Căn cước công dân&rdquo; (CCCD) của một tiến trình. Đó là một tấm thẻ định danh chứa đựng mọi thông tin sống còn mà hệ điều hành cần để quản lý, giám sát và điều khiển tiến trình đó. Nếu không có &ldquo;tấm thẻ&rdquo; này, một tiến trình sẽ trở nên vô danh và không thể quản lý được đối với hệ điều hành.</p>
+<h2 id="1-khối-quản-lý-tiến-trình-pcb-chính-xác-là-gì-dấu-vân-tay-kỹ-thuật-số">1. Khối Quản lý Tiến trình (PCB) chính xác là gì? Dấu vân tay Kỹ thuật số</h2>
+<p>Về mặt hình thức, PCB là một cấu trúc dữ liệu cơ bản nằm trong nhân (kernel) của hệ điều hành. Nó còn được biết đến với các tên gọi khác như &ldquo;Bộ mô tả Tiến trình&rdquo; (Process Descriptor) hay &ldquo;Khối điều khiển Tác vụ&rdquo; (Task Control Block).5 Điều quan trọng cần nhấn mạnh là PCB không phải là một phần của chương trình người dùng viết ra; nó là một công cụ nội bộ, được tạo ra và sử dụng độc quyền bởi hệ điều hành để quản lý các tiến trình.</p>
+<h3 id="vòng-đời-của-một-pcb">Vòng đời của một PCB</h3>
+<p>Vòng đời của một PCB gắn liền với vòng đời của tiến trình mà nó đại diện:</p>
+<ul>
+<li>
+<p><strong>Khởi tạo:</strong> Ngay khi người dùng khởi chạy một ứng dụng (ví dụ, nhấp đúp vào biểu tượng Google Chrome), hệ điều hành sẽ tạo ra một tiến trình mới. Song song với đó, nó cấp phát bộ nhớ và khởi tạo một PCB tương ứng cho tiến trình này.</p>
+</li>
+<li>
+<p><strong>Quản lý:</strong> Trong suốt thời gian tồn tại của tiến trình, hệ điều hành liên tục đọc và cập nhật thông tin trong PCB của nó khi trạng thái và việc sử dụng tài nguyên thay đổi.</p>
+</li>
+<li>
+<p><strong>Kết thúc:</strong> Khi tiến trình hoàn thành nhiệm vụ hoặc bị chấm dứt, hệ điều hành sẽ thu hồi tất cả tài nguyên của nó và phá hủy PCB, giải phóng bộ nhớ đã cấp phát.</p>
+</li>
+</ul>
+<h3 id="lưu-trữ-an-toàn">Lưu trữ An toàn</h3>
+<p>PCB chứa những thông tin cực kỳ quan trọng đối với sự ổn định của hệ thống. Do đó, nó được lưu trữ trong một vùng bộ nhớ được bảo vệ đặc biệt gọi là &ldquo;không gian nhân&rdquo; (kernel space). Cơ chế bảo vệ này ngăn chặn các chương trình người dùng truy cập và sửa đổi (dù vô tình hay cố ý) dữ liệu điều khiển của chính chúng hoặc của các tiến trình khác, một hành động có thể gây sập toàn bộ hệ thống.</p>
+<h3 id="bảng-tiến-trình-process-table">Bảng Tiến trình (Process Table)</h3>
+<p>Để theo dõi tất cả các tiến trình đang hoạt động, hệ điều hành duy trì một danh sách tổng thể, thường được gọi là Bảng Tiến trình (Process Table). Về cơ bản, đây là một mảng hoặc danh sách liên kết chứa các con trỏ trỏ đến từng PCB của mọi tiến trình đang hoạt động trong hệ thống. Bảng này giống như một cuốn danh bạ mà hệ điều hành dùng để tra cứu mọi tiến trình mà nó đang quản lý.</p>
+<p>Từ góc độ của nhân hệ điều hành, PCB không chỉ đơn thuần là một bản ghi thông tin; nó chính <em>là</em> hiện thân của tiến trình. Một chương trình trên đĩa cứng (ví dụ: <code>chrome.exe</code>) chỉ là một tập hợp các chỉ thị thụ động. Một tiến trình là sự thực thi</p>
+<p><em>chủ động</em> của những chỉ thị đó. Và PCB chính là cấu trúc dữ liệu cụ thể hóa &ldquo;sự chủ động&rdquo; này. Nó là thực thể hữu hình, có thể quản lý được mà hệ điều hành tương tác. Tất cả các hành động quản lý của OS—lập lịch, cấp phát tài nguyên, chấm dứt—đều là các hoạt động được thực hiện trên hoặc dựa vào dữ liệu chứa trong PCB. Do đó, có thể nói rằng PCB là linh hồn kỹ thuật số, là bản chất của một tiến trình trong mắt hệ điều hành.</p>
+<h2 id="2-giải-phẫu-pcb---nhìn-vào-bên-trong-tấm-thẻ-căn-cước">2. Giải phẫu PCB - Nhìn vào bên trong &ldquo;Tấm thẻ Căn cước&rdquo;</h2>
+<p>Mặc dù cấu trúc chính xác có thể khác nhau giữa các hệ điều hành (ví dụ, Linux và Windows), các loại thông tin cốt lõi về cơ bản là giống nhau. Chúng ta sẽ tiếp tục sử dụng phép ẩn dụ &ldquo;Tấm thẻ Căn cước&rdquo; để làm rõ mục đích của từng thành phần.</p>
+<h3 id="phân-tích-chi-tiết-các-thành-phần">Phân tích chi tiết các thành phần</h3>
+<ul>
+<li>
+<p><strong>Thông tin Nhận dạng (Process Identification Data):</strong></p>
+<ul>
+<li>
+<p><strong>Mã định danh Tiến trình (Process ID - PID):</strong> Một số nguyên duy nhất do hệ điều hành cấp để xác định tiến trình. Đây là trường thông tin quan trọng nhất, được sử dụng làm khóa trong hầu hết các bảng hệ thống khác.</p>
+<ul>
+<li><em>Ví von:</em> Số CMND/CCCD duy nhất trên thẻ căn cước.</li>
+</ul>
+</li>
+<li>
+<p><strong>Mã định danh Tiến trình Cha (Parent Process ID - PPID):</strong> PID của tiến trình đã tạo ra tiến trình này. Điều này thiết lập một cấu trúc phân cấp dạng cây cho các tiến trình.</p>
+</li>
+<li>
+<p><strong>Mã định danh Người dùng (User ID - UID) &amp; Nhóm (Group ID - GID):</strong> Xác định người dùng và nhóm sở hữu tiến trình, được sử dụng cho mục đích bảo mật và phân quyền.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Trạng thái Tiến trình (Process State):</strong></p>
+<ul>
+<li>
+<p>Một trường ghi lại trạng thái hiện tại của tiến trình. Thông tin này rất quan trọng để bộ lập lịch biết được tiến trình nào đủ điều kiện để chạy.</p>
+<ul>
+<li>
+<p><em>Mới (New):</em> Tiến trình đang được tạo.</p>
+</li>
+<li>
+<p><em>Sẵn sàng (Ready):</em> Tiến trình đã được nạp vào bộ nhớ và đang chờ đến lượt được cấp CPU.</p>
+</li>
+<li>
+<p><em>Đang chạy (Running):</em> Các chỉ thị của tiến trình đang được thực thi bởi một lõi CPU.</p>
+</li>
+<li>
+<p><em>Đang chờ/Bị chặn (Waiting/Blocked):</em> Tiến trình không thể tiếp tục cho đến khi một sự kiện nào đó xảy ra (ví dụ: chờ người dùng nhập liệu hoặc chờ đọc dữ liệu từ đĩa).</p>
+</li>
+<li>
+<p><em>Kết thúc (Terminated):</em> Tiến trình đã hoàn thành và đang trong quá trình dọn dẹp.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Ngữ cảnh Thực thi (Execution Context):</strong></p>
+<ul>
+<li>
+<p><strong>Bộ đếm Chương trình (Program Counter - PC):</strong> Lưu địa chỉ bộ nhớ của chỉ thị <em>tiếp theo</em> sẽ được thực thi. Đây là yếu tố sống còn để có thể tiếp tục một tiến trình sau khi nó bị gián đoạn.</p>
+<ul>
+<li><em>Ví von:</em> Một chiếc kẹp đánh dấu trang sách. Nó cho bạn biết chính xác cần bắt đầu đọc lại từ đâu.</li>
+</ul>
+</li>
+<li>
+<p><strong>Các thanh ghi CPU (CPU Registers):</strong> Một bản sao lưu (snapshot) nội dung của các thanh ghi đa dụng, con trỏ ngăn xếp (stack pointer), v.v., của CPU tại thời điểm tiến trình bị ngắt. Các thanh ghi này chứa dữ liệu trung gian của các phép tính hiện tại.</p>
+<ul>
+<li><em>Ví von:</em> Những dòng ghi chú trên giấy nháp khi đang giải một bài toán phức tạp. Bạn cần lưu chúng lại để có thể tiếp tục bài toán sau đó.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Thông tin Quản lý Tài nguyên (Resource Management Information):</strong></p>
+<ul>
+<li>
+<p><strong>Thông tin Lập lịch CPU (CPU Scheduling Information):</strong> Dữ liệu được bộ lập lịch của hệ điều hành sử dụng để quyết định tiến trình nào sẽ chạy tiếp theo. Bao gồm độ ưu tiên của tiến trình, con trỏ đến các hàng đợi lập lịch mà nó đang tham gia, và các tham số khác.</p>
+<ul>
+<li><em>Ví von:</em> Nhóm lên máy bay hoặc hạng vé của hành khách (ví dụ: VIP, Thương gia, Phổ thông) quyết định thứ tự lên máy bay.</li>
+</ul>
+</li>
+<li>
+<p><strong>Thông tin Quản lý Bộ nhớ (Memory Management Information):</strong> Thông tin về bộ nhớ được cấp phát cho tiến trình này, chẳng hạn như con trỏ đến bảng trang (page tables) hoặc bảng phân đoạn (segment tables) của nó. Điều này xác định không gian địa chỉ của tiến trình và ngăn nó truy cập vào bộ nhớ của các tiến trình khác.</p>
+<ul>
+<li><em>Ví von:</em> Sổ đỏ hoặc giấy tờ nhà đất, xác định ranh giới của một mảnh đất.</li>
+</ul>
+</li>
+<li>
+<p><strong>Thông tin Trạng thái I/O (I/O Status Information):</strong> Danh sách các thiết bị I/O được cấp phát cho tiến trình (ví dụ: một máy in cụ thể) và danh sách các tệp tin mà nó đang mở.</p>
+<ul>
+<li><em>Ví von:</em> Một thẻ thư viện ghi lại những cuốn sách đang được mượn, hoặc danh sách các công cụ đã mượn từ một xưởng làm việc.</li>
+</ul>
+</li>
+<li>
+<p><strong>Thông tin Kế toán (Accounting Information):</strong> Theo dõi việc sử dụng tài nguyên, chẳng hạn như lượng thời gian CPU mà tiến trình đã tiêu thụ, giới hạn thời gian, v.v. Thông tin này có thể được sử dụng để giám sát hệ thống hoặc tính phí trong môi trường doanh nghiệp.</p>
+<ul>
+<li><em>Ví von:</em> Chi tiết sử dụng trên hóa đơn tiện ích (ví dụ: số kilowatt-giờ điện đã dùng).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="bảng-giải-phẫu-tấm-thẻ-căn-cước-của-một-tiến-trình">Bảng: Giải phẫu &ldquo;Tấm thẻ Căn cước&rdquo; của một Tiến trình</h3>
+<p>Bảng dưới đây tóm tắt các thành phần chính của PCB và phép ví von tương ứng, giúp củng cố khái niệm một cách trực quan.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Component (Thành phần)</th>
+          <th>Purpose (Mục đích)</th>
+          <th>Analogy (Phép ví von)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Process ID (PID)</td>
+          <td>Một số duy nhất để nhận dạng tiến trình.</td>
+          <td>Số CMND/CCCD</td>
+      </tr>
+      <tr>
+          <td>Process State</td>
+          <td>Hoạt động hiện tại của tiến trình (Đang chạy, Đang chờ, v.v.).</td>
+          <td>Tình trạng hôn nhân (Độc thân, Đã kết hôn,&hellip;)</td>
+      </tr>
+      <tr>
+          <td>Program Counter (PC)</td>
+          <td>Địa chỉ của lệnh tiếp theo sẽ thực thi.</td>
+          <td>Dấu trang sách (Bookmark)</td>
+      </tr>
+      <tr>
+          <td>CPU Registers</td>
+          <td>Lưu trữ dữ liệu tạm thời cho phép tính hiện tại.</td>
+          <td>Giấy nháp (Scratchpad)</td>
+      </tr>
+      <tr>
+          <td>Memory Info</td>
+          <td>Chi tiết về việc cấp phát bộ nhớ của tiến trình.</td>
+          <td>Sổ đỏ / Giấy tờ nhà đất</td>
+      </tr>
+      <tr>
+          <td>I/O Status Info</td>
+          <td>Danh sách các tệp tin và thiết bị đang sử dụng.</td>
+          <td>Thẻ thư viện và các vật dụng đã mượn</td>
+      </tr>
+      <tr>
+          <td>Scheduling Info</td>
+          <td>Độ ưu tiên để truy cập CPU.</td>
+          <td>Mức độ ưu tiên / Vé VIP</td>
+      </tr>
+      <tr>
+          <td>Accounting Info</td>
+          <td>Ghi lại tài nguyên đã tiêu thụ (ví dụ: thời gian CPU).</td>
+          <td>Hóa đơn tiền điện/nước</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="3-pcb-trong-thực-tiễn---phép-màu-của-đa-nhiệm-chuyển-đổi-ngữ-cảnh">3. PCB trong Thực tiễn - Phép màu của Đa nhiệm (Chuyển đổi Ngữ cảnh)</h2>
+<p>Vai trò quan trọng nhất của PCB là cho phép đa nhiệm (multitasking) thông qua một cơ chế gọi là &ldquo;chuyển đổi ngữ cảnh&rdquo; (context switch).1 Chuyển đổi ngữ cảnh là quá trình hệ điều hành dừng một tiến trình và bắt đầu một tiến trình khác.2 Điều này xảy ra hàng trăm, thậm chí hàng nghìn lần mỗi giây, tạo ra ảo giác về sự thực thi song song.</p>
+<h3 id="tác-nhân-kích-hoạt">Tác nhân Kích hoạt</h3>
+<p>Một cuộc chuyển đổi ngữ cảnh không xảy ra ngẫu nhiên. Nó được kích hoạt bởi các sự kiện cụ thể 20:</p>
+<ul>
+<li>
+<p><strong>Đa nhiệm:</strong> &ldquo;Lát cắt thời gian&rdquo; (time slice hoặc quantum) của một tiến trình đã hết, và bộ lập lịch quyết định đã đến lượt một tiến trình khác (đa nhiệm phủ đầu - preemptive multitasking).</p>
+</li>
+<li>
+<p><strong>Chờ I/O:</strong> Tiến trình đang chạy yêu cầu một tác vụ tốn thời gian (như đọc một tệp từ đĩa) và chuyển sang trạng thái &ldquo;Chờ&rdquo;, giải phóng CPU cho một tiến trình khác.</p>
+</li>
+<li>
+<p><strong>Ngắt (Interrupts):</strong> Một ngắt phần cứng xảy ra (ví dụ: người dùng nhấp chuột), yêu cầu hệ điều hành phải xử lý, và việc này có thể liên quan đến việc chuyển sang một tiến trình khác.</p>
+</li>
+</ul>
+<h3 id="quy-trình-từng-bước-của-một-cuộc-chuyển-đổi-ngữ-cảnh">Quy trình từng bước của một cuộc Chuyển đổi Ngữ cảnh</h3>
+<p>Hãy tưởng tượng CPU đang chạy Tiến trình A (ví dụ: Microsoft Word) và cần chuyển sang Tiến trình B (ví dụ: Google Chrome).</p>
+<ul>
+<li>
+<p><strong>Ngắt Xảy ra:</strong> Một sự kiện (như ngắt từ bộ đếm thời gian) báo hiệu cần phải chuyển đổi. Phần cứng CPU tự động chuyển quyền điều khiển cho nhân hệ điều hành.</p>
+</li>
+<li>
+<p><strong>Lưu Ngữ cảnh của Tiến trình A:</strong> Hệ điều hành ngay lập tức tạm dừng Tiến trình A. Sau đó, nó sao chép một cách tỉ mỉ <em>toàn bộ</em> ngữ cảnh thực thi hiện tại từ phần cứng của CPU vào PCB của Tiến trình A. Ngữ cảnh này bao gồm Bộ đếm Chương trình, tất cả các thanh ghi CPU, và các thông tin trạng thái khác. Quá trình này giống như việc bạn cẩn thận lưu lại trò chơi trước khi thoát.</p>
+</li>
+<li>
+<p><strong>Cập nhật Trạng thái:</strong> Hệ điều hành cập nhật trường &ldquo;Trạng thái Tiến trình&rdquo; trong PCB của Tiến trình A từ &ldquo;Đang chạy&rdquo; thành &ldquo;Sẵn sàng&rdquo; hoặc &ldquo;Đang chờ&rdquo;. Nó di chuyển PCB này vào hàng đợi thích hợp (ví dụ: hàng đợi sẵn sàng).</p>
+</li>
+<li>
+<p><strong>Chọn Tiến trình Tiếp theo:</strong> Bộ lập lịch của hệ điều hành chạy thuật toán của mình, tham khảo các PCB trong hàng đợi sẵn sàng để chọn tiến trình tiếp theo sẽ chạy. Giả sử nó chọn Tiến trình B.</p>
+</li>
+<li>
+<p><strong>Nạp Ngữ cảnh của Tiến trình B:</strong> Hệ điều hành lấy ngữ cảnh đã được lưu từ PCB của Tiến trình B và nạp nó <em>vào</em> phần cứng của CPU. Bộ đếm Chương trình được khôi phục, các thanh ghi được điền đầy bằng các giá trị đã lưu của Tiến trình B, và các con trỏ bộ nhớ được cập nhật.</p>
+</li>
+<li>
+<p><strong>Tiếp tục Thực thi:</strong> Hệ điều hành chuyển quyền điều khiển từ nhân trở lại chương trình người dùng. Tiến trình B bắt đầu thực thi chỉ thị tiếp theo của nó, hoàn toàn không biết rằng nó đã từng bị tạm dừng. Nó tiếp tục chính xác từ nơi nó đã dừng lại.</p>
+</li>
+</ul>
+<h3 id="phép-ví-von-hai-đầu-bếp-chia-sẻ-một-khu-vực-làm-việc">Phép ví von: Hai đầu bếp chia sẻ một khu vực làm việc</h3>
+<p>Hãy tưởng tượng hai đầu bếp (Tiến trình A và B) phải chia sẻ chung một chiếc thớt và một con dao (CPU).</p>
+<ul>
+<li>
+<p>Đầu bếp A đang thái rau. Người quản lý (Hệ điều hành) nói rằng thời gian của anh ta đã hết.</p>
+</li>
+<li>
+<p>Đầu bếp A ghi vào sổ tay của mình (PCB A): &ldquo;Tôi đang thái cà rốt, con dao ở đây, còn lại 3 củ&rdquo; (lưu PC, các thanh ghi, trạng thái). Sau đó, anh ta dọn dẹp khu vực làm việc và rời đi.</p>
+</li>
+<li>
+<p>Người quản lý gọi đầu bếp B. Đầu bếp B nhìn vào sổ tay của mình (PCB B), trong đó ghi: &ldquo;Tôi đang thái hành tây, cần con dao nhỏ, đã thái được nửa củ thứ hai.&rdquo;</p>
+</li>
+<li>
+<p>Đầu bếp B sắp xếp khu vực làm việc chính xác như trong ghi chú của mình (nạp ngữ cảnh) và ngay lập tức tiếp tục thái củ hành tây thứ hai. Quá trình chuyển đổi diễn ra liền mạch.</p>
+</li>
+</ul>
+<p>Mặc dù quá trình chuyển đổi ngữ cảnh có vẻ kỳ diệu, nó không hề miễn phí. Nó là một chi phí hoạt động thuần túy (overhead); trong khoảng thời gian hệ điều hành đang lưu và nạp các PCB, không có công việc hữu ích nào của người dùng được thực hiện. Điều này tạo ra một sự đánh đổi cơ bản trong thiết kế hệ điều hành. Kích thước và độ phức tạp của PCB đóng góp trực tiếp vào chi phí này. Các nhà thiết kế hệ điều hành luôn phải đối mặt với một xung đột cốt lõi:</p>
+<ul>
+<li>
+<p><strong>Chuyển đổi thường xuyên và nhanh chóng</strong> (lát cắt thời gian ngắn) làm cho hệ thống có cảm giác rất nhạy và tương tác tốt, nhưng một tỷ lệ lớn thời gian CPU bị lãng phí cho chi phí chuyển đổi.</p>
+</li>
+<li>
+<p><strong>Chuyển đổi không thường xuyên và chậm hơn</strong> (lát cắt thời gian dài) hiệu quả hơn (ít thời gian lãng phí cho chi phí), nhưng hệ thống có thể cảm thấy ì ạch, vì một tiến trình duy nhất có thể độc chiếm CPU trong thời gian dài hơn.</p>
+</li>
+</ul>
+<p>Do đó, thiết kế của PCB và thuật toán lập lịch có mối liên hệ mật thiết trong một bài toán cân bằng giữa việc cung cấp các tính năng nâng cao, đảm bảo khả năng phản hồi của hệ thống và tối đa hóa hiệu quả sử dụng CPU.</p>
+<h2 id="4-tại-sao-pcb-là-người-hùng-thầm-lặng-của-hệ-điều-hành">4. Tại sao PCB là người hùng thầm lặng của Hệ điều hành</h2>
+<p>Cấu trúc dữ liệu có vẻ đơn giản này lại là nền tảng cho máy tính hiện đại vì nhiều lý do.</p>
+<ul>
+<li>
+<p><strong>Yếu tố cho phép Đa nhiệm:</strong> Như đã trình bày, nếu không có khả năng lưu và khôi phục trạng thái của PCB, việc chuyển đổi ngữ cảnh sẽ là không thể. Chúng ta sẽ bị mắc kẹt trong một thế giới đơn nhiệm.</p>
+</li>
+<li>
+<p><strong>Nền tảng cho Lập lịch:</strong> Bộ lập lịch là &ldquo;bộ não&rdquo; quyết định tiến trình nào sẽ được sử dụng CPU, nhưng PCB là &ldquo;hệ thần kinh&rdquo; cung cấp tất cả các thông tin đầu vào (độ ưu tiên, trạng thái, việc sử dụng tài nguyên) để bộ não đó đưa ra quyết định thông minh.</p>
+</li>
+<li>
+<p><strong>Người bảo vệ sự Ổn định của Hệ thống:</strong> Bằng cách lưu trữ ranh giới bộ nhớ và quyền sở hữu tài nguyên, PCB giúp hệ điều hành thực thi sự cô lập giữa các tiến trình, ngăn chặn một chương trình hoạt động sai cách làm hỏng các chương trình khác hoặc chính nhân hệ điều hành.</p>
+</li>
+<li>
+<p><strong>Công cụ Quản lý Tài nguyên:</strong> Hệ điều hành sử dụng thông tin I/O và bộ nhớ trong các PCB để quản lý việc cấp phát tài nguyên, ngăn ngừa xung đột (ví dụ: hai tiến trình cố gắng ghi vào cùng một tệp tin đồng thời), và thậm chí giúp phát hiện tình trạng bế tắc (deadlock).</p>
+</li>
+</ul>
+<h3 id="vượt-ra-ngoài-tiến-trình-đơn-các-khái-niệm-nâng-cao">Vượt ra ngoài Tiến trình đơn: Các khái niệm Nâng cao</h3>
+<p>Một tiến trình có thể có nhiều luồng (thread), giống như các &ldquo;tiến trình mini&rdquo;. Trong trường hợp này, PCB chứa thông tin được chia sẻ chung (như không gian bộ nhớ), trong khi mỗi luồng sẽ có một Khối điều khiển Luồng (Thread Control Block - TCB) nhẹ hơn để lưu trữ ngữ cảnh thực thi riêng của nó (các thanh ghi, con trỏ ngăn xếp). Điều này cho phép đa nhiệm ở mức độ chi tiết hơn nữa ngay trong một ứng dụng duy nhất.</p>
+<p>Các trường thông tin và độ phức tạp cụ thể của cấu trúc PCB trong một hệ điều hành nhất định là sự phản ánh trực tiếp các mục tiêu và triết lý thiết kế của hệ điều hành đó. Một hệ điều hành thời gian thực (RTOS) cho hệ thống phanh của ô tô ưu tiên sự đoán trước và các thời hạn nghiêm ngặt. Do đó, PCB của nó có thể sẽ có các trường rất chi tiết và chặt chẽ liên quan đến các ràng buộc thời gian. Ngược lại, PCB của một máy chủ Linux (<code>task_struct</code>) nổi tiếng là phức tạp, chứa thông tin sâu rộng về quyền của người dùng/nhóm, giới hạn tài nguyên, và các tín hiệu giao tiếp liên tiến trình, phản ánh di sản đa người dùng và chú trọng bảo mật của nó. Điều này có nghĩa là PCB không chỉ là một triển khai kỹ thuật chung chung; nó là một tạo tác thể hiện triết lý kiến trúc và mục đích dự định của toàn bộ hệ điều hành.</p>
+<hr>
+<p><em>Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!</em></p></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://blog.nagih.io.vn/js/toc.js'></script>
+<link rel="stylesheet" href='https://blog.nagih.io.vn/css/toc.css' />
+
+  
+<div id="gitalk-container" class="gitalk-container"></div>
+<link rel="stylesheet" href='https://blog.nagih.io.vn/css/gitalk.css'>
+<script src='https://blog.nagih.io.vn/js/gitalk.min.js'></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'Ov23li9UG1K7XEEbH2rX',
+    clientSecret: '314c5b3c2437a868e716ca4bd2ee12ca9eb200e3',
+    repo: 'blog',
+    owner: 'vuongmanhnghia',
+    admin: ['vuongmanhnghia'],
+    id: eval("location.pathname"), 
+    distractionFreeMode: false 
+  });
+  (function() {
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+</div>
+
+  <div class="footer container-xl width-full p-responsive">
+	<div
+		class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light">
+		<a
+			target="_blank"
+			aria-label="Homepage"
+			title="GitHub"
+			class="footer-octicon d-none d-lg-block mr-lg-4"
+			href="https://blog.nagih.io.vn/">
+			<svg
+				height="24"
+				class="octicon octicon-mark-github"
+				viewBox="0 0 16 16"
+				version="1.1"
+				width="24">
+				<path
+					fill-rule="evenodd"
+					d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+			</svg>
+		</a>
+		<ul
+			class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+			
+			<li class="mr-3 mr-lg-0">
+				<a href="https://github.com/vuongmanhnghia" target="_blank"
+					>Vuong Manh Nghia</a
+				>
+			</li>
+			
+			<li class="mr-3 mr-lg-0">
+				GitHub and the Invertocat logo are trademarks of
+				<a href="https://github.com/" target="_blank">GitHub, Inc.</a>
+			</li>
+		</ul>
+	</div>
+	<div class="d-flex flex-justify-center pb-6">
+		<span class="f6 text-gray-light"></span>
+	</div>
+</div>
+
+</body>
+
+<script type="application/javascript" src="https://blog.nagih.io.vn/js/github-style.js"></script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script type="application/javascript" src='https://blog.nagih.io.vn/js/search.js'></script>
+
+
+
+</html>
