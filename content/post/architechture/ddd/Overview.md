@@ -51,6 +51,7 @@ Cung cấp các mẫu để xây dựng một mô hình miền phong phú _bên 
 | **Factory**        | Đóng gói logic tạo đối tượng phức tạp.                  | Đảm bảo các đối tượng được tạo ra ở trạng thái hợp lệ.              | `OrderFactory` tạo một `Order` từ các thông tin đầu vào.  |
 
 *[Phân biệt rõ các tác vụ trong Internal](https://blog.nagih.io.vn/post/architechture/ddd/internal-separation/)*
+
 ## Phần II: Clean và Hexagonal Architectures
 
 Phần này sẽ bắc cầu từ khái niệm DDD đến cấu trúc project.
