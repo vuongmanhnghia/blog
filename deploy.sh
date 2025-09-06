@@ -1,15 +1,17 @@
 #!/run/current-system/sw/bin/bash
 
-if [ "`git status -s`" ]
+# Check if there are uncommitted changes (excluding public directory)
+if [ "`git status -s | grep -v '^?? public/' | grep -v '^D  public/'`" ]
 then
-    echo "The working directory is dirty. Please commit any pending changes."
+    echo "The working directory has uncommitted changes. Please commit any pending changes."
     echo "Do you want to continue? (y/n)"
     read answer
     if [ "$answer" != "y" ]; then
         exit 1
     fi
-    echo "Adding all files to git..."
+    echo "Adding all files to git (excluding public directory)..."
     git add --all
+    git reset public/
     echo "Committing all files to git"
     git commit -m "Publishing to deploy (deploy.sh)"
 fi
