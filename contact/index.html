@@ -5,7 +5,6 @@
   lang="en-us"
   itemtype="http://schema.org/WebPage">
   <head>
-	<meta name="generator" content="Hugo 0.147.3">
     
     <meta charset="utf-8" />
 
@@ -73,7 +72,7 @@
 
 
 
-  <base href="https://blog.nagih.io.vn/" />
+  <base href="https://blog.nagih.io.vn/contact/" />
 
 
 
@@ -81,8 +80,10 @@
 
 
 
+  
 
-<title>Nagih&#39;s Blog</title>
+
+<title>Contact</title>
 
 
 
@@ -107,7 +108,7 @@
 
 <meta
   name="description"
-  content="Hugo &amp; Tailwindcss Starter" />
+  content="this is meta description" />
 
 
 
@@ -118,6 +119,7 @@
 
 
 
+  
   
 
 
@@ -182,14 +184,14 @@
 
 
 
-<meta property="og:title" content="Nagih&#39;s Blog" />
-<meta property="og:description" content="Hugo &amp; Tailwindcss Starter" />
+<meta property="og:title" content="Contact" />
+<meta property="og:description" content="this is meta description" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://blog.nagih.io.vn/" />
+<meta property="og:url" content="https://blog.nagih.io.vn/contact/" />
 
 
-<meta name="twitter:title" content="Nagih&#39;s Blog" />
-<meta name="twitter:description" content="Hugo &amp; Tailwindcss Starter" />
+<meta name="twitter:title" content="Contact" />
+<meta name="twitter:description" content="this is meta description" />
 
 
   <meta name="twitter:site" content="@zeon_studio" />
@@ -430,7 +432,7 @@
         
           <li class="nav-item">
             <a
-              class="nav-link active"
+              class="nav-link "
               
               href="/"
               >Home</a
@@ -765,152 +767,95 @@
 
     <main>
       
-  
-  
-    <section class="section pt-14">
-      <div class="container">
-        <div class="row justify-center">
-          <div class="lg:col-7 md:col-9 mb-8 text-center">
-            <h1 class="mb-4 text-h3 lg:text-h1">
-              Nagih&rsquo;s Blog
-            </h1>
-            <p class="mb-8">
-              
-            </p>
-            
-          </div>
-          <div class="col-12">
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  
-    
+  <section>
+  <div class="container text-center">
+    <div
+      class="from-body to-light dark:from-darkmode-body dark:to-darkmode-light rounded-2xl bg-gradient-to-b px-8 py-14">
+      <h1>Contact</h1>
       
-    
 
 
-    
-    
 
 
-    
-    
-      
-      
-    
-    
-    
-
-
-    
-    
-      
-      
-        
-
-        
-        
-        
-        
-        
-        
-        
-
-
-        
-        
-
-
-        <picture>
-          <source
-            
-              srcset="/images/banner_hu_bdc8c628a610493f.webp"
-            
-            media="(max-width: 575px)" />
-          <source
-            
-              srcset="/images/banner_hu_41f0e50ee292c887.webp"
-            
-            media="(max-width: 767px)" />
-          <source
-            
-              srcset="/images/banner_hu_67c61e9b680b2e41.webp"
-            
-            media="(max-width: 991px)" />
-          <source
-            
-              srcset="/images/banner_hu_bd8330c75c01695c.webp"
-             />
-          <img
-            
-              loading="eager" decoding="async"
-              src="/images/banner_hu_64253f31100130ee.png"
-            class=" mx-auto lg:!max-w-[800px] img"
-            alt="Banner image"
-            width="1206"
-            height="553" />
-        </picture>
-      
-      
-    
+<ul class="mt-6 inline-flex space-x-1 capitalize">
+  <li>
+    <a class="text-primary dark:text-darkmode-primary" href="https://blog.nagih.io.vn/">
+      Home
+    </a>
+    <span class="inlin-block mr-1">/</span>
+  </li>
+  
     
   
+  <li>
+    <span class="text-primary dark:text-darkmode-primary">
+      Contact
+    </span>
+  </li>
+</ul>
+
+    </div>
+  </div>
+</section>
 
 
-  
 
-
-          </div>
+  <section class="section-sm">
+    <div class="container">
+      <div class="row">
+        <div class="md:col-10 lg:col-6 mx-auto">
+          <form action="#" method="POST">
+            <div class="mb-6">
+              <label for="name" class="form-label">
+                Full Name <span class="text-red-500">*</span>
+              </label>
+              <input
+                id="name"
+                name="name"
+                class="form-input"
+                placeholder="John Doe"
+                type="text" />
+            </div>
+            <div class="mb-6">
+              <label for="email" class="form-label">
+                Working Mail <span class="text-red-500">*</span>
+              </label>
+              <input
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder="john.doe@email.com"
+                type="email" />
+            </div>
+            <div class="mb-6">
+              <label for="message" class="form-label">
+                Anything else? <span class="text-red-500">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-input"
+                placeholder="Message goes here..."
+                rows="8"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
       </div>
-    </section>
-  
-  
-
-  
-  
-  
+    </div>
+  </section>
 
   
   
     
   
+
   
+    
+  
+
+  
+
 
     </main>
 

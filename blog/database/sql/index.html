@@ -1,0 +1,2362 @@
+<!doctype html>
+<html
+  itemscope
+  class=""
+  lang="en-us"
+  itemtype="http://schema.org/WebPage">
+  <head>
+    
+    <meta charset="utf-8" />
+
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+
+<meta name="theme-name" content="hugoplate" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="/images/favicon_hu_398672b1ae8e6375.png" type="image/x-icon">
+<link rel="icon" href="/images/favicon_hu_398672b1ae8e6375.png" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="48x48" href="/images/favicon_hu_e09a001e927a429b.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon_hu_398672b1ae8e6375.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/favicon_hu_58ce09429db5e529.png">
+
+
+
+
+
+
+
+
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta
+  name="msapplication-TileColor"
+  content="#ddd" />
+<meta
+  name="theme-color"
+  content="#ffffff" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <base href="https://blog.nagih.io.vn/blog/database/sql/" />
+
+
+
+
+
+
+
+  
+  
+
+
+<title>SQL Overview</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta
+    name="keywords"
+    content="Boilerplate, Hugo" />
+
+
+
+
+<meta
+  name="description"
+  content="Từ Zero Đến Hero - Tổng Hợp Tất Cả Các Lệnh SQL Quan Trọng" />
+
+
+
+  <meta name="author" content="zeon.studio" />
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+
+
+  
+  
+    
+    
+      
+    
+
+    
+
+
+    
+    
+
+
+    
+    
+      
+      
+      
+        <meta property="og:image" content="https://blog.nagih.io.vn/images/image-placeholder.png" />
+        <meta name="twitter:image" content="https://blog.nagih.io.vn/images/image-placeholder.png" />
+        <meta
+          name="twitter:card"
+          content="summary_large_image" />
+      
+      
+      <meta property="og:image:width" content="1096" />
+      <meta property="og:image:height" content="480" />
+    
+
+
+    
+    <meta
+      property="og:image:type"
+      content="image/.png" />
+  
+
+
+  
+
+
+
+
+
+<meta property="og:title" content="SQL Overview" />
+<meta property="og:description" content="Từ Zero Đến Hero - Tổng Hợp Tất Cả Các Lệnh SQL Quan Trọng" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://blog.nagih.io.vn/blog/database/sql/" />
+
+
+<meta name="twitter:title" content="SQL Overview" />
+<meta name="twitter:description" content="Từ Zero Đến Hero - Tổng Hợp Tất Cả Các Lệnh SQL Quan Trọng" />
+
+
+  <meta name="twitter:site" content="@zeon_studio" />
+
+
+  <meta name="twitter:creator" content="@zeon.studio" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  let indexURL = "https://blog.nagih.io.vn/searchindex.json";
+  let includeSectionsInSearch = ["blog"];
+  let search_no_results = "No results for";
+  let search_initial_message = "Type something to search..";
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+<meta http-equiv="x-dns-prefetch-control" content="on" />
+<link rel="preconnect" href="https://use.fontawesome.com" crossorigin />
+<link rel="preconnect" href="//cdnjs.cloudflare.com" />
+<link rel="preconnect" href="//www.googletagmanager.com" />
+<link rel="preconnect" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="https://use.fontawesome.com" />
+<link rel="dns-prefetch" href="//ajax.googleapis.com" />
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+<link rel="dns-prefetch" href="//www.googletagmanager.com" />
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<link rel="dns-prefetch" href="//connect.facebook.net" />
+<link rel="dns-prefetch" href="//platform.linkedin.com" />
+<link rel="dns-prefetch" href="//platform.twitter.com" />
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script>
+  (function () {
+    const googleFont = document.createElement("link");
+    googleFont.href = "https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&family=Roboto:wght@700&display=swap";
+    googleFont.type = "text/css";
+    googleFont.rel = "stylesheet";
+    document.head.appendChild(googleFont);
+  })();
+</script>
+
+
+
+
+
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+<link
+  href="/css/style.6f3b640a2ba0da79b3825db50aeb24ce8fea0ada7204c1911aefcfdef65e392d.css"
+  integrity="sha256-bztkCiug2nmzgl21Cuskzo/qCtpyBMGRGu/P3vZeOS0="
+  rel="stylesheet" />
+
+
+<link
+  rel="stylesheet"
+  href="/css/style-lazy.min.9e7e035d2f064fe004383f2ffc11a8f2966ef7b51c5fb2fac926e35c0061b5cf.css"
+  integrity="sha256-nn4DXS8GT&#43;AEOD8v/BGo8pZu97UcX7L6ySbjXABhtc8="
+  media="print"
+  onload="this.media='all'; this.onload=null;" />
+
+
+  </head>
+
+  <body>
+    
+    
+      
+
+
+
+      
+
+    
+
+
+    
+    
+
+
+
+
+
+    
+    <header
+  class="header sticky top-0 z-30">
+  <nav class="navbar container">
+    
+    <div class="order-0">
+      
+      <a class="navbar-brand block" href="/">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  Nagih&#39;s Blog
+
+
+      </a>
+    </div>
+    
+    <input id="nav-toggle" type="checkbox" class="hidden" />
+    <label
+      for="nav-toggle"
+      class="order-3 cursor-pointer flex items-center lg:hidden text-text-dark dark:text-white lg:order-1">
+      <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+        <title>Menu Open</title>
+        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+      </svg>
+      <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+        <title>Menu Close</title>
+        <polygon
+          points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+          transform="rotate(45 10 10)"></polygon>
+      </svg>
+    </label>
+    
+
+    
+    <ul
+      id="nav-menu"
+      class="navbar-nav order-3 hidden lg:flex w-full pb-6 lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8">
+      
+      
+        
+        
+        
+        
+          <li class="nav-item">
+            <a
+              class="nav-link "
+              
+              href="/"
+              >Home</a
+            >
+          </li>
+        
+      
+        
+        
+        
+        
+          <li class="nav-item">
+            <a
+              class="nav-link "
+              
+              href="/about"
+              >About</a
+            >
+          </li>
+        
+      
+        
+        
+        
+        
+          <li class="nav-item nav-dropdown group relative">
+            <span
+              class="nav-link 
+                
+                
+                
+              
+                
+                
+                
+              
+                
+                
+                
+              
+                
+                
+                
+               inline-flex items-center">
+              Pages
+              <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+              </svg>
+            </span>
+            <ul
+              class="nav-dropdown-list lg:group-hover:visible lg:group-hover:opacity-100">
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/404">
+                    404 Page
+                  </a>
+                </li>
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/blog">
+                    Blog
+                  </a>
+                </li>
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/categories">
+                    Categories
+                  </a>
+                </li>
+              
+                
+                
+                <li class="nav-dropdown-item">
+                  <a
+                    class="nav-dropdown-link "
+                    
+                    href="/contact">
+                    Contact
+                  </a>
+                </li>
+              
+            </ul>
+          </li>
+        
+      
+      
+        <li class="mt-4 inline-block lg:hidden">
+          <a
+            class="btn btn-outline-primary btn-sm"
+            href="/contact">
+            get a quote
+          </a>
+        </li>
+      
+    </ul>
+
+    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
+      
+        
+          <button
+            aria-label="search"
+            class="border-border text-text-dark hover:text-primary
+            dark:border-darkmode-border mr-5 inline-block border-r pr-5
+            text-xl dark:text-white cursor-pointer dark:hover:text-darkmode-primary
+            "
+            data-target="search-modal">
+            <i class="fa-solid fa-search"></i>
+          </button>
+        
+      
+
+      
+
+      
+
+
+  <div class="theme-switcher mr-5 invisible">
+    <input id="theme-switcher" data-theme-switcher type="checkbox" />
+    <label for="theme-switcher">
+      <span class="sr-only">theme switcher</span>
+      <span>
+        
+        <svg
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-100 dark:opacity-0"
+          viewBox="0 0 56 56"
+          fill="#fff"
+          height="16"
+          width="16">
+          <path
+            d="M30 4.6c0-1-.9-2-2-2a2 2 0 0 0-2 2v5c0 1 .9 2 2 2s2-1 2-2Zm9.6 9a2 2 0 0 0 0 2.8c.8.8 2 .8 2.9 0L46 13a2 2 0 0 0 0-2.9 2 2 0 0 0-3 0Zm-26 2.8c.7.8 2 .8 2.8 0 .8-.7.8-2 0-2.9L13 10c-.7-.7-2-.8-2.9 0-.7.8-.7 2.1 0 3ZM28 16a12 12 0 0 0-12 12 12 12 0 0 0 12 12 12 12 0 0 0 12-12 12 12 0 0 0-12-12Zm23.3 14c1.1 0 2-.9 2-2s-.9-2-2-2h-4.9a2 2 0 0 0-2 2c0 1.1 1 2 2 2ZM4.7 26a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4.9c1 0 2-.9 2-2s-1-2-2-2Zm37.8 13.6a2 2 0 0 0-3 0 2 2 0 0 0 0 2.9l3.6 3.5a2 2 0 0 0 2.9 0c.8-.8.8-2.1 0-3ZM10 43.1a2 2 0 0 0 0 2.9c.8.7 2.1.8 3 0l3.4-3.5c.8-.8.8-2.1 0-2.9-.8-.8-2-.8-2.9 0Zm20 3.4c0-1.1-.9-2-2-2a2 2 0 0 0-2 2v4.9c0 1 .9 2 2 2s2-1 2-2Z" />
+        </svg>
+        
+        <svg
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-0 dark:opacity-100"
+          viewBox="0 0 24 24"
+          fill="none"
+          height="16"
+          width="16">
+          <path
+            fill="#000"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M8.2 2.2c1-.4 2 .6 1.6 1.5-1 3-.4 6.4 1.8 8.7a8.4 8.4 0 0 0 8.7 1.8c1-.3 2 .5 1.5 1.5v.1a10.3 10.3 0 0 1-9.4 6.2A10.3 10.3 0 0 1 3.2 6.7c1-2 2.9-3.5 4.9-4.4Z" />
+        </svg>
+      </span>
+    </label>
+  </div>
+
+  
+  <script>
+    var darkMode = localStorage.getItem("theme") === "dark";
+
+    if (localStorage.getItem("theme") === null) {
+      darkMode = false;
+
+      
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        darkMode = true;
+      }
+      
+    }
+
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      var themeSwitch = document.querySelectorAll("[data-theme-switcher]");
+      var themeSwitcherContainer = document.querySelector('.theme-switcher');
+
+      [].forEach.call(themeSwitch, function (ts) {
+        ts.checked = darkMode;
+        ts.addEventListener("click", () => {
+          document.documentElement.classList.toggle("dark");
+          localStorage.setItem(
+            "theme",
+            document.documentElement.classList.contains("dark") ? "dark" : "light"
+          );
+        });
+      });
+
+      
+      themeSwitcherContainer.classList.remove("invisible");
+    });
+  </script>
+
+
+
+
+      
+      
+        <a
+          href="/contact"
+          class="btn btn-outline-primary btn-sm hidden lg:inline-block">
+          get a quote
+        </a>
+      
+    </div>
+  </nav>
+</header>
+
+    
+
+
+
+
+  
+    <div
+      class="search-modal "
+      aria-hidden="true"
+      style="--color-primary: #121212">
+      <div data-target="close-search-modal" class="search-modal-overlay"></div>
+      <div
+        class="search-wrapper"
+        data-image="true"
+        data-description="true"
+        data-tags="true"
+        data-categories="true">
+        <div class="search-wrapper-header">
+          <label for="search-modal-input" style="margin-top:-1px">
+            <span class="sr-only">search icon</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              height="18"
+              width="18"
+              class="search-icon"
+              data-type="search">
+              <path
+                fill="currentColor"
+                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              height="18"
+              width="18"
+              class="search-reset"
+              data-type="reset">
+              <path
+                fill="currentColor"
+                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
+            </svg>
+          </label>
+          <input
+            id="search-modal-input"
+            type="text"
+            data-search-input
+            autocomplete="off"
+            aria-label="Search"
+            placeholder="Search Post..." />
+        </div>
+        <div class="search-wrapper-body">
+          <div class="search-result" data-search-result></div>
+          <span class="search-result-empty">
+            Type something to search..
+          </span>
+        </div>
+        <div class="search-wrapper-footer">
+          <span>
+            <kbd>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                fill="currentColor"
+                viewBox="0 0 16 16">
+                <path
+                  d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z" />
+              </svg>
+            </kbd>
+            <kbd>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                fill="currentColor"
+                style="margin-top:1px;"
+                viewBox="0 0 16 16">
+                <path
+                  d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z" />
+              </svg>
+            </kbd>
+            to navigate
+          </span>
+          <span>
+            <kbd>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                fill="currentColor"
+                style="display:inline-block;"
+                viewBox="0 0 16 16">
+                <path
+                  fill-rule="evenodd"
+                  d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+              </svg>
+            </kbd>
+            to select
+          </span>
+          <span class="search-result-info"></span>
+          <span data-target="close-search-modal">
+            <kbd>ESC</kbd> to close
+          </span>
+        </div>
+      </div>
+    </div>
+  
+
+
+
+
+    <main>
+      
+  <section class="section pt-7">
+    <div class="container">
+      <div class="row justify-center">
+        <article class="lg:col-10">
+          
+          
+            <div class="mb-10">
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  
+    
+      
+    
+
+
+    
+    
+
+
+    
+    
+      
+      
+    
+    
+    
+
+
+    
+    
+      
+      
+        
+
+        
+        
+        
+        
+        
+        
+        
+
+
+        
+        
+
+
+        <picture>
+          <source
+            
+              srcset="/images/image-placeholder_hu_c8971dd714d7d967.webp"
+            
+            media="(max-width: 575px)" />
+          <source
+            
+              srcset="/images/image-placeholder_hu_7feb4cff3f0f2f38.webp"
+            
+            media="(max-width: 767px)" />
+          <source
+            
+              srcset="/images/image-placeholder_hu_aa8934e738977bd1.webp"
+            
+            media="(max-width: 991px)" />
+          <source
+            
+              srcset="/images/image-placeholder_hu_c6a26df46efa63e0.webp"
+             />
+          <img
+            
+              loading="lazy" decoding="async"
+              src="/images/image-placeholder_hu_8da812934bbff7ba.png"
+            class=" w-full rounded img"
+            alt="SQL Overview"
+            width="1096"
+            height="480" />
+        </picture>
+      
+      
+    
+    
+  
+
+
+  
+
+
+            </div>
+          
+          <h1 class="h2 mb-4">
+            SQL Overview
+          </h1>
+          <ul class="mb-4">
+            <li class="mr-4 inline-block">
+              <a
+                href="/authors/nagih/">
+                <i class="fa-regular fa-circle-user mr-2"></i
+                >Nagih
+              </a>
+            </li>
+            
+            
+              <li class="mr-4 inline-block">
+                <i class="fa-regular fa-folder mr-2"></i>
+                
+                  <a
+                    href="/categories/database/"
+                    class=""
+                    >Database
+                  </a>
+                
+              </li>
+            
+            <li class="mr-4 inline-block">
+              <i class="fa-regular fa-clock mr-2"></i>
+              August 12, 2025
+            </li>
+          </ul>
+          <div class="content mb-10">
+            
+
+ 
+  
+
+<details open class="table-of-content blog">
+  <summary>
+    
+      Table of Contents
+    
+  </summary>
+  <nav id="TableOfContents">
+  <ol>
+    <li><a href="#phần-1-giới-thiệu---sql-là-gì-và-tại-sao-bạn-cần-phải-học-nó">Phần 1: Giới Thiệu - SQL Là Gì và Tại Sao Bạn Cần Phải Học Nó?</a>
+      <ol>
+        <li><a href="#sql-là-gì">SQL là gì?</a></li>
+        <li><a href="#lịch-sử-hình-thành">Lịch sử hình thành</a></li>
+        <li><a href="#vai-trò-và-ứng-dụng-thực-tế">Vai trò và ứng dụng thực tế</a></li>
+        <li><a href="#các-hệ-quản-trị-cơ-sở-dữ-liệu-quan-hệ-rdbms-phổ-biến">Các Hệ Quản trị Cơ sở dữ liệu Quan hệ (RDBMS) phổ biến</a></li>
+      </ol>
+    </li>
+    <li><a href="#phần-2-nền-tảng-của-sql---hiểu-về-cơ-sở-dữ-liệu-quan-hệ">Phần 2: Nền Tảng Của SQL - Hiểu Về Cơ Sở Dữ Liệu Quan Hệ</a>
+      <ol>
+        <li><a href="#các-khái-niệm-cốt-lõi">Các khái niệm cốt lõi</a></li>
+        <li><a href="#chìa-khóa-của-sự-toàn-vẹn">Chìa khóa của sự toàn vẹn</a></li>
+        <li><a href="#các-kiểu-dữ-liệu-data-types">Các kiểu dữ liệu (Data Types)</a></li>
+        <li><a href="#các-ràng-buộc-constraints">Các ràng buộc (Constraints)</a></li>
+      </ol>
+    </li>
+    <li><a href="#phần-3-phân-loại-lệnh-sql---sơ-đồ-tư-duy-để-làm-chủ-sql">Phần 3: Phân Loại Lệnh SQL - Sơ Đồ Tư Duy Để Làm Chủ SQL</a></li>
+    <li><a href="#phần-4-ddl---xây-dựng-và-quản-lý-ngôi-nhà-dữ-liệu">Phần 4: DDL - Xây Dựng và Quản Lý &ldquo;Ngôi Nhà&rdquo; Dữ Liệu</a>
+      <ol>
+        <li><a href="#so-sánh-chuyên-sâu-delete-truncate-và-drop">So sánh chuyên sâu: DELETE, TRUNCATE, và DROP</a></li>
+      </ol>
+    </li>
+    <li><a href="#phần-5-dml---thêm-sửa-xóa-dữ-liệu">Phần 5: DML - &ldquo;Thêm, Sửa, Xóa&rdquo; Dữ Liệu</a>
+      <ol>
+        <li><a href="#tầm-quan-trọng-sống-còn-của-mệnh-đề-where">Tầm quan trọng sống còn của mệnh đề WHERE</a></li>
+      </ol>
+    </li>
+    <li><a href="#phần-6-dql---trái-tim-của-sql-nghệ-thuật-truy-vấn-dữ-liệu">Phần 6: DQL - Trái Tim Của SQL, Nghệ Thuật Truy Vấn Dữ Liệu</a>
+      <ol>
+        <li><a href="#truy-vấn-cơ-bản">Truy vấn cơ bản</a></li>
+        <li><a href="#lọc-dữ-liệu-với-where">Lọc dữ liệu với WHERE</a></li>
+        <li><a href="#sắp-xếp-và-giới-hạn">Sắp xếp và Giới hạn</a></li>
+        <li><a href="#các-hàm-tổng-hợp-aggregate-functions">Các hàm tổng hợp (Aggregate Functions)</a></li>
+        <li><a href="#gom-nhóm-dữ-liệu">Gom nhóm dữ liệu</a></li>
+        <li><a href="#thứ-tự-thực-thi-logic-và-sự-khác-biệt-giữa-where-và-having">Thứ tự thực thi logic và sự khác biệt giữa WHERE và HAVING</a></li>
+      </ol>
+    </li>
+    <li><a href="#phần-7-sức-mạnh-kết-nối---làm-chủ-các-loại-join">Phần 7: Sức Mạnh Kết Nối - Làm Chủ Các Loại JOIN</a>
+      <ol>
+        <li><a href="#phân-tích-chi-tiết-từng-loại-join">Phân tích chi tiết từng loại JOIN</a></li>
+      </ol>
+    </li>
+    <li><a href="#phần-8-giao-dịch-và-bảo-mật---đảm-bảo-an-toàn-dữ-liệu">Phần 8: Giao Dịch và Bảo Mật - Đảm Bảo An Toàn Dữ Liệu</a>
+      <ol>
+        <li><a href="#tcl---transaction-control-language">TCL - Transaction Control Language</a></li>
+        <li><a href="#dcl---data-control-language">DCL - Data Control Language</a></li>
+      </ol>
+    </li>
+    <li><a href="#phần-9-tối-ưu-hóa-và-các-đối-tượng-nâng-cao">Phần 9: Tối Ưu Hóa và Các Đối Tượng Nâng Cao</a>
+      <ol>
+        <li><a href="#index-chỉ-mục">Index (Chỉ mục)</a></li>
+        <li><a href="#view-khung-nhìn">View (Khung nhìn)</a></li>
+        <li><a href="#stored-procedure-thủ-tục-lưu-trữ">Stored Procedure (Thủ tục lưu trữ)</a></li>
+      </ol>
+    </li>
+    <li><a href="#phần-10-tổng-kết-và-lộ-trình-học-tập-tiếp-theo">Phần 10: Tổng Kết và Lộ Trình Học Tập Tiếp Theo</a></li>
+  </ol>
+</nav>
+</details>
+
+            <p>Từ Zero Đến Hero - Tổng Hợp Tất Cả Các Lệnh SQL Quan Trọng</p>
+<h2 id="phần-1-giới-thiệu---sql-là-gì-và-tại-sao-bạn-cần-phải-học-nó">Phần 1: Giới Thiệu - SQL Là Gì và Tại Sao Bạn Cần Phải Học Nó?</h2>
+<h3 id="sql-là-gì">SQL là gì?</h3>
+<p>SQL, viết tắt của <strong>Structured Query Language</strong> (Ngôn ngữ Truy vấn có Cấu trúc), là ngôn ngữ tiêu chuẩn được sử dụng để giao tiếp, quản lý và thao tác với các cơ sở dữ liệu quan hệ. Cần phải nhấn mạnh rằng SQL không phải là một ngôn ngữ lập trình đa năng như Python hay Java, mà là một ngôn ngữ chuyên dụng, được thiết kế riêng cho mục đích làm việc với dữ liệu. Một trong những ưu điểm lớn nhất của SQL là nó không đòi hỏi kỹ năng mã hóa phức tạp, thay vào đó, nó sử dụng các từ khóa tiếng Anh gần gũi và dễ hiểu như</p>
+<p><code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, giúp người dùng dễ dàng tiếp cận và sử dụng.</p>
+<h3 id="lịch-sử-hình-thành">Lịch sử hình thành</h3>
+<p>SQL ra đời vào những năm 1970, được phát triển bởi hai kỹ sư của IBM là Donald D. Chamberlin và Raymond F. Boyce. Ngôn ngữ này được xây dựng dựa trên nền tảng lý thuyết của mô hình cơ sở dữ liệu quan hệ do Tiến sĩ Edgar F. Codd, cũng là một nhà khoa học của IBM, đề xuất vào năm 1970. Ban đầu, nó có tên là SEQUEL (Structured English Query Language), nhưng sau đó được rút gọn thành SQL do một tranh chấp về thương hiệu. Kể từ đó, SQL đã trở thành một tiêu chuẩn công nghiệp được công nhận toàn cầu.</p>
+<h3 id="vai-trò-và-ứng-dụng-thực-tế">Vai trò và ứng dụng thực tế</h3>
+<p>Ngày nay, SQL là một kỹ năng không thể thiếu đối với nhiều vị trí trong ngành công nghệ, từ nhà phân tích dữ liệu, nhà khoa học dữ liệu, lập trình viên backend cho đến quản trị viên cơ sở dữ liệu. Sự phổ biến của nó đến từ khả năng ứng dụng trong vô số lĩnh vực:</p>
+<ul>
+<li>
+<p><strong>Phân tích kinh doanh (Business Intelligence):</strong> Các chuyên gia sử dụng SQL để trích xuất, tổng hợp và phân tích dữ liệu từ các hệ thống lớn, nhằm tìm ra các xu hướng (insights) kinh doanh, tạo báo cáo và hỗ trợ việc ra quyết định.</p>
+</li>
+<li>
+<p><strong>Phát triển ứng dụng:</strong> Hầu hết các ứng dụng web và di động đều cần một nơi để lưu trữ dữ liệu người dùng, thông tin sản phẩm, đơn hàng, v.v. SQL đóng vai trò là cầu nối ở tầng backend, giúp ứng dụng quản lý và thao tác với các dữ liệu này.</p>
+</li>
+<li>
+<p><strong>Ngành Game:</strong> Các trò chơi điện tử sử dụng cơ sở dữ liệu để lưu trữ và quản lý một lượng lớn thông tin như hồ sơ người chơi, điểm số, vật phẩm và thành tích.</p>
+</li>
+<li>
+<p><strong>Hệ thống giáo dục:</strong> Các trường học và tổ chức giáo dục dùng SQL để quản lý hồ sơ sinh viên, thông tin khóa học, điểm số và các hoạt động hành chính khác.</p>
+</li>
+</ul>
+<h3 id="các-hệ-quản-trị-cơ-sở-dữ-liệu-quan-hệ-rdbms-phổ-biến">Các Hệ Quản trị Cơ sở dữ liệu Quan hệ (RDBMS) phổ biến</h3>
+<p>Một điểm quan trọng cần làm rõ là sự khác biệt giữa SQL và các Hệ Quản trị Cơ sở dữ liệu Quan hệ (Relational Database Management System - RDBMS). SQL là ngôn ngữ, trong khi RDBMS là phần mềm, là hệ thống thực thi các câu lệnh SQL đó. Có thể hình dung SQL như &ldquo;tiếng Anh&rdquo;, còn RDBMS như một &ldquo;nhà xuất bản&rdquo; sử dụng tiếng Anh để tạo ra sách. Việc nhầm lẫn giữa SQL và MySQL là rất phổ biến; MySQL chỉ là một trong nhiều RDBMS sử dụng ngôn ngữ SQL.</p>
+<p>Một số RDBMS phổ biến hiện nay bao gồm:</p>
+<ul>
+<li>
+<p><strong>MySQL:</strong> Một hệ quản trị CSDL quan hệ mã nguồn mở rất phổ biến, đặc biệt trong các ứng dụng web.</p>
+</li>
+<li>
+<p><strong>PostgreSQL:</strong> Một hệ quản trị CSDL quan hệ mã nguồn mở mạnh mẽ, nổi tiếng với sự tuân thủ chuẩn SQL và các tính năng nâng cao.</p>
+</li>
+<li>
+<p><strong>Microsoft SQL Server:</strong> Một sản phẩm thương mại của Microsoft, được sử dụng rộng rãi trong các môi trường doanh nghiệp, đặc biệt là các tổ chức sử dụng hệ sinh thái Windows.</p>
+</li>
+<li>
+<p><strong>Oracle Database:</strong> Một hệ quản trị CSDL thương mại hàng đầu, thường được các tập đoàn lớn sử dụng cho các ứng dụng quan trọng và yêu cầu hiệu suất cao.</p>
+</li>
+</ul>
+<h2 id="phần-2-nền-tảng-của-sql---hiểu-về-cơ-sở-dữ-liệu-quan-hệ">Phần 2: Nền Tảng Của SQL - Hiểu Về Cơ Sở Dữ Liệu Quan Hệ</h2>
+<p>Trước khi viết những câu lệnh SQL đầu tiên, việc nắm vững các khái niệm nền tảng của cơ sở dữ liệu quan hệ là điều kiện tiên quyết. Đây chính là cấu trúc mà SQL được thiết kế để tương tác.</p>
+<h3 id="các-khái-niệm-cốt-lõi">Các khái niệm cốt lõi</h3>
+<ul>
+<li>
+<p><strong>Cơ sở dữ liệu (Database):</strong> Là một tập hợp các thông tin có liên quan đến nhau, được tổ chức và lưu trữ một cách có hệ thống trên máy tính để có thể dễ dàng truy cập và quản lý.</p>
+</li>
+<li>
+<p><strong>Cơ sở dữ liệu quan hệ (Relational Database):</strong> Là một loại cơ sở dữ liệu mà trong đó dữ liệu được tổ chức thành các bảng (tables) có cấu trúc chặt chẽ. Mô hình này được E.F. Codd đề xuất vào năm 1970 và đã trở thành mô hình thống trị trong quản lý dữ liệu suốt nhiều thập kỷ.</p>
+</li>
+<li>
+<p><strong>Bảng (Table):</strong> Là thành phần cấu trúc cơ bản nhất trong CSDL quan hệ, bao gồm các hàng và cột. Mỗi bảng đại diện cho một loại thực thể, ví dụ như bảng <code>SinhVien</code>, bảng <code>SanPham</code>.</p>
+</li>
+<li>
+<p><strong>Hàng (Row) và Cột (Column):</strong></p>
+<ul>
+<li>
+<p><strong>Cột (Column/Field/Attribute):</strong> Đại diện cho một thuộc tính hoặc một mẩu thông tin mô tả thực thể. Ví dụ, trong bảng <code>SinhVien</code>, các cột có thể là <code>MaSinhVien</code>, <code>HoTen</code>, <code>NgaySinh</code>.</p>
+</li>
+<li>
+<p><strong>Hàng (Row/Record/Tuple):</strong> Đại diện cho một bản ghi dữ liệu cụ thể, một thực thể đơn lẻ trong bảng. Ví dụ, một hàng trong bảng <code>SinhVien</code> chứa thông tin đầy đủ của một sinh viên cụ thể.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="chìa-khóa-của-sự-toàn-vẹn">Chìa khóa của sự toàn vẹn</h3>
+<p>Để đảm bảo dữ liệu luôn chính xác và nhất quán, CSDL quan hệ sử dụng các loại &ldquo;khóa&rdquo;.</p>
+<ul>
+<li>
+<p><strong>Khóa chính (Primary Key):</strong> Là một hoặc nhiều cột được sử dụng để xác định <em>duy nhất</em> mỗi hàng trong một bảng. Giá trị trong cột khóa chính không được phép trống (<code>NULL</code>) và phải là duy nhất trong toàn bộ bảng. Đây là &ldquo;chứng minh nhân dân&rdquo; của mỗi hàng.</p>
+</li>
+<li>
+<p><strong>Khóa ngoại (Foreign Key):</strong> Là một cột (hoặc một nhóm cột) trong một bảng dùng để thiết lập một liên kết đến khóa chính của một bảng khác. Khóa ngoại là cơ chế để thực thi <em>toàn vẹn tham chiếu</em> (referential integrity), đảm bảo rằng mối quan hệ giữa các bảng luôn hợp lệ. Ví dụ, trong bảng <code>DonHang</code>, cột <code>MaKhachHang</code> sẽ là khóa ngoại tham chiếu đến cột <code>MaKhachHang</code> (khóa chính) trong bảng <code>KhachHang</code>.</p>
+</li>
+</ul>
+<h3 id="các-kiểu-dữ-liệu-data-types">Các kiểu dữ liệu (Data Types)</h3>
+<p>Mỗi cột trong một bảng phải được gán một kiểu dữ liệu cụ thể. Kiểu dữ liệu định nghĩa loại giá trị mà cột đó có thể chứa, ví dụ như số nguyên, văn bản, ngày tháng, v.v.. Việc chọn đúng kiểu dữ liệu không chỉ đảm bảo tính toàn vẹn mà còn giúp tối ưu hóa không gian lưu trữ và hiệu suất truy vấn.</p>
+<p>Mặc dù SQL có một bộ chuẩn, các RDBMS khác nhau có thể có những tên gọi và đặc điểm riêng cho các kiểu dữ liệu. Việc hiểu rõ sự khác biệt này là rất quan trọng khi làm việc trên nhiều hệ thống.</p>
+<p><strong>Bảng so sánh các kiểu dữ liệu phổ biến</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Loại Dữ Liệu</th>
+          <th>SQL Server</th>
+          <th>MySQL</th>
+          <th>Oracle</th>
+          <th>Mô tả chung</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Chuỗi Ký Tự</strong></td>
+          <td><code>VARCHAR(n)</code>, <code>NVARCHAR(n)</code>, <code>VARCHAR(MAX)</code></td>
+          <td><code>VARCHAR(n)</code>, <code>TEXT</code></td>
+          <td><code>VARCHAR2(n)</code>, <code>CLOB</code></td>
+          <td>Lưu trữ văn bản. Kiểu có tiền tố <code>N</code> (ví dụ: <code>NVARCHAR</code>) dùng để lưu trữ ký tự Unicode (đa ngôn ngữ)</td>
+      </tr>
+      <tr>
+          <td><strong>Số Nguyên</strong></td>
+          <td><code>TINYINT</code>, <code>SMALLINT</code>, <code>INT</code>, <code>BIGINT</code></td>
+          <td><code>TINYINT</code>, <code>SMALLINT</code>, <code>INT</code>, <code>BIGINT</code></td>
+          <td><code>NUMBER(p)</code></td>
+          <td>Lưu trữ các số không có phần thập phân, với các phạm vi khác nhau</td>
+      </tr>
+      <tr>
+          <td><strong>Số Thực</strong></td>
+          <td><code>FLOAT</code>, <code>REAL</code>, <code>DECIMAL(p,s)</code></td>
+          <td><code>FLOAT</code>, <code>DOUBLE</code>, <code>DECIMAL(p,s)</code></td>
+          <td><code>NUMBER(p,s)</code>, <code>FLOAT</code></td>
+          <td>Lưu trữ các số có phần thập phân. <code>DECIMAL</code> dùng cho các giá trị cần độ chính xác cao như tiền tệ</td>
+      </tr>
+      <tr>
+          <td><strong>Ngày &amp; Giờ</strong></td>
+          <td><code>DATE</code>, <code>TIME</code>, <code>DATETIME2</code>, <code>SMALLDATETIME</code></td>
+          <td><code>DATE</code>, <code>TIME</code>, <code>DATETIME</code>, <code>TIMESTAMP</code></td>
+          <td><code>DATE</code>, <code>TIMESTAMP</code></td>
+          <td>Lưu trữ thông tin về ngày, giờ hoặc cả hai</td>
+      </tr>
+      <tr>
+          <td><strong>Logic/Bit</strong></td>
+          <td><code>BIT</code></td>
+          <td><code>BOOLEAN</code> (thực chất là <code>TINYINT(1)</code>)</td>
+          <td>(Không có kiểu riêng, thường dùng <code>NUMBER(1)</code>)</td>
+          <td>Lưu trữ giá trị logic True/False (thường là 1/0)</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="các-ràng-buộc-constraints">Các ràng buộc (Constraints)</h3>
+<p>Ràng buộc là các quy tắc được áp dụng trên các cột của bảng để đảm bảo tính chính xác và toàn vẹn của dữ liệu. Ngoài khóa chính và khóa ngoại, các ràng buộc phổ biến khác bao gồm:</p>
+<ul>
+<li>
+<p><code>NOT NULL</code>: Đảm bảo một cột không thể có giá trị <code>NULL</code> (trống).</p>
+</li>
+<li>
+<p><code>UNIQUE</code>: Đảm bảo tất cả các giá trị trong một cột phải là duy nhất.</p>
+</li>
+<li>
+<p><code>CHECK</code>: Đảm bảo rằng tất cả các giá trị trong một cột thỏa mãn một điều kiện cụ thể (ví dụ: <code>Tuoi &gt; 18</code>).</p>
+</li>
+<li>
+<p><code>DEFAULT</code>: Cung cấp một giá trị mặc định cho một cột khi không có giá trị nào được chỉ định lúc chèn dữ liệu.</p>
+</li>
+</ul>
+<h2 id="phần-3-phân-loại-lệnh-sql---sơ-đồ-tư-duy-để-làm-chủ-sql">Phần 3: Phân Loại Lệnh SQL - Sơ Đồ Tư Duy Để Làm Chủ SQL</h2>
+<p>Để hệ thống hóa kiến thức và hiểu rõ mục đích của từng câu lệnh, SQL được chia thành các nhóm lệnh con. Cách phân loại phổ biến và hiện đại nhất chia SQL thành 5 họ lệnh chính. Việc hiểu rõ sự phân chia này giống như có một bản đồ tư duy, giúp người học biết chính xác nên dùng công cụ nào cho công việc nào.</p>
+<ul>
+<li>
+<p><strong>DDL (Data Definition Language - Ngôn ngữ Định nghĩa Dữ liệu):</strong> Các lệnh này được sử dụng để định nghĩa, tạo, thay đổi và xóa cấu trúc của các đối tượng trong cơ sở dữ liệu như bảng, chỉ mục, hay view.</p>
+</li>
+<li>
+<p><strong>DML (Data Manipulation Language - Ngôn ngữ Thao tác Dữ liệu):</strong> Các lệnh này dùng để quản lý dữ liệu bên trong các bảng, bao gồm việc thêm, cập nhật và xóa dữ liệu.</p>
+</li>
+<li>
+<p><strong>DQL (Data Query Language - Ngôn ngữ Truy vấn Dữ liệu):</strong> Họ lệnh này chỉ có một thành viên duy nhất và quan trọng nhất là <code>SELECT</code>. Nó được dùng để truy xuất và đọc dữ liệu từ cơ sở dữ liệu.</p>
+</li>
+<li>
+<p><strong>DCL (Data Control Language - Ngôn ngữ Điều khiển Dữ liệu):</strong> Các lệnh này liên quan đến việc quản lý quyền truy cập và bảo mật, cho phép hoặc thu hồi quyền của người dùng trên các đối tượng cơ sở dữ liệu.</p>
+</li>
+<li>
+<p><strong>TCL (Transaction Control Language - Ngôn ngữ Điều khiển Giao dịch):</strong> Các lệnh này quản lý các giao dịch (transactions) để đảm bảo tính toàn vẹn và nhất quán của dữ liệu khi thực hiện một chuỗi các thao tác.</p>
+</li>
+</ul>
+<p>Một số tài liệu cũ hoặc một số hệ thống có thể gộp lệnh <code>SELECT</code> vào nhóm DML, vì nó cũng là một dạng &ldquo;thao tác&rdquo; với dữ liệu (thao tác đọc). Tuy nhiên, cách phân loại hiện đại tách</p>
+<p><code>SELECT</code> thành một họ riêng là DQL mang lại sự rõ ràng và logic hơn. Việc tách biệt này nhấn mạnh sự khác biệt cơ bản giữa các hành động <strong>thay đổi trạng thái</strong> của dữ liệu (ghi - write) của DML và hành động <strong>chỉ đọc trạng thái</strong> (đọc - read) của DQL. Đối với người học, việc phân biệt rạch ròi giữa &ldquo;đọc&rdquo; và &ldquo;ghi&rdquo; là cực kỳ quan trọng để hiểu sâu hơn về các vấn đề như hiệu suất, khóa (locking) và bảo mật trong cơ sở dữ liệu.</p>
+<p><strong>Bảng tổng quan các lệnh SQL</strong></p>
+<p>Bảng dưới đây cung cấp một cái nhìn tổng thể về các họ lệnh và các lệnh chính thuộc mỗi họ, đóng vai trò như một bản đồ để định hướng trong suốt quá trình học.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Họ Lệnh</th>
+          <th>Tên Đầy Đủ</th>
+          <th>Mục Đích</th>
+          <th>Các Lệnh Chính</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>DDL</strong></td>
+          <td>Data Definition Language</td>
+          <td>Định nghĩa, thay đổi cấu trúc CSDL</td>
+          <td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code></td>
+      </tr>
+      <tr>
+          <td><strong>DML</strong></td>
+          <td>Data Manipulation Language</td>
+          <td>Thêm, sửa, xóa dữ liệu</td>
+          <td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td>
+      </tr>
+      <tr>
+          <td><strong>DQL</strong></td>
+          <td>Data Query Language</td>
+          <td>Truy vấn, đọc dữ liệu</td>
+          <td><code>SELECT</code></td>
+      </tr>
+      <tr>
+          <td><strong>DCL</strong></td>
+          <td>Data Control Language</td>
+          <td>Quản lý quyền truy cập</td>
+          <td><code>GRANT</code>, <code>REVOKE</code></td>
+      </tr>
+      <tr>
+          <td><strong>TCL</strong></td>
+          <td>Transaction Control Language</td>
+          <td>Quản lý các giao dịch</td>
+          <td><code>COMMIT</code>, <code>ROLLBACK</code>, <code>SAVEPOINT</code></td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="phần-4-ddl---xây-dựng-và-quản-lý-ngôi-nhà-dữ-liệu">Phần 4: DDL - Xây Dựng và Quản Lý &ldquo;Ngôi Nhà&rdquo; Dữ Liệu</h2>
+<p>Các lệnh DDL là những công cụ đầu tiên bạn cần đến khi bắt đầu một dự án, dùng để xây dựng nên &ldquo;khung xương&rdquo; cho cơ sở dữ liệu của mình.</p>
+<ul>
+<li>
+<p><code>CREATE DATABASE</code>, <code>CREATE TABLE</code>: Được dùng để tạo mới một cơ sở dữ liệu hoặc một bảng. Khi tạo bảng, chúng ta cần định nghĩa các cột, kiểu dữ liệu cho từng cột và các ràng buộc cần thiết như khóa chính (<code>PRIMARY KEY</code>) hay <code>NOT NULL</code>.</p>
+<ul>
+<li>
+<p>Ví dụ tạo bảng:</p>
+<p>SQL</p>
+<pre tabindex="0"><code>CREATE TABLE SinhVien (
+    MaSV INT PRIMARY KEY,
+    HoTen NVARCHAR(100) NOT NULL,
+    NgaySinh DATE
+);
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p><code>ALTER TABLE</code>: Lệnh này cho phép sửa đổi cấu trúc của một bảng đã tồn tại. Các thao tác phổ biến bao gồm thêm cột (<code>ADD COLUMN</code>), xóa cột (<code>DROP COLUMN</code>), hoặc thay đổi kiểu dữ liệu của một cột (<code>MODIFY COLUMN</code> hoặc <code>ALTER COLUMN</code>).</p>
+<ul>
+<li>
+<p>Ví dụ thêm cột:</p>
+<pre tabindex="0"><code>ALTER TABLE SinhVien ADD Email VARCHAR(255);
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p><code>DROP DATABASE</code>, <code>DROP TABLE</code>: Xóa vĩnh viễn một cơ sở dữ liệu hoặc một bảng, bao gồm cả cấu trúc, dữ liệu, chỉ mục và các ràng buộc liên quan. Đây là một hành động cực kỳ nguy hiểm và không thể hoàn tác nếu không có bản sao lưu (backup).</p>
+</li>
+<li>
+<p><code>TRUNCATE TABLE</code>: Xóa toàn bộ dữ liệu bên trong một bảng một cách nhanh chóng nhưng vẫn giữ lại cấu trúc của bảng (tên cột, kiểu dữ liệu, chỉ mục, v.v.). Lệnh này hữu ích khi cần dọn sạch dữ liệu trong một bảng tạm để nạp dữ liệu mới.</p>
+</li>
+</ul>
+<h3 id="so-sánh-chuyên-sâu-delete-truncate-và-drop">So sánh chuyên sâu: DELETE, TRUNCATE, và DROP</h3>
+<p>Người mới bắt đầu thường nhầm lẫn giữa ba lệnh này vì chúng đều liên quan đến việc &ldquo;xóa&rdquo;. Tuy nhiên, chúng hoạt động theo những cách rất khác nhau và có những hệ quả riêng biệt.</p>
+<ol>
+<li>
+<p><strong>Phân loại lệnh:</strong> <code>DELETE</code> là một lệnh DML (Thao tác dữ liệu), trong khi <code>TRUNCATE</code> và <code>DROP</code> là các lệnh DDL (Định nghĩa dữ liệu). Sự khác biệt này không chỉ mang tính học thuật mà còn dẫn đến những khác biệt về cơ chế hoạt động.</p>
+</li>
+<li>
+<p><strong>Cơ chế hoạt động và Hiệu suất:</strong></p>
+<ul>
+<li>
+<p><code>DELETE</code>: Xóa các hàng một cách có chọn lọc (nếu có mệnh đề <code>WHERE</code>) hoặc toàn bộ. Nó xóa từng hàng một và ghi lại mỗi hành động xóa vào nhật ký giao dịch (transaction log). Điều này làm cho <code>DELETE</code> chậm hơn nhưng cho phép hoàn tác (<code>ROLLBACK</code>) và có thể kích hoạt các <code>TRIGGER</code> (hành động tự động) trên bảng.</p>
+</li>
+<li>
+<p><code>TRUNCATE</code>: Xóa tất cả các hàng trong bảng bằng cách giải phóng các trang dữ liệu (data pages) chứa dữ liệu của bảng. Nó không ghi log cho từng hàng nên thực thi nhanh hơn rất nhiều so với <code>DELETE</code> trên các bảng lớn. <code>TRUNCATE</code> không kích hoạt <code>TRIGGER</code> và thường không thể <code>ROLLBACK</code> một cách dễ dàng.</p>
+</li>
+<li>
+<p><code>DROP</code>: Xóa toàn bộ đối tượng bảng, bao gồm cả cấu trúc và dữ liệu. Bảng đó sẽ không còn tồn tại trong cơ sở dữ liệu.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Trường hợp sử dụng:</strong></p>
+<ul>
+<li>
+<p><strong>Dùng <code>DELETE</code></strong> khi cần xóa dữ liệu có điều kiện (<code>WHERE</code>), muốn kích hoạt <code>TRIGGER</code>, hoặc cần khả năng hoàn tác. Ví dụ: Xóa một khách hàng cụ thể đã không hoạt động trong 2 năm.</p>
+</li>
+<li>
+<p><strong>Dùng <code>TRUNCATE</code></strong> khi cần xóa sạch dữ liệu của một bảng lớn một cách nhanh chóng và reset lại các giá trị tự tăng (identity), không quan tâm đến <code>TRIGGER</code>. Ví dụ: Dọn dẹp một bảng tạm (staging table) trước mỗi lần nhập dữ liệu hàng loạt.</p>
+</li>
+<li>
+<p><strong>Dùng <code>DROP</code></strong> khi muốn loại bỏ hoàn toàn một bảng không còn được sử dụng khỏi cơ sở dữ liệu.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>Việc lựa chọn đúng lệnh phụ thuộc vào mục đích cụ thể, yêu cầu về hiệu suất và khả năng phục hồi dữ liệu.</p>
+<h2 id="phần-5-dml---thêm-sửa-xóa-dữ-liệu">Phần 5: DML - &ldquo;Thêm, Sửa, Xóa&rdquo; Dữ Liệu</h2>
+<p>Sau khi đã có &ldquo;ngôi nhà&rdquo; (cấu trúc bảng), các lệnh DML giúp chúng ta đưa &ldquo;đồ đạc&rdquo; (dữ liệu) vào, sắp xếp lại hoặc loại bỏ chúng.</p>
+<ul>
+<li>
+<p><code>INSERT INTO</code>: Dùng để chèn một hoặc nhiều hàng dữ liệu mới vào một bảng.</p>
+<ul>
+<li>
+<p>Cú pháp cơ bản:</p>
+<p>SQL</p>
+<pre tabindex="0"><code>INSERT INTO SinhVien (MaSV, HoTen, NgaySinh) VALUES (1, &#39;Nguyễn Văn A&#39;, &#39;2002-01-15&#39;);
+</code></pre></li>
+<li>
+<p>Chèn dữ liệu từ bảng khác: Một kỹ thuật nâng cao và rất hữu ích là sử dụng <code>INSERT INTO... SELECT...</code> để sao chép và chèn dữ liệu từ một bảng khác vào bảng hiện tại.</p>
+<p>SQL</p>
+<pre tabindex="0"><code>INSERT INTO SinhVienLuuTru (MaSV, HoTen)
+SELECT MaSV, HoTen FROM SinhVien WHERE NgaySinh &lt; &#39;2000-01-01&#39;;
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p><code>UPDATE</code>: Dùng để cập nhật, sửa đổi các bản ghi hiện có trong bảng.</p>
+<p>SQL</p>
+<pre tabindex="0"><code>UPDATE SinhVien SET Email = &#39;a.nguyen@example.com&#39; WHERE MaSV = 1;
+</code></pre></li>
+<li>
+<p><code>DELETE</code>: Dùng để xóa một hoặc nhiều bản ghi khỏi bảng.</p>
+<p>SQL</p>
+<pre tabindex="0"><code>DELETE FROM SinhVien WHERE MaSV = 1;
+</code></pre></li>
+</ul>
+<h3 id="tầm-quan-trọng-sống-còn-của-mệnh-đề-where">Tầm quan trọng sống còn của mệnh đề WHERE</h3>
+<p>Một trong những sai lầm nguy hiểm và dễ mắc phải nhất đối với người mới làm việc với SQL là thực thi lệnh <code>UPDATE</code> hoặc <code>DELETE</code> mà quên mất mệnh đề <code>WHERE</code>. Nếu không có</p>
+<p><code>WHERE</code> để chỉ định điều kiện, lệnh sẽ được áp dụng cho <strong>toàn bộ các hàng</strong> trong bảng, dẫn đến việc cập nhật hoặc xóa sạch dữ liệu một cách không mong muốn. Trong môi trường sản xuất, đây là một thảm họa có thể gây mất mát dữ liệu nghiêm trọng.</p>
+<p>Vì vậy, một quy tắc vàng cần phải tuân thủ nghiêm ngặt là: <strong>Luôn luôn viết và kiểm tra câu lệnh <code>SELECT</code> với cùng mệnh đề <code>WHERE</code> trước khi thực thi <code>UPDATE</code> hoặc <code>DELETE</code></strong>.</p>
+<ol>
+<li>
+<p>Viết câu lệnh <code>SELECT * FROM ten_bang WHERE dieu_kien;</code>.</p>
+</li>
+<li>
+<p>Chạy câu lệnh <code>SELECT</code> và kiểm tra kết quả để đảm bảo rằng nó chỉ trả về đúng những hàng mà bạn muốn thay đổi.</p>
+</li>
+<li>
+<p>Sau khi đã chắc chắn, thay thế <code>SELECT *</code> bằng <code>UPDATE ten_bang SET...</code> hoặc <code>DELETE</code>.</p>
+</li>
+</ol>
+<p>Thực hành thói quen này sẽ giúp tránh được những sai lầm tốn kém và đảm bảo an toàn cho dữ liệu.</p>
+<h2 id="phần-6-dql---trái-tim-của-sql-nghệ-thuật-truy-vấn-dữ-liệu">Phần 6: DQL - Trái Tim Của SQL, Nghệ Thuật Truy Vấn Dữ Liệu</h2>
+<p>Nếu DDL xây dựng cấu trúc và DML quản lý dữ liệu, thì DQL (với lệnh <code>SELECT</code>) chính là công cụ để khai thác giá trị từ dữ liệu đó. Đây là phần được sử dụng thường xuyên nhất trong công việc hàng ngày của một nhà phân tích.</p>
+<h3 id="truy-vấn-cơ-bản">Truy vấn cơ bản</h3>
+<ul>
+<li>
+<p><code>SELECT</code>: Chọn các cột mà bạn muốn hiển thị trong kết quả. Có thể sử dụng <code>*</code> để chọn tất cả các cột.</p>
+</li>
+<li>
+<p><code>FROM</code>: Chỉ định bảng nguồn mà bạn muốn lấy dữ liệu từ đó.</p>
+</li>
+<li>
+<p><code>DISTINCT</code>: Loại bỏ các hàng có giá trị trùng lặp hoàn toàn trong kết quả trả về.</p>
+</li>
+</ul>
+<p>SQL</p>
+<pre tabindex="0"><code>SELECT DISTINCT ThanhPho FROM KhachHang; -- Lấy danh sách các thành phố duy nhất của khách hàng
+</code></pre><h3 id="lọc-dữ-liệu-với-where">Lọc dữ liệu với WHERE</h3>
+<p>Mệnh đề <code>WHERE</code> được dùng để lọc các hàng, chỉ giữ lại những hàng thỏa mãn một điều kiện nhất định.</p>
+<ul>
+<li>
+<p><strong>Toán tử so sánh:</strong> <code>=</code>, <code>!=</code> (hoặc <code>&lt;&gt;</code>), <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code></p>
+</li>
+<li>
+<p><strong>Toán tử logic:</strong> <code>AND</code>, <code>OR</code>, <code>NOT</code> để kết hợp nhiều điều kiện.</p>
+</li>
+<li>
+<p><strong>Toán tử nâng cao:</strong></p>
+<ul>
+<li>
+<p><code>IN</code>: Kiểm tra xem giá trị của một cột có nằm trong một danh sách các giá trị cho trước hay không.</p>
+</li>
+<li>
+<p><code>BETWEEN</code>: Lọc các giá trị nằm trong một khoảng (bao gồm cả hai đầu mút).</p>
+</li>
+<li>
+<p><code>LIKE</code>: Tìm kiếm dữ liệu văn bản theo một mẫu. Nó thường được kết hợp với các ký tự đại diện: <code>%</code> (đại diện cho không, một hoặc nhiều ký tự) và <code>_</code> (đại diện cho chính xác một ký tự).</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>SQL</p>
+<pre tabindex="0"><code>SELECT * FROM SanPham
+WHERE Gia BETWEEN 100000 AND 500000
+AND TenSanPham LIKE &#39;Áo sơ mi%&#39;;
+</code></pre><h3 id="sắp-xếp-và-giới-hạn">Sắp xếp và Giới hạn</h3>
+<ul>
+<li>
+<p><code>ORDER BY</code>: Sắp xếp tập kết quả theo một hoặc nhiều cột. <code>ASC</code> (Ascending) là sắp xếp tăng dần (mặc định), và <code>DESC</code> (Descending) là giảm dần.</p>
+</li>
+<li>
+<p><code>LIMIT</code> / <code>TOP</code>: Giới hạn số lượng hàng được trả về. Cú pháp có sự khác biệt giữa các RDBMS: MySQL và PostgreSQL sử dụng <code>LIMIT</code>, trong khi SQL Server sử dụng <code>TOP</code>.</p>
+</li>
+</ul>
+<p>SQL</p>
+<pre tabindex="0"><code>-- Lấy 5 sản phẩm đắt nhất (MySQL/PostgreSQL)
+SELECT TenSanPham, Gia
+FROM SanPham
+ORDER BY Gia DESC
+LIMIT 5;
+
+-- Lấy 5 sản phẩm đắt nhất (SQL Server)
+SELECT TOP 5 TenSanPham, Gia
+FROM SanPham
+ORDER BY Gia DESC;
+</code></pre><h3 id="các-hàm-tổng-hợp-aggregate-functions">Các hàm tổng hợp (Aggregate Functions)</h3>
+<p>Các hàm này thực hiện một phép tính trên một tập hợp các hàng và trả về một giá trị duy nhất, tóm tắt cho tập hợp đó.</p>
+<ul>
+<li>
+<p><code>COUNT()</code>: Đếm số lượng hàng.</p>
+</li>
+<li>
+<p><code>SUM()</code>: Tính tổng các giá trị (chỉ áp dụng cho cột số).</p>
+</li>
+<li>
+<p><code>AVG()</code>: Tính giá trị trung bình (chỉ áp dụng cho cột số).</p>
+</li>
+<li>
+<p><code>MAX()</code>: Tìm giá trị lớn nhất.</p>
+</li>
+<li>
+<p><code>MIN()</code>: Tìm giá trị nhỏ nhất.</p>
+</li>
+</ul>
+<h3 id="gom-nhóm-dữ-liệu">Gom nhóm dữ liệu</h3>
+<ul>
+<li>
+<p><code>GROUP BY</code>: Nhóm các hàng có cùng giá trị trong một hoặc nhiều cột lại với nhau thành các hàng tóm tắt. Lệnh này gần như luôn đi kèm với các hàm tổng hợp để thực hiện tính toán trên mỗi nhóm.</p>
+</li>
+<li>
+<p><code>HAVING</code>: Được sử dụng sau <code>GROUP BY</code> để lọc các nhóm dựa trên một điều kiện. Điều kiện này thường áp dụng cho kết quả của một hàm tổng hợp.</p>
+</li>
+</ul>
+<p>SQL</p>
+<pre tabindex="0"><code>SELECT ChuyenMuc, COUNT(*) AS SoLuongSanPham
+FROM SanPham
+GROUP BY ChuyenMuc
+HAVING COUNT(*) &gt; 10; -- Chỉ hiển thị các chuyên mục có nhiều hơn 10 sản phẩm
+</code></pre><h3 id="thứ-tự-thực-thi-logic-và-sự-khác-biệt-giữa-where-và-having">Thứ tự thực thi logic và sự khác biệt giữa WHERE và HAVING</h3>
+<p>Một trong những điểm gây nhầm lẫn nhất cho người mới học SQL là sự khác biệt giữa <code>WHERE</code> và <code>HAVING</code>. Cả hai đều dùng để lọc, nhưng chúng hoạt động ở các giai đoạn khác nhau trong quá trình xử lý truy vấn của cơ sở dữ liệu. Mặc dù chúng ta viết câu lệnh theo thứ tự</p>
+<p><code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>, <code>GROUP BY</code>, <code>HAVING</code>, <code>ORDER BY</code>, hệ quản trị CSDL không thực thi theo thứ tự đó. Thứ tự xử lý logic thực tế là:</p>
+<ol>
+<li>
+<p><code>FROM</code> và <code>JOIN</code>: Xác định và kết hợp các bảng nguồn.</p>
+</li>
+<li>
+<p><code>WHERE</code>: Lọc các hàng riêng lẻ dựa trên các điều kiện.</p>
+</li>
+<li>
+<p><code>GROUP BY</code>: Gom các hàng đã được lọc thành các nhóm.</p>
+</li>
+<li>
+<p><code>HAVING</code>: Lọc các nhóm đã được tạo.</p>
+</li>
+<li>
+<p><code>SELECT</code>: Chọn các cột cuối cùng và tính toán các biểu thức.</p>
+</li>
+<li>
+<p><code>DISTINCT</code>: Loại bỏ các hàng trùng lặp.</p>
+</li>
+<li>
+<p><code>ORDER BY</code>: Sắp xếp tập kết quả cuối cùng.</p>
+</li>
+<li>
+<p><code>LIMIT</code> / <code>TOP</code>: Lấy ra một phần của kết quả đã sắp xếp.</p>
+</li>
+</ol>
+<p>Từ thứ tự này, có thể rút ra kết luận:</p>
+<ul>
+<li>
+<p><code>WHERE</code> được thực thi ở bước 2, <strong>trước khi</strong> dữ liệu được gom nhóm (bước 3). Do đó, <code>WHERE</code> chỉ có thể lọc dựa trên dữ liệu của từng hàng riêng lẻ và không thể sử dụng các hàm tổng hợp (như <code>SUM()</code>, <code>COUNT()</code>) vì chúng chưa được tính toán.</p>
+</li>
+<li>
+<p><code>HAVING</code> được thực thi ở bước 4, <strong>sau khi</strong> dữ liệu đã được gom nhóm và các hàm tổng hợp đã được tính toán cho mỗi nhóm. Do đó, <code>HAVING</code> được thiết kế đặc biệt để lọc dựa trên kết quả của các hàm tổng hợp.</p>
+</li>
+</ul>
+<p>Một cách dễ hình dung: <code>WHERE</code> là bộ lọc &ldquo;đầu vào&rdquo; cho các hàng, còn <code>HAVING</code> là bộ lọc &ldquo;đầu ra&rdquo; cho các nhóm.</p>
+<h2 id="phần-7-sức-mạnh-kết-nối---làm-chủ-các-loại-join">Phần 7: Sức Mạnh Kết Nối - Làm Chủ Các Loại JOIN</h2>
+<p>Trong một cơ sở dữ liệu quan hệ được thiết kế tốt, dữ liệu thường được chia nhỏ ra nhiều bảng để tránh lặp lại và đảm bảo tính nhất quán. Lệnh <code>JOIN</code> chính là công cụ mạnh mẽ cho phép chúng ta kết hợp dữ liệu từ hai hoặc nhiều bảng này lại với nhau dựa trên các cột có liên quan (thường là cặp khóa chính - khóa ngoại).</p>
+<h3 id="phân-tích-chi-tiết-từng-loại-join">Phân tích chi tiết từng loại JOIN</h3>
+<ul>
+<li>
+<p><code>INNER JOIN</code> (hoặc <code>JOIN</code>): Đây là loại <code>JOIN</code> phổ biến nhất. Nó trả về các bản ghi chỉ khi có giá trị khớp ở cả hai bảng tham gia. Về mặt lý thuyết tập hợp, đây chính là phép giao (intersection).</p>
+</li>
+<li>
+<p><code>LEFT JOIN</code> (hoặc <code>LEFT OUTER JOIN</code>): Trả về <strong>tất cả</strong> các bản ghi từ bảng bên trái và các bản ghi khớp từ bảng bên phải. Nếu không có sự khớp nối, các cột tương ứng của bảng bên phải sẽ có giá trị <code>NULL</code>.</p>
+</li>
+<li>
+<p><code>RIGHT JOIN</code> (hoặc <code>RIGHT OUTER JOIN</code>): Hoạt động ngược lại với <code>LEFT JOIN</code>. Nó trả về <strong>tất cả</strong> các bản ghi từ bảng bên phải và các bản ghi khớp từ bảng bên trái. Nếu không có sự khớp nối, các cột của bảng bên trái sẽ có giá trị <code>NULL</code>.</p>
+</li>
+<li>
+<p><code>FULL OUTER JOIN</code>: Kết hợp kết quả của cả <code>LEFT JOIN</code> và <code>RIGHT JOIN</code>. Nó trả về tất cả các bản ghi khi có sự khớp ở một trong hai bảng. Nếu một hàng ở bảng này không có hàng khớp ở bảng kia, các cột của bảng kia sẽ là <code>NULL</code>. Đây là phép hợp (union) của hai tập hợp.</p>
+</li>
+<li>
+<p><code>CROSS JOIN</code>: Trả về tích Descartes của hai bảng. Nó kết hợp mỗi hàng của bảng thứ nhất với tất cả các hàng của bảng thứ hai. Loại <code>JOIN</code> này có thể tạo ra một tập kết quả rất lớn và cần được sử dụng một cách cẩn trọng.</p>
+</li>
+<li>
+<p><code>SELF JOIN</code>: Đây không phải là một loại <code>JOIN</code> riêng biệt mà là một kỹ thuật, trong đó một bảng được kết nối với chính nó. Kỹ thuật này rất hữu ích để truy vấn các dữ liệu có cấu trúc phân cấp, ví dụ như trong một bảng <code>NhanVien</code>, có cột <code>MaNguoiQuanLy</code> tham chiếu trở lại cột <code>MaNhanVien</code> trong cùng bảng đó.</p>
+</li>
+</ul>
+<p><strong>Bảng so sánh các loại JOIN</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Loại JOIN</th>
+          <th>Kết Quả Trả Về</th>
+          <th>Kịch Bản Sử Dụng Điển Hình</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>INNER JOIN</strong></td>
+          <td>Chỉ các hàng có khóa khớp ở cả hai bảng.</td>
+          <td>Lấy danh sách khách hàng đã từng đặt hàng.</td>
+      </tr>
+      <tr>
+          <td><strong>LEFT JOIN</strong></td>
+          <td>Tất cả hàng từ bảng trái, và hàng khớp từ bảng phải.</td>
+          <td>Lấy danh sách tất cả khách hàng và đơn hàng của họ (kể cả những khách hàng chưa từng đặt hàng).</td>
+      </tr>
+      <tr>
+          <td><strong>RIGHT JOIN</strong></td>
+          <td>Tất cả hàng từ bảng phải, và hàng khớp từ bảng trái.</td>
+          <td>Lấy danh sách tất cả sản phẩm và thông tin người đã mua chúng (kể cả những sản phẩm chưa từng được bán).</td>
+      </tr>
+      <tr>
+          <td><strong>FULL OUTER JOIN</strong></td>
+          <td>Tất cả hàng từ cả hai bảng.</td>
+          <td>Lấy danh sách tất cả nhân viên và tất cả phòng ban, ghép nối thông tin nếu nhân viên thuộc phòng ban đó.</td>
+      </tr>
+      <tr>
+          <td><strong>CROSS JOIN</strong></td>
+          <td>Mọi tổ hợp hàng có thể có giữa hai bảng.</td>
+          <td>Tạo dữ liệu thử nghiệm, ví dụ: ghép mọi size áo với mọi màu sắc để tạo danh sách sản phẩm.</td>
+      </tr>
+      <tr>
+          <td><strong>SELF JOIN</strong></td>
+          <td>Bảng tự kết nối với chính nó.</td>
+          <td>Tìm tên của mỗi nhân viên và tên của người quản lý trực tiếp của họ trong cùng một bảng nhân sự.</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="phần-8-giao-dịch-và-bảo-mật---đảm-bảo-an-toàn-dữ-liệu">Phần 8: Giao Dịch và Bảo Mật - Đảm Bảo An Toàn Dữ Liệu</h2>
+<p>Việc thao tác với dữ liệu không chỉ dừng lại ở truy vấn mà còn phải đảm bảo tính toàn vẹn và bảo mật. Đây là lúc các lệnh TCL và DCL phát huy vai trò.</p>
+<h3 id="tcl---transaction-control-language">TCL - Transaction Control Language</h3>
+<p>Một <strong>giao dịch (transaction)</strong> là một chuỗi các thao tác SQL được thực hiện như một đơn vị công việc logic duy nhất. Nguyên tắc của giao dịch là &ldquo;hoặc tất cả thành công, hoặc tất cả thất bại&rdquo;. Ví dụ kinh điển là giao dịch chuyển tiền: việc trừ tiền từ tài khoản A và cộng tiền vào tài khoản B phải cùng xảy ra, nếu một trong hai bước thất bại, toàn bộ giao dịch phải được hủy bỏ.</p>
+<p>Độ tin cậy của giao dịch được đảm bảo bởi bốn thuộc tính, gọi là <strong>ACID</strong>:</p>
+<ul>
+<li>
+<p><strong>Atomicity (Tính nguyên tử):</strong> Giao dịch là không thể chia nhỏ.</p>
+</li>
+<li>
+<p><strong>Consistency (Tính nhất quán):</strong> Giao dịch đưa cơ sở dữ liệu từ một trạng thái hợp lệ này sang một trạng thái hợp lệ khác.</p>
+</li>
+<li>
+<p><strong>Isolation (Tính cô lập):</strong> Các giao dịch đồng thời không ảnh hưởng lẫn nhau.</p>
+</li>
+<li>
+<p><strong>Durability (Tính bền vững):</strong> Một khi giao dịch đã được xác nhận thành công, các thay đổi của nó sẽ tồn tại vĩnh viễn, ngay cả khi hệ thống gặp sự cố. 20</p>
+</li>
+</ul>
+<p>Các lệnh TCL chính bao gồm:</p>
+<ul>
+<li>
+<p><code>COMMIT</code>: Lưu vĩnh viễn các thay đổi của giao dịch hiện tại vào cơ sở dữ liệu.</p>
+</li>
+<li>
+<p><code>ROLLBACK</code>: Hủy bỏ tất cả các thay đổi đã được thực hiện trong giao dịch hiện tại, đưa cơ sở dữ liệu trở về trạng thái trước khi giao dịch bắt đầu.</p>
+</li>
+<li>
+<p><code>SAVEPOINT</code>: Đặt một điểm lưu tạm thời bên trong một giao dịch. Điều này cho phép <code>ROLLBACK</code> về một điểm cụ thể mà không cần phải hủy bỏ toàn bộ giao dịch.</p>
+</li>
+</ul>
+<h3 id="dcl---data-control-language">DCL - Data Control Language</h3>
+<p>DCL là nhóm lệnh dùng để quản lý quyền truy cập của người dùng đối với các đối tượng trong cơ sở dữ liệu, đảm bảo rằng chỉ những người được ủy quyền mới có thể thực hiện các hành động nhất định.</p>
+<ul>
+<li>
+<p><code>GRANT</code>: Cấp quyền cho một người dùng hoặc một nhóm người dùng. Ví dụ: cấp quyền <code>SELECT</code>, <code>INSERT</code> trên một bảng cụ thể.</p>
+</li>
+<li>
+<p><code>REVOKE</code>: Thu hồi lại các quyền đã được cấp trước đó.</p>
+</li>
+</ul>
+<p>SQL</p>
+<pre tabindex="0"><code>-- Cấp quyền SELECT trên bảng SanPham cho người dùng &#39;analyst&#39;
+GRANT SELECT ON SanPham TO analyst;
+
+-- Thu hồi quyền INSERT trên bảng SanPham từ người dùng &#39;analyst&#39;
+REVOKE INSERT ON SanPham FROM analyst;
+</code></pre><p>Việc cấp quyền trực tiếp trên các bảng dữ liệu gốc đôi khi có thể làm lộ thông tin nhạy cảm (ví dụ: cột <code>Luong</code> trong bảng <code>NhanVien</code>). Để giải quyết vấn đề này, DCL thường được sử dụng kết hợp với các đối tượng cơ sở dữ liệu khác như <code>View</code> và <code>Stored Procedure</code> để tạo ra một cơ chế bảo mật đa lớp và linh hoạt hơn. Thay vì cấp quyền <code>SELECT</code> trực tiếp trên bảng <code>NhanVien</code>, quản trị viên có thể tạo một <code>View</code> không chứa cột <code>Luong</code> và chỉ cấp quyền <code>SELECT</code> trên <code>View</code> đó cho người dùng. Tương tự, thay vì cấp quyền</p>
+<p><code>UPDATE</code> trên bảng, quản trị viên có thể tạo một <code>Stored Procedure</code> để thực hiện một hành động cụ thể (như tăng lương) và chỉ cấp quyền thực thi (<code>EXECUTE</code>) thủ tục đó. Cách tiếp cận này che giấu cấu trúc dữ liệu phức tạp và giới hạn các hành động mà người dùng có thể thực hiện, tăng cường đáng kể tính bảo mật.</p>
+<h2 id="phần-9-tối-ưu-hóa-và-các-đối-tượng-nâng-cao">Phần 9: Tối Ưu Hóa và Các Đối Tượng Nâng Cao</h2>
+<p>Để làm việc hiệu quả với các hệ thống cơ sở dữ liệu lớn, việc hiểu và sử dụng các đối tượng nâng cao để tối ưu hóa hiệu suất là vô cùng cần thiết.</p>
+<h3 id="index-chỉ-mục">Index (Chỉ mục)</h3>
+<ul>
+<li>
+<p><strong>Khái niệm:</strong> Một chỉ mục (Index) là một cấu trúc dữ liệu đặc biệt được sử dụng để tăng tốc độ truy xuất dữ liệu từ một bảng. Nó hoạt động tương tự như mục lục ở cuối một cuốn sách. Thay vì phải lật từng trang (quét toàn bộ bảng - table scan) để tìm thông tin, cơ sở dữ liệu có thể sử dụng chỉ mục để đi thẳng đến vị trí của dữ liệu cần tìm.</p>
+</li>
+<li>
+<p><strong>Lợi ích và Đánh đổi:</strong> Lợi ích chính của chỉ mục là tăng tốc đáng kể các truy vấn <code>SELECT</code> có mệnh đề <code>WHERE</code> hoặc các phép <code>JOIN</code>. Tuy nhiên, nó cũng có một cái giá phải trả: các thao tác ghi dữ liệu (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>) sẽ trở nên chậm hơn, vì ngoài việc thay đổi dữ liệu trong bảng, cơ sở dữ liệu còn phải cập nhật cả cấu trúc của chỉ mục. Do đó, cần cân nhắc kỹ lưỡng việc tạo chỉ mục trên các bảng có tần suất ghi dữ liệu cao.</p>
+</li>
+<li>
+<p><strong>Cú pháp:</strong></p>
+<p>SQL</p>
+<pre tabindex="0"><code>CREATE INDEX idx_TenSanPham ON SanPham (TenSanPham);
+</code></pre></li>
+</ul>
+<h3 id="view-khung-nhìn">View (Khung nhìn)</h3>
+<ul>
+<li>
+<p><strong>Khái niệm:</strong> Một View là một &ldquo;bảng ảo&rdquo; (virtual table), được định nghĩa bởi một câu lệnh <code>SELECT</code>. View không lưu trữ dữ liệu của riêng nó mà chỉ đơn giản là một &ldquo;cửa sổ&rdquo; để nhìn vào dữ liệu từ một hoặc nhiều bảng cơ sở. Mọi thao tác trên View thực chất sẽ được phản ánh xuống các bảng gốc.</p>
+</li>
+<li>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li>
+<p><strong>Đơn giản hóa truy vấn phức tạp:</strong> Một câu lệnh <code>JOIN</code> phức tạp qua nhiều bảng có thể được gói gọn trong một View. Sau đó, người dùng chỉ cần thực hiện một câu lệnh <code>SELECT</code> đơn giản từ View đó.</p>
+</li>
+<li>
+<p><strong>Tăng cường bảo mật:</strong> Cho phép giới hạn quyền truy cập của người dùng. Họ chỉ có thể xem và tương tác với dữ liệu thông qua View (ví dụ: một View không chứa các cột nhạy cảm như lương hoặc thông tin cá nhân).</p>
+</li>
+<li>
+<p><strong>Tính nhất quán:</strong> Đảm bảo rằng nhiều ứng dụng và người dùng khác nhau cùng truy cập vào một logic dữ liệu nhất quán được định nghĩa sẵn trong View.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cú pháp:</strong></p>
+<p>SQL</p>
+<pre tabindex="0"><code>CREATE VIEW v_SanPhamGiaCao AS
+SELECT TenSanPham, Gia, ChuyenMuc
+FROM SanPham
+WHERE Gia &gt; 1000000;
+</code></pre></li>
+</ul>
+<h3 id="stored-procedure-thủ-tục-lưu-trữ">Stored Procedure (Thủ tục lưu trữ)</h3>
+<ul>
+<li>
+<p><strong>Khái niệm:</strong> Một Stored Procedure (thường gọi tắt là SP) là một nhóm các câu lệnh SQL đã được biên dịch trước và được lưu trữ ngay trong cơ sở dữ liệu. Nó có thể nhận các tham số đầu vào, thực hiện một chuỗi logic phức tạp và trả về kết quả.</p>
+</li>
+<li>
+<p><strong>Lợi ích:</strong></p>
+<ul>
+<li>
+<p><strong>Tái sử dụng mã:</strong> Viết một lần, gọi nhiều lần từ các ứng dụng khác nhau mà không cần lặp lại mã.</p>
+</li>
+<li>
+<p><strong>Tăng hiệu suất:</strong> Vì các SP đã được biên dịch và tối ưu hóa sẵn, việc thực thi chúng thường nhanh hơn so với việc gửi các câu lệnh SQL riêng lẻ từ ứng dụng qua mạng.</p>
+</li>
+<li>
+<p><strong>Giảm lưu lượng mạng:</strong> Thay vì gửi một khối mã SQL dài, ứng dụng chỉ cần gửi một lệnh gọi SP ngắn gọn.</p>
+</li>
+<li>
+<p><strong>Tăng cường bảo mật:</strong> Tương tự như View, có thể cấp cho người dùng quyền thực thi một SP mà không cần cấp quyền trực tiếp trên các bảng cơ sở. Điều này giúp kiểm soát chặt chẽ các hành động và là một biện pháp hiệu quả để chống lại các cuộc tấn công SQL Injection.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cú pháp (ví dụ trong SQL Server):</strong></p>
+<p>SQL</p>
+<pre tabindex="0"><code>CREATE PROCEDURE sp_TimSanPhamTheoGia
+    @GiaToiThieu DECIMAL(10, 2)
+AS
+BEGIN
+    SELECT TenSanPham, Gia FROM SanPham WHERE Gia &gt;= @GiaToiThieu;
+END;
+</code></pre></li>
+</ul>
+<h2 id="phần-10-tổng-kết-và-lộ-trình-học-tập-tiếp-theo">Phần 10: Tổng Kết và Lộ Trình Học Tập Tiếp Theo</h2>
+<p>Qua các phần trên, chúng ta đã cùng nhau xây dựng một nền tảng vững chắc về SQL, từ việc hiểu các khái niệm cơ bản về cơ sở dữ liệu quan hệ, phân loại và nắm vững cú pháp của 5 họ lệnh chính (DDL, DML, DQL, DCL, TCL), cho đến việc làm chủ các kỹ thuật mạnh mẽ như <code>JOIN</code>, <code>GROUP BY</code> và các đối tượng nâng cao như <code>Index</code>, <code>View</code>, <code>Stored Procedure</code>.</p>
+<p>Tuy nhiên, SQL là một kỹ năng cần được mài giũa qua thực hành liên tục. Kiến thức lý thuyết là quan trọng, nhưng việc áp dụng chúng để giải quyết các bài toán dữ liệu thực tế mới thực sự giúp bạn trở thành một chuyên gia. Các nền tảng như LeetCode, HackerRank hay các bộ dữ liệu công khai là những nguồn tài nguyên tuyệt vời để luyện tập.</p>
+<p>Sau khi đã nắm vững các kiến thức trong cẩm nang này, đây là một vài gợi ý cho lộ trình học tập tiếp theo của bạn:</p>
+<ul>
+<li>
+<p><strong>Hàm cửa sổ (Window Functions):</strong> Đây là một bước tiến lớn trong phân tích dữ liệu. Các hàm như <code>ROW_NUMBER()</code>, <code>RANK()</code>, <code>DENSE_RANK()</code>, <code>LEAD()</code>, <code>LAG()</code> cho phép thực hiện các phép tính phức tạp trên một &ldquo;cửa sổ&rdquo; các hàng liên quan mà không làm thay đổi kết quả của truy vấn chính.</p>
+</li>
+<li>
+<p><strong>Tối ưu hóa truy vấn (Query Optimization):</strong> Học cách đọc và hiểu kế hoạch thực thi (Execution Plan) của một câu lệnh SQL để xác định các điểm nghẽn về hiệu suất và tìm cách cải thiện chúng.</p>
+</li>
+<li>
+<p><strong>Chuyên sâu về một RDBMS cụ thể:</strong> Mỗi hệ quản trị cơ sở dữ liệu như PostgreSQL, SQL Server, hay MySQL đều có những tính năng và cú pháp đặc thù. Việc tìm hiểu sâu về một hệ thống sẽ mở ra nhiều khả năng mạnh mẽ hơn.</p>
+</li>
+</ul>
+<p>Hành trình làm chủ SQL là một cuộc marathon, không phải là một cuộc chạy nước rút. Hy vọng rằng cuốn cẩm nang này sẽ là người bạn đồng hành đáng tin cậy trên chặng đường chinh phục thế giới dữ liệu của bạn.</p>
+<hr>
+<p><em>Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!</em></p>
+          </div>
+          <div class="row items-start justify-between">
+            
+            
+              <div class="lg:col-6 mb-10 flex items-center lg:mb-0">
+                <h5 class="mr-3">Tags :</h5>
+                <ul>
+                  
+                    <li class="inline-block">
+                      <a
+                        class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
+                        href="/tags/sql/">
+                        SQL
+                      </a>
+                    </li>
+                  
+                </ul>
+              </div>
+            
+            <div class="lg:col-6 flex items-center lg:justify-end">
+              <h5>Share :</h5>
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="share-icons">
+  
+  
+    <a
+      class="share-link share-facebook"
+      href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fdatabase%2fsql%2f"
+      target="_blank"
+      rel="noopener"
+      aria-label="share facebook">
+      <span class="share-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z" />
+        </svg>
+      </span>
+    </a>
+  
+
+
+  
+  
+    <a
+      class="share-link share-x"
+      href="https://x.com/intent/tweet/?text=SQL%20Overview&amp;url=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fdatabase%2fsql%2f"
+      target="_blank"
+      rel="noopener"
+      aria-label="share x">
+      <span aria-hidden="true" class="share-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M8 2H1l8.26 11.015L1.45 22H4.1l6.388-7.349L16 22h7l-8.608-11.478L21.8 2h-2.65l-5.986 6.886zm9 18L5 4h2l12 16z" />
+        </svg>
+      </span>
+    </a>
+  
+
+
+  
+  
+    <a
+      class="share-link share-email"
+      href="mailto:?subject=SQL%20Overview&amp;body=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fdatabase%2fsql%2f"
+      target="_self"
+      rel="noopener"
+      aria-label="share email">
+      <span aria-hidden="true" class="share-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M22 4H2C.9 4 0 4.9 0 6v12c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7.25 14.43l-3.5 2c-.08.05-.17.07-.25.07-.17 0-.34-.1-.43-.25-.14-.24-.06-.55.18-.68l3.5-2c.24-.14.55-.06.68.18.14.24.06.55-.18.68zm4.75.07c-.1 0-.2-.03-.27-.08l-8.5-5.5c-.23-.15-.3-.46-.15-.7.15-.22.46-.3.7-.14L12 13.4l8.23-5.32c.23-.15.54-.08.7.15.14.23.07.54-.16.7l-8.5 5.5c-.08.04-.17.07-.27.07zm8.93 1.75c-.1.16-.26.25-.43.25-.08 0-.17-.02-.25-.07l-3.5-2c-.24-.13-.32-.44-.18-.68s.44-.32.68-.18l3.5 2c.24.13.32.44.18.68z" />
+        </svg>
+      </span>
+    </a>
+  
+
+
+  
+  
+
+
+  
+  
+
+
+  
+  
+
+
+  
+  
+
+
+  
+  
+
+
+  
+  
+
+
+  
+  
+
+
+  
+  
+    <span class="fediverse-share">
+      <a
+        class="share-link share-fediverse"
+        href="javascript:void(0);"
+        onclick="toggleFediverseInput(this)"
+        aria-label="share fediverse">
+        <span aria-hidden="true" class="share-icon">
+          <svg
+            viewBox="-10 -5 1034 1034"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M539 176q-32 0 -55 22t-25 55t20.5 58t56 27t58.5 -20.5t27 -56t-20.5 -59t-56.5 -26.5h-5zM452 271l-232 118q20 20 25 48l231 -118q-19 -20 -24 -48zM619 298q-13 25 -38 38l183 184q13 -25 39 -38zM477 320l-135 265l40 40l143 -280q-28 -5 -48 -25zM581 336 q-22 11 -46 10l-8 -1l21 132l56 9zM155 370q-32 0 -55 22.5t-25 55t20.5 58t56.5 27t59 -21t26.5 -56t-21 -58.5t-55.5 -27h-6zM245 438q1 9 1 18q-1 19 -10 35l132 21l26 -50zM470 474l-26 51l311 49q-1 -8 -1 -17q1 -19 10 -36zM842 480q-32 1 -55 23t-24.5 55t21 58 t56 27t58.5 -20.5t27 -56.5t-20.5 -59t-56.5 -27h-6zM236 493q-13 25 -39 38l210 210l51 -25zM196 531q-21 11 -44 10l-9 -1l40 256q21 -10 45 -9l8 1zM560 553l48 311q21 -10 44 -9l10 1l-46 -294zM755 576l-118 60l8 56l135 -68q-20 -20 -25 -48zM781 625l-119 231 q28 5 48 25l119 -231q-28 -5 -48 -25zM306 654l-68 134q28 5 48 25l60 -119zM568 671l-281 143q19 20 24 48l265 -135zM513 771l-51 25l106 107q13 -25 39 -38zM222 795q-32 0 -55.5 22.5t-25 55t21 57.5t56 27t58.5 -20.5t27 -56t-20.5 -58.5t-56.5 -27h-5zM311 863 q2 9 1 18q-1 19 -9 35l256 41q-1 -9 -1 -18q1 -18 10 -35zM646 863q-32 0 -55 22.5t-24.5 55t20.5 58t56 27t59 -21t27 -56t-20.5 -58.5t-56.5 -27h-6z"></path>
+            </g>
+          </svg>
+        </span>
+      </a>
+      <span class="fediverse-input-wrapper" style="display: none;">
+        <input
+          type="text"
+          placeholder="Enter Fediverse Instance URL"
+          class="fediverse-input"
+          onkeypress="handleFediverseShare(event, 'https:\/\/blog.nagih.io.vn\/blog\/database\/sql\/', 'SQL Overview')" />
+        <button
+          class="fediverse-check-button"
+          onclick="handleFediverseShareButton(this, 'https:\/\/blog.nagih.io.vn\/blog\/database\/sql\/', 'SQL Overview')">
+          Share
+        </button>
+      </span>
+    </span>
+  
+
+
+  
+  
+    <button
+      class="share-link share-copy"
+      onclick="copyToClipboard(this, 'https:\/\/blog.nagih.io.vn\/blog\/database\/sql\/')">
+      <span class="share-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7-1c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 17H5V5h14v14z" />
+        </svg>
+      </span>
+    </button>
+  
+
+</div>
+
+<script>
+  
+  function toggleFediverseInput(element) {
+    const container = element.closest(".fediverse-share");
+    const inputContainer = container.querySelector(".fediverse-input-wrapper");
+    inputContainer.style.display =
+      inputContainer.style.display === "none" ? "block" : "none";
+  }
+
+  
+  function handleFediverseShare(event, url, title) {
+    if (event.key === "Enter") {
+      const input = event.target;
+      let instanceUrl = input.value.trim();
+      if (instanceUrl) {
+        if (!instanceUrl.startsWith("https://")) {
+          instanceUrl = `https://${instanceUrl}`;
+        }
+        const shareUrl = `${instanceUrl}/share?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+        window.open(shareUrl, "_blank", "noopener");
+      }
+    }
+  }
+
+  
+  function handleFediverseShareButton(button, url, title) {
+    const input = button.previousElementSibling;
+    let instanceUrl = input.value.trim();
+    if (instanceUrl) {
+      if (!instanceUrl.startsWith("https://")) {
+        instanceUrl = `https://${instanceUrl}`;
+      }
+      const shareUrl = `${instanceUrl}/share?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+      window.open(shareUrl, "_blank", "noopener");
+    }
+  }
+
+  
+  function copyToClipboard(button, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const icon = button.querySelector("svg path");
+      const originalIconPath =
+        "M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7-1c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 17H5V5h14v14z";
+      const checkIconPath =
+        "M9 16.2l-3.5-3.5-1.4 1.4L9 19 20 8l-1.4-1.4L9 16.2z";
+
+      
+      icon.setAttribute("d", checkIconPath);
+
+      
+      setTimeout(() => {
+        icon.setAttribute("d", originalIconPath);
+      }, 1000);
+    });
+  }
+</script>
+
+            </div>
+          </div>
+          
+          
+            <div class="mt-20">
+              <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "themefisher-template" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+          
+        </article>
+      </div>
+
+      
+      
+      
+      
+        <div class="section pb-0">
+          <h2 class="h3 mb-12">Related Posts</h2>
+          <div class="row">
+            
+              <div class="lg:col-4 md:col-6 mb-14">
+                <div class="bg-body dark:bg-darkmode-body">
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  
+    
+      
+    
+
+
+    
+    
+
+
+    
+    
+      
+      
+    
+    
+    
+
+
+    
+    
+      
+      
+        
+
+        
+        
+        
+        
+        
+        
+        
+
+
+        
+        
+
+
+        <picture>
+          <source
+            
+              srcset="/images/image-placeholder_hu_c8971dd714d7d967.webp"
+            
+            media="(max-width: 575px)" />
+          <source
+            
+              srcset="/images/image-placeholder_hu_7feb4cff3f0f2f38.webp"
+            
+            media="(max-width: 767px)" />
+          <source
+            
+              srcset="/images/image-placeholder_hu_aa8934e738977bd1.webp"
+            
+            media="(max-width: 991px)" />
+          <source
+            
+              srcset="/images/image-placeholder_hu_c6a26df46efa63e0.webp"
+             />
+          <img
+            
+              loading="lazy" decoding="async"
+              src="/images/image-placeholder_hu_8da812934bbff7ba.png"
+            class=" mb-6 w-full rounded img"
+            alt="9 MySQL Table Design Rules &amp; Skills"
+            width="1096"
+            height="480" />
+        </picture>
+      
+      
+    
+    
+  
+
+
+  
+
+
+  
+  <h4 class="mb-3">
+    <a href="/blog/database/9-mysql-table-design-rules--skills/">
+      9 MySQL Table Design Rules &amp; Skills
+    </a>
+  </h4>
+  
+  
+    <ul class="mb-4">
+      <li class="mr-4 inline-block">
+        <a href="/authors/nagih/">
+          <i class="fa-regular fa-circle-user mr-2"></i>Nagih
+        </a>
+      </li>
+      <li class="mr-4 inline-block">
+        <i class="fa-regular fa-folder mr-1"></i>
+        
+          <a
+            href="/categories/database/"
+            class="ms-1"
+            >Database
+          </a>
+        
+      </li>
+    </ul>
+  
+  <p class="mb-6">Principles and skills to extend MySQL table design
+</p>
+  <a class="btn btn-outline-primary btn-sm" href="/blog/database/9-mysql-table-design-rules--skills/">
+    Read More
+  </a>
+</div>
+
+              </div>
+            
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+    </main>
+
+    
+    <footer class="bg-light dark:bg-darkmode-light">
+  <div class="container">
+    <div class="row items-center py-10">
+      <div class="lg:col-3 mb-8 text-center lg:mb-0 lg:text-left">
+        
+        <a
+          class="navbar-brand inline-block"
+          href="/">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  Nagih&#39;s Blog
+
+
+        </a>
+      </div>
+      <div class="lg:col-6 mb-8 text-center lg:mb-0">
+        <ul>
+          
+            <li class="m-3 inline-block">
+              <a
+                
+                href="
+                  /about
+                "
+                >About</a
+              >
+            </li>
+          
+            <li class="m-3 inline-block">
+              <a
+                
+                href="
+                  /elements
+                "
+                >Elements</a
+              >
+            </li>
+          
+            <li class="m-3 inline-block">
+              <a
+                
+                href="
+                  /privacy-policy
+                "
+                >Privacy Policy</a
+              >
+            </li>
+          
+        </ul>
+      </div>
+      <div class="lg:col-3 mb-8 text-center lg:mb-0 lg:mt-0 lg:text-right">
+        <ul class="social-icons">
+          
+            <li>
+              <a
+                target="_blank"
+                aria-label="facebook"
+                rel="nofollow noopener"
+                href="https://www.facebook.com/vmn.isme">
+                <i class="fab fa-facebook"></i>
+              </a>
+            </li>
+          
+            <li>
+              <a
+                target="_blank"
+                aria-label="twitter"
+                rel="nofollow noopener"
+                href="https://twitter.com/nagihdayo">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+          
+            <li>
+              <a
+                target="_blank"
+                aria-label="github"
+                rel="nofollow noopener"
+                href="https://www.github.com/vuongmanhnghia">
+                <i class="fab fa-github"></i>
+              </a>
+            </li>
+          
+            <li>
+              <a
+                target="_blank"
+                aria-label="linkedin"
+                rel="nofollow noopener"
+                href="https://www.linkedin.com/in/vuongmanhnghia">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="border-border dark:border-darkmode-border border-t py-7">
+    <div
+      class="text-text-light dark:text-darkmode-text-light container text-center">
+      <p>
+        Developed by <a href="https://nagih.io.vn"
+
+
+
+
+ target="_blank"
+ 
+
+
+>Nagih</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+
+    
+    
+
+
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+<script
+  crossorigin="anonymous"
+  integrity="sha256-LO9JECYLqyMcpGlrtxZcpUn0I8AvhO6oIIibJZv4zbk="
+  src="/js/script.min.2cef4910260bab231ca4696bb7165ca549f423c02f84eea820889b259bf8cdb9.js"></script>
+
+
+<script
+  defer
+  async
+  crossorigin="anonymous"
+  integrity="sha256-5VBZe/VmPQWXcchTWy6cUTaJdnltCLjAbCqDnX&#43;XWoQ="
+  src="/js/script-lazy.min.e550597bf5663d059771c8535b2e9c51368976796d08b8c06c2a839d7f975a84.js"></script>
+
+
+
+<script>
+  if ('serviceWorker' in navigator){navigator.serviceWorker.register("/service-worker.js");}
+</script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  </body>
+</html>
