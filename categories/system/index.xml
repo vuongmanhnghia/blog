@@ -20,7 +20,7 @@
       <link>https://blog.nagih.io.vn/blog/architechture/rest-v%C3%A0-grpc/</link>
       <pubDate>Thu, 28 Aug 2025 00:00:00 +0700</pubDate>
       <guid>https://blog.nagih.io.vn/blog/architechture/rest-v%C3%A0-grpc/</guid>
-      <description>&lt;p&gt;Trong thế giới phát triển phần mềm, việc lựa chọn kiến trúc API không đơn thuần là một quyết định kỹ thuật. Cuộc tranh luận giữa REST và gRPC không phải là câu hỏi &amp;ldquo;cái nào tốt hơn&amp;rdquo;, mà là việc lựa chọn giữa hai triết lý thiết kế mạnh mẽ nhưng khác biệt cơ bản.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại.&lt;/p&gt;&#xA;&lt;!-- more --&gt;&#xA;&lt;h2 id=&#34;giới-thiệu&#34;&gt;Giới thiệu&lt;/h2&gt;&#xA;&lt;p&gt;Trong thế giới phát triển phần mềm, việc lựa chọn kiến trúc API không đơn thuần là một quyết định kỹ thuật, đó là một lựa chọn chiến lược định hình cách các hệ thống tương tác, phát triển và mở rộng. Cuộc tranh luận giữa REST và gRPC không phải là câu hỏi &amp;ldquo;cái nào tốt hơn&amp;rdquo;, mà là việc lựa chọn giữa hai triết lý thiết kế mạnh mẽ nhưng khác biệt cơ bản. REST, với tư cách là một kiểu kiến trúc, đã định hình nên các API web trong hơn hai thập kỷ, trở thành tiêu chuẩn de facto nhờ tính linh hoạt và khả năng tiếp cận phổ quát. Mặt khác, gRPC, một framework mã nguồn mở hiệu suất cao do Google phát triển, nổi lên như một giải pháp được thiết kế đặc biệt cho kỷ nguyên microservice, nơi hiệu suất, độ trễ thấp và các hợp đồng dịch vụ nghiêm ngặt là tối quan trọng.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Labs Operating</title>
