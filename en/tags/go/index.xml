@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on Nagih&#39;s Blog</title>
+    <link>blog.nagih.io.vn/en/tags/go/</link>
+    <description>Recent content in Go on Nagih&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 27 Aug 2025 00:00:00 +0700</lastBuildDate>
+    <atom:link href="blog.nagih.io.vn/en/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DDD (Domain-Driven Design)</title>
+      <link>blog.nagih.io.vn/en/blog/architechture/ddd/overview/</link>
+      <pubDate>Wed, 27 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/architechture/ddd/overview/</guid>
+      <description>&lt;p&gt;Architecture Overview Domain-Driven Design(DDD)&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

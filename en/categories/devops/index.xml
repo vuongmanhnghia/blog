@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Devops on Nagih&#39;s Blog</title>
+    <link>blog.nagih.io.vn/en/categories/devops/</link>
+    <description>Recent content in Devops on Nagih&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Aug 2025 00:00:00 +0700</lastBuildDate>
+    <atom:link href="blog.nagih.io.vn/en/categories/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>6 Level Deploy</title>
+      <link>blog.nagih.io.vn/en/blog/deploy/6-level-deploy/</link>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/deploy/6-level-deploy/</guid>
+      <description>&lt;p&gt;6 Cấp Độ Trưởng Thành Từ Deploy Thủ Công Đến Vận Hành Tinh Gọn&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Nginx Overview</title>
+      <link>blog.nagih.io.vn/en/blog/deploy/nginx/</link>
+      <pubDate>Sat, 16 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/deploy/nginx/</guid>
+      <description>&lt;p&gt;Nginx - Từ C10k Đến Containers&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Docker Best Practice for Production</title>
+      <link>blog.nagih.io.vn/en/blog/docker/docker-best-practice-for-production/</link>
+      <pubDate>Fri, 15 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/docker/docker-best-practice-for-production/</guid>
+      <description>&lt;p&gt;Các Thực tiễn Tốt nhất cho Môi trường Production&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Docker Fullstack Example</title>
+      <link>blog.nagih.io.vn/en/blog/docker/docker-fullstack-example/</link>
+      <pubDate>Fri, 15 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/docker/docker-fullstack-example/</guid>
+      <description>&lt;p&gt;Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Docker Compose</title>
+      <link>blog.nagih.io.vn/en/blog/docker/docker-compose/</link>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/docker/docker-compose/</guid>
+      <description>&lt;p&gt;Điều phối Ứng dụng với Docker Compose&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Docker Dockerfile</title>
+      <link>blog.nagih.io.vn/en/blog/docker/docker-dockerfile/</link>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/docker/docker-dockerfile/</guid>
+      <description>&lt;p&gt;Nghệ Thuật Viết Dockerfile - Tối Ưu và Bảo Mật&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Docker Practical Guide</title>
+      <link>blog.nagih.io.vn/en/blog/docker/docker-practical-guide/</link>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/docker/docker-practical-guide/</guid>
+      <description>&lt;p&gt;Hướng dẫn Thực hành: Container hóa Ứng dụng Dịch vụ đơn&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>blog.nagih.io.vn/en/blog/docker/docker/</link>
+      <pubDate>Wed, 13 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/docker/docker/</guid>
+      <description>&lt;p&gt;Sự Ra Đời và Các Nguyên Tắc Cốt Lõi của Docker&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Docker CLI</title>
+      <link>blog.nagih.io.vn/en/blog/docker/docker-cli/</link>
+      <pubDate>Wed, 13 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/docker/docker-cli/</guid>
+      <description>&lt;p&gt;Làm chủ Docker Command Line (CLI)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Internet Protocol (IP)</title>
+      <link>blog.nagih.io.vn/en/blog/network/ip/</link>
+      <pubDate>Wed, 13 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/network/ip/</guid>
+      <description>&lt;p&gt;Mastering Internet Protocol Addresses&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SSH - Github</title>
+      <link>blog.nagih.io.vn/en/blog/git/ssh/</link>
+      <pubDate>Wed, 13 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/git/ssh/</guid>
+      <description>&lt;p&gt;SSH and GitHub Tutorial&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Docker Overview</title>
+      <link>blog.nagih.io.vn/en/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/</link>
+      <pubDate>Tue, 12 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/</guid>
+      <description>&lt;p&gt;Tổng hợp các kiến thức cần biết về Docker&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

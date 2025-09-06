@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kafka on Nagih&#39;s Blog</title>
+    <link>blog.nagih.io.vn/en/tags/kafka/</link>
+    <description>Recent content in Kafka on Nagih&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 Aug 2025 00:00:00 +0700</lastBuildDate>
+    <atom:link href="blog.nagih.io.vn/en/tags/kafka/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kafka</title>
+      <link>blog.nagih.io.vn/en/blog/system/kafka/</link>
+      <pubDate>Sat, 09 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>blog.nagih.io.vn/en/blog/system/kafka/</guid>
+      <description>&lt;p&gt;Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
