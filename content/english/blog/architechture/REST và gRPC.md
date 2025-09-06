@@ -9,7 +9,7 @@ author: "Nagih"
 tags: ["rest", "grpc"]
 draft: false
 ---
-Trong thế giới phát triển phần mềm, việc lựa chọn kiến trúc API không đơn thuần là một quyết định kỹ thuật. Cuộc tranh luận giữa REST và gRPC không phải là câu hỏi "cái nào tốt hơn", mà là việc lựa chọn giữa hai triết lý thiết kế mạnh mẽ nhưng khác biệt cơ bản.
+Phân Tích về Kiến Trúc API Hiện Đại
 <!-- more -->
 ## Giới thiệu
 
