@@ -24,7 +24,7 @@ rm -rf .git/worktrees/public/
 # rm -rf /home/nagih/blog/static/images/*
 
 echo "Syncing post from obsidian"
-rsync -av --delete "/home/nagih/Documents/blog/posts/" "/home/nagih/blog/content/post/"
+rsync -av --delete "/home/nagih/Documents/blog/posts/" "/home/nagih/blog/content/english/blog/"
 
 echo "Syncing images"
 python images.py
@@ -36,7 +36,7 @@ echo "Removing existing files"
 rm -rf public/*
 
 echo "Generating site"
-env HUGO_ENV="production" hugo -t github-style
+env HUGO_ENV="production" hugo -t hugoplate
 
 echo "Create file CNAME"
 echo "blog.nagih.io.vn" > public/CNAME
