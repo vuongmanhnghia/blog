@@ -1,10 +1,13 @@
 ---
-title: Labs Operating
+title: "Labs Operating"
+meta_title: "Labs Operating"
+description: "1 Số Labs từ Cơ bản tới Nâng cao về Operating"
 date: 2025-08-23
+image: "/images/image-placeholder.png"
+categories: ["system", "operating"]
+author: "Nagih"
+tags: ["lab"]
 draft: false
-tags:
-  - system
-  - network
 ---
 1 Số Labs từ Cơ bản tới Nâng cao về Operating
 <!--more-->

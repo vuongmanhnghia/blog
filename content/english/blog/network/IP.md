@@ -1,9 +1,13 @@
 ---
-title: Internet Protocol (IP)
+title: "Internet Protocol (IP)"
+meta_title: "Internet Protocol (IP)"
+description: "Mastering Internet Protocol Addresses"
 date: 2025-08-13
+image: "/images/image-placeholder.png"
+categories: ["devops"]
+author: "Nagih"
+tags: ["docker"]
 draft: false
-tags:
-  - network
 ---
 Mastering Internet Protocol Addresses
 <!--more-->

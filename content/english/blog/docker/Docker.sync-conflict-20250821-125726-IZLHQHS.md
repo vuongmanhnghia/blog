@@ -1,11 +1,13 @@
 ---
-title: Docker Overview
+title: "Docker Overview"
+meta_title: "Docker Overview"
+description: "Tổng hợp các kiến thức cần biết về Docker"
 date: 2025-08-12
+image: "/images/image-placeholder.png"
+categories: ["devops"]
+author: "Nagih"
+tags: ["docker"]
 draft: false
-tags:
-  - database
-  - sql
-  - vi
 ---
 Tổng hợp các kiến thức cần biết về Docker
 <!--more-->

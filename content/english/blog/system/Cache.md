@@ -1,9 +1,13 @@
 ---
-title: Cache
+title: "Cache"
+meta_title: "Cache"
+description: "Overview of Cache"
 date: 2025-08-10
+image: "/images/image-placeholder.png"
+categories: ["system"]
+author: "Nagih"
+tags: ["cache"]
 draft: false
-tags:
-  - system
 ---
 Overview of Cache
 <!--more-->

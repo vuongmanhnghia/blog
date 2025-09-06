@@ -1,9 +1,13 @@
 ---
-title: Docker
+title: "Docker"
+meta_title: "Docker"
+description: "Sự Ra Đời và Các Nguyên Tắc Cốt Lõi của Docker"
 date: 2025-08-13
+image: "/images/image-placeholder.png"
+categories: ["devops"]
+author: "Nagih"
+tags: ["docker"]
 draft: false
-tags:
-  - docker
 ---
 Sự Ra Đời và Các Nguyên Tắc Cốt Lõi của Docker
 <!--more-->

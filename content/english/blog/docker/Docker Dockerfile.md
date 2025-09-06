@@ -1,9 +1,13 @@
 ---
-title: Docker Dockerfile
+title: "Docker Dockerfile"
+meta_title: "Docker Dockerfile"
+description: "Nghệ Thuật Viết Dockerfile - Tối Ưu và Bảo Mật"
 date: 2025-08-14
+image: "/images/image-placeholder.png"
+categories: ["devops"]
+author: "Nagih"
+tags: ["docker"]
 draft: false
-tags:
-  - docker
 ---
 Nghệ Thuật Viết Dockerfile - Tối Ưu và Bảo Mật
 <!--more-->

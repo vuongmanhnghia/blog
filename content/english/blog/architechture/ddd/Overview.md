@@ -1,11 +1,13 @@
 ---
-title: DDD (Domain-Driven Design)
+title: "DDD (Domain-Driven Design)"
+meta_title: "DDD (Domain-Driven Design)"
+description: "Architecture Overview Domain-Driven Design(DDD)"
 date: 2025-08-27
+image: "/images/image-placeholder.png"
+categories: ["architechture", "microservices"]
+author: "Nagih"
+tags: ["go"]
 draft: false
-tags:
-  - architechture
-  - go
-  - microservices
 ---
 Architecture Overview Domain-Driven Design(DDD)
 <!--more-->

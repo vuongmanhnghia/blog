@@ -1,11 +1,13 @@
 ---
-title: Internal Separation
+title: "Internal Separation"
+meta_title: "DDD (Domain-Driven Design)"
+description: "Phân biệt rõ các tác vụ trong Internali"
 date: 2025-08-29
+image: "/images/image-placeholder.png"
+categories: ["architechture", "microservices"]
+author: "Nagih"
+tags: ["ddd"]
 draft: false
-tags:
-  - architechture
-  - microservices
-  - ddd
 ---
 Phân biệt rõ các tác vụ trong Internal
 <!--more-->

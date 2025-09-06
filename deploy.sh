@@ -32,8 +32,8 @@ python images.py
 echo "Checking out deploy branch into public"
 git worktree add -B deploy public origin/deploy
 
-echo "Removing existing files"
-rm -rf public/*
+# echo "Removing existing files"
+# rm -rf public/*
 
 echo "Generating site"
 env HUGO_ENV="production" hugo -t hugoplate

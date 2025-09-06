@@ -1,9 +1,13 @@
 ---
-title: Docker Compose
+title: "Docker Compose"
+meta_title: "Docker Compose"
+description: "Điều phối Ứng dụng với Docker Compose"
 date: 2025-08-14
+image: "/images/image-placeholder.png"
+categories: ["devops"]
+author: "Nagih"
+tags: ["docker"]
 draft: false
-tags:
-  - docker
 ---
 Điều phối Ứng dụng với Docker Compose
 <!--more-->

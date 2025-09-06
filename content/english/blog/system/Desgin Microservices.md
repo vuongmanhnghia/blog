@@ -1,10 +1,13 @@
 ---
-title: Desgin Microservices
+title: "Desgin Microservices"
+meta_title: "Desgin Microservices"
+description: "Hướng dẫn thiết kế kiến trúc Microservices"
 date: 2025-08-18
+image: "/images/image-placeholder.png"
+categories: ["system", "microservices"]
+author: "Nagih"
+tags: [""]
 draft: false
-tags:
-  - system
-  - microservices
 ---
 Hướng dẫn thiết kế kiến trúc Microservices
 <!--more-->

@@ -1,9 +1,13 @@
 ---
-title: Nginx Overview
+title: "Nginx Overview"
+meta_title: "Nginx Overview"
+description: "Nginx - Từ C10k Đến Containers"
 date: 2025-08-16
+image: "/images/image-placeholder.png"
+categories: ["devops", "security"]
+author: "Nagih"
+tags: ["nginx"]
 draft: false
-tags:
-  - deploy
 ---
 Nginx - Từ C10k Đến Containers
 <!--more-->

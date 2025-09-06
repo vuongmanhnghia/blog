@@ -1,9 +1,13 @@
 ---
-title: Docker CLI
+title: "Docker CLI"
+meta_title: "Docker CLI"
+description: "Làm chủ Docker Command Line (CLI)"
 date: 2025-08-13
+image: "/images/image-placeholder.png"
+categories: ["devops"]
+author: "Nagih"
+tags: ["docker"]
 draft: false
-tags:
-  - docker
 ---
 Làm chủ Docker Command Line (CLI)
 <!--more-->

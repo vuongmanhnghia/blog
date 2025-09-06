@@ -1,10 +1,13 @@
 ---
-title: SQL
+title: "SQL Overview"
+meta_title: "SQL Overview"
+description: "Từ Zero Đến Hero - Tổng Hợp Tất Cả Các Lệnh SQL Quan Trọng"
 date: 2025-08-12
+image: "/images/image-placeholder.png"
+categories: ["database"]
+author: "Nagih"
+tags: ["sql"]
 draft: false
-tags:
-  - database
-  - sql
 ---
 Từ Zero Đến Hero - Tổng Hợp Tất Cả Các Lệnh SQL Quan Trọng
 <!--more-->
