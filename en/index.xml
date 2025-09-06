@@ -2,220 +2,220 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nagih&#39;s Blog</title>
-    <link>blog.nagih.io.vn/en/</link>
+    <link>/en/</link>
     <description>Recent content on Nagih&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 05 Sep 2025 00:00:00 +0700</lastBuildDate>
-    <atom:link href="blog.nagih.io.vn/en/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Process Control Block</title>
-      <link>blog.nagih.io.vn/en/blog/system/process-control-block/</link>
+      <link>/en/blog/system/process-control-block/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/system/process-control-block/</guid>
+      <guid>/en/blog/system/process-control-block/</guid>
       <description>&lt;p&gt;Khối Quản lý Tiến trình (PCB) - &amp;ldquo;CMND&amp;rdquo; của Mọi Chương trình trong Máy tính&lt;/p&gt;</description>
     </item>
     <item>
       <title>Internal Separation</title>
-      <link>blog.nagih.io.vn/en/blog/architechture/ddd/internal-separation/</link>
+      <link>/en/blog/architechture/ddd/internal-separation/</link>
       <pubDate>Fri, 29 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/architechture/ddd/internal-separation/</guid>
+      <guid>/en/blog/architechture/ddd/internal-separation/</guid>
       <description>&lt;p&gt;Phân biệt rõ các tác vụ trong Internal&lt;/p&gt;</description>
     </item>
     <item>
       <title>REST và gRPC</title>
-      <link>blog.nagih.io.vn/en/blog/architechture/rest-v%C3%A0-grpc/</link>
+      <link>/en/blog/architechture/rest-v%C3%A0-grpc/</link>
       <pubDate>Thu, 28 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/architechture/rest-v%C3%A0-grpc/</guid>
+      <guid>/en/blog/architechture/rest-v%C3%A0-grpc/</guid>
       <description>&lt;p&gt;Trong thế giới phát triển phần mềm, việc lựa chọn kiến trúc API không đơn thuần là một quyết định kỹ thuật. Cuộc tranh luận giữa REST và gRPC không phải là câu hỏi &amp;ldquo;cái nào tốt hơn&amp;rdquo;, mà là việc lựa chọn giữa hai triết lý thiết kế mạnh mẽ nhưng khác biệt cơ bản.&lt;/p&gt;</description>
     </item>
     <item>
       <title>DDD (Domain-Driven Design)</title>
-      <link>blog.nagih.io.vn/en/blog/architechture/ddd/overview/</link>
+      <link>/en/blog/architechture/ddd/overview/</link>
       <pubDate>Wed, 27 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/architechture/ddd/overview/</guid>
+      <guid>/en/blog/architechture/ddd/overview/</guid>
       <description>&lt;p&gt;Architecture Overview Domain-Driven Design(DDD)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Labs Operating</title>
-      <link>blog.nagih.io.vn/en/blog/system/labs-operating/</link>
+      <link>/en/blog/system/labs-operating/</link>
       <pubDate>Sat, 23 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/system/labs-operating/</guid>
+      <guid>/en/blog/system/labs-operating/</guid>
       <description>&lt;p&gt;1 Số Labs từ Cơ bản tới Nâng cao về Operating&lt;/p&gt;</description>
     </item>
     <item>
       <title>Desgin Microservices</title>
-      <link>blog.nagih.io.vn/en/blog/system/desgin-microservices/</link>
+      <link>/en/blog/system/desgin-microservices/</link>
       <pubDate>Mon, 18 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/system/desgin-microservices/</guid>
+      <guid>/en/blog/system/desgin-microservices/</guid>
       <description>&lt;p&gt;Hướng dẫn thiết kế kiến trúc Microservices&lt;/p&gt;</description>
     </item>
     <item>
       <title>6 Level Deploy</title>
-      <link>blog.nagih.io.vn/en/blog/deploy/6-level-deploy/</link>
+      <link>/en/blog/deploy/6-level-deploy/</link>
       <pubDate>Sun, 17 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/deploy/6-level-deploy/</guid>
+      <guid>/en/blog/deploy/6-level-deploy/</guid>
       <description>&lt;p&gt;6 Cấp Độ Trưởng Thành Từ Deploy Thủ Công Đến Vận Hành Tinh Gọn&lt;/p&gt;</description>
     </item>
     <item>
       <title>Nginx Overview</title>
-      <link>blog.nagih.io.vn/en/blog/deploy/nginx/</link>
+      <link>/en/blog/deploy/nginx/</link>
       <pubDate>Sat, 16 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/deploy/nginx/</guid>
+      <guid>/en/blog/deploy/nginx/</guid>
       <description>&lt;p&gt;Nginx - Từ C10k Đến Containers&lt;/p&gt;</description>
     </item>
     <item>
       <title>Docker Best Practice for Production</title>
-      <link>blog.nagih.io.vn/en/blog/docker/docker-best-practice-for-production/</link>
+      <link>/en/blog/docker/docker-best-practice-for-production/</link>
       <pubDate>Fri, 15 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/docker/docker-best-practice-for-production/</guid>
+      <guid>/en/blog/docker/docker-best-practice-for-production/</guid>
       <description>&lt;p&gt;Các Thực tiễn Tốt nhất cho Môi trường Production&lt;/p&gt;</description>
     </item>
     <item>
       <title>Docker Fullstack Example</title>
-      <link>blog.nagih.io.vn/en/blog/docker/docker-fullstack-example/</link>
+      <link>/en/blog/docker/docker-fullstack-example/</link>
       <pubDate>Fri, 15 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/docker/docker-fullstack-example/</guid>
+      <guid>/en/blog/docker/docker-fullstack-example/</guid>
       <description>&lt;p&gt;Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose&lt;/p&gt;</description>
     </item>
     <item>
       <title>Docker Compose</title>
-      <link>blog.nagih.io.vn/en/blog/docker/docker-compose/</link>
+      <link>/en/blog/docker/docker-compose/</link>
       <pubDate>Thu, 14 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/docker/docker-compose/</guid>
+      <guid>/en/blog/docker/docker-compose/</guid>
       <description>&lt;p&gt;Điều phối Ứng dụng với Docker Compose&lt;/p&gt;</description>
     </item>
     <item>
       <title>Docker Dockerfile</title>
-      <link>blog.nagih.io.vn/en/blog/docker/docker-dockerfile/</link>
+      <link>/en/blog/docker/docker-dockerfile/</link>
       <pubDate>Thu, 14 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/docker/docker-dockerfile/</guid>
+      <guid>/en/blog/docker/docker-dockerfile/</guid>
       <description>&lt;p&gt;Nghệ Thuật Viết Dockerfile - Tối Ưu và Bảo Mật&lt;/p&gt;</description>
     </item>
     <item>
       <title>Docker Practical Guide</title>
-      <link>blog.nagih.io.vn/en/blog/docker/docker-practical-guide/</link>
+      <link>/en/blog/docker/docker-practical-guide/</link>
       <pubDate>Thu, 14 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/docker/docker-practical-guide/</guid>
+      <guid>/en/blog/docker/docker-practical-guide/</guid>
       <description>&lt;p&gt;Hướng dẫn Thực hành: Container hóa Ứng dụng Dịch vụ đơn&lt;/p&gt;</description>
     </item>
     <item>
       <title>Docker</title>
-      <link>blog.nagih.io.vn/en/blog/docker/docker/</link>
+      <link>/en/blog/docker/docker/</link>
       <pubDate>Wed, 13 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/docker/docker/</guid>
+      <guid>/en/blog/docker/docker/</guid>
       <description>&lt;p&gt;Sự Ra Đời và Các Nguyên Tắc Cốt Lõi của Docker&lt;/p&gt;</description>
     </item>
     <item>
       <title>Docker CLI</title>
-      <link>blog.nagih.io.vn/en/blog/docker/docker-cli/</link>
+      <link>/en/blog/docker/docker-cli/</link>
       <pubDate>Wed, 13 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/docker/docker-cli/</guid>
+      <guid>/en/blog/docker/docker-cli/</guid>
       <description>&lt;p&gt;Làm chủ Docker Command Line (CLI)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Internet Protocol (IP)</title>
-      <link>blog.nagih.io.vn/en/blog/network/ip/</link>
+      <link>/en/blog/network/ip/</link>
       <pubDate>Wed, 13 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/network/ip/</guid>
+      <guid>/en/blog/network/ip/</guid>
       <description>&lt;p&gt;Mastering Internet Protocol Addresses&lt;/p&gt;</description>
     </item>
     <item>
       <title>SSH - Github</title>
-      <link>blog.nagih.io.vn/en/blog/git/ssh/</link>
+      <link>/en/blog/git/ssh/</link>
       <pubDate>Wed, 13 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/git/ssh/</guid>
+      <guid>/en/blog/git/ssh/</guid>
       <description>&lt;p&gt;SSH and GitHub Tutorial&lt;/p&gt;</description>
     </item>
     <item>
       <title>9 MySQL Table Design Rules &amp; Skills</title>
-      <link>blog.nagih.io.vn/en/blog/database/9-mysql-table-design-rules--skills/</link>
+      <link>/en/blog/database/9-mysql-table-design-rules--skills/</link>
       <pubDate>Tue, 12 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/database/9-mysql-table-design-rules--skills/</guid>
+      <guid>/en/blog/database/9-mysql-table-design-rules--skills/</guid>
       <description>&lt;p&gt;Principles and skills to extend MySQL table design&lt;/p&gt;</description>
     </item>
     <item>
       <title>Docker Overview</title>
-      <link>blog.nagih.io.vn/en/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/</link>
+      <link>/en/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/</link>
       <pubDate>Tue, 12 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/</guid>
+      <guid>/en/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/</guid>
       <description>&lt;p&gt;Tổng hợp các kiến thức cần biết về Docker&lt;/p&gt;</description>
     </item>
     <item>
       <title>SQL Overview</title>
-      <link>blog.nagih.io.vn/en/blog/database/sql/</link>
+      <link>/en/blog/database/sql/</link>
       <pubDate>Tue, 12 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/database/sql/</guid>
+      <guid>/en/blog/database/sql/</guid>
       <description>&lt;p&gt;Từ Zero Đến Hero - Tổng Hợp Tất Cả Các Lệnh SQL Quan Trọng&lt;/p&gt;</description>
     </item>
     <item>
       <title>Cache</title>
-      <link>blog.nagih.io.vn/en/blog/system/cache/</link>
+      <link>/en/blog/system/cache/</link>
       <pubDate>Sun, 10 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/system/cache/</guid>
+      <guid>/en/blog/system/cache/</guid>
       <description>&lt;p&gt;Overview of Cache&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kafka</title>
-      <link>blog.nagih.io.vn/en/blog/system/kafka/</link>
+      <link>/en/blog/system/kafka/</link>
       <pubDate>Sat, 09 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/system/kafka/</guid>
+      <guid>/en/blog/system/kafka/</guid>
       <description>&lt;p&gt;Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka&lt;/p&gt;</description>
     </item>
     <item>
       <title>Microservices</title>
-      <link>blog.nagih.io.vn/en/blog/system/microservices/</link>
+      <link>/en/blog/system/microservices/</link>
       <pubDate>Thu, 07 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/system/microservices/</guid>
+      <guid>/en/blog/system/microservices/</guid>
       <description>&lt;p&gt;Tổng quan về kiến trúc microservices&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>blog.nagih.io.vn/en/sections/call-to-action/</link>
+      <link>/en/sections/call-to-action/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>blog.nagih.io.vn/en/sections/call-to-action/</guid>
+      <guid>/en/sections/call-to-action/</guid>
       <description></description>
     </item>
     <item>
       <title></title>
-      <link>blog.nagih.io.vn/en/sections/testimonial/</link>
+      <link>/en/sections/testimonial/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>blog.nagih.io.vn/en/sections/testimonial/</guid>
+      <guid>/en/sections/testimonial/</guid>
       <description></description>
     </item>
     <item>
       <title>Elements</title>
-      <link>blog.nagih.io.vn/en/elements/</link>
+      <link>/en/elements/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>blog.nagih.io.vn/en/elements/</guid>
+      <guid>/en/elements/</guid>
       <description>&lt;details class=&#34;table-of-content &#34;&gt;&#xA;  &lt;summary&gt;&#xA;    &#xA;      Table of Contents&#xA;    &#xA;  &lt;/summary&gt;&#xA;  &lt;nav id=&#34;TableOfContents&#34;&gt;&#xA;  &lt;ol&gt;&#xA;    &lt;li&gt;&lt;a href=&#34;#heading-2&#34;&gt;Heading 2&lt;/a&gt;&#xA;      &lt;ol&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#heading-3&#34;&gt;Heading 3&lt;/a&gt;&#xA;          &lt;ol&gt;&#xA;            &lt;li&gt;&lt;a href=&#34;#heading-4&#34;&gt;Heading 4&lt;/a&gt;&#xA;              &lt;ol&gt;&#xA;                &lt;li&gt;&lt;a href=&#34;#heading-5&#34;&gt;Heading 5&lt;/a&gt;&lt;/li&gt;&#xA;              &lt;/ol&gt;&#xA;            &lt;/li&gt;&#xA;          &lt;/ol&gt;&#xA;        &lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#emphasis&#34;&gt;Emphasis&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#button&#34;&gt;Button&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#link&#34;&gt;Link&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#paragraph&#34;&gt;Paragraph&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#ordered-list&#34;&gt;Ordered List&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#unordered-list&#34;&gt;Unordered List&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#notice&#34;&gt;Notice&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#tab&#34;&gt;Tab&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#accordions&#34;&gt;Accordions&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#code-and-syntax-highlighting&#34;&gt;Code and Syntax Highlighting&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#blockquote&#34;&gt;Blockquote&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#tables&#34;&gt;Tables&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#image&#34;&gt;Image&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#gallery&#34;&gt;Gallery&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#slider&#34;&gt;Slider&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#youtube-video&#34;&gt;Youtube video&lt;/a&gt;&lt;/li&gt;&#xA;        &lt;li&gt;&lt;a href=&#34;#custom-video&#34;&gt;Custom video&lt;/a&gt;&lt;/li&gt;&#xA;      &lt;/ol&gt;&#xA;    &lt;/li&gt;&#xA;  &lt;/ol&gt;&#xA;&lt;/nav&gt;&#xA;&lt;/details&gt;&#xA;&#xA;&lt;p&gt;Here is an example of headings. You can use this heading by the following markdown rules. For example: use &lt;code&gt;#&lt;/code&gt; for heading 1 and use &lt;code&gt;######&lt;/code&gt; for heading 6.&lt;/p&gt;</description>
     </item>
     <item>
       <title>John Doe</title>
-      <link>blog.nagih.io.vn/en/authors/john-doe/</link>
+      <link>/en/authors/john-doe/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>blog.nagih.io.vn/en/authors/john-doe/</guid>
+      <guid>/en/authors/john-doe/</guid>
       <description>&lt;p&gt;lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr navigation et dolore magna aliqua.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Privacy</title>
-      <link>blog.nagih.io.vn/en/privacy-policy/</link>
+      <link>/en/privacy-policy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>blog.nagih.io.vn/en/privacy-policy/</guid>
+      <guid>/en/privacy-policy/</guid>
       <description>&lt;h4 id=&#34;responsibility-of-contributors&#34;&gt;Responsibility of Contributors&lt;/h4&gt;&#xA;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed&lt;/p&gt;</description>
     </item>
     <item>
       <title>Sam Wilson</title>
-      <link>blog.nagih.io.vn/en/authors/sam-wilson/</link>
+      <link>/en/authors/sam-wilson/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>blog.nagih.io.vn/en/authors/sam-wilson/</guid>
+      <guid>/en/authors/sam-wilson/</guid>
       <description>&lt;p&gt;lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr navigation et dolore magna aliqua.&lt;/p&gt;</description>
     </item>
     <item>
       <title>William Jacob</title>
-      <link>blog.nagih.io.vn/en/authors/william-jacob/</link>
+      <link>/en/authors/william-jacob/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>blog.nagih.io.vn/en/authors/william-jacob/</guid>
+      <guid>/en/authors/william-jacob/</guid>
       <description>&lt;p&gt;lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr navigation et dolore magna aliqua.&lt;/p&gt;</description>
     </item>
   </channel>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rest on Nagih&#39;s Blog</title>
-    <link>blog.nagih.io.vn/en/tags/rest/</link>
+    <link>/en/tags/rest/</link>
     <description>Recent content in Rest on Nagih&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 28 Aug 2025 00:00:00 +0700</lastBuildDate>
-    <atom:link href="blog.nagih.io.vn/en/tags/rest/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/en/tags/rest/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>REST và gRPC</title>
-      <link>blog.nagih.io.vn/en/blog/architechture/rest-v%C3%A0-grpc/</link>
+      <link>/en/blog/architechture/rest-v%C3%A0-grpc/</link>
       <pubDate>Thu, 28 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/architechture/rest-v%C3%A0-grpc/</guid>
+      <guid>/en/blog/architechture/rest-v%C3%A0-grpc/</guid>
       <description>&lt;p&gt;Trong thế giới phát triển phần mềm, việc lựa chọn kiến trúc API không đơn thuần là một quyết định kỹ thuật. Cuộc tranh luận giữa REST và gRPC không phải là câu hỏi &amp;ldquo;cái nào tốt hơn&amp;rdquo;, mà là việc lựa chọn giữa hai triết lý thiết kế mạnh mẽ nhưng khác biệt cơ bản.&lt;/p&gt;</description>
     </item>
   </channel>

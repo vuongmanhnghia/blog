@@ -2,73 +2,73 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Nagih&#39;s Blog</title>
-    <link>blog.nagih.io.vn/en/categories/</link>
+    <link>/en/categories/</link>
     <description>Recent content in Categories on Nagih&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 05 Sep 2025 00:00:00 +0700</lastBuildDate>
-    <atom:link href="blog.nagih.io.vn/en/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/en/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>System</title>
-      <link>blog.nagih.io.vn/en/categories/system/</link>
+      <link>/en/categories/system/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/categories/system/</guid>
+      <guid>/en/categories/system/</guid>
       <description></description>
     </item>
     <item>
       <title>Architechture</title>
-      <link>blog.nagih.io.vn/en/categories/architechture/</link>
+      <link>/en/categories/architechture/</link>
       <pubDate>Fri, 29 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/categories/architechture/</guid>
+      <guid>/en/categories/architechture/</guid>
       <description></description>
     </item>
     <item>
       <title>Microservices</title>
-      <link>blog.nagih.io.vn/en/categories/microservices/</link>
+      <link>/en/categories/microservices/</link>
       <pubDate>Fri, 29 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/categories/microservices/</guid>
+      <guid>/en/categories/microservices/</guid>
       <description></description>
     </item>
     <item>
       <title>Protocol</title>
-      <link>blog.nagih.io.vn/en/categories/protocol/</link>
+      <link>/en/categories/protocol/</link>
       <pubDate>Thu, 28 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/categories/protocol/</guid>
+      <guid>/en/categories/protocol/</guid>
       <description></description>
     </item>
     <item>
       <title>Operating</title>
-      <link>blog.nagih.io.vn/en/categories/operating/</link>
+      <link>/en/categories/operating/</link>
       <pubDate>Sat, 23 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/categories/operating/</guid>
+      <guid>/en/categories/operating/</guid>
       <description></description>
     </item>
     <item>
       <title>Ci/Cd</title>
-      <link>blog.nagih.io.vn/en/categories/ci/cd/</link>
+      <link>/en/categories/ci/cd/</link>
       <pubDate>Sun, 17 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/categories/ci/cd/</guid>
+      <guid>/en/categories/ci/cd/</guid>
       <description></description>
     </item>
     <item>
       <title>Devops</title>
-      <link>blog.nagih.io.vn/en/categories/devops/</link>
+      <link>/en/categories/devops/</link>
       <pubDate>Sun, 17 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/categories/devops/</guid>
+      <guid>/en/categories/devops/</guid>
       <description></description>
     </item>
     <item>
       <title>Security</title>
-      <link>blog.nagih.io.vn/en/categories/security/</link>
+      <link>/en/categories/security/</link>
       <pubDate>Sat, 16 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/categories/security/</guid>
+      <guid>/en/categories/security/</guid>
       <description></description>
     </item>
     <item>
       <title>Database</title>
-      <link>blog.nagih.io.vn/en/categories/database/</link>
+      <link>/en/categories/database/</link>
       <pubDate>Tue, 12 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/categories/database/</guid>
+      <guid>/en/categories/database/</guid>
       <description></description>
     </item>
   </channel>

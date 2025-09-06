@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cache on Nagih&#39;s Blog</title>
-    <link>blog.nagih.io.vn/en/tags/cache/</link>
+    <link>/en/tags/cache/</link>
     <description>Recent content in Cache on Nagih&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0700</lastBuildDate>
-    <atom:link href="blog.nagih.io.vn/en/tags/cache/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/en/tags/cache/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cache</title>
-      <link>blog.nagih.io.vn/en/blog/system/cache/</link>
+      <link>/en/blog/system/cache/</link>
       <pubDate>Sun, 10 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>blog.nagih.io.vn/en/blog/system/cache/</guid>
+      <guid>/en/blog/system/cache/</guid>
       <description>&lt;p&gt;Overview of Cache&lt;/p&gt;</description>
     </item>
   </channel>

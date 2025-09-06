@@ -2,169 +2,169 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>blog.nagih.io.vn/en/</loc>
+    <loc>/en/</loc>
     <lastmod>2025-09-05T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/</loc>
+    <loc>/en/blog/</loc>
     <lastmod>2025-09-05T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/categories/</loc>
+    <loc>/en/categories/</loc>
     <lastmod>2025-09-05T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/tags/pcb/</loc>
+    <loc>/en/tags/pcb/</loc>
     <lastmod>2025-09-05T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/system/process-control-block/</loc>
+    <loc>/en/blog/system/process-control-block/</loc>
     <lastmod>2025-09-05T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/categories/system/</loc>
+    <loc>/en/categories/system/</loc>
     <lastmod>2025-09-05T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/tags/</loc>
+    <loc>/en/tags/</loc>
     <lastmod>2025-09-05T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/categories/architechture/</loc>
+    <loc>/en/categories/architechture/</loc>
     <lastmod>2025-08-29T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/tags/ddd/</loc>
+    <loc>/en/tags/ddd/</loc>
     <lastmod>2025-08-29T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/architechture/ddd/internal-separation/</loc>
+    <loc>/en/blog/architechture/ddd/internal-separation/</loc>
     <lastmod>2025-08-29T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/categories/microservices/</loc>
+    <loc>/en/categories/microservices/</loc>
     <lastmod>2025-08-29T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/tags/grpc/</loc>
+    <loc>/en/tags/grpc/</loc>
     <lastmod>2025-08-28T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/categories/protocol/</loc>
+    <loc>/en/categories/protocol/</loc>
     <lastmod>2025-08-28T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/tags/rest/</loc>
+    <loc>/en/tags/rest/</loc>
     <lastmod>2025-08-28T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/architechture/rest-v%C3%A0-grpc/</loc>
+    <loc>/en/blog/architechture/rest-v%C3%A0-grpc/</loc>
     <lastmod>2025-08-28T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/architechture/ddd/overview/</loc>
+    <loc>/en/blog/architechture/ddd/overview/</loc>
     <lastmod>2025-08-27T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/tags/go/</loc>
+    <loc>/en/tags/go/</loc>
     <lastmod>2025-08-27T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/tags/lab/</loc>
+    <loc>/en/tags/lab/</loc>
     <lastmod>2025-08-23T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/system/labs-operating/</loc>
+    <loc>/en/blog/system/labs-operating/</loc>
     <lastmod>2025-08-23T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/categories/operating/</loc>
+    <loc>/en/categories/operating/</loc>
     <lastmod>2025-08-23T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/system/desgin-microservices/</loc>
+    <loc>/en/blog/system/desgin-microservices/</loc>
     <lastmod>2025-08-18T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/deploy/6-level-deploy/</loc>
+    <loc>/en/blog/deploy/6-level-deploy/</loc>
     <lastmod>2025-08-17T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/categories/ci/cd/</loc>
+    <loc>/en/categories/ci/cd/</loc>
     <lastmod>2025-08-17T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/categories/devops/</loc>
+    <loc>/en/categories/devops/</loc>
     <lastmod>2025-08-17T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/tags/docker/</loc>
+    <loc>/en/tags/docker/</loc>
     <lastmod>2025-08-17T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/tags/nginx/</loc>
+    <loc>/en/tags/nginx/</loc>
     <lastmod>2025-08-16T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/deploy/nginx/</loc>
+    <loc>/en/blog/deploy/nginx/</loc>
     <lastmod>2025-08-16T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/categories/security/</loc>
+    <loc>/en/categories/security/</loc>
     <lastmod>2025-08-16T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/docker/docker-best-practice-for-production/</loc>
+    <loc>/en/blog/docker/docker-best-practice-for-production/</loc>
     <lastmod>2025-08-15T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/docker/docker-fullstack-example/</loc>
+    <loc>/en/blog/docker/docker-fullstack-example/</loc>
     <lastmod>2025-08-15T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/docker/docker-compose/</loc>
+    <loc>/en/blog/docker/docker-compose/</loc>
     <lastmod>2025-08-14T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/docker/docker-dockerfile/</loc>
+    <loc>/en/blog/docker/docker-dockerfile/</loc>
     <lastmod>2025-08-14T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/docker/docker-practical-guide/</loc>
+    <loc>/en/blog/docker/docker-practical-guide/</loc>
     <lastmod>2025-08-14T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/docker/docker/</loc>
+    <loc>/en/blog/docker/docker/</loc>
     <lastmod>2025-08-13T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/docker/docker-cli/</loc>
+    <loc>/en/blog/docker/docker-cli/</loc>
     <lastmod>2025-08-13T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/network/ip/</loc>
+    <loc>/en/blog/network/ip/</loc>
     <lastmod>2025-08-13T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/git/ssh/</loc>
+    <loc>/en/blog/git/ssh/</loc>
     <lastmod>2025-08-13T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/database/9-mysql-table-design-rules--skills/</loc>
+    <loc>/en/blog/database/9-mysql-table-design-rules--skills/</loc>
     <lastmod>2025-08-12T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/categories/database/</loc>
+    <loc>/en/categories/database/</loc>
     <lastmod>2025-08-12T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/</loc>
+    <loc>/en/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/</loc>
     <lastmod>2025-08-12T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/tags/sql/</loc>
+    <loc>/en/tags/sql/</loc>
     <lastmod>2025-08-12T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/database/sql/</loc>
+    <loc>/en/blog/database/sql/</loc>
     <lastmod>2025-08-12T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/system/cache/</loc>
+    <loc>/en/blog/system/cache/</loc>
     <lastmod>2025-08-10T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/tags/cache/</loc>
+    <loc>/en/tags/cache/</loc>
     <lastmod>2025-08-10T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/system/kafka/</loc>
+    <loc>/en/blog/system/kafka/</loc>
     <lastmod>2025-08-09T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/tags/kafka/</loc>
+    <loc>/en/tags/kafka/</loc>
     <lastmod>2025-08-09T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/blog/system/microservices/</loc>
+    <loc>/en/blog/system/microservices/</loc>
     <lastmod>2025-08-07T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>blog.nagih.io.vn/en/sections/call-to-action/</loc>
+    <loc>/en/sections/call-to-action/</loc>
   </url><url>
-    <loc>blog.nagih.io.vn/en/sections/testimonial/</loc>
+    <loc>/en/sections/testimonial/</loc>
   </url><url>
-    <loc>blog.nagih.io.vn/en/authors/</loc>
+    <loc>/en/authors/</loc>
   </url><url>
-    <loc>blog.nagih.io.vn/en/contact/</loc>
+    <loc>/en/contact/</loc>
   </url><url>
-    <loc>blog.nagih.io.vn/en/elements/</loc>
+    <loc>/en/elements/</loc>
   </url><url>
-    <loc>blog.nagih.io.vn/en/about/</loc>
+    <loc>/en/about/</loc>
   </url><url>
-    <loc>blog.nagih.io.vn/en/authors/john-doe/</loc>
+    <loc>/en/authors/john-doe/</loc>
   </url><url>
-    <loc>blog.nagih.io.vn/en/pages/</loc>
+    <loc>/en/pages/</loc>
   </url><url>
-    <loc>blog.nagih.io.vn/en/privacy-policy/</loc>
+    <loc>/en/privacy-policy/</loc>
   </url><url>
-    <loc>blog.nagih.io.vn/en/authors/sam-wilson/</loc>
+    <loc>/en/authors/sam-wilson/</loc>
   </url><url>
-    <loc>blog.nagih.io.vn/en/sections/</loc>
+    <loc>/en/sections/</loc>
   </url><url>
-    <loc>blog.nagih.io.vn/en/authors/william-jacob/</loc>
+    <loc>/en/authors/william-jacob/</loc>
   </url>
 </urlset>
