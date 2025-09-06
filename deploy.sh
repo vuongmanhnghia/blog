@@ -35,9 +35,8 @@ git worktree add -B deploy public origin/deploy
 echo "Removing existing files"
 rm -rf public/*
 
-# echo "Generating site"
-# env HUGO_ENV="production" hugo -t hugoplate
-npm run build
+echo "Generating site"
+env HUGO_ENV="production" hugo -t hugoplate
 
 echo "Create file CNAME"
 echo "blog.nagih.io.vn" > public/CNAME
