@@ -6,11 +6,11 @@ mkdir public
 git worktree prune
 rm -rf .git/worktrees/public/
 
-# echo "Deleting old images"
-# rm -rf /home/nagih/blog/static/images/*
-
 echo "Syncing post from obsidian"
 rsync -av --delete "/home/nagih/Documents/blog/posts/" "/home/nagih/blog/content/english/blog/"
+
+echo "Syncing thumbnails from obsidian"
+rsync -av --delete "/home/nagih/Documents/blog/thumbnails/" "/home/nagih/blog/assets/images/thumbnails/"
 
 echo "Syncing images"
 python images.py

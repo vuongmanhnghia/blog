@@ -1,12 +1,17 @@
 ---
-title: "Hướng dẫn tùy biến phân vùng EFI khi cài windows"
-meta_title: "Hướng dẫn tùy biến phân vùng EFI khi cài windows"
-description: "Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI"
-date: 2025-08-28
-image: "/images/image-placeholder.png"
-categories: ["System", "OS"]
-author: "Nagih"
-tags: ["windows", "boot", "UFI"]
+title: Hướng dẫn tùy biến phân vùng EFI khi cài windows
+meta_title: Hướng dẫn tùy biến phân vùng EFI khi cài windows
+description: Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI
+date: 2025-09-08
+image: /images/image-placeholder.png
+categories:
+  - System
+  - OS
+author: Nagih
+tags:
+  - windows
+  - boot
+  - UFI
 draft: false
 ---
 Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI
