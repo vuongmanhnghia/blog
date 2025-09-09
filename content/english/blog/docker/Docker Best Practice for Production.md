@@ -1,13 +1,9 @@
 ---
-title: "Docker Best Practice for Production"
-meta_title: "Docker Best Practice for Production"
-description: "Các Thực tiễn Tốt nhất cho Môi trường Production"
+title: Docker Best Practice for Production
 date: 2025-08-15
-image: "/images/image-placeholder.png"
-categories: ["devops"]
-author: "Nagih"
-tags: ["docker"]
 draft: false
+tags:
+  - docker
 ---
 Các Thực tiễn Tốt nhất cho Môi trường Production
 <!--more-->

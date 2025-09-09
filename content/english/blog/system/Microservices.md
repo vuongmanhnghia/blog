@@ -1,13 +1,10 @@
 ---
-title: "Microservices"
-meta_title: "Microservices"
-description: "Tổng quan về kiến trúc microservices"
+title: Microservices
 date: 2025-08-07
-image: "/images/image-placeholder.png"
-categories: ["system", "microservices"]
-author: "Nagih"
-tags: [""]
 draft: false
+tags:
+  - system
+  - microservices
 ---
 Tổng quan về kiến trúc microservices
 <!--more-->

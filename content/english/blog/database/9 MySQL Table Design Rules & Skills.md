@@ -1,13 +1,10 @@
 ---
-title: "9 MySQL Table Design Rules & Skills"
-meta_title: "9 MySQL Table Design Rules & Skills"
-description: "Principles and skills to extend MySQL table design"
+title: 9 MySQL Table Design Rules & Skills
 date: 2025-08-12
-image: "/images/image-placeholder.png"
-categories: ["database"]
-author: "Nagih"
-tags: ["sql"]
 draft: false
+tags:
+  - database
+  - sql
 ---
 Principles and skills to extend MySQL table design
 <!--more-->

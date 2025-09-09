@@ -1,13 +1,9 @@
 ---
-title: "Docker Fullstack Example"
-meta_title: "Docker Fullstack Example"
-description: "Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose"
+title: Docker Fullstack Example
 date: 2025-08-15
-image: "/images/image-placeholder.png"
-categories: ["devops"]
-author: "Nagih"
-tags: ["docker"]
 draft: false
+tags:
+  - docker
 ---
 Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose
 <!--more-->

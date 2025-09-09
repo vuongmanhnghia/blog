@@ -1,8 +1,8 @@
 <header
   class="header {{ if site.Params.navbar_fixed }}sticky top-0{{ end }} z-30">
-  <nav class="navbar container">
+  <nav class="navbar container grid grid-cols-[repeat(3,1fr)] grid-rows-[1fr] gap-y-[10px] gap-x-[10px]">
     <!-- logo -->
-    <div class="order-0">
+    <div class="order-0 justify-start">
       <!-- navbar brand/logo -->
       <a class="navbar-brand block" href="{{ site.Home.RelPermalink }}">
         {{ partial "logo" }}
@@ -29,7 +29,7 @@
     <!-- main navbar -->
     <ul
       id="nav-menu"
-      class="navbar-nav order-3 hidden lg:flex w-full pb-6 lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8">
+      class="navbar-nav order-3 hidden lg:flex w-full pb-6 lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8 justify-center">
       {{ $currentPage := . }}
       {{ range site.Menus.main }}
         {{ $menuURL := .URL | absLangURL }}
@@ -106,7 +106,7 @@
       {{ end }}
     </ul>
 
-    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
+    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0 justify-end">
       {{ with site.Params.search }}
         {{ if .enable }}
           <button
