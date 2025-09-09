@@ -879,11 +879,6 @@
   </summary>
   <nav id="TableOfContents">
   <ol>
-    <li>
-      <ol>
-        <li><a href="#quá-trình-này-quản-lý-2-nguyên-tắc-cốt-lõi-của-nixos">Quá trình này quản lý 2 nguyên tắc cốt lõi của NixOS</a></li>
-      </ol>
-    </li>
     <li><a href="#các-bước-tiến-hành">Các bước tiến hành</a>
       <ol>
         <li><a href="#bước-1-cài-đặt-các-công-cụ-cơ-bản-trên-hệ-thống">Bước 1: Cài đặt các công cụ cơ bản trên hệ thống</a></li>
@@ -899,7 +894,7 @@
 
             <p>Sử dụng triết lý của Nix ứng dụng trong việc triển khai môi trường lập trình ứng dụng sao cho tối ưu và tốt nhất.</p>
 <p>Trong bài viết này, tôi sẽ hướng dẫn các bạn setup môi trường lập trình ứng dụng trên <strong>NixOS bằng IntelliJ IDEA và Nix Flakes</strong> thay vì sử dụng <strong>Android Studio</strong>. Đây là quy trình hiệu quả và phù hợp với triết lý của NixOS</p>
-<h3 id="quá-trình-này-quản-lý-2-nguyên-tắc-cốt-lõi-của-nixos">Quá trình này quản lý 2 nguyên tắc cốt lõi của NixOS</h3>
+<p><strong>Quá trình này quản lý 2 nguyên tắc cốt lõi của NixOS</strong></p>
 <ul>
 <li>
 <p><strong>Quản lý hệ thống bằng cách khai báo (Declarative System Management):</strong> Mọi package, phần mềm, cấu hình hệ thống được define trong file <code>configuration.nix</code>, giúp hệ thống luôn có thể tái tạo và có tính nhất quán</p>
@@ -942,7 +937,7 @@
 <h3 id="bước-2-tạo-môi-trường-phát-triển-riêng-cho-project">Bước 2: Tạo môi trường phát triển riêng cho Project</h3>
 <p>Đây là bước quan trọng nhất và là nơi sức mạnh của nix được thể hiện rõ nhất</p>
 <ul>
-<li><strong>Tạo thư mục dự án và cd vào đó</strong></li>
+<li><strong>Tạo thư mục chứa dự án</strong></li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir my-app
 </span></span><span style="display:flex;"><span>cd my-app
@@ -1063,9 +1058,8 @@
 <p><strong>Nguyên lý hoạt động:</strong> Khi khởi chạy từ <code>nix develop</code>, IntelliJ kế thừa tất cả các biến môi trường, bao gồm <code>PATH</code> và <code>ANDROID_SDK_ROOT</code>. Nhờ vậy, nó tự động biết JDK và Android SDK nằm ở đâu trong <code>/nix/store</code> mà không cần bạn phải cấu hình thủ công.</p></blockquote>
 <h3 id="bước-4-tạo-máy-ảo-avd-android-virtual-device">Bước 4: Tạo máy ảo AVD (Android Virtual Device)</h3>
 <blockquote>
-<p>Thông thường, AVD (Android Virtual Devices) sẽ được install thông qua <code>sdkmanager</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sdkmanager <span style="color:#e6db74">&#34;system-images;android-34;google_apis;x86_64&#34;</span>
-</span></span></code></pre></div><p>Tuy nhiên, do sự bất biến trong Nix Store, môi trường <code>nix-shell</code> được build từ các gói trong <code>/nix/store</code>, một thư mục chỉ <code>read-only</code>, <code>sdkmanager</code> được thiết kế để tải về và giải nén system image, platform-tools,&hellip; vào trong 1 thư mục SDK duy nhất và có thể bị ghi đè nên <code>sdkmanager</code> không thể sử dụng vì không có quyền ghi. Vì vậy nên trong <code>flake.nix</code> define system image. Dưới đây là minh họa khi sử dụng trực tiếp <code>sdkmanager</code></p></blockquote>
+<p>Thông thường, AVD (Android Virtual Devices) sẽ được install thông qua <code>sdkmanager</code>.
+Tuy nhiên, do sự bất biến trong Nix Store, môi trường <code>nix-shell</code> được build từ các gói trong <code>/nix/store</code>, một thư mục chỉ <code>read-only</code>, <code>sdkmanager</code> được thiết kế để tải về và giải nén system image, platform-tools,&hellip; vào trong 1 thư mục SDK duy nhất và có thể bị ghi đè nên <code>sdkmanager</code> không thể sử dụng vì không có quyền ghi. Vì vậy nên trong <code>flake.nix</code> define system image. Dưới đây là minh họa khi sử dụng trực tiếp <code>sdkmanager</code></p></blockquote>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>nagih@nixos:~/Workspaces/noob/app/my-app<span style="color:#f92672">]</span>$ sdkmanager <span style="color:#e6db74">&#34;system-images;android-34;google_apis;x86_64&#34;</span> 
 </span></span><span style="display:flex;"><span>Warning: Failed to read or create install properties file.                      
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[===</span>                                    <span style="color:#f92672">]</span> 10% Installing Google APIs Intel x86_6
@@ -1087,12 +1081,12 @@
 </ul>
 </li>
 <li>
-<p>**Create máy ảo (AVD) thông qua <code>andmanager</code></p>
+<p><strong>Create máy ảo (AVD)</strong> thông qua <code>andmanager</code></p>
 </li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>avdmanager create avd --name <span style="color:#e6db74">&#34;TestAVD&#34;</span> --package <span style="color:#e6db74">&#34;system-images;android-34;google_apis;x86_64&#34;</span>
 </span></span></code></pre></div><blockquote>
-<p><strong>Lưu ý:</strong> <code>--package &quot;system-images;android-34;google_apis;x86_64&quot;</code>  package cần được match với package đã được defind trong <code>flake.nix</code></p></blockquote>
+<p><strong>Lưu ý:</strong> <code>--package &quot;system-images;android-34;google_apis;x86_64&quot;</code>  package cần được match với package đã được define trong <code>flake.nix</code></p></blockquote>
 <h3 id="bước-5-khởi-chạy-tạo-máy-ảo-avd">Bước 5: Khởi chạy tạo máy ảo AVD</h3>
 <ul>
 <li>Khởi động lại IntelliJ IDEA trong môi trường <code>nix-shell</code></li>
