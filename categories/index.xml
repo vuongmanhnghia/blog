@@ -6,6 +6,77 @@
     <description>Recent content in Categories on Nagih&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
+    <lastBuildDate>Fri, 05 Sep 2025 00:00:00 +0700</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>System</title>
+      <link>https://blog.nagih.io.vn/categories/system/</link>
+      <pubDate>Fri, 05 Sep 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/system/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Architechture</title>
+      <link>https://blog.nagih.io.vn/categories/architechture/</link>
+      <pubDate>Fri, 29 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/architechture/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microservices</title>
+      <link>https://blog.nagih.io.vn/categories/microservices/</link>
+      <pubDate>Fri, 29 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/microservices/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>OS</title>
+      <link>https://blog.nagih.io.vn/categories/os/</link>
+      <pubDate>Thu, 28 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/os/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Protocol</title>
+      <link>https://blog.nagih.io.vn/categories/protocol/</link>
+      <pubDate>Thu, 28 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/protocol/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Operating</title>
+      <link>https://blog.nagih.io.vn/categories/operating/</link>
+      <pubDate>Sat, 23 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/operating/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ci/Cd</title>
+      <link>https://blog.nagih.io.vn/categories/ci/cd/</link>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/ci/cd/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Devops</title>
+      <link>https://blog.nagih.io.vn/categories/devops/</link>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/devops/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security</title>
+      <link>https://blog.nagih.io.vn/categories/security/</link>
+      <pubDate>Sat, 16 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Database</title>
+      <link>https://blog.nagih.io.vn/categories/database/</link>
+      <pubDate>Tue, 12 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/database/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

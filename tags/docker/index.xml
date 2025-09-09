@@ -6,8 +6,15 @@
     <description>Recent content in Docker on Nagih&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Aug 2025 00:00:00 +0700</lastBuildDate>
+    <lastBuildDate>Sun, 17 Aug 2025 00:00:00 +0700</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>6 Level Deploy</title>
+      <link>https://blog.nagih.io.vn/blog/deploy/6-level-deploy/</link>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/blog/deploy/6-level-deploy/</guid>
+      <description>&lt;p&gt;6 Cấp Độ Trưởng Thành Từ Deploy Thủ Công Đến Vận Hành Tinh Gọn&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Docker Best Practice for Production</title>
       <link>https://blog.nagih.io.vn/blog/docker/docker-best-practice-for-production/</link>
@@ -56,6 +63,27 @@
       <pubDate>Wed, 13 Aug 2025 00:00:00 +0700</pubDate>
       <guid>https://blog.nagih.io.vn/blog/docker/docker-cli/</guid>
       <description>&lt;p&gt;Làm chủ Docker Command Line (CLI)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Internet Protocol (IP)</title>
+      <link>https://blog.nagih.io.vn/blog/network/ip/</link>
+      <pubDate>Wed, 13 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/blog/network/ip/</guid>
+      <description>&lt;p&gt;Mastering Internet Protocol Addresses&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SSH - Github</title>
+      <link>https://blog.nagih.io.vn/blog/git/ssh/</link>
+      <pubDate>Wed, 13 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/blog/git/ssh/</guid>
+      <description>&lt;p&gt;SSH and GitHub Tutorial&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Docker Overview</title>
+      <link>https://blog.nagih.io.vn/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/</link>
+      <pubDate>Tue, 12 Aug 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/</guid>
+      <description>&lt;p&gt;Tổng hợp các kiến thức cần biết về Docker&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -16,18 +16,11 @@
       <description>&lt;p&gt;Principles and skills to extend MySQL table design&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Docker Overview</title>
-      <link>https://blog.nagih.io.vn/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/</link>
-      <pubDate>Tue, 12 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>https://blog.nagih.io.vn/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/</guid>
-      <description>&lt;p&gt;Tổng hợp các kiến thức cần biết về Docker&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>SQL</title>
+      <title>SQL Overview</title>
       <link>https://blog.nagih.io.vn/blog/database/sql/</link>
       <pubDate>Tue, 12 Aug 2025 00:00:00 +0700</pubDate>
       <guid>https://blog.nagih.io.vn/blog/database/sql/</guid>
-      <description>&lt;p&gt;Các kiến trức trọng tâm và tất cả các lệnh SQL&lt;/p&gt;</description>
+      <description>&lt;p&gt;Từ Zero Đến Hero - Tổng Hợp Tất Cả Các Lệnh SQL Quan Trọng&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
