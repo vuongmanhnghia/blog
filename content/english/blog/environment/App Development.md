@@ -18,7 +18,7 @@ Sử dụng triết lý của Nix ứng dụng trong việc triển khai môi tr
 
 Trong bài viết này, tôi sẽ hướng dẫn các bạn setup môi trường lập trình ứng dụng trên **NixOS bằng IntelliJ IDEA và Nix Flakes** thay vì sử dụng **Android Studio**. Đây là quy trình hiệu quả và phù hợp với triết lý của NixOS
 
-### Quá trình này quản lý 2 nguyên tắc cốt lõi của NixOS
+**Quá trình này quản lý 2 nguyên tắc cốt lõi của NixOS**
 
 - **Quản lý hệ thống bằng cách khai báo (Declarative System Management):** Mọi package, phần mềm, cấu hình hệ thống được define trong file `configuration.nix`, giúp hệ thống luôn có thể tái tạo và có tính nhất quán
 
@@ -58,7 +58,7 @@ Trong bài viết này, tôi sẽ hướng dẫn các bạn setup môi trường
 
 Đây là bước quan trọng nhất và là nơi sức mạnh của nix được thể hiện rõ nhất
 
-- **Tạo thư mục dự án và cd vào đó**
+- **Tạo thư mục chứa dự án**
 
 ```bash
 mkdir my-app
@@ -189,10 +189,7 @@ idea-community .
 
 ### Bước 4: Tạo máy ảo AVD (Android Virtual Device)
 
-> Thông thường, AVD (Android Virtual Devices) sẽ được install thông qua `sdkmanager`
-> ```bash
-> sdkmanager "system-images;android-34;google_apis;x86_64"
-> ```
+> Thông thường, AVD (Android Virtual Devices) sẽ được install thông qua `sdkmanager`.
 > Tuy nhiên, do sự bất biến trong Nix Store, môi trường `nix-shell` được build từ các gói trong `/nix/store`, một thư mục chỉ `read-only`, `sdkmanager` được thiết kế để tải về và giải nén system image, platform-tools,... vào trong 1 thư mục SDK duy nhất và có thể bị ghi đè nên `sdkmanager` không thể sử dụng vì không có quyền ghi. Vì vậy nên trong `flake.nix` define system image. Dưới đây là minh họa khi sử dụng trực tiếp `sdkmanager`
 
 ```bash
@@ -214,13 +211,13 @@ Warning: Failed to read or create install properties file.
 		
 	- Nếu không thấy kết quả -> Điều này có nghĩa là `flake.nix` của bạn đang có vấn đề, hoặc có thể bạn chưa truy cập và `nix develop`
 		
-- **Create máy ảo (AVD) thông qua `andmanager`
+- **Create máy ảo (AVD)** thông qua `andmanager`
 
 ```bash
 avdmanager create avd --name "TestAVD" --package "system-images;android-34;google_apis;x86_64"
 ```
 
-> **Lưu ý:** `--package "system-images;android-34;google_apis;x86_64"`  package cần được match với package đã được defind trong `flake.nix`
+> **Lưu ý:** `--package "system-images;android-34;google_apis;x86_64"`  package cần được match với package đã được define trong `flake.nix`
 
 ### Bước 5: Khởi chạy tạo máy ảo AVD
 
