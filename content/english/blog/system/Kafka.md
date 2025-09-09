@@ -1,9 +1,13 @@
 ---
-title: Kafka
+title: "Kafka"
+meta_title: "Kafka"
+description: "Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka"
 date: 2025-08-09
+image: "/images/image-placeholder.png"
+categories: ["system", "architechture"]
+author: "Nagih"
+tags: ["kafka"]
 draft: false
-tags:
-  - system
 ---
 Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka
 <!--more-->

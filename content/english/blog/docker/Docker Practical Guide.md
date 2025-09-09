@@ -1,9 +1,13 @@
 ---
-title: Docker Practical Guide
+title: "Docker Practical Guide"
+meta_title: "Docker Practical Guide"
+description: "Hướng dẫn Thực hành: Container hóa Ứng dụng Dịch vụ đơn"
 date: 2025-08-14
+image: "/images/image-placeholder.png"
+categories: ["devops"]
+author: "Nagih"
+tags: ["docker"]
 draft: false
-tags:
-  - docker
 ---
 Hướng dẫn Thực hành: Container hóa Ứng dụng Dịch vụ đơn
 <!--more-->

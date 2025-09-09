@@ -1,9 +1,13 @@
 ---
-title: 6 Level Deploy
+title: "6 Level Deploy"
+meta_title: "6 Level Deploy"
+description: "6 Cấp Độ Trưởng Thành Từ Deploy Thủ Công Đến Vận Hành Tinh Gọn"
 date: 2025-08-17
+image: "/images/image-placeholder.png"
+categories: ["devops", "ci/cd"]
+author: "Nagih"
+tags: ["docker"]
 draft: false
-tags:
-  - deploy
 ---
 6 Cấp Độ Trưởng Thành Từ Deploy Thủ Công Đến Vận Hành Tinh Gọn
 <!--more-->

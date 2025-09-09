@@ -1,10 +1,13 @@
 ---
-title: SSH - Github
+title: "SSH - Github"
+meta_title: "SSH - Github"
+description: "SSH and GitHub Tutorial"
 date: 2025-08-13
+image: "/images/image-placeholder.png"
+categories: ["devops"]
+author: "Nagih"
+tags: ["docker"]
 draft: false
-tags:
-  - ssh
-  - git
 ---
 SSH and GitHub Tutorial
 <!--more-->
