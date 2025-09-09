@@ -230,6 +230,7 @@ idea-community .
 - **Open project** mà khi nãy đã tạo (nếu đã bị thoát ra)
 
 	- Lúc này bạn sẽ nhìn thấy máy ảo AVD trong phần **devices**
+		
 		![Image Description](/images/Pasted%20image%2020250909203943.png)
 		
 	- Tuy nhiên, bạn có thể thấy xuất hiện dấu `!`, điều này là bình thường vì chưa run AVD
