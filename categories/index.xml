@@ -6,12 +6,26 @@
     <description>Recent content in Categories on Nagih&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Sep 2025 00:00:00 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 09 Sep 2025 00:00:00 +0700</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Environment</title>
+      <link>https://blog.nagih.io.vn/categories/environment/</link>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/environment/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>OS</title>
+      <link>https://blog.nagih.io.vn/categories/os/</link>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/os/</guid>
+      <description></description>
+    </item>
     <item>
       <title>System</title>
       <link>https://blog.nagih.io.vn/categories/system/</link>
-      <pubDate>Fri, 05 Sep 2025 00:00:00 +0700</pubDate>
+      <pubDate>Mon, 08 Sep 2025 00:00:00 +0700</pubDate>
       <guid>https://blog.nagih.io.vn/categories/system/</guid>
       <description></description>
     </item>
@@ -30,13 +44,6 @@
       <description></description>
     </item>
     <item>
-      <title>OS</title>
-      <link>https://blog.nagih.io.vn/categories/os/</link>
-      <pubDate>Thu, 28 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/os/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Protocol</title>
       <link>https://blog.nagih.io.vn/categories/protocol/</link>
       <pubDate>Thu, 28 Aug 2025 00:00:00 +0700</pubDate>
@@ -51,7 +58,7 @@
       <description></description>
     </item>
     <item>
-      <title>Ci/Cd</title>
+      <title>CI/CD</title>
       <link>https://blog.nagih.io.vn/categories/ci/cd/</link>
       <pubDate>Sun, 17 Aug 2025 00:00:00 +0700</pubDate>
       <guid>https://blog.nagih.io.vn/categories/ci/cd/</guid>

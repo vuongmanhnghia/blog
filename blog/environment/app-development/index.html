@@ -72,7 +72,7 @@
 
 
 
-  <base href="https://blog.nagih.io.vn/blog/system/os/windows/t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi/" />
+  <base href="https://blog.nagih.io.vn/blog/environment/app-development/" />
 
 
 
@@ -84,7 +84,7 @@
   
 
 
-<title>Hướng dẫn tùy biến phân vùng EFI khi cài windows</title>
+<title>Hướng dẫn setup môi trường App Development trên nixos best practice</title>
 
 
 
@@ -109,7 +109,7 @@
 
 <meta
   name="description"
-  content="Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI" />
+  content="Sử dụng triết lý của Nix ứng dụng trong việc triển khai môi trường lập trình ứng dụng sao cho tối ưu và tốt nhất." />
 
 
 
@@ -162,15 +162,15 @@
       
       
       
-        <meta property="og:image" content="https://blog.nagih.io.vn/images/image-placeholder.png" />
-        <meta name="twitter:image" content="https://blog.nagih.io.vn/images/image-placeholder.png" />
+        <meta property="og:image" content="https://blog.nagih.io.vn/images/thumbnails/app-development.png" />
+        <meta name="twitter:image" content="https://blog.nagih.io.vn/images/thumbnails/app-development.png" />
         <meta
           name="twitter:card"
           content="summary_large_image" />
       
       
-      <meta property="og:image:width" content="1096" />
-      <meta property="og:image:height" content="480" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="750" />
     
 
 
@@ -187,14 +187,14 @@
 
 
 
-<meta property="og:title" content="Hướng dẫn tùy biến phân vùng EFI khi cài windows" />
-<meta property="og:description" content="Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI" />
+<meta property="og:title" content="Hướng dẫn setup môi trường App Development trên nixos best practice" />
+<meta property="og:description" content="Sử dụng triết lý của Nix ứng dụng trong việc triển khai môi trường lập trình ứng dụng sao cho tối ưu và tốt nhất." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://blog.nagih.io.vn/blog/system/os/windows/t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi/" />
+<meta property="og:url" content="https://blog.nagih.io.vn/blog/environment/app-development/" />
 
 
-<meta name="twitter:title" content="Hướng dẫn tùy biến phân vùng EFI khi cài windows" />
-<meta name="twitter:description" content="Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI" />
+<meta name="twitter:title" content="Hướng dẫn setup môi trường App Development trên nixos best practice" />
+<meta name="twitter:description" content="Sử dụng triết lý của Nix ứng dụng trong việc triển khai môi trường lập trình ứng dụng sao cho tối ưu và tốt nhất." />
 
 
   <meta name="twitter:site" content="@zeon_studio" />
@@ -790,31 +790,31 @@
         <picture>
           <source
             
-              srcset="/images/image-placeholder_hu_c8971dd714d7d967.webp"
+              srcset="/images/thumbnails/app-development_hu_eedd43f8542bc2cf.webp"
             
             media="(max-width: 575px)" />
           <source
             
-              srcset="/images/image-placeholder_hu_7feb4cff3f0f2f38.webp"
+              srcset="/images/thumbnails/app-development_hu_e7178e897d1ff7ae.webp"
             
             media="(max-width: 767px)" />
           <source
             
-              srcset="/images/image-placeholder_hu_aa8934e738977bd1.webp"
+              srcset="/images/thumbnails/app-development_hu_72630f14e8468cd8.webp"
             
             media="(max-width: 991px)" />
           <source
             
-              srcset="/images/image-placeholder_hu_c6a26df46efa63e0.webp"
+              srcset="/images/thumbnails/app-development_hu_f31c55cfd2805661.webp"
              />
           <img
             
               loading="lazy" decoding="async"
-              src="/images/image-placeholder_hu_8da812934bbff7ba.png"
+              src="/images/thumbnails/app-development_hu_3c16724e695d1639.png"
             class=" w-full rounded img"
-            alt="Hướng dẫn tùy biến phân vùng EFI khi cài windows"
-            width="1096"
-            height="480" />
+            alt="Hướng dẫn setup môi trường App Development trên nixos best practice"
+            width="1200"
+            height="750" />
         </picture>
       
       
@@ -829,7 +829,7 @@
             </div>
           
           <h1 class="h2 mb-4">
-            Hướng dẫn tùy biến phân vùng EFI khi cài windows
+            Hướng dẫn setup môi trường App Development trên nixos best practice
           </h1>
           <ul class="mb-4">
             <li class="mr-4 inline-block">
@@ -845,9 +845,9 @@
                 <i class="fa-regular fa-folder mr-2"></i>
                 
                   <a
-                    href="/categories/system/"
+                    href="/categories/environment/"
                     class=""
-                    >System
+                    >Environment
                       ,
                     
                   </a>
@@ -862,7 +862,7 @@
             
             <li class="mr-4 inline-block">
               <i class="fa-regular fa-clock mr-2"></i>
-              September 8, 2025
+              September 9, 2025
             </li>
           </ul>
           <div class="content mb-10">
@@ -879,46 +879,258 @@
   </summary>
   <nav id="TableOfContents">
   <ol>
-    <li><a href="#sử-dụng-command-prompt-trong-quá-trình-cài-đặt">Sử dụng Command Prompt trong quá trình cài đặt</a></li>
+    <li>
+      <ol>
+        <li><a href="#quá-trình-này-quản-lý-2-nguyên-tắc-cốt-lõi-của-nixos">Quá trình này quản lý 2 nguyên tắc cốt lõi của NixOS</a></li>
+      </ol>
+    </li>
+    <li><a href="#các-bước-tiến-hành">Các bước tiến hành</a>
+      <ol>
+        <li><a href="#bước-1-cài-đặt-các-công-cụ-cơ-bản-trên-hệ-thống">Bước 1: Cài đặt các công cụ cơ bản trên hệ thống</a></li>
+        <li><a href="#bước-2-tạo-môi-trường-phát-triển-riêng-cho-project">Bước 2: Tạo môi trường phát triển riêng cho Project</a></li>
+        <li><a href="#bước-3-cấu-hình-intellij-idea">Bước 3: Cấu hình IntelliJ IDEA</a></li>
+        <li><a href="#bước-4-tạo-máy-ảo-avd-android-virtual-device">Bước 4: Tạo máy ảo AVD (Android Virtual Device)</a></li>
+        <li><a href="#bước-5-khởi-chạy-tạo-máy-ảo-avd">Bước 5: Khởi chạy tạo máy ảo AVD</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
 </details>
 
-            <p>Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI</p>
-<h2 id="sử-dụng-command-prompt-trong-quá-trình-cài-đặt">Sử dụng Command Prompt trong quá trình cài đặt</h2>
+            <p>Sử dụng triết lý của Nix ứng dụng trong việc triển khai môi trường lập trình ứng dụng sao cho tối ưu và tốt nhất.</p>
+<p>Trong bài viết này, tôi sẽ hướng dẫn các bạn setup môi trường lập trình ứng dụng trên <strong>NixOS bằng IntelliJ IDEA và Nix Flakes</strong> thay vì sử dụng <strong>Android Studio</strong>. Đây là quy trình hiệu quả và phù hợp với triết lý của NixOS</p>
+<h3 id="quá-trình-này-quản-lý-2-nguyên-tắc-cốt-lõi-của-nixos">Quá trình này quản lý 2 nguyên tắc cốt lõi của NixOS</h3>
 <ul>
 <li>
-<p><strong>Khởi động từ USB</strong> và đến màn hình chọn ổ đĩa</p>
+<p><strong>Quản lý hệ thống bằng cách khai báo (Declarative System Management):</strong> Mọi package, phần mềm, cấu hình hệ thống được define trong file <code>configuration.nix</code>, giúp hệ thống luôn có thể tái tạo và có tính nhất quán</p>
 </li>
 <li>
-<p><strong>Nhấn Shift + F10</strong> để mở <strong>Command Prompt</strong></p>
-</li>
-<li>
-<p><strong>Chạy các command sau:</strong></p>
+<p><strong>Môi trường phát triển biệt lập (Isolated Development Environments):</strong> Sử dụng <code>nix-shell</code> để tạo ra môi trường chứa chính xác phiên bản của các công cụ đã được define cho từng project mà không làm ảnh hưởng tới hệ thống chính</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmd" data-lang="cmd"><span style="display:flex;"><span>diskpart
-</span></span><span style="display:flex;"><span>list disk
-</span></span><span style="display:flex;"><span>select disk 0 (thay 0 bằng số ổ đĩa của bạn)
-</span></span><span style="display:flex;"><span>clean
-</span></span><span style="display:flex;"><span>convert gpt
-</span></span><span style="display:flex;"><span>create partition efi size=4096
-</span></span><span style="display:flex;"><span>format quick fs=fat32 label=<span style="color:#e6db74">&#34;System&#34;</span>
-</span></span><span style="display:flex;"><span>assign letter=S
-</span></span><span style="display:flex;"><span>create partition msr size=128
-</span></span><span style="display:flex;"><span>create partition primary
-</span></span><span style="display:flex;"><span>format quick fs=ntfs label=<span style="color:#e6db74">&#34;Windows&#34;</span>
-</span></span><span style="display:flex;"><span>assign letter=C
-</span></span><span style="display:flex;"><span>active
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">exit</span>
+<h2 id="các-bước-tiến-hành">Các bước tiến hành</h2>
+<h3 id="bước-1-cài-đặt-các-công-cụ-cơ-bản-trên-hệ-thống">Bước 1: Cài đặt các công cụ cơ bản trên hệ thống</h3>
+<p>Điều đầu tiên, vì sử dụng IntelliJ IDEA nên bắt buộc rằng nó được cài trên hệ thống của bạn và đã bật tính năng <strong>Flakes của NixOS</strong></p>
+<ul>
+<li>
+<p>Mở file cấu hình hệ thống NixOS của bạn</p>
+</li>
+<li>
+<p>Thêm package <code>jetbrains.idea-community</code> hoặc <code>idea-ultimate</code>(nếu có premium) vào danh sách <code>environment.systemPackages</code></p>
+</li>
+<li>
+<p>Trong bước này có thể thêm JDK mặc định nếu muốn, nhưng việc define JDK cho từng project sẽ tốt hơn nếu bạn không muốn cài trên hệ thống chính</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span><span style="color:#75715e"># .../configuration.nix</span>
+</span></span><span style="display:flex;"><span>{ config<span style="color:#f92672">,</span> pkgs<span style="color:#f92672">,</span> <span style="color:#f92672">...</span> }:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Bật tính năng Flakes và nix-command mới </span>
+</span></span><span style="display:flex;"><span>  nix<span style="color:#f92672">.</span>settings<span style="color:#f92672">.</span>experimental-features <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;nix-command&#34;</span> <span style="color:#e6db74">&#34;flakes&#34;</span> ];
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  environment<span style="color:#f92672">.</span>systemPackages <span style="color:#f92672">=</span> <span style="color:#66d9ef">with</span> pkgs; [
+</span></span><span style="display:flex;"><span>    git                        <span style="color:#75715e"># Git để quản lý mã nguồn</span>
+</span></span><span style="display:flex;"><span>    jetbrains<span style="color:#f92672">.</span>idea-community   <span style="color:#75715e"># Thêm IntelliJ IDEA vào cấu hình</span>
+</span></span><span style="display:flex;"><span>  ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># ... các cấu hình khác</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>Rebuild NixOS</strong> để áp dụng thay đổi: <code>sudo nixos-rebuild switch</code></li>
+</ul>
+<h3 id="bước-2-tạo-môi-trường-phát-triển-riêng-cho-project">Bước 2: Tạo môi trường phát triển riêng cho Project</h3>
+<p>Đây là bước quan trọng nhất và là nơi sức mạnh của nix được thể hiện rõ nhất</p>
+<ul>
+<li><strong>Tạo thư mục dự án và cd vào đó</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir my-app
+</span></span><span style="display:flex;"><span>cd my-app
+</span></span></code></pre></div><ul>
+<li>Trong folder này, tạo một file là <code>flake.nix</code>. File này là trái tim của môi trường, nó sẽ define tất cả những công cụ cần thiết trong project: JDK, Maven, Gradle, &hellip;</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  description <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Môi trường phát triển Android trên NixOS&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Khai báo các nguồn đầu vào</span>
+</span></span><span style="display:flex;"><span>  inputs <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    nixpkgs<span style="color:#f92672">.</span>url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;github:NixOS/nixpkgs/nixos-25.05&#34;</span>;
+</span></span><span style="display:flex;"><span>    flake-utils<span style="color:#f92672">.</span>url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;github:numtide/flake-utils&#34;</span>;
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Định nghĩa đầu ra của flake</span>
+</span></span><span style="display:flex;"><span>  outputs <span style="color:#f92672">=</span> { self<span style="color:#f92672">,</span> nixpkgs<span style="color:#f92672">,</span> flake-utils }:
+</span></span><span style="display:flex;"><span>    flake-utils<span style="color:#f92672">.</span>lib<span style="color:#f92672">.</span>eachDefaultSystem (system:
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span>
+</span></span><span style="display:flex;"><span>        pkgs <span style="color:#f92672">=</span> <span style="color:#f92672">import</span> nixpkgs {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">inherit</span> system;
+</span></span><span style="display:flex;"><span>          config <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            allowUnfree <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>            android_sdk<span style="color:#f92672">.</span>accept_license <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>          };
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Lắp ráp môi trường SDK từ các linh kiện của androidenv</span>
+</span></span><span style="display:flex;"><span>        android-sdk-env <span style="color:#f92672">=</span> pkgs<span style="color:#f92672">.</span>androidenv<span style="color:#f92672">.</span>composeAndroidPackages {
+</span></span><span style="display:flex;"><span>          platformVersions <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;34&#34;</span> ];           <span style="color:#75715e"># API level</span>
+</span></span><span style="display:flex;"><span>          buildToolsVersions <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;34.0.0&#34;</span> ];     <span style="color:#75715e"># Version build-tools</span>
+</span></span><span style="display:flex;"><span>          
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># Máy ảo và CLI (Chú ý nếu muốn thay đổi)</span>
+</span></span><span style="display:flex;"><span>          includeEmulator <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>          includeSystemImages <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>          systemImageTypes <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;google_apis&#34;</span> ];  <span style="color:#75715e"># Loại system image</span>
+</span></span><span style="display:flex;"><span>          abiVersions <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;x86_64&#34;</span> ];            <span style="color:#75715e"># Architechture</span>
+</span></span><span style="display:flex;"><span>          platformToolsVersion <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;34.0.5&#34;</span>;
+</span></span><span style="display:flex;"><span>          cmdLineToolsVersion <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;11.0&#34;</span>;
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Định nghĩa môi trường shell cho lệnh `nix develop`</span>
+</span></span><span style="display:flex;"><span>        devShells<span style="color:#f92672">.</span>default <span style="color:#f92672">=</span> pkgs<span style="color:#f92672">.</span>mkShell {
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># Các gói sẽ có trong môi trường</span>
+</span></span><span style="display:flex;"><span>          buildInputs <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Môi trường SDK đã lắp ráp ở trên</span>
+</span></span><span style="display:flex;"><span>            android-sdk-env<span style="color:#f92672">.</span>androidsdk
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># pkgs.qt6.qtwayland # Nếu sử dụng wayland</span>
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Java Development Kit</span>
+</span></span><span style="display:flex;"><span>            pkgs<span style="color:#f92672">.</span>jdk
+</span></span><span style="display:flex;"><span>            pkgs<span style="color:#f92672">.</span>gradle
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Build configuration language</span>
+</span></span><span style="display:flex;"><span>            pkgs<span style="color:#f92672">.</span>groovy             
+</span></span><span style="display:flex;"><span>          ];
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># Thiết lập biến môi trường để IntelliJ/Gradle tự tìm thấy SDK</span>
+</span></span><span style="display:flex;"><span>          shellHook <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            export ANDROID_SDK_ROOT=&#34;</span><span style="color:#e6db74">${</span>android-sdk-env<span style="color:#f92672">.</span>androidsdk<span style="color:#e6db74">}</span><span style="color:#e6db74">/libexec/android-sdk&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            export ANDROID_HOME=&#34;$ANDROID_SDK_ROOT&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            export PATH=&#34;$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$PATH&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">			export QT_QPA_PLATFORM=xcb
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            echo &#34;✅ Môi trường Android đã sẵn sàng.&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p><strong>Lưu ý:</strong> Có thể thay đổi các version máy ảo Android cho phù hợp, tuy nhiên các công cần sử dụng đúng version để có thể hoạt động được với nhau (platformVersions, buildToolsVersions , platformToolsVersion)</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nix develop
+</span></span></code></pre></div><ul>
+<li>Lần đầu chạy, Nix sẽ install tất cả các công cụ được define</li>
+</ul>
+<blockquote>
+<p><strong>Nguyên lý hoạt động:</strong> <code>flake.nix</code> định nghĩa chính xác những công cụ nào (JDK 17, Android SDK Platform 34, Build Tools 34.0.0, Emulator&hellip;) cần cho dự án. Lệnh <code>nix develop</code> đọc file này và tạo ra một shell tạm thời chứa đầy đủ và duy nhất các công cụ đó, cùng với các biến môi trường đã được cấu hình sẵn.</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>➜ nix develop
+</span></span><span style="display:flex;"><span>✅ Môi trường Android đã sẵn sàng.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>nagih@nixos:~/Workspaces/noob/app/my-app<span style="color:#f92672">]</span>$ 
+</span></span></code></pre></div><h3 id="bước-3-cấu-hình-intellij-idea">Bước 3: Cấu hình IntelliJ IDEA</h3>
+<p>Bây giờ, ta sẽ khởi động IntelliJ IDEA bên trong môi trường Nix để có thể nhận diện được tất cả công cụ</p>
+<ul>
+<li><strong>Khởi động IntelliJ:</strong> Từ terminal, gõ lệnh</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>idea-community .
+</span></span></code></pre></div><ul>
+<li><strong>Cài đặt Plugin Android mới</strong>: Nếu đây là lần đầu sử dụng IntelliJ cho Android, hãy vào <code>Plugins</code> -&gt; <code>Marketplace</code>, Tìm kiếm <code>Android</code> và cài đặt</li>
+</ul>
+<p><img src="/images/Pasted%20image%2020250909150919.png" alt="Image Description"></p>
+<blockquote>
+<p>Mỗi version IntelliJ sẽ có giao diện khác nhau nhưng cách thức hoạt động vẫn vậy nên đừng lo lắng nếu không giao diện không giống như mô tả nhé.</p></blockquote>
+<ul>
+<li>
+<p><strong>Tạo dự án mới</strong></p>
+<ul>
+<li>
+<p>Trong IntelliJ, vào <code>Projects</code> -&gt; <code>New Project</code></p>
+</li>
+<li>
+<p>Chọn <code>Android</code> từ danh sách <code>Generators</code> bên trái</p>
+</li>
+<li>
+<p>Chọn template, ví dụ <code>Empty Views Activity</code> và nhấn next</p>
+<p><img src="/images/Pasted%20image%2020250909151418.png" alt="Image Description"></p>
+</li>
+<li>
+<p>Điền thông tin project</p>
+</li>
+<li>
+<p><strong>Quan trọng:</strong> Ở mục <code>Build configuration language</code> cần phù hợp với language đã được khai báo trong <code>flake.nix</code> (<code>kotlin</code> / <code>groovy</code>)</p>
+<p><img src="/images/Pasted%20image%2020250909152633.png" alt="Image Description"></p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Nguyên lý hoạt động:</strong> Khi khởi chạy từ <code>nix develop</code>, IntelliJ kế thừa tất cả các biến môi trường, bao gồm <code>PATH</code> và <code>ANDROID_SDK_ROOT</code>. Nhờ vậy, nó tự động biết JDK và Android SDK nằm ở đâu trong <code>/nix/store</code> mà không cần bạn phải cấu hình thủ công.</p></blockquote>
+<h3 id="bước-4-tạo-máy-ảo-avd-android-virtual-device">Bước 4: Tạo máy ảo AVD (Android Virtual Device)</h3>
+<blockquote>
+<p>Thông thường, AVD (Android Virtual Devices) sẽ được install thông qua <code>sdkmanager</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sdkmanager <span style="color:#e6db74">&#34;system-images;android-34;google_apis;x86_64&#34;</span>
+</span></span></code></pre></div><p>Tuy nhiên, do sự bất biến trong Nix Store, môi trường <code>nix-shell</code> được build từ các gói trong <code>/nix/store</code>, một thư mục chỉ <code>read-only</code>, <code>sdkmanager</code> được thiết kế để tải về và giải nén system image, platform-tools,&hellip; vào trong 1 thư mục SDK duy nhất và có thể bị ghi đè nên <code>sdkmanager</code> không thể sử dụng vì không có quyền ghi. Vì vậy nên trong <code>flake.nix</code> define system image. Dưới đây là minh họa khi sử dụng trực tiếp <code>sdkmanager</code></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>nagih@nixos:~/Workspaces/noob/app/my-app<span style="color:#f92672">]</span>$ sdkmanager <span style="color:#e6db74">&#34;system-images;android-34;google_apis;x86_64&#34;</span> 
+</span></span><span style="display:flex;"><span>Warning: Failed to read or create install properties file.                      
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[===</span>                                    <span style="color:#f92672">]</span> 10% Installing Google APIs Intel x86_6
 </span></span></code></pre></div><ul>
 <li>
-<p><strong>Đóng Command Prompt</strong> và tiếp tục cài đặt bình thường</p>
+<p><strong>Close hoàn toàn IntelliJ IDEA</strong></p>
 </li>
 <li>
-<p>Chọn phân vùng <code>Windows</code> vừa tạo để cài đặt</p>
+<p>Xác minh công cụ <code>emulator</code> và <code>avdmanager</code> có tồn tại trong môi trường hay không</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>which emulator
+</span></span><span style="display:flex;"><span>which avdmanager
+</span></span></code></pre></div><ul>
+<li>
+<p>Nếu kết quả có các đường dẫn trỏ tới <code>/nix/store/...</code> cho cả 2 lệnh thì xin chúc mừng</p>
+</li>
+<li>
+<p>Nếu không thấy kết quả -&gt; Điều này có nghĩa là <code>flake.nix</code> của bạn đang có vấn đề, hoặc có thể bạn chưa truy cập và <code>nix develop</code></p>
 </li>
 </ul>
+</li>
+<li>
+<p>**Create máy ảo (AVD) thông qua <code>andmanager</code></p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>avdmanager create avd --name <span style="color:#e6db74">&#34;TestAVD&#34;</span> --package <span style="color:#e6db74">&#34;system-images;android-34;google_apis;x86_64&#34;</span>
+</span></span></code></pre></div><blockquote>
+<p><strong>Lưu ý:</strong> <code>--package &quot;system-images;android-34;google_apis;x86_64&quot;</code>  package cần được match với package đã được defind trong <code>flake.nix</code></p></blockquote>
+<h3 id="bước-5-khởi-chạy-tạo-máy-ảo-avd">Bước 5: Khởi chạy tạo máy ảo AVD</h3>
+<ul>
+<li>Khởi động lại IntelliJ IDEA trong môi trường <code>nix-shell</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>idea-community .
+</span></span></code></pre></div><ul>
+<li>
+<p><strong>Open project</strong> mà khi nãy đã tạo (nếu đã bị thoát ra)</p>
+<ul>
+<li>
+<p>Lúc này bạn sẽ nhìn thấy máy ảo AVD trong phần <strong>devices</strong>
+<img src="/images/Pasted%20image%2020250909203943.png" alt="Image Description"></p>
+</li>
+<li>
+<p>Tuy nhiên, bạn có thể thấy xuất hiện dấu <code>!</code>, điều này là bình thường vì chưa run AVD</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Khởi chạy máy ảo AVD</strong></p>
+<ul>
+<li>
+<p>Open <code>terminal</code> bên trong IntelliJ IDEA</p>
+</li>
+<li>
+<p><strong>Run command</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>emulator -avd <span style="color:#f92672">[</span>avd-name<span style="color:#f92672">]</span> &amp;
+</span></span></code></pre></div><ul>
+<li>
+<p>Lúc này sẽ xuất hiện cửa sổ AVD đồng thời máy ảo AVD trong phần <strong>Devices</strong> sẽ mất dấu <code>!</code></p>
+<p><img src="/images/Pasted%20image%2020250909204618.png" alt="Image Description"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Tới đây là đã xong, bạn chỉ cần run project là sẽ nhìn thấy dòng chữ <code>Hello World!</code> bên trong cửa sổ máy ảo.</p>
           </div>
           <div class="row items-start justify-between">
             
@@ -930,24 +1142,16 @@
                     <li class="inline-block">
                       <a
                         class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
-                        href="/tags/windows/">
-                        Windows
+                        href="/tags/app/">
+                        App
                       </a>
                     </li>
                   
                     <li class="inline-block">
                       <a
                         class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
-                        href="/tags/boot/">
-                        Boot
-                      </a>
-                    </li>
-                  
-                    <li class="inline-block">
-                      <a
-                        class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
-                        href="/tags/ufi/">
-                        Ufi
+                        href="/tags/nixos/">
+                        Nix os
                       </a>
                     </li>
                   
@@ -980,7 +1184,7 @@
   
     <a
       class="share-link share-facebook"
-      href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fsystem%2fos%2fwindows%2ft%25C3%25B9y-bi%25E1%25BA%25BFn-ph%25C3%25A2n-v%25C3%25B9ng-efi%2f"
+      href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fenvironment%2fapp-development%2f"
       target="_blank"
       rel="noopener"
       aria-label="share facebook">
@@ -998,7 +1202,7 @@
   
     <a
       class="share-link share-x"
-      href="https://x.com/intent/tweet/?text=H%c6%b0%e1%bb%9bng%20d%e1%ba%abn%20t%c3%b9y%20bi%e1%ba%bfn%20ph%c3%a2n%20v%c3%b9ng%20EFI%20khi%20c%c3%a0i%20windows&amp;url=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fsystem%2fos%2fwindows%2ft%25C3%25B9y-bi%25E1%25BA%25BFn-ph%25C3%25A2n-v%25C3%25B9ng-efi%2f"
+      href="https://x.com/intent/tweet/?text=H%c6%b0%e1%bb%9bng%20d%e1%ba%abn%20setup%20m%c3%b4i%20tr%c6%b0%e1%bb%9dng%20App%20Development%20tr%c3%aan%20nixos%20best%20practice&amp;url=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fenvironment%2fapp-development%2f"
       target="_blank"
       rel="noopener"
       aria-label="share x">
@@ -1016,7 +1220,7 @@
   
     <a
       class="share-link share-email"
-      href="mailto:?subject=H%c6%b0%e1%bb%9bng%20d%e1%ba%abn%20t%c3%b9y%20bi%e1%ba%bfn%20ph%c3%a2n%20v%c3%b9ng%20EFI%20khi%20c%c3%a0i%20windows&amp;body=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fsystem%2fos%2fwindows%2ft%25C3%25B9y-bi%25E1%25BA%25BFn-ph%25C3%25A2n-v%25C3%25B9ng-efi%2f"
+      href="mailto:?subject=H%c6%b0%e1%bb%9bng%20d%e1%ba%abn%20setup%20m%c3%b4i%20tr%c6%b0%e1%bb%9dng%20App%20Development%20tr%c3%aan%20nixos%20best%20practice&amp;body=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fenvironment%2fapp-development%2f"
       target="_self"
       rel="noopener"
       aria-label="share email">
@@ -1089,10 +1293,10 @@
           type="text"
           placeholder="Enter Fediverse Instance URL"
           class="fediverse-input"
-          onkeypress="handleFediverseShare(event, 'https:\/\/blog.nagih.io.vn\/blog\/system\/os\/windows\/t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi\/', 'Hướng dẫn tùy biến phân vùng EFI khi cài windows')" />
+          onkeypress="handleFediverseShare(event, 'https:\/\/blog.nagih.io.vn\/blog\/environment\/app-development\/', 'Hướng dẫn setup môi trường App Development trên nixos best practice')" />
         <button
           class="fediverse-check-button"
-          onclick="handleFediverseShareButton(this, 'https:\/\/blog.nagih.io.vn\/blog\/system\/os\/windows\/t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi\/', 'Hướng dẫn tùy biến phân vùng EFI khi cài windows')">
+          onclick="handleFediverseShareButton(this, 'https:\/\/blog.nagih.io.vn\/blog\/environment\/app-development\/', 'Hướng dẫn setup môi trường App Development trên nixos best practice')">
           Share
         </button>
       </span>
@@ -1104,7 +1308,7 @@
   
     <button
       class="share-link share-copy"
-      onclick="copyToClipboard(this, 'https:\/\/blog.nagih.io.vn\/blog\/system\/os\/windows\/t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi\/')">
+      onclick="copyToClipboard(this, 'https:\/\/blog.nagih.io.vn\/blog\/environment\/app-development\/')">
       <span class="share-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path

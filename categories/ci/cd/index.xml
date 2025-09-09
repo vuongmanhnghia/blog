@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ci/Cd on Nagih&#39;s Blog</title>
+    <title>CI/CD on Nagih&#39;s Blog</title>
     <link>https://blog.nagih.io.vn/categories/ci/cd/</link>
-    <description>Recent content in Ci/Cd on Nagih&#39;s Blog</description>
+    <description>Recent content in CI/CD on Nagih&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 17 Aug 2025 00:00:00 +0700</lastBuildDate>

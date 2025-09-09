@@ -3,24 +3,51 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.nagih.io.vn/</loc>
-    <lastmod>2025-09-05T00:00:00+07:00</lastmod>
+    <lastmod>2025-09-09T00:00:00+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/tags/app/</loc>
+    <lastmod>2025-09-09T00:00:00+07:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/blog/</loc>
-    <lastmod>2025-09-05T00:00:00+07:00</lastmod>
+    <lastmod>2025-09-09T00:00:00+07:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/</loc>
-    <lastmod>2025-09-05T00:00:00+07:00</lastmod>
+    <lastmod>2025-09-09T00:00:00+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/categories/environment/</loc>
+    <lastmod>2025-09-09T00:00:00+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/blog/environment/app-development/</loc>
+    <lastmod>2025-09-09T00:00:00+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/tags/nixos/</loc>
+    <lastmod>2025-09-09T00:00:00+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/categories/os/</loc>
+    <lastmod>2025-09-09T00:00:00+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/tags/</loc>
+    <lastmod>2025-09-09T00:00:00+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/tags/boot/</loc>
+    <lastmod>2025-09-08T00:00:00+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/blog/system/os/windows/t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi/</loc>
+    <lastmod>2025-09-08T00:00:00+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/categories/system/</loc>
+    <lastmod>2025-09-08T00:00:00+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/tags/ufi/</loc>
+    <lastmod>2025-09-08T00:00:00+07:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/tags/windows/</loc>
+    <lastmod>2025-09-08T00:00:00+07:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/pcb/</loc>
     <lastmod>2025-09-05T00:00:00+07:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/blog/system/process-control-block/</loc>
-    <lastmod>2025-09-05T00:00:00+07:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/categories/system/</loc>
-    <lastmod>2025-09-05T00:00:00+07:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/tags/</loc>
     <lastmod>2025-09-05T00:00:00+07:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/architechture/</loc>
@@ -35,16 +62,7 @@
     <loc>https://blog.nagih.io.vn/categories/microservices/</loc>
     <lastmod>2025-08-29T00:00:00+07:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/tags/boot/</loc>
-    <lastmod>2025-08-28T00:00:00+07:00</lastmod>
-  </url><url>
     <loc>https://blog.nagih.io.vn/tags/grpc/</loc>
-    <lastmod>2025-08-28T00:00:00+07:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/blog/system/os/windows/t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi/</loc>
-    <lastmod>2025-08-28T00:00:00+07:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/categories/os/</loc>
     <lastmod>2025-08-28T00:00:00+07:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/protocol/</loc>
@@ -54,12 +72,6 @@
     <lastmod>2025-08-28T00:00:00+07:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/blog/architechture/rest-v%C3%A0-grpc/</loc>
-    <lastmod>2025-08-28T00:00:00+07:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/tags/ufi/</loc>
-    <lastmod>2025-08-28T00:00:00+07:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/tags/windows/</loc>
     <lastmod>2025-08-28T00:00:00+07:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/blog/architechture/ddd/overview/</loc>
