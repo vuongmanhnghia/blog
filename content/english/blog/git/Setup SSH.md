@@ -112,7 +112,7 @@ Sau khi hoàn tất các bước trên, bạn cần kiểm tra để đảm bả
     
 - Xác thực máy chủ (lần đầu tiên):
     
-    ```
+    ```bash
     The authenticity of host 'github.com (IP_ADDRESS)' can't be established.
     ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
     Are you sure you want to continue connecting (yes/no)?
@@ -122,7 +122,7 @@ Sau khi hoàn tất các bước trên, bạn cần kiểm tra để đảm bả
     
 - Kết quả thành công:
     
-    ```
+    ```bash
     Hi username! You've successfully authenticated, but GitHub does not provide shell access.
     ```
     
