@@ -1,80 +1,46 @@
 ---
-title: "SSH - Github"
-meta_title: "SSH - Github"
-description: "SSH and GitHub Tutorial"
-date: 2025-08-13
-image: "/images/image-placeholder.png"
-categories: ["devops"]
-author: "Nagih"
-tags: ["docker"]
+title: Hướng dẫn thiết lập khóa SSH cho github
+date: 2025-09-10
+image: /images/image-placeholder.png
+categories:
+  - protocol
+  - git
+author: Nagih
+tags:
+  - ssh
 draft: false
 ---
-SSH and GitHub Tutorial
+Chi tiết các bước thiết lập khóa SSH cho github từ A - Z
 <!--more-->
-Trong hệ sinh thái phát triển phần mềm hiện đại, GitHub không chỉ là một kho lưu trữ mã nguồn mà còn là trung tâm cộng tác, quản lý dự án và triển khai ứng dụng. Việc tương tác hiệu quả và an toàn với nền tảng này là một kỹ năng cơ bản đối với mọi nhà phát triển. Mặc dù HTTPS cung cấp một phương thức kết nối ban đầu đơn giản, việc chuyển sang sử dụng giao thức SSH (Secure Shell) là một bước tiến quan trọng, không chỉ nâng cao đáng kể mức độ bảo mật mà còn tối ưu hóa quy trình làm việc hàng ngày.
-
-Blog này sẽ cung cấp một hướng dẫn chi tiết và toàn diện về việc thiết lập và sử dụng khóa SSH để kết nối với GitHub. Chúng ta sẽ đi từ những khái niệm cơ bản, lý do tại sao SSH là lựa chọn ưu việt, các bước cấu hình chi tiết, đến việc quản lý nhiều tài khoản phức tạp và xử lý các lỗi thường gặp. Mục tiêu là trang bị cho các nhà phát triển, từ người mới bắt đầu đến các chuyên gia dày dạn kinh nghiệm, kiến thức và công cụ cần thiết để làm chủ phương thức kết nối an toàn và hiệu quả này.
-
-## Phần 1: Nâng Cấp Bảo Mật và Sự Tiện Lợi với SSH
-
-Trước khi đi sâu vào các bước kỹ thuật, điều quan trọng là phải hiểu rõ tại sao việc chuyển đổi từ HTTPS sang SSH lại là một nâng cấp đáng giá cho quy trình làm việc của một nhà phát triển chuyên nghiệp.
-
-### Những Hạn Chế của Xác thực qua HTTPS
-
-Khi bắt đầu với Git và GitHub, hầu hết người dùng đều chọn HTTPS vì sự đơn giản của nó. Tuy nhiên, phương thức này có những hạn chế cố hữu. Xác thực qua HTTPS yêu cầu sử dụng Personal Access Token (PAT), một chuỗi ký tự hoạt động tương tự như mật khẩu.
-
-Mặc dù dễ thiết lập, quy trình này bộc lộ sự bất tiện trong quá trình sử dụng lâu dài. Git sẽ thường xuyên yêu cầu người dùng nhập thông tin xác thực, làm gián đoạn luồng công việc. Mặc dù các công cụ hỗ trợ quản lý thông tin đăng nhập (credential helpers) có thể lưu trữ token, nhưng chúng lại đặt ra một vấn đề khác về mức độ an toàn của việc lưu trữ này. Quan trọng hơn, một PAT bị rò rỉ có thể cấp cho kẻ tấn công quyền truy cập không chỉ vào các kho lưu trữ mà còn có thể vào toàn bộ tài khoản GitHub, tùy thuộc vào phạm vi quyền hạn được cấp cho token đó.
-
-### So Sánh Nhanh: HTTPS và SSH trên GitHub
-
-Để tóm tắt những khác biệt chính, bảng dưới đây cung cấp một cái nhìn tổng quan về hai phương thức xác thực.
-
-|Tiêu chí|HTTPS (với Personal Access Token)|SSH|
-|---|---|---|
-|**Cơ chế Xác thực**|Dựa trên token (hoạt động như mật khẩu) 1|Cặp khóa Public/Private (mật mã bất đối xứng) 1|
-|**Mức độ Bảo mật**|Dễ bị lộ nếu token không được bảo vệ cẩn thận 3|Rất cao; khóa riêng tư không bao giờ truyền qua mạng 4|
-|**Sự tiện lợi**|Yêu cầu nhập lại token hoặc phụ thuộc vào credential helper 3|Rất tiện lợi sau khi thiết lập, không cần nhập lại thông tin 8|
-|**Thiết lập ban đầu**|Đơn giản, chỉ cần tạo token 2|Phức tạp hơn một chút, yêu cầu tạo và quản lý cặp khóa 2|
-|**Quản lý Truy cập**|Phân quyền thông qua phạm vi của token trên GitHub 1|Có thể quản lý truy cập chi tiết qua từng khóa riêng lẻ 1|
-
-## Phần 2: Hướng Dẫn Thiết Lập Khóa SSH Từ A đến Z
 
 Phần này sẽ hướng dẫn chi tiết từng bước để tạo và cấu hình khóa SSH cho tài khoản GitHub của bạn.
 
 ### Bước 1: Tạo Cặp Khóa SSH với `ssh-keygen`
 
-Công cụ dòng lệnh `ssh-keygen` được sử dụng để tạo ra cặp khóa công khai và riêng tư, là nền tảng của việc xác thực bằng SSH.
+CLI `ssh-keygen` được sử dụng để tạo ra cặp khóa công khai và riêng tư, là nền tảng của việc xác thực bằng SSH.
 
 #### Lựa chọn Thuật toán Mã hóa
 
 Việc lựa chọn thuật toán mã hóa là một quyết định quan trọng ảnh hưởng đến cả hiệu suất và bảo mật.
 
-- **Ed25519 (Khuyến nghị):** Đây là thuật toán hiện đại, được khuyến nghị sử dụng. Dựa trên Mật mã Đường cong Elliptic (Elliptic Curve Cryptography), Ed25519 cung cấp mức độ bảo mật rất cao với độ dài khóa ngắn hơn, giúp quá trình xác thực diễn ra nhanh hơn. Để tạo khóa Ed25519, hãy mở terminal và chạy lệnh sau, thay thế email bằng email liên kết với tài khoản GitHub của bạn:
+- **Ed25519 (Khuyến nghị):** Đây là thuật toán hiện đại, được khuyến nghị sử dụng. Ed25519 cung cấp mức độ bảo mật rất cao với độ dài khóa ngắn hơn, giúp quá trình xác thực diễn ra nhanh hơn.
     
-    Bash
-    
-    ```
+    ```bash
     $ ssh-keygen -t ed25519 -C "your_email@example.com"
     ```
     
+- **RSA (Lựa chọn thay thế):** RSA là một thuật toán cũ. Nếu bạn cần hỗ trợ các hệ thống cũ không tương thích với Ed25519. Tuy nhiên, điều cực kỳ quan trọng là phải sử dụng độ dài khóa đủ lớn. Mức khuyến nghị tối thiểu hiện nay là 4096 bits để đảm bảo an toàn.
     
-- **RSA (Lựa chọn thay thế):** RSA là một thuật toán cũ hơn nhưng vẫn rất phổ biến và tương thích rộng rãi. Nếu bạn cần hỗ trợ các hệ thống cũ không tương thích với Ed25519, RSA là một lựa chọn an toàn. Tuy nhiên, điều cực kỳ quan trọng là phải sử dụng độ dài khóa đủ lớn. Mức khuyến nghị tối thiểu hiện nay là 4096 bits để đảm bảo an toàn.9
-    
-    Bash
-    
-    ```
+    ```bash
     $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
     ```
     
-    
 
-#### Tầm quan trọng của Passphrase
-
-Trong quá trình tạo khóa, bạn sẽ được nhắc nhập một "passphrase". Đây là một lớp bảo vệ cực kỳ quan trọng và **rất nên được sử dụng**. Passphrase này sẽ mã hóa file khóa riêng tư của bạn trên đĩa. Điều này có nghĩa là, ngay cả khi máy tính của bạn bị đánh cắp và kẻ tấn công có được file khóa riêng tư, họ cũng không thể sử dụng nó nếu không biết passphrase. Đây là tuyến phòng thủ cuối cùng để bảo vệ danh tính số của bạn.
+>Trong quá trình tạo khóa, bạn sẽ được nhắc nhập một "passphrase". Đây là một lớp bảo vệ cực kỳ quan trọng và **rất nên được sử dụng**. Passphrase này sẽ mã hóa file khóa riêng tư của bạn trên đĩa. Điều này có nghĩa là, ngay cả khi máy tính của bạn bị đánh cắp và kẻ tấn công có được file khóa riêng tư, họ cũng không thể sử dụng nó nếu không biết passphrase. Đây là tuyến phòng thủ cuối cùng để bảo vệ danh tính số của bạn.
 
 #### Lưu khóa và Đặt tên file tùy chỉnh
 
-Theo mặc định, `ssh-keygen` sẽ lưu cặp khóa vào thư mục `~/.ssh/` với tên file là `id_ed25519` và `id_ed25519.pub` (hoặc `id_rsa` cho RSA). Mặc dù bạn có thể chấp nhận giá trị mặc định, một thực hành tốt là đặt tên file tùy chỉnh, đặc biệt khi bạn dự định quản lý nhiều khóa cho các tài khoản khác nhau. Ví dụ, bạn có thể đặt tên là
+Theo mặc định, `ssh-keygen` sẽ lưu cặp khóa vào thư mục `~/.ssh/` với tên file là `id_ed25519` và `id_ed25519.pub` (hoặc `id_rsa` cho RSA). Mặc dù bạn có thể chấp nhận giá trị mặc định. Đặc biệt khi bạn dự định quản lý nhiều khóa cho các tài khoản khác nhau. Ví dụ, bạn có thể đặt tên là
 
 `~/.ssh/id_ed25519_personal` cho tài khoản cá nhân và `~/.ssh/id_ed25519_work` cho tài khoản công việc. Điều này sẽ giúp việc quản lý trở nên dễ dàng hơn ở các bước nâng cao.
 
@@ -82,59 +48,46 @@ Theo mặc định, `ssh-keygen` sẽ lưu cặp khóa vào thư mục `~/.ssh/`
 
 `ssh-agent` là một chương trình chạy nền có vai trò giữ các khóa riêng tư đã được giải mã trong bộ nhớ. Điều này cho phép bạn chỉ cần nhập passphrase một lần cho mỗi phiên làm việc, thay vì mỗi lần kết nối SSH.
 
-1. Khởi động ssh-agent:
+- **Khởi động ssh-agent:**
     
     Chạy lệnh sau trong terminal để khởi động agent cho phiên làm việc hiện tại của bạn.
     
-    Bash
-    
-    ```
+    ```bash
     $ eval "$(ssh-agent -s)"
     ```
     
-    
-2. Thêm khóa riêng tư vào ssh-agent:
+- **Thêm khóa riêng tư vào ssh-agent:**
     
     Sử dụng lệnh ssh-add để thêm khóa riêng tư của bạn vào agent. Bạn sẽ được yêu cầu nhập passphrase mà bạn đã tạo ở Bước 1.
     
-    Bash
-    
-    ```
+    ```bash
     $ ssh-add ~/.ssh/your_private_key_filename
     ```
     
-    
-
 ### Bước 3: Thêm Khóa Công Khai (Public Key) vào Tài Khoản GitHub
 
-Bước tiếp theo là thông báo cho GitHub về danh tính của bạn bằng cách cung cấp khóa công khai. Hãy nhớ rằng, chỉ có file khóa công khai (có đuôi `.pub`) mới được chia sẻ.
+Bước tiếp theo là thông báo cho GitHub về danh tính của bạn. Hãy nhớ rằng chỉ có file khóa công khai (có đuôi `.pub`) mới được chia sẻ.
 
-1. Sao chép nội dung khóa công khai:
-    
-    Sử dụng lệnh phù hợp với hệ điều hành của bạn để sao chép nội dung file .pub vào clipboard.
+- **Sao chép nội dung khóa công khai:**
     
     - **macOS:**
         
-        Bash
-        
-        ```
+        ```bash
         $ pbcopy < ~/.ssh/id_ed25519_personal.pub
         ```
         
     - **Windows (sử dụng Git Bash hoặc WSL):**
         
-        Bash
-        
-        ```
+        ```bash
         $ cat ~/.ssh/id_ed25519_personal.pub | clip
         ```
         
     
-2. **Thêm khóa vào GitHub:**
+- **Thêm khóa vào GitHub:**
     
     - Truy cập tài khoản GitHub của bạn trên trình duyệt.
         
-    - Vào **Settings** (Cài đặt) bằng cách nhấp vào ảnh đại diện của bạn ở góc trên bên phải.
+    - Vào **Settings** (Cài đặt)
         
     - Trong thanh bên trái, chọn **SSH and GPG keys** (Khóa SSH và GPG).
         
@@ -146,26 +99,18 @@ Bước tiếp theo là thông báo cho GitHub về danh tính của bạn bằn
         
     - Nhấp vào Add SSH key (Thêm khóa SSH) để hoàn tất.
         
-        
 
 ### Bước 4: Kiểm Tra Kết Nối
 
 Sau khi hoàn tất các bước trên, bạn cần kiểm tra để đảm bảo mọi thứ hoạt động chính xác.
 
-1. Chạy lệnh kiểm tra:
+- Chạy lệnh kiểm tra:
     
-    Mở terminal và thực hiện lệnh sau:
-    
-    Bash
-    
-    ```
+    ```bash
     $ ssh -T git@github.com
     ```
     
-    
-2. Xác thực máy chủ (lần đầu tiên):
-    
-    Lần đầu tiên bạn kết nối, bạn có thể sẽ thấy một thông báo cảnh báo:
+- Xác thực máy chủ (lần đầu tiên):
     
     ```
     The authenticity of host 'github.com (IP_ADDRESS)' can't be established.
@@ -173,11 +118,9 @@ Sau khi hoàn tất các bước trên, bạn cần kiểm tra để đảm bả
     Are you sure you want to continue connecting (yes/no)?
     ```
     
-    Đây là một tính năng bảo mật của SSH để chống lại các cuộc tấn công xen giữa (man-in-the-middle). Hãy xác minh rằng dấu vân tay (fingerprint) trong thông báo khớp với một trong các dấu vân tay công khai của GitHub được công bố trên trang tài liệu chính thức của họ. Sau khi xác nhận, gõ `yes` và nhấn Enter.
+    Đây là một tính năng bảo mật của SSH để chống lại các cuộc tấn công xen giữa (man-in-the-middle). Sau khi xác nhận, gõ `yes` và nhấn Enter.
     
-3. Kết quả thành công:
-    
-    Nếu kết nối thành công, bạn sẽ nhận được thông báo:
+- Kết quả thành công:
     
     ```
     Hi username! You've successfully authenticated, but GitHub does not provide shell access.
