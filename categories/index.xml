@@ -6,8 +6,22 @@
     <description>Recent content in Categories on Nagih&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Sep 2025 00:00:00 +0700</lastBuildDate>
+    <lastBuildDate>Wed, 10 Sep 2025 00:00:00 +0700</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git</title>
+      <link>https://blog.nagih.io.vn/categories/git/</link>
+      <pubDate>Wed, 10 Sep 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/git/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Protocol</title>
+      <link>https://blog.nagih.io.vn/categories/protocol/</link>
+      <pubDate>Wed, 10 Sep 2025 00:00:00 +0700</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/protocol/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Environment</title>
       <link>https://blog.nagih.io.vn/categories/environment/</link>
@@ -41,13 +55,6 @@
       <link>https://blog.nagih.io.vn/categories/microservices/</link>
       <pubDate>Fri, 29 Aug 2025 00:00:00 +0700</pubDate>
       <guid>https://blog.nagih.io.vn/categories/microservices/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Protocol</title>
-      <link>https://blog.nagih.io.vn/categories/protocol/</link>
-      <pubDate>Thu, 28 Aug 2025 00:00:00 +0700</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/protocol/</guid>
       <description></description>
     </item>
     <item>

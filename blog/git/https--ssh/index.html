@@ -72,7 +72,7 @@
 
 
 
-  <base href="https://blog.nagih.io.vn/blog/docker/docker-cli/" />
+  <base href="https://blog.nagih.io.vn/blog/git/https--ssh/" />
 
 
 
@@ -84,7 +84,7 @@
   
 
 
-<title>Docker CLI</title>
+<title>SSH - Github</title>
 
 
 
@@ -109,7 +109,7 @@
 
 <meta
   name="description"
-  content="Làm chủ Docker Command Line (CLI)" />
+  content="SSH and GitHub Tutorial" />
 
 
 
@@ -187,14 +187,14 @@
 
 
 
-<meta property="og:title" content="Docker CLI" />
-<meta property="og:description" content="Làm chủ Docker Command Line (CLI)" />
+<meta property="og:title" content="SSH - Github" />
+<meta property="og:description" content="SSH and GitHub Tutorial" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://blog.nagih.io.vn/blog/docker/docker-cli/" />
+<meta property="og:url" content="https://blog.nagih.io.vn/blog/git/https--ssh/" />
 
 
-<meta name="twitter:title" content="Docker CLI" />
-<meta name="twitter:description" content="Làm chủ Docker Command Line (CLI)" />
+<meta name="twitter:title" content="SSH - Github" />
+<meta name="twitter:description" content="SSH and GitHub Tutorial" />
 
 
   <meta name="twitter:site" content="@zeon_studio" />
@@ -812,7 +812,7 @@
               loading="lazy" decoding="async"
               src="/images/image-placeholder_hu_8da812934bbff7ba.png"
             class=" w-full rounded img"
-            alt="Docker CLI"
+            alt="SSH - Github"
             width="1096"
             height="480" />
         </picture>
@@ -829,7 +829,7 @@
             </div>
           
           <h1 class="h2 mb-4">
-            Docker CLI
+            SSH - Github
           </h1>
           <ul class="mb-4">
             <li class="mr-4 inline-block">
@@ -845,16 +845,24 @@
                 <i class="fa-regular fa-folder mr-2"></i>
                 
                   <a
-                    href="/categories/devops/"
+                    href="/categories/protocol/"
                     class=""
-                    >Devops
+                    >Protocol
+                      ,
+                    
+                  </a>
+                
+                  <a
+                    href="/categories/git/"
+                    class=""
+                    >Git
                   </a>
                 
               </li>
             
             <li class="mr-4 inline-block">
               <i class="fa-regular fa-clock mr-2"></i>
-              August 13, 2025
+              September 1, 2025
             </li>
           </ul>
           <div class="content mb-10">
@@ -871,264 +879,59 @@
   </summary>
   <nav id="TableOfContents">
   <ol>
-    <li><a href="#phần-2-làm-chủ-docker-command-line-cli">Phần 2: Làm Chủ Docker Command Line (CLI)</a>
+    <li>
       <ol>
-        <li><a href="#21-quản-lý-image">2.1 Quản lý Image</a></li>
-        <li><a href="#22-vòng-đời-container">2.2 Vòng đời Container</a></li>
-        <li><a href="#23-tương-tác-và-gỡ-lỗi-container">2.3 Tương tác và Gỡ lỗi Container</a></li>
-        <li><a href="#24-dọn-dẹp-hệ-thống">2.4 Dọn dẹp hệ thống</a></li>
-        <li><a href="#bảng-tra-cứu-nhanh-các-lệnh-docker-cli-thiết-yếu">Bảng tra cứu nhanh các lệnh Docker CLI thiết yếu</a></li>
+        <li><a href="#1-những-hạn-chế-của-xác-thực-qua-https">1. Những Hạn Chế của Xác thực qua HTTPS</a></li>
+        <li><a href="#so-sánh-nhanh-https-và-ssh-trên-github">So Sánh Nhanh: HTTPS và SSH trên GitHub</a></li>
       </ol>
     </li>
   </ol>
 </nav>
 </details>
 
-            <p>Làm chủ Docker Command Line (CLI)</p>
-<p>Phần 1: <a href="https://blog.nagih.io.vn/post/docker/docker/"
-
-
-
-
- target="_blank"
- 
-
-
->Docker Principle</a></p>
-<h2 id="phần-2-làm-chủ-docker-command-line-cli">Phần 2: Làm Chủ Docker Command Line (CLI)</h2>
-<p>Giao diện dòng lệnh (CLI) là công cụ chính để tương tác với Docker Daemon. Thay vì chỉ liệt kê các lệnh một cách khô khan, phần này sẽ tổ chức chúng theo các quy trình làm việc (workflow) mà một lập trình viên thường gặp phải hàng ngày, giúp hiểu rõ hơn về bối cảnh và mục đích sử dụng của từng lệnh.</p>
-<h3 id="21-quản-lý-image">2.1 Quản lý Image</h3>
-<p>Quản lý image là bước đầu tiên trong mọi quy trình làm việc với Docker. Đây là quá trình tạo, phân phối và duy trì các &ldquo;bản thiết kế&rdquo; cho ứng dụng của bạn.</p>
-<ul>
-<li>
-<p><code>docker build</code>: Lệnh này xây dựng một Docker image từ một <code>Dockerfile</code> và một &ldquo;bối cảnh&rdquo; (context). Bối cảnh là tập hợp các tệp tại đường dẫn được chỉ định. Cờ <code>-t</code> (tag) được sử dụng để đặt tên và phiên bản cho image, giúp dễ dàng nhận dạng.</p>
-<ul>
-<li>Ví dụ: <code>docker build -t my-app:1.0.</code></li>
-</ul>
-</li>
-<li>
-<p><code>docker images</code> (hoặc <code>docker image ls</code>): Liệt kê tất cả các image hiện có trên máy cục bộ của bạn, hiển thị thông tin như REPOSITORY, TAG, IMAGE ID, và SIZE.</p>
-</li>
-<li>
-<p><code>docker pull</code>: Tải một image hoặc một kho lưu trữ (repository) từ một registry, mặc định là Docker Hub.</p>
-<ul>
-<li>Ví dụ: <code>docker pull postgres:15-alpine</code></li>
-</ul>
-</li>
-<li>
-<p><code>docker push</code>: Tải một image từ máy cục bộ của bạn lên một registry, cho phép chia sẻ với những người khác hoặc sử dụng trong môi trường production.</p>
-<ul>
-<li>Ví dụ: <code>docker push your-username/my-app:1.0</code></li>
-</ul>
-</li>
-<li>
-<p><code>docker rmi</code> (hoặc <code>docker image rm</code>): Xóa một hoặc nhiều image khỏi máy cục bộ để giải phóng dung lượng đĩa.</p>
-<ul>
-<li>Ví dụ: <code>docker rmi my-app:1.0</code></li>
-</ul>
-</li>
-<li>
-<p><code>docker inspect &lt;image&gt;</code>: Cung cấp thông tin chi tiết, ở cấp độ thấp về một image, bao gồm các lớp của nó và siêu dữ liệu (metadata).</p>
-</li>
-</ul>
-<h3 id="22-vòng-đời-container">2.2 Vòng đời Container</h3>
-<p>Sau khi có image, bước tiếp theo là tạo và quản lý các thực thể chạy của nó - các container.</p>
-<ul>
-<li>
-<p><code>docker run</code>: Đây là lệnh trung tâm, kết hợp việc tạo và khởi chạy một container mới từ một image. Nó có nhiều cờ tùy chọn mạnh mẽ:</p>
-<ul>
-<li>
-<p><code>-d</code> hoặc <code>--detach</code>: Chạy container ở chế độ nền (detached mode) và in ra ID của container.</p>
-</li>
-<li>
-<p><code>-p &lt;host_port&gt;:&lt;container_port&gt;</code>: Ánh xạ một cổng trên máy chủ (host) tới một cổng bên trong container, cho phép truy cập ứng dụng từ bên ngoài. Ví dụ: <code>-p 8080:80</code>.</p>
-</li>
-<li>
-<p><code>--name &lt;container_name&gt;</code>: Gán một tên cụ thể cho container để dễ dàng tham chiếu thay vì sử dụng ID ngẫu nhiên.</p>
-</li>
-<li>
-<p><code>-v &lt;host_path_or_volume_name&gt;:&lt;container_path&gt;</code>: Gắn một volume hoặc một thư mục từ máy chủ vào container.</p>
-</li>
-<li>
-<p><code>-e &lt;VAR_NAME&gt;=&lt;value&gt;</code>: Thiết lập một biến môi trường bên trong container.</p>
-</li>
-<li>
-<p>Ví dụ đầy đủ: <code>docker run -d -p 8080:80 --name webserver -e APP_MODE=production nginx:latest</code></p>
-</li>
-</ul>
-</li>
-<li>
-<p><code>docker ps</code>: Liệt kê tất cả các container đang chạy. Sử dụng cờ <code>-a</code> để hiển thị tất cả các container, bao gồm cả những container đã dừng.</p>
-</li>
-<li>
-<p><code>docker stop &lt;container_name_or_id&gt;</code>: Dừng một hoặc nhiều container đang chạy một cách nhẹ nhàng (gửi tín hiệu SIGTERM).</p>
-</li>
-<li>
-<p><code>docker start &lt;container_name_or_id&gt;</code>: Khởi động lại một hoặc nhiều container đã bị dừng.</p>
-</li>
-<li>
-<p><code>docker restart &lt;container_name_or_id&gt;</code>: Dừng và sau đó khởi động lại một container.</p>
-</li>
-<li>
-<p><code>docker rm &lt;container_name_or_id&gt;</code>: Xóa một hoặc nhiều container đã dừng. Sử dụng cờ <code>-f</code> để buộc xóa một container đang chạy.</p>
-</li>
-</ul>
-<h3 id="23-tương-tác-và-gỡ-lỗi-container">2.3 Tương tác và Gỡ lỗi Container</h3>
-<p>Khi container đang chạy, bạn thường cần phải &ldquo;nhìn vào bên trong&rdquo; để gỡ lỗi hoặc thực hiện các tác vụ quản trị.</p>
-<ul>
-<li>
-<p><code>docker logs &lt;container&gt;</code>: Lấy và hiển thị nhật ký (logs) được tạo ra bởi một container. Cờ <code>-f</code> (follow) rất hữu ích để theo dõi luồng log trong thời gian thực, tương tự như lệnh <code>tail -f</code> trong Linux.</p>
-</li>
-<li>
-<p><code>docker exec -it &lt;container&gt; &lt;command&gt;</code>: Thực thi một lệnh bên trong một container đang chạy. Cờ <code>-it</code> (<code>-i</code> cho interactive và <code>-t</code> cho TTY) cho phép bạn có một phiên làm việc tương tác. Đây là cách phổ biến nhất để &ldquo;vào&rdquo; một container.</p>
-<ul>
-<li>Ví dụ: <code>docker exec -it webserver bash</code> sẽ mở một phiên shell Bash tương tác bên trong container tên là <code>webserver</code>.</li>
-</ul>
-</li>
-<li>
-<p><code>docker stats</code>: Hiển thị một luồng trực tiếp về việc sử dụng tài nguyên (CPU, bộ nhớ, mạng I/O) của các container đang chạy, rất hữu ích để theo dõi hiệu suất.</p>
-</li>
-</ul>
-<h3 id="24-dọn-dẹp-hệ-thống">2.4 Dọn dẹp hệ thống</h3>
-<p>Theo thời gian, Docker có thể tích tụ nhiều đối tượng không sử dụng (container đã dừng, image cũ, volume không được gắn), chiếm dụng không gian đĩa.</p>
-<ul>
-<li>
-<p><code>docker system prune</code>: Một lệnh dọn dẹp mạnh mẽ, theo mặc định sẽ xóa tất cả các container đã dừng, các mạng không được sử dụng, các image lơ lửng (dangling images - những image không có tag và không được container nào sử dụng), và build cache.</p>
-<ul>
-<li>
-<p><code>docker system prune -a</code>: Mở rộng việc dọn dẹp để xóa tất cả các image không được sử dụng (không chỉ là dangling).</p>
-</li>
-<li>
-<p><code>docker system prune --volumes</code>: Bao gồm cả việc xóa các volume không được sử dụng.</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="bảng-tra-cứu-nhanh-các-lệnh-docker-cli-thiết-yếu">Bảng tra cứu nhanh các lệnh Docker CLI thiết yếu</h3>
-<p>Bảng dưới đây tóm tắt các lệnh Docker CLI quan trọng nhất để tham khảo nhanh.</p>
+            <p>Những hạn chế của xác thực qua HTTPS và sự thay thế SSH</p>
+<p>Trong hệ sinh thái phát triển phần mềm hiện đại, GitHub không chỉ là một kho lưu trữ mã nguồn mà còn là trung tâm cộng tác, quản lý dự án và triển khai ứng dụng. Việc tương tác hiệu quả và an toàn với nền tảng này là một kỹ năng cơ bản đối với mọi nhà phát triển. Mặc dù HTTPS cung cấp một phương thức kết nối ban đầu đơn giản, việc chuyển sang sử dụng giao thức SSH (Secure Shell) là một bước tiến quan trọng, không chỉ nâng cao đáng kể mức độ bảo mật mà còn tối ưu hóa quy trình làm việc hàng ngày.</p>
+<h3 id="1-những-hạn-chế-của-xác-thực-qua-https">1. Những Hạn Chế của Xác thực qua HTTPS</h3>
+<p>Khi bắt đầu với Git và GitHub, hầu hết người dùng đều chọn HTTPS vì sự đơn giản của nó. Tuy nhiên, phương thức này có những hạn chế cố hữu. Xác thực qua HTTPS yêu cầu sử dụng Personal Access Token (PAT), một chuỗi ký tự hoạt động tương tự như mật khẩu.</p>
+<p>Mặc dù dễ thiết lập, quy trình này bộc lộ sự bất tiện trong quá trình sử dụng lâu dài. Git sẽ thường xuyên yêu cầu người dùng nhập thông tin xác thực, làm gián đoạn luồng công việc. Mặc dù các công cụ hỗ trợ quản lý thông tin đăng nhập (credential helpers) có thể lưu trữ token, nhưng chúng lại đặt ra một vấn đề khác về mức độ an toàn của việc lưu trữ này. Quan trọng hơn, một PAT bị rò rỉ có thể cấp cho kẻ tấn công quyền truy cập không chỉ vào các kho lưu trữ mà còn có thể vào toàn bộ tài khoản GitHub, tùy thuộc vào phạm vi quyền hạn được cấp cho token đó.</p>
+<h3 id="so-sánh-nhanh-https-và-ssh-trên-github">So Sánh Nhanh: HTTPS và SSH trên GitHub</h3>
+<p>Để tóm tắt những khác biệt chính, bảng dưới đây cung cấp một cái nhìn tổng quan về hai phương thức xác thực.</p>
 <table>
   <thead>
       <tr>
-          <th>Lệnh</th>
-          <th>Mô tả</th>
-          <th>Ví dụ sử dụng</th>
+          <th>Tiêu chí</th>
+          <th>HTTPS (với Personal Access Token)</th>
+          <th>SSH</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><code>docker build</code></td>
-          <td>Xây dựng một image từ một Dockerfile.</td>
-          <td><code>docker build -t my-app:latest.</code></td>
+          <td><strong>Cơ chế Xác thực</strong></td>
+          <td>Dựa trên token (hoạt động như mật khẩu) 1</td>
+          <td>Cặp khóa Public/Private (mật mã bất đối xứng) 1</td>
       </tr>
       <tr>
-          <td><code>docker run</code></td>
-          <td>Tạo và khởi chạy một container mới từ một image.</td>
-          <td><code>docker run -d -p 80:80 --name web nginx</code></td>
+          <td><strong>Mức độ Bảo mật</strong></td>
+          <td>Dễ bị lộ nếu token không được bảo vệ cẩn thận 3</td>
+          <td>Rất cao; khóa riêng tư không bao giờ truyền qua mạng 4</td>
       </tr>
       <tr>
-          <td><code>docker ps</code></td>
-          <td>Liệt kê các container đang chạy. Sử dụng <code>-a</code> để liệt kê tất cả.</td>
-          <td><code>docker ps -a</code></td>
+          <td><strong>Sự tiện lợi</strong></td>
+          <td>Yêu cầu nhập lại token hoặc phụ thuộc vào credential helper 3</td>
+          <td>Rất tiện lợi sau khi thiết lập, không cần nhập lại thông tin 8</td>
       </tr>
       <tr>
-          <td><code>docker stop</code></td>
-          <td>Dừng một container đang chạy.</td>
-          <td><code>docker stop web</code></td>
+          <td><strong>Thiết lập ban đầu</strong></td>
+          <td>Đơn giản, chỉ cần tạo token 2</td>
+          <td>Phức tạp hơn một chút, yêu cầu tạo và quản lý cặp khóa 2</td>
       </tr>
       <tr>
-          <td><code>docker rm</code></td>
-          <td>Xóa một container đã dừng.</td>
-          <td><code>docker rm web</code></td>
-      </tr>
-      <tr>
-          <td><code>docker images</code></td>
-          <td>Liệt kê các image trên máy.</td>
-          <td><code>docker images</code></td>
-      </tr>
-      <tr>
-          <td><code>docker rmi</code></td>
-          <td>Xóa một image.</td>
-          <td><code>docker rmi nginx</code></td>
-      </tr>
-      <tr>
-          <td><code>docker pull</code></td>
-          <td>Tải một image từ registry.</td>
-          <td><code>docker pull ubuntu:22.04</code></td>
-      </tr>
-      <tr>
-          <td><code>docker push</code></td>
-          <td>Đẩy một image lên registry.</td>
-          <td><code>docker push my-username/my-app</code></td>
-      </tr>
-      <tr>
-          <td><code>docker exec</code></td>
-          <td>Chạy một lệnh bên trong một container đang chạy.</td>
-          <td><code>docker exec -it web bash</code></td>
-      </tr>
-      <tr>
-          <td><code>docker logs</code></td>
-          <td>Xem nhật ký của một container. Sử dụng <code>-f</code> để theo dõi.</td>
-          <td><code>docker logs -f web</code></td>
-      </tr>
-      <tr>
-          <td><code>docker system prune</code></td>
-          <td>Dọn dẹp các container, network và image không sử dụng.</td>
-          <td><code>docker system prune -a --volumes</code></td>
+          <td><strong>Quản lý Truy cập</strong></td>
+          <td>Phân quyền thông qua phạm vi của token trên GitHub 1</td>
+          <td>Có thể quản lý truy cập chi tiết qua từng khóa riêng lẻ 1</td>
       </tr>
   </tbody>
 </table>
-<p>Phần 3: <a href="https://blog.nagih.io.vn/post/docker/docker-dockerfile/"
-
-
-
-
- target="_blank"
- 
-
-
->Docker Dockerfile</a></p>
-<p>Phần 4: <a href="https://blog.nagih.io.vn/post/docker/docker-compose/"
-
-
-
-
- target="_blank"
- 
-
-
->Docker Compose</a></p>
-<p>Phần 5: <a href="https://blog.nagih.io.vn/post/docker/docker-practical-guide/"
-
-
-
-
- target="_blank"
- 
-
-
->Docker Practical Guide</a></p>
-<p>Phần 6: <a href="https://blog.nagih.io.vn/post/docker/docker-fullstack-example/"
-
-
-
-
- target="_blank"
- 
-
-
->Docker Fullstack Example</a></p>
-<p>Phần 7: <a href="https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/"
-
-
-
-
- target="_blank"
- 
-
-
->Docker Best Practice for Production</a></p>
-<hr>
-<p><em>Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!</em></p>
           </div>
           <div class="row items-start justify-between">
             
@@ -1140,8 +943,8 @@
                     <li class="inline-block">
                       <a
                         class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
-                        href="/tags/docker/">
-                        Docker
+                        href="/tags/ssh/">
+                        SSH
                       </a>
                     </li>
                   
@@ -1174,7 +977,7 @@
   
     <a
       class="share-link share-facebook"
-      href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fdocker%2fdocker-cli%2f"
+      href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fgit%2fhttps--ssh%2f"
       target="_blank"
       rel="noopener"
       aria-label="share facebook">
@@ -1192,7 +995,7 @@
   
     <a
       class="share-link share-x"
-      href="https://x.com/intent/tweet/?text=Docker%20CLI&amp;url=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fdocker%2fdocker-cli%2f"
+      href="https://x.com/intent/tweet/?text=SSH%20-%20Github&amp;url=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fgit%2fhttps--ssh%2f"
       target="_blank"
       rel="noopener"
       aria-label="share x">
@@ -1210,7 +1013,7 @@
   
     <a
       class="share-link share-email"
-      href="mailto:?subject=Docker%20CLI&amp;body=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fdocker%2fdocker-cli%2f"
+      href="mailto:?subject=SSH%20-%20Github&amp;body=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fgit%2fhttps--ssh%2f"
       target="_self"
       rel="noopener"
       aria-label="share email">
@@ -1283,10 +1086,10 @@
           type="text"
           placeholder="Enter Fediverse Instance URL"
           class="fediverse-input"
-          onkeypress="handleFediverseShare(event, 'https:\/\/blog.nagih.io.vn\/blog\/docker\/docker-cli\/', 'Docker CLI')" />
+          onkeypress="handleFediverseShare(event, 'https:\/\/blog.nagih.io.vn\/blog\/git\/https--ssh\/', 'SSH - Github')" />
         <button
           class="fediverse-check-button"
-          onclick="handleFediverseShareButton(this, 'https:\/\/blog.nagih.io.vn\/blog\/docker\/docker-cli\/', 'Docker CLI')">
+          onclick="handleFediverseShareButton(this, 'https:\/\/blog.nagih.io.vn\/blog\/git\/https--ssh\/', 'SSH - Github')">
           Share
         </button>
       </span>
@@ -1298,7 +1101,7 @@
   
     <button
       class="share-link share-copy"
-      onclick="copyToClipboard(this, 'https:\/\/blog.nagih.io.vn\/blog\/docker\/docker-cli\/')">
+      onclick="copyToClipboard(this, 'https:\/\/blog.nagih.io.vn\/blog\/git\/https--ssh\/')">
       <span class="share-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path
@@ -1400,475 +1203,6 @@
       
       
       
-      
-        <div class="section pb-0">
-          <h2 class="h3 mb-12">Related Posts</h2>
-          <div class="row">
-            
-              <div class="lg:col-4 md:col-6 mb-14">
-                <div class="bg-body dark:bg-darkmode-body">
-  
-  
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  
-    
-      
-    
-
-
-    
-    
-
-
-    
-    
-      
-      
-    
-    
-    
-
-
-    
-    
-      
-      
-        
-
-        
-        
-        
-        
-        
-        
-        
-
-
-        
-        
-
-
-        <picture>
-          <source
-            
-              srcset="/images/image-placeholder_hu_c8971dd714d7d967.webp"
-            
-            media="(max-width: 575px)" />
-          <source
-            
-              srcset="/images/image-placeholder_hu_7feb4cff3f0f2f38.webp"
-            
-            media="(max-width: 767px)" />
-          <source
-            
-              srcset="/images/image-placeholder_hu_aa8934e738977bd1.webp"
-            
-            media="(max-width: 991px)" />
-          <source
-            
-              srcset="/images/image-placeholder_hu_c6a26df46efa63e0.webp"
-             />
-          <img
-            
-              loading="lazy" decoding="async"
-              src="/images/image-placeholder_hu_8da812934bbff7ba.png"
-            class=" mb-6 w-full rounded img"
-            alt="Docker"
-            width="1096"
-            height="480" />
-        </picture>
-      
-      
-    
-    
-  
-
-
-  
-
-
-  
-  <h4 class="mb-3">
-    <a href="/blog/docker/docker/">
-      Docker
-    </a>
-  </h4>
-  
-  
-    <ul class="mb-4">
-      <li class="mr-4 inline-block">
-        <a href="/authors/nagih/">
-          <i class="fa-regular fa-circle-user mr-2"></i>Nagih
-        </a>
-      </li>
-      <li class="mr-4 inline-block">
-        <i class="fa-regular fa-folder mr-1"></i>
-        
-          <a
-            href="/categories/devops/"
-            class="ms-1"
-            >Devops
-          </a>
-        
-      </li>
-    </ul>
-  
-  <p class="mb-6">Sự Ra Đời và Các Nguyên Tắc Cốt Lõi của Docker
-</p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/docker/docker/">
-    Read More
-  </a>
-</div>
-
-              </div>
-            
-              <div class="lg:col-4 md:col-6 mb-14">
-                <div class="bg-body dark:bg-darkmode-body">
-  
-  
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  
-    
-      
-    
-
-
-    
-    
-
-
-    
-    
-      
-      
-    
-    
-    
-
-
-    
-    
-      
-      
-        
-
-        
-        
-        
-        
-        
-        
-        
-
-
-        
-        
-
-
-        <picture>
-          <source
-            
-              srcset="/images/image-placeholder_hu_c8971dd714d7d967.webp"
-            
-            media="(max-width: 575px)" />
-          <source
-            
-              srcset="/images/image-placeholder_hu_7feb4cff3f0f2f38.webp"
-            
-            media="(max-width: 767px)" />
-          <source
-            
-              srcset="/images/image-placeholder_hu_aa8934e738977bd1.webp"
-            
-            media="(max-width: 991px)" />
-          <source
-            
-              srcset="/images/image-placeholder_hu_c6a26df46efa63e0.webp"
-             />
-          <img
-            
-              loading="lazy" decoding="async"
-              src="/images/image-placeholder_hu_8da812934bbff7ba.png"
-            class=" mb-6 w-full rounded img"
-            alt="Internet Protocol (IP)"
-            width="1096"
-            height="480" />
-        </picture>
-      
-      
-    
-    
-  
-
-
-  
-
-
-  
-  <h4 class="mb-3">
-    <a href="/blog/network/ip/">
-      Internet Protocol (IP)
-    </a>
-  </h4>
-  
-  
-    <ul class="mb-4">
-      <li class="mr-4 inline-block">
-        <a href="/authors/nagih/">
-          <i class="fa-regular fa-circle-user mr-2"></i>Nagih
-        </a>
-      </li>
-      <li class="mr-4 inline-block">
-        <i class="fa-regular fa-folder mr-1"></i>
-        
-          <a
-            href="/categories/devops/"
-            class="ms-1"
-            >Devops
-          </a>
-        
-      </li>
-    </ul>
-  
-  <p class="mb-6">Mastering Internet Protocol Addresses
-</p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/network/ip/">
-    Read More
-  </a>
-</div>
-
-              </div>
-            
-              <div class="lg:col-4 md:col-6 mb-14">
-                <div class="bg-body dark:bg-darkmode-body">
-  
-  
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  
-    
-      
-    
-
-
-    
-    
-
-
-    
-    
-      
-      
-    
-    
-    
-
-
-    
-    
-      
-      
-        
-
-        
-        
-        
-        
-        
-        
-        
-
-
-        
-        
-
-
-        <picture>
-          <source
-            
-              srcset="/images/image-placeholder_hu_c8971dd714d7d967.webp"
-            
-            media="(max-width: 575px)" />
-          <source
-            
-              srcset="/images/image-placeholder_hu_7feb4cff3f0f2f38.webp"
-            
-            media="(max-width: 767px)" />
-          <source
-            
-              srcset="/images/image-placeholder_hu_aa8934e738977bd1.webp"
-            
-            media="(max-width: 991px)" />
-          <source
-            
-              srcset="/images/image-placeholder_hu_c6a26df46efa63e0.webp"
-             />
-          <img
-            
-              loading="lazy" decoding="async"
-              src="/images/image-placeholder_hu_8da812934bbff7ba.png"
-            class=" mb-6 w-full rounded img"
-            alt="Docker Overview"
-            width="1096"
-            height="480" />
-        </picture>
-      
-      
-    
-    
-  
-
-
-  
-
-
-  
-  <h4 class="mb-3">
-    <a href="/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/">
-      Docker Overview
-    </a>
-  </h4>
-  
-  
-    <ul class="mb-4">
-      <li class="mr-4 inline-block">
-        <a href="/authors/nagih/">
-          <i class="fa-regular fa-circle-user mr-2"></i>Nagih
-        </a>
-      </li>
-      <li class="mr-4 inline-block">
-        <i class="fa-regular fa-folder mr-1"></i>
-        
-          <a
-            href="/categories/devops/"
-            class="ms-1"
-            >Devops
-          </a>
-        
-      </li>
-    </ul>
-  
-  <p class="mb-6">Tổng hợp các kiến thức cần biết về Docker
-</p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/">
-    Read More
-  </a>
-</div>
-
-              </div>
-            
-          </div>
-        </div>
       
     </div>
   </section>

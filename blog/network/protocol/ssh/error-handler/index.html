@@ -72,7 +72,7 @@
 
 
 
-  <base href="https://blog.nagih.io.vn/blog/docker/docker-cli/" />
+  <base href="https://blog.nagih.io.vn/blog/network/protocol/ssh/error-handler/" />
 
 
 
@@ -81,10 +81,9 @@
 
 
   
-  
 
 
-<title>Docker CLI</title>
+<title>Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH</title>
 
 
 
@@ -109,7 +108,7 @@
 
 <meta
   name="description"
-  content="Làm chủ Docker Command Line (CLI)" />
+  content="Hugo &amp; Tailwindcss Starter" />
 
 
 
@@ -120,7 +119,6 @@
 
 
 
-  
   
 
 
@@ -187,14 +185,14 @@
 
 
 
-<meta property="og:title" content="Docker CLI" />
-<meta property="og:description" content="Làm chủ Docker Command Line (CLI)" />
+<meta property="og:title" content="Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH" />
+<meta property="og:description" content="Hugo &amp; Tailwindcss Starter" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://blog.nagih.io.vn/blog/docker/docker-cli/" />
+<meta property="og:url" content="https://blog.nagih.io.vn/blog/network/protocol/ssh/error-handler/" />
 
 
-<meta name="twitter:title" content="Docker CLI" />
-<meta name="twitter:description" content="Làm chủ Docker Command Line (CLI)" />
+<meta name="twitter:title" content="Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH" />
+<meta name="twitter:description" content="Hugo &amp; Tailwindcss Starter" />
 
 
   <meta name="twitter:site" content="@zeon_studio" />
@@ -812,7 +810,7 @@
               loading="lazy" decoding="async"
               src="/images/image-placeholder_hu_8da812934bbff7ba.png"
             class=" w-full rounded img"
-            alt="Docker CLI"
+            alt="Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH"
             width="1096"
             height="480" />
         </picture>
@@ -829,7 +827,7 @@
             </div>
           
           <h1 class="h2 mb-4">
-            Docker CLI
+            Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH
           </h1>
           <ul class="mb-4">
             <li class="mr-4 inline-block">
@@ -845,16 +843,16 @@
                 <i class="fa-regular fa-folder mr-2"></i>
                 
                   <a
-                    href="/categories/devops/"
+                    href="/categories/protocol/"
                     class=""
-                    >Devops
+                    >Protocol
                   </a>
                 
               </li>
             
             <li class="mr-4 inline-block">
               <i class="fa-regular fa-clock mr-2"></i>
-              August 13, 2025
+              September 10, 2025
             </li>
           </ul>
           <div class="content mb-10">
@@ -871,264 +869,153 @@
   </summary>
   <nav id="TableOfContents">
   <ol>
-    <li><a href="#phần-2-làm-chủ-docker-command-line-cli">Phần 2: Làm Chủ Docker Command Line (CLI)</a>
+    <li>
       <ol>
-        <li><a href="#21-quản-lý-image">2.1 Quản lý Image</a></li>
-        <li><a href="#22-vòng-đời-container">2.2 Vòng đời Container</a></li>
-        <li><a href="#23-tương-tác-và-gỡ-lỗi-container">2.3 Tương tác và Gỡ lỗi Container</a></li>
-        <li><a href="#24-dọn-dẹp-hệ-thống">2.4 Dọn dẹp hệ thống</a></li>
-        <li><a href="#bảng-tra-cứu-nhanh-các-lệnh-docker-cli-thiết-yếu">Bảng tra cứu nhanh các lệnh Docker CLI thiết yếu</a></li>
+        <li><a href="#công-cụ-chẩn-đoán-chính-chế-độ-verbose">Công cụ chẩn đoán chính: Chế độ Verbose</a></li>
+        <li><a href="#error-1-permission-denied-publickey">Error 1: <code>Permission denied (publickey)</code></a></li>
+        <li><a href="#error-2-host-key-verification-failed">Error 2: <code>Host key verification failed</code></a></li>
+        <li><a href="#error-3-agent-admitted-failure-to-sign-using-the-key">Error 3: <code>Agent admitted failure to sign using the key</code></a></li>
+        <li><a href="#error-4-key-is-already-in-use">Error 4: <code>Key is already in use</code></a></li>
+      </ol>
+    </li>
+    <li><a href="#error-5-các-phương-pháp-bảo-mật-tốt-nhất-best-practices-và-tổng-kết">Error 5: Các Phương Pháp Bảo Mật Tốt Nhất (Best Practices) và Tổng Kết</a>
+      <ol>
+        <li><a href="#vòng-đời-bảo-mật-của-khóa-ssh">Vòng Đời Bảo Mật Của Khóa SSH</a></li>
       </ol>
     </li>
   </ol>
 </nav>
 </details>
 
-            <p>Làm chủ Docker Command Line (CLI)</p>
-<p>Phần 1: <a href="https://blog.nagih.io.vn/post/docker/docker/"
-
-
-
-
- target="_blank"
- 
-
-
->Docker Principle</a></p>
-<h2 id="phần-2-làm-chủ-docker-command-line-cli">Phần 2: Làm Chủ Docker Command Line (CLI)</h2>
-<p>Giao diện dòng lệnh (CLI) là công cụ chính để tương tác với Docker Daemon. Thay vì chỉ liệt kê các lệnh một cách khô khan, phần này sẽ tổ chức chúng theo các quy trình làm việc (workflow) mà một lập trình viên thường gặp phải hàng ngày, giúp hiểu rõ hơn về bối cảnh và mục đích sử dụng của từng lệnh.</p>
-<h3 id="21-quản-lý-image">2.1 Quản lý Image</h3>
-<p>Quản lý image là bước đầu tiên trong mọi quy trình làm việc với Docker. Đây là quá trình tạo, phân phối và duy trì các &ldquo;bản thiết kế&rdquo; cho ứng dụng của bạn.</p>
+            <p>Ngay cả với một thiết lập cẩn thận, các vấn đề vẫn có thể phát sinh. Việc hiểu rõ cách chẩn đoán và khắc phục các lỗi SSH phổ biến là một kỹ năng quan trọng.</p>
+<h3 id="công-cụ-chẩn-đoán-chính-chế-độ-verbose">Công cụ chẩn đoán chính: Chế độ Verbose</h3>
+<p>Trước khi thử bất kỳ giải pháp nào, bước đầu tiên luôn là thu thập thêm thông tin. Tùy chọn <code>-v</code> (verbose) của lệnh <code>ssh</code> sẽ in ra chi tiết quá trình kết nối, cho bạn biết file cấu hình nào đang được đọc, khóa nào đang được thử, và chính xác lỗi xảy ra ở đâu.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ssh -vT git@github.com
+</span></span></code></pre></div><h3 id="error-1-permission-denied-publickey">Error 1: <code>Permission denied (publickey)</code></h3>
 <ul>
 <li>
-<p><code>docker build</code>: Lệnh này xây dựng một Docker image từ một <code>Dockerfile</code> và một &ldquo;bối cảnh&rdquo; (context). Bối cảnh là tập hợp các tệp tại đường dẫn được chỉ định. Cờ <code>-t</code> (tag) được sử dụng để đặt tên và phiên bản cho image, giúp dễ dàng nhận dạng.</p>
+<p><strong>Ý nghĩa:</strong> Đây là lỗi xác thực phổ biến nhất. Nó có nghĩa là máy chủ GitHub đã từ chối tất cả các khóa SSH mà client của bạn cung cấp.</p>
+</li>
+<li>
+<p><strong>Các bước kiểm tra và khắc phục:</strong></p>
+<ol>
+<li>
+<p><strong>Kiểm tra khóa trên GitHub:</strong> Đảm bảo rằng khóa công khai của bạn đã được thêm chính xác vào tài khoản GitHub.</p>
+</li>
+<li>
+<p><strong>Kiểm tra <code>ssh-agent</code>:</strong> Chạy <code>ssh-add -l</code> để xem các khóa hiện có trong agent. Nếu danh sách trống hoặc không chứa khóa bạn cần, hãy chạy lại <code>ssh-add ~/.ssh/your_private_key</code> để thêm nó vào.</p>
+</li>
+<li>
+<p><strong>Kiểm tra quyền truy cập file:</strong> SSH yêu cầu quyền truy cập rất nghiêm ngặt. Thư mục <code>~/.ssh</code> phải có quyền là <code>700</code> (drwx−−−−−−), và file khóa riêng tư của bạn phải có quyền là <code>600</code> (−rw−−−−−−−). Sử dụng các lệnh sau để sửa:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ chmod <span style="color:#ae81ff">700</span> ~/.ssh
+</span></span><span style="display:flex;"><span>$ chmod <span style="color:#ae81ff">600</span> ~/.ssh/your_private_key
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Kiểm tra <code>~/.ssh/config</code>:</strong> Nếu bạn đang sử dụng file cấu hình, hãy kiểm tra kỹ lưỡng xem <code>Host</code> alias có khớp với URL remote của Git không, và <code>IdentityFile</code> có trỏ đến đúng file khóa riêng tư không.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="error-2-host-key-verification-failed">Error 2: <code>Host key verification failed</code></h3>
 <ul>
-<li>Ví dụ: <code>docker build -t my-app:1.0.</code></li>
+<li>
+<p><strong>Ý nghĩa:</strong> Dấu vân tay của máy chủ GitHub đã thay đổi so với lần cuối bạn kết nối. Đây là một cơ chế bảo mật quan trọng để cảnh báo về khả năng có một cuộc tấn công Man-in-the-Middle.</p>
+</li>
+<li>
+<p><strong>Cách khắc phục an toàn:</strong></p>
+<ol>
+<li>
+<p><strong>Không bao giờ</strong> bỏ qua cảnh báo này một cách mù quáng.</p>
+</li>
+<li>
+<p>Truy cập trang tài liệu chính thức của GitHub để xác minh dấu vân tay máy chủ mới nhất của họ.</p>
+</li>
+<li>
+<p>Nếu dấu vân tay khớp, bạn có thể an toàn xóa khóa cũ khỏi file <code>~/.ssh/known_hosts</code> bằng lệnh:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ssh-keygen -R github.com
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ul>
+<h3 id="error-3-agent-admitted-failure-to-sign-using-the-key">Error 3: <code>Agent admitted failure to sign using the key</code></h3>
+<ul>
+<li>
+<p><strong>Ý nghĩa:</strong> <code>ssh-agent</code> đang chạy nhưng không thể sử dụng khóa để tạo chữ ký số cần thiết cho việc xác thực. Lỗi này đôi khi xảy ra trên các hệ thống Linux.</p>
+</li>
+<li>
+<p><strong>Cách khắc phục:</strong> Giải pháp thường rất đơn giản là tải lại khóa vào agent. Chạy lệnh <code>ssh-add</code> thường sẽ giải quyết được vấn đề này.</p>
+</li>
+</ul>
+<h3 id="error-4-key-is-already-in-use">Error 4: <code>Key is already in use</code></h3>
+<ul>
+<li>
+<p><strong>Ý nghĩa:</strong> Bạn đang cố gắng thêm một khóa công khai vào tài khoản GitHub, nhưng khóa đó đã được sử dụng ở một nơi khác - hoặc trên một tài khoản người dùng khác, hoặc trong một kho lưu trữ khác dưới dạng &ldquo;deploy key&rdquo;.</p>
+</li>
+<li>
+<p><strong>Nguyên tắc:</strong> Một khóa SSH phải là định danh duy nhất cho một người dùng trên toàn bộ nền tảng GitHub. Khi được sử dụng làm deploy key, nó cũng phải là duy nhất cho mỗi kho lưu trữ.</p>
+</li>
+<li>
+<p><strong>Cách khắc phục:</strong></p>
+<ol>
+<li>
+<p>Sử dụng lệnh sau để xác định tài khoản nào đang sử dụng khóa đó:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ssh -T -ai ~/.ssh/your_key git@github.com
+</span></span></code></pre></div></li>
+<li>
+<p>Gỡ khóa khỏi tài khoản hoặc kho lưu trữ cũ, hoặc đơn giản là tạo một cặp khóa hoàn toàn mới cho mục đích sử dụng mới.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="error-5-các-phương-pháp-bảo-mật-tốt-nhất-best-practices-và-tổng-kết">Error 5: Các Phương Pháp Bảo Mật Tốt Nhất (Best Practices) và Tổng Kết</h2>
+<p>Làm chủ SSH không chỉ dừng lại ở việc thiết lập thành công. Việc duy trì một tư thế bảo mật vững chắc đòi hỏi sự chú ý liên tục. Các phương pháp tốt nhất có thể được tóm gọn trong một vòng đời bảo mật của khóa SSH.</p>
+<h3 id="vòng-đời-bảo-mật-của-khóa-ssh">Vòng Đời Bảo Mật Của Khóa SSH</h3>
+<ul>
+<li>
+<p><strong>Tạo (Creation):</strong></p>
+<ul>
+<li>
+<p><strong>Thuật toán mạnh:</strong> Luôn ưu tiên sử dụng <strong><code>Ed25519</code></strong> vì hiệu suất và bảo mật vượt trội.</p>
+</li>
+<li>
+<p><strong>Passphrase mạnh:</strong> Luôn đặt một passphrase mạnh và duy nhất cho mỗi khóa. Sử dụng trình quản lý mật khẩu để lưu trữ an toàn các passphrase này.</p>
+</li>
 </ul>
 </li>
 <li>
-<p><code>docker images</code> (hoặc <code>docker image ls</code>): Liệt kê tất cả các image hiện có trên máy cục bộ của bạn, hiển thị thông tin như REPOSITORY, TAG, IMAGE ID, và SIZE.</p>
-</li>
-<li>
-<p><code>docker pull</code>: Tải một image hoặc một kho lưu trữ (repository) từ một registry, mặc định là Docker Hub.</p>
-<ul>
-<li>Ví dụ: <code>docker pull postgres:15-alpine</code></li>
-</ul>
-</li>
-<li>
-<p><code>docker push</code>: Tải một image từ máy cục bộ của bạn lên một registry, cho phép chia sẻ với những người khác hoặc sử dụng trong môi trường production.</p>
-<ul>
-<li>Ví dụ: <code>docker push your-username/my-app:1.0</code></li>
-</ul>
-</li>
-<li>
-<p><code>docker rmi</code> (hoặc <code>docker image rm</code>): Xóa một hoặc nhiều image khỏi máy cục bộ để giải phóng dung lượng đĩa.</p>
-<ul>
-<li>Ví dụ: <code>docker rmi my-app:1.0</code></li>
-</ul>
-</li>
-<li>
-<p><code>docker inspect &lt;image&gt;</code>: Cung cấp thông tin chi tiết, ở cấp độ thấp về một image, bao gồm các lớp của nó và siêu dữ liệu (metadata).</p>
-</li>
-</ul>
-<h3 id="22-vòng-đời-container">2.2 Vòng đời Container</h3>
-<p>Sau khi có image, bước tiếp theo là tạo và quản lý các thực thể chạy của nó - các container.</p>
+<p><strong>Bảo vệ (Protection):</strong></p>
 <ul>
 <li>
-<p><code>docker run</code>: Đây là lệnh trung tâm, kết hợp việc tạo và khởi chạy một container mới từ một image. Nó có nhiều cờ tùy chọn mạnh mẽ:</p>
+<p><strong>Quyền truy cập file:</strong> Duy trì quyền truy cập file chính xác là điều bắt buộc: <code>chmod 700 ~/.ssh</code> và <code>chmod 600 ~/.ssh/private_key</code>.</p>
+</li>
+<li>
+<p><strong>Bí mật tuyệt đối:</strong> <strong>Không bao giờ</strong> chia sẻ, gửi qua email, hoặc lưu trữ khóa riêng tư của bạn ở bất kỳ đâu ngoài máy tính cá nhân đã được bảo vệ. Chỉ có khóa công khai là an toàn để chia sẻ.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sử dụng (Usage):</strong></p>
 <ul>
 <li>
-<p><code>-d</code> hoặc <code>--detach</code>: Chạy container ở chế độ nền (detached mode) và in ra ID của container.</p>
+<p><strong>Sử dụng <code>ssh-agent</code>:</strong> Tận dụng <code>ssh-agent</code> để giảm thiểu số lần phải nhập passphrase, qua đó giảm nguy cơ bị keylogger ghi lại.</p>
 </li>
 <li>
-<p><code>-p &lt;host_port&gt;:&lt;container_port&gt;</code>: Ánh xạ một cổng trên máy chủ (host) tới một cổng bên trong container, cho phép truy cập ứng dụng từ bên ngoài. Ví dụ: <code>-p 8080:80</code>.</p>
-</li>
-<li>
-<p><code>--name &lt;container_name&gt;</code>: Gán một tên cụ thể cho container để dễ dàng tham chiếu thay vì sử dụng ID ngẫu nhiên.</p>
-</li>
-<li>
-<p><code>-v &lt;host_path_or_volume_name&gt;:&lt;container_path&gt;</code>: Gắn một volume hoặc một thư mục từ máy chủ vào container.</p>
-</li>
-<li>
-<p><code>-e &lt;VAR_NAME&gt;=&lt;value&gt;</code>: Thiết lập một biến môi trường bên trong container.</p>
-</li>
-<li>
-<p>Ví dụ đầy đủ: <code>docker run -d -p 8080:80 --name webserver -e APP_MODE=production nginx:latest</code></p>
+<p><strong>Cấu hình timeout cho agent:</strong> Để tăng cường bảo mật, hãy đặt thời gian tồn tại cho các khóa trong agent bằng tùy chọn <code>-t</code>. Lệnh <code>ssh-add -t 3600</code> sẽ yêu cầu agent &ldquo;quên&rdquo; khóa sau một giờ (3600 giây) không hoạt động. Điều này cực kỳ hữu ích để bảo vệ chống lại việc truy cập trái phép nếu máy tính của bạn bị bỏ lại mà không được khóa.</p>
 </li>
 </ul>
 </li>
 <li>
-<p><code>docker ps</code>: Liệt kê tất cả các container đang chạy. Sử dụng cờ <code>-a</code> để hiển thị tất cả các container, bao gồm cả những container đã dừng.</p>
-</li>
-<li>
-<p><code>docker stop &lt;container_name_or_id&gt;</code>: Dừng một hoặc nhiều container đang chạy một cách nhẹ nhàng (gửi tín hiệu SIGTERM).</p>
-</li>
-<li>
-<p><code>docker start &lt;container_name_or_id&gt;</code>: Khởi động lại một hoặc nhiều container đã bị dừng.</p>
-</li>
-<li>
-<p><code>docker restart &lt;container_name_or_id&gt;</code>: Dừng và sau đó khởi động lại một container.</p>
-</li>
-<li>
-<p><code>docker rm &lt;container_name_or_id&gt;</code>: Xóa một hoặc nhiều container đã dừng. Sử dụng cờ <code>-f</code> để buộc xóa một container đang chạy.</p>
-</li>
-</ul>
-<h3 id="23-tương-tác-và-gỡ-lỗi-container">2.3 Tương tác và Gỡ lỗi Container</h3>
-<p>Khi container đang chạy, bạn thường cần phải &ldquo;nhìn vào bên trong&rdquo; để gỡ lỗi hoặc thực hiện các tác vụ quản trị.</p>
+<p><strong>Bảo trì (Maintenance):</strong></p>
 <ul>
 <li>
-<p><code>docker logs &lt;container&gt;</code>: Lấy và hiển thị nhật ký (logs) được tạo ra bởi một container. Cờ <code>-f</code> (follow) rất hữu ích để theo dõi luồng log trong thời gian thực, tương tự như lệnh <code>tail -f</code> trong Linux.</p>
+<p><strong>Kiểm tra định kỳ (Audit):</strong> Lên lịch (ví dụ: hàng quý) để truy cập trang cài đặt SSH trên GitHub và xem lại danh sách các khóa đã được cấp quyền. Xóa ngay lập tức bất kỳ khóa nào bạn không nhận ra, không còn sử dụng, hoặc thuộc về các thiết bị đã mất.</p>
 </li>
 <li>
-<p><code>docker exec -it &lt;container&gt; &lt;command&gt;</code>: Thực thi một lệnh bên trong một container đang chạy. Cờ <code>-it</code> (<code>-i</code> cho interactive và <code>-t</code> cho TTY) cho phép bạn có một phiên làm việc tương tác. Đây là cách phổ biến nhất để &ldquo;vào&rdquo; một container.</p>
-<ul>
-<li>Ví dụ: <code>docker exec -it webserver bash</code> sẽ mở một phiên shell Bash tương tác bên trong container tên là <code>webserver</code>.</li>
-</ul>
-</li>
-<li>
-<p><code>docker stats</code>: Hiển thị một luồng trực tiếp về việc sử dụng tài nguyên (CPU, bộ nhớ, mạng I/O) của các container đang chạy, rất hữu ích để theo dõi hiệu suất.</p>
-</li>
-</ul>
-<h3 id="24-dọn-dẹp-hệ-thống">2.4 Dọn dẹp hệ thống</h3>
-<p>Theo thời gian, Docker có thể tích tụ nhiều đối tượng không sử dụng (container đã dừng, image cũ, volume không được gắn), chiếm dụng không gian đĩa.</p>
-<ul>
-<li>
-<p><code>docker system prune</code>: Một lệnh dọn dẹp mạnh mẽ, theo mặc định sẽ xóa tất cả các container đã dừng, các mạng không được sử dụng, các image lơ lửng (dangling images - những image không có tag và không được container nào sử dụng), và build cache.</p>
-<ul>
-<li>
-<p><code>docker system prune -a</code>: Mở rộng việc dọn dẹp để xóa tất cả các image không được sử dụng (không chỉ là dangling).</p>
-</li>
-<li>
-<p><code>docker system prune --volumes</code>: Bao gồm cả việc xóa các volume không được sử dụng.</p>
+<p><strong>Xoay vòng khóa (Rotation):</strong> Một thực hành bảo mật nâng cao là định kỳ tạo một cặp khóa mới và thay thế các khóa cũ. Việc này giới hạn &ldquo;cửa sổ cơ hội&rdquo; cho một kẻ tấn công nếu một khóa cũ bị xâm phạm mà bạn không hề hay biết.</p>
 </li>
 </ul>
 </li>
 </ul>
-<h3 id="bảng-tra-cứu-nhanh-các-lệnh-docker-cli-thiết-yếu">Bảng tra cứu nhanh các lệnh Docker CLI thiết yếu</h3>
-<p>Bảng dưới đây tóm tắt các lệnh Docker CLI quan trọng nhất để tham khảo nhanh.</p>
-<table>
-  <thead>
-      <tr>
-          <th>Lệnh</th>
-          <th>Mô tả</th>
-          <th>Ví dụ sử dụng</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>docker build</code></td>
-          <td>Xây dựng một image từ một Dockerfile.</td>
-          <td><code>docker build -t my-app:latest.</code></td>
-      </tr>
-      <tr>
-          <td><code>docker run</code></td>
-          <td>Tạo và khởi chạy một container mới từ một image.</td>
-          <td><code>docker run -d -p 80:80 --name web nginx</code></td>
-      </tr>
-      <tr>
-          <td><code>docker ps</code></td>
-          <td>Liệt kê các container đang chạy. Sử dụng <code>-a</code> để liệt kê tất cả.</td>
-          <td><code>docker ps -a</code></td>
-      </tr>
-      <tr>
-          <td><code>docker stop</code></td>
-          <td>Dừng một container đang chạy.</td>
-          <td><code>docker stop web</code></td>
-      </tr>
-      <tr>
-          <td><code>docker rm</code></td>
-          <td>Xóa một container đã dừng.</td>
-          <td><code>docker rm web</code></td>
-      </tr>
-      <tr>
-          <td><code>docker images</code></td>
-          <td>Liệt kê các image trên máy.</td>
-          <td><code>docker images</code></td>
-      </tr>
-      <tr>
-          <td><code>docker rmi</code></td>
-          <td>Xóa một image.</td>
-          <td><code>docker rmi nginx</code></td>
-      </tr>
-      <tr>
-          <td><code>docker pull</code></td>
-          <td>Tải một image từ registry.</td>
-          <td><code>docker pull ubuntu:22.04</code></td>
-      </tr>
-      <tr>
-          <td><code>docker push</code></td>
-          <td>Đẩy một image lên registry.</td>
-          <td><code>docker push my-username/my-app</code></td>
-      </tr>
-      <tr>
-          <td><code>docker exec</code></td>
-          <td>Chạy một lệnh bên trong một container đang chạy.</td>
-          <td><code>docker exec -it web bash</code></td>
-      </tr>
-      <tr>
-          <td><code>docker logs</code></td>
-          <td>Xem nhật ký của một container. Sử dụng <code>-f</code> để theo dõi.</td>
-          <td><code>docker logs -f web</code></td>
-      </tr>
-      <tr>
-          <td><code>docker system prune</code></td>
-          <td>Dọn dẹp các container, network và image không sử dụng.</td>
-          <td><code>docker system prune -a --volumes</code></td>
-      </tr>
-  </tbody>
-</table>
-<p>Phần 3: <a href="https://blog.nagih.io.vn/post/docker/docker-dockerfile/"
-
-
-
-
- target="_blank"
- 
-
-
->Docker Dockerfile</a></p>
-<p>Phần 4: <a href="https://blog.nagih.io.vn/post/docker/docker-compose/"
-
-
-
-
- target="_blank"
- 
-
-
->Docker Compose</a></p>
-<p>Phần 5: <a href="https://blog.nagih.io.vn/post/docker/docker-practical-guide/"
-
-
-
-
- target="_blank"
- 
-
-
->Docker Practical Guide</a></p>
-<p>Phần 6: <a href="https://blog.nagih.io.vn/post/docker/docker-fullstack-example/"
-
-
-
-
- target="_blank"
- 
-
-
->Docker Fullstack Example</a></p>
-<p>Phần 7: <a href="https://blog.nagih.io.vn/post/docker/docker-best-practice-for-production/"
-
-
-
-
- target="_blank"
- 
-
-
->Docker Best Practice for Production</a></p>
-<hr>
-<p><em>Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!</em></p>
           </div>
           <div class="row items-start justify-between">
             
@@ -1140,8 +1027,8 @@
                     <li class="inline-block">
                       <a
                         class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
-                        href="/tags/docker/">
-                        Docker
+                        href="/tags/ssh/">
+                        SSH
                       </a>
                     </li>
                   
@@ -1174,7 +1061,7 @@
   
     <a
       class="share-link share-facebook"
-      href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fdocker%2fdocker-cli%2f"
+      href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fnetwork%2fprotocol%2fssh%2ferror-handler%2f"
       target="_blank"
       rel="noopener"
       aria-label="share facebook">
@@ -1192,7 +1079,7 @@
   
     <a
       class="share-link share-x"
-      href="https://x.com/intent/tweet/?text=Docker%20CLI&amp;url=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fdocker%2fdocker-cli%2f"
+      href="https://x.com/intent/tweet/?text=H%c6%b0%e1%bb%9bng%20d%e1%ba%abn%20x%e1%bb%ad%20l%c3%bd%20s%e1%bb%b1%20c%e1%bb%91%20v%c3%a0%20c%c3%a1c%20l%e1%bb%97i%20th%c6%b0%e1%bb%9dng%20g%e1%ba%b7p%20khi%20thi%e1%ba%bft%20l%e1%ba%adp%20SSH&amp;url=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fnetwork%2fprotocol%2fssh%2ferror-handler%2f"
       target="_blank"
       rel="noopener"
       aria-label="share x">
@@ -1210,7 +1097,7 @@
   
     <a
       class="share-link share-email"
-      href="mailto:?subject=Docker%20CLI&amp;body=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fdocker%2fdocker-cli%2f"
+      href="mailto:?subject=H%c6%b0%e1%bb%9bng%20d%e1%ba%abn%20x%e1%bb%ad%20l%c3%bd%20s%e1%bb%b1%20c%e1%bb%91%20v%c3%a0%20c%c3%a1c%20l%e1%bb%97i%20th%c6%b0%e1%bb%9dng%20g%e1%ba%b7p%20khi%20thi%e1%ba%bft%20l%e1%ba%adp%20SSH&amp;body=https%3a%2f%2fblog.nagih.io.vn%2fblog%2fnetwork%2fprotocol%2fssh%2ferror-handler%2f"
       target="_self"
       rel="noopener"
       aria-label="share email">
@@ -1283,10 +1170,10 @@
           type="text"
           placeholder="Enter Fediverse Instance URL"
           class="fediverse-input"
-          onkeypress="handleFediverseShare(event, 'https:\/\/blog.nagih.io.vn\/blog\/docker\/docker-cli\/', 'Docker CLI')" />
+          onkeypress="handleFediverseShare(event, 'https:\/\/blog.nagih.io.vn\/blog\/network\/protocol\/ssh\/error-handler\/', 'Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH')" />
         <button
           class="fediverse-check-button"
-          onclick="handleFediverseShareButton(this, 'https:\/\/blog.nagih.io.vn\/blog\/docker\/docker-cli\/', 'Docker CLI')">
+          onclick="handleFediverseShareButton(this, 'https:\/\/blog.nagih.io.vn\/blog\/network\/protocol\/ssh\/error-handler\/', 'Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH')">
           Share
         </button>
       </span>
@@ -1298,7 +1185,7 @@
   
     <button
       class="share-link share-copy"
-      onclick="copyToClipboard(this, 'https:\/\/blog.nagih.io.vn\/blog\/docker\/docker-cli\/')">
+      onclick="copyToClipboard(this, 'https:\/\/blog.nagih.io.vn\/blog\/network\/protocol\/ssh\/error-handler\/')">
       <span class="share-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path
@@ -1510,7 +1397,7 @@
               loading="lazy" decoding="async"
               src="/images/image-placeholder_hu_8da812934bbff7ba.png"
             class=" mb-6 w-full rounded img"
-            alt="Docker"
+            alt="SSH - Github"
             width="1096"
             height="480" />
         </picture>
@@ -1526,8 +1413,8 @@
 
   
   <h4 class="mb-3">
-    <a href="/blog/docker/docker/">
-      Docker
+    <a href="/blog/git/https--ssh/">
+      SSH - Github
     </a>
   </h4>
   
@@ -1542,17 +1429,25 @@
         <i class="fa-regular fa-folder mr-1"></i>
         
           <a
-            href="/categories/devops/"
+            href="/categories/protocol/"
             class="ms-1"
-            >Devops
+            >Protocol
+              ,
+            
+          </a>
+        
+          <a
+            href="/categories/git/"
+            class="ms-1"
+            >Git
           </a>
         
       </li>
     </ul>
   
-  <p class="mb-6">Sự Ra Đời và Các Nguyên Tắc Cốt Lõi của Docker
+  <p class="mb-6">Những hạn chế của xác thực qua HTTPS và sự thay thế SSH
 </p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/docker/docker/">
+  <a class="btn btn-outline-primary btn-sm" href="/blog/git/https--ssh/">
     Read More
   </a>
 </div>
@@ -1664,7 +1559,7 @@
               loading="lazy" decoding="async"
               src="/images/image-placeholder_hu_8da812934bbff7ba.png"
             class=" mb-6 w-full rounded img"
-            alt="Internet Protocol (IP)"
+            alt="Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị"
             width="1096"
             height="480" />
         </picture>
@@ -1680,8 +1575,8 @@
 
   
   <h4 class="mb-3">
-    <a href="/blog/network/ip/">
-      Internet Protocol (IP)
+    <a href="/blog/network/protocol/ssh/all-in-one/">
+      Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị
     </a>
   </h4>
   
@@ -1696,17 +1591,17 @@
         <i class="fa-regular fa-folder mr-1"></i>
         
           <a
-            href="/categories/devops/"
+            href="/categories/protocol/"
             class="ms-1"
-            >Devops
+            >Protocol
           </a>
         
       </li>
     </ul>
   
-  <p class="mb-6">Mastering Internet Protocol Addresses
+  <p class="mb-6">Đối với các nhà phát triển làm việc trên nhiều dự án hoặc có nhiều danh tính (ví dụ: tài khoản cá nhân và tài khoản công việc), việc quản lý nhiều khóa SSH có thể trở nên phức tạp.
 </p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/network/ip/">
+  <a class="btn btn-outline-primary btn-sm" href="/blog/network/protocol/ssh/all-in-one/">
     Read More
   </a>
 </div>
@@ -1818,7 +1713,7 @@
               loading="lazy" decoding="async"
               src="/images/image-placeholder_hu_8da812934bbff7ba.png"
             class=" mb-6 w-full rounded img"
-            alt="Docker Overview"
+            alt="Hướng dẫn thiết lập khóa SSH cho github"
             width="1096"
             height="480" />
         </picture>
@@ -1834,8 +1729,8 @@
 
   
   <h4 class="mb-3">
-    <a href="/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/">
-      Docker Overview
+    <a href="/blog/git/setup-ssh/">
+      Hướng dẫn thiết lập khóa SSH cho github
     </a>
   </h4>
   
@@ -1850,17 +1745,25 @@
         <i class="fa-regular fa-folder mr-1"></i>
         
           <a
-            href="/categories/devops/"
+            href="/categories/protocol/"
             class="ms-1"
-            >Devops
+            >Protocol
+              ,
+            
+          </a>
+        
+          <a
+            href="/categories/git/"
+            class="ms-1"
+            >Git
           </a>
         
       </li>
     </ul>
   
-  <p class="mb-6">Tổng hợp các kiến thức cần biết về Docker
+  <p class="mb-6">Chi tiết các bước thiết lập khóa SSH cho github từ A - Z
 </p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/docker/docker.sync-conflict-20250821-125726-izlhqhs/">
+  <a class="btn btn-outline-primary btn-sm" href="/blog/git/setup-ssh/">
     Read More
   </a>
 </div>
