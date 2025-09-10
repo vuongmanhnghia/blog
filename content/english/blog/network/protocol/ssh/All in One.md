@@ -1,7 +1,7 @@
 ---
 title: Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị
 date: 2025-09-10
-image: /images/image-placeholder.png
+image: /images/thumbnails/ssh-all-in-one.png
 categories:
   - protocol
 author: Nagih

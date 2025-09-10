@@ -1,7 +1,7 @@
 ---
 title: Hướng dẫn thiết lập khóa SSH cho github
 date: 2025-09-10
-image: /images/image-placeholder.png
+image: /images/thumbnails/setup-ssh.png
 categories:
   - protocol
   - git

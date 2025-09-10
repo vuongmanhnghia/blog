@@ -3,7 +3,7 @@ title: SSH - Github
 meta_title: SSH - Github
 description: SSH and GitHub Tutorial
 date: 2025-09-01
-image: /images/image-placeholder.png
+image: /images/thumbnails/https-vs-ssh.png
 categories:
   - protocol
   - git
