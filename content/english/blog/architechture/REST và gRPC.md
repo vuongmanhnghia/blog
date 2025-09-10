@@ -1,12 +1,16 @@
 ---
-title: "REST và gRPC"
-meta_title: "REST và gRPC"
-description: "Phân Tích về Kiến Trúc API Hiện Đại"
+title: REST và gRPC
+meta_title: REST và gRPC
+description: Phân Tích về Kiến Trúc API Hiện Đại
 date: 2025-08-28
-image: "/images/image-placeholder.png"
-categories: ["System", "Protocol"]
-author: "Nagih"
-tags: ["rest", "grpc"]
+image: /images/image-placeholder.png
+categories:
+  - system
+  - protocol
+author: Nagih
+tags:
+  - rest
+  - grpc
 draft: false
 ---
 Phân Tích về Kiến Trúc API Hiện Đại
