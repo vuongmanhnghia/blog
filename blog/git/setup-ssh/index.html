@@ -890,32 +890,6 @@
         <li><a href="#bước-4-kiểm-tra-kết-nối">Bước 4: Kiểm Tra Kết Nối</a></li>
       </ol>
     </li>
-    <li><a href="#phần-3-nâng-cao-kỹ-năng-với-file-cấu-hình-ssh-sshconfig">Phần 3: Nâng Cao Kỹ Năng với File Cấu Hình SSH (<code>~/.ssh/config</code>)</a>
-      <ol>
-        <li><a href="#giới-thiệu-sshconfig">Giới thiệu <code>~/.ssh/config</code></a></li>
-        <li><a href="#kịch-bản-quản-lý-nhiều-tài-khoản-github-cá-nhân--công-việc">Kịch bản: Quản lý nhiều tài khoản GitHub (Cá nhân &amp; Công việc)</a>
-          <ol>
-            <li><a href="#phân-tích-sâu-các-chỉ-thị">Phân tích sâu các chỉ thị</a></li>
-          </ol>
-        </li>
-        <li><a href="#áp-dụng-cấu-hình-vào-git">Áp dụng cấu hình vào Git</a></li>
-      </ol>
-    </li>
-    <li><a href="#phần-4-xử-lý-sự-cố-và-các-lỗi-thường-gặp">Phần 4: Xử Lý Sự Cố và Các Lỗi Thường Gặp</a>
-      <ol>
-        <li><a href="#công-cụ-chẩn-đoán-chính-chế-độ-verbose">Công cụ chẩn đoán chính: Chế độ Verbose</a></li>
-        <li><a href="#lỗi-1-permission-denied-publickey">Lỗi 1: <code>Permission denied (publickey)</code></a></li>
-        <li><a href="#lỗi-2-host-key-verification-failed">Lỗi 2: <code>Host key verification failed</code></a></li>
-        <li><a href="#lỗi-3-agent-admitted-failure-to-sign-using-the-key">Lỗi 3: <code>Agent admitted failure to sign using the key</code></a></li>
-        <li><a href="#lỗi-4-key-is-already-in-use">Lỗi 4: <code>Key is already in use</code></a></li>
-      </ol>
-    </li>
-    <li><a href="#phần-5-các-phương-pháp-bảo-mật-tốt-nhất-best-practices-và-tổng-kết">Phần 5: Các Phương Pháp Bảo Mật Tốt Nhất (Best Practices) và Tổng Kết</a>
-      <ol>
-        <li><a href="#vòng-đời-bảo-mật-của-khóa-ssh">Vòng Đời Bảo Mật Của Khóa SSH</a></li>
-        <li><a href="#tổng-kết">Tổng kết</a></li>
-      </ol>
-    </li>
   </ol>
 </nav>
 </details>
@@ -1018,217 +992,6 @@ Are you sure you want to continue connecting (yes/no)?
 </code></pre><p>Điều này xác nhận rằng cặp khóa SSH của bạn đã được thiết lập chính xác và GitHub đã xác thực thành công danh tính của bạn.</p>
 </li>
 </ul>
-<h2 id="phần-3-nâng-cao-kỹ-năng-với-file-cấu-hình-ssh-sshconfig">Phần 3: Nâng Cao Kỹ Năng với File Cấu Hình SSH (<code>~/.ssh/config</code>)</h2>
-<p>Đối với các nhà phát triển làm việc trên nhiều dự án hoặc có nhiều danh tính (ví dụ: tài khoản cá nhân và tài khoản công việc), việc quản lý nhiều khóa SSH có thể trở nên phức tạp. File cấu hình <code>~/.ssh/config</code> là một công cụ mạnh mẽ giúp tự động hóa và đơn giản hóa quá trình này, biến SSH từ một công cụ kết nối đơn thuần thành một hệ thống quản lý danh tính hiệu quả.</p>
-<h3 id="giới-thiệu-sshconfig">Giới thiệu <code>~/.ssh/config</code></h3>
-<p>File <code>~/.ssh/config</code> cho phép bạn tạo các bí danh (alias) và các quy tắc kết nối cụ thể cho từng máy chủ. Thay vì phải gõ các lệnh dài dòng với các tùy chọn phức tạp, bạn có thể định nghĩa tất cả trong file này. Cấu trúc của file bao gồm các khối <code>Host</code>, mỗi khối chứa các chỉ thị áp dụng cho host đó.</p>
-<h3 id="kịch-bản-quản-lý-nhiều-tài-khoản-github-cá-nhân--công-việc">Kịch bản: Quản lý nhiều tài khoản GitHub (Cá nhân &amp; Công việc)</h3>
-<p>Đây là một kịch bản rất phổ biến. Mục tiêu là có thể làm việc trên các kho lưu trữ của cả hai tài khoản trên cùng một máy tính mà không cần phải thay đổi cấu hình thủ công mỗi lần chuyển đổi.</p>
-<ol>
-<li>
-<p>Tạo khóa SSH thứ hai:</p>
-<p>Thực hiện lại Bước 1 trong Phần 2 để tạo một cặp khóa mới dành riêng cho tài khoản công việc. Hãy chắc chắn đặt một tên file khác biệt, ví dụ: id_ed25519_work. Sau đó, thêm khóa công khai này vào tài khoản GitHub công việc của bạn.</p>
-</li>
-<li>
-<p>Cấu hình ~/.ssh/config:</p>
-<p>Mở file ~/.ssh/config (nếu chưa có, hãy tạo nó) và thêm vào nội dung sau:</p>
-<pre tabindex="0"><code># Tài khoản GitHub cá nhân
-Host github.com-personal
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/id_ed25519_personal
-  IdentitiesOnly yes
-
-# Tài khoản GitHub công việc
-Host github.com-work
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/id_ed25519_work
-  IdentitiesOnly yes
-</code></pre></li>
-</ol>
-<h4 id="phân-tích-sâu-các-chỉ-thị">Phân tích sâu các chỉ thị</h4>
-<ul>
-<li>
-<p><code>Host github.com-personal</code>: Đây là bí danh (alias) bạn sẽ sử dụng. Khi Git hoặc SSH thấy host này, nó sẽ áp dụng các quy tắc bên dưới.</p>
-</li>
-<li>
-<p><code>HostName github.com</code>: Đây là tên máy chủ thực tế mà SSH sẽ kết nối đến.</p>
-</li>
-<li>
-<p><code>User git</code>: GitHub yêu cầu tất cả các kết nối SSH sử dụng user <code>git</code>.</p>
-</li>
-<li>
-<p><code>IdentityFile ~/.ssh/id_ed25519_personal</code>: Chỉ thị này yêu cầu SSH sử dụng file khóa riêng tư cụ thể này để xác thực.</p>
-</li>
-<li>
-<p><code>IdentitiesOnly yes</code>: Đây là một chỉ thị cực kỳ quan trọng. Theo mặc định, SSH client có thể thử tất cả các khóa có sẵn trong <code>ssh-agent</code> hoặc các file mặc định. Khi kết nối đến GitHub, nếu gửi sai khóa, kết nối có thể bị từ chối sau vài lần thử. <code>IdentitiesOnly yes</code> buộc SSH client chỉ sử dụng duy nhất khóa được chỉ định trong <code>IdentityFile</code> cho host này, loại bỏ sự mơ hồ và ngăn ngừa lỗi xác thực.</p>
-</li>
-</ul>
-<h3 id="áp-dụng-cấu-hình-vào-git">Áp dụng cấu hình vào Git</h3>
-<p>Sau khi đã cấu hình <code>~/.ssh/config</code>, bạn cần cập nhật URL của các kho lưu trữ Git để chúng sử dụng các bí danh mới.</p>
-<ul>
-<li>
-<p>Đối với kho lưu trữ mới (khi git clone):</p>
-<p>Thay vì sử dụng URL SSH mặc định, hãy thay thế github.com bằng bí danh bạn đã tạo.</p>
-<p>Bash</p>
-<pre tabindex="0"><code># Clone kho lưu trữ công việc
-$ git clone git@github.com-work:work-organization/project.git
-</code></pre></li>
-<li>
-<p>Đối với kho lưu trữ đã có:</p>
-<p>Sử dụng lệnh git remote set-url để cập nhật URL của remote origin.</p>
-<p>Bash</p>
-<pre tabindex="0"><code># Điều hướng đến thư mục kho lưu trữ công việc của bạn
-$ cd path/to/work/project
-
-# Cập nhật URL của remote
-$ git remote set-url origin git@github.com-work:work-organization/project.git
-</code></pre><p>Bạn có thể kiểm tra lại bằng lệnh <code>git remote -v</code>.</p>
-</li>
-</ul>
-<p>Với thiết lập này, quy trình làm việc của bạn sẽ trở nên hoàn toàn tự động. Khi bạn ở trong một thư mục dự án công việc, các lệnh Git sẽ tự động sử dụng khóa công việc. Khi ở trong dự án cá nhân, chúng sẽ sử dụng khóa cá nhân. Điều này không chỉ là một mẹo tiện lợi, mà là một mô hình nền tảng để quản lý danh tính chuyên nghiệp, giúp ngăn chặn các lỗi như commit nhầm tài khoản và loại bỏ hoàn toàn các rào cản trong quy trình làm việc đa tài khoản.</p>
-<h2 id="phần-4-xử-lý-sự-cố-và-các-lỗi-thường-gặp">Phần 4: Xử Lý Sự Cố và Các Lỗi Thường Gặp</h2>
-<p>Ngay cả với một thiết lập cẩn thận, các vấn đề vẫn có thể phát sinh. Việc hiểu rõ cách chẩn đoán và khắc phục các lỗi SSH phổ biến là một kỹ năng quan trọng.</p>
-<h3 id="công-cụ-chẩn-đoán-chính-chế-độ-verbose">Công cụ chẩn đoán chính: Chế độ Verbose</h3>
-<p>Trước khi thử bất kỳ giải pháp nào, bước đầu tiên luôn là thu thập thêm thông tin. Tùy chọn <code>-v</code> (verbose) của lệnh <code>ssh</code> sẽ in ra chi tiết quá trình kết nối, cho bạn biết file cấu hình nào đang được đọc, khóa nào đang được thử, và chính xác lỗi xảy ra ở đâu.</p>
-<p>Bash</p>
-<pre tabindex="0"><code>$ ssh -vT git@github.com
-</code></pre><h3 id="lỗi-1-permission-denied-publickey">Lỗi 1: <code>Permission denied (publickey)</code></h3>
-<ul>
-<li>
-<p><strong>Ý nghĩa:</strong> Đây là lỗi xác thực phổ biến nhất. Nó có nghĩa là máy chủ GitHub đã từ chối tất cả các khóa SSH mà client của bạn cung cấp.</p>
-</li>
-<li>
-<p><strong>Các bước kiểm tra và khắc phục:</strong></p>
-<ol>
-<li>
-<p><strong>Kiểm tra khóa trên GitHub:</strong> Đảm bảo rằng khóa công khai của bạn đã được thêm chính xác vào tài khoản GitHub. Quay lại Phần 2, Bước 3 để xác minh.</p>
-</li>
-<li>
-<p><strong>Kiểm tra <code>ssh-agent</code>:</strong> Chạy <code>ssh-add -l</code> để xem các khóa hiện có trong agent. Nếu danh sách trống hoặc không chứa khóa bạn cần, hãy chạy lại <code>ssh-add ~/.ssh/your_private_key</code> để thêm nó vào.</p>
-</li>
-<li>
-<p><strong>Kiểm tra quyền truy cập file:</strong> SSH yêu cầu quyền truy cập rất nghiêm ngặt. Thư mục <code>~/.ssh</code> phải có quyền là <code>700</code> (drwx−−−−−−), và file khóa riêng tư của bạn phải có quyền là <code>600</code> (−rw−−−−−−−). Sử dụng các lệnh sau để sửa:</p>
-<p>Bash</p>
-<pre tabindex="0"><code>$ chmod 700 ~/.ssh
-$ chmod 600 ~/.ssh/your_private_key
-</code></pre></li>
-<li>
-<p><strong>Kiểm tra <code>~/.ssh/config</code>:</strong> Nếu bạn đang sử dụng file cấu hình, hãy kiểm tra kỹ lưỡng xem <code>Host</code> alias có khớp với URL remote của Git không, và <code>IdentityFile</code> có trỏ đến đúng file khóa riêng tư không.</p>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="lỗi-2-host-key-verification-failed">Lỗi 2: <code>Host key verification failed</code></h3>
-<ul>
-<li>
-<p><strong>Ý nghĩa:</strong> Dấu vân tay của máy chủ GitHub đã thay đổi so với lần cuối bạn kết nối. Đây là một cơ chế bảo mật quan trọng để cảnh báo về khả năng có một cuộc tấn công Man-in-the-Middle.42</p>
-</li>
-<li>
-<p><strong>Cách khắc phục an toàn:</strong></p>
-<ol>
-<li>
-<p><strong>Không bao giờ</strong> bỏ qua cảnh báo này một cách mù quáng.</p>
-</li>
-<li>
-<p>Truy cập trang tài liệu chính thức của GitHub để xác minh dấu vân tay máy chủ mới nhất của họ.</p>
-</li>
-<li>
-<p>Nếu dấu vân tay khớp, bạn có thể an toàn xóa khóa cũ khỏi file <code>~/.ssh/known_hosts</code> bằng lệnh:</p>
-<p>Bash</p>
-<pre tabindex="0"><code>$ ssh-keygen -R github.com
-</code></pre></li>
-</ol>
-<p>Lần kết nối tiếp theo, bạn sẽ được yêu cầu chấp nhận khóa mới.</p>
-</li>
-</ul>
-<h3 id="lỗi-3-agent-admitted-failure-to-sign-using-the-key">Lỗi 3: <code>Agent admitted failure to sign using the key</code></h3>
-<ul>
-<li>
-<p><strong>Ý nghĩa:</strong> <code>ssh-agent</code> đang chạy nhưng không thể sử dụng khóa để tạo chữ ký số cần thiết cho việc xác thực. Lỗi này đôi khi xảy ra trên các hệ thống Linux.</p>
-</li>
-<li>
-<p><strong>Cách khắc phục:</strong> Giải pháp thường rất đơn giản là tải lại khóa vào agent. Chạy lệnh <code>ssh-add</code> thường sẽ giải quyết được vấn đề này.</p>
-</li>
-</ul>
-<h3 id="lỗi-4-key-is-already-in-use">Lỗi 4: <code>Key is already in use</code></h3>
-<ul>
-<li>
-<p><strong>Ý nghĩa:</strong> Bạn đang cố gắng thêm một khóa công khai vào tài khoản GitHub, nhưng khóa đó đã được sử dụng ở một nơi khác - hoặc trên một tài khoản người dùng khác, hoặc trong một kho lưu trữ khác dưới dạng &ldquo;deploy key&rdquo;.</p>
-</li>
-<li>
-<p><strong>Nguyên tắc:</strong> Một khóa SSH phải là định danh duy nhất cho một người dùng trên toàn bộ nền tảng GitHub. Khi được sử dụng làm deploy key, nó cũng phải là duy nhất cho mỗi kho lưu trữ.</p>
-</li>
-<li>
-<p><strong>Cách khắc phục:</strong></p>
-<ol>
-<li>
-<p>Sử dụng lệnh sau để xác định tài khoản nào đang sử dụng khóa đó:</p>
-<p>Bash</p>
-<pre tabindex="0"><code>$ ssh -T -ai ~/.ssh/your_key git@github.com
-</code></pre><p>Phản hồi sẽ cho bạn biết khóa này đang được liên kết với <code>username</code> nào.</p>
-</li>
-<li>
-<p>Gỡ khóa khỏi tài khoản hoặc kho lưu trữ cũ, hoặc đơn giản là tạo một cặp khóa hoàn toàn mới cho mục đích sử dụng mới.</p>
-</li>
-</ol>
-</li>
-</ul>
-<h2 id="phần-5-các-phương-pháp-bảo-mật-tốt-nhất-best-practices-và-tổng-kết">Phần 5: Các Phương Pháp Bảo Mật Tốt Nhất (Best Practices) và Tổng Kết</h2>
-<p>Làm chủ SSH không chỉ dừng lại ở việc thiết lập thành công. Việc duy trì một tư thế bảo mật vững chắc đòi hỏi sự chú ý liên tục. Các phương pháp tốt nhất có thể được tóm gọn trong một vòng đời bảo mật của khóa SSH.</p>
-<h3 id="vòng-đời-bảo-mật-của-khóa-ssh">Vòng Đời Bảo Mật Của Khóa SSH</h3>
-<ul>
-<li>
-<p><strong>Tạo (Creation):</strong></p>
-<ul>
-<li>
-<p><strong>Thuật toán mạnh:</strong> Luôn ưu tiên sử dụng <strong>Ed25519</strong> vì hiệu suất và bảo mật vượt trội.</p>
-</li>
-<li>
-<p><strong>Passphrase mạnh:</strong> Luôn đặt một passphrase mạnh và duy nhất cho mỗi khóa. Sử dụng trình quản lý mật khẩu để lưu trữ an toàn các passphrase này.</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Bảo vệ (Protection):</strong></p>
-<ul>
-<li>
-<p><strong>Quyền truy cập file:</strong> Duy trì quyền truy cập file chính xác là điều bắt buộc: <code>chmod 700 ~/.ssh</code> và <code>chmod 600 ~/.ssh/private_key</code>.</p>
-</li>
-<li>
-<p><strong>Bí mật tuyệt đối:</strong> <strong>Không bao giờ</strong> chia sẻ, gửi qua email, hoặc lưu trữ khóa riêng tư của bạn ở bất kỳ đâu ngoài máy tính cá nhân đã được bảo vệ. Chỉ có khóa công khai là an toàn để chia sẻ.</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Sử dụng (Usage):</strong></p>
-<ul>
-<li>
-<p><strong>Sử dụng <code>ssh-agent</code>:</strong> Tận dụng <code>ssh-agent</code> để giảm thiểu số lần phải nhập passphrase, qua đó giảm nguy cơ bị keylogger ghi lại.</p>
-</li>
-<li>
-<p><strong>Cấu hình timeout cho agent:</strong> Để tăng cường bảo mật, hãy đặt thời gian tồn tại cho các khóa trong agent bằng tùy chọn <code>-t</code>. Lệnh <code>ssh-add -t 3600</code> sẽ yêu cầu agent &ldquo;quên&rdquo; khóa sau một giờ (3600 giây) không hoạt động. Điều này cực kỳ hữu ích để bảo vệ chống lại việc truy cập trái phép nếu máy tính của bạn bị bỏ lại mà không được khóa.</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Bảo trì (Maintenance):</strong></p>
-<ul>
-<li>
-<p><strong>Kiểm tra định kỳ (Audit):</strong> Lên lịch (ví dụ: hàng quý) để truy cập trang cài đặt SSH trên GitHub và xem lại danh sách các khóa đã được cấp quyền. Xóa ngay lập tức bất kỳ khóa nào bạn không nhận ra, không còn sử dụng, hoặc thuộc về các thiết bị đã mất.</p>
-</li>
-<li>
-<p><strong>Xoay vòng khóa (Rotation):</strong> Một thực hành bảo mật nâng cao là định kỳ tạo một cặp khóa mới và thay thế các khóa cũ. Việc này giới hạn &ldquo;cửa sổ cơ hội&rdquo; cho một kẻ tấn công nếu một khóa cũ bị xâm phạm mà bạn không hề hay biết.</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="tổng-kết">Tổng kết</h3>
-<p>Hành trình từ việc hiểu rõ giá trị của SSH đến việc thiết lập, quản lý chuyên nghiệp và xử lý sự cố là một quá trình đầu tư vào kỹ năng cốt lõi của một nhà phát triển phần mềm. Việc làm chủ SSH không chỉ là một biện pháp tăng cường bảo mật; đó là một tuyên bố về sự chuyên nghiệp, một cam kết về hiệu quả và là nền tảng cho một quy trình làm việc an toàn, liền mạch và năng suất hơn trên GitHub và xa hơn nữa. Bằng cách áp dụng các kiến thức và thực hành tốt nhất được trình bày trong báo cáo này, các nhà phát triển có thể tự tin tương tác với các hệ thống từ xa, biết rằng danh tính số và tài sản trí tuệ của họ được bảo vệ bởi một trong những tiêu chuẩn vàng của ngành công nghệ.</p>
-<p><em>Nếu thấy hay, hãy để lại cho mình xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!</em></p>
-<hr>
-<p><em>Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!</em></p>
           </div>
           <div class="row items-start justify-between">
             
@@ -1610,7 +1373,7 @@ $ chmod 600 ~/.ssh/your_private_key
               loading="lazy" decoding="async"
               src="/images/image-placeholder_hu_8da812934bbff7ba.png"
             class=" mb-6 w-full rounded img"
-            alt="Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH"
+            alt="SSH - Github"
             width="1096"
             height="480" />
         </picture>
@@ -1626,8 +1389,8 @@ $ chmod 600 ~/.ssh/your_private_key
 
   
   <h4 class="mb-3">
-    <a href="/blog/network/protocol/ssh/error-handler/">
-      Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH
+    <a href="/blog/git/https--ssh/">
+      SSH - Github
     </a>
   </h4>
   
@@ -1645,14 +1408,22 @@ $ chmod 600 ~/.ssh/your_private_key
             href="/categories/protocol/"
             class="ms-1"
             >Protocol
+              ,
+            
+          </a>
+        
+          <a
+            href="/categories/git/"
+            class="ms-1"
+            >Git
           </a>
         
       </li>
     </ul>
   
-  <p class="mb-6">Ngay cả với một thiết lập cẩn thận, các vấn đề vẫn có thể phát sinh. Việc hiểu rõ cách chẩn đoán và khắc phục các lỗi SSH phổ biến là một kỹ năng quan trọng.
+  <p class="mb-6">Những hạn chế của xác thực qua HTTPS và sự thay thế SSH
 </p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/network/protocol/ssh/error-handler/">
+  <a class="btn btn-outline-primary btn-sm" href="/blog/git/https--ssh/">
     Read More
   </a>
 </div>
@@ -1764,7 +1535,7 @@ $ chmod 600 ~/.ssh/your_private_key
               loading="lazy" decoding="async"
               src="/images/image-placeholder_hu_8da812934bbff7ba.png"
             class=" mb-6 w-full rounded img"
-            alt="SSH - Github"
+            alt="Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH"
             width="1096"
             height="480" />
         </picture>
@@ -1780,8 +1551,8 @@ $ chmod 600 ~/.ssh/your_private_key
 
   
   <h4 class="mb-3">
-    <a href="/blog/git/https--ssh/">
-      SSH - Github
+    <a href="/blog/network/protocol/ssh/error-handler/">
+      Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH
     </a>
   </h4>
   
@@ -1799,22 +1570,14 @@ $ chmod 600 ~/.ssh/your_private_key
             href="/categories/protocol/"
             class="ms-1"
             >Protocol
-              ,
-            
-          </a>
-        
-          <a
-            href="/categories/git/"
-            class="ms-1"
-            >Git
           </a>
         
       </li>
     </ul>
   
-  <p class="mb-6">Những hạn chế của xác thực qua HTTPS và sự thay thế SSH
+  <p class="mb-6">Ngay cả với một thiết lập cẩn thận, các vấn đề vẫn có thể phát sinh. Việc hiểu rõ cách chẩn đoán và khắc phục các lỗi SSH phổ biến là một kỹ năng quan trọng.
 </p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/git/https--ssh/">
+  <a class="btn btn-outline-primary btn-sm" href="/blog/network/protocol/ssh/error-handler/">
     Read More
   </a>
 </div>
