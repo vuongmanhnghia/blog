@@ -981,15 +981,15 @@
 </span></span></code></pre></div></li>
 <li>
 <p>Xác thực máy chủ (lần đầu tiên):</p>
-<pre tabindex="0"><code>The authenticity of host &#39;github.com (IP_ADDRESS)&#39; can&#39;t be established.
-ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
-Are you sure you want to continue connecting (yes/no)?
-</code></pre><p>Đây là một tính năng bảo mật của SSH để chống lại các cuộc tấn công xen giữa (man-in-the-middle). Sau khi xác nhận, gõ <code>yes</code> và nhấn Enter.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>The authenticity of host <span style="color:#e6db74">&#39;github.com (IP_ADDRESS)&#39;</span> can<span style="color:#960050;background-color:#1e0010">&#39;</span>t be established.
+</span></span><span style="display:flex;"><span>ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+</span></span><span style="display:flex;"><span>Are you sure you want to <span style="color:#66d9ef">continue</span> connecting <span style="color:#f92672">(</span>yes/no<span style="color:#f92672">)</span>?
+</span></span></code></pre></div><p>Đây là một tính năng bảo mật của SSH để chống lại các cuộc tấn công xen giữa (man-in-the-middle). Sau khi xác nhận, gõ <code>yes</code> và nhấn Enter.</p>
 </li>
 <li>
 <p>Kết quả thành công:</p>
-<pre tabindex="0"><code>Hi username! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
-</code></pre><p>Điều này xác nhận rằng cặp khóa SSH của bạn đã được thiết lập chính xác và GitHub đã xác thực thành công danh tính của bạn.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Hi username! You<span style="color:#960050;background-color:#1e0010">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
+</span></span></code></pre></div><p>Điều này xác nhận rằng cặp khóa SSH của bạn đã được thiết lập chính xác và GitHub đã xác thực thành công danh tính của bạn.</p>
 </li>
 </ul>
           </div>
@@ -1373,7 +1373,7 @@ Are you sure you want to continue connecting (yes/no)?
               loading="lazy" decoding="async"
               src="/images/image-placeholder_hu_8da812934bbff7ba.png"
             class=" mb-6 w-full rounded img"
-            alt="SSH - Github"
+            alt="Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị"
             width="1096"
             height="480" />
         </picture>
@@ -1389,8 +1389,8 @@ Are you sure you want to continue connecting (yes/no)?
 
   
   <h4 class="mb-3">
-    <a href="/blog/git/https--ssh/">
-      SSH - Github
+    <a href="/blog/network/protocol/ssh/all-in-one/">
+      Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị
     </a>
   </h4>
   
@@ -1408,22 +1408,14 @@ Are you sure you want to continue connecting (yes/no)?
             href="/categories/protocol/"
             class="ms-1"
             >Protocol
-              ,
-            
-          </a>
-        
-          <a
-            href="/categories/git/"
-            class="ms-1"
-            >Git
           </a>
         
       </li>
     </ul>
   
-  <p class="mb-6">Những hạn chế của xác thực qua HTTPS và sự thay thế SSH
+  <p class="mb-6">Đối với các nhà phát triển làm việc trên nhiều dự án hoặc có nhiều danh tính (ví dụ: tài khoản cá nhân và tài khoản công việc), việc quản lý nhiều khóa SSH có thể trở nên phức tạp.
 </p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/git/https--ssh/">
+  <a class="btn btn-outline-primary btn-sm" href="/blog/network/protocol/ssh/all-in-one/">
     Read More
   </a>
 </div>
@@ -1689,7 +1681,7 @@ Are you sure you want to continue connecting (yes/no)?
               loading="lazy" decoding="async"
               src="/images/image-placeholder_hu_8da812934bbff7ba.png"
             class=" mb-6 w-full rounded img"
-            alt="Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị"
+            alt="SSH - Github"
             width="1096"
             height="480" />
         </picture>
@@ -1705,8 +1697,8 @@ Are you sure you want to continue connecting (yes/no)?
 
   
   <h4 class="mb-3">
-    <a href="/blog/network/protocol/ssh/all-in-one/">
-      Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị
+    <a href="/blog/git/https--ssh/">
+      SSH - Github
     </a>
   </h4>
   
@@ -1724,14 +1716,22 @@ Are you sure you want to continue connecting (yes/no)?
             href="/categories/protocol/"
             class="ms-1"
             >Protocol
+              ,
+            
+          </a>
+        
+          <a
+            href="/categories/git/"
+            class="ms-1"
+            >Git
           </a>
         
       </li>
     </ul>
   
-  <p class="mb-6">Đối với các nhà phát triển làm việc trên nhiều dự án hoặc có nhiều danh tính (ví dụ: tài khoản cá nhân và tài khoản công việc), việc quản lý nhiều khóa SSH có thể trở nên phức tạp.
+  <p class="mb-6">Những hạn chế của xác thực qua HTTPS và sự thay thế SSH
 </p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/network/protocol/ssh/all-in-one/">
+  <a class="btn btn-outline-primary btn-sm" href="/blog/git/https--ssh/">
     Read More
   </a>
 </div>
