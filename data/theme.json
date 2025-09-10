@@ -5,7 +5,7 @@
         "primary": "#121212",
         "body": "#fff",
         "border": "#eaeaea",
-        "light": "#222222",
+        "light": "#f6f6f6",
         "dark": "#040404"
       },
       "text_color": {
