@@ -1,7 +1,7 @@
 ---
 title: Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH
 date: 2025-09-10
-image: /images/thumbnails/ssh-errror.png
+image: /images/thumbnails/ssh-error.png
 categories:
   - protocol
 author: Nagih
