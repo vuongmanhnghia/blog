@@ -3921,7 +3921,7 @@ input#nav-toggle:checked ~ #nav-menu {
     --color-primary: #121212;
     --color-body: #fff;
     --color-border: #eaeaea;
-    --color-light: #222222;
+    --color-light: #f6f6f6;
     --color-dark: #040404;
     --color-text: #444444;
     --color-text-dark: #040404;
