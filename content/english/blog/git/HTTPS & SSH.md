@@ -26,11 +26,11 @@ Mặc dù dễ thiết lập, quy trình này bộc lộ sự bất tiện trong
 
 Để tóm tắt những khác biệt chính, bảng dưới đây cung cấp một cái nhìn tổng quan về hai phương thức xác thực.
 
-| Tiêu chí              | HTTPS (với Personal Access Token)                             | SSH                                                            |
-| --------------------- | ------------------------------------------------------------- | -------------------------------------------------------------- |
-| **Cơ chế Xác thực**   | Dựa trên token (hoạt động như mật khẩu) 1                     | Cặp khóa Public/Private (mật mã bất đối xứng) 1                |
-| **Mức độ Bảo mật**    | Dễ bị lộ nếu token không được bảo vệ cẩn thận 3               | Rất cao; khóa riêng tư không bao giờ truyền qua mạng 4         |
-| **Sự tiện lợi**       | Yêu cầu nhập lại token hoặc phụ thuộc vào credential helper 3 | Rất tiện lợi sau khi thiết lập, không cần nhập lại thông tin 8 |
-| **Thiết lập ban đầu** | Đơn giản, chỉ cần tạo token 2                                 | Phức tạp hơn một chút, yêu cầu tạo và quản lý cặp khóa 2       |
-| **Quản lý Truy cập**  | Phân quyền thông qua phạm vi của token trên GitHub 1          | Có thể quản lý truy cập chi tiết qua từng khóa riêng lẻ 1      |
+| Tiêu chí              | HTTPS (với Personal Access Token)                           | SSH                                                          |
+| --------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
+| **Cơ chế Xác thực**   | Dựa trên token (hoạt động như mật khẩu)                     | Cặp khóa Public/Private (mật mã bất đối xứng)                |
+| **Mức độ Bảo mật**    | Dễ bị lộ nếu token không được bảo vệ cẩn thận               | Rất cao; khóa riêng tư không bao giờ truyền qua mạng         |
+| **Sự tiện lợi**       | Yêu cầu nhập lại token hoặc phụ thuộc vào credential helper | Rất tiện lợi sau khi thiết lập, không cần nhập lại thông tin |
+| **Thiết lập ban đầu** | Đơn giản, chỉ cần tạo token                                 | Phức tạp hơn một chút, yêu cầu tạo và quản lý cặp khóa       |
+| **Quản lý Truy cập**  | Phân quyền thông qua phạm vi của token trên GitHub          | Có thể quản lý truy cập chi tiết qua từng khóa riêng lẻ      |
 
