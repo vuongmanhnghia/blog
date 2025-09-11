@@ -893,7 +893,13 @@
         <li><a href="#1-lỗi-khi-tạo-dự-án">1. Lỗi khi tạo dự án</a>
           <ol>
             <li><a href="#nguyên-nhân">Nguyên nhân</a></li>
-            <li><a href="#cách-giải-quyết">Cách giải quyết</a></li>
+            <li><a href="#giải-pháp">Giải pháp</a></li>
+          </ol>
+        </li>
+        <li><a href="#2-the-skin-directory-does-not-point-to-valid-skin">2. &ldquo;The skin directory, does not point to valid skin&rdquo;</a>
+          <ol>
+            <li><a href="#giải-pháp-1-tắt-skin-trong-cài-đặt-máy-ảo-cách-dễ-nhất">Giải pháp 1: Tắt Skin trong Cài đặt Máy ảo (Cách dễ nhất)</a></li>
+            <li><a href="#giải-pháp-2-sửa-file-cấu-hình-thủ-công-cách-trực-tiếp">Giải pháp 2: Sửa file cấu hình thủ công (Cách trực tiếp)</a></li>
           </ol>
         </li>
       </ol>
@@ -913,6 +919,7 @@
 <p><strong>Môi trường phát triển biệt lập (Isolated Development Environments):</strong> Sử dụng <code>nix-shell</code> để tạo ra môi trường chứa chính xác phiên bản của các công cụ đã được define cho từng project mà không làm ảnh hưởng tới hệ thống chính</p>
 </li>
 </ul>
+<hr>
 <h2 id="các-bước-tiến-hành">Các bước tiến hành</h2>
 <h3 id="bước-1-cài-đặt-các-công-cụ-cơ-bản-trên-hệ-thống">Bước 1: Cài đặt các công cụ cơ bản trên hệ thống</h3>
 <p>Điều đầu tiên, vì sử dụng IntelliJ IDEA nên bắt buộc rằng nó được cài trên hệ thống của bạn và đã bật tính năng <strong>Flakes của NixOS</strong></p>
@@ -976,8 +983,8 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e"># &#34;Lắp ráp&#34; môi trường SDK bằng hàm và tham số tương thích</span>
 </span></span><span style="display:flex;"><span>        android-sdk-env <span style="color:#f92672">=</span> pkgs<span style="color:#f92672">.</span>androidenv<span style="color:#f92672">.</span>composeAndroidPackages {
-</span></span><span style="display:flex;"><span>          platformVersions <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;36&#34;</span> ];
-</span></span><span style="display:flex;"><span>          buildToolsVersions <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;36.0.0&#34;</span> ];
+</span></span><span style="display:flex;"><span>          platformVersions <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;34&#34;</span> <span style="color:#e6db74">&#34;36&#34;</span> ];
+</span></span><span style="display:flex;"><span>          buildToolsVersions <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;34.0.0&#34;</span> <span style="color:#e6db74">&#34;36.0.0&#34;</span> ];
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>          includeEmulator <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
 </span></span><span style="display:flex;"><span>          platformToolsVersion <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;36.0.0&#34;</span>;
@@ -993,13 +1000,14 @@
 </span></span><span style="display:flex;"><span>          buildInputs <span style="color:#f92672">=</span> [
 </span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Hàm cũ trả về một attribute set, cần truy cập .androidsdk</span>
 </span></span><span style="display:flex;"><span>            android-sdk-env<span style="color:#f92672">.</span>androidsdk
-</span></span><span style="display:flex;"><span>            pkgs<span style="color:#f92672">.</span>jdk17
+</span></span><span style="display:flex;"><span>            pkgs<span style="color:#f92672">.</span>jdk
 </span></span><span style="display:flex;"><span>            pkgs<span style="color:#f92672">.</span>qt6<span style="color:#f92672">.</span>qtwayland
 </span></span><span style="display:flex;"><span>          ];
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>          shellHook <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            # Đường dẫn SDK cũng cần .androidsdk
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            export ANDROID_SDK_ROOT=&#34;</span><span style="color:#e6db74">${</span>android-sdk-env<span style="color:#f92672">.</span>androidsdk<span style="color:#e6db74">}</span><span style="color:#e6db74">/libexec/android-sdk&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            export PATH=&#34;$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$PATH&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            export QT_QPA_PLATFORM=xcb
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            echo &#34;✅ Môi trường Android cho API 36 (Unstable) đã sẵn sàng.&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &#39;&#39;</span>;
@@ -1136,6 +1144,7 @@
 </li>
 </ul>
 <p>Tới đây là đã xong, bạn chỉ cần run project là sẽ nhìn thấy dòng chữ <code>Hello World!</code> bên trong cửa sổ máy ảo.</p>
+<hr>
 <h2 id="các-lỗi-phổ-biến">Các lỗi phổ biến</h2>
 <h3 id="1-lỗi-khi-tạo-dự-án">1. Lỗi khi tạo dự án</h3>
 <p><img src="/images/Pasted%20image%2020250911225113.png" alt="Image Description"></p>
@@ -1149,7 +1158,7 @@
 <p><strong>Bị NixOS chặn lại:</strong> NixOS thấy IntelliJ đang cố ghi vào &ldquo;kho&rdquo; chỉ đọc, nên đã chặn lại và báo lỗi <code>Failed to read or create install properties file</code>.34</p>
 </li>
 </ul>
-<h4 id="cách-giải-quyết">Cách giải quyết</h4>
+<h4 id="giải-pháp">Giải pháp</h4>
 <p>Truy cập vào môi trường <code>nix-shell</code></p>
 <ol>
 <li>
@@ -1189,6 +1198,55 @@
 <ul>
 <li>Nhấn nút <strong>&ldquo;Sync Now&rdquo;</strong>.</li>
 </ul>
+</li>
+</ol>
+<h3 id="2-the-skin-directory-does-not-point-to-valid-skin">2. &ldquo;The skin directory, does not point to valid skin&rdquo;</h3>
+<p>Lỗi này có nghĩa là máy ảo (AVD) đang cố gắng sử dụng một <strong>&ldquo;skin&rdquo;</strong> (bộ giao diện mô phỏng viền cứng của điện thoại), nhưng không thể tìm thấy các file của skin đó ở đường dẫn được chỉ định.</p>
+<h4 id="giải-pháp-1-tắt-skin-trong-cài-đặt-máy-ảo-cách-dễ-nhất">Giải pháp 1: Tắt Skin trong Cài đặt Máy ảo (Cách dễ nhất)</h4>
+<p>Cách đơn giản và hiệu quả nhất là yêu cầu máy ảo không cần tải skin nữa.</p>
+<ol>
+<li>
+<p>Mở <strong>Device Manager</strong> trong IntelliJ.</p>
+</li>
+<li>
+<p>Tìm đến máy ảo đang bị lỗi của bạn và nhấn vào biểu tượng <strong>Edit</strong> (hình cây bút chì) ở cột Actions.</p>
+</li>
+<li>
+<p>Cửa sổ &ldquo;Virtual Device Configuration&rdquo; sẽ hiện ra. Hãy tìm đến mục <strong>&ldquo;Enable Device Frame&rdquo;</strong> (Bật khung thiết bị).</p>
+</li>
+<li>
+<p><strong>Bỏ dấu tick</strong> ở ô này.</p>
+</li>
+<li>
+<p>Nhấn <strong>Finish</strong> để lưu lại thay đổi.</p>
+</li>
+</ol>
+<p>Sau khi tắt skin, hãy thử khởi động lại máy ảo. Lỗi sẽ biến mất và máy ảo sẽ hiển thị dưới dạng một cửa sổ đơn giản chỉ có màn hình.</p>
+<hr>
+<h4 id="giải-pháp-2-sửa-file-cấu-hình-thủ-công-cách-trực-tiếp">Giải pháp 2: Sửa file cấu hình thủ công (Cách trực tiếp)</h4>
+<p>Nếu bạn không tìm thấy tùy chọn trong giao diện, bạn có thể chỉnh sửa file cấu hình trực tiếp.</p>
+<ol>
+<li>
+<p>Mở terminal và điều hướng đến thư mục cấu hình của máy ảo. Thay <code>TenMayAo.avd</code> bằng tên máy ảo của bạn (ví dụ: <code>Pixel8Pro_API35.avd</code>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~/.android/avd/TenMayAo.avd/
+</span></span></code></pre></div></li>
+<li>
+<p>Mở file <code>config.ini</code> bằng một trình soạn thảo văn bản (ví dụ: <code>nano config.ini</code>).</p>
+</li>
+<li>
+<p>Tìm các dòng bắt đầu bằng <code>skin.name</code> và <code>skin.path</code>.</p>
+</li>
+<li>
+<p>Thay đổi giá trị của chúng thành <code>_no_skin</code> hoặc xóa cả hai dòng đó đi.</p>
+<p><strong>Ví dụ, sửa từ:</strong></p>
+<pre tabindex="0"><code>skin.name = pixel_8_pro
+skin.path = /some/invalid/nix/store/path
+</code></pre><p><strong>Thành:</strong></p>
+<pre tabindex="0"><code>skin.name = _no_skin
+skin.path = _no_skin
+</code></pre></li>
+<li>
+<p>Lưu file và thử khởi động lại máy ảo.</p>
 </li>
 </ol>
           </div>
