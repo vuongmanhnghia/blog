@@ -3,9 +3,9 @@ import re
 import shutil
 
 # Paths
-posts_dir = "/home/nagih/blog/content/english/blog/"
+posts_dir = "/home/nagih/blog/content/posts/"
 attachments_dir = "/home/nagih/Documents/blog/attachments"
-static_images_dir = "/home/nagih/blog/static/images/"
+static_images_dir = "/home/nagih/blog/static/img/"
 
 # Step 1: Process each markdown file in the posts directory
 # Quét tất cả file .md trong posts_dir và các thư mục con
