@@ -22,7 +22,7 @@ echo "Removing existing files"
 rm -rf public/*
 
 echo "Generating site"
-env HUGO_ENV="production" hugo -t hugoplate
+env HUGO_ENV="production" hugo -t PaperMod
 
 echo "Create file CNAME"
 echo "blog.nagih.io.vn" > public/CNAME
