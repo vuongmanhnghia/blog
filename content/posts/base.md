@@ -5,6 +5,7 @@ image:
 categories:
 tags:
 draft: true
+searchHidden: false
 ---
 
 [...]
