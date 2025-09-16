@@ -1,4 +1,7 @@
-baseURL: "https://blog.nagih.io.vn/"
+baseURL: "https://blog.nagih.io.vn"
+canonifyURLs: true
+relativeURLs: false
+
 title: Nagih | Blog
 pagination:
   pagerSize: 5
