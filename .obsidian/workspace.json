@@ -151,12 +151,12 @@
               "title": "Outline of Backend Documentation"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -165,25 +165,32 @@
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "templates:Insert template": false,
-      "daily-notes:Open today's daily note": false,
-      "bases:Create new base": false,
       "publish:Publish changes...": false
     }
   },
   "active": "cb35df4cedf466d7",
   "lastOpenFiles": [
-    "content/posts/System Overview.md",
+    "public/tags/backend/index.xml",
+    "public/tags/docker/index.xml",
+    "public/tags/grpc/index.xml",
+    "public/tags/cache/index.xml",
+    "public/tags/ddd/index.xml",
+    "public/tags/boot/index.xml",
+    "public/tags/index.xml",
+    "public/tags/ssh/page/1/index.html",
+    "public/tags/ssh/page/1",
+    "public/tags/ssh/page",
+    "public/tags/ssh/index.xml",
     "content/posts/docs/Backend Documentation.md",
+    "content/posts/System Overview.md",
     "content/posts/network/internet/Internet Errors.md",
     "content/posts/network/protocol/ssh/Error Handler.md",
     "content/posts/docker/Docker.md",
     "content/posts/architechture/REST và gRPC.md",
-    "content/posts/docs",
     "content/posts/base.md",
     "content/archives.md",
     "content/search.md",
     "content/posts/git/Setup SSH.md",
-    "content/posts/Untitled.base",
     "Untitled.canvas",
     "content/posts/2025-09-16.md",
     "content/posts/network/internet/base 1.md",
@@ -193,13 +200,8 @@
     "static/thumb/ssh-all-in-one.png",
     "content/posts/deploy/6 Level Deploy.md",
     "Untitled.md",
-    "content/posts/network/internet/Untitled.base",
     "content/posts/system/Desgin Microservices.md",
     "content/posts/docker/Docker CLI.md",
-    "content/posts/network/internet",
-    "deploy.sh",
-    "deploy.old copy.sh",
-    "deploy.old.sh",
     "content/posts/git/HTTPS & SSH.md"
   ]
 }

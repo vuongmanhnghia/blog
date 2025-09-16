@@ -17,8 +17,10 @@ Chia sẻ mẫu Documentation cho lập trình viên Backend
 
 ## 📋 Table of Contents
 
-1. [[#🎯 System Overview]]
-2. [[#🏗️ Architecture]]
+[Backend Documentation](content/posts/docs/Backend%20Documentation.md)
+[[Backend Documentation]]
+1. [System Overview](#system-overview)
+2. [Architecture](#architecture)
 3. [API Documentation](#api-documentation)
 4. [Database Schema](#database-schema)
 5. [Authentication & Security](#authentication--security)
