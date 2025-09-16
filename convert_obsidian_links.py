@@ -56,7 +56,7 @@ def convert_obsidian_links(content, title_map=None, content_directory="content")
         print(f"Converting link: '{link_text}' → slug: '{url_slug}/' → display: '{display_text}'")
         
         # Add trailing slash
-        return f'[{display_text}](posts/{url_slug}/'
+        return f'[{display_text}](posts/{url_slug}/)'
     
     def replace_aliased_link(match):
         link_url = match.group(1)
