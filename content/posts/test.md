@@ -13,3 +13,4 @@ test
 
 [Backend Documentation](backend-documentation)
 [Tùy biến phân vùng EFI](tuy-bien-phan-vung-efi)
+[Labs Operating](labs-operating)
