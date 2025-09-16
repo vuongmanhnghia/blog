@@ -11,5 +11,5 @@ test
 
 <!--more-->
 
-[Backend Documentation](/posts/docs/Backend Documentation)
-[Tùy biến phân vùng EFI](/posts/system/os/windows/Tùy biến phân vùng EFI)
+[Backend Documentation](/posts/docs/backend-documentation)
+[Tùy biến phân vùng EFI](/posts/system/os/windows/tuy-bien-phan-vung-efi)

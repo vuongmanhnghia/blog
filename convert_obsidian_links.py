@@ -12,6 +12,10 @@ def slugify(text):
     text = re.sub(r'[-\s]+', '-', text)
     return text.strip('-')
 
+def slugify_path(path_text):
+    """Slugify each segment of a path to enforce lowercase and hyphen separators."""
+    return "/".join(slugify(segment) for segment in str(path_text).split('/'))
+
 class ObsidianToHugoConverter:
     def __init__(self, content_dir="content"):
         self.content_dir = content_dir
@@ -44,20 +48,20 @@ class ObsidianToHugoConverter:
         """Find the target URL for a given link text"""
         # Try exact match first
         if link_text in self.file_mapping:
-            return self.file_mapping[link_text]
+            return slugify_path(self.file_mapping[link_text])
         
         # Try slugified version
         slug = slugify(link_text)
         if slug in self.file_mapping:
-            return self.file_mapping[slug]
+            return slugify_path(self.file_mapping[slug])
         
         # If not found, try partial matching
         for filename, url_path in self.file_mapping.items():
             if slugify(filename) == slug:
-                return url_path
+                return slugify_path(url_path)
         
         # If still not found, return slugified version as fallback
-        return slug
+        return slugify_path(slug)
     
     def convert_obsidian_links(self, content, current_file_path):
         """Convert Obsidian links to Hugo format"""

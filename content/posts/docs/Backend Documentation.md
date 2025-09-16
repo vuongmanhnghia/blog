@@ -15,7 +15,7 @@ Chia sẻ mẫu Documentation cho lập trình viên Backend
 
 # E-Library Management System - Backend Documentation
 
-[Backend Documentation](/posts/docs/Backend Documentation)
+[Backend Documentation](/posts/docs/backend-documentation)
 
 ## Table of Contents
 1. [System Overview](#system-overview)
