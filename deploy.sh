@@ -21,9 +21,6 @@ python convert_obsidian_links.py
 echo "Checking out deploy branch into public"
 git worktree add -B deploy public origin/deploy
 
-# Remove old public directory
-rm -rf public/*
-
 echo "Generating site"
 env HUGO_ENV="production" hugo -t PaperMod
 
