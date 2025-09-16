@@ -22,9 +22,9 @@
     </item>
     <item>
       <title>Nginx Overview</title>
-      <link>https://blog.nagih.io.vn/posts/nginx-overview/</link>
+      <link>https://blog.nagih.io.vn/posts/nginx/</link>
       <pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/nginx-overview/</guid>
+      <guid>https://blog.nagih.io.vn/posts/nginx/</guid>
       <description>&lt;p&gt;Nginx - Từ C10k Đến Containers&lt;/p&gt;</description>
     </item>
     <item>
@@ -78,9 +78,9 @@
     </item>
     <item>
       <title>Internet Protocol (IP)</title>
-      <link>https://blog.nagih.io.vn/posts/internet-protocol-ip/</link>
+      <link>https://blog.nagih.io.vn/posts/ip/</link>
       <pubDate>Wed, 13 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/internet-protocol-ip/</guid>
+      <guid>https://blog.nagih.io.vn/posts/ip/</guid>
       <description>&lt;p&gt;Mastering Internet Protocol Addresses&lt;/p&gt;</description>
     </item>
   </channel>
