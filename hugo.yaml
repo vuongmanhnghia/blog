@@ -17,7 +17,7 @@ minify:
   minifyOutput: true
 
 permalinks:
-  posts: "/:sections/:slug/"
+  posts: "/:sections/:title/"
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
