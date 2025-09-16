@@ -1,22 +1,19 @@
 import os
 import re
 import glob
-import unicodedata
 import yaml  # pyright: ignore[reportMissingModuleSource]
 
 def slugify(text):
-    """Convert text to URL-friendly slug with proper Vietnamese character handling"""
+    """Convert text to URL-friendly slug while preserving Vietnamese characters"""
     # Convert to lowercase
     text = text.lower()
     
-    # Handle Vietnamese characters - convert to ASCII equivalent
-    # This will convert ă→a, â→a, ê→e, ô→o, ư→u, etc.
-    text = unicodedata.normalize('NFD', text)
-    text = ''.join(c for c in text if unicodedata.category(c) != 'Mn')
-    
-    # Replace spaces and other non-alphanumeric characters with hyphens
-    text = re.sub(r'[^\w\s-]', '', text)
+    # Replace spaces with hyphens
     text = re.sub(r'\s+', '-', text)
+    
+    # Remove special characters but keep Vietnamese characters and alphanumeric
+    # Keep: letters (including Vietnamese), numbers, hyphens
+    text = re.sub(r'[^\w\-àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]', '', text)
     
     # Replace multiple hyphens with a single one
     text = re.sub(r'-+', '-', text)
