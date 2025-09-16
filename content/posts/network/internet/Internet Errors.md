@@ -17,9 +17,9 @@ Các vấn đề về kết nối Internet phổ biến và cách khắc phục 
 <!--more-->
 
 --- 
-# I. CHUẨN ĐOÁN VẤN ĐỀ
+## I. CHUẨN ĐOÁN VẤN ĐỀ
 
-## Bước 1: Kiểm tra kết nối vật lý
+### Bước 1: Kiểm tra kết nối vật lý
 
 ```bash
 # Kiểm tra card mạng có được nhận diện không
@@ -34,7 +34,7 @@ ifconfig -a
 
 **Kết quả mong đợi:** Thấy các interface như `eth0`, `wlan0`, `enp0s3`
 
-## Bước 2: Kiểm tra trạng thái Interface
+### Bước 2: Kiểm tra trạng thái Interface
 
 ```bash
 # Xem trạng thái chi tiết
@@ -53,7 +53,7 @@ ip link show eth0     # Thay eth0 bằng interface của bạn
 	
 - `NO-CARRIER`: Không có tín hiệu (Dây mạng rút, không có sóng Wifi)
 
-## Bước 3: Test kết nối từng lớp
+### Bước 3: Test kết nối từng lớp
 
 ```bash
 # Layer 1-2: Kiểm tra link local
@@ -71,7 +71,7 @@ nslookup google.com
 ping -c 3 google.com
 ```
 
-## Bước 4: Kiểm tra cấu hình mạng
+### Bước 4: Kiểm tra cấu hình mạng
 
 ```bash
 # Kiểm tra IP configuration
@@ -86,7 +86,7 @@ system-resolve --status
 sudo dhclient -v eth0     # Test DHCP renewal
 ```
 
-## Bước 5: Kiểm tra service và process
+### Bước 5: Kiểm tra service và process
 
 ```bash
 # Kiểm tra network services
@@ -103,7 +103,7 @@ ss -tuln            # Listening ports
 netstart -rn     # Routing table
 ```
 
-## Bước 6: Xem Logs và Error messages
+### Bước 6: Xem Logs và Error messages
 
 ```bash
 journalctl -u NetworkManager -f
@@ -116,7 +116,7 @@ dmes | tail -20
 tail -f var/log/syslog | grep -i network
 ```
 
-## Ma trận chuẩn đoán nhanh
+### Ma trận chuẩn đoán nhanh
 
 | Triệu chứng             | Lệnh kiểm tra           | Nguyên nhân có thể           |
 | ----------------------- | ----------------------- | ---------------------------- |
@@ -127,7 +127,7 @@ tail -f var/log/syslog | grep -i network
 | Ping gateway fail       | `ping <gateway>`        | L2/L3 problem                |
 | Ping IP OK, domain fail | `nslookup google.com`   | DNS problem                  |
 | Kết nối chậm            | `traceroute google.com` | Routing/bandwidth issue      |
-## Scripts auto chuẩn đoán lỗi
+### Scripts auto chuẩn đoán lỗi
 
 ```bash
 #!/bin/bash
@@ -183,9 +183,9 @@ chmod +x network-diagnostic.sh
 
 ---
 
-# II. XỬ LÝ LỖI
+## II. XỬ LÝ LỖI
 
-## 1. Không kết nối được mạng
+### 1. Không kết nối được mạng
 
 *Kiểm tra trạng thái mạng*
 
@@ -205,7 +205,7 @@ sudo systemctl restart NetworkManager
 sudo systemctl restart networking
 ```
 
-## 2. Lỗi DNS không phân giải được
+### 2. Lỗi DNS không phân giải được
 
 *Kiểm tra DNS*
 
@@ -231,7 +231,7 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
 
-## 3. Lỗi drive card mạng
+### 3. Lỗi drive card mạng
 
 *Kiểm tra drive*
 
@@ -253,7 +253,7 @@ sudo apt install firmware-iwlwifi  # cho Intel WiFi
 sudo modprobe -r iwlwifi && sudo modprobe iwlwifi
 ```
 
-## 4. Lỗi Wifi không kết nối được
+### 4. Lỗi Wifi không kết nối được
 
 ```bash
 iwconfig
@@ -275,7 +275,7 @@ sudo rm /var/lib/NetworkManager/NetworkManager.state
 sudo systemctl restart NetworkManager
 ```
 
-## 5. Lỗi IP conflict hoặc không nhận được IP
+### 5. Lỗi IP conflict hoặc không nhận được IP
 
 ```bash
 ip route show
@@ -293,7 +293,7 @@ sudo dhclient
 sudo ifdown eth0 && sudo ifup eth0
 ```
 
-## 6. Lỗi firewall chặn kết nối
+### 6. Lỗi firewall chặn kết nối
 
 *Kiểm tra firewall*
 
@@ -314,7 +314,7 @@ sudo ufw allow 443
 sudo ufw allow ssh
 ```
 
-## 7. Lỗi proxy settings
+### 7. Lỗi proxy settings
 
 *Kiểm tra proxy*
 
@@ -338,7 +338,7 @@ export http_proxy=http://proxy-server:port
 export https_proxy=http://proxy-server:port
 ```
 
-## 8. Lỗi MTU size
+### 8. Lỗi MTU size
 
 *Kiểm tra và fix MTU*
 
@@ -355,7 +355,7 @@ sudo ip link set dev eth0 mtu 1400
 
 ---
 
-# III. RESET HOÀN TOÀN NETWORKING
+## III. RESET HOÀN TOÀN NETWORKING
 
 ```bash
 # Backup cấu hình cũ nếu cần
