@@ -6,7 +6,6 @@ categories:
   - docs
 tags:
   - backend
-toc: "true"
 draft: false
 ---
 
@@ -16,21 +15,19 @@ Chia sẻ mẫu Documentation cho lập trình viên Backend
 
 # E-Library Management System - Backend Documentation
 
-[[Backend Documentation]]
-
-## 📋 Table of Contents
-1. [[#system-overview|System Overview]]
-2. [[#architecture|Architecture]]
-3. [[#api-documentation|API Documentation]]
-4. [[#database-schema|Database Schema]]
-5. [[#authentication--security|Authentication & Security]]
-6. [[#setup--deployment|Setup & Deployment]]
-7. [[#testing|Testing]]
-8. [[#monitoring--logging|Monitoring & Logging]]
+## Table of Contents
+1. [System Overview](#system-overview)
+2. [Architecture](#architecture)
+3. [API Documentation](#api-documentation)
+4. [Database Schema](#database-schema)
+5. [Authentication & Security](#authentication--security)
+6. [Setup & Deployment](#setup--deployment)
+7. [Testing](#testing)
+8. [Monitoring & Logging](#monitoring--logging)
 
 ---
 
-## 🎯 System Overview
+## System Overview
 
 **Project**: E-Library Management System  
 **Version**: v2.1.0  
@@ -47,7 +44,7 @@ Chia sẻ mẫu Documentation cho lập trình viên Backend
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 ### High-Level Architecture
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -79,7 +76,7 @@ Chia sẻ mẫu Documentation cho lập trình viên Backend
 
 ---
 
-## 📡 API Documentation
+## API Documentation
 
 ### Base URL
 ```
@@ -130,7 +127,7 @@ Authorization: Bearer <jwt_token>
 
 ---
 
-## 🔐 Authentication Endpoints
+## Authentication Endpoints
 ### POST /auth/register
 **Description**: Đăng ký tài khoản mới
 
@@ -196,7 +193,7 @@ Authorization: Bearer <jwt_token>
 
 ---
 
-## 📚 Book Management Endpoints
+## Book Management Endpoints
 
 ### GET /books
 **Description**: Lấy danh sách sách với phân trang và filter
@@ -297,7 +294,7 @@ GET /books?page=1&limit=10&category=fiction&available=true
 
 ---
 
-## 📖 Borrowing System Endpoints
+## Borrowing System Endpoints
 
 ### POST /borrowings
 **Description**: Mượn sách  
@@ -356,7 +353,7 @@ GET /books?page=1&limit=10&category=fiction&available=true
 
 ---
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### Users Collection
 ```javascript
@@ -447,7 +444,7 @@ GET /books?page=1&limit=10&category=fiction&available=true
 
 ---
 
-## 🔒 Authentication & Security
+## Authentication & Security
 
 ### JWT Configuration
 ```javascript
@@ -491,7 +488,7 @@ GET /books?page=1&limit=10&category=fiction&available=true
 
 ---
 
-## ⚙️ Setup & Deployment
+## Setup & Deployment
 
 ### Environment Variables
 ```bash
@@ -600,7 +597,7 @@ jobs:
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Test Structure
 ```
@@ -673,7 +670,7 @@ describe('Books API', () => {
 
 ---
 
-## 📊 Monitoring & Logging
+## Monitoring & Logging
 
 ### Logging Configuration
 ```javascript
@@ -733,7 +730,7 @@ const logger = winston.createLogger({
 
 ---
 
-## 📈 Error Codes Reference
+## Error Codes Reference
 
 | Code                  | HTTP Status | Description                       |
 | --------------------- | ----------- | --------------------------------- |
@@ -746,7 +743,7 @@ const logger = winston.createLogger({
 | `INTERNAL_ERROR`      | 500         | Server error                      |
 | `SERVICE_UNAVAILABLE` | 503         | External service unavailable      |
 
-## 🔄 Changelog
+## Changelog
 
 ### v2.1.0 (2025-09-16)
 **Added**
@@ -774,7 +771,7 @@ const logger = winston.createLogger({
 
 ---
 
-## 📞 Support & Contact
+## Support & Contact
 
 **Development Team**: backend-team@company.com  
 **DevOps Team**: devops@company.com  
