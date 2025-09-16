@@ -11,6 +11,112 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
+    <lastBuildDate>Tue, 16 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docs</title>
+      <link>https://blog.nagih.io.vn/categories/docs/</link>
+      <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/docs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Git</title>
+      <link>https://blog.nagih.io.vn/categories/git/</link>
+      <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/git/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Protocol</title>
+      <link>https://blog.nagih.io.vn/categories/protocol/</link>
+      <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/protocol/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Environment</title>
+      <link>https://blog.nagih.io.vn/categories/environment/</link>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/environment/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>OS</title>
+      <link>https://blog.nagih.io.vn/categories/os/</link>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/os/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>System</title>
+      <link>https://blog.nagih.io.vn/categories/system/</link>
+      <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/system/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Architechture</title>
+      <link>https://blog.nagih.io.vn/categories/architechture/</link>
+      <pubDate>Fri, 29 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/architechture/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microservices</title>
+      <link>https://blog.nagih.io.vn/categories/microservices/</link>
+      <pubDate>Fri, 29 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/microservices/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Operating</title>
+      <link>https://blog.nagih.io.vn/categories/operating/</link>
+      <pubDate>Sat, 23 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/operating/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CI/CD</title>
+      <link>https://blog.nagih.io.vn/categories/ci/cd/</link>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/ci/cd/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Devops</title>
+      <link>https://blog.nagih.io.vn/categories/devops/</link>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/devops/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Internet</title>
+      <link>https://blog.nagih.io.vn/categories/internet/</link>
+      <pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/internet/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Network</title>
+      <link>https://blog.nagih.io.vn/categories/network/</link>
+      <pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/network/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security</title>
+      <link>https://blog.nagih.io.vn/categories/security/</link>
+      <pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Database</title>
+      <link>https://blog.nagih.io.vn/categories/database/</link>
+      <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/database/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
