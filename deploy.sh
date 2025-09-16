@@ -35,10 +35,12 @@ then
 fi
 
 echo "Updating deploy branch"
-cd public && git add --all && git commit -m "Publishing to deploy (deploy.sh)"
-
-echo "Pushing to github"
-git push --all --force
-# git push origin deploy -f
-
+cd public
+git add --all
+if git diff --cached --quiet; then
+    git commit --allow-empty -m "Trigger deploy (no content change)"
+else
+    git commit -m "Publishing to deploy (deploy.sh)"
+fi
+git push origin deploy -f
 cd ..
