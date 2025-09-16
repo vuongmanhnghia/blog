@@ -11,16 +11,16 @@ test
 
 <!--more-->
 
-[Mẫu Documentation cho Backend](posts/backend-documentation/)
+[Backend Documentation](posts/backend-documentation/)
 
-[Hướng dẫn tùy biến phân vùng EFI khi cài windows](posts/tùy-biến-phân-vùng-efi/)
+[Tùy biến phân vùng EFI](posts/tùy-biến-phân-vùng-efi/)
 
-[Labs Operating](posts/system/)
+[Labs Operating](posts/labs-operating/)
 
-[Process Control Block](posts/system/)
+[Process Control Block](posts/process-control-block/)
 
-[Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH](posts/error-handler/)
+[Error Handler](posts/error-handler/)
 
-[Hướng dẫn setup môi trường App Development trên nixos best practice](posts/app-development/)
+[App Development](posts/app-development/)
 
-[Docker Practical Guide](posts/docker/)
+[Docker Practical Guide](posts/docker-practical-guide/)
