@@ -11,10 +11,10 @@ test
 
 <!--more-->
 
-[Backend Documentation](/posts/backend-documentation)
-[Tùy biến phân vùng EFI](/posts/tuy-bien-phan-vung-efi)
-[Labs Operating](/posts/labs-operating)
-[Process Control Block](/posts/process-control-block)
-[Error Handler](/posts/error-handler)
-[App Development](/posts/app-development)
-[Docker Practical Guide](/posts/docker-practical-guide)
+[Backend Documentation](blog.nagih.io.vn/posts/backend-documentation)
+[Tùy biến phân vùng EFI](blog.nagih.io.vn/posts/tuy-bien-phan-vung-efi)
+[Labs Operating](blog.nagih.io.vn/posts/labs-operating)
+[Process Control Block](blog.nagih.io.vn/posts/process-control-block)
+[Error Handler](blog.nagih.io.vn/posts/error-handler)
+[App Development](blog.nagih.io.vn/posts/app-development)
+[Docker Practical Guide](blog.nagih.io.vn/posts/docker-practical-guide)
