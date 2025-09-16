@@ -6,6 +6,7 @@ categories:
   - docs
 tags:
   - backend
+toc: "true"
 draft: false
 ---
 
@@ -15,18 +16,17 @@ Chia sẻ mẫu Documentation cho lập trình viên Backend
 
 # E-Library Management System - Backend Documentation
 
-## 📋 Table of Contents
-
-[Backend Documentation](content/posts/docs/Backend%20Documentation.md)
 [[Backend Documentation]]
-1. [System Overview](#system-overview)
-2. [Architecture](#architecture)
-3. [API Documentation](#api-documentation)
-4. [Database Schema](#database-schema)
-5. [Authentication & Security](#authentication--security)
-6. [Setup & Deployment](#setup--deployment)
-7. [Testing](#testing)
-8. [Monitoring & Logging](#monitoring--logging)
+
+## 📋 Table of Contents
+1. [[#system-overview|System Overview]]
+2. [[#architecture|Architecture]]
+3. [[#api-documentation|API Documentation]]
+4. [[#database-schema|Database Schema]]
+5. [[#authentication--security|Authentication & Security]]
+6. [[#setup--deployment|Setup & Deployment]]
+7. [[#testing|Testing]]
+8. [[#monitoring--logging|Monitoring & Logging]]
 
 ---
 
