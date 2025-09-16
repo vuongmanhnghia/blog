@@ -6,8 +6,20 @@ mkdir public
 git worktree prune
 rm -rf .git/worktrees/public/
 
+echo "Syncing post from obsidian"
+rsync -av --delete "/home/nagih/Documents/blog/posts/" "/home/nagih/blog/content/posts/"
+
+echo "Syncing thumbnails from obsidian"
+rsync -av --delete "/home/nagih/Documents/blog/thumbnails/" "/home/nagih/blog/static/thumb/"
+
+echo "Syncing images"
+python images.py
+
 echo "Checking out deploy branch into public"
 git worktree add -B deploy public origin/deploy
+
+echo "Removing existing files"
+rm -rf public/*
 
 echo "Generating site"
 env HUGO_ENV="production" hugo -t PaperMod
