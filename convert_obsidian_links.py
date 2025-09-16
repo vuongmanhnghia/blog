@@ -17,19 +17,21 @@ def slugify(text):
     # Remove leading/trailing hyphens
     return text.strip('-')
 
-def convert_obsidian_links(content, title_map=None, content_directory="content"):
+def convert_obsidian_links(content, title_map=None, url_map=None, content_directory="content"):
     title_map = title_map or {}
+    url_map = url_map or {}
     
     def replace_simple_link(match):
         link_text = match.group(1)
+        file_slug = slugify(link_text)
         
-        # Use the actual post title for display
-        display_text = title_map.get(slugify(link_text), link_text)
+        # Keep the original link text for display
+        display_text = link_text
         
-        # Create URL slug - just lowercase and replace spaces
-        url_slug = slugify(link_text)
+        # Use URL from title if available, otherwise use the link text
+        url_slug = url_map.get(file_slug, file_slug)
         
-        print(f"Converting link: '{link_text}' → '{url_slug}/' → '{display_text}'")
+        print(f"Converting link: '{link_text}' → URL: '{url_slug}/'")
         
         # Add trailing slash
         return f'[{display_text}](posts/{url_slug}/)'
@@ -38,11 +40,13 @@ def convert_obsidian_links(content, title_map=None, content_directory="content")
         link_url = match.group(1)
         display_text = match.group(2)
         
-        # Create URL slug - just lowercase and replace spaces
-        url_slug = slugify(link_url)
+        file_slug = slugify(link_url)
+        
+        # Use URL from title if available, otherwise use the link text
+        url_slug = url_map.get(file_slug, file_slug)
         
         # Print debugging info
-        print(f"Converting aliased link: '{link_url}|{display_text}' → '{url_slug}/'")
+        print(f"Converting aliased link: '{link_url}|{display_text}' → URL: '{url_slug}/'")
         
         # Add trailing slash
         return f'[{display_text}](posts/{url_slug}/)'
@@ -67,9 +71,10 @@ def extract_frontmatter(content):
                 return {}
     return {}
 
-def get_post_titles(directory):
-    """Create a mapping of slugified titles to actual post titles"""
-    title_map = {}
+def get_post_titles_and_urls(directory):
+    """Create mappings for post titles and URLs"""
+    title_map = {}  # Maps file slug to actual title
+    url_map = {}    # Maps file slug to URL slug from title
     
     for filepath in glob.glob(f"{directory}/**/*.md", recursive=True):
         try:
@@ -79,20 +84,25 @@ def get_post_titles(directory):
             frontmatter = extract_frontmatter(content)
             if 'title' in frontmatter:
                 title = frontmatter['title']
+                filename = os.path.splitext(os.path.basename(filepath))[0]
+                file_slug = slugify(filename)
                 title_slug = slugify(title)
                 
-                # Map the slugified title to the actual title
-                title_map[title_slug] = title
+                # Map filename slug to actual title for display
+                title_map[file_slug] = title
                 
-                print(f"Mapped '{title}' → '{title_slug}'")
+                # Map filename slug to title slug for URL
+                url_map[file_slug] = title_slug
+                
+                print(f"File: '{filename}' → URL: '{title_slug}' → Title: '{title}'")
         except Exception as e:
             print(f"Error processing {filepath}: {e}")
     
-    return title_map
+    return title_map, url_map
 
 def process_markdown_files(directory):
-    # First, build the title map
-    title_map = get_post_titles(directory)
+    # First, build the title and URL maps
+    title_map, url_map = get_post_titles_and_urls(directory)
     
     for filepath in glob.glob(f"{directory}/**/*.md", recursive=True):
         print(f"Processing: {filepath}")
@@ -100,7 +110,7 @@ def process_markdown_files(directory):
         with open(filepath, 'r', encoding='utf-8') as file:
             original_content = file.read()
         
-        converted_content = convert_obsidian_links(original_content, title_map, directory)
+        converted_content = convert_obsidian_links(original_content, title_map, url_map, directory)
         
         # Only write if there are changes
         if original_content != converted_content:
