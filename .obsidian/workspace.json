@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "f451554b2e3356e1",
+        "id": "822dfb8ecdbc2d4d",
         "type": "tabs",
         "children": [
           {
-            "id": "772c2ce5cf1970ec",
+            "id": "7100dcc7888394c6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/archives.md",
+                "file": "content/posts/docs/Backend Documentation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "archives"
+              "title": "Backend Documentation"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 257.5004348754883
   },
   "right": {
     "id": "521a4eedd633c393",
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/archives.md",
+                "file": "content/posts/docs/Backend Documentation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for archives"
+              "title": "Backlinks for Backend Documentation"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/archives.md",
+                "file": "content/posts/docs/Backend Documentation.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from archives"
+              "title": "Outgoing links from Backend Documentation"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/archives.md",
+                "file": "content/posts/docs/Backend Documentation.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of archives"
+              "title": "Outline of Backend Documentation"
             }
           }
         ]
@@ -160,23 +160,43 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "command-palette:Open command palette": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "daily-notes:Open today's daily note": false,
+      "bases:Create new base": false,
+      "publish:Publish changes...": false
     }
   },
-  "active": "c9469bcd8a097e48",
+  "active": "7100dcc7888394c6",
   "lastOpenFiles": [
+    "content/posts/network/internet/Untitled.md",
+    "content/posts/docs/Backend Documentation.md",
+    "content/posts/docs",
+    "content/posts/base.md",
+    "content/archives.md",
+    "content/search.md",
+    "content/posts/architechture/REST và gRPC.md",
+    "content/posts/git/Setup SSH.md",
+    "content/posts/Untitled.base",
+    "Untitled.canvas",
+    "content/posts/2025-09-16.md",
+    "content/posts/network/internet/base 1.md",
+    "content/posts/network/protocol/ssh/All in One.md",
+    "content/posts/database/9 MySQL Table Design Rules & Skills.md",
+    "content/posts/Untitled.md",
+    "static/thumb/ssh-all-in-one.png",
+    "content/posts/deploy/6 Level Deploy.md",
+    "Untitled.md",
+    "content/posts/network/internet/Untitled.base",
+    "content/posts/system/Desgin Microservices.md",
+    "content/posts/docker/Docker CLI.md",
+    "content/posts/network/internet",
     "deploy.sh",
     "deploy.old copy.sh",
     "deploy.old.sh",
-    "content/base.md",
-    "content/posts/git/HTTPS & SSH.md",
-    "content/archives.md",
-    "content/search.md"
+    "content/posts/git/HTTPS & SSH.md"
   ]
 }

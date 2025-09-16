@@ -1,3 +1,13 @@
 {
-  "attachmentFolderPath": "static/img"
+  "attachmentFolderPath": "static/img",
+  "promptDelete": false,
+  "spellcheck": false,
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "content/posts",
+  "showUnsupportedFiles": false,
+  "vimMode": true,
+  "strictLineBreaks": true,
+  "defaultViewMode": "preview",
+  "focusNewTab": false
 }
