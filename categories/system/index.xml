@@ -15,58 +15,58 @@
     <atom:link href="https://blog.nagih.io.vn/categories/system/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hướng dẫn tùy biến phân vùng EFI khi cài windows</title>
-      <link>https://blog.nagih.io.vn/posts/system/os/windows/t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi/</link>
+      <link>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</link>
       <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/system/os/windows/t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi/</guid>
+      <guid>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</guid>
       <description>&lt;p&gt;Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI&lt;/p&gt;</description>
     </item>
     <item>
       <title>Process Control Block</title>
-      <link>https://blog.nagih.io.vn/posts/system/process-control-block/</link>
+      <link>https://blog.nagih.io.vn/posts/process-control-block/</link>
       <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/system/process-control-block/</guid>
+      <guid>https://blog.nagih.io.vn/posts/process-control-block/</guid>
       <description>&lt;p&gt;Khối Quản lý Tiến trình (PCB) - &amp;ldquo;CMND&amp;rdquo; của Mọi Chương trình trong Máy tính&lt;/p&gt;</description>
     </item>
     <item>
       <title>REST và gRPC</title>
-      <link>https://blog.nagih.io.vn/posts/architechture/rest-v%C3%A0-grpc/</link>
+      <link>https://blog.nagih.io.vn/posts/rest-v%C3%A0-grpc/</link>
       <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/architechture/rest-v%C3%A0-grpc/</guid>
+      <guid>https://blog.nagih.io.vn/posts/rest-v%C3%A0-grpc/</guid>
       <description>&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại&lt;/p&gt;</description>
     </item>
     <item>
       <title>Labs Operating</title>
-      <link>https://blog.nagih.io.vn/posts/system/labs-operating/</link>
+      <link>https://blog.nagih.io.vn/posts/labs-operating/</link>
       <pubDate>Sat, 23 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/system/labs-operating/</guid>
+      <guid>https://blog.nagih.io.vn/posts/labs-operating/</guid>
       <description>&lt;p&gt;1 Số Labs từ Cơ bản tới Nâng cao về Operating&lt;/p&gt;</description>
     </item>
     <item>
       <title>Desgin Microservices</title>
-      <link>https://blog.nagih.io.vn/posts/system/desgin-microservices/</link>
+      <link>https://blog.nagih.io.vn/posts/desgin-microservices/</link>
       <pubDate>Mon, 18 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/system/desgin-microservices/</guid>
+      <guid>https://blog.nagih.io.vn/posts/desgin-microservices/</guid>
       <description>&lt;p&gt;Hướng dẫn thiết kế kiến trúc Microservices&lt;/p&gt;</description>
     </item>
     <item>
       <title>Cache</title>
-      <link>https://blog.nagih.io.vn/posts/system/cache/</link>
+      <link>https://blog.nagih.io.vn/posts/cache/</link>
       <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/system/cache/</guid>
+      <guid>https://blog.nagih.io.vn/posts/cache/</guid>
       <description>&lt;p&gt;Overview of Cache&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kafka</title>
-      <link>https://blog.nagih.io.vn/posts/system/kafka/</link>
+      <link>https://blog.nagih.io.vn/posts/kafka/</link>
       <pubDate>Sat, 09 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/system/kafka/</guid>
+      <guid>https://blog.nagih.io.vn/posts/kafka/</guid>
       <description>&lt;p&gt;Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka&lt;/p&gt;</description>
     </item>
     <item>
       <title>Microservices</title>
-      <link>https://blog.nagih.io.vn/posts/system/microservices/</link>
+      <link>https://blog.nagih.io.vn/posts/microservices/</link>
       <pubDate>Thu, 07 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/system/microservices/</guid>
+      <guid>https://blog.nagih.io.vn/posts/microservices/</guid>
       <description>&lt;p&gt;Tổng quan về kiến trúc microservices&lt;/p&gt;</description>
     </item>
   </channel>
