@@ -16,6 +16,7 @@ Các vấn đề về kết nối Internet phổ biến và cách khắc phục 
 
 <!--more-->
 
+--- 
 # I. CHUẨN ĐOÁN VẤN ĐỀ
 
 ## Bước 1: Kiểm tra kết nối vật lý
@@ -178,6 +179,9 @@ Chạy scripts
 chmod +x network-diagnostic.sh
 ./network-diagnostic.sh
 ```
+
+
+---
 
 # II. XỬ LÝ LỖI
 
@@ -348,6 +352,9 @@ sudo ip link set dev eth0 mtu 1400
 # Hoặc cấu hình vĩnh viễn trong /etc/network/interfaces
 ```
 
+
+---
+
 # III. RESET HOÀN TOÀN NETWORKING
 
 ```bash
@@ -364,4 +371,4 @@ sudo apt remove --purge network-manager
 sudo apt install network-manager
 ```
 
-
+--- 
