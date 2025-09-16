@@ -36,55 +36,43 @@ Chia sẻ mẫu Documentation cho lập trình viên Backend
 **Purpose**: Backend API cho hệ thống quản lý thư viện sách điện tử
 
 ### Core Features
-
-- User authentication & authorization
-	
+- User authentication & authorization	
 - Book catalog management
-	
 - Book borrowing/returning system
-	
 - Search & filtering
-	
 - User notifications
-	
 - Admin dashboard APIs
 
 ---
 
 ## 🏗️ Architecture
-
 ### High-Level Architecture
 ```
-┌─────────────────┐    ┌─────────────────┐     ┌─────────────────┐
-│             Client Apps           │─  │          Load Balancer         │──│           API Gateway           │
-└─────────────────┘    └─────────────────┘     └─────────────────┘
-				                                                      │
-                        ┌─────────────────────────────┼─────────────────────────────┐
-					                │                                                       │                                 │
-		                ┌───────▼───────┐             ┌───────▼───────┐              ┌───────▼───────┐                                         │            │                                         │
-						│         Auth Service         │             │           Book Service       │              │         User Service          │                                       │              │                                       │
-		                └───────────────┘               └───────────────┘              └────────────────┘
-			                        │                                                       │                                 │
-                        └─────────────────────────────┼─────────────────────────────┘
-			                                                        │
-                        ┌─────────────────────────────┼─────────────────────────────┐
-			                        │                                                        │                                  │
-		                ┌───────▼───────┐              ┌───────▼───────┐              ┌───────▼───────┐                                        │               │                                       │           
-			            │            MongoDB          │               │                Redis              │              │           File Store              │                                      │               │                                       │
-		                 │             (Primary)         │               │             (Caching)         │                │            (Images)              │                                     │               │                                      │
-		                └───────────────┘              └───────────────┘              └───────────────┘
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Client Apps   │────│  Load Balancer  │────│   API Gateway   │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                                                        │
+                        ┌───────────────────────────────┼───────────────────────────────┐
+                        │                               │                               │
+                ┌───────▼───────┐              ┌───────▼───────┐              ┌───────▼───────┐
+                │  Auth Service │              │  Book Service │              │ User Service  │
+                └───────────────┘              └───────────────┘              └───────────────┘
+                        │                               │                               │
+                        └───────────────────────────────┼───────────────────────────────┘
+                                                        │
+                        ┌───────────────────────────────┼───────────────────────────────┐
+                        │                               │                               │
+                ┌───────▼───────┐              ┌───────▼───────┐              ┌───────▼───────┐
+                │   MongoDB     │              │     Redis     │              │   File Store  │
+                │   (Primary)   │              │   (Caching)   │              │   (Images)    │
+                └───────────────┘              └───────────────┘              └───────────────┘
 ```
 
 ### Service Dependencies
-
 - **Auth Service**: JWT token validation, user roles
-	
 - **Book Service**: Book CRUD operations, search, categorization
-	
 - **User Service**: User profile management, borrowing history
-	
 - **Notification Service**: Email/SMS notifications
-	
 - **File Service**: Book cover uploads, PDF handling
 
 ---
@@ -92,7 +80,6 @@ Chia sẻ mẫu Documentation cho lập trình viên Backend
 ## 📡 API Documentation
 
 ### Base URL
-
 ```
 Production: https://api.elibrary.com/v2
 Staging: https://staging-api.elibrary.com/v2
@@ -100,14 +87,12 @@ Development: http://localhost:3000/v2
 ```
 
 ### Authentication
-
 All protected endpoints require Bearer token:
 ```
 Authorization: Bearer <jwt_token>
 ```
 
 ### Response Format
-
 ```json
 {
   "success": true,
@@ -124,7 +109,6 @@ Authorization: Bearer <jwt_token>
 ```
 
 ### Error Response
-
 ```json
 {
   "success": false,
@@ -145,7 +129,6 @@ Authorization: Bearer <jwt_token>
 ---
 
 ## 🔐 Authentication Endpoints
-
 ### POST /auth/register
 **Description**: Đăng ký tài khoản mới
 
