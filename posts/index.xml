@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mẫu Documentation cho Backend</title>
+      <link>https://blog.nagih.io.vn/posts/docs/backend-documentation/</link>
+      <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/docs/backend-documentation/</guid>
+      <description>&lt;p&gt;Chia sẻ mẫu Documentation cho lập trình viên Backend&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị</title>
       <link>https://blog.nagih.io.vn/posts/network/protocol/ssh/all-in-one/</link>
