@@ -1,14 +1,21 @@
 import os
 import re
 import glob
+import unicodedata
 import yaml  # pyright: ignore[reportMissingModuleSource]
 
 def slugify(text):
-    """Convert text to URL-friendly slug - only lowercase and replace spaces with hyphens"""
+    """Convert text to URL-friendly slug with proper Vietnamese character handling"""
     # Convert to lowercase
     text = text.lower()
     
-    # Replace spaces with hyphens
+    # Handle Vietnamese characters - convert to ASCII equivalent
+    # This will convert ă→a, â→a, ê→e, ô→o, ư→u, etc.
+    text = unicodedata.normalize('NFD', text)
+    text = ''.join(c for c in text if unicodedata.category(c) != 'Mn')
+    
+    # Replace spaces and other non-alphanumeric characters with hyphens
+    text = re.sub(r'[^\w\s-]', '', text)
     text = re.sub(r'\s+', '-', text)
     
     # Replace multiple hyphens with a single one
@@ -120,6 +127,21 @@ def process_markdown_files(directory):
         else:
             print(f"- No changes needed: {filepath}")
 
+# Test the slugify function
 if __name__ == "__main__":
+    # Test cases
+    test_cases = [
+        "mẫu documentation cho backend",
+        "Hướng dẫn sử dụng",
+        "Test ăn âm êm ôm ưa",
+        "Special-chars!@#$%^&*()"
+    ]
+    
+    print("Testing slugify function:")
+    for test in test_cases:
+        result = slugify(test)
+        print(f"'{test}' → '{result}'")
+    
+    print("\n" + "="*50)
     content_directory = "content"
     process_markdown_files(content_directory)
