@@ -7,10 +7,12 @@ git worktree prune
 rm -rf .git/worktrees/public/
 
 echo "Syncing post from obsidian"
-rsync -av --delete "/home/nagih/Documents/blog/posts/" "/home/nagih/blog/content/posts/"
+mkdir -p "/home/nagih/hugo/blog/content/posts/"
+rsync -av --delete "/home/nagih/Documents/blog/posts/" "/home/nagih/hugo/blog/content/posts/"
 
 echo "Syncing thumbnails from obsidian"
-rsync -av --delete "/home/nagih/Documents/blog/thumb/" "/home/nagih/blog/static/thumb/"
+mkdir -p "/home/nagih/hugo/blog/static/thumb/"
+rsync -av --delete "/home/nagih/Documents/blog/thumb/" "/home/nagih/hugo/blog/static/thumb/"
 
 echo "Syncing images"
 python images.py
