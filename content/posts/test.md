@@ -11,16 +11,16 @@ test
 
 <!--more-->
 
-[Backend Documentation](Backend Documentation/)
+[Backend Documentation](posts/backend-documentation)
 
-[Tùy biến phân vùng EFI](Tùy biến phân vùng EFI/)
+[Tùy biến phân vùng EFI](posts/tuy-bien-phan-vung-efi)
 
-[Labs Operating](Labs Operating/)
+[Labs Operating](posts/labs-operating)
 
-[Process Control Block](Process Control Block/)
+[Process Control Block](posts/process-control-block)
 
-[Error Handler](Error Handler/)
+[Error Handler](posts/error-handler)
 
-[App Development](App Development/)
+[App Development](posts/app-development)
 
-[Docker Practical Guide](Docker Practical Guide/)
+[Docker Practical Guide](posts/docker-practical-guide)

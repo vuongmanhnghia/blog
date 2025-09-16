@@ -1,26 +1,32 @@
 import re
 import glob
+import unicodedata
 
-def convert_obsidian_links(content, content_directory="content"):
+def slugify(text):
+    """Convert text to URL-friendly slug"""
+    # Normalize unicode characters
+    text = unicodedata.normalize('NFKD', text)
+    # Convert to lowercase
+    text = text.lower()
+    # Replace spaces and special chars with hyphens
+    text = re.sub(r'[^\w\s-]', '', text)
+    text = re.sub(r'[-\s]+', '-', text)
+    # Remove leading/trailing hyphens
+    return text.strip('-')
+
+def convert_obsidian_links(content):
     def replace_simple_link(match):
         link_text = match.group(1)
-        
-        # Keep the original link text for display
-        display_text = link_text
-        
-        print(f"Converting link: '{link_text}' → filename: '{link_text}'")
-        
-        # Use filename directly since permalink is now /:filename/
-        return f'[{display_text}]({link_text}/)'
+        url_slug = slugify(link_text)
+        # Use just the slug, let Hugo handle the full path
+        return f'[{link_text}](posts/{url_slug})'
     
     def replace_aliased_link(match):
         link_url = match.group(1)
         display_text = match.group(2)
-        
-        print(f"Converting aliased link: '{link_url}|{display_text}' → filename: '{link_url}'")
-        
-        # Use filename directly since permalink is now /:filename/
-        return f'[{display_text}]({link_url}/)'
+        url_slug = slugify(link_url)
+        # Use just the slug, let Hugo handle the full path
+        return f'[{display_text}](posts/{url_slug})'
     
     # Convert [[Link|Alias]] first
     content = re.sub(r'\[\[([^|\]]+)\|([^\]]+)\]\]', replace_aliased_link, content)
@@ -37,7 +43,7 @@ def process_markdown_files(directory):
         with open(filepath, 'r', encoding='utf-8') as file:
             original_content = file.read()
         
-        converted_content = convert_obsidian_links(original_content, directory)
+        converted_content = convert_obsidian_links(original_content)
         
         # Only write if there are changes
         if original_content != converted_content:
