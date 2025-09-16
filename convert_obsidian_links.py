@@ -19,13 +19,13 @@ def convert_obsidian_links(content):
     def replace_simple_link(match):
         link_text = match.group(1)
         url_slug = slugify(link_text)
-        return f'[{link_text}]({url_slug})'
+        return f'[{link_text}](/posts/{url_slug})'
     
     def replace_aliased_link(match):
         link_url = match.group(1)
         display_text = match.group(2)
         url_slug = slugify(link_url)
-        return f'[{display_text}]({url_slug})'
+        return f'[{display_text}](/posts/{url_slug})'
     
     # Convert [[Link|Alias]] first
     content = re.sub(r'\[\[([^|\]]+)\|([^\]]+)\]\]', replace_aliased_link, content)

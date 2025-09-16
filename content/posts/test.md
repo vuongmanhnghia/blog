@@ -11,6 +11,6 @@ test
 
 <!--more-->
 
-[Backend Documentation](backend-documentation)
-[Tùy biến phân vùng EFI](tuy-bien-phan-vung-efi)
-[Labs Operating](labs-operating)
+[Backend Documentation](/posts/backend-documentation)
+[Tùy biến phân vùng EFI](/posts/tuy-bien-phan-vung-efi)
+[Labs Operating](/posts/labs-operating)
