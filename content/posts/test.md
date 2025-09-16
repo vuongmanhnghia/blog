@@ -13,7 +13,7 @@ test
 
 [Backend Documentation](posts/backend-documentation)
 
-[Tùy biến phân vùng EFI](posts/tuy-bien-phan-vung-efi)
+[Custom Windows EFI](posts/custom-windows-efi)
 
 [Labs Operating](posts/labs-operating)
 
