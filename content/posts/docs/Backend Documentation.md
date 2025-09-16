@@ -92,6 +92,7 @@ Chia sẻ mẫu Documentation cho lập trình viên Backend
 ## 📡 API Documentation
 
 ### Base URL
+
 ```
 Production: https://api.elibrary.com/v2
 Staging: https://staging-api.elibrary.com/v2
@@ -99,12 +100,14 @@ Development: http://localhost:3000/v2
 ```
 
 ### Authentication
+
 All protected endpoints require Bearer token:
 ```
 Authorization: Bearer <jwt_token>
 ```
 
 ### Response Format
+
 ```json
 {
   "success": true,
@@ -121,6 +124,7 @@ Authorization: Bearer <jwt_token>
 ```
 
 ### Error Response
+
 ```json
 {
   "success": false,
