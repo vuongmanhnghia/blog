@@ -17,7 +17,7 @@ Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boo
 <!--more-->
 
 ---
-## Sử dụng Command Prompt trong quá trình cài đặt
+*Sử dụng Command Prompt trong quá trình cài đặt*
 
 - **Bước 1:** Khởi động từ USB/DVD cài Windows
 	
@@ -52,7 +52,7 @@ Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boo
 	
 - **Bước 5:** Tạo phân vùng chính cho Windows
 	
-	```
+	```sh
 	create partition primary
 	format quick fs=ntfs label="Windows"
 	assign letter=C
