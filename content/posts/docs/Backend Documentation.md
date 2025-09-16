@@ -17,8 +17,8 @@ Chia sẻ mẫu Documentation cho lập trình viên Backend
 
 ## 📋 Table of Contents
 
-1. [System Overview](#system-overview)
-2. [Architecture](#architecture)
+1. [[#🎯 System Overview]]
+2. [[#🏗️ Architecture]]
 3. [API Documentation](#api-documentation)
 4. [Database Schema](#database-schema)
 5. [Authentication & Security](#authentication--security)
@@ -733,16 +733,16 @@ const logger = winston.createLogger({
 
 ## 📈 Error Codes Reference
 
-| Code | HTTP Status | Description |
-|------|-------------|-------------|
-| `VALIDATION_ERROR` | 400 | Request validation failed |
-| `UNAUTHORIZED` | 401 | Invalid or missing authentication |
-| `FORBIDDEN` | 403 | Insufficient permissions |
-| `NOT_FOUND` | 404 | Resource not found |
-| `CONFLICT` | 409 | Resource already exists |
-| `RATE_LIMIT_EXCEEDED` | 429 | Too many requests |
-| `INTERNAL_ERROR` | 500 | Server error |
-| `SERVICE_UNAVAILABLE` | 503 | External service unavailable |
+| Code                  | HTTP Status | Description                       |
+| --------------------- | ----------- | --------------------------------- |
+| `VALIDATION_ERROR`    | 400         | Request validation failed         |
+| `UNAUTHORIZED`        | 401         | Invalid or missing authentication |
+| `FORBIDDEN`           | 403         | Insufficient permissions          |
+| `NOT_FOUND`           | 404         | Resource not found                |
+| `CONFLICT`            | 409         | Resource already exists           |
+| `RATE_LIMIT_EXCEEDED` | 429         | Too many requests                 |
+| `INTERNAL_ERROR`      | 500         | Server error                      |
+| `SERVICE_UNAVAILABLE` | 503         | External service unavailable      |
 
 ## 🔄 Changelog
 
