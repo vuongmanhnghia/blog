@@ -1,7 +1,13 @@
 ---
 title: SSH - Github
 date: 2025-09-10
-image: /thumb/https-vs-ssh.png
+cover:
+  image: "thumb/https-vs-ssh.png"
+  alt: "HTTPS & SSH"
+  caption: ""
+  relative: false
+  hiddenInList: false
+  hiddenInSingle: false
 categories:
     - protocol
     - git

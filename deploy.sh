@@ -22,7 +22,7 @@ echo "Checking out deploy branch into public"
 git worktree add -B deploy public origin/deploy
 
 echo "Generating site"
-env HUGO_ENV="production" hugo -t PaperMod
+env HUGO_ENV="production" hugo -t PaperMod --minify
 
 echo "Create file CNAME"
 echo "blog.nagih.io.vn" > public/CNAME
