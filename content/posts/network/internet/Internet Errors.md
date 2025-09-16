@@ -1,6 +1,6 @@
 ---
 title: Các vấn đề về Internet và cách khắc phục
-date: 2025-08-16
+date: 2025-09-16
 image:
 categories:
   - network
