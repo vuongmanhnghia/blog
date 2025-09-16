@@ -4,7 +4,7 @@ import shutil
 
 # Paths
 posts_dir = "/home/nagih/blog/content/posts/"
-attachments_dir = "/home/nagih/Documents/blog/attachments"
+attachments_dir = "/home/nagih/Documents/blog/img"
 static_images_dir = "/home/nagih/blog/static/img/"
 
 # Step 1: Process each markdown file in the posts directory
