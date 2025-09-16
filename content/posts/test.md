@@ -11,16 +11,16 @@ test
 
 <!--more-->
 
-[Backend Documentation](posts/mẫu-documentation-cho-backend/)
+[[Backend Documentation]]
 
-[Tùy biến phân vùng EFI](posts/hướng-dẫn-tùy-biến-phân-vùng-efi-khi-cài-windows/)
+[[Tùy biến phân vùng EFI]]
 
-[Labs Operating](posts/labs-operating/)
+[[Labs Operating]]
 
-[Process Control Block](posts/process-control-block/)
+[[Process Control Block]]
 
-[Error Handler](posts/hướng-dẫn-xử-lý-sự-cố-và-các-lỗi-thường-gặp-khi-thiết-lập-ssh/)
+[[Error Handler]]
 
-[App Development](posts/hướng-dẫn-setup-môi-trường-app-development-trên-nixos-best-practice/)
+[[App Development]]
 
-[Docker Practical Guide](posts/docker-practical-guide/)
+[[Docker Practical Guide]]

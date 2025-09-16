@@ -129,7 +129,7 @@ if __name__ == "__main__":
     # Test cases
     test_cases = [
         "mẫu documentation cho backend",
-        "Hướng dẫn sử dụng",
+        "Hướng dẫn sử dụng", 
         "Test ăn âm êm ôm ưa",
         "Special-chars!@#$%^&*()"
     ]
@@ -138,7 +138,21 @@ if __name__ == "__main__":
     for test in test_cases:
         result = slugify(test)
         print(f"'{test}' → '{result}'")
+        
+        # Show URL encoding for debugging
+        import urllib.parse
+        encoded = urllib.parse.quote(result)
+        print(f"  URL encoded: {encoded}")
+        double_encoded = urllib.parse.quote(encoded)
+        print(f"  Double encoded: {double_encoded}")
+        print()
     
-    print("\n" + "="*50)
-    content_directory = "content"
-    process_markdown_files(content_directory)
+    print("="*50)
+    
+    # Check if we should process files
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "--process":
+        content_directory = "content"
+        process_markdown_files(content_directory)
+    else:
+        print("To process files, run with: python script.py --process")

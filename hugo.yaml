@@ -1,6 +1,6 @@
 baseURL: "https://blog.nagih.io.vn"
-# canonifyURLs: true
-relativeURLs: false
+canonifyURLs: false  # (đã có)
+relativeURLs: false  # (đã có)
 
 title: Nagih | Blog
 pagination:
@@ -151,6 +151,13 @@ menu:
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
+  goldmark:
+    parser:
+      attribute:
+        block: true
+        title: true
+    renderer:
+      unsafe: true
   highlight:
     noClasses: false
     # anchorLineNos: true
