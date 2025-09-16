@@ -11,7 +11,8 @@ test
 
 <!--more-->
 
-[Backend Documentation](/posts/backend-documentation)
-[Tùy biến phân vùng EFI](/posts/tuy-bien-phan-vung-efi)
-[Labs Operating](/posts/labs-operating)
-[Process Control Block](/posts/process-control-block)
+[Backend Documentation](backend-documentation)
+[Tùy biến phân vùng EFI](tuy-bien-phan-vung-efi)
+[Labs Operating](labs-operating)
+[Process Control Block](process-control-block)
+[Error Handler](error-handler)
