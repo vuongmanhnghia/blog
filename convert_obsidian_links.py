@@ -28,15 +28,8 @@ def convert_obsidian_links(content, title_map=None, url_map=None, content_direct
         # Keep the original link text for display
         display_text = link_text
         
-        # Use URL from title if available, otherwise create a simple URL from link text
-        if file_slug in url_map:
-            # Use mapped URL from our database
-            url_slug = url_map.get(file_slug)
-        else:
-            # Create a simple slug that won't be double-encoded
-            url_slug = link_text.lower().replace(" ", "-")
-            url_slug = ''.join(c for c in url_slug if c.isalnum() or c in '-ăâđêôơưàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệìíỉĩịòóỏõọồốổỗộờớởỡợùúủũụừứửữựỳýỷỹỵ')
-            url_slug = re.sub(r'-+', '-', url_slug).strip('-')
+        # Use URL from title if available, otherwise use the link text
+        url_slug = url_map.get(file_slug, file_slug)
         
         print(f"Converting link: '{link_text}' → URL: '{url_slug}/'")
         
@@ -49,15 +42,8 @@ def convert_obsidian_links(content, title_map=None, url_map=None, content_direct
         
         file_slug = slugify(link_url)
         
-        # Use URL from title if available, otherwise create a simple URL from link URL
-        if file_slug in url_map:
-            # Use mapped URL from our database
-            url_slug = url_map.get(file_slug)
-        else:
-            # Create a simple slug that won't be double-encoded
-            url_slug = link_url.lower().replace(" ", "-")
-            url_slug = ''.join(c for c in url_slug if c.isalnum() or c in '-ăâđêôơưàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệìíỉĩịòóỏõọồốổỗộờớởỡợùúủũụừứửữựỳýỷỹỵ')
-            url_slug = re.sub(r'-+', '-', url_slug).strip('-')
+        # Use URL from title if available, otherwise use the link text
+        url_slug = url_map.get(file_slug, file_slug)
         
         # Print debugging info
         print(f"Converting aliased link: '{link_url}|{display_text}' → URL: '{url_slug}/'")
@@ -88,7 +74,7 @@ def extract_frontmatter(content):
 def get_post_titles_and_urls(directory):
     """Create mappings for post titles and URLs"""
     title_map = {}  # Maps file slug to actual title
-    url_map = {}    # Maps file slug to title slug for URL
+    url_map = {}    # Maps file slug to URL slug from title
     
     for filepath in glob.glob(f"{directory}/**/*.md", recursive=True):
         try:
@@ -100,29 +86,15 @@ def get_post_titles_and_urls(directory):
                 title = frontmatter['title']
                 filename = os.path.splitext(os.path.basename(filepath))[0]
                 file_slug = slugify(filename)
-                
-                # Get the actual URL slug from the post directory
-                parent_dir = os.path.basename(os.path.dirname(filepath))
-                if parent_dir and parent_dir != "posts":
-                    # If in a subdirectory of posts, use that directory name
-                    actual_url = parent_dir
-                else:
-                    # Create a clean slug directly without encoding
-                    actual_url = title.lower().replace(" ", "-")
-                    # Remove special characters but keep Vietnamese characters
-                    actual_url = ''.join(c for c in actual_url if c.isalnum() or c in '-ăâđêôơưàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệìíỉĩịòóỏõọồốổỗộờớởỡợùúủũụừứửữựỳýỷỹỵ ')
-                    # Replace multiple hyphens with a single one
-                    actual_url = re.sub(r'-+', '-', actual_url)
-                    # Remove leading/trailing hyphens
-                    actual_url = actual_url.strip('-')
+                title_slug = slugify(title)
                 
                 # Map filename slug to actual title for display
                 title_map[file_slug] = title
                 
-                # Map filename slug to actual URL
-                url_map[file_slug] = actual_url
+                # Map filename slug to title slug for URL
+                url_map[file_slug] = title_slug
                 
-                print(f"File: '{filename}' → URL: '{actual_url}' → Title: '{title}'")
+                print(f"File: '{filename}' → URL: '{title_slug}' → Title: '{title}'")
         except Exception as e:
             print(f"Error processing {filepath}: {e}")
     

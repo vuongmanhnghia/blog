@@ -1,5 +1,5 @@
 baseURL: "https://blog.nagih.io.vn"
-canonifyURLs: true
+# canonifyURLs: true
 relativeURLs: false
 
 title: Nagih | Blog
