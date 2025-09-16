@@ -190,7 +190,7 @@ Hiểu được mối liên kết nhân quả này giúp các nhà phát triển
     -   Sau đó, **ứng dụng** sẽ ghi dữ liệu vừa đọc được vào cache.
     -   Khi ghi dữ liệu, ứng dụng thường sẽ cập nhật database trước, sau đó **vô hiệu hóa (invalidate)** mục tương ứng trong cache.
 
-    ![Image Description](/imagespasted-image-20250810134139png)
+    ![Image Description](imagespasted-image-20250810134139png)
 
 -   **Ưu điểm:** Ứng dụng có toàn quyền kiểm soát. Cache chỉ lưu những dữ liệu thực sự được yêu cầu, giúp tiết kiệm không gian. Hệ thống có khả năng chống chịu lỗi cache tốt (nếu cache sập, ứng dụng có thể đọc trực tiếp từ database).
 -   **Nhược điểm:** Yêu cầu đầu tiên cho bất kỳ dữ liệu nào cũng sẽ là cache miss. Code của ứng dụng phức tạp hơn vì phải chứa logic quản lý cache.
@@ -246,7 +246,7 @@ Hãy xem xét kịch bản sau trong mẫu Cache-Aside:
 3. Trong lúc đó, tiến trình B cập nhật dữ liệu X trong database và ngay lập tức gửi lệnh vô hiệu hóa cache cho X.
 4. Tiến trình A, sau khi đọc xong dữ liệu X (phiên bản cũ) từ database, giờ đây lại ghi nó vào cache.
 5. **Kết quả:** Cache bây giờ chứa dữ liệu X đã lỗi thời, và lệnh vô hiệu hóa của tiến trình B trở nên vô nghĩa. Dữ liệu lỗi thời này sẽ tồn tại trong cache cho đến khi TTL hết hạn.
-   ![Image Description](/imagespasted-image-20250810134758png)
+   ![Image Description](imagespasted-image-20250810134758png)
 
 Đây không phải là lỗi của một công cụ cụ thể, mà là một lỗ hổng cơ bản trong việc định thời của các hoạt động phân tán. Các giải pháp cho vấn đề này, như sử dụng **phiên bản (versioning)** cho dữ liệu hoặc **cơ chế cho thuê (lease)**, không còn là các kỹ thuật vô hiệu hóa đơn giản nữa. Chúng là các cơ chế kiểm soát tương tranh (concurrency control) phức tạp. Ví dụ, với cơ chế lease mà Facebook sử dụng, chỉ tiến trình nào nhận được "hợp đồng thuê" khi bị cache miss mới có quyền ghi lại vào cache. Nếu một lệnh vô hiệu hóa xảy ra trong thời gian đó, "hợp đồng thuê" sẽ bị thu hồi, và thao tác ghi dữ liệu cũ của tiến trình A sẽ bị từ chối.
 
@@ -260,7 +260,7 @@ Mỗi quyết định bạn đưa ra – chọn loại cache nào, chính sách 
 -   **Độ phức tạp** và **Tính đơn giản**
 -   **Tính nhất quán dữ liệu** và **Độ trễ**
 -   **Mô hình tối ưu nhất mà tôi biết**
-    ![Image Description](/imagespasted-image-20250810135418png)
+    ![Image Description](imagespasted-image-20250810135418png)
 
 Không có câu trả lời nào là đúng cho mọi trường hợp. Một hệ thống yêu cầu tính nhất quán tuyệt đối sẽ phải hy sinh một phần hiệu năng ghi (sử dụng Write-Through). Một hệ thống cần hiệu năng ghi tối đa có thể phải chấp nhận rủi ro về dữ liệu (sử dụng Write-Back).
 
