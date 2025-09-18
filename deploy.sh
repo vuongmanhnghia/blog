@@ -51,5 +51,5 @@ if git diff --cached --quiet; then
 else
     git commit -m "Publishing to deploy (deploy.sh)"
 fi
-git push origin -a -f
+git push --all --force
 cd ..
