@@ -1,10 +1,12 @@
 ---
-title: "Cache"
+title: Cache
 date: 2025-08-10
-image: "/images/image-placeholder.png"
-categories: ["system"]
-tags: ["cache"]
-draft: false
+image: /images/image-placeholder.png
+categories:
+  - system
+tags:
+  - cache
+draft: true
 ---
 
 Overview of Cache

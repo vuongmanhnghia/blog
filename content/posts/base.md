@@ -1,17 +1,10 @@
 ---
 title:
 date: 2025-01-01
-cover:
-  image: "path"
-  alt: "SEO"
-  caption: ""
-  relative: false
-  hiddenInList: false
-  hiddenInSingle: false
+image:
 categories:
 tags:
 draft: true
-searchHidden: false
 ---
 
 [...]
@@ -19,3 +12,5 @@ searchHidden: false
 <!--more-->
 
 ---
+
+[...]

@@ -1,10 +1,12 @@
 ---
-title: "Internet Protocol (IP)"
+title: Internet Protocol (IP)
 date: 2025-08-13
-image: "/images/image-placeholder.png"
-categories: ["devops"]
-tags: ["docker"]
-draft: false
+image: /images/image-placeholder.png
+categories:
+  - devops
+tags:
+  - docker
+draft: true
 ---
 
 Mastering Internet Protocol Addresses

@@ -9,17 +9,16 @@ tags:
 draft: false
 ---
 
-Đối với các nhà phát triển làm việc trên nhiều dự án hoặc có nhiều danh tính (ví dụ: tài khoản cá nhân và tài khoản công việc), việc quản lý nhiều khóa SSH có thể trở nên phức tạp.
+biến SSH từ một công cụ kết nối đơn thuần thành một hệ thống quản lý danh tính hiệu quả
 
 <!--more-->
 
-Đối với các nhà phát triển làm việc trên nhiều dự án hoặc có nhiều danh tính (ví dụ: tài khoản cá nhân và tài khoản công việc), việc quản lý nhiều khóa SSH có thể trở nên phức tạp. File cấu hình `~/.ssh/config` là một công cụ mạnh mẽ giúp tự động hóa và đơn giản hóa quá trình này, biến SSH từ một công cụ kết nối đơn thuần thành một hệ thống quản lý danh tính hiệu quả.
-
-### Giới thiệu `~/.ssh/config`
+---
+## Giới thiệu `~/.ssh/config`
 
 File `~/.ssh/config` cho phép bạn tạo các bí danh (alias) và các quy tắc kết nối cụ thể cho từng máy chủ. Thay vì phải gõ các lệnh dài dòng với các tùy chọn phức tạp, bạn có thể định nghĩa tất cả trong file này. Cấu trúc của file bao gồm các khối `Host`, mỗi khối chứa các chỉ thị áp dụng cho host đó.
 
-### Kịch bản: Quản lý nhiều tài khoản GitHub (Cá nhân & Công việc)
+## Kịch bản: Quản lý nhiều tài khoản GitHub (Cá nhân & Công việc)
 
 Đây là một kịch bản rất phổ biến. Mục tiêu là có thể làm việc trên các kho lưu trữ của cả hai tài khoản trên cùng một máy tính mà không cần phải thay đổi cấu hình thủ công mỗi lần chuyển đổi.
 

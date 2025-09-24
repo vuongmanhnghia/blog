@@ -146,5 +146,3 @@ Một tiến trình có thể có nhiều luồng (thread), giống như các "t
 Các trường thông tin và độ phức tạp cụ thể của cấu trúc PCB trong một hệ điều hành nhất định là sự phản ánh trực tiếp các mục tiêu và triết lý thiết kế của hệ điều hành đó. Một hệ điều hành thời gian thực (RTOS) cho hệ thống phanh của ô tô ưu tiên sự đoán trước và các thời hạn nghiêm ngặt. Do đó, PCB của nó có thể sẽ có các trường rất chi tiết và chặt chẽ liên quan đến các ràng buộc thời gian. Ngược lại, PCB của một máy chủ Linux (`task_struct`) nổi tiếng là phức tạp, chứa thông tin sâu rộng về quyền của người dùng/nhóm, giới hạn tài nguyên, và các tín hiệu giao tiếp liên tiến trình, phản ánh di sản đa người dùng và chú trọng bảo mật của nó. Điều này có nghĩa là PCB không chỉ là một triển khai kỹ thuật chung chung; nó là một tạo tác thể hiện triết lý kiến trúc và mục đích dự định của toàn bộ hệ điều hành.
 
 ---
-
-_Nếu thấy hay, hãy để lại cho mình 1 comment xuống phía dưới để mình có động lực viết các blog chất lượng tiếp theo nhé!_

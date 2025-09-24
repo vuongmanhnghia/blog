@@ -15,7 +15,8 @@ Chia sẻ mẫu Documentation cho lập trình viên Backend
 
 # E-Library Management System - Backend Documentation
 
-## Table of Contents
+## 📋 Table of Contents
+
 1. [System Overview](#system-overview)
 2. [Architecture](#architecture)
 3. [API Documentation](#api-documentation)
@@ -27,7 +28,7 @@ Chia sẻ mẫu Documentation cho lập trình viên Backend
 
 ---
 
-## System Overview
+## 🎯 System Overview
 
 **Project**: E-Library Management System  
 **Version**: v2.1.0  
@@ -35,50 +36,63 @@ Chia sẻ mẫu Documentation cho lập trình viên Backend
 **Purpose**: Backend API cho hệ thống quản lý thư viện sách điện tử
 
 ### Core Features
-- User authentication & authorization	
+
+- User authentication & authorization
+	
 - Book catalog management
+	
 - Book borrowing/returning system
+	
 - Search & filtering
+	
 - User notifications
+	
 - Admin dashboard APIs
 
 ---
 
-## Architecture
+## 🏗️ Architecture
+
 ### High-Level Architecture
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Client Apps   │────│  Load Balancer  │────│   API Gateway   │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                                        │
-                        ┌───────────────────────────────┼───────────────────────────────┐
-                        │                               │                               │
-                ┌───────▼───────┐              ┌───────▼───────┐              ┌───────▼───────┐
-                │  Auth Service │              │  Book Service │              │ User Service  │
-                └───────────────┘              └───────────────┘              └───────────────┘
-                        │                               │                               │
-                        └───────────────────────────────┼───────────────────────────────┘
-                                                        │
-                        ┌───────────────────────────────┼───────────────────────────────┐
-                        │                               │                               │
-                ┌───────▼───────┐              ┌───────▼───────┐              ┌───────▼───────┐
-                │   MongoDB     │              │     Redis     │              │   File Store  │
-                │   (Primary)   │              │   (Caching)   │              │   (Images)    │
-                └───────────────┘              └───────────────┘              └───────────────┘
+┌─────────────────┐    ┌─────────────────┐     ┌─────────────────┐
+│             Client Apps           │─  │          Load Balancer         │──│           API Gateway           │
+└─────────────────┘    └─────────────────┘     └─────────────────┘
+				                                                      │
+                        ┌─────────────────────────────┼─────────────────────────────┐
+					                │                                                       │                                 │
+		                ┌───────▼───────┐             ┌───────▼───────┐              ┌───────▼───────┐                                         │            │                                         │
+						│         Auth Service         │             │           Book Service       │              │         User Service          │                                       │              │                                       │
+		                └───────────────┘               └───────────────┘              └────────────────┘
+			                        │                                                       │                                 │
+                        └─────────────────────────────┼─────────────────────────────┘
+			                                                        │
+                        ┌─────────────────────────────┼─────────────────────────────┐
+			                        │                                                        │                                  │
+		                ┌───────▼───────┐              ┌───────▼───────┐              ┌───────▼───────┐                                        │               │                                       │           
+			            │            MongoDB          │               │                Redis              │              │           File Store              │                                      │               │                                       │
+		                 │             (Primary)         │               │             (Caching)         │                │            (Images)              │                                     │               │                                      │
+		                └───────────────┘              └───────────────┘              └───────────────┘
 ```
 
 ### Service Dependencies
+
 - **Auth Service**: JWT token validation, user roles
+	
 - **Book Service**: Book CRUD operations, search, categorization
+	
 - **User Service**: User profile management, borrowing history
+	
 - **Notification Service**: Email/SMS notifications
+	
 - **File Service**: Book cover uploads, PDF handling
 
 ---
 
-## API Documentation
+## 📡 API Documentation
 
 ### Base URL
+
 ```
 Production: https://api.elibrary.com/v2
 Staging: https://staging-api.elibrary.com/v2
@@ -86,12 +100,14 @@ Development: http://localhost:3000/v2
 ```
 
 ### Authentication
+
 All protected endpoints require Bearer token:
 ```
 Authorization: Bearer <jwt_token>
 ```
 
 ### Response Format
+
 ```json
 {
   "success": true,
@@ -108,6 +124,7 @@ Authorization: Bearer <jwt_token>
 ```
 
 ### Error Response
+
 ```json
 {
   "success": false,
@@ -127,7 +144,8 @@ Authorization: Bearer <jwt_token>
 
 ---
 
-## Authentication Endpoints
+## 🔐 Authentication Endpoints
+
 ### POST /auth/register
 **Description**: Đăng ký tài khoản mới
 
@@ -193,7 +211,7 @@ Authorization: Bearer <jwt_token>
 
 ---
 
-## Book Management Endpoints
+## 📚 Book Management Endpoints
 
 ### GET /books
 **Description**: Lấy danh sách sách với phân trang và filter
@@ -294,7 +312,7 @@ GET /books?page=1&limit=10&category=fiction&available=true
 
 ---
 
-## Borrowing System Endpoints
+## 📖 Borrowing System Endpoints
 
 ### POST /borrowings
 **Description**: Mượn sách  
@@ -353,7 +371,7 @@ GET /books?page=1&limit=10&category=fiction&available=true
 
 ---
 
-## Database Schema
+## 🗄️ Database Schema
 
 ### Users Collection
 ```javascript
@@ -444,7 +462,7 @@ GET /books?page=1&limit=10&category=fiction&available=true
 
 ---
 
-## Authentication & Security
+## 🔒 Authentication & Security
 
 ### JWT Configuration
 ```javascript
@@ -488,7 +506,7 @@ GET /books?page=1&limit=10&category=fiction&available=true
 
 ---
 
-## Setup & Deployment
+## ⚙️ Setup & Deployment
 
 ### Environment Variables
 ```bash
@@ -597,7 +615,7 @@ jobs:
 
 ---
 
-## Testing
+## 🧪 Testing
 
 ### Test Structure
 ```
@@ -670,7 +688,7 @@ describe('Books API', () => {
 
 ---
 
-## Monitoring & Logging
+## 📊 Monitoring & Logging
 
 ### Logging Configuration
 ```javascript
@@ -730,20 +748,20 @@ const logger = winston.createLogger({
 
 ---
 
-## Error Codes Reference
+## 📈 Error Codes Reference
 
-| Code                  | HTTP Status | Description                       |
-| --------------------- | ----------- | --------------------------------- |
-| `VALIDATION_ERROR`    | 400         | Request validation failed         |
-| `UNAUTHORIZED`        | 401         | Invalid or missing authentication |
-| `FORBIDDEN`           | 403         | Insufficient permissions          |
-| `NOT_FOUND`           | 404         | Resource not found                |
-| `CONFLICT`            | 409         | Resource already exists           |
-| `RATE_LIMIT_EXCEEDED` | 429         | Too many requests                 |
-| `INTERNAL_ERROR`      | 500         | Server error                      |
-| `SERVICE_UNAVAILABLE` | 503         | External service unavailable      |
+| Code | HTTP Status | Description |
+|------|-------------|-------------|
+| `VALIDATION_ERROR` | 400 | Request validation failed |
+| `UNAUTHORIZED` | 401 | Invalid or missing authentication |
+| `FORBIDDEN` | 403 | Insufficient permissions |
+| `NOT_FOUND` | 404 | Resource not found |
+| `CONFLICT` | 409 | Resource already exists |
+| `RATE_LIMIT_EXCEEDED` | 429 | Too many requests |
+| `INTERNAL_ERROR` | 500 | Server error |
+| `SERVICE_UNAVAILABLE` | 503 | External service unavailable |
 
-## Changelog
+## 🔄 Changelog
 
 ### v2.1.0 (2025-09-16)
 **Added**
@@ -771,7 +789,7 @@ const logger = winston.createLogger({
 
 ---
 
-## Support & Contact
+## 📞 Support & Contact
 
 **Development Team**: backend-team@company.com  
 **DevOps Team**: devops@company.com  

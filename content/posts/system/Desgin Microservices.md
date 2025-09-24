@@ -1,10 +1,13 @@
 ---
-title: "Desgin Microservices"
+title: Desgin Microservices
 date: 2025-08-18
-image: "/images/image-placeholder.png"
-categories: ["system", "microservices"]
-tags: [""]
-draft: false
+image: /images/image-placeholder.png
+categories:
+  - system
+  - microservices
+tags:
+  - ""
+draft: true
 ---
 
 Hướng dẫn thiết kế kiến trúc Microservices
