@@ -32,14 +32,14 @@
       <link>https://blog.nagih.io.vn/posts/all-in-one/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/all-in-one/</guid>
-      <description>&lt;p&gt;Đối với các nhà phát triển làm việc trên nhiều dự án hoặc có nhiều danh tính (ví dụ: tài khoản cá nhân và tài khoản công việc), việc quản lý nhiều khóa SSH có thể trở nên phức tạp.&lt;/p&gt;</description>
+      <description>&lt;p&gt;biến SSH từ một công cụ kết nối đơn thuần thành một hệ thống quản lý danh tính hiệu quả&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hướng dẫn thiết lập khóa SSH cho github</title>
       <link>https://blog.nagih.io.vn/posts/setup-ssh/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/setup-ssh/</guid>
-      <description>&lt;p&gt;Chi tiết các bước thiết lập khóa SSH cho github từ A - Z&lt;/p&gt;</description>
+      <description>&lt;p&gt;Hướng dẫn chi tiết từng bước để tạo và cấu hình khóa SSH cho tài khoản GitHub của bạn.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH</title>
@@ -77,25 +77,11 @@
       <description>&lt;p&gt;Khối Quản lý Tiến trình (PCB) - &amp;ldquo;CMND&amp;rdquo; của Mọi Chương trình trong Máy tính&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Internal Separation</title>
-      <link>https://blog.nagih.io.vn/posts/internal-separation/</link>
-      <pubDate>Fri, 29 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/internal-separation/</guid>
-      <description>&lt;p&gt;Phân biệt rõ các tác vụ trong Internal&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>REST và gRPC</title>
-      <link>https://blog.nagih.io.vn/posts/rest-v%C3%A0-grpc/</link>
+      <link>https://blog.nagih.io.vn/posts/rest--grpc/</link>
       <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/rest-v%C3%A0-grpc/</guid>
-      <description>&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>DDD (Domain-Driven Design)</title>
-      <link>https://blog.nagih.io.vn/posts/overview/</link>
-      <pubDate>Wed, 27 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/overview/</guid>
-      <description>&lt;p&gt;Architecture Overview Domain-Driven Design(DDD)&lt;/p&gt;</description>
+      <guid>https://blog.nagih.io.vn/posts/rest--grpc/</guid>
+      <description>&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại | Rest &amp;amp; gRPC&lt;/p&gt;</description>
     </item>
     <item>
       <title>Labs Operating</title>
@@ -105,13 +91,6 @@
       <description>&lt;p&gt;1 Số Labs từ Cơ bản tới Nâng cao về Operating&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Desgin Microservices</title>
-      <link>https://blog.nagih.io.vn/posts/desgin-microservices/</link>
-      <pubDate>Mon, 18 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/desgin-microservices/</guid>
-      <description>&lt;p&gt;Hướng dẫn thiết kế kiến trúc Microservices&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>6 Level Deploy</title>
       <link>https://blog.nagih.io.vn/posts/6-level-deploy/</link>
       <pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate>
@@ -119,88 +98,11 @@
       <description>&lt;p&gt;6 Cấp Độ Trưởng Thành Từ Deploy Thủ Công Đến Vận Hành Tinh Gọn&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Nginx Overview</title>
-      <link>https://blog.nagih.io.vn/posts/nginx/</link>
-      <pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/nginx/</guid>
-      <description>&lt;p&gt;Nginx - Từ C10k Đến Containers&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Docker Best Practice for Production</title>
-      <link>https://blog.nagih.io.vn/posts/docker-best-practice-for-production/</link>
-      <pubDate>Fri, 15 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/docker-best-practice-for-production/</guid>
-      <description>&lt;p&gt;Các Thực tiễn Tốt nhất cho Môi trường Production&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Docker Fullstack Example</title>
-      <link>https://blog.nagih.io.vn/posts/docker-fullstack-example/</link>
-      <pubDate>Fri, 15 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/docker-fullstack-example/</guid>
-      <description>&lt;p&gt;Triển khai Full-Stack: WordPress với PostgreSQL bằng Docker Compose&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Docker Compose</title>
-      <link>https://blog.nagih.io.vn/posts/docker-compose/</link>
-      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/docker-compose/</guid>
-      <description>&lt;p&gt;Điều phối Ứng dụng với Docker Compose&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Docker Dockerfile</title>
-      <link>https://blog.nagih.io.vn/posts/docker-dockerfile/</link>
-      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/docker-dockerfile/</guid>
-      <description>&lt;p&gt;Nghệ Thuật Viết Dockerfile - Tối Ưu và Bảo Mật&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Docker Practical Guide</title>
-      <link>https://blog.nagih.io.vn/posts/docker-practical-guide/</link>
-      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/docker-practical-guide/</guid>
-      <description>&lt;p&gt;Hướng dẫn Thực hành: Container hóa Ứng dụng Dịch vụ đơn&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Docker</title>
-      <link>https://blog.nagih.io.vn/posts/docker/</link>
-      <pubDate>Wed, 13 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/docker/</guid>
-      <description>&lt;p&gt;Sự Ra Đời và Các Nguyên Tắc Cốt Lõi của Docker&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Docker CLI</title>
-      <link>https://blog.nagih.io.vn/posts/docker-cli/</link>
-      <pubDate>Wed, 13 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/docker-cli/</guid>
-      <description>&lt;p&gt;Làm chủ Docker Command Line (CLI)&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Internet Protocol (IP)</title>
-      <link>https://blog.nagih.io.vn/posts/ip/</link>
-      <pubDate>Wed, 13 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/ip/</guid>
-      <description>&lt;p&gt;Mastering Internet Protocol Addresses&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>9 MySQL Table Design Rules &amp; Skills</title>
       <link>https://blog.nagih.io.vn/posts/9-mysql-table-design-rules--skills/</link>
       <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/9-mysql-table-design-rules--skills/</guid>
-      <description>&lt;p&gt;Principles and skills to extend MySQL table design&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>SQL Overview</title>
-      <link>https://blog.nagih.io.vn/posts/sql/</link>
-      <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/sql/</guid>
-      <description>&lt;p&gt;Từ Zero Đến Hero - Tổng Hợp Tất Cả Các Lệnh SQL Quan Trọng&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Cache</title>
-      <link>https://blog.nagih.io.vn/posts/cache/</link>
-      <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/cache/</guid>
-      <description>&lt;p&gt;Overview of Cache&lt;/p&gt;</description>
+      <description>&lt;p&gt;9 nguyên tắc cốt lõi và một số kỹ năng mở rộng khi khởi tạo bảng trong MySQL, đảm bảo ứng dụng không chỉ chạy đúng mà còn hiệu quả và dễ bảo trì&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kafka</title>

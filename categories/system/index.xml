@@ -28,32 +28,11 @@
       <description>&lt;p&gt;Khối Quản lý Tiến trình (PCB) - &amp;ldquo;CMND&amp;rdquo; của Mọi Chương trình trong Máy tính&lt;/p&gt;</description>
     </item>
     <item>
-      <title>REST và gRPC</title>
-      <link>https://blog.nagih.io.vn/posts/rest-v%C3%A0-grpc/</link>
-      <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/rest-v%C3%A0-grpc/</guid>
-      <description>&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Labs Operating</title>
       <link>https://blog.nagih.io.vn/posts/labs-operating/</link>
       <pubDate>Sat, 23 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/labs-operating/</guid>
       <description>&lt;p&gt;1 Số Labs từ Cơ bản tới Nâng cao về Operating&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Desgin Microservices</title>
-      <link>https://blog.nagih.io.vn/posts/desgin-microservices/</link>
-      <pubDate>Mon, 18 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/desgin-microservices/</guid>
-      <description>&lt;p&gt;Hướng dẫn thiết kế kiến trúc Microservices&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Cache</title>
-      <link>https://blog.nagih.io.vn/posts/cache/</link>
-      <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/cache/</guid>
-      <description>&lt;p&gt;Overview of Cache&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kafka</title>

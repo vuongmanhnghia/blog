@@ -18,14 +18,14 @@
       <link>https://blog.nagih.io.vn/posts/all-in-one/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/all-in-one/</guid>
-      <description>&lt;p&gt;Đối với các nhà phát triển làm việc trên nhiều dự án hoặc có nhiều danh tính (ví dụ: tài khoản cá nhân và tài khoản công việc), việc quản lý nhiều khóa SSH có thể trở nên phức tạp.&lt;/p&gt;</description>
+      <description>&lt;p&gt;biến SSH từ một công cụ kết nối đơn thuần thành một hệ thống quản lý danh tính hiệu quả&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hướng dẫn thiết lập khóa SSH cho github</title>
       <link>https://blog.nagih.io.vn/posts/setup-ssh/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/setup-ssh/</guid>
-      <description>&lt;p&gt;Chi tiết các bước thiết lập khóa SSH cho github từ A - Z&lt;/p&gt;</description>
+      <description>&lt;p&gt;Hướng dẫn chi tiết từng bước để tạo và cấu hình khóa SSH cho tài khoản GitHub của bạn.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH</title>

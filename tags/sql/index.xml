@@ -18,14 +18,7 @@
       <link>https://blog.nagih.io.vn/posts/9-mysql-table-design-rules--skills/</link>
       <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/9-mysql-table-design-rules--skills/</guid>
-      <description>&lt;p&gt;Principles and skills to extend MySQL table design&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>SQL Overview</title>
-      <link>https://blog.nagih.io.vn/posts/sql/</link>
-      <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/sql/</guid>
-      <description>&lt;p&gt;Từ Zero Đến Hero - Tổng Hợp Tất Cả Các Lệnh SQL Quan Trọng&lt;/p&gt;</description>
+      <description>&lt;p&gt;9 nguyên tắc cốt lõi và một số kỹ năng mở rộng khi khởi tạo bảng trong MySQL, đảm bảo ứng dụng không chỉ chạy đúng mà còn hiệu quả và dễ bảo trì&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

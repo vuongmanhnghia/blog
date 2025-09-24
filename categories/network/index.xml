@@ -20,5 +20,12 @@
       <guid>https://blog.nagih.io.vn/posts/internet-errors/</guid>
       <description>&lt;p&gt;Các vấn đề về kết nối Internet phổ biến và cách khắc phục chi tiết&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>REST và gRPC</title>
+      <link>https://blog.nagih.io.vn/posts/rest--grpc/</link>
+      <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/rest--grpc/</guid>
+      <description>&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại | Rest &amp;amp; gRPC&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
