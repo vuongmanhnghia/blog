@@ -11,8 +11,36 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 16 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Experience</title>
+      <link>https://blog.nagih.io.vn/categories/experience/</link>
+      <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/experience/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Log</title>
+      <link>https://blog.nagih.io.vn/categories/log/</link>
+      <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/log/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Server</title>
+      <link>https://blog.nagih.io.vn/categories/server/</link>
+      <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/server/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>System</title>
+      <link>https://blog.nagih.io.vn/categories/system/</link>
+      <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/system/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Docs</title>
       <link>https://blog.nagih.io.vn/categories/docs/</link>
@@ -63,20 +91,6 @@
       <description></description>
     </item>
     <item>
-      <title>System</title>
-      <link>https://blog.nagih.io.vn/categories/system/</link>
-      <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/system/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Operating</title>
-      <link>https://blog.nagih.io.vn/categories/operating/</link>
-      <pubDate>Sat, 23 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/operating/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>CI/CD</title>
       <link>https://blog.nagih.io.vn/categories/ci/cd/</link>
       <pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate>
@@ -100,7 +114,7 @@
     <item>
       <title>Architechture</title>
       <link>https://blog.nagih.io.vn/categories/architechture/</link>
-      <pubDate>Sat, 09 Aug 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/categories/architechture/</guid>
       <description></description>
     </item>

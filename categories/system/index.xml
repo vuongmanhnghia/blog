@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 08 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/system/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi</title>
+      <link>https://blog.nagih.io.vn/posts/fix-authorized/</link>
+      <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/fix-authorized/</guid>
+      <description>&lt;p&gt;Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Hướng dẫn tùy biến phân vùng EFI khi cài windows</title>
       <link>https://blog.nagih.io.vn/posts/custom-windows-efi/</link>
@@ -28,11 +35,25 @@
       <description>&lt;p&gt;Khối Quản lý Tiến trình (PCB) - &amp;ldquo;CMND&amp;rdquo; của Mọi Chương trình trong Máy tính&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Labs Operating</title>
-      <link>https://blog.nagih.io.vn/posts/labs-operating/</link>
-      <pubDate>Sat, 23 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/labs-operating/</guid>
-      <description>&lt;p&gt;1 Số Labs từ Cơ bản tới Nâng cao về Operating&lt;/p&gt;</description>
+      <title>Các chính sách &#39;Dọn Dẹp&#39; Cache</title>
+      <link>https://blog.nagih.io.vn/posts/cache-hit--cache-miss/</link>
+      <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/cache-hit--cache-miss/</guid>
+      <description>&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Các mẫu thiết kế, xây dựng hệ thống với Cache và chiến lược vô hiệu hóa Cache</title>
+      <link>https://blog.nagih.io.vn/posts/cache-system-design/</link>
+      <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/cache-system-design/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Giới thiệu về Cache</title>
+      <link>https://blog.nagih.io.vn/posts/introdution-to-cache/</link>
+      <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/introdution-to-cache/</guid>
+      <description>&lt;p&gt;Nhiều người đã nghe về cache, có thể là &amp;ldquo;xóa cache trình duyệt&amp;rdquo; hay &amp;ldquo;cache của CPU&amp;rdquo;. Nhưng cache thực sự là gì? Nó hoạt động ra sao và tại sao nó lại quan trọng đến vậy?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kafka</title>
@@ -42,11 +63,11 @@
       <description>&lt;p&gt;Giới thiệu về kiến trúc truyền thống và kiến trúc phân tán, sự ra đời của Kafka&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Microservices</title>
+      <title>Giới thiệu về kiến trúc Microservices</title>
       <link>https://blog.nagih.io.vn/posts/microservices/</link>
       <pubDate>Thu, 07 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/microservices/</guid>
-      <description>&lt;p&gt;Tổng quan về kiến trúc microservices&lt;/p&gt;</description>
+      <description></description>
     </item>
   </channel>
 </rss>
