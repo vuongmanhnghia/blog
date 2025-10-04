@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 04 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/os/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hướng dẫn tạo USB Boot Windows trên Linux</title>
+      <link>https://blog.nagih.io.vn/posts/usb-boot-windows-on-linux/</link>
+      <pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/usb-boot-windows-on-linux/</guid>
+      <description>&lt;p&gt;Có một số cách để tạo USB boot Windows trên Linux. Đây là phương pháp phổ biến nhất:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Hướng dẫn setup môi trường App Development trên nixos best practice</title>
       <link>https://blog.nagih.io.vn/posts/app-development/</link>

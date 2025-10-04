@@ -11,8 +11,22 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 26 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 04 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OS</title>
+      <link>https://blog.nagih.io.vn/categories/os/</link>
+      <pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/os/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>System</title>
+      <link>https://blog.nagih.io.vn/categories/system/</link>
+      <pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/system/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Experience</title>
       <link>https://blog.nagih.io.vn/categories/experience/</link>
@@ -32,13 +46,6 @@
       <link>https://blog.nagih.io.vn/categories/server/</link>
       <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/categories/server/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>System</title>
-      <link>https://blog.nagih.io.vn/categories/system/</link>
-      <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/system/</guid>
       <description></description>
     </item>
     <item>
@@ -81,13 +88,6 @@
       <link>https://blog.nagih.io.vn/categories/environment/</link>
       <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/categories/environment/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>OS</title>
-      <link>https://blog.nagih.io.vn/categories/os/</link>
-      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/os/</guid>
       <description></description>
     </item>
     <item>

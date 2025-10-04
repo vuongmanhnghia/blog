@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 26 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 04 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows</title>
+      <link>https://blog.nagih.io.vn/tags/windows/</link>
+      <pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/tags/windows/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Pi</title>
       <link>https://blog.nagih.io.vn/tags/pi/</link>
@@ -88,13 +95,6 @@
       <link>https://blog.nagih.io.vn/tags/ufi/</link>
       <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/tags/ufi/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Windows</title>
-      <link>https://blog.nagih.io.vn/tags/windows/</link>
-      <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/tags/windows/</guid>
       <description></description>
     </item>
     <item>
