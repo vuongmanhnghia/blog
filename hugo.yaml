@@ -136,13 +136,13 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: archive
-      name: Archive
-      url: /archives/
-      weight: 10
     - identifier: search
       name: Search
       url: /search/
+      weight: 10
+    - identifier: archive
+      name: Archive
+      url: /archives/
       weight: 20
     - identifier: categories
       name: Categories
