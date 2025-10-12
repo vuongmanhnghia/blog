@@ -3,10 +3,9 @@ title: 6 Level Deploy
 date: 2025-08-17
 image: /images/image-placeholder.png
 categories:
-    - devops
-    - CI/CD
+  - devops
 tags:
-    - docker
+  - docker
 draft: false
 ---
 
