@@ -3,21 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.nagih.io.vn/categories/</loc>
-    <lastmod>2025-10-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/</loc>
-    <lastmod>2025-10-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/network/</loc>
-    <lastmod>2025-10-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/tags/osi/</loc>
-    <lastmod>2025-10-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/</loc>
-    <lastmod>2025-10-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-10-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/categories/protocol/</loc>
+    <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/</loc>
+    <lastmod>2025-10-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/tags/tcp/</loc>
+    <lastmod>2025-10-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/posts/overview/</loc>
+    <lastmod>2025-10-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/tags/osi/</loc>
     <lastmod>2025-10-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/overview/</loc>
@@ -90,9 +99,6 @@
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/error-handler/</loc>
-    <lastmod>2025-09-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/categories/protocol/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/https--ssh/</loc>
