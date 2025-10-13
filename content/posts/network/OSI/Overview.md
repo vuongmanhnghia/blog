@@ -6,7 +6,7 @@ categories:
   - network
 tags:
   - OSI
-draft: true
+draft: false
 ---
 
 <!--more-->
