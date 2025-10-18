@@ -11,8 +11,22 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 13 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 15 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Server</title>
+      <link>https://blog.nagih.io.vn/categories/server/</link>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/server/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Workflow</title>
+      <link>https://blog.nagih.io.vn/categories/workflow/</link>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/workflow/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Network</title>
       <link>https://blog.nagih.io.vn/categories/network/</link>
@@ -53,13 +67,6 @@
       <link>https://blog.nagih.io.vn/categories/log/</link>
       <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/categories/log/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Server</title>
-      <link>https://blog.nagih.io.vn/categories/server/</link>
-      <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/server/</guid>
       <description></description>
     </item>
     <item>
