@@ -2,16 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blog.nagih.io.vn/categories/</loc>
-    <lastmod>2025-10-15T00:00:00+00:00</lastmod>
+    <loc>https://blog.nagih.io.vn/tags/backup/</loc>
+    <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/raspberry-pi---basic-server-workflow/</loc>
-    <lastmod>2025-10-15T00:00:00+00:00</lastmod>
+    <loc>https://blog.nagih.io.vn/categories/</loc>
+    <lastmod>2025-10-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/categories/database/</loc>
+    <lastmod>2025-10-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/posts/backup-database/</loc>
+    <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/</loc>
-    <lastmod>2025-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/</loc>
+    <lastmod>2025-10-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/tags/</loc>
+    <lastmod>2025-10-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/posts/raspberry-pi---basic-server-workflow/</loc>
     <lastmod>2025-10-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/server/</loc>
@@ -24,9 +36,6 @@
     <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/protocol/</loc>
-    <lastmod>2025-10-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/tags/</loc>
     <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/tcp/</loc>
@@ -159,9 +168,6 @@
     <lastmod>2025-08-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/9-mysql-table-design-rules--skills/</loc>
-    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/categories/database/</loc>
     <lastmod>2025-08-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/sql/</loc>
