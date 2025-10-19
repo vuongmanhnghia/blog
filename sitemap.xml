@@ -8,7 +8,13 @@
     <loc>https://blog.nagih.io.vn/categories/</loc>
     <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://blog.nagih.io.vn/categories/cloudflare/</loc>
+    <lastmod>2025-10-19T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog.nagih.io.vn/categories/database/</loc>
+    <lastmod>2025-10-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/posts/cloudflared-tunnel-workflow/</loc>
     <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/backup-database/</loc>
@@ -23,13 +29,16 @@
     <loc>https://blog.nagih.io.vn/tags/</loc>
     <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://blog.nagih.io.vn/tags/tunnel/</loc>
+    <lastmod>2025-10-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/categories/workflow/</loc>
+    <lastmod>2025-10-19T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog.nagih.io.vn/posts/raspberry-pi---basic-server-workflow/</loc>
     <lastmod>2025-10-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/server/</loc>
-    <lastmod>2025-10-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/categories/workflow/</loc>
     <lastmod>2025-10-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/network/</loc>
