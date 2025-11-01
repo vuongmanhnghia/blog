@@ -36,10 +36,10 @@
     </item>
     <item>
       <title>Hướng dẫn thiết lập khóa SSH cho github</title>
-      <link>https://blog.nagih.io.vn/posts/setup-ssh/</link>
+      <link>https://blog.nagih.io.vn/posts/setup-ssh-for-github/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/setup-ssh/</guid>
-      <description>&lt;p&gt;Hướng dẫn chi tiết từng bước để tạo và cấu hình khóa SSH cho tài khoản GitHub của bạn.&lt;/p&gt;</description>
+      <guid>https://blog.nagih.io.vn/posts/setup-ssh-for-github/</guid>
+      <description>&lt;p&gt;Hướng dẫn chi tiết từng bước để tạo và cấu hình khóa SSH cho tài khoản GitHub&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH</title>
