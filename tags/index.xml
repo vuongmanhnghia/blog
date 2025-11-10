@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 19 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bridge</title>
+      <link>https://blog.nagih.io.vn/tags/bridge/</link>
+      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/tags/bridge/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Backup</title>
       <link>https://blog.nagih.io.vn/tags/backup/</link>
