@@ -14,6 +14,13 @@
     <lastBuildDate>Fri, 14 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/server/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title></title>
+      <link>https://blog.nagih.io.vn/posts/server-hardening-checklist/</link>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/server-hardening-checklist/</guid>
+      <description>&lt;p&gt;[&amp;hellip;]&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Tất cả các commands quản lý quan trọng trên linux</title>
       <link>https://blog.nagih.io.vn/posts/management-command/</link>
       <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
