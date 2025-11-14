@@ -2,10 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blog.nagih.io.vn/tags/bridge/</loc>
-    <lastmod>2025-11-10T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blog.nagih.io.vn/categories/</loc>
+    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/categories/manage/</loc>
+    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/</loc>
+    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/posts/</loc>
+    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/categories/system/</loc>
+    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/tags/</loc>
+    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/posts/management-command/</loc>
+    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/tags/user/</loc>
+    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/tags/bridge/</loc>
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/setup-bridge-network/</loc>
@@ -14,16 +35,7 @@
     <loc>https://blog.nagih.io.vn/categories/internet/</loc>
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/</loc>
-    <lastmod>2025-11-10T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blog.nagih.io.vn/categories/network/</loc>
-    <lastmod>2025-11-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/posts/</loc>
-    <lastmod>2025-11-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/tags/</loc>
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/docker/</loc>
@@ -78,9 +90,6 @@
     <lastmod>2025-10-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/os/</loc>
-    <lastmod>2025-10-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/categories/system/</loc>
     <lastmod>2025-10-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/windows/</loc>
@@ -164,12 +173,6 @@
     <loc>https://blog.nagih.io.vn/tags/ufi/</loc>
     <lastmod>2025-09-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/tags/pcb/</loc>
-    <lastmod>2025-09-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/posts/process-control-block/</loc>
-    <lastmod>2025-09-05T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blog.nagih.io.vn/tags/grpc/</loc>
     <lastmod>2025-08-28T00:00:00+00:00</lastmod>
   </url><url>
@@ -208,12 +211,6 @@
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/introdution-to-cache/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/posts/kafka/</loc>
-    <lastmod>2025-08-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/tags/kafka/</loc>
-    <lastmod>2025-08-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/microservices/</loc>
     <lastmod>2025-08-07T00:00:00+00:00</lastmod>
