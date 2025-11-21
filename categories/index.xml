@@ -11,8 +11,29 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 14 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 21 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Backup</title>
+      <link>https://blog.nagih.io.vn/categories/backup/</link>
+      <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/backup/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Database</title>
+      <link>https://blog.nagih.io.vn/categories/database/</link>
+      <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/database/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Proxy</title>
+      <link>https://blog.nagih.io.vn/categories/proxy/</link>
+      <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/proxy/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Manage</title>
       <link>https://blog.nagih.io.vn/categories/manage/</link>
@@ -60,13 +81,6 @@
       <link>https://blog.nagih.io.vn/categories/cloudflare/</link>
       <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/categories/cloudflare/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Database</title>
-      <link>https://blog.nagih.io.vn/categories/database/</link>
-      <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/database/</guid>
       <description></description>
     </item>
     <item>
