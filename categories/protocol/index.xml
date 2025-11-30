@@ -15,44 +15,44 @@
     <atom:link href="https://blog.nagih.io.vn/categories/protocol/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tổng quan về TCP</title>
-      <link>https://blog.nagih.io.vn/posts/tcp/</link>
+      <link>https://blog.nagih.io.vn/posts/t%E1%BB%95ng-quan-v%E1%BB%81-tcp/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/tcp/</guid>
+      <guid>https://blog.nagih.io.vn/posts/t%E1%BB%95ng-quan-v%E1%BB%81-tcp/</guid>
       <description></description>
     </item>
     <item>
       <title>Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị</title>
-      <link>https://blog.nagih.io.vn/posts/all-in-one/</link>
+      <link>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-qu%E1%BA%A3n-l%C3%BD-nhi%E1%BB%81u-kh%C3%B3a-ssh-tr%C3%AAn-1-thi%E1%BA%BFt-b%E1%BB%8B/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/all-in-one/</guid>
+      <guid>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-qu%E1%BA%A3n-l%C3%BD-nhi%E1%BB%81u-kh%C3%B3a-ssh-tr%C3%AAn-1-thi%E1%BA%BFt-b%E1%BB%8B/</guid>
       <description>&lt;p&gt;biến SSH từ một công cụ kết nối đơn thuần thành một hệ thống quản lý danh tính hiệu quả&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hướng dẫn thiết lập khóa SSH cho github</title>
-      <link>https://blog.nagih.io.vn/posts/setup-ssh-for-github/</link>
+      <link>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/setup-ssh-for-github/</guid>
+      <guid>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</guid>
       <description>&lt;p&gt;Hướng dẫn chi tiết từng bước để tạo và cấu hình khóa SSH cho tài khoản GitHub&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH</title>
-      <link>https://blog.nagih.io.vn/posts/error-handler/</link>
+      <link>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-s%E1%BB%B1-c%E1%BB%91-v%C3%A0-c%C3%A1c-l%E1%BB%97i-th%C6%B0%E1%BB%9Dng-g%E1%BA%B7p-khi-thi%E1%BA%BFt-l%E1%BA%ADp-ssh/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/error-handler/</guid>
+      <guid>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-s%E1%BB%B1-c%E1%BB%91-v%C3%A0-c%C3%A1c-l%E1%BB%97i-th%C6%B0%E1%BB%9Dng-g%E1%BA%B7p-khi-thi%E1%BA%BFt-l%E1%BA%ADp-ssh/</guid>
       <description>&lt;p&gt;Ngay cả với một thiết lập cẩn thận, các vấn đề vẫn có thể phát sinh. Việc hiểu rõ cách chẩn đoán và khắc phục các lỗi SSH phổ biến là một kỹ năng quan trọng.&lt;/p&gt;</description>
     </item>
     <item>
       <title>SSH - Github</title>
-      <link>https://blog.nagih.io.vn/posts/https--ssh/</link>
+      <link>https://blog.nagih.io.vn/posts/ssh-github/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/https--ssh/</guid>
+      <guid>https://blog.nagih.io.vn/posts/ssh-github/</guid>
       <description>&lt;p&gt;Những hạn chế của xác thực qua HTTPS và sự thay thế SSH&lt;/p&gt;</description>
     </item>
     <item>
       <title>REST và gRPC</title>
-      <link>https://blog.nagih.io.vn/posts/rest--grpc/</link>
+      <link>https://blog.nagih.io.vn/posts/rest-v%C3%A0-grpc/</link>
       <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/rest--grpc/</guid>
+      <guid>https://blog.nagih.io.vn/posts/rest-v%C3%A0-grpc/</guid>
       <description>&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại | Rest &amp;amp; gRPC&lt;/p&gt;</description>
     </item>
   </channel>

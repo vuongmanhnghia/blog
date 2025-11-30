@@ -15,9 +15,9 @@
     <atom:link href="https://blog.nagih.io.vn/tags/postgres/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hướng dẫn backup database postgres trong container và sử dụng trong server mới</title>
-      <link>https://blog.nagih.io.vn/posts/how-to-backup-postgres-database-in-docker-container/</link>
+      <link>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-backup-database-postgres-trong-container-v%C3%A0-s%E1%BB%AD-d%E1%BB%A5ng-trong-server-m%E1%BB%9Bi/</link>
       <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/how-to-backup-postgres-database-in-docker-container/</guid>
+      <guid>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-backup-database-postgres-trong-container-v%C3%A0-s%E1%BB%AD-d%E1%BB%A5ng-trong-server-m%E1%BB%9Bi/</guid>
       <description></description>
     </item>
   </channel>

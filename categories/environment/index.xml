@@ -15,9 +15,9 @@
     <atom:link href="https://blog.nagih.io.vn/categories/environment/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hướng dẫn setup môi trường App Development trên nixos best practice</title>
-      <link>https://blog.nagih.io.vn/posts/app-development/</link>
+      <link>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-app-development-tr%C3%AAn-nixos-best-practice/</link>
       <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/app-development/</guid>
+      <guid>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-app-development-tr%C3%AAn-nixos-best-practice/</guid>
       <description>&lt;p&gt;Sử dụng triết lý của Nix ứng dụng trong việc triển khai môi trường lập trình ứng dụng sao cho tối ưu và tốt nhất.&lt;/p&gt;</description>
     </item>
   </channel>
