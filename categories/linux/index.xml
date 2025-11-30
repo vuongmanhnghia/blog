@@ -34,5 +34,12 @@
       <guid>https://blog.nagih.io.vn/posts/file-system/</guid>
       <description></description>
     </item>
+    <item>
+      <title>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</title>
+      <link>https://blog.nagih.io.vn/posts/server-hardening-checklist/</link>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/server-hardening-checklist/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

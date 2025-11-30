@@ -49,11 +49,11 @@
       <description>&lt;p&gt;Hướng dẫn xây dựng mô hình &lt;strong&gt;Nginx làm Reverse Proxy&lt;/strong&gt; kết hợp với &lt;strong&gt;Certbot&lt;/strong&gt; theo mô hình &lt;strong&gt;Sidecar&lt;/strong&gt; (hoặc chạy định kỳ) để quản lý SSL.&lt;/p&gt;</description>
     </item>
     <item>
-      <title></title>
+      <title>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</title>
       <link>https://blog.nagih.io.vn/posts/server-hardening-checklist/</link>
       <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/server-hardening-checklist/</guid>
-      <description>&lt;p&gt;[&amp;hellip;]&lt;/p&gt;</description>
+      <description></description>
     </item>
     <item>
       <title>Tất cả các commands quản lý quan trọng trên linux</title>
