@@ -21,6 +21,13 @@
       <description>&lt;p&gt;Để trả lời câu này sâu sắc, chúng ta không chỉ nhìn ở bề nổi (gõ lệnh -&amp;gt; ra kết quả), mà phải nhìn xuống tầng &lt;strong&gt;Kernel&lt;/strong&gt; và &lt;strong&gt;System Calls&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Điều gì xảy ra khi bạn sử dụng lệnh Sudo ?</title>
+      <link>https://blog.nagih.io.vn/posts/linux/sudo/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/linux/sudo/</guid>
+      <description>&lt;p&gt;Khi bạn gõ &lt;code&gt;sudo apt update&lt;/code&gt;, không đơn giản là hệ thống &amp;ldquo;bật công tắc&amp;rdquo; quyền admin. Đó là một chuỗi các thao tác kiểm tra nghiêm ngặt, thay đổi định danh (Identity) và làm sạch môi trường.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Inode trong Linux File System</title>
       <link>https://blog.nagih.io.vn/posts/linux/inode/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
