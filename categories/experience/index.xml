@@ -20,12 +20,5 @@
       <guid>https://blog.nagih.io.vn/posts/fix-authorized/</guid>
       <description>&lt;p&gt;Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi&lt;/p&gt;</description>
     </item>
-    <item>
-      <title>Kĩ thuật chuẩn đoán lỗi khi SSH tới server</title>
-      <link>https://blog.nagih.io.vn/posts/diagnostic-techniques---ssh/</link>
-      <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/diagnostic-techniques---ssh/</guid>
-      <description>&lt;p&gt;Chia sẻ một số kĩ thuật chuẩn đoán lỗi khi kết nối (SSH) tới server (Mạng nội bộ)&lt;/p&gt;</description>
-    </item>
   </channel>
 </rss>

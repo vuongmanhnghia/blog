@@ -11,8 +11,29 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 21 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Điều gì sẽ xảy ra khi gõ bất kỳ command nào trong terminal trên Linux ?</title>
+      <link>https://blog.nagih.io.vn/posts/system-calls/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/system-calls/</guid>
+      <description>&lt;p&gt;Để trả lời câu này sâu sắc, chúng ta không chỉ nhìn ở bề nổi (gõ lệnh -&amp;gt; ra kết quả), mà phải nhìn xuống tầng &lt;strong&gt;Kernel&lt;/strong&gt; và &lt;strong&gt;System Calls&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Inode trong Linux File System</title>
+      <link>https://blog.nagih.io.vn/posts/inode/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/inode/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Inode&lt;/strong&gt; (viết tắt của &lt;strong&gt;Index Node&lt;/strong&gt;) là một khái niệm cốt lõi và cực kỳ quan trọng trong các hệ thống tập tin (filesystem) của Linux và Unix.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linux File System</title>
+      <link>https://blog.nagih.io.vn/posts/file-system/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/file-system/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Hướng dẫn backup database postgres trong container và sử dụng trong server mới</title>
       <link>https://blog.nagih.io.vn/posts/how-to-backup-postgres-database-in-docker-container/</link>
@@ -78,16 +99,16 @@
     </item>
     <item>
       <title>Tổng quan về TCP</title>
-      <link>https://blog.nagih.io.vn/posts/overview/</link>
+      <link>https://blog.nagih.io.vn/posts/tcp/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/overview/</guid>
+      <guid>https://blog.nagih.io.vn/posts/tcp/</guid>
       <description></description>
     </item>
     <item>
       <title>Tổng quan về mô hình OSI</title>
-      <link>https://blog.nagih.io.vn/posts/overview/</link>
+      <link>https://blog.nagih.io.vn/posts/osi/</link>
       <pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/overview/</guid>
+      <guid>https://blog.nagih.io.vn/posts/osi/</guid>
       <description></description>
     </item>
     <item>
@@ -103,13 +124,6 @@
       <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/fix-authorized/</guid>
       <description>&lt;p&gt;Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Kĩ thuật chuẩn đoán lỗi khi SSH tới server</title>
-      <link>https://blog.nagih.io.vn/posts/diagnostic-techniques---ssh/</link>
-      <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/diagnostic-techniques---ssh/</guid>
-      <description>&lt;p&gt;Chia sẻ một số kĩ thuật chuẩn đoán lỗi khi kết nối (SSH) tới server (Mạng nội bộ)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Các vấn đề về Internet và cách khắc phục</title>

@@ -11,8 +11,29 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 14 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/system/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Điều gì sẽ xảy ra khi gõ bất kỳ command nào trong terminal trên Linux ?</title>
+      <link>https://blog.nagih.io.vn/posts/system-calls/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/system-calls/</guid>
+      <description>&lt;p&gt;Để trả lời câu này sâu sắc, chúng ta không chỉ nhìn ở bề nổi (gõ lệnh -&amp;gt; ra kết quả), mà phải nhìn xuống tầng &lt;strong&gt;Kernel&lt;/strong&gt; và &lt;strong&gt;System Calls&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Inode trong Linux File System</title>
+      <link>https://blog.nagih.io.vn/posts/inode/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/inode/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Inode&lt;/strong&gt; (viết tắt của &lt;strong&gt;Index Node&lt;/strong&gt;) là một khái niệm cốt lõi và cực kỳ quan trọng trong các hệ thống tập tin (filesystem) của Linux và Unix.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linux File System</title>
+      <link>https://blog.nagih.io.vn/posts/file-system/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/file-system/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Tất cả các commands quản lý quan trọng trên linux</title>
       <link>https://blog.nagih.io.vn/posts/management-command/</link>

@@ -11,8 +11,36 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 21 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Architechture</title>
+      <link>https://blog.nagih.io.vn/categories/architechture/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/architechture/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://blog.nagih.io.vn/categories/linux/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>System</title>
+      <link>https://blog.nagih.io.vn/categories/system/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/system/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Workflow</title>
+      <link>https://blog.nagih.io.vn/categories/workflow/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/workflow/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Backup</title>
       <link>https://blog.nagih.io.vn/categories/backup/</link>
@@ -49,13 +77,6 @@
       <description></description>
     </item>
     <item>
-      <title>System</title>
-      <link>https://blog.nagih.io.vn/categories/system/</link>
-      <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/system/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Internet</title>
       <link>https://blog.nagih.io.vn/categories/internet/</link>
       <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
@@ -84,13 +105,6 @@
       <description></description>
     </item>
     <item>
-      <title>Workflow</title>
-      <link>https://blog.nagih.io.vn/categories/workflow/</link>
-      <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/workflow/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Protocol</title>
       <link>https://blog.nagih.io.vn/categories/protocol/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
@@ -98,7 +112,7 @@
       <description></description>
     </item>
     <item>
-      <title>OS</title>
+      <title>Os</title>
       <link>https://blog.nagih.io.vn/categories/os/</link>
       <pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/categories/os/</guid>
@@ -109,13 +123,6 @@
       <link>https://blog.nagih.io.vn/categories/experience/</link>
       <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/categories/experience/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Log</title>
-      <link>https://blog.nagih.io.vn/categories/log/</link>
-      <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/log/</guid>
       <description></description>
     </item>
     <item>
@@ -144,13 +151,6 @@
       <link>https://blog.nagih.io.vn/categories/devops/</link>
       <pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/categories/devops/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Architechture</title>
-      <link>https://blog.nagih.io.vn/categories/architechture/</link>
-      <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/architechture/</guid>
       <description></description>
     </item>
     <item>
