@@ -328,6 +328,8 @@
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/test/test/</loc>
   </url><url>
+    <loc>https://blog.nagih.io.vn/posts/test/test_child/test_child/</loc>
+  </url><url>
     <loc>https://blog.nagih.io.vn/archives/</loc>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/system/cache_index/</loc>
@@ -349,5 +351,7 @@
     <loc>https://blog.nagih.io.vn/search/</loc>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/test/</loc>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/posts/test/test_child/</loc>
   </url>
 </urlset>
