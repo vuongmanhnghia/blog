@@ -20,6 +20,9 @@
     <loc>https://blog.nagih.io.vn/posts/linux/inode/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://blog.nagih.io.vn/categories/internet/</loc>
+    <lastmod>2025-11-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog.nagih.io.vn/tags/kernel/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
@@ -35,6 +38,18 @@
     <loc>https://blog.nagih.io.vn/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://blog.nagih.io.vn/tags/netstat/</loc>
+    <lastmod>2025-11-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/posts/networking/netstat/</loc>
+    <lastmod>2025-11-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/categories/network/</loc>
+    <lastmod>2025-11-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/posts/networking/</loc>
+    <lastmod>2025-11-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog.nagih.io.vn/posts/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
@@ -45,6 +60,9 @@
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/</loc>
+    <lastmod>2025-11-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/categories/tool/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/workflow/</loc>
@@ -110,19 +128,10 @@
     <loc>https://blog.nagih.io.vn/tags/bridge/</loc>
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/internet/setup-bridge-network/</loc>
+    <loc>https://blog.nagih.io.vn/posts/networking/internet/setup-bridge-network/</loc>
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/categories/internet/</loc>
-    <lastmod>2025-11-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/internet/</loc>
-    <lastmod>2025-11-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/categories/network/</loc>
-    <lastmod>2025-11-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/</loc>
+    <loc>https://blog.nagih.io.vn/posts/networking/internet/</loc>
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/container/</loc>
@@ -164,19 +173,19 @@
     <loc>https://blog.nagih.io.vn/categories/protocol/</loc>
     <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/protocol/</loc>
+    <loc>https://blog.nagih.io.vn/posts/networking/protocol/</loc>
     <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/tcp/</loc>
     <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/protocol/tcp/</loc>
+    <loc>https://blog.nagih.io.vn/posts/networking/protocol/tcp/</loc>
     <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/osi/</loc>
     <lastmod>2025-10-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/osi/</loc>
+    <loc>https://blog.nagih.io.vn/posts/networking/osi/</loc>
     <lastmod>2025-10-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/system/os/windows/usb-boot-windows-on-linux/</loc>
@@ -215,7 +224,7 @@
     <loc>https://blog.nagih.io.vn/tags/backend/</loc>
     <lastmod>2025-09-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/internet/internet-errors/</loc>
+    <loc>https://blog.nagih.io.vn/posts/networking/internet/internet-errors/</loc>
     <lastmod>2025-09-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/dns/</loc>
@@ -239,22 +248,19 @@
     <loc>https://blog.nagih.io.vn/tags/git/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/protocol/ssh/all-in-one/</loc>
+    <loc>https://blog.nagih.io.vn/posts/networking/protocol/ssh/all-in-one/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/git/setup-ssh-for-github/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/protocol/ssh/error-handler/</loc>
+    <loc>https://blog.nagih.io.vn/posts/networking/protocol/ssh/error-handler/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/protocol/ssh/</loc>
+    <loc>https://blog.nagih.io.vn/posts/networking/protocol/ssh/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/protocol/ssh/https--ssh/</loc>
-    <lastmod>2025-09-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/categories/tool/</loc>
+    <loc>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https--ssh/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/app/</loc>
@@ -287,7 +293,7 @@
     <loc>https://blog.nagih.io.vn/tags/rest/</loc>
     <lastmod>2025-08-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/protocol/rest--grpc/</loc>
+    <loc>https://blog.nagih.io.vn/posts/networking/protocol/rest--grpc/</loc>
     <lastmod>2025-08-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/cicd/6-level-deploy/</loc>
@@ -330,7 +336,7 @@
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/system/cache_index/</loc>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/internet_index/</loc>
+    <loc>https://blog.nagih.io.vn/posts/networking/internet_index/</loc>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/system/manage_index/</loc>
   </url><url>
@@ -340,7 +346,7 @@
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/system/pi_index/</loc>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/network/protocol_index/</loc>
+    <loc>https://blog.nagih.io.vn/posts/networking/protocol_index/</loc>
   </url><url>
     <loc>https://blog.nagih.io.vn/search/</loc>
   </url>

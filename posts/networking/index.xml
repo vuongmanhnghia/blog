@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Networking on Nagih | Blog</title>
+    <link>https://blog.nagih.io.vn/posts/networking/</link>
+    <description>Recent content in Networking on Nagih | Blog</description>
+    <image>
+      <title>Nagih | Blog</title>
+      <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.147.3</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.nagih.io.vn/posts/networking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Netstat - Công cụ giám sát Networking</title>
+      <link>https://blog.nagih.io.vn/posts/networking/netstat/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/networking/netstat/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Netstat&lt;/strong&gt; là công cụ dòng lệnh dùng để hiển thị chi tiết các kết nối mạng (TCP/UDP), bảng định tuyến và các cổng đang lắng nghe, giúp quản trị viên giám sát và xử lý sự cố hệ thống.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tổng quan về mô hình OSI</title>
+      <link>https://blog.nagih.io.vn/posts/networking/osi/</link>
+      <pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/networking/osi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Internet</title>
+      <link>https://blog.nagih.io.vn/posts/networking/internet_index/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/networking/internet_index/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Protocol</title>
+      <link>https://blog.nagih.io.vn/posts/networking/protocol_index/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/networking/protocol_index/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

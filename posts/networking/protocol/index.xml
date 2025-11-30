@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Protocol on Nagih | Blog</title>
+    <link>https://blog.nagih.io.vn/posts/networking/protocol/</link>
+    <description>Recent content in Protocol on Nagih | Blog</description>
+    <image>
+      <title>Nagih | Blog</title>
+      <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.147.3</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 13 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.nagih.io.vn/posts/networking/protocol/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tổng quan về TCP</title>
+      <link>https://blog.nagih.io.vn/posts/networking/protocol/tcp/</link>
+      <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/networking/protocol/tcp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>REST và gRPC</title>
+      <link>https://blog.nagih.io.vn/posts/networking/protocol/rest--grpc/</link>
+      <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/networking/protocol/rest--grpc/</guid>
+      <description>&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại | Rest &amp;amp; gRPC&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

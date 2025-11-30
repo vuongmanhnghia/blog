@@ -42,6 +42,13 @@
       <description></description>
     </item>
     <item>
+      <title>Netstat - Công cụ giám sát Networking</title>
+      <link>https://blog.nagih.io.vn/posts/networking/netstat/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/networking/netstat/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Netstat&lt;/strong&gt; là công cụ dòng lệnh dùng để hiển thị chi tiết các kết nối mạng (TCP/UDP), bảng định tuyến và các cổng đang lắng nghe, giúp quản trị viên giám sát và xử lý sự cố hệ thống.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Hướng dẫn backup database postgres trong container và sử dụng trong server mới</title>
       <link>https://blog.nagih.io.vn/posts/backup/how-to-backup-postgres-database-in-docker-container/</link>
       <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
@@ -71,9 +78,9 @@
     </item>
     <item>
       <title>Hướng dẫn thiết lập Network Bridge giữa máy Host và máy ảo</title>
-      <link>https://blog.nagih.io.vn/posts/network/internet/setup-bridge-network/</link>
+      <link>https://blog.nagih.io.vn/posts/networking/internet/setup-bridge-network/</link>
       <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/network/internet/setup-bridge-network/</guid>
+      <guid>https://blog.nagih.io.vn/posts/networking/internet/setup-bridge-network/</guid>
       <description>&lt;p&gt;&lt;strong&gt;bridged network&lt;/strong&gt; là phương pháp chuyên nghiệp và linh hoạt nhất cho máy chủ ảo, vì nó cho phép máy ảo của bạn hoạt động như một thiết bị vật lý thực thụ trên mạng của bạn.&lt;/p&gt;</description>
     </item>
     <item>
@@ -106,16 +113,16 @@
     </item>
     <item>
       <title>Tổng quan về TCP</title>
-      <link>https://blog.nagih.io.vn/posts/network/protocol/tcp/</link>
+      <link>https://blog.nagih.io.vn/posts/networking/protocol/tcp/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/network/protocol/tcp/</guid>
+      <guid>https://blog.nagih.io.vn/posts/networking/protocol/tcp/</guid>
       <description></description>
     </item>
     <item>
       <title>Tổng quan về mô hình OSI</title>
-      <link>https://blog.nagih.io.vn/posts/network/osi/</link>
+      <link>https://blog.nagih.io.vn/posts/networking/osi/</link>
       <pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/network/osi/</guid>
+      <guid>https://blog.nagih.io.vn/posts/networking/osi/</guid>
       <description></description>
     </item>
     <item>
@@ -134,9 +141,9 @@
     </item>
     <item>
       <title>Các vấn đề về Internet và cách khắc phục</title>
-      <link>https://blog.nagih.io.vn/posts/network/internet/internet-errors/</link>
+      <link>https://blog.nagih.io.vn/posts/networking/internet/internet-errors/</link>
       <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/network/internet/internet-errors/</guid>
+      <guid>https://blog.nagih.io.vn/posts/networking/internet/internet-errors/</guid>
       <description>&lt;p&gt;Các vấn đề về kết nối Internet phổ biến và cách khắc phục chi tiết&lt;/p&gt;</description>
     </item>
     <item>
@@ -148,9 +155,9 @@
     </item>
     <item>
       <title>Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị</title>
-      <link>https://blog.nagih.io.vn/posts/network/protocol/ssh/all-in-one/</link>
+      <link>https://blog.nagih.io.vn/posts/networking/protocol/ssh/all-in-one/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/network/protocol/ssh/all-in-one/</guid>
+      <guid>https://blog.nagih.io.vn/posts/networking/protocol/ssh/all-in-one/</guid>
       <description>&lt;p&gt;biến SSH từ một công cụ kết nối đơn thuần thành một hệ thống quản lý danh tính hiệu quả&lt;/p&gt;</description>
     </item>
     <item>
@@ -162,16 +169,16 @@
     </item>
     <item>
       <title>Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH</title>
-      <link>https://blog.nagih.io.vn/posts/network/protocol/ssh/error-handler/</link>
+      <link>https://blog.nagih.io.vn/posts/networking/protocol/ssh/error-handler/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/network/protocol/ssh/error-handler/</guid>
+      <guid>https://blog.nagih.io.vn/posts/networking/protocol/ssh/error-handler/</guid>
       <description>&lt;p&gt;Ngay cả với một thiết lập cẩn thận, các vấn đề vẫn có thể phát sinh. Việc hiểu rõ cách chẩn đoán và khắc phục các lỗi SSH phổ biến là một kỹ năng quan trọng.&lt;/p&gt;</description>
     </item>
     <item>
       <title>SSH - Github</title>
-      <link>https://blog.nagih.io.vn/posts/network/protocol/ssh/https--ssh/</link>
+      <link>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https--ssh/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/network/protocol/ssh/https--ssh/</guid>
+      <guid>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https--ssh/</guid>
       <description>&lt;p&gt;Những hạn chế của xác thực qua HTTPS và sự thay thế SSH&lt;/p&gt;</description>
     </item>
     <item>
@@ -190,9 +197,9 @@
     </item>
     <item>
       <title>REST và gRPC</title>
-      <link>https://blog.nagih.io.vn/posts/network/protocol/rest--grpc/</link>
+      <link>https://blog.nagih.io.vn/posts/networking/protocol/rest--grpc/</link>
       <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/network/protocol/rest--grpc/</guid>
+      <guid>https://blog.nagih.io.vn/posts/networking/protocol/rest--grpc/</guid>
       <description>&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại | Rest &amp;amp; gRPC&lt;/p&gt;</description>
     </item>
     <item>
@@ -246,9 +253,9 @@
     </item>
     <item>
       <title>Internet</title>
-      <link>https://blog.nagih.io.vn/posts/network/internet_index/</link>
+      <link>https://blog.nagih.io.vn/posts/networking/internet_index/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/network/internet_index/</guid>
+      <guid>https://blog.nagih.io.vn/posts/networking/internet_index/</guid>
       <description></description>
     </item>
     <item>
@@ -281,9 +288,9 @@
     </item>
     <item>
       <title>Protocol</title>
-      <link>https://blog.nagih.io.vn/posts/network/protocol_index/</link>
+      <link>https://blog.nagih.io.vn/posts/networking/protocol_index/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/network/protocol_index/</guid>
+      <guid>https://blog.nagih.io.vn/posts/networking/protocol_index/</guid>
       <description></description>
     </item>
   </channel>

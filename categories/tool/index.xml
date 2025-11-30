@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/tool/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Netstat - Công cụ giám sát Networking</title>
+      <link>https://blog.nagih.io.vn/posts/networking/netstat/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/networking/netstat/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Netstat&lt;/strong&gt; là công cụ dòng lệnh dùng để hiển thị chi tiết các kết nối mạng (TCP/UDP), bảng định tuyến và các cổng đang lắng nghe, giúp quản trị viên giám sát và xử lý sự cố hệ thống.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Hướng dẫn thiết lập khóa SSH cho github</title>
       <link>https://blog.nagih.io.vn/posts/git/setup-ssh-for-github/</link>
@@ -22,9 +29,9 @@
     </item>
     <item>
       <title>SSH - Github</title>
-      <link>https://blog.nagih.io.vn/posts/network/protocol/ssh/https--ssh/</link>
+      <link>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https--ssh/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/network/protocol/ssh/https--ssh/</guid>
+      <guid>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https--ssh/</guid>
       <description>&lt;p&gt;Những hạn chế của xác thực qua HTTPS và sự thay thế SSH&lt;/p&gt;</description>
     </item>
   </channel>
