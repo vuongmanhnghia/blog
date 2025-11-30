@@ -326,15 +326,9 @@
     <loc>https://blog.nagih.io.vn/categories/microservices/</loc>
     <lastmod>2025-08-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/test/test/</loc>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/posts/test/test_child/test_child/</loc>
-  </url><url>
     <loc>https://blog.nagih.io.vn/archives/</loc>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/system/cache_index/</loc>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/posts/container/docker_index/</loc>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/network/internet_index/</loc>
   </url><url>
@@ -349,9 +343,5 @@
     <loc>https://blog.nagih.io.vn/posts/network/protocol_index/</loc>
   </url><url>
     <loc>https://blog.nagih.io.vn/search/</loc>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/posts/test/</loc>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/posts/test/test_child/</loc>
   </url>
 </urlset>
