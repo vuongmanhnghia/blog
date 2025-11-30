@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Windows on Nagih | Blog</title>
+    <link>https://blog.nagih.io.vn/posts/system/os/windows/</link>
+    <description>Recent content in Windows on Nagih | Blog</description>
+    <image>
+      <title>Nagih | Blog</title>
+      <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.147.3</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 04 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.nagih.io.vn/posts/system/os/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hướng dẫn tạo USB Boot Windows trên Linux</title>
+      <link>https://blog.nagih.io.vn/posts/system/os/windows/usb-boot-windows-on-linux/</link>
+      <pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/system/os/windows/usb-boot-windows-on-linux/</guid>
+      <description>&lt;p&gt;Có một số cách để tạo USB boot Windows trên Linux. Đây là phương pháp phổ biến nhất:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hướng dẫn tùy biến phân vùng EFI khi cài windows</title>
+      <link>https://blog.nagih.io.vn/posts/system/os/windows/custom-windows-efi/</link>
+      <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/system/os/windows/custom-windows-efi/</guid>
+      <description>&lt;p&gt;Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

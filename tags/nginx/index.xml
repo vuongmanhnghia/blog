@@ -15,9 +15,9 @@
     <atom:link href="https://blog.nagih.io.vn/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hướng dẫn cấu hình Nginx làm Reverse Proxy kết hợp Certbot thông qua Docker</title>
-      <link>https://blog.nagih.io.vn/posts/how-to-config-nginx-use-docker/</link>
+      <link>https://blog.nagih.io.vn/posts/proxy/nginx/how-to-config-nginx-use-docker/</link>
       <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/how-to-config-nginx-use-docker/</guid>
+      <guid>https://blog.nagih.io.vn/posts/proxy/nginx/how-to-config-nginx-use-docker/</guid>
       <description>&lt;p&gt;Hướng dẫn xây dựng mô hình &lt;strong&gt;Nginx làm Reverse Proxy&lt;/strong&gt; kết hợp với &lt;strong&gt;Certbot&lt;/strong&gt; theo mô hình &lt;strong&gt;Sidecar&lt;/strong&gt; (hoặc chạy định kỳ) để quản lý SSL.&lt;/p&gt;</description>
     </item>
   </channel>

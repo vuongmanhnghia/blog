@@ -15,23 +15,23 @@
     <atom:link href="https://blog.nagih.io.vn/categories/database/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hướng dẫn backup database postgres trong container và sử dụng trong server mới</title>
-      <link>https://blog.nagih.io.vn/posts/how-to-backup-postgres-database-in-docker-container/</link>
+      <link>https://blog.nagih.io.vn/posts/backup/how-to-backup-postgres-database-in-docker-container/</link>
       <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/how-to-backup-postgres-database-in-docker-container/</guid>
+      <guid>https://blog.nagih.io.vn/posts/backup/how-to-backup-postgres-database-in-docker-container/</guid>
       <description></description>
     </item>
     <item>
       <title>Kĩ thuật backup dữ liệu Database định kỳ</title>
-      <link>https://blog.nagih.io.vn/posts/backup-database/</link>
+      <link>https://blog.nagih.io.vn/posts/database/backup-database/</link>
       <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/backup-database/</guid>
+      <guid>https://blog.nagih.io.vn/posts/database/backup-database/</guid>
       <description>&lt;p&gt;Kỹ thuật backup database định kỳ là một kỹ năng cực kỳ quan trọng đối với bất kỳ ai làm DevOps. Một chiến lược backup tốt sẽ giúp bạn cứu sống cả hệ thống khi có sự cố.&lt;/p&gt;</description>
     </item>
     <item>
       <title>9 MySQL Table Design Rules &amp; Skills</title>
-      <link>https://blog.nagih.io.vn/posts/9-mysql-table-design-rules--skills/</link>
+      <link>https://blog.nagih.io.vn/posts/database/9-mysql-table-design-rules--skills/</link>
       <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/9-mysql-table-design-rules--skills/</guid>
+      <guid>https://blog.nagih.io.vn/posts/database/9-mysql-table-design-rules--skills/</guid>
       <description>&lt;p&gt;9 nguyên tắc cốt lõi và một số kỹ năng mở rộng khi khởi tạo bảng trong MySQL, đảm bảo ứng dụng không chỉ chạy đúng mà còn hiệu quả và dễ bảo trì&lt;/p&gt;</description>
     </item>
   </channel>
