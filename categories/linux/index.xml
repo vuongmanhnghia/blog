@@ -15,30 +15,30 @@
     <atom:link href="https://blog.nagih.io.vn/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Điều gì sẽ xảy ra khi gõ bất kỳ command nào trong terminal trên Linux ?</title>
-      <link>https://blog.nagih.io.vn/posts/%C4%91i%E1%BB%81u-g%C3%AC-s%E1%BA%BD-x%E1%BA%A3y-ra-khi-g%C3%B5-b%E1%BA%A5t-k%E1%BB%B3-command-n%C3%A0o-trong-terminal-tr%C3%AAn-linux/</link>
+      <link>https://blog.nagih.io.vn/posts/system-calls/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/%C4%91i%E1%BB%81u-g%C3%AC-s%E1%BA%BD-x%E1%BA%A3y-ra-khi-g%C3%B5-b%E1%BA%A5t-k%E1%BB%B3-command-n%C3%A0o-trong-terminal-tr%C3%AAn-linux/</guid>
+      <guid>https://blog.nagih.io.vn/posts/system-calls/</guid>
       <description>&lt;p&gt;Để trả lời câu này sâu sắc, chúng ta không chỉ nhìn ở bề nổi (gõ lệnh -&amp;gt; ra kết quả), mà phải nhìn xuống tầng &lt;strong&gt;Kernel&lt;/strong&gt; và &lt;strong&gt;System Calls&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Inode trong Linux File System</title>
-      <link>https://blog.nagih.io.vn/posts/inode-trong-linux-file-system/</link>
+      <link>https://blog.nagih.io.vn/posts/inode/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/inode-trong-linux-file-system/</guid>
+      <guid>https://blog.nagih.io.vn/posts/inode/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Inode&lt;/strong&gt; (viết tắt của &lt;strong&gt;Index Node&lt;/strong&gt;) là một khái niệm cốt lõi và cực kỳ quan trọng trong các hệ thống tập tin (filesystem) của Linux và Unix.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux File System</title>
-      <link>https://blog.nagih.io.vn/posts/linux-file-system/</link>
+      <link>https://blog.nagih.io.vn/posts/file-system/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/linux-file-system/</guid>
+      <guid>https://blog.nagih.io.vn/posts/file-system/</guid>
       <description></description>
     </item>
     <item>
       <title>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</title>
-      <link>https://blog.nagih.io.vn/posts/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</link>
+      <link>https://blog.nagih.io.vn/posts/server-hardening-checklist/</link>
       <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</guid>
+      <guid>https://blog.nagih.io.vn/posts/server-hardening-checklist/</guid>
       <description></description>
     </item>
   </channel>

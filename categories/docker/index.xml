@@ -15,9 +15,9 @@
     <atom:link href="https://blog.nagih.io.vn/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hướng dẫn sửa lỗi Docker Stats không hiển thị mức sử dụng memory</title>
-      <link>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-docker-stats-kh%C3%B4ng-hi%E1%BB%83n-th%E1%BB%8B-m%E1%BB%A9c-s%E1%BB%AD-d%E1%BB%A5ng-memory/</link>
+      <link>https://blog.nagih.io.vn/posts/fix-error-docker-stats/</link>
       <pubDate>Sun, 02 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-docker-stats-kh%C3%B4ng-hi%E1%BB%83n-th%E1%BB%8B-m%E1%BB%A9c-s%E1%BB%AD-d%E1%BB%A5ng-memory/</guid>
+      <guid>https://blog.nagih.io.vn/posts/fix-error-docker-stats/</guid>
       <description>&lt;p&gt;Việc lệnh &lt;code&gt;docker stats&lt;/code&gt; không hiển thị thông tin về bộ nhớ (MEM USAGE / LIMIT) cho các container là một sự cố khá phổ biến. Nguyên nhân chính thường liên quan đến tính năng theo dõi bộ nhớ của &lt;code&gt;cgroups&lt;/code&gt; chưa được kích hoạt.&lt;/p&gt;</description>
     </item>
   </channel>

@@ -8,13 +8,13 @@
     <loc>https://blog.nagih.io.vn/categories/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/%C4%91i%E1%BB%81u-g%C3%AC-s%E1%BA%BD-x%E1%BA%A3y-ra-khi-g%C3%B5-b%E1%BA%A5t-k%E1%BB%B3-command-n%C3%A0o-trong-terminal-tr%C3%AAn-linux/</loc>
+    <loc>https://blog.nagih.io.vn/posts/system-calls/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/file/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/inode-trong-linux-file-system/</loc>
+    <loc>https://blog.nagih.io.vn/posts/inode/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/kernel/</loc>
@@ -23,7 +23,7 @@
     <loc>https://blog.nagih.io.vn/categories/linux/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/linux-file-system/</loc>
+    <loc>https://blog.nagih.io.vn/posts/file-system/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/</loc>
@@ -50,10 +50,10 @@
     <loc>https://blog.nagih.io.vn/tags/docker/</loc>
     <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-backup-database-postgres-trong-container-v%C3%A0-s%E1%BB%AD-d%E1%BB%A5ng-trong-server-m%E1%BB%9Bi/</loc>
+    <loc>https://blog.nagih.io.vn/posts/how-to-backup-postgres-database-in-docker-container/</loc>
     <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%E1%BA%A5u-h%C3%ACnh-nginx-l%C3%A0m-reverse-proxy-k%E1%BA%BFt-h%E1%BB%A3p-certbot-th%C3%B4ng-qua-docker/</loc>
+    <loc>https://blog.nagih.io.vn/posts/how-to-config-nginx-use-docker/</loc>
     <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/nginx/</loc>
@@ -68,13 +68,13 @@
     <loc>https://blog.nagih.io.vn/categories/manage/</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</loc>
+    <loc>https://blog.nagih.io.vn/posts/server-hardening-checklist/</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/server/</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</loc>
+    <loc>https://blog.nagih.io.vn/posts/management-command/</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/tips/</loc>
@@ -86,7 +86,7 @@
     <loc>https://blog.nagih.io.vn/tags/bridge/</loc>
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-network-bridge-gi%E1%BB%AFa-m%C3%A1y-host-v%C3%A0-m%C3%A1y-%E1%BA%A3o/</loc>
+    <loc>https://blog.nagih.io.vn/posts/setup-bridge-network/</loc>
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/internet/</loc>
@@ -98,7 +98,7 @@
     <loc>https://blog.nagih.io.vn/categories/docker/</loc>
     <lastmod>2025-11-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-docker-stats-kh%C3%B4ng-hi%E1%BB%83n-th%E1%BB%8B-m%E1%BB%A9c-s%E1%BB%AD-d%E1%BB%A5ng-memory/</loc>
+    <loc>https://blog.nagih.io.vn/posts/fix-error-docker-stats/</loc>
     <lastmod>2025-11-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/backup/</loc>
@@ -107,16 +107,16 @@
     <loc>https://blog.nagih.io.vn/categories/cloudflare/</loc>
     <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</loc>
+    <loc>https://blog.nagih.io.vn/posts/cloudflared-tunnel-workflow/</loc>
     <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</loc>
+    <loc>https://blog.nagih.io.vn/posts/backup-database/</loc>
     <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/tunnel/</loc>
     <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</loc>
+    <loc>https://blog.nagih.io.vn/posts/raspberry-pi---basic-server-workflow/</loc>
     <lastmod>2025-10-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/protocol/</loc>
@@ -125,16 +125,16 @@
     <loc>https://blog.nagih.io.vn/tags/tcp/</loc>
     <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/t%E1%BB%95ng-quan-v%E1%BB%81-tcp/</loc>
+    <loc>https://blog.nagih.io.vn/posts/tcp/</loc>
     <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/osi/</loc>
     <lastmod>2025-10-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/t%E1%BB%95ng-quan-v%E1%BB%81-m%C3%B4-h%C3%ACnh-osi/</loc>
+    <loc>https://blog.nagih.io.vn/posts/osi/</loc>
     <lastmod>2025-10-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%E1%BA%A1o-usb-boot-windows-tr%C3%AAn-linux/</loc>
+    <loc>https://blog.nagih.io.vn/posts/usb-boot-windows-on-linux/</loc>
     <lastmod>2025-10-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/os/</loc>
@@ -146,7 +146,7 @@
     <loc>https://blog.nagih.io.vn/categories/experience/</loc>
     <lastmod>2025-09-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-authorized-khi-ssh-v%C3%A0o-raspberry-pi/</loc>
+    <loc>https://blog.nagih.io.vn/posts/fix-authorized/</loc>
     <lastmod>2025-09-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/pi/</loc>
@@ -158,7 +158,7 @@
     <loc>https://blog.nagih.io.vn/tags/backend/</loc>
     <lastmod>2025-09-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/c%C3%A1c-v%E1%BA%A5n-%C4%91%E1%BB%81-v%E1%BB%81-internet-v%C3%A0-c%C3%A1ch-kh%E1%BA%AFc-ph%E1%BB%A5c/</loc>
+    <loc>https://blog.nagih.io.vn/posts/internet-errors/</loc>
     <lastmod>2025-09-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/dns/</loc>
@@ -173,22 +173,22 @@
     <loc>https://blog.nagih.io.vn/tags/ip/</loc>
     <lastmod>2025-09-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/m%E1%BA%ABu-documentation-cho-backend/</loc>
+    <loc>https://blog.nagih.io.vn/posts/backend-documentation/</loc>
     <lastmod>2025-09-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/git/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-qu%E1%BA%A3n-l%C3%BD-nhi%E1%BB%81u-kh%C3%B3a-ssh-tr%C3%AAn-1-thi%E1%BA%BFt-b%E1%BB%8B/</loc>
+    <loc>https://blog.nagih.io.vn/posts/all-in-one/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</loc>
+    <loc>https://blog.nagih.io.vn/posts/setup-ssh-for-github/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-s%E1%BB%B1-c%E1%BB%91-v%C3%A0-c%C3%A1c-l%E1%BB%97i-th%C6%B0%E1%BB%9Dng-g%E1%BA%B7p-khi-thi%E1%BA%BFt-l%E1%BA%ADp-ssh/</loc>
+    <loc>https://blog.nagih.io.vn/posts/error-handler/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/ssh-github/</loc>
+    <loc>https://blog.nagih.io.vn/posts/https--ssh/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/tool/</loc>
@@ -200,7 +200,7 @@
     <loc>https://blog.nagih.io.vn/categories/environment/</loc>
     <lastmod>2025-09-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-app-development-tr%C3%AAn-nixos-best-practice/</loc>
+    <loc>https://blog.nagih.io.vn/posts/app-development/</loc>
     <lastmod>2025-09-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/nixos/</loc>
@@ -209,7 +209,7 @@
     <loc>https://blog.nagih.io.vn/tags/boot/</loc>
     <lastmod>2025-09-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</loc>
+    <loc>https://blog.nagih.io.vn/posts/custom-windows-efi/</loc>
     <lastmod>2025-09-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/ufi/</loc>
@@ -221,7 +221,7 @@
     <loc>https://blog.nagih.io.vn/tags/rest/</loc>
     <lastmod>2025-08-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/rest-v%C3%A0-grpc/</loc>
+    <loc>https://blog.nagih.io.vn/posts/rest--grpc/</loc>
     <lastmod>2025-08-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/6-level-deploy/</loc>
@@ -230,25 +230,25 @@
     <loc>https://blog.nagih.io.vn/categories/devops/</loc>
     <lastmod>2025-08-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/9-mysql-table-design-rules-skills/</loc>
+    <loc>https://blog.nagih.io.vn/posts/9-mysql-table-design-rules--skills/</loc>
     <lastmod>2025-08-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/sql/</loc>
     <lastmod>2025-08-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/c%C3%A1c-ch%C3%ADnh-s%C3%A1ch-d%E1%BB%8Dn-d%E1%BA%B9p-cache/</loc>
+    <loc>https://blog.nagih.io.vn/posts/cache-hit--cache-miss/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/c%C3%A1c-m%E1%BA%ABu-thi%E1%BA%BFt-k%E1%BA%BF-x%C3%A2y-d%E1%BB%B1ng-h%E1%BB%87-th%E1%BB%91ng-v%E1%BB%9Bi-cache-v%C3%A0-chi%E1%BA%BFn-l%C6%B0%E1%BB%A3c-v%C3%B4-hi%E1%BB%87u-h%C3%B3a-cache/</loc>
+    <loc>https://blog.nagih.io.vn/posts/cache-system-design/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/cache/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-cache/</loc>
+    <loc>https://blog.nagih.io.vn/posts/introdution-to-cache/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.nagih.io.vn/posts/gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-ki%E1%BA%BFn-tr%C3%BAc-microservices/</loc>
+    <loc>https://blog.nagih.io.vn/posts/microservices/</loc>
     <lastmod>2025-08-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/microservices/</loc>
