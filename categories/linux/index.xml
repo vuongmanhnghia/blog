@@ -11,15 +11,8 @@
     </image>
     <generator>Hugo -- 0.147.3</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/linux/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Test Linux</title>
-      <link>https://blog.nagih.io.vn/posts/no/test-linux/</link>
-      <pubDate>Wed, 10 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/no/test-linux/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Điều gì sẽ xảy ra khi gõ bất kỳ command nào trong terminal trên Linux ?</title>
       <link>https://blog.nagih.io.vn/posts/linux/system-calls/</link>
