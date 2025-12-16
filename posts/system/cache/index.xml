@@ -9,15 +9,15 @@
       <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.147.3</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/posts/system/cache/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Các chính sách &#39;Dọn Dẹp&#39; Cache</title>
-      <link>https://blog.nagih.io.vn/posts/system/cache/cache-hit--cache-miss/</link>
+      <link>https://blog.nagih.io.vn/posts/system/cache/cache-hit-cache-miss/</link>
       <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/system/cache/cache-hit--cache-miss/</guid>
+      <guid>https://blog.nagih.io.vn/posts/system/cache/cache-hit-cache-miss/</guid>
       <description>&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;</description>
     </item>
     <item>

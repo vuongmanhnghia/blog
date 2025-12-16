@@ -9,7 +9,7 @@
       <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.147.3</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Fri, 26 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
@@ -43,9 +43,9 @@
     </item>
     <item>
       <title>SSH - Github</title>
-      <link>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https--ssh/</link>
+      <link>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https-ssh/</link>
       <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https--ssh/</guid>
+      <guid>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https-ssh/</guid>
       <description>&lt;p&gt;Những hạn chế của xác thực qua HTTPS và sự thay thế SSH&lt;/p&gt;</description>
     </item>
   </channel>

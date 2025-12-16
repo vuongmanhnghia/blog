@@ -9,7 +9,7 @@
       <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.147.3</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Fri, 14 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/server/index.xml" rel="self" type="application/rss+xml" />
@@ -29,9 +29,9 @@
     </item>
     <item>
       <title>Hướng dẫn setup môi trường server cơ bản chạy web và các dịch vụ nền cho Raspberry Pi (Debian)</title>
-      <link>https://blog.nagih.io.vn/posts/workflow/raspberry-pi---basic-server-workflow/</link>
+      <link>https://blog.nagih.io.vn/posts/workflow/raspberry-pi-basic-server-workflow/</link>
       <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/workflow/raspberry-pi---basic-server-workflow/</guid>
+      <guid>https://blog.nagih.io.vn/posts/workflow/raspberry-pi-basic-server-workflow/</guid>
       <description></description>
     </item>
   </channel>

@@ -9,16 +9,16 @@
       <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.147.3</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 16 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/security/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Nginx Overview</title>
-      <link>https://blog.nagih.io.vn/posts/nginx/</link>
-      <pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/nginx/</guid>
-      <description>&lt;p&gt;Nginx - Từ C10k Đến Containers&lt;/p&gt;</description>
+      <title>AWS - Networking</title>
+      <link>https://blog.nagih.io.vn/posts/aws/untitled/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/aws/untitled/</guid>
+      <description>&lt;p&gt;Hệ thống mạng (Networking) &lt;strong&gt;đầy đủ, bảo mật và chuẩn doanh nghiệp (Enterprise-grade)&lt;/strong&gt; trên AWS&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

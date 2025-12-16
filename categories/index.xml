@@ -9,10 +9,38 @@
       <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.147.3</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Aws</title>
+      <link>https://blog.nagih.io.vn/categories/aws/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/aws/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Internet</title>
+      <link>https://blog.nagih.io.vn/categories/internet/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/internet/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Network</title>
+      <link>https://blog.nagih.io.vn/categories/network/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/network/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security</title>
+      <link>https://blog.nagih.io.vn/categories/security/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/security/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Architechture</title>
       <link>https://blog.nagih.io.vn/categories/architechture/</link>
@@ -21,24 +49,10 @@
       <description></description>
     </item>
     <item>
-      <title>Internet</title>
-      <link>https://blog.nagih.io.vn/categories/internet/</link>
-      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/internet/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Linux</title>
       <link>https://blog.nagih.io.vn/categories/linux/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/categories/linux/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Network</title>
-      <link>https://blog.nagih.io.vn/categories/network/</link>
-      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/network/</guid>
       <description></description>
     </item>
     <item>
