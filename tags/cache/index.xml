@@ -21,13 +21,6 @@
       <description>&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Các mẫu thiết kế, xây dựng hệ thống với Cache và chiến lược vô hiệu hóa Cache</title>
-      <link>https://blog.nagih.io.vn/posts/system/cache/cache-system-design/</link>
-      <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/system/cache/cache-system-design/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Giới thiệu về Cache</title>
       <link>https://blog.nagih.io.vn/posts/system/cache/introdution-to-cache/</link>
       <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
