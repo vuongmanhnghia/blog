@@ -151,14 +151,14 @@
       <link>https://blog.nagih.io.vn/posts/networking/protocol/tcp/</link>
       <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/networking/protocol/tcp/</guid>
-      <description></description>
+      <description>&lt;p&gt;&lt;strong&gt;Transmission Control Protocol&lt;/strong&gt; (Giao thức điều khiển truyền vận), là một giao thức cốt lõi trong bộ giao thức Internet (TCP/IP)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Tổng quan về mô hình OSI</title>
       <link>https://blog.nagih.io.vn/posts/networking/osi/</link>
       <pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/networking/osi/</guid>
-      <description></description>
+      <description>&lt;p&gt;Open Systems Interconnection - OSI là một khung khái niệm chia các chức năng truyền thông mạng thành 7 lớp hay 7 tầng riêng biệt. Được phát triển bởi Tổ chức Tiêu chuẩn hóa Quốc tế (ISO)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hướng dẫn tạo USB Boot Windows trên Linux</title>
@@ -277,27 +277,6 @@
       <link>https://blog.nagih.io.vn/posts/system/microservices/</link>
       <pubDate>Thu, 07 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/system/microservices/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Internet</title>
-      <link>https://blog.nagih.io.vn/posts/networking/internet_index/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/networking/internet_index/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Nginx</title>
-      <link>https://blog.nagih.io.vn/posts/proxy/nginx_index/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/proxy/nginx_index/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Protocol</title>
-      <link>https://blog.nagih.io.vn/posts/networking/protocol_index/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/networking/protocol_index/</guid>
       <description></description>
     </item>
   </channel>
