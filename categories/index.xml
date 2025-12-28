@@ -14,6 +14,13 @@
     <lastBuildDate>Sun, 28 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Docker</title>
+      <link>https://blog.nagih.io.vn/categories/docker/</link>
+      <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/categories/docker/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Storage</title>
       <link>https://blog.nagih.io.vn/categories/storage/</link>
       <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
@@ -123,13 +130,6 @@
       <link>https://blog.nagih.io.vn/categories/server/</link>
       <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/categories/server/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Docker</title>
-      <link>https://blog.nagih.io.vn/categories/docker/</link>
-      <pubDate>Sun, 02 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/categories/docker/</guid>
       <description></description>
     </item>
     <item>

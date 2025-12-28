@@ -11,12 +11,12 @@
     </image>
     <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 01 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/cow/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume và Bind Mount ?</title>
       <link>https://blog.nagih.io.vn/posts/storage/overlay2-vs-volume--bind-mount/</link>
-      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.nagih.io.vn/posts/storage/overlay2-vs-volume--bind-mount/</guid>
       <description>&lt;p&gt;Nguyên nhân cốt lõi nằm ở &lt;strong&gt;Cơ chế Copy-on-Write (CoW)&lt;/strong&gt; và &lt;strong&gt;lớp trung gian (Overhead)&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
