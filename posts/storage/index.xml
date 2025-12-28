@@ -27,5 +27,12 @@
       <guid>https://blog.nagih.io.vn/posts/storage/unionfs/</guid>
       <description>&lt;p&gt;UnionFS cho phép bạn &amp;ldquo;xếp chồng&amp;rdquo; nhiều thư mục (hoặc ổ đĩa) khác nhau lên nhau để tạo thành một hệ thống tệp tin duy nhất và thống nhất&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume và Bind Mount ?</title>
+      <link>https://blog.nagih.io.vn/posts/storage/overlay2-vs-volume--bind-mount/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/storage/overlay2-vs-volume--bind-mount/</guid>
+      <description>&lt;p&gt;Nguyên nhân cốt lõi nằm ở &lt;strong&gt;Cơ chế Copy-on-Write (CoW)&lt;/strong&gt; và &lt;strong&gt;lớp trung gian (Overhead)&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

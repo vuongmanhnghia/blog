@@ -368,7 +368,13 @@
     <loc>https://blog.nagih.io.vn/categories/microservices/</loc>
     <lastmod>2025-08-07T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://blog.nagih.io.vn/tags/cow/</loc>
+    <lastmod>2025-01-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog.nagih.io.vn/posts/no/</loc>
+    <lastmod>2025-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/posts/storage/overlay2-vs-volume--bind-mount/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/archives/</loc>
