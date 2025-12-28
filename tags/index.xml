@@ -11,8 +11,22 @@
     </image>
     <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 20 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overlayfs</title>
+      <link>https://blog.nagih.io.vn/tags/overlayfs/</link>
+      <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/tags/overlayfs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Unionfs</title>
+      <link>https://blog.nagih.io.vn/tags/unionfs/</link>
+      <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/tags/unionfs/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Ssh</title>
       <link>https://blog.nagih.io.vn/tags/ssh/</link>
