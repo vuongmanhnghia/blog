@@ -217,3 +217,7 @@ worker-2   Ready    <none>          2m      v1.29.0
 3.  **K8s Layer:** Kubelet (giao tiếp với Master), Kube-proxy (quản lý mạng).
 	
 4.  **Network Layer:** Calico (kết nối các Pod).
+
+## BÀI VIẾT LIÊN QUAN
+
+- [Hướng dẫn setup K8S Cluster Bare-metal](setup-k8s-cluster-bare-metal) 
