@@ -3,8 +3,8 @@ title: Hướng dẫn tùy biến phân vùng EFI khi cài windows
 date: 2025-09-08
 image: /images/image-placeholder.png
 categories:
-  - OS
   - system
+  - os
 tags:
   - windows
   - boot

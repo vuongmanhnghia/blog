@@ -3,11 +3,11 @@ title: Hướng dẫn setup môi trường App Development trên nixos best prac
 date: 2025-09-09
 image: /thumb/app-development.png
 categories:
-    - environment
-    - OS
+  - environment
+  - os
 tags:
-    - app
-    - NixOS
+  - app
+  - NixOS
 draft: false
 ---
 

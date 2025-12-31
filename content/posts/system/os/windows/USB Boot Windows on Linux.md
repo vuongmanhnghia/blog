@@ -3,8 +3,8 @@ title: Hướng dẫn tạo USB Boot Windows trên Linux
 date: 2025-10-04
 image:
 categories:
-  - OS
   - system
+  - os
 tags:
   - windows
 draft: false

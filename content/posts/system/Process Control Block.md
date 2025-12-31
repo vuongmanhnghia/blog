@@ -3,10 +3,10 @@ title: Process Control Block
 date: 2025-09-05
 image: /images/image-placeholder.png
 categories:
-    - system
+  - system
 tags:
-    - pcb
-draft: false
+  - pcb
+draft: true
 ---
 
 Khối Quản lý Tiến trình (PCB) - "CMND" của Mọi Chương trình trong Máy tính
