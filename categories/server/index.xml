@@ -1,53 +1,58 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Server on Nagih | Blog</title>
     <link>https://blog.nagih.io.vn/categories/server/</link>
     <description>Recent content in Server on Nagih | Blog</description>
-    <generator>Hugo</generator>
+    <image>
+      <title>Nagih | Blog</title>
+      <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Wed, 31 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/server/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Các trường hợp triển khai K8S Cluster</title>
-      <link>https://blog.nagih.io.vn/posts/cluster-case/</link>
+      <link>https://blog.nagih.io.vn/posts/k8s/cluster-case/</link>
       <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/cluster-case/</guid>
+      <guid>https://blog.nagih.io.vn/posts/k8s/cluster-case/</guid>
       <description>&lt;p&gt;Thông thường, trong thực tế triển khai Kubernetes (K8s), các kiến trúc sẽ biến thiên tùy vào nhu cầu về hiệu năng, chi phí và độ tin cậy.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hướng dẫn setup K8S Cluster</title>
-      <link>https://blog.nagih.io.vn/posts/setup-k8s-cluster/</link>
+      <link>https://blog.nagih.io.vn/posts/k8s/setup-k8s-cluster/</link>
       <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/setup-k8s-cluster/</guid>
+      <guid>https://blog.nagih.io.vn/posts/k8s/setup-k8s-cluster/</guid>
       <description>&lt;p&gt;Hướng dẫn chi tiết sử dụng &lt;strong&gt;&lt;code&gt;kubeadm&lt;/code&gt;&lt;/strong&gt; để dựng một cluster trên &lt;strong&gt;Ubuntu (20.04 hoặc 22.04)&lt;/strong&gt;. Sử dụng &lt;strong&gt;Containerd&lt;/strong&gt; làm Container Runtime (thay thế cho Docker đã cũ).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hướng dẫn setup K8S Cluster Bare-metal</title>
-      <link>https://blog.nagih.io.vn/posts/setup-k8s-cluster-bare-metal/</link>
+      <link>https://blog.nagih.io.vn/posts/k8s/setup-k8s-cluster-bare-metal/</link>
       <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/setup-k8s-cluster-bare-metal/</guid>
+      <guid>https://blog.nagih.io.vn/posts/k8s/setup-k8s-cluster-bare-metal/</guid>
       <description>&lt;p&gt;Đây là một bài toán thực tế rất thú vị (thường gọi là &lt;strong&gt;Bare-metal Kubernetes&lt;/strong&gt;). Khi chuyển từ môi trường ảo hóa (VM) sang 3 thiết bị vật lý thật&lt;/p&gt;</description>
     </item>
     <item>
       <title>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</title>
-      <link>https://blog.nagih.io.vn/posts/server-hardening-checklist/</link>
+      <link>https://blog.nagih.io.vn/posts/system/manage/server-hardening-checklist/</link>
       <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/server-hardening-checklist/</guid>
+      <guid>https://blog.nagih.io.vn/posts/system/manage/server-hardening-checklist/</guid>
       <description></description>
     </item>
     <item>
       <title>Tất cả các commands quản lý quan trọng trên linux</title>
-      <link>https://blog.nagih.io.vn/posts/management-command/</link>
+      <link>https://blog.nagih.io.vn/posts/linux/management-command/</link>
       <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/management-command/</guid>
+      <guid>https://blog.nagih.io.vn/posts/linux/management-command/</guid>
       <description></description>
     </item>
     <item>
       <title>Hướng dẫn setup môi trường server cơ bản chạy web và các dịch vụ nền cho Raspberry Pi (Debian)</title>
-      <link>https://blog.nagih.io.vn/posts/raspberry-pi-basic-server-workflow/</link>
+      <link>https://blog.nagih.io.vn/posts/workflow/raspberry-pi-basic-server-workflow/</link>
       <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/raspberry-pi-basic-server-workflow/</guid>
+      <guid>https://blog.nagih.io.vn/posts/workflow/raspberry-pi-basic-server-workflow/</guid>
       <description></description>
     </item>
   </channel>

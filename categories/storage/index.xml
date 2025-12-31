@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Storage on Nagih | Blog</title>
     <link>https://blog.nagih.io.vn/categories/storage/</link>
     <description>Recent content in Storage on Nagih | Blog</description>
-    <generator>Hugo</generator>
+    <image>
+      <title>Nagih | Blog</title>
+      <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Sun, 28 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/storage/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>OverlayFS - overlay2 on Docker</title>
-      <link>https://blog.nagih.io.vn/posts/overlayfs/</link>
+      <link>https://blog.nagih.io.vn/posts/storage/overlayfs/</link>
       <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/overlayfs/</guid>
+      <guid>https://blog.nagih.io.vn/posts/storage/overlayfs/</guid>
       <description>&lt;p&gt;Nếu UnionFS là ý tưởng, thì OverlayFS là bản thực thi xuất sắc nhất hiện nay trên Linux. Nó khắc phục được sự cồng kềnh và chậm chạp của các thế hệ trước (như AUFS hay Device Mapper)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume và Bind Mount ?</title>
-      <link>https://blog.nagih.io.vn/posts/overlay2-vs-volume--bind-mount/</link>
+      <link>https://blog.nagih.io.vn/posts/storage/overlay2-vs-volume--bind-mount/</link>
       <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/overlay2-vs-volume--bind-mount/</guid>
+      <guid>https://blog.nagih.io.vn/posts/storage/overlay2-vs-volume--bind-mount/</guid>
       <description>&lt;p&gt;Nguyên nhân cốt lõi nằm ở &lt;strong&gt;Cơ chế Copy-on-Write (CoW)&lt;/strong&gt; và &lt;strong&gt;lớp trung gian (Overhead)&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>UnionFS - Union File System</title>
-      <link>https://blog.nagih.io.vn/posts/unionfs/</link>
+      <link>https://blog.nagih.io.vn/posts/storage/unionfs/</link>
       <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/unionfs/</guid>
+      <guid>https://blog.nagih.io.vn/posts/storage/unionfs/</guid>
       <description>&lt;p&gt;UnionFS cho phép bạn &amp;ldquo;xếp chồng&amp;rdquo; nhiều thư mục (hoặc ổ đĩa) khác nhau lên nhau để tạo thành một hệ thống tệp tin duy nhất và thống nhất&lt;/p&gt;</description>
     </item>
   </channel>

@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Manage on Nagih | Blog</title>
     <link>https://blog.nagih.io.vn/categories/manage/</link>
     <description>Recent content in Manage on Nagih | Blog</description>
-    <generator>Hugo</generator>
+    <image>
+      <title>Nagih | Blog</title>
+      <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Fri, 14 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/manage/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</title>
-      <link>https://blog.nagih.io.vn/posts/server-hardening-checklist/</link>
+      <link>https://blog.nagih.io.vn/posts/system/manage/server-hardening-checklist/</link>
       <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/server-hardening-checklist/</guid>
+      <guid>https://blog.nagih.io.vn/posts/system/manage/server-hardening-checklist/</guid>
       <description></description>
     </item>
     <item>
       <title>Tất cả các commands quản lý quan trọng trên linux</title>
-      <link>https://blog.nagih.io.vn/posts/management-command/</link>
+      <link>https://blog.nagih.io.vn/posts/linux/management-command/</link>
       <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/management-command/</guid>
+      <guid>https://blog.nagih.io.vn/posts/linux/management-command/</guid>
       <description></description>
     </item>
   </channel>

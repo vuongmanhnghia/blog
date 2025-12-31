@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Experience on Nagih | Blog</title>
     <link>https://blog.nagih.io.vn/categories/experience/</link>
     <description>Recent content in Experience on Nagih | Blog</description>
-    <generator>Hugo</generator>
+    <image>
+      <title>Nagih | Blog</title>
+      <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Fri, 26 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/experience/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi</title>
-      <link>https://blog.nagih.io.vn/posts/fix-authorized/</link>
+      <link>https://blog.nagih.io.vn/posts/system/pi/fix-authorized/</link>
       <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/fix-authorized/</guid>
+      <guid>https://blog.nagih.io.vn/posts/system/pi/fix-authorized/</guid>
       <description>&lt;p&gt;Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi&lt;/p&gt;</description>
     </item>
   </channel>

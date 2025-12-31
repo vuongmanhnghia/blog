@@ -1,88 +1,93 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>System on Nagih | Blog</title>
     <link>https://blog.nagih.io.vn/categories/system/</link>
     <description>Recent content in System on Nagih | Blog</description>
-    <generator>Hugo</generator>
+    <image>
+      <title>Nagih | Blog</title>
+      <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/system/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Điều gì sẽ xảy ra khi gõ bất kỳ command nào trong terminal trên Linux ?</title>
-      <link>https://blog.nagih.io.vn/posts/system-calls/</link>
+      <link>https://blog.nagih.io.vn/posts/linux/system-calls/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/system-calls/</guid>
+      <guid>https://blog.nagih.io.vn/posts/linux/system-calls/</guid>
       <description>&lt;p&gt;Để trả lời câu này sâu sắc, chúng ta không chỉ nhìn ở bề nổi (gõ lệnh -&amp;gt; ra kết quả), mà phải nhìn xuống tầng &lt;strong&gt;Kernel&lt;/strong&gt; và &lt;strong&gt;System Calls&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Điều gì xảy ra khi bạn sử dụng lệnh Sudo ?</title>
-      <link>https://blog.nagih.io.vn/posts/sudo/</link>
+      <link>https://blog.nagih.io.vn/posts/linux/sudo/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/sudo/</guid>
+      <guid>https://blog.nagih.io.vn/posts/linux/sudo/</guid>
       <description>&lt;p&gt;Khi bạn gõ &lt;code&gt;sudo apt update&lt;/code&gt;, không đơn giản là hệ thống &amp;ldquo;bật công tắc&amp;rdquo; quyền admin. Đó là một chuỗi các thao tác kiểm tra nghiêm ngặt, thay đổi định danh (Identity) và làm sạch môi trường.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Inode trong Linux File System</title>
-      <link>https://blog.nagih.io.vn/posts/inode/</link>
+      <link>https://blog.nagih.io.vn/posts/linux/inode/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/inode/</guid>
+      <guid>https://blog.nagih.io.vn/posts/linux/inode/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Inode&lt;/strong&gt; (viết tắt của &lt;strong&gt;Index Node&lt;/strong&gt;) là một khái niệm cốt lõi và cực kỳ quan trọng trong các hệ thống tập tin (filesystem) của Linux và Unix.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux File System</title>
-      <link>https://blog.nagih.io.vn/posts/file-system/</link>
+      <link>https://blog.nagih.io.vn/posts/linux/file-system/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/file-system/</guid>
+      <guid>https://blog.nagih.io.vn/posts/linux/file-system/</guid>
       <description></description>
     </item>
     <item>
       <title>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</title>
-      <link>https://blog.nagih.io.vn/posts/server-hardening-checklist/</link>
+      <link>https://blog.nagih.io.vn/posts/system/manage/server-hardening-checklist/</link>
       <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/server-hardening-checklist/</guid>
+      <guid>https://blog.nagih.io.vn/posts/system/manage/server-hardening-checklist/</guid>
       <description></description>
     </item>
     <item>
       <title>Tất cả các commands quản lý quan trọng trên linux</title>
-      <link>https://blog.nagih.io.vn/posts/management-command/</link>
+      <link>https://blog.nagih.io.vn/posts/linux/management-command/</link>
       <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/management-command/</guid>
+      <guid>https://blog.nagih.io.vn/posts/linux/management-command/</guid>
       <description></description>
     </item>
     <item>
       <title>Hướng dẫn tạo USB Boot Windows trên Linux</title>
-      <link>https://blog.nagih.io.vn/posts/usb-boot-windows-on-linux/</link>
+      <link>https://blog.nagih.io.vn/posts/system/os/windows/usb-boot-windows-on-linux/</link>
       <pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/usb-boot-windows-on-linux/</guid>
+      <guid>https://blog.nagih.io.vn/posts/system/os/windows/usb-boot-windows-on-linux/</guid>
       <description>&lt;p&gt;Có một số cách để tạo USB boot Windows trên Linux. Đây là phương pháp phổ biến nhất:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi</title>
-      <link>https://blog.nagih.io.vn/posts/fix-authorized/</link>
+      <link>https://blog.nagih.io.vn/posts/system/pi/fix-authorized/</link>
       <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/fix-authorized/</guid>
+      <guid>https://blog.nagih.io.vn/posts/system/pi/fix-authorized/</guid>
       <description>&lt;p&gt;Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hướng dẫn tùy biến phân vùng EFI khi cài windows</title>
-      <link>https://blog.nagih.io.vn/posts/custom-windows-efi/</link>
+      <link>https://blog.nagih.io.vn/posts/system/os/windows/custom-windows-efi/</link>
       <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/custom-windows-efi/</guid>
+      <guid>https://blog.nagih.io.vn/posts/system/os/windows/custom-windows-efi/</guid>
       <description>&lt;p&gt;Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI&lt;/p&gt;</description>
     </item>
     <item>
       <title>Các chính sách &#39;Dọn Dẹp&#39; Cache</title>
-      <link>https://blog.nagih.io.vn/posts/cache-hit-cache-miss/</link>
+      <link>https://blog.nagih.io.vn/posts/system/cache/cache-hit-cache-miss/</link>
       <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/cache-hit-cache-miss/</guid>
+      <guid>https://blog.nagih.io.vn/posts/system/cache/cache-hit-cache-miss/</guid>
       <description>&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Giới thiệu về Cache</title>
-      <link>https://blog.nagih.io.vn/posts/introdution-to-cache/</link>
+      <link>https://blog.nagih.io.vn/posts/system/cache/introdution-to-cache/</link>
       <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/introdution-to-cache/</guid>
+      <guid>https://blog.nagih.io.vn/posts/system/cache/introdution-to-cache/</guid>
       <description>&lt;p&gt;Nhiều người đã nghe về cache, có thể là &amp;ldquo;xóa cache trình duyệt&amp;rdquo; hay &amp;ldquo;cache của CPU&amp;rdquo;. Nhưng cache thực sự là gì? Nó hoạt động ra sao và tại sao nó lại quan trọng đến vậy?&lt;/p&gt;</description>
     </item>
   </channel>
