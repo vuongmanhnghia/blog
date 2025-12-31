@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docker on Nagih | Blog</title>
     <link>https://blog.nagih.io.vn/categories/docker/</link>
     <description>Recent content in Docker on Nagih | Blog</description>
-    <image>
-      <title>Nagih | Blog</title>
-      <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sun, 28 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume và Bind Mount ?</title>
-      <link>https://blog.nagih.io.vn/posts/storage/overlay2-vs-volume--bind-mount/</link>
+      <link>https://blog.nagih.io.vn/posts/overlay2-vs-volume--bind-mount/</link>
       <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/storage/overlay2-vs-volume--bind-mount/</guid>
+      <guid>https://blog.nagih.io.vn/posts/overlay2-vs-volume--bind-mount/</guid>
       <description>&lt;p&gt;Nguyên nhân cốt lõi nằm ở &lt;strong&gt;Cơ chế Copy-on-Write (CoW)&lt;/strong&gt; và &lt;strong&gt;lớp trung gian (Overhead)&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hướng dẫn sửa lỗi Docker Stats không hiển thị mức sử dụng memory</title>
-      <link>https://blog.nagih.io.vn/posts/container/docker/fix-error-docker-stats/</link>
+      <link>https://blog.nagih.io.vn/posts/fix-error-docker-stats/</link>
       <pubDate>Sun, 02 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/container/docker/fix-error-docker-stats/</guid>
+      <guid>https://blog.nagih.io.vn/posts/fix-error-docker-stats/</guid>
       <description>&lt;p&gt;Việc lệnh &lt;code&gt;docker stats&lt;/code&gt; không hiển thị thông tin về bộ nhớ (MEM USAGE / LIMIT) cho các container là một sự cố khá phổ biến. Nguyên nhân chính thường liên quan đến tính năng theo dõi bộ nhớ của &lt;code&gt;cgroups&lt;/code&gt; chưa được kích hoạt.&lt;/p&gt;</description>
     </item>
   </channel>

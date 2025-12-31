@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>NixOS on Nagih | Blog</title>
     <link>https://blog.nagih.io.vn/tags/nixos/</link>
     <description>Recent content in NixOS on Nagih | Blog</description>
-    <image>
-      <title>Nagih | Blog</title>
-      <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Tue, 09 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/nixos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hướng dẫn setup môi trường App Development trên nixos best practice</title>
-      <link>https://blog.nagih.io.vn/posts/virtual/app-development/</link>
+      <link>https://blog.nagih.io.vn/posts/app-development/</link>
       <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/virtual/app-development/</guid>
+      <guid>https://blog.nagih.io.vn/posts/app-development/</guid>
       <description>&lt;p&gt;Sử dụng triết lý của Nix ứng dụng trong việc triển khai môi trường lập trình ứng dụng sao cho tối ưu và tốt nhất.&lt;/p&gt;</description>
     </item>
   </channel>

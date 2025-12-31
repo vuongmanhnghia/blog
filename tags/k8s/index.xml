@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>K8s on Nagih | Blog</title>
+    <link>https://blog.nagih.io.vn/tags/k8s/</link>
+    <description>Recent content in K8s on Nagih | Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 31 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.nagih.io.vn/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hướng dẫn setup K8S Cluster</title>
+      <link>https://blog.nagih.io.vn/posts/setup-k8s-cluster/</link>
+      <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nagih.io.vn/posts/setup-k8s-cluster/</guid>
+      <description>&lt;p&gt;Hướng dẫn chi tiết sử dụng &lt;strong&gt;&lt;code&gt;kubeadm&lt;/code&gt;&lt;/strong&gt; để dựng một cluster trên &lt;strong&gt;Ubuntu (20.04 hoặc 22.04)&lt;/strong&gt;. Sử dụng &lt;strong&gt;Containerd&lt;/strong&gt; làm Container Runtime (thay thế cho Docker đã cũ).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

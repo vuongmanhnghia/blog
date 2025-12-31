@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nginx on Nagih | Blog</title>
     <link>https://blog.nagih.io.vn/tags/nginx/</link>
     <description>Recent content in Nginx on Nagih | Blog</description>
-    <image>
-      <title>Nagih | Blog</title>
-      <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 21 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hướng dẫn cấu hình Nginx làm Reverse Proxy kết hợp Certbot thông qua Docker</title>
-      <link>https://blog.nagih.io.vn/posts/proxy/nginx/how-to-config-nginx-use-docker/</link>
+      <link>https://blog.nagih.io.vn/posts/how-to-config-nginx-use-docker/</link>
       <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/proxy/nginx/how-to-config-nginx-use-docker/</guid>
+      <guid>https://blog.nagih.io.vn/posts/how-to-config-nginx-use-docker/</guid>
       <description>&lt;p&gt;Hướng dẫn xây dựng mô hình &lt;strong&gt;Nginx làm Reverse Proxy&lt;/strong&gt; kết hợp với &lt;strong&gt;Certbot&lt;/strong&gt; theo mô hình &lt;strong&gt;Sidecar&lt;/strong&gt; (hoặc chạy định kỳ) để quản lý SSL.&lt;/p&gt;</description>
     </item>
   </channel>

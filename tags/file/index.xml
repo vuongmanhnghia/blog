@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>File on Nagih | Blog</title>
     <link>https://blog.nagih.io.vn/tags/file/</link>
     <description>Recent content in File on Nagih | Blog</description>
-    <image>
-      <title>Nagih | Blog</title>
-      <url>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://blog.nagih.io.vn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nagih.io.vn/tags/file/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Inode trong Linux File System</title>
-      <link>https://blog.nagih.io.vn/posts/linux/inode/</link>
+      <link>https://blog.nagih.io.vn/posts/inode/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/linux/inode/</guid>
+      <guid>https://blog.nagih.io.vn/posts/inode/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Inode&lt;/strong&gt; (viết tắt của &lt;strong&gt;Index Node&lt;/strong&gt;) là một khái niệm cốt lõi và cực kỳ quan trọng trong các hệ thống tập tin (filesystem) của Linux và Unix.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux File System</title>
-      <link>https://blog.nagih.io.vn/posts/linux/file-system/</link>
+      <link>https://blog.nagih.io.vn/posts/file-system/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://blog.nagih.io.vn/posts/linux/file-system/</guid>
+      <guid>https://blog.nagih.io.vn/posts/file-system/</guid>
       <description></description>
     </item>
   </channel>
