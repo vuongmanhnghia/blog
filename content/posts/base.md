@@ -7,4 +7,3 @@ categories:
 tags:
 draft: true
 ---
-[...]

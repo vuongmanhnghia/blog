@@ -1,5 +1,6 @@
 ---
 title: Hướng dẫn thiết lập khóa SSH cho github
+description: Hướng dẫn chi tiết từng bước để tạo và cấu hình khóa SSH cho tài khoản GitHub
 date: 2025-09-10
 image: /thumb/setup-ssh.png
 categories:
@@ -10,11 +11,6 @@ tags:
   - git
 draft: false
 ---
-
-Hướng dẫn chi tiết từng bước để tạo và cấu hình khóa SSH cho tài khoản GitHub
-
-<!--more-->
-
 ---
 ## Bước 1: Tạo Cặp Khóa SSH với `ssh-keygen`
 
