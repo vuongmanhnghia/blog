@@ -296,20 +296,9 @@
 &lt;hr&gt;
 &lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/inode.md/&#34;&gt;Inode trong Linux File System&lt;/a&gt;
-&lt;/p&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/inode/&#34;&gt;Inode&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/linux/system-calls/&#34;&gt;Điều gì sẽ xảy ra sau khi Command được gửi đi trên Linux&lt;/a&gt;
-&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/sudo.md/&#34;&gt;Điều gì sẽ xảy ra sau khi sử dụng Sudo&lt;/a&gt;
-&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;</description>
+&lt;/ul&gt;</description>
         </item>
         
     </channel>

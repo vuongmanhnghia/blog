@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Điều gì sẽ xảy ra khi gõ bất kỳ command nào trong terminal trên Linux ?</title>
-        <link>https://nagih.nooblearn2code.com/posts/system-calls/</link>
+        <link>https://nagih.nooblearn2code.com/posts/system-call/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/posts/system-calls/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/system-call/</guid>
         <description>&lt;p&gt;Để trả lời câu này sâu sắc, chúng ta không chỉ nhìn ở bề nổi (gõ lệnh -&amp;gt; ra kết quả), mà phải nhìn xuống tầng &lt;strong&gt;Kernel&lt;/strong&gt; và &lt;strong&gt;System Calls&lt;/strong&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;1-phân-tích-cú-pháp-parsing--tokenization&#34;&gt;1. Phân tích cú pháp (Parsing) &amp;amp; Tokenization
@@ -165,8 +165,7 @@
         <guid>https://nagih.nooblearn2code.com/posts/sudo/</guid>
         <description>&lt;p&gt;Khi bạn gõ &lt;code&gt;sudo apt update&lt;/code&gt;, không đơn giản là hệ thống &amp;ldquo;bật công tắc&amp;rdquo; quyền admin. Đó là một chuỗi các thao tác kiểm tra nghiêm ngặt, thay đổi định danh (Identity) và làm sạch môi trường.&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;Trước khi tìm hiểu về &lt;strong&gt;Sudo&lt;/strong&gt;, bạn nên hiểu về Điều gì sảy ra sau khi sử dụng Command (non-sudo) tại &lt;a href=&#34;https://nagih.nooblearn2code.com/posts/linux/system-calls/&#34;&gt;System Calls&lt;/a&gt;
-&lt;/p&gt;
+&lt;p&gt;Trước khi tìm hiểu về &lt;strong&gt;Sudo&lt;/strong&gt;, bạn nên hiểu về Điều gì sảy ra sau khi sử dụng Command (non-sudo)&lt;/p&gt;
 &lt;h3 id=&#34;giai-đoạn-1-tại-shell-user-space&#34;&gt;Giai đoạn 1: Tại Shell (User Space)
 &lt;/h3&gt;&lt;p&gt;Ngay khi bạn nhấn Enter, Shell (Bash/Zsh) của bạn bắt đầu làm việc:&lt;/p&gt;
 &lt;ol&gt;
@@ -843,20 +842,9 @@
 &lt;hr&gt;
 &lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/inode.md/&#34;&gt;Inode trong Linux File System&lt;/a&gt;
-&lt;/p&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/inode/&#34;&gt;Inode&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/linux/system-calls/&#34;&gt;Điều gì sẽ xảy ra sau khi Command được gửi đi trên Linux&lt;/a&gt;
-&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/sudo.md/&#34;&gt;Điều gì sẽ xảy ra sau khi sử dụng Sudo&lt;/a&gt;
-&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;</description>
+&lt;/ul&gt;</description>
         </item>
         <item>
         <title>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</title>

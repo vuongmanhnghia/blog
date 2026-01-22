@@ -7,7 +7,15 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Sat, 17 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 22 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Git</title>
+        <link>https://nagih.nooblearn2code.com/tags/git/</link>
+        <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://nagih.nooblearn2code.com/tags/git/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Command</title>
         <link>https://nagih.nooblearn2code.com/tags/command/</link>
         <pubDate>Sat, 17 Jan 2026 00:00:00 +0000</pubDate>
@@ -229,14 +237,6 @@
         <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
         
         <guid>https://nagih.nooblearn2code.com/tags/ip/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Git</title>
-        <link>https://nagih.nooblearn2code.com/tags/git/</link>
-        <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://nagih.nooblearn2code.com/tags/git/</guid>
         <description></description>
         </item>
         <item>
