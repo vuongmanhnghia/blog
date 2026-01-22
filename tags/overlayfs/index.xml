@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Sun, 28 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/overlayfs/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>OverlayFS - overlay2 on Docker</title>
-        <link>https://blog.nagih.io.vn/posts/storage/overlayfs/</link>
+        <link>https://blog.nagih.io.vn/p/overlayfs-overlay2-on-docker/</link>
         <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/posts/storage/overlayfs/</guid>
+        <guid>https://blog.nagih.io.vn/p/overlayfs-overlay2-on-docker/</guid>
         <description>&lt;p&gt;Nếu UnionFS là ý tưởng, thì OverlayFS là bản thực thi xuất sắc nhất hiện nay trên Linux. Nó khắc phục được sự cồng kềnh và chậm chạp của các thế hệ trước (như AUFS hay Device Mapper)&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Tiếp nối câu chuyện về UnionFS, chúng ta sẽ đi sâu vào &lt;strong&gt;OverlayFS&lt;/strong&gt; (cụ thể là driver &lt;code&gt;overlay2&lt;/code&gt; trong Docker).&lt;/p&gt;
@@ -176,10 +176,10 @@
         </item>
         <item>
         <title>Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume và Bind Mount ?</title>
-        <link>https://blog.nagih.io.vn/posts/storage/overlay2-vs-volume--bind-mount/</link>
+        <link>https://blog.nagih.io.vn/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</link>
         <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/posts/storage/overlay2-vs-volume--bind-mount/</guid>
+        <guid>https://blog.nagih.io.vn/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</guid>
         <description>&lt;p&gt;Nguyên nhân cốt lõi nằm ở &lt;strong&gt;Cơ chế Copy-on-Write (CoW)&lt;/strong&gt; và &lt;strong&gt;lớp trung gian (Overhead)&lt;/strong&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Mặc dù &lt;code&gt;overlay2&lt;/code&gt; là driver lưu trữ (storage driver) tốt nhất và được khuyến nghị mặc định cho Docker hiện nay, nhưng về mặt vật lý và logic, nó &lt;strong&gt;không thể nhanh bằng&lt;/strong&gt; Volume hoặc Bind Mount.&lt;/p&gt;

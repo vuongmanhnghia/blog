@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Sat, 04 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/windows/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hướng dẫn tạo USB Boot Windows trên Linux</title>
-        <link>https://blog.nagih.io.vn/posts/system/os/windows/usb-boot-windows-on-linux/</link>
+        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%E1%BA%A1o-usb-boot-windows-tr%C3%AAn-linux/</link>
         <pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/posts/system/os/windows/usb-boot-windows-on-linux/</guid>
+        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%E1%BA%A1o-usb-boot-windows-tr%C3%AAn-linux/</guid>
         <description>&lt;p&gt;Có một số cách để tạo USB boot Windows trên Linux. Đây là phương pháp phổ biến nhất:&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;sử-dụng-woeusb-ng&#34;&gt;Sử dụng WoeUSB-ng
@@ -89,10 +89,10 @@
         </item>
         <item>
         <title>Hướng dẫn tùy biến phân vùng EFI khi cài windows</title>
-        <link>https://blog.nagih.io.vn/posts/system/os/windows/custom-windows-efi/</link>
+        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</link>
         <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/posts/system/os/windows/custom-windows-efi/</guid>
+        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</guid>
         <description>&lt;img src="https://blog.nagih.io.vn/images/image-placeholder.png" alt="Featured image of post Hướng dẫn tùy biến phân vùng EFI khi cài windows" /&gt;&lt;p&gt;Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;em&gt;Sử dụng Command Prompt trong quá trình cài đặt&lt;/em&gt;&lt;/p&gt;

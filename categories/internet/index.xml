@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Tue, 16 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/categories/internet/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>AWS - Networking</title>
-        <link>https://blog.nagih.io.vn/posts/aws/aws---networking/</link>
+        <link>https://blog.nagih.io.vn/p/aws-networking/</link>
         <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/posts/aws/aws---networking/</guid>
+        <guid>https://blog.nagih.io.vn/p/aws-networking/</guid>
         <description>&lt;p&gt;Hệ thống mạng (Networking) &lt;strong&gt;đầy đủ, bảo mật và chuẩn doanh nghiệp (Enterprise-grade)&lt;/strong&gt; trên AWS&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;1-core-infrastructure&#34;&gt;1. Core Infrastructure
@@ -139,10 +139,10 @@
         </item>
         <item>
         <title>Netstat - Công cụ giám sát Networking</title>
-        <link>https://blog.nagih.io.vn/posts/networking/netstat/</link>
+        <link>https://blog.nagih.io.vn/p/netstat-c%C3%B4ng-c%E1%BB%A5-gi%C3%A1m-s%C3%A1t-networking/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/posts/networking/netstat/</guid>
+        <guid>https://blog.nagih.io.vn/p/netstat-c%C3%B4ng-c%E1%BB%A5-gi%C3%A1m-s%C3%A1t-networking/</guid>
         <description>&lt;p&gt;&lt;strong&gt;Netstat&lt;/strong&gt; là công cụ dòng lệnh dùng để hiển thị chi tiết các kết nối mạng (TCP/UDP), bảng định tuyến và các cổng đang lắng nghe, giúp quản trị viên giám sát và xử lý sự cố hệ thống.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;1-tư-duy-cốt-lõi-tại-sao-cần-netstat&#34;&gt;1. Tư duy cốt lõi: Tại sao cần Netstat?
@@ -420,10 +420,10 @@
         </item>
         <item>
         <title>Hướng dẫn thiết lập Network Bridge giữa máy Host và máy ảo</title>
-        <link>https://blog.nagih.io.vn/posts/networking/internet/setup-bridge-network/</link>
+        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-network-bridge-gi%E1%BB%AFa-m%C3%A1y-host-v%C3%A0-m%C3%A1y-%E1%BA%A3o/</link>
         <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/posts/networking/internet/setup-bridge-network/</guid>
+        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-network-bridge-gi%E1%BB%AFa-m%C3%A1y-host-v%C3%A0-m%C3%A1y-%E1%BA%A3o/</guid>
         <description>&lt;p&gt;&lt;strong&gt;bridged network&lt;/strong&gt; là phương pháp chuyên nghiệp và linh hoạt nhất cho máy chủ ảo, vì nó cho phép máy ảo của bạn hoạt động như một thiết bị vật lý thực thụ trên mạng của bạn.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;tổng-quan-workflow&#34;&gt;Tổng quan Workflow
@@ -729,10 +729,10 @@
         </item>
         <item>
         <title>Các vấn đề về Internet và cách khắc phục</title>
-        <link>https://blog.nagih.io.vn/posts/networking/internet/internet-errors/</link>
+        <link>https://blog.nagih.io.vn/p/c%C3%A1c-v%E1%BA%A5n-%C4%91%E1%BB%81-v%E1%BB%81-internet-v%C3%A0-c%C3%A1ch-kh%E1%BA%AFc-ph%E1%BB%A5c/</link>
         <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/posts/networking/internet/internet-errors/</guid>
+        <guid>https://blog.nagih.io.vn/p/c%C3%A1c-v%E1%BA%A5n-%C4%91%E1%BB%81-v%E1%BB%81-internet-v%C3%A0-c%C3%A1ch-kh%E1%BA%AFc-ph%E1%BB%A5c/</guid>
         <description>&lt;p&gt;Các vấn đề về kết nối Internet phổ biến và cách khắc phục chi tiết&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;i-chuẩn-đoán-vấn-đề&#34;&gt;I. CHUẨN ĐOÁN VẤN ĐỀ

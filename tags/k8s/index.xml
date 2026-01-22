@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Wed, 31 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/k8s/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Các trường hợp triển khai K8S Cluster</title>
-        <link>https://blog.nagih.io.vn/posts/k8s/cluster-case/</link>
+        <link>https://blog.nagih.io.vn/p/c%C3%A1c-tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-tri%E1%BB%83n-khai-k8s-cluster/</link>
         <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/posts/k8s/cluster-case/</guid>
+        <guid>https://blog.nagih.io.vn/p/c%C3%A1c-tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-tri%E1%BB%83n-khai-k8s-cluster/</guid>
         <description>&lt;p&gt;Thông thường, trong thực tế triển khai Kubernetes (K8s), các kiến trúc sẽ biến thiên tùy vào nhu cầu về hiệu năng, chi phí và độ tin cậy.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Dưới đây là câu trả lời chi tiết và bảng xếp hạng các trường hợp từ phổ biến nhất đến ít phổ biến hơn (từ dễ đến khó).&lt;/p&gt;
@@ -149,10 +149,10 @@
         </item>
         <item>
         <title>Hướng dẫn setup K8S Cluster</title>
-        <link>https://blog.nagih.io.vn/posts/k8s/setup-k8s-cluster/</link>
+        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/</link>
         <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/posts/k8s/setup-k8s-cluster/</guid>
+        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/</guid>
         <description>&lt;p&gt;Hướng dẫn chi tiết sử dụng &lt;strong&gt;&lt;code&gt;kubeadm&lt;/code&gt;&lt;/strong&gt; để dựng một cluster trên &lt;strong&gt;Ubuntu (20.04 hoặc 22.04)&lt;/strong&gt;. Sử dụng &lt;strong&gt;Containerd&lt;/strong&gt; làm Container Runtime (thay thế cho Docker đã cũ).&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Hướng dẫn chi tiết sử dụng &lt;strong&gt;&lt;code&gt;kubeadm&lt;/code&gt;&lt;/strong&gt; để dựng một cluster trên &lt;strong&gt;Ubuntu (20.04 hoặc 22.04)&lt;/strong&gt;. Sử dụng &lt;strong&gt;Containerd&lt;/strong&gt; làm Container Runtime (thay thế cho Docker đã cũ).&lt;/p&gt;
@@ -536,10 +536,10 @@
         </item>
         <item>
         <title>Hướng dẫn setup K8S Cluster on Premise</title>
-        <link>https://blog.nagih.io.vn/posts/k8s/setup-k8s-cluster-bare-metal/</link>
+        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-premise/</link>
         <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/posts/k8s/setup-k8s-cluster-bare-metal/</guid>
+        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-premise/</guid>
         <description>&lt;p&gt;Đây là một bài toán thực tế rất thú vị (thường gọi là &lt;strong&gt;Bare-metal Kubernetes&lt;/strong&gt;). Khi chuyển từ môi trường ảo hóa (VM) sang 3 thiết bị vật lý thật&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Đây là một bài toán thực tế rất thú vị (thường gọi là &lt;strong&gt;Bare-metal Kubernetes&lt;/strong&gt;). Khi chuyển từ môi trường ảo hóa (VM) sang 3 thiết bị vật lý thật (ví dụ: 3 chiếc Laptop cũ, hoặc 1 PC + 2 Laptop, hoặc Raspberry Pi) kết nối qua Wi-Fi, thách thức lớn nhất không phải là cài đặt K8s, mà là &lt;strong&gt;Mạng (Networking)&lt;/strong&gt;.&lt;/p&gt;

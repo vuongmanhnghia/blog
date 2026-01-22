@@ -1,0 +1,303 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Kỹ thuật backup database định kỳ là một kỹ năng cực kỳ quan trọng đối với bất kỳ ai làm DevOps. Một chiến lược backup tốt sẽ giúp bạn cứu sống cả hệ thống khi có sự cố.\n"><title>Kĩ thuật backup dữ liệu Database định kỳ</title><link rel=canonical href=https://blog.nagih.io.vn/p/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/><link rel=stylesheet href=/scss/style.min.833d6eed45de56f48306bf57268d5b8cdfc8a60e8e7bdc99810464fcd033f7c6.css><meta property='og:title' content="Kĩ thuật backup dữ liệu Database định kỳ"><meta property='og:description' content="Kỹ thuật backup database định kỳ là một kỹ năng cực kỳ quan trọng đối với bất kỳ ai làm DevOps. Một chiến lược backup tốt sẽ giúp bạn cứu sống cả hệ thống khi có sự cố.\n"><meta property='og:url' content='https://blog.nagih.io.vn/p/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/'><meta property='og:site_name' content='Nagih | Blog'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='backup'><meta property='article:published_time' content='2025-10-19T00:00:00+00:00'><meta property='article:modified_time' content='2025-10-19T00:00:00+00:00'><meta name=twitter:title content="Kĩ thuật backup dữ liệu Database định kỳ"><meta name=twitter:description content="Kỹ thuật backup database định kỳ là một kỹ năng cực kỳ quan trọng đối với bất kỳ ai làm DevOps. Một chiến lược backup tốt sẽ giúp bạn cứu sống cả hệ thống khi có sự cố.\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/images/VuongManhNghia_hu_d72cb41bfd209668.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Nagih | Blog</a></h1><h2 class=site-description>Hi there, I'm Vuong Manh Nghia.</h2></div></header><ol class=menu-social><li><a href=https://discord.gg/nagih_isme target=_blank title=Discord rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12a1 1 0 102 0 1 1 0 00-2 0"/><path d="M14 12a1 1 0 102 0 1 1 0 00-2 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-.972 1.923a11.913 11.913.0 00-4.053.0L9 4c-1.5.16-3.043.485-4.5 1.5-2 5.667-2.167 9.833-1.5 11.5.667 1.333 2 3 3.5 3 .5.0 2-2 2-3"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/></svg></a></li><li><a href=https://www.facebook.com/vmn.isme target=_blank title=Facebook rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v4h3v7h4v-7h3l1-4h-4V8a1 1 0 011-1h3V3h-3a5 5 0 00-5 5v2H7"/></svg></a></li><li><a href=https://github.com/vuongmanhnghia target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.linkedin.com/in/vuongmanhnghia target=_blank title=LinkedIn rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4m0 2a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 00-4 0"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>Categories</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#i-các-nguyên-tắc-vàng>I. Các Nguyên Tắc Vàng</a><ol><li><a href=#1-rpo--rto>1. RPO & RTO</a></li><li><a href=#2-backup-types>2. Backup Types</a></li><li><a href=#3-quy-tắc-3-2-1>3. Quy Tắc 3-2-1</a></li><li><a href=#4-bảo-mật-và-mã-hóa>4. Bảo mật và Mã hóa</a></li><li><a href=#5-quan-trọng-nhất-kiểm-tra-restore>5. Quan trọng nhất: KIỂM TRA RESTORE!</a></li></ol></li><li><a href=#ii-kỹ-thuật>II. Kỹ Thuật</a><ol><li><a href=#1-cron-job--shell-script>1. Cron Job & Shell Script</a></li><li><a href=#2-backup-database-trong-docker>2. Backup Database trong Docker</a></li></ol></li><li><a href=#iii-tích-hợp-với-cloud-devops-workflow-hoàn-chỉnh>III. Tích hợp với Cloud (DevOps Workflow hoàn chỉnh)</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/database/>Database</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/>Kĩ thuật backup dữ liệu Database định kỳ</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2025-10-19T00:00:00Z>October 19, 2025</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>7 minute read</time></div></footer></div></header><section class=article-content><p>Kỹ thuật backup database định kỳ là một kỹ năng cực kỳ quan trọng đối với bất kỳ ai làm DevOps. Một chiến lược backup tốt sẽ giúp bạn cứu sống cả hệ thống khi có sự cố.</p><hr><h2 id=i-các-nguyên-tắc-vàng>I. Các Nguyên Tắc Vàng</h2><h3 id=1-rpo--rto>1. RPO & RTO</h3><ul><li><p><strong>RPO (Recovery Point Objective):</strong> Lượng dữ liệu tối đa chấp nhận mất. RTO là 1h có nghĩa là nếu hệ thống sập, bạn có thể khôi phục trạng thái của nó cách đây 1h. Hay có thể được gọi là <strong>Tần suất backup</strong></p></li><li><p><strong>RTO (Recovery Time Objective):</strong> Thời gian tối đa để hệ thống hoạt động trở lại sau sự cố. Quyết định <strong>Tốc độ</strong> và <strong>Mức độ</strong> tự động hóa</p></li></ul><h3 id=2-backup-types>2. Backup Types</h3><ul><li><p><strong>Full Backup:</strong> Sao lưu toàn bộ database. Đơn giản để khôi phục nhưng tốn tài nguyên và thời gian</p></li><li><p><strong>Differential Backup:</strong> Backup những gì thay đổi của lần <strong>Full Backup</strong> cuối cùng</p></li><li><p><strong>Incremential Backup:</strong> Backup những gì thay đổi từ lần backup gần nhất. Tốc độ nhất nhưng cũng phức tạp nhất</p></li></ul><h3 id=3-quy-tắc-3-2-1>3. Quy Tắc 3-2-1</h3><ul><li><p><strong>3 Bản copies:</strong> Luôn có 3 bản backup dữ liệu</p></li><li><p><strong>2 Loại Media:</strong> Lưu trữ trên ít nhất 2 thiết bị lưu trữ khác nhau</p></li><li><p><strong>1 Bản off-site:</strong> Giữ ít nhất 1 bản sao ở địa điểm vật lý khác</p></li></ul><h3 id=4-bảo-mật-và-mã-hóa>4. Bảo mật và Mã hóa</h3><ul><li><p>Luôn mã hóa file backup, cả khi đang truyền đi (in-transit) và khi đã lưu trữ (at-rest).</p></li><li><p>Quản lý chặt chẽ quyền truy cập vào các file backup.</p></li></ul><h3 id=5-quan-trọng-nhất-kiểm-tra-restore>5. Quan trọng nhất: KIỂM TRA RESTORE!</h3><ul><li><p>Một bản backup chưa được kiểm tra khôi phục thành công thì không được coi là một bản backup.</p></li><li><p>Hãy lên lịch kiểm tra restore định kỳ (ví dụ: hàng quý) trên một môi trường staging để đảm bảo các file backup của bạn thực sự hoạt động.</p></li></ul><hr><h2 id=ii-kỹ-thuật>II. Kỹ Thuật</h2><h3 id=1-cron-job--shell-script>1. Cron Job & Shell Script</h3><ul><li><p><strong>Bước 1:</strong> Viết Shell Script backup (<code>backup.sh</code>)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># --- Cấu hình ---</span>
+</span></span><span class=line><span class=cl><span class=c1># Thông tin kết nối Database</span>
+</span></span><span class=line><span class=cl><span class=nv>DB_USER</span><span class=o>=</span><span class=s2>&#34;your_db_user&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>DB_PASSWORD</span><span class=o>=</span><span class=s2>&#34;your_db_password&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>DB_HOST</span><span class=o>=</span><span class=s2>&#34;localhost&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>DB_NAME</span><span class=o>=</span><span class=s2>&#34;your_db_name&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Thư mục lưu trữ backup trên server</span>
+</span></span><span class=line><span class=cl><span class=nv>BACKUP_DIR</span><span class=o>=</span><span class=s2>&#34;/path/to/your/backups&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># --- Logic Backup ---</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Tạo thư mục backup nếu chưa tồn tại</span>
+</span></span><span class=line><span class=cl>mkdir -p <span class=si>${</span><span class=nv>BACKUP_DIR</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Tạo tên file backup với định dạng ngày-tháng-năm</span>
+</span></span><span class=line><span class=cl><span class=nv>DATE</span><span class=o>=</span><span class=k>$(</span>date +%Y-%m-%d_%H-%M-%S<span class=k>)</span>
+</span></span><span class=line><span class=cl><span class=nv>FILE_NAME</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>DB_NAME</span><span class=si>}</span><span class=s2>_</span><span class=si>${</span><span class=nv>DATE</span><span class=si>}</span><span class=s2>.sql.gz&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>BACKUP_FILE</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>BACKUP_DIR</span><span class=si>}</span><span class=s2>/</span><span class=si>${</span><span class=nv>FILE_NAME</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Đặt biến môi trường để pg_dump không hỏi mật khẩu</span>
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>PGPASSWORD</span><span class=o>=</span><span class=si>${</span><span class=nv>DB_PASSWORD</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Thực hiện backup bằng pg_dump, nén bằng gzip và lưu vào file</span>
+</span></span><span class=line><span class=cl><span class=c1># -U: user, -h: host, -d: database name</span>
+</span></span><span class=line><span class=cl><span class=c1># | gzip &gt; : pipe output của pg_dump vào gzip để nén</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;Dang bat dau backup database: </span><span class=si>${</span><span class=nv>DB_NAME</span><span class=si>}</span><span class=s2>...&#34;</span>
+</span></span><span class=line><span class=cl>pg_dump -U <span class=si>${</span><span class=nv>DB_USER</span><span class=si>}</span> -h <span class=si>${</span><span class=nv>DB_HOST</span><span class=si>}</span> -d <span class=si>${</span><span class=nv>DB_NAME</span><span class=si>}</span> <span class=p>|</span> gzip &gt; <span class=si>${</span><span class=nv>BACKUP_FILE</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Xóa biến môi trường PGPASSWORD để bảo mật</span>
+</span></span><span class=line><span class=cl><span class=nb>unset</span> PGPASSWORD
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Kiểm tra xem backup có thành công không</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>[</span> <span class=nv>$?</span> -eq <span class=m>0</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>  <span class=nb>echo</span> <span class=s2>&#34;Backup thanh cong: </span><span class=si>${</span><span class=nv>BACKUP_FILE</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>else</span>
+</span></span><span class=line><span class=cl>  <span class=nb>echo</span> <span class=s2>&#34;Backup that bai!&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nb>exit</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Xóa các file backup cũ hơn 7 ngày</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;Xoa cac file backup cu hon 7 ngay...&#34;</span>
+</span></span><span class=line><span class=cl>find <span class=si>${</span><span class=nv>BACKUP_DIR</span><span class=si>}</span> -type f -name <span class=s2>&#34;*.sql.gz&#34;</span> -mtime +7 -delete
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;Hoan tat.&#34;</span>
+</span></span></code></pre></td></tr></table></div></div></li><li><p><strong>Bước 2:</strong> Cấp quyền thực thi cho script</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod +x backup.sh
+</span></span></code></pre></td></tr></table></div></div></li><li><p><strong>Bước 3:</strong> Lên lịch auto run với Cron</p><p>Mở crontab để chỉnh sửa</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>crontab -e
+</span></span></code></pre></td></tr></table></div></div><p>Thêm dòng sau vào cuối file để chạy script vào lúc 2 giờ sáng mỗi ngày</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Chạy backup vào 2:00 AM hàng ngày </span>
+</span></span><span class=line><span class=cl><span class=m>0</span> <span class=m>2</span> * * * /path/to/your/backup.sh &gt;&gt; /path/to/your/logs/backup.log 2&gt;<span class=p>&amp;</span><span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li><p><strong>0 2 * * * :</strong> Cú pháp cron cho &ldquo;0 phút, 2 giờ, mỗi ngày, mỗi tháng, mỗi ngày trong tuần&rdquo;.</p></li><li><p><strong>&#187; /path/to/your/logs/backup.log 2>&amp;1:</strong> Ghi lại output (cả standard output và error) vào một file log để bạn có thể kiểm tra lại.</p></li></ul></li></ul><h3 id=2-backup-database-trong-docker>2. Backup Database trong Docker</h3><p><strong>Giả sử bạn có một container PostgreSQL đang chạy tên là <code>my_postgres_container</code></strong></p><p><strong>Cách 1:</strong> Dùng docker exec và Cron trên máy Host</p><ul><li><p>Script <code>backup_docker.sh</code> sẽ được sửa lại một chút:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># --- Cấu hình ---</span>
+</span></span><span class=line><span class=cl><span class=nv>CONTAINER_NAME</span><span class=o>=</span><span class=s2>&#34;my_postgres_container&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>DB_USER</span><span class=o>=</span><span class=s2>&#34;your_db_user&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>DB_NAME</span><span class=o>=</span><span class=s2>&#34;your_db_name&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>BACKUP_DIR</span><span class=o>=</span><span class=s2>&#34;/path/on/host/to/backups&#34;</span> <span class=c1># Thư mục trên máy host</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># --- Logic Backup ---</span>
+</span></span><span class=line><span class=cl>mkdir -p <span class=si>${</span><span class=nv>BACKUP_DIR</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>DATE</span><span class=o>=</span><span class=k>$(</span>date +%Y-%m-%d_%H-%M-%S<span class=k>)</span>
+</span></span><span class=line><span class=cl><span class=nv>FILE_NAME</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>DB_NAME</span><span class=si>}</span><span class=s2>_</span><span class=si>${</span><span class=nv>DATE</span><span class=si>}</span><span class=s2>.sql.gz&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>BACKUP_FILE</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>BACKUP_DIR</span><span class=si>}</span><span class=s2>/</span><span class=si>${</span><span class=nv>FILE_NAME</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;Dang bat dau backup database từ container: </span><span class=si>${</span><span class=nv>CONTAINER_NAME</span><span class=si>}</span><span class=s2>...&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Dùng &#39;docker exec&#39; để chạy pg_dump BÊN TRONG container</span>
+</span></span><span class=line><span class=cl><span class=c1># Output sẽ được chuyển ra máy host và nén lại</span>
+</span></span><span class=line><span class=cl>docker <span class=nb>exec</span> <span class=si>${</span><span class=nv>CONTAINER_NAME</span><span class=si>}</span> pg_dump -U <span class=si>${</span><span class=nv>DB_USER</span><span class=si>}</span> -d <span class=si>${</span><span class=nv>DB_NAME</span><span class=si>}</span> <span class=p>|</span> gzip &gt; <span class=si>${</span><span class=nv>BACKUP_FILE</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># ...(Phần kiểm tra và xóa file cũ tương tự như script trước) ...</span>
+</span></span><span class=line><span class=cl><span class=c1># Xóa biến môi trường PGPASSWORD để bảo mật</span>
+</span></span><span class=line><span class=cl><span class=nb>unset</span> PGPASSWORD
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Kiểm tra xem backup có thành công không</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>[</span> <span class=nv>$?</span> -eq <span class=m>0</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>  <span class=nb>echo</span> <span class=s2>&#34;Backup thanh cong: </span><span class=si>${</span><span class=nv>BACKUP_FILE</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>else</span>
+</span></span><span class=line><span class=cl>  <span class=nb>echo</span> <span class=s2>&#34;Backup that bai!&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nb>exit</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Xóa các file backup cũ hơn 7 ngày</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;Xoa cac file backup cu hon 7 ngay...&#34;</span>
+</span></span><span class=line><span class=cl>find <span class=si>${</span><span class=nv>BACKUP_DIR</span><span class=si>}</span> -type f -name <span class=s2>&#34;*.sql.gz&#34;</span> -mtime +7 -delete
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;Hoan tat.&#34;</span>
+</span></span></code></pre></td></tr></table></div></div></li><li><p>Sau đó, bạn cũng dùng cron trên <strong>máy host</strong> để chạy script backup_docker.sh này.</p></li></ul><p><strong>Cách 2:</strong> Dùng một <strong>Sidecar Container</strong></p><ul><li><p>Đây là một pattern nâng cao và rất phổ biến trong <strong>Kubernetes</strong>. Ý tưởng là bạn sẽ chạy một container riêng biệt chỉ để làm nhiệm vụ backup.</p></li><li><p>Trong <code>docker-compose.yml</code> có thể định nghĩa một <strong>service backup</strong>:</p></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>services:
+</span></span><span class=line><span class=cl>	db:
+</span></span><span class=line><span class=cl>		image: postgres:13
+</span></span><span class=line><span class=cl>	    container_name: my_postgres_container
+</span></span><span class=line><span class=cl>	    environment:
+</span></span><span class=line><span class=cl>		    - <span class=nv>POSTGRES_USER</span><span class=o>=</span>your_db_user
+</span></span><span class=line><span class=cl>		    - <span class=nv>POSTGRES_PASSWORD</span><span class=o>=</span>your_db_password
+</span></span><span class=line><span class=cl>		    - <span class=nv>POSTGRES_DB</span><span class=o>=</span>your_db_name
+</span></span><span class=line><span class=cl>	    volumes:
+</span></span><span class=line><span class=cl>		    - postgres_data:/var/lib/postgresql/data
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	  <span class=c1># Service này không chạy liên tục, chỉ chạy khi được gọi</span>
+</span></span><span class=line><span class=cl>	  backup:
+</span></span><span class=line><span class=cl>		image: postgres:13 <span class=c1># Dùng cùng image để có sẵn pg_dump</span>
+</span></span><span class=line><span class=cl>	    depends_on:
+</span></span><span class=line><span class=cl>		    - db
+</span></span><span class=line><span class=cl>	    volumes:
+</span></span><span class=line><span class=cl>		    - ./backups:/backups <span class=c1># Gắn thư mục backups của host vào container</span>
+</span></span><span class=line><span class=cl>	    environment:
+</span></span><span class=line><span class=cl>		    - <span class=nv>PGPASSWORD</span><span class=o>=</span>your_db_password
+</span></span><span class=line><span class=cl>	    <span class=c1># Lệnh sẽ chạy khi container này được khởi động</span>
+</span></span><span class=line><span class=cl>	    command: &gt;
+</span></span><span class=line><span class=cl>	      bash -c <span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>	        pg_dump -h db -U your_db_user -d your_db_name | gzip &gt; /backups/backup_</span><span class=k>$(</span>date +%Y-%m-%d_%H-%M-%S<span class=k>)</span><span class=s2>.sql.gz
+</span></span></span><span class=line><span class=cl><span class=s2>	      &#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>volumes:
+</span></span><span class=line><span class=cl>	  postgres_data:
+</span></span></code></pre></td></tr></table></div></div><ul><li><p>Chạy backup</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>docker-compose run --rm backup
+</span></span></code></pre></td></tr></table></div></div></li><li><p>Bạn có thể kết hợp lệnh này với cron trên máy host để tự động hóa.</p></li></ul><hr><h2 id=iii-tích-hợp-với-cloud-devops-workflow-hoàn-chỉnh>III. Tích hợp với Cloud (DevOps Workflow hoàn chỉnh)</h2><p>Một quy trình DevOps thực thụ sẽ không dừng lại ở việc lưu file backup trên cùng một server.</p><p><strong>Workflow nâng cao:</strong></p><ol><li><p><strong>Tạo file backup:</strong> Sử dụng một trong các kỹ thuật trên để tạo file .sql.gz.</p></li><li><p><strong>Tải lên Cloud Storage:</strong> Dùng các công cụ <strong>command-line</strong> của nhà cung cấp cloud để đẩy file backup lên một nơi an toàn.</p><ul><li><p><strong>AWS S3:</strong> aws s3 cp /path/to/backup.sql.gz s3://your-backup-bucket/</p></li><li><p><strong>Google Cloud Storage:</strong> gsutil cp /path/to/backup.sql.gz gs://your-backup-bucket/</p></li><li><p><strong>Azure Blob Storage:</strong> az storage blob upload &ndash;file /path/to/backup.sql.gz &ndash;container-name your-container &ndash;name backup.sql.gz</p></li></ul></li><li><p><strong>Xóa file backup local:</strong> Sau khi đã tải lên cloud thành công, bạn có thể xóa file trên server để tiết kiệm dung lượng.</p></li><li><p><strong>Thiết lập Lifecycle Rules:</strong> Cấu hình trên Cloud Storage để tự động xóa các bản backup cũ (ví dụ: chuyển sang lớp lưu trữ rẻ hơn sau 30 ngày và xóa hẳn sau 90 ngày).</p></li><li><p><strong>Giám sát và Cảnh báo (Monitoring & Alerting):</strong></p><ul><li>Sử dụng các công cụ như Prometheus, Healthchecks.io, hoặc đơn giản là gửi email/thông báo Slack khi script backup chạy thành công hoặc thất bại.</li></ul></li><li><p><strong>Tự động hóa việc Restore:</strong> Viết script để tự động tải về bản backup mới nhất từ cloud và restore vào một môi trường staging. Chạy script này định kỳ (ví dụ: hàng tuần) để đảm bảo 100% rằng backup của bạn hoạt động.</p></li></ol><p><strong>Ví dụ script tích hợp AWS S3:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># ... (Phần tạo backup như trên) ...</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Kiểm tra backup thành công</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>[</span> <span class=nv>$?</span> -eq <span class=m>0</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>  <span class=nb>echo</span> <span class=s2>&#34;Backup thanh cong: </span><span class=si>${</span><span class=nv>BACKUP_FILE</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  <span class=c1># Tải lên S3</span>
+</span></span><span class=line><span class=cl>  <span class=nb>echo</span> <span class=s2>&#34;Tai file backup len AWS S3...&#34;</span>
+</span></span><span class=line><span class=cl>  aws s3 cp <span class=si>${</span><span class=nv>BACKUP_FILE</span><span class=si>}</span> s3://your-s3-bucket/database/
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=o>[</span> <span class=nv>$?</span> -eq <span class=m>0</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;Tai len S3 thanh cong. Xoa file local.&#34;</span>
+</span></span><span class=line><span class=cl>    rm <span class=si>${</span><span class=nv>BACKUP_FILE</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>else</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;Tai len S3 that bai!&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=k>fi</span>
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=k>else</span>
+</span></span><span class=line><span class=cl>  <span class=nb>echo</span> <span class=s2>&#34;Backup failed!&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=c1># Gửi cảnh báo đến Slack/Email ở đây</span>
+</span></span><span class=line><span class=cl>  <span class=nb>exit</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># ... (Phần xóa backup cũ trên S3 có thể dùng lifecycle rules) ...</span>
+</span></span></code></pre></td></tr></table></div></div><hr></section><footer class=article-footer><section class=article-tags><a href=/tags/backup/>Backup</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-backup-database-postgres-trong-container-v%C3%A0-s%E1%BB%AD-d%E1%BB%A5ng-trong-server-m%E1%BB%9Bi/><div class=article-details><h2 class=article-title>Hướng dẫn backup database postgres trong container và sử dụng trong server mới</h2></div></a></article><article class=has-image><a href=/p/9-mysql-table-design-rules-skills/><div class=article-image><img src=/images/image-placeholder.png loading=lazy data-key data-hash=/images/image-placeholder.png></div><div class=article-details><h2 class=article-title>9 MySQL Table Design Rules & Skills</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2025 -
+2026 Vuong Manh Nghia</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.33.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

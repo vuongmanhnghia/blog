@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/sudo/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Điều gì xảy ra khi bạn sử dụng lệnh Sudo ?</title>
-        <link>https://blog.nagih.io.vn/posts/linux/sudo/</link>
+        <link>https://blog.nagih.io.vn/p/%C4%91i%E1%BB%81u-g%C3%AC-x%E1%BA%A3y-ra-khi-b%E1%BA%A1n-s%E1%BB%AD-d%E1%BB%A5ng-l%E1%BB%87nh-sudo/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/posts/linux/sudo/</guid>
+        <guid>https://blog.nagih.io.vn/p/%C4%91i%E1%BB%81u-g%C3%AC-x%E1%BA%A3y-ra-khi-b%E1%BA%A1n-s%E1%BB%AD-d%E1%BB%A5ng-l%E1%BB%87nh-sudo/</guid>
         <description>&lt;p&gt;Khi bạn gõ &lt;code&gt;sudo apt update&lt;/code&gt;, không đơn giản là hệ thống &amp;ldquo;bật công tắc&amp;rdquo; quyền admin. Đó là một chuỗi các thao tác kiểm tra nghiêm ngặt, thay đổi định danh (Identity) và làm sạch môi trường.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Trước khi tìm hiểu về &lt;strong&gt;Sudo&lt;/strong&gt;, bạn nên hiểu về Điều gì sảy ra sau khi sử dụng Command (non-sudo) tại &lt;a href=&#34;https://blog.nagih.io.vn/posts/linux/system-calls/&#34;&gt;System Calls&lt;/a&gt;
