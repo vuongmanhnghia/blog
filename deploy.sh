@@ -15,7 +15,7 @@ echo "🔗 Converting Obsidian links..."
 python convert_obsidian_links.py
 
 echo "📁 Generating section indexes..."
-bash generate_index.sh
+# bash generate_index.sh
 
 echo ""
 echo "✅ Content prepared successfully!"
