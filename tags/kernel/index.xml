@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Kernel on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/tags/kernel/</link>
+        <description>Recent content in Kernel on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/kernel/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Điều gì sẽ xảy ra khi gõ bất kỳ command nào trong terminal trên Linux ?</title>
+        <link>https://blog.nagih.io.vn/posts/linux/system-calls/</link>
+        <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/linux/system-calls/</guid>
+        <description>&lt;p&gt;Để trả lời câu này sâu sắc, chúng ta không chỉ nhìn ở bề nổi (gõ lệnh -&amp;gt; ra kết quả), mà phải nhìn xuống tầng &lt;strong&gt;Kernel&lt;/strong&gt; và &lt;strong&gt;System Calls&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;1-phân-tích-cú-pháp-parsing--tokenization&#34;&gt;1. Phân tích cú pháp (Parsing) &amp;amp; Tokenization
+&lt;/h3&gt;&lt;p&gt;Khi bạn gõ ví dụ: &lt;code&gt;ls -l /var/log&lt;/code&gt; và nhấn Enter:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Shell (Bash/Zsh)&lt;/strong&gt; sẽ đọc dòng chữ đó.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó cắt chuỗi thành các &lt;strong&gt;Tokens&lt;/strong&gt; (từ đơn):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Command: &lt;code&gt;ls&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Argument: &lt;code&gt;-l&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Argument: &lt;code&gt;/var/log&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-kiểm-tra-alias-và-hàm-aliases--functions&#34;&gt;2. Kiểm tra Alias và Hàm (Aliases &amp;amp; Functions)
+&lt;/h3&gt;&lt;p&gt;Trước khi tìm file để chạy, Shell kiểm tra &lt;strong&gt;Alias&lt;/strong&gt; trước:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Alias:&lt;/strong&gt; Có phải bạn đã đặt &lt;code&gt;alias ls=&#39;ls --color=auto&#39;&lt;/code&gt; không? Nếu có, nó sẽ thay thế &lt;code&gt;ls&lt;/code&gt; bằng lệnh đầy đủ.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Functions:&lt;/strong&gt; Có hàm nào tên là &lt;code&gt;ls&lt;/code&gt; được định nghĩa trong &lt;code&gt;.bashrc&lt;/code&gt; không?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;3-kiểm-tra-shell-built-in-lệnh-nội-tại&#34;&gt;3. Kiểm tra Shell Built-in (Lệnh nội tại)
+&lt;/h3&gt;&lt;p&gt;Shell kiểm tra xem lệnh này có phải là &lt;strong&gt;Built-in&lt;/strong&gt; không.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Built-in:&lt;/strong&gt; Là lệnh nằm ngay trong code của Shell, không cần gọi file bên ngoài (Ví dụ: &lt;code&gt;cd&lt;/code&gt;, &lt;code&gt;echo&lt;/code&gt;, &lt;code&gt;alias&lt;/code&gt;, &lt;code&gt;export&lt;/code&gt;).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Tại sao &lt;code&gt;cd&lt;/code&gt; phải là built-in?&lt;/em&gt; Vì nếu &lt;code&gt;cd&lt;/code&gt; là một chương trình bên ngoài, khi chạy nó sẽ tạo ra một tiến trình con (child process), tiến trình con đổi thư mục rồi tắt đi, tiến trình cha (Shell hiện tại) vẫn ở thư mục cũ. Do đó &lt;code&gt;cd&lt;/code&gt; phải do chính Shell thực hiện.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;External:&lt;/strong&gt; &lt;code&gt;ls&lt;/code&gt; không phải built-in, nên Shell tiếp tục bước sau.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-mở-rộng-expansion&#34;&gt;4. Mở rộng (Expansion)
+&lt;/h3&gt;&lt;p&gt;Shell xử lý các ký tự đặc biệt trước khi chạy lệnh:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Brace expansion:&lt;/strong&gt; &lt;code&gt;echo {a,b}&lt;/code&gt; -&amp;gt; &lt;code&gt;a b&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Variable expansion:&lt;/strong&gt; &lt;code&gt;$HOME&lt;/code&gt; -&amp;gt; &lt;code&gt;/home/user&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Command substitution:&lt;/strong&gt; &lt;code&gt;$(date)&lt;/code&gt; -&amp;gt; &lt;code&gt;Sun Nov 30...&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Globbing (Wildcards):&lt;/strong&gt; &lt;code&gt;*.txt&lt;/code&gt; -&amp;gt; danh sách file đuôi txt.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;5-tìm-kiếm-đường-dẫn-path-resolution&#34;&gt;5. Tìm kiếm đường dẫn (Path Resolution)
+&lt;/h3&gt;&lt;p&gt;Nếu lệnh không chứa đường dẫn tuyệt đối (như &lt;code&gt;/bin/ls&lt;/code&gt;) mà chỉ là &lt;code&gt;ls&lt;/code&gt;, Shell sẽ tìm trong biến môi trường &lt;strong&gt;&lt;code&gt;$PATH&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nó quét lần lượt: &lt;code&gt;/usr/local/bin&lt;/code&gt; -&amp;gt; &lt;code&gt;/usr/bin&lt;/code&gt; -&amp;gt; &lt;code&gt;/bin&lt;/code&gt;&amp;hellip;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Để tối ưu, Shell thường dùng &lt;strong&gt;Hash Table&lt;/strong&gt; (bảng băm) để nhớ vị trí các lệnh đã chạy trước đó (gõ &lt;code&gt;hash&lt;/code&gt; để xem).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;6-cơ-chế-fork---exec---wait-trái-tim-của-linux-process&#34;&gt;6. Cơ chế Fork - Exec - Wait (Trái tim của Linux Process)
+&lt;/h3&gt;&lt;p&gt;Đây là bước quan trọng nhất về mặt hệ thống (System Internals). Khi đã tìm thấy file thực thi &lt;code&gt;/usr/bin/ls&lt;/code&gt;, Shell thực hiện 3 bước thần thánh:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;fork()&lt;/code&gt; (Phân thân):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Shell (Process cha - Parent) gọi system call &lt;code&gt;fork()&lt;/code&gt; để tạo ra một bản sao y hệt của chính nó (Process con - Child).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Lúc này, ta có 2 tiến trình giống hệt nhau đang chạy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;exec()&lt;/code&gt; (Thay thế - Cụ thể là &lt;code&gt;execve&lt;/code&gt;):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Trong Process con, nó gọi system call &lt;code&gt;execve()&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Lệnh này sẽ &lt;strong&gt;xóa sạch&lt;/strong&gt; bộ nhớ của Process con và nạp mã nguồn của chương trình mới (&lt;code&gt;/usr/bin/ls&lt;/code&gt;) vào thay thế.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Process con giờ đây chính thức biến thành chương trình &lt;code&gt;ls&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;wait()&lt;/code&gt; (Chờ đợi):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Process cha (Shell) gọi &lt;code&gt;wait()&lt;/code&gt; và tạm dừng hoạt động (ngủ) để chờ Process con chạy xong.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;7-nạp-thư-viện-động-dynamic-linking&#34;&gt;7. Nạp thư viện động (Dynamic Linking)
+&lt;/h3&gt;&lt;p&gt;Trước khi &lt;code&gt;ls&lt;/code&gt; thực sự chạy code của nó, Kernel thấy file này cần các thư viện &lt;code&gt;.so&lt;/code&gt; (Shared Objects, giống &lt;code&gt;.dll&lt;/code&gt; bên Windows).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Trình liên kết động (&lt;code&gt;ld-linux.so&lt;/code&gt;) sẽ được gọi để load các thư viện cần thiết (như &lt;code&gt;libc.so&lt;/code&gt;, &lt;code&gt;libselinux.so&lt;/code&gt;&amp;hellip;) vào bộ nhớ.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;DevOps Tip:&lt;/em&gt; Dùng lệnh &lt;code&gt;ldd /bin/ls&lt;/code&gt; để xem nó cần thư viện nào.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;8-thực-thi-và-io&#34;&gt;8. Thực thi và I/O
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Chương trình &lt;code&gt;ls&lt;/code&gt; chạy, đọc thư mục, format kết quả.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó ghi kết quả ra &lt;strong&gt;Standard Output (stdout - File Descriptor 1)&lt;/strong&gt;. Mặc định stdout trỏ về màn hình terminal của bạn nên bạn thấy chữ hiện lên.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;9-kết-thúc-termination&#34;&gt;9. Kết thúc (Termination)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Khi &lt;code&gt;ls&lt;/code&gt; chạy xong, nó gọi &lt;code&gt;exit(0)&lt;/code&gt; (0 nghĩa là thành công).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kernel gửi tín hiệu &lt;strong&gt;SIGCHLD&lt;/strong&gt; cho Process cha (Shell) báo rằng &amp;ldquo;Con ông xong việc rồi&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Shell thức dậy từ lệnh &lt;code&gt;wait()&lt;/code&gt;, thu thập &lt;strong&gt;Exit Code&lt;/strong&gt; (mã thoát).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;DevOps Tip:&lt;/em&gt; Mã này được lưu vào biến &lt;code&gt;$?&lt;/code&gt;. Bạn có thể &lt;code&gt;echo $?&lt;/code&gt; để xem. (0 = OK, khác 0 = Lỗi).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;10-prompt-quay-lại&#34;&gt;10. Prompt quay lại
+&lt;/h3&gt;&lt;p&gt;Shell in lại dấu nhắc lệnh (ví dụ: &lt;code&gt;user@host:~$&lt;/code&gt;) và chờ đợi lệnh tiếp theo của bạn.&lt;/p&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

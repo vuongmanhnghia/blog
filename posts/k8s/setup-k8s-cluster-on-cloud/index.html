@@ -1,0 +1,1880 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Hướng dẫn chi tiết dựng một cluster on Cloud. Sử dụng Containerd làm Container Runtime (thay thế cho Docker đã cũ).\n"><title>Hướng dẫn setup K8S Cluster on Cloud</title><link rel=canonical href=https://blog.nagih.io.vn/posts/k8s/setup-k8s-cluster-on-cloud/><link rel=stylesheet href=/scss/style.min.833d6eed45de56f48306bf57268d5b8cdfc8a60e8e7bdc99810464fcd033f7c6.css><meta property='og:title' content="Hướng dẫn setup K8S Cluster on Cloud"><meta property='og:description' content="Hướng dẫn chi tiết dựng một cluster on Cloud. Sử dụng Containerd làm Container Runtime (thay thế cho Docker đã cũ).\n"><meta property='og:url' content='https://blog.nagih.io.vn/posts/k8s/setup-k8s-cluster-on-cloud/'><meta property='og:site_name' content='Nagih | Blog'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='cilium'><meta property='article:published_time' content='2026-01-16T00:00:00+00:00'><meta property='article:modified_time' content='2026-01-16T00:00:00+00:00'><meta name=twitter:title content="Hướng dẫn setup K8S Cluster on Cloud"><meta name=twitter:description content="Hướng dẫn chi tiết dựng một cluster on Cloud. Sử dụng Containerd làm Container Runtime (thay thế cho Docker đã cũ).\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/images/VuongManhNghia_hu_d72cb41bfd209668.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Nagih | Blog</a></h1><h2 class=site-description>Hi there, I'm Vuong Manh Nghia.</h2></div></header><ol class=menu-social><li><a href=https://discord.gg/nagih_isme target=_blank title=Discord rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12a1 1 0 102 0 1 1 0 00-2 0"/><path d="M14 12a1 1 0 102 0 1 1 0 00-2 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-.972 1.923a11.913 11.913.0 00-4.053.0L9 4c-1.5.16-3.043.485-4.5 1.5-2 5.667-2.167 9.833-1.5 11.5.667 1.333 2 3 3.5 3 .5.0 2-2 2-3"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/></svg></a></li><li><a href=https://www.facebook.com/vmn.isme target=_blank title=Facebook rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v4h3v7h4v-7h3l1-4h-4V8a1 1 0 011-1h3V3h-3a5 5 0 00-5 5v2H7"/></svg></a></li><li><a href=https://github.com/vuongmanhnghia target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.linkedin.com/in/vuongmanhnghia target=_blank title=LinkedIn rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4m0 2a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 00-4 0"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>Categories</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#giả-định-ban-đầu>Giả định ban đầu</a></li><li><a href=#phần-1-chuẩn-bị-hệ-thống-trên-tất-cả-3-nodes>PHẦN 1: CHUẨN BỊ HỆ THỐNG (Trên tất cả 3 nodes)</a><ol><li><a href=#bước-11-cập-nhật-hệ-thống>Bước 1.1: Cập nhật hệ thống</a></li><li><a href=#bước-12-set-hostname-và-cập-nhật-etchosts>Bước 1.2: Set hostname và cập nhật /etc/hosts</a></li><li><a href=#bước-13-tắt-swap>Bước 1.3: Tắt Swap</a></li><li><a href=#bước-14-load-kernel-modules-cần-thiết>Bước 1.4: Load kernel modules cần thiết</a></li><li><a href=#bước-15-configure-sysctl-parameters>Bước 1.5: Configure sysctl parameters</a></li><li><a href=#bước-16-disable-ufw-firewall-nếu-có>Bước 1.6: Disable UFW firewall (nếu có)</a></li></ol></li><li><a href=#phần-2-cài-đặt-container-runtime-trên-tất-cả-3-nodes>PHẦN 2: CÀI ĐẶT CONTAINER RUNTIME (Trên tất cả 3 nodes)</a><ol><li><a href=#bước-21-cài-đặt-containerd>Bước 2.1: Cài đặt containerd</a></li><li><a href=#bước-22-configure-containerd>Bước 2.2: Configure containerd</a></li><li><a href=#bước-23-restart-và-enable-containerd>Bước 2.3: Restart và enable containerd</a></li></ol></li><li><a href=#phần-3-cài-đặt-kubernetes-components-trên-tất-cả-3-nodes>PHẦN 3: CÀI ĐẶT KUBERNETES COMPONENTS (Trên tất cả 3 nodes)</a><ol><li><a href=#bước-31-cài-đặt-kubeadm-kubelet-kubectl>Bước 3.1: Cài đặt kubeadm, kubelet, kubectl</a></li><li><a href=#bước-32-enable-kubelet-service>Bước 3.2: Enable kubelet service</a></li></ol></li><li><a href=#phần-4-initialize-kubernetes-master-node-chỉ-trên-master>PHẦN 4: INITIALIZE KUBERNETES MASTER NODE (Chỉ trên Master)</a><ol><li><a href=#bước-41-pre-flight-checks>Bước 4.1: Pre-flight checks</a></li><li><a href=#bước-42-initialize-cluster-với-kubeadm>Bước 4.2: Initialize cluster với kubeadm</a></li><li><a href=#bước-43-setup-kubeconfig>Bước 4.3: Setup kubeconfig</a></li><li><a href=#bước-44-verify-control-plane-pods>Bước 4.4: Verify control plane pods</a></li></ol></li><li><a href=#phần-5-cài-đặt-cilium-cni-chỉ-trên-master>PHẦN 5: CÀI ĐẶT CILIUM CNI (Chỉ trên Master)</a><ol><li><a href=#bước-51-download-và-install-cilium-cli>Bước 5.1: Download và install Cilium CLI</a></li><li><a href=#bước-52-install-cilium-vào-cluster>Bước 5.2: Install Cilium vào cluster</a></li><li><a href=#bước-53-wait-for-cilium-to-be-ready>Bước 5.3: Wait for Cilium to be ready</a></li><li><a href=#bước-54-verify-cilium-installation>Bước 5.4: Verify Cilium installation</a></li><li><a href=#bước-55-verify-node-status>Bước 5.5: Verify node status</a></li><li><a href=#bước-56-verify-coredns-pods>Bước 5.6: Verify CoreDNS pods</a></li></ol></li><li><a href=#phần-6-join-worker-nodes-trên-worker-1-và-worker-2>PHẦN 6: JOIN WORKER NODES (Trên Worker-1 và Worker-2)</a><ol><li><a href=#bước-61-lấy-join-command-từ-master>Bước 6.1: Lấy join command từ Master</a></li><li><a href=#bước-62-join-workers-vào-cluster>Bước 6.2: Join workers vào cluster</a></li><li><a href=#bước-63-verify-join-success-trên-master>Bước 6.3: Verify join success trên Master</a></li><li><a href=#bước-64-verify-cilium-agents-trên-workers>Bước 6.4: Verify Cilium agents trên workers</a></li></ol></li><li><a href=#phần-7-verify-và-test-cluster-không-làm-cũng-được>PHẦN 7: VERIFY VÀ TEST CLUSTER (KHÔNG LÀM CŨNG ĐƯỢC)</a><ol><li><a href=#bước-71-verify-cluster-health>Bước 7.1: Verify cluster health</a></li><li><a href=#bước-72-deploy-test-nginx-application>Bước 7.2: Deploy test nginx application</a></li><li><a href=#bước-73-expose-nginx-service>Bước 7.3: Expose nginx service</a></li><li><a href=#bước-74-test-service-connectivity>Bước 7.4: Test service connectivity</a></li><li><a href=#bước-75-test-pod-to-pod-connectivity>Bước 7.5: Test pod-to-pod connectivity</a></li><li><a href=#bước-76-test-dns-resolution>Bước 7.6: Test DNS resolution</a></li><li><a href=#bước-77-verify-cilium-network-policies-optional>Bước 7.7: Verify Cilium network policies (Optional)</a></li><li><a href=#bước-78-check-cluster-resource-usage>Bước 7.8: Check cluster resource usage</a></li></ol></li><li><a href=#phần-8-cleanup-và-troubleshooting>PHẦN 8: CLEANUP VÀ TROUBLESHOOTING</a><ol><li><a href=#bước-81-cleanup-test-resources>Bước 8.1: Cleanup test resources</a></li><li><a href=#bước-82-common-troubleshooting-commands>Bước 8.2: Common troubleshooting commands</a></li><li><a href=#bước-83-reset-cluster-nếu-cần-start-over>Bước 8.3: Reset cluster (nếu cần start over)</a></li></ol></li><li><a href=#phần-9-post-setup-recommendations>PHẦN 9: POST-SETUP RECOMMENDATIONS</a><ol><li><a href=#bước-91-label-nodes-optional-nhưng-recommended>Bước 9.1: Label nodes (Optional nhưng recommended)</a></li><li><a href=#bước-92-setup-kubectl-autocompletion-quality-of-life>Bước 9.2: Setup kubectl autocompletion (Quality of life)</a></li><li><a href=#bước-93-install-metrics-server-for-resource-monitoring>Bước 9.3: Install metrics-server (For resource monitoring)</a></li><li><a href=#bước-94-setup-helm-package-manager-for-k8s>Bước 9.4: Setup Helm (Package manager for K8s)</a></li><li><a href=#bước-95-backup-cluster-config>Bước 9.5: Backup cluster config</a></li></ol></li><li><a href=#tóm-tắt-workflow>TÓM TẮT WORKFLOW</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/cloud/>Cloud
+</a><a href=/categories/k8s/>K8s</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/k8s/setup-k8s-cluster-on-cloud/>Hướng dẫn setup K8S Cluster on Cloud</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-01-16T00:00:00Z>January 16, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>32 minute read</time></div></footer></div></header><section class=article-content><p>Hướng dẫn chi tiết dựng một cluster <strong>on Cloud</strong>. Sử dụng <strong>Containerd</strong> làm Container Runtime (thay thế cho Docker đã cũ).</p><hr><h2 id=giả-định-ban-đầu>Giả định ban đầu</h2><ul><li><p>3 EC2 instances Ubuntu 22.04 LTS</p></li><li><p>1 Master node: <code>10.0.1.10</code></p></li><li><p>2 Worker nodes: <code>10.0.1.20</code>, <code>10.0.2.20</code></p></li><li><p>Tất cả trong cùng VPC và Subnet</p></li><li><p>Security Group đã cấu hình đúng (all traffic giữa các nodes)</p></li><li><p>SSH access vào tất cả nodes</p></li></ul><hr><h2 id=phần-1-chuẩn-bị-hệ-thống-trên-tất-cả-3-nodes>PHẦN 1: CHUẨN BỊ HỆ THỐNG (Trên tất cả 3 nodes)</h2><h3 id=bước-11-cập-nhật-hệ-thống>Bước 1.1: Cập nhật hệ thống</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get update <span class=o>&amp;&amp;</span> sudo apt-get upgrade -y
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-12-set-hostname-và-cập-nhật-etchosts>Bước 1.2: Set hostname và cập nhật /etc/hosts</h3><p><strong>Master node:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo hostnamectl set-hostname k8s-master
+</span></span></code></pre></td></tr></table></div></div><p><strong>Worker 1:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo hostnamectl set-hostname k8s-worker-1
+</span></span></code></pre></td></tr></table></div></div><p><strong>Worker 2:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo hostnamectl set-hostname k8s-worker-2
+</span></span></code></pre></td></tr></table></div></div><p><strong>Trên tất cả 3 nodes, cập nhật /etc/hosts:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo tee -a /etc/hosts <span class=s>&lt;&lt; EOF
+</span></span></span><span class=line><span class=cl><span class=s>10.0.1.10 k8s-master
+</span></span></span><span class=line><span class=cl><span class=s>10.0.1.20 k8s-worker-1
+</span></span></span><span class=line><span class=cl><span class=s>10.0.2.20 k8s-worker-2
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Verify:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>hostname
+</span></span><span class=line><span class=cl>ping -c <span class=m>2</span> k8s-master
+</span></span><span class=line><span class=cl>ping -c <span class=m>2</span> k8s-worker-1
+</span></span><span class=line><span class=cl>ping -c <span class=m>2</span> k8s-worker-2
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-13-tắt-swap>Bước 1.3: Tắt Swap</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Tắt swap ngay lập tức</span>
+</span></span><span class=line><span class=cl>sudo swapoff -a
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Tắt swap vĩnh viễn (comment dòng swap trong fstab)</span>
+</span></span><span class=line><span class=cl>sudo sed -i <span class=s1>&#39;/ swap / s/^\(.*\)$/#\1/g&#39;</span> /etc/fstab
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify swap đã tắt</span>
+</span></span><span class=line><span class=cl>free -h
+</span></span><span class=line><span class=cl><span class=c1># Dòng Swap phải hiển thị: 0B</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p>Kubernetes yêu cầu swap phải tắt</p></li><li><p><strong>Lý do</strong>:</p><ul><li><p>Swap làm giảm performance của containers</p></li><li><p>K8s scheduler dựa vào memory limits để schedule pods</p></li><li><p>Nếu swap bật, containers có thể dùng swap → OOM killer không hoạt động đúng</p></li><li><p>Pods có thể bị chậm không đoán trước được</p></li></ul></li></ul><h3 id=bước-14-load-kernel-modules-cần-thiết>Bước 1.4: Load kernel modules cần thiết</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Tạo file config để load modules khi boot</span>
+</span></span><span class=line><span class=cl>cat <span class=s>&lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
+</span></span></span><span class=line><span class=cl><span class=s>overlay
+</span></span></span><span class=line><span class=cl><span class=s>br_netfilter
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Load modules ngay lập tức</span>
+</span></span><span class=line><span class=cl>sudo modprobe overlay
+</span></span><span class=line><span class=cl>sudo modprobe br_netfilter
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify modules đã được load</span>
+</span></span><span class=line><span class=cl>lsmod <span class=p>|</span> grep overlay
+</span></span><span class=line><span class=cl>lsmod <span class=p>|</span> grep br_netfilter
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích từng module</strong>:</p><p><strong>1. overlay module - Hỗ trợ OverlayFS filesystem</strong></p><ul><li><p>Container runtime (containerd) sử dụng overlay2 storage driver</p></li><li><p>OverlayFS cho phép layer filesystem của container images</p></li><li><p>Mỗi container image có nhiều layers (base image, app layer, config layer&mldr;)</p></li><li><p>OverlayFS merge các layers này thành một filesystem duy nhất</p></li><li><p>Hiệu quả hơn về storage và performance so với copy toàn bộ filesystem</p></li></ul><p><strong>2. br_netfilter module - Cho phép iptables xem và xử lý traffic đi qua Linux bridge</strong></p><ul><li><p><strong>Tại sao cần</strong>:</p><ul><li><p>K8s sử dụng Linux bridge để connect containers</p></li><li><p>Traffic giữa pods phải đi qua bridge</p></li><li><p>Iptables rules cần inspect traffic này để:</p><ul><li><p>Implement network policies</p></li><li><p>Load balancing (Services)</p></li><li><p>NAT cho traffic ra ngoài cluster</p></li></ul></li><li><p>Nếu không có module này, iptables không thấy traffic qua bridge → network policies không work</p></li></ul></li><li><p><strong>Cụ thể</strong>:</p><ul><li><p>Pod A (10.244.1.5) → Pod B (10.244.2.8)</p></li><li><p>Traffic đi qua cni0 bridge</p></li><li><p><code>br_netfilter</code> cho phép iptables rules apply lên traffic này</p></li><li><p>VD: NetworkPolicy block Pod A → Pod B sẽ không work nếu không có module này</p></li></ul></li></ul><p><strong>Tại sao phải load modules này?</strong></p><ul><li><p>Mặc định Ubuntu không load tự động</p></li><li><p>K8s và CNI (Cilium) cần modules này để hoạt động</p></li><li><p>Load vào <code>/etc/modules-load.d/</code> để tự động load khi reboot</p></li></ul><h3 id=bước-15-configure-sysctl-parameters>Bước 1.5: Configure sysctl parameters</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Tạo file sysctl config cho K8s</span>
+</span></span><span class=line><span class=cl>cat <span class=s>&lt;&lt;EOF | sudo tee /etc/sysctl.d/k8s.conf
+</span></span></span><span class=line><span class=cl><span class=s>net.bridge.bridge-nf-call-iptables  = 1
+</span></span></span><span class=line><span class=cl><span class=s>net.bridge.bridge-nf-call-ip6tables = 1
+</span></span></span><span class=line><span class=cl><span class=s>net.ipv4.ip_forward                 = 1
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Apply sysctl params ngay lập tức</span>
+</span></span><span class=line><span class=cl>sudo sysctl --system
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify các settings</span>
+</span></span><span class=line><span class=cl>sysctl net.bridge.bridge-nf-call-iptables
+</span></span><span class=line><span class=cl>sysctl net.bridge.bridge-nf-call-ip6tables
+</span></span><span class=line><span class=cl>sysctl net.ipv4.ip_forward
+</span></span><span class=line><span class=cl><span class=c1># Tất cả phải = 1</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích từng parameter</strong>:</p><p><strong>1. net.bridge.bridge-nf-call-iptables = 1</strong></p><ul><li><p><strong>Chức năng</strong>: Cho phép iptables xử lý traffic qua bridge</p></li><li><p><strong>Tại sao cần</strong>:</p><ul><li><p>Khi packets đi qua Linux bridge (cni0), chúng cần được iptables filter</p></li><li><p>K8s Services sử dụng iptables rules để load balance</p></li><li><p>NetworkPolicies sử dụng iptables để enforce rules</p></li><li><p>Nếu = 0, traffic qua bridge sẽ bypass iptables → Services không work</p></li></ul></li><li><p><strong>Ví dụ cụ thể</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Client → Service ClusterIP (10.96.0.100:80)
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>iptables DNAT rule: 10.96.0.100:80 → Pod IP (10.244.1.5:8080)
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Traffic qua bridge cni0
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Đến PodNếu net.bridge.bridge-nf-call-iptables = 0 =&gt; Traffic qua bridge không đi qua iptables DNAT =&gt; Service ClusterIP không work
+</span></span></code></pre></td></tr></table></div></div></li></ul><p><strong>2. net.bridge.bridge-nf-call-ip6tables = 1</strong></p><ul><li><p><strong>Chức năng</strong>: Tương tự như trên nhưng cho IPv6</p></li><li><p><strong>Tại sao cần</strong>:</p><ul><li><p>Nếu cluster support dual-stack (IPv4 + IPv6)</p></li><li><p>IPv6 traffic cũng cần đi qua ip6tables rules</p></li><li><p>Best practice là enable cả hai</p></li></ul></li></ul><p><strong>3. net.ipv4.ip_forward = 1</strong></p><ul><li><p><strong>Chức năng</strong>: Enable IP forwarding (routing)</p></li><li><p><strong>Tại sao cần</strong>:</p><ul><li><p>Node phải forward packets giữa các interfaces</p></li><li><p>Packets từ Pod A → Pod B trên node khác phải được forward</p></li><li><p>Nếu = 0, node chỉ nhận packets destined cho chính nó</p></li></ul></li><li><p><strong>Ví dụ chi tiết</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Scenario: Pod trên Worker-1 muốn nói chuyện với Pod trên Worker-2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Worker-1:
+</span></span><span class=line><span class=cl>- Pod A (10.244.1.5) gửi packet đến Pod B (10.244.2.8)
+</span></span><span class=line><span class=cl>- Packet từ Pod A → cni0 bridge → eth0 → ra ngoài node
+</span></span><span class=line><span class=cl>- Nếu ip_forward = 0 =&gt; Kernel DROP packet vì destination không phải Worker-1
+</span></span><span class=line><span class=cl>- Nếu ip_forward = 1 =&gt; Kernel forward packet qua eth0 ra ngoài
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Worker-2:
+</span></span><span class=line><span class=cl>- Packet đến eth0 → cni0 bridge → Pod B
+</span></span><span class=line><span class=cl>- Cũng cần ip_forward = 1 để accept và forward packet
+</span></span></code></pre></td></tr></table></div></div></li></ul><p><strong>Tóm lại tại sao cần 3 settings này</strong>:</p><ul><li><p><strong>bridge-nf-call-iptables</strong>: Để Services và NetworkPolicies hoạt động</p></li><li><p><strong>ip_forward</strong>: Để pods trên các nodes khác nhau có thể communicate</p></li><li><p>Nếu thiếu bất kỳ setting nào → cluster networking sẽ broken</p></li></ul><h3 id=bước-16-disable-ufw-firewall-nếu-có>Bước 1.6: Disable UFW firewall (nếu có)</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Check UFW status</span>
+</span></span><span class=line><span class=cl>sudo ufw status
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Nếu active, disable nó</span>
+</span></span><span class=line><span class=cl>sudo ufw disable
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify</span>
+</span></span><span class=line><span class=cl>sudo ufw status
+</span></span><span class=line><span class=cl><span class=c1># Output: Status: inactive</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p>UFW (Uncomplicated Firewall) là frontend cho iptables trên Ubuntu</p></li><li><p>K8s và Cilium quản lý iptables rules riêng</p></li><li><p>UFW có thể conflict với K8s networking rules</p></li><li><p><strong>Tại sao disable</strong>:</p><ul><li><p>K8s tạo hàng trăm iptables rules động</p></li><li><p>UFW có thể block những rules này</p></li><li><p>Security Group của AWS đã handle security ở network level</p></li></ul></li><li><p><strong>Production</strong>: Nên rely vào Security Group + K8s NetworkPolicies thay vì UFW</p></li></ul><hr><h2 id=phần-2-cài-đặt-container-runtime-trên-tất-cả-3-nodes>PHẦN 2: CÀI ĐẶT CONTAINER RUNTIME (Trên tất cả 3 nodes)</h2><h3 id=bước-21-cài-đặt-containerd>Bước 2.1: Cài đặt containerd</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Add Docker&#39;s official GPG key</span>
+</span></span><span class=line><span class=cl>sudo apt-get install -y ca-certificates curl gnupg lsb-release
+</span></span><span class=line><span class=cl>sudo mkdir -p /etc/apt/keyrings
+</span></span><span class=line><span class=cl>curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class=p>|</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Add Docker repository</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  <span class=s2>&#34;deb [arch=</span><span class=k>$(</span>dpkg --print-architecture<span class=k>)</span><span class=s2> signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+</span></span></span><span class=line><span class=cl><span class=s2>  </span><span class=k>$(</span>lsb_release -cs<span class=k>)</span><span class=s2> stable&#34;</span> <span class=p>|</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Update apt và install containerd</span>
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install -y containerd.io
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p><strong>containerd</strong>: Container runtime cho K8s (thay thế Docker)</p></li><li><p><strong>Tại sao dùng containerd</strong>:</p><ul><li><p>K8s đã deprecate Docker runtime (dockershim removed từ v1.24)</p></li><li><p>containerd là industry standard (CNCF project)</p></li><li><p>Nhẹ hơn Docker (không có Docker daemon overhead)</p></li><li><p>Native support cho K8s CRI (Container Runtime Interface)</p></li></ul></li><li><p><strong>Docker repository</strong>: containerd được distribute qua Docker repos</p></li><li><p><strong>GPG key</strong>: Verify package authenticity để tránh install malicious packages</p></li></ul><p><strong>Architecture so sánh</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Docker (cũ):
+</span></span><span class=line><span class=cl>kubelet → dockershim → Docker Engine → containerd → runc → container
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Containerd (mới):
+</span></span><span class=line><span class=cl>kubelet → CRI Plugin → containerd → runc → container
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>→ Giảm 2 layers, hiệu quả hơn
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-22-configure-containerd>Bước 2.2: Configure containerd</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Generate default config</span>
+</span></span><span class=line><span class=cl>sudo mkdir -p /etc/containerd
+</span></span><span class=line><span class=cl>containerd config default <span class=p>|</span> sudo tee /etc/containerd/config.toml
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p><code>config default</code>: Generate default configuration</p></li><li><p>File config ở <code>/etc/containerd/config.toml</code> định nghĩa:</p><ul><li><p>Plugins enabled</p></li><li><p>Storage locations</p></li><li><p>Registry mirrors</p></li><li><p>Runtime options</p></li><li><p>Networking config</p></li></ul></li></ul><p><strong>Critical: Enable SystemdCgroup</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Enable SystemdCgroup trong config</span>
+</span></span><span class=line><span class=cl>sudo sed -i <span class=s1>&#39;s/SystemdCgroup = false/SystemdCgroup = true/&#39;</span> /etc/containerd/config.toml
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích SystemdCgroup</strong>:</p><ul><li><p><strong>Cgroup (Control Group)</strong>: Linux kernel feature để limit resources (CPU, memory, I/O)</p></li><li><p><strong>Hai loại cgroup drivers</strong>:</p><ol><li><p><strong>cgroupfs</strong>: Traditional cgroup management</p></li><li><p><strong>systemd</strong>: Systemd quản lý cgroups</p></li></ol></li><li><p><strong>Tại sao phải dùng systemd cgroup driver</strong>:</p><ul><li><p>K8s kubelet mặc định dùng systemd cgroup driver</p></li><li><p>Containerd phải dùng cùng driver với kubelet</p></li><li><p>Nếu mismatch (kubelet dùng systemd, containerd dùng cgroupfs):</p><ul><li><p>Hai systems quản lý cgroups riêng biệt</p></li><li><p>Resource accounting không chính xác</p></li><li><p>OOM killer có thể kill sai process</p></li><li><p>Pods có thể restart không rõ lý do</p></li></ul></li></ul></li></ul><p><strong>Ví dụ vấn đề khi mismatch</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Scenario: Pod request 100Mi memory
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Kubelet (systemd cgroup):
+</span></span><span class=line><span class=cl>- Tạo cgroup: /sys/fs/cgroup/memory/kubepods/pod123/
+</span></span><span class=line><span class=cl>- Set limit: 100Mi
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Containerd (cgroupfs):
+</span></span><span class=line><span class=cl>- Tạo cgroup khác: /sys/fs/cgroup/memory/default/pod123/
+</span></span><span class=line><span class=cl>- Không thấy limit của kubelet
+</span></span><span class=line><span class=cl>- Container có thể dùng &gt; 100Mi
+</span></span><span class=line><span class=cl>- Kubelet nghĩ pod đang OOM nhưng thực ra không
+</span></span></code></pre></td></tr></table></div></div><p><strong>Verify config</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>grep SystemdCgroup /etc/containerd/config.toml
+</span></span><span class=line><span class=cl><span class=c1># Output phải là: SystemdCgroup = true</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-23-restart-và-enable-containerd>Bước 2.3: Restart và enable containerd</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo systemctl restart containerd
+</span></span><span class=line><span class=cl>sudo systemctl <span class=nb>enable</span> containerd
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo systemctl status containerd
+</span></span><span class=line><span class=cl><span class=c1># Phải thấy: active (running)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify containerd hoạt động</span>
+</span></span><span class=line><span class=cl>sudo ctr version
+</span></span></code></pre></td></tr></table></div></div><p><strong>Troubleshooting nếu containerd failed</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Xem logs</span>
+</span></span><span class=line><span class=cl>sudo journalctl -u containerd -n <span class=m>50</span> --no-pager
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check config syntax</span>
+</span></span><span class=line><span class=cl>containerd config dump
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Common issues:</span>
+</span></span><span class=line><span class=cl><span class=c1># - Syntax error trong config.toml</span>
+</span></span><span class=line><span class=cl><span class=c1># - Conflicting cgroup settings</span>
+</span></span><span class=line><span class=cl><span class=c1># - Missing kernel modules</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=phần-3-cài-đặt-kubernetes-components-trên-tất-cả-3-nodes>PHẦN 3: CÀI ĐẶT KUBERNETES COMPONENTS (Trên tất cả 3 nodes)</h2><h3 id=bước-31-cài-đặt-kubeadm-kubelet-kubectl>Bước 3.1: Cài đặt kubeadm, kubelet, kubectl</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Add Kubernetes GPG key</span>
+</span></span><span class=line><span class=cl>sudo mkdir -p /etc/apt/keyrings
+</span></span><span class=line><span class=cl>curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key <span class=p>|</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Add Kubernetes repository</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s1>&#39;deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /&#39;</span> <span class=p>|</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  sudo tee /etc/apt/sources.list.d/kubernetes.list
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Update apt và install packages</span>
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install -y kubelet kubeadm kubectl
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Hold packages để prevent auto-upgrade</span>
+</span></span><span class=line><span class=cl>sudo apt-mark hold kubelet kubeadm kubectl
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify installation</span>
+</span></span><span class=line><span class=cl>kubelet --version
+</span></span><span class=line><span class=cl>kubeadm version
+</span></span><span class=line><span class=cl>kubectl version --client
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-32-enable-kubelet-service>Bước 3.2: Enable kubelet service</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Enable kubelet để auto-start</span>
+</span></span><span class=line><span class=cl>sudo systemctl <span class=nb>enable</span> kubelet
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check status (sẽ fail lúc này là bình thường)</span>
+</span></span><span class=line><span class=cl>sudo systemctl status kubelet
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p>Kubelet sẽ fail/crashloop lúc này vì chưa có cluster</p></li><li><p><strong>Tại sao fail</strong>: Kubelet cần config từ kubeadm init</p></li><li><p>After kubeadm init: kubelet sẽ tự start và work</p></li><li><p>Enable ngay để nó auto-start sau khi init</p></li></ul><hr><h2 id=phần-4-initialize-kubernetes-master-node-chỉ-trên-master>PHẦN 4: INITIALIZE KUBERNETES MASTER NODE (Chỉ trên Master)</h2><h3 id=bước-41-pre-flight-checks>Bước 4.1: Pre-flight checks</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Verify tất cả prerequisites</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;=== Checking Prerequisites ===&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 1. Check swap is disabled</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;Swap status:&#34;</span>
+</span></span><span class=line><span class=cl>free -h <span class=p>|</span> grep Swap
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 2. Check required ports are available</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> -e <span class=s2>&#34;\nChecking required ports:&#34;</span>
+</span></span><span class=line><span class=cl>sudo netstat -tlnp <span class=p>|</span> grep -E <span class=s1>&#39;6443|2379|2380|10250|10251|10252&#39;</span>
+</span></span><span class=line><span class=cl><span class=c1># Không nên thấy output gì (ports phải available)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 3. Check containerd is running</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> -e <span class=s2>&#34;\nContainerd status:&#34;</span>
+</span></span><span class=line><span class=cl>sudo systemctl is-active containerd
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 4. Check kernel modules</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> -e <span class=s2>&#34;\nKernel modules:&#34;</span>
+</span></span><span class=line><span class=cl>lsmod <span class=p>|</span> grep -E <span class=s1>&#39;overlay|br_netfilter&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 5. Check sysctl settings</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> -e <span class=s2>&#34;\nSysctl settings:&#34;</span>
+</span></span><span class=line><span class=cl>sysctl net.bridge.bridge-nf-call-iptables net.ipv4.ip_forward
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 6. Check hostname resolution</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> -e <span class=s2>&#34;\nHostname resolution:&#34;</span>
+</span></span><span class=line><span class=cl>ping -c <span class=m>1</span> k8s-master
+</span></span><span class=line><span class=cl>ping -c <span class=m>1</span> k8s-worker-1
+</span></span><span class=line><span class=cl>ping -c <span class=m>1</span> k8s-worker-2
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>: Pre-flight checks đảm bảo môi trường ready cho kubeadm init</p><h3 id=bước-42-initialize-cluster-với-kubeadm>Bước 4.2: Initialize cluster với kubeadm</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo kubeadm init <span class=se>\
+</span></span></span><span class=line><span class=cl>  --pod-network-cidr<span class=o>=</span>10.244.0.0/16 <span class=se>\
+</span></span></span><span class=line><span class=cl>  --apiserver-advertise-address<span class=o>=</span>10.0.1.10 <span class=se>\
+</span></span></span><span class=line><span class=cl>  --skip-phases<span class=o>=</span>addon/kube-proxy <span class=se>\
+</span></span></span><span class=line><span class=cl>  --v<span class=o>=</span><span class=m>5</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích chi tiết từng parameter</strong>:</p><p><strong>1. &ndash;pod-network-cidr=10.244.0.0/16</strong></p><ul><li><p><strong>Chức năng</strong>: Define IP range cho pod network</p></li><li><p><strong>Tại sao cần</strong>:</p><ul><li><p>Mỗi pod cần một unique IP address</p></li><li><p>CIDR này chia subnet cho từng node</p></li><li><p>CNI plugin (Cilium) sẽ allocate IPs từ range này</p></li></ul></li><li><p><strong>Cách hoạt động</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Cluster CIDR: 10.244.0.0/16 (65,536 IPs)
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Node 1: 10.244.0.0/24 (256 IPs cho pods trên node này)
+</span></span><span class=line><span class=cl>Node 2: 10.244.1.0/24 (256 IPs cho pods trên node này)
+</span></span><span class=line><span class=cl>Node 3: 10.244.2.0/24 (256 IPs cho pods trên node này)...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Pod trên Node 1: 10.244.0.5
+</span></span><span class=line><span class=cl>Pod trên Node 2: 10.244.1.8
+</span></span></code></pre></td></tr></table></div></div></li><li><p><strong>Quan trọng</strong>: CIDR này KHÔNG được overlap với:</p><ul><li><p>VPC CIDR (10.0.0.0/16)</p></li><li><p>Service CIDR (default: 10.96.0.0/12)</p></li><li><p>Các networks khác</p></li></ul></li><li><p><strong>Tại sao dùng 10.244.0.0/16</strong>:</p><ul><li><p>Convention phổ biến</p></li><li><p>/16 cho phép 256 subnets (/24), mỗi subnet 256 IPs</p></li><li><p>Đủ lớn cho hầu hết clusters</p></li></ul></li></ul><p><strong>2. &ndash;apiserver-advertise-address=10.0.1.10</strong></p><ul><li><p><strong>Chức năng</strong>: IP address mà API server listen và advertise</p></li><li><p><strong>Tại sao cần specify</strong>:</p><ul><li><p>Master node có thể có nhiều IPs (public IP, private IP)</p></li><li><p>Phải chỉ rõ IP nào dùng cho cluster communication</p></li><li><p>Worker nodes sẽ dùng IP này để connect đến API server</p></li></ul></li><li><p><strong>Phải dùng private IP</strong>:</p><ul><li><p>Cluster communication nên qua private network</p></li><li><p>Faster và không bị charge bandwidth</p></li><li><p>Secure hơn (không expose API server qua internet)</p></li></ul></li><li><p><strong>Ví dụ</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Master node có:
+</span></span><span class=line><span class=cl>- Public IP: 54.123.45.67
+</span></span><span class=line><span class=cl>- Private IP: 10.0.1.10
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Nếu không specify:
+</span></span><span class=line><span class=cl>→ kubeadm có thể pick public IP→ Workers phải connect qua internet→ Slow và expensive
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Với --apiserver-advertise-address=10.0.1.10:
+</span></span><span class=line><span class=cl>→ Workers connect qua private IP→ Fast và free
+</span></span></code></pre></td></tr></table></div></div></li></ul><p><strong>3. &ndash;skip-phases=addon/kube-proxy</strong></p><ul><li><p><strong>Chức năng</strong>: Skip cài đặt kube-proxy</p></li><li><p><strong>Tại sao skip</strong>:</p><ul><li><p>Cilium sẽ thay thế kube-proxy</p></li><li><p>Cilium implement Service load balancing bằng eBPF</p></li><li><p>Hiệu quả hơn kube-proxy (dùng iptables)</p></li></ul></li><li><p><strong>kube-proxy làm gì</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Traditional (kube-proxy):
+</span></span><span class=line><span class=cl>Client → Service ClusterIP (10.96.0.100:80)
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>kube-proxy tạo iptables rules:
+</span></span><span class=line><span class=cl>DNAT 10.96.0.100:80 
+</span></span><span class=line><span class=cl>→ Pod1 (10.244.1.5:8080) 33%
+</span></span><span class=line><span class=cl>→ Pod2 (10.244.2.8:8080) 33%
+</span></span><span class=line><span class=cl>→ Pod3 (10.244.1.9:8080) 34%
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Traffic đến Pod
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Với Cilium (eBPF):
+</span></span><span class=line><span class=cl>Client → Service ClusterIP
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>eBPF program trong kernel:
+</span></span><span class=line><span class=cl>- Lookup service endpoints
+</span></span><span class=line><span class=cl>- Load balance
+</span></span><span class=line><span class=cl>- Direct forward đến Pod
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Nhanh hơn vì không qua iptables
+</span></span></code></pre></td></tr></table></div></div></li><li><p><strong>Performance difference</strong>:</p><ul><li><p>iptables: O(n) với n là số rules</p></li><li><p>eBPF: O(1) lookup</p></li><li><p>Với 1000+ services, eBPF nhanh hơn rất nhiều</p></li></ul></li></ul><p><strong>4. &ndash;v=5</strong></p><ul><li><p><strong>Chức năng</strong>: Verbosity level cho logging</p></li><li><p><strong>Levels</strong>:</p><ul><li><p>0: Errors only</p></li><li><p>1: Warnings</p></li><li><p>2: Info</p></li><li><p>5: Debug (chi tiết hơn)</p></li><li><p>10: Trace (rất chi tiết)</p></li></ul></li><li><p><strong>Tại sao dùng v=5</strong>: Để debug nếu init fail</p></li></ul><p><strong>Quá trình kubeadm init</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>Step</span> <span class=mi>1</span><span class=p>:</span> <span class=p>[</span><span class=n>preflight</span><span class=p>]</span> <span class=n>Pre</span><span class=o>-</span><span class=n>flight</span> <span class=n>checks</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Check</span> <span class=n>swap</span> <span class=n>disabled</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Check</span> <span class=n>ports</span> <span class=n>available</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Check</span> <span class=n>containerd</span> <span class=n>running</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Check</span> <span class=n>required</span> <span class=n>images</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Step</span> <span class=mi>2</span><span class=p>:</span> <span class=p>[</span><span class=n>certs</span><span class=p>]</span> <span class=n>Generate</span> <span class=n>certificates</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>kubernetes</span><span class=o>/</span><span class=n>pki</span><span class=o>/</span><span class=n>ca</span><span class=o>.</span><span class=n>crt</span> <span class=p>(</span><span class=n>CA</span> <span class=n>certificate</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>kubernetes</span><span class=o>/</span><span class=n>pki</span><span class=o>/</span><span class=n>apiserver</span><span class=o>.</span><span class=n>crt</span> <span class=p>(</span><span class=n>API</span> <span class=n>server</span> <span class=n>cert</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>kubernetes</span><span class=o>/</span><span class=n>pki</span><span class=o>/</span><span class=n>etcd</span><span class=o>/</span><span class=n>ca</span><span class=o>.</span><span class=n>crt</span> <span class=p>(</span><span class=n>etcd</span> <span class=n>CA</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>...</span> <span class=n>và</span> <span class=n>nhiều</span> <span class=n>certs</span> <span class=n>khác</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Step</span> <span class=mi>3</span><span class=p>:</span> <span class=p>[</span><span class=n>kubeconfig</span><span class=p>]</span> <span class=n>Generate</span> <span class=n>kubeconfig</span> <span class=n>files</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>kubernetes</span><span class=o>/</span><span class=n>admin</span><span class=o>.</span><span class=n>conf</span> <span class=p>(</span><span class=n>admin</span> <span class=n>user</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>kubernetes</span><span class=o>/</span><span class=n>kubelet</span><span class=o>.</span><span class=n>conf</span> <span class=p>(</span><span class=n>kubelet</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>kubernetes</span><span class=o>/</span><span class=n>controller</span><span class=o>-</span><span class=n>manager</span><span class=o>.</span><span class=n>conf</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>kubernetes</span><span class=o>/</span><span class=n>scheduler</span><span class=o>.</span><span class=n>conf</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Step</span> <span class=mi>4</span><span class=p>:</span> <span class=p>[</span><span class=n>control</span><span class=o>-</span><span class=n>plane</span><span class=p>]</span> <span class=n>Start</span> <span class=n>control</span> <span class=n>plane</span> <span class=n>components</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Static</span> <span class=n>pods</span><span class=p>:</span> <span class=n>API</span> <span class=n>server</span><span class=p>,</span> <span class=n>Controller</span> <span class=n>Manager</span><span class=p>,</span> <span class=n>Scheduler</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Manifests</span><span class=p>:</span> <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>kubernetes</span><span class=o>/</span><span class=n>manifests</span><span class=o>/</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>kube</span><span class=o>-</span><span class=n>apiserver</span><span class=o>.</span><span class=n>yaml</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>kube</span><span class=o>-</span><span class=n>controller</span><span class=o>-</span><span class=n>manager</span><span class=o>.</span><span class=n>yaml</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>kube</span><span class=o>-</span><span class=n>scheduler</span><span class=o>.</span><span class=n>yaml</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>etcd</span><span class=o>.</span><span class=n>yaml</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Step</span> <span class=mi>5</span><span class=p>:</span> <span class=p>[</span><span class=n>etcd</span><span class=p>]</span> <span class=n>Start</span> <span class=n>etcd</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>etcd</span> <span class=n>là</span> <span class=n>distributed</span> <span class=n>key</span><span class=o>-</span><span class=n>value</span> <span class=n>store</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Store</span> <span class=n>tất</span> <span class=n>cả</span> <span class=n>cluster</span> <span class=n>state</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Step</span> <span class=mi>6</span><span class=p>:</span> <span class=p>[</span><span class=n>upload</span><span class=o>-</span><span class=n>config</span><span class=p>]</span> <span class=n>Upload</span> <span class=n>kubelet</span><span class=o>/</span><span class=n>kubeadm</span> <span class=n>configs</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>ConfigMaps</span> <span class=n>chứa</span> <span class=n>cluster</span> <span class=n>configuration</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Step</span> <span class=mi>7</span><span class=p>:</span> <span class=p>[</span><span class=n>mark</span><span class=o>-</span><span class=n>control</span><span class=o>-</span><span class=n>plane</span><span class=p>]</span> <span class=n>Mark</span> <span class=n>master</span> <span class=n>node</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Taint</span> <span class=n>master</span><span class=p>:</span> <span class=n>node</span><span class=o>-</span><span class=n>role</span><span class=o>.</span><span class=n>kubernetes</span><span class=o>.</span><span class=n>io</span><span class=o>/</span><span class=n>control</span><span class=o>-</span><span class=n>plane</span><span class=p>:</span><span class=n>NoSchedule</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Nghĩa</span> <span class=n>là</span><span class=p>:</span> <span class=n>Không</span> <span class=n>schedule</span> <span class=n>workload</span> <span class=n>pods</span> <span class=n>lên</span> <span class=n>master</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Step</span> <span class=mi>8</span><span class=p>:</span> <span class=p>[</span><span class=n>bootstrap</span><span class=o>-</span><span class=n>token</span><span class=p>]</span> <span class=n>Generate</span> <span class=n>join</span> <span class=n>token</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Token</span> <span class=err>để</span> <span class=n>workers</span> <span class=n>join</span> <span class=n>cluster</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Có</span> <span class=n>thời</span> <span class=n>hạn</span> <span class=mi>24</span><span class=n>h</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Step</span> <span class=mi>9</span><span class=p>:</span> <span class=p>[</span><span class=n>addons</span><span class=p>]</span> <span class=n>Install</span> <span class=n>addons</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>CoreDNS</span> <span class=p>(</span><span class=n>DNS</span> <span class=n>server</span> <span class=n>cho</span> <span class=n>cluster</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Skip</span> <span class=n>kube</span><span class=o>-</span><span class=n>proxy</span> <span class=p>(</span><span class=k>do</span> <span class=o>--</span><span class=n>skip</span><span class=o>-</span><span class=n>phases</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Output quan trọng</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Your Kubernetes control-plane has initialized successfully!
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>To start using your cluster, you need to run:
+</span></span><span class=line><span class=cl>  mkdir -p $HOME/.kube
+</span></span><span class=line><span class=cl>  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+</span></span><span class=line><span class=cl>  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Then you can join any number of worker nodes by running:
+</span></span><span class=line><span class=cl>kubeadm join 10.0.1.10:6443 --token abc123... \
+</span></span><span class=line><span class=cl>    --discovery-token-ca-cert-hash sha256:xyz789...
+</span></span></code></pre></td></tr></table></div></div><p><strong>LƯU Ý QUAN TRỌNG</strong>:</p><ul><li><p><strong>Save join command</strong> vào file text</p></li><li><p>Token expires sau 24h</p></li><li><p>Nếu mất, có thể generate token mới</p></li></ul><h3 id=bước-43-setup-kubeconfig>Bước 4.3: Setup kubeconfig</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir -p <span class=nv>$HOME</span>/.kube
+</span></span><span class=line><span class=cl>sudo cp -i /etc/kubernetes/admin.conf <span class=nv>$HOME</span>/.kube/config
+</span></span><span class=line><span class=cl>sudo chown <span class=k>$(</span>id -u<span class=k>)</span>:<span class=k>$(</span>id -g<span class=k>)</span> <span class=nv>$HOME</span>/.kube/config
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify kubectl hoạt động</span>
+</span></span><span class=line><span class=cl>kubectl get nodes
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích kubeconfig</strong>:</p><ul><li><p><strong>File config</strong>: <code>~/.kube/config</code> chứa:</p><ul><li><p>Cluster information (API server URL, CA cert)</p></li><li><p>User credentials (client cert, client key)</p></li><li><p>Context (cluster + user + namespace)</p></li></ul></li></ul><p><strong>Structure của kubeconfig</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Config</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>clusters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl>- <span class=nt>cluster</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>certificate-authority-data</span><span class=p>:</span><span class=w> </span><span class=l>&lt;base64-encoded-ca-cert&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>server</span><span class=p>:</span><span class=w> </span><span class=l>https://10.0.1.10:6443</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>kubernetes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>contexts</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl>- <span class=nt>context</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>cluster</span><span class=p>:</span><span class=w> </span><span class=l>kubernetes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>user</span><span class=p>:</span><span class=w> </span><span class=l>kubernetes-admin</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>kubernetes-admin@kubernetes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>current-context</span><span class=p>:</span><span class=w> </span><span class=l>kubernetes-admin@kubernetes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>users</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>kubernetes-admin</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>user</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>client-certificate-data</span><span class=p>:</span><span class=w> </span><span class=l>&lt;base64-encoded-client-cert&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>client-key-data</span><span class=p>:</span><span class=w> </span><span class=l>&lt;base64-encoded-client-key&gt;</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p><strong>Tại sao cần kubeconfig</strong>:</p><ul><li><p>kubectl cần authenticate với API server</p></li><li><p>TLS mutual authentication:</p><ul><li><p>Server cert: kubectl verify server</p></li><li><p>Client cert: server verify kubectl</p></li></ul></li><li><p>Without kubeconfig: <code>kubectl get nodes</code> → connection refused</p></li></ul><p><strong>Verify kubectl</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl get nodes
+</span></span><span class=line><span class=cl><span class=c1># Output:</span>
+</span></span><span class=line><span class=cl><span class=c1># NAME         STATUS     ROLES           AGE   VERSION</span>
+</span></span><span class=line><span class=cl><span class=c1># k8s-master   NotReady   control-plane   1m    v1.34.3</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># NotReady là bình thường vì chưa có CNI plugin</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-44-verify-control-plane-pods>Bước 4.4: Verify control plane pods</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Check control plane pods</span>
+</span></span><span class=line><span class=cl>kubectl get pods -n kube-system
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Hoặc xem chi tiết hơn</span>
+</span></span><span class=line><span class=cl>kubectl get pods -n kube-system -o wide
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check static pod manifests</span>
+</span></span><span class=line><span class=cl>ls -la /etc/kubernetes/manifests/
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p>Control plane components chạy như <strong>static pods</strong></p></li><li><p><strong>Static pods</strong>: Managed trực tiếp bởi kubelet, không qua API server</p></li><li><p>Manifests ở <code>/etc/kubernetes/manifests/</code></p></li><li><p>Kubelet watch directory này và ensure pods luôn chạy</p></li></ul><p><strong>Expected output</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>NAME                                 READY   STATUS    RESTARTS
+</span></span><span class=line><span class=cl>coredns-xxx                         0/1     Pending   0
+</span></span><span class=line><span class=cl>etcd-k8s-master                     1/1     Running   0
+</span></span><span class=line><span class=cl>kube-apiserver-k8s-master           1/1     Running   0
+</span></span><span class=line><span class=cl>kube-controller-manager-k8s-master  1/1     Running   0
+</span></span><span class=line><span class=cl>kube-scheduler-k8s-master           1/1     Running   0
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích từng component</strong>:</p><p><strong>1. etcd:</strong></p><ul><li><p>Distributed key-value database</p></li><li><p>Store ALL cluster state:</p><ul><li><p>Pods, Services, ConfigMaps, Secrets</p></li><li><p>Node information</p></li><li><p>Cluster configuration</p></li></ul></li><li><p>High availability: Có thể chạy multiple etcd instances</p></li><li><p>Sử dụng Raft consensus algorithm</p></li></ul><p><strong>2. kube-apiserver:</strong></p><ul><li><p>Frontend của control plane</p></li><li><p>Expose K8s API (REST)</p></li><li><p>All cluster operations go through API server</p></li><li><p>Authenticate, authorize, validate requests</p></li><li><p>Ghi data vào etcd</p></li></ul><p><strong>3. kube-controller-manager:</strong></p><ul><li><p>Chạy các controllers:</p><ul><li><p>Node Controller: Monitor nodes</p></li><li><p>Replication Controller: Ensure đúng số replicas</p></li><li><p>Endpoints Controller: Populate Endpoints objects</p></li><li><p>Service Account Controller: Tạo default ServiceAccounts</p></li><li><p>&mldr; và nhiều controllers khác</p></li></ul></li></ul><p><strong>4. kube-scheduler:</strong></p><ul><li><p>Watch for new pods không có node assigned</p></li><li><p>Select node phù hợp nhất cho pod</p></li><li><p>Factors: Resource requirements, affinity/anti-affinity, taints/tolerations</p></li></ul><p><strong>5. coredns:</strong></p><ul><li><p>DNS server cho cluster</p></li><li><p>Resolve service names thành ClusterIPs</p></li><li><p>Status: Pending (chờ CNI plugin)</p></li></ul><p><strong>Tại sao coredns Pending</strong>:</p><ul><li><p>CoreDNS pods cần network để start</p></li><li><p>Chưa có CNI plugin → không có pod network → Pending</p></li></ul><hr><h2 id=phần-5-cài-đặt-cilium-cni-chỉ-trên-master>PHẦN 5: CÀI ĐẶT CILIUM CNI (Chỉ trên Master)</h2><h3 id=bước-51-download-và-install-cilium-cli>Bước 5.1: Download và install Cilium CLI</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Get latest Cilium CLI version</span>
+</span></span><span class=line><span class=cl><span class=nv>CILIUM_CLI_VERSION</span><span class=o>=</span><span class=k>$(</span>curl -s https://raw.githubusercontent.com/cilium/cilium-cli/main/stable.txt<span class=k>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Set architecture</span>
+</span></span><span class=line><span class=cl><span class=nv>CLI_ARCH</span><span class=o>=</span>amd64
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Download Cilium CLI</span>
+</span></span><span class=line><span class=cl>curl -L --fail --remote-name-all <span class=se>\
+</span></span></span><span class=line><span class=cl>  https://github.com/cilium/cilium-cli/releases/download/<span class=si>${</span><span class=nv>CILIUM_CLI_VERSION</span><span class=si>}</span>/cilium-linux-<span class=si>${</span><span class=nv>CLI_ARCH</span><span class=si>}</span>.tar.gz<span class=o>{</span>,.sha256sum<span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify checksum</span>
+</span></span><span class=line><span class=cl>sha256sum --check cilium-linux-<span class=si>${</span><span class=nv>CLI_ARCH</span><span class=si>}</span>.tar.gz.sha256sum
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Extract và install</span>
+</span></span><span class=line><span class=cl>sudo tar xzvfC cilium-linux-<span class=si>${</span><span class=nv>CLI_ARCH</span><span class=si>}</span>.tar.gz /usr/local/bin
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Cleanup</span>
+</span></span><span class=line><span class=cl>rm cilium-linux-<span class=si>${</span><span class=nv>CLI_ARCH</span><span class=si>}</span>.tar.gz<span class=o>{</span>,.sha256sum<span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify</span>
+</span></span><span class=line><span class=cl>cilium version --client
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p><strong>Cilium CLI</strong>: Tool để install và manage Cilium</p></li><li><p>Install vào <code>/usr/local/bin/</code> để available globally</p></li><li><p>Checksum verification để ensure file integrity</p></li></ul><h3 id=bước-52-install-cilium-vào-cluster>Bước 5.2: Install Cilium vào cluster</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cilium install <span class=se>\
+</span></span></span><span class=line><span class=cl>  --version 1.18.5 <span class=se>\
+</span></span></span><span class=line><span class=cl>  --set ipam.mode<span class=o>=</span>kubernetes <span class=se>\
+</span></span></span><span class=line><span class=cl>  --set <span class=nv>routingMode</span><span class=o>=</span>tunnel <span class=se>\ </span>
+</span></span><span class=line><span class=cl>  --set <span class=nv>tunnelProtocol</span><span class=o>=</span>vxlan <span class=se>\
+</span></span></span><span class=line><span class=cl>  --set <span class=nv>ipv4NativeRoutingCIDR</span><span class=o>=</span>10.0.0.0/16 <span class=se>\
+</span></span></span><span class=line><span class=cl>  --set bpf.masquerade<span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --set <span class=nv>kubeProxyReplacement</span><span class=o>=</span><span class=nb>true</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích chi tiết từng parameter</strong>:</p><p><strong>1. &ndash;version 1.18.5</strong></p><ul><li><p>Specify Cilium version</p></li><li><p>Version stability và features</p></li></ul><p><strong>2. &ndash;set ipam.mode=kubernetes</strong></p><ul><li><p><strong>IPAM (IP Address Management)</strong>: Cách allocate IPs cho pods</p></li><li><p><strong>Modes available</strong>:</p><ul><li><p><code>kubernetes</code>: K8s allocate IPs (default)</p></li><li><p><code>cluster-pool</code>: Cilium manage IP pool</p></li><li><p><code>eni</code>: AWS ENI mode</p></li></ul></li><li><p><strong>Mode kubernetes</strong>:</p><ul><li><p>K8s controller-manager allocate pod CIDR cho mỗi node</p></li><li><p>Cilium chỉ assign IPs trong CIDR đó</p></li><li><p>Đơn giản và work với mọi cloud provider</p></li></ul></li></ul><p><strong>Ví dụ</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Cluster pod-network-cidr: 10.244.0.0/16
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>K8s allocate:
+</span></span><span class=line><span class=cl>Node k8s-master:   10.244.0.0/24
+</span></span><span class=line><span class=cl>Node k8s-worker-1: 10.244.1.0/24
+</span></span><span class=line><span class=cl>Node k8s-worker-2: 10.244.2.0/24
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Cilium trên mỗi node:
+</span></span><span class=line><span class=cl>- Nhận pod CIDR từ K8s
+</span></span><span class=line><span class=cl>- Assign IPs cho pods trên node đó
+</span></span><span class=line><span class=cl>- VD: Pod1 trên worker-1 → 10.244.1.5
+</span></span></code></pre></td></tr></table></div></div><p><strong>3. &ndash;set tunnel=vxlan</strong></p><ul><li><p><strong>Tunnel mode</strong>: Cách pods trên các nodes khác nhau communicate</p></li><li><p><strong>Options</strong>:</p><ul><li><p><code>disabled</code>: Native routing (no encapsulation)</p></li><li><p><code>vxlan</code>: VXLAN overlay (default)</p></li><li><p><code>geneve</code>: Geneve overlay</p></li></ul></li><li><p><strong>VXLAN (Virtual Extensible LAN)</strong>:</p><ul><li><p>Encapsulate pod traffic trong UDP packets</p></li><li><p>Tạo overlay network trên top của existing network</p></li></ul></li></ul><p><strong>Cách hoạt động</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Pod A (10.244.1.5) trên Worker-1 → Pod B (10.244.2.8) trên Worker-2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Without VXLAN (native routing):
+</span></span><span class=line><span class=cl>Pod A → eth0 Worker-1 → AWS VPC routing → eth0 Worker-2 → Pod B
+</span></span><span class=line><span class=cl>Problem: AWS VPC không biết route 10.244.x.x
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>With VXLAN:
+</span></span><span class=line><span class=cl>Pod A → Cilium agent encapsulate trong VXLAN
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Original packet: 
+</span></span><span class=line><span class=cl>  src: 10.244.1.5
+</span></span><span class=line><span class=cl>  dst: 10.244.2.8
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Encapsulated packet:
+</span></span><span class=line><span class=cl>  Outer header:
+</span></span><span class=line><span class=cl>    src: 10.0.1.11 (Worker-1 IP)
+</span></span><span class=line><span class=cl>    dst: 10.0.1.12 (Worker-2 IP)
+</span></span><span class=line><span class=cl>    UDP port: 8472
+</span></span><span class=line><span class=cl>  Inner header:
+</span></span><span class=line><span class=cl>    src: 10.244.1.5
+</span></span><span class=line><span class=cl>    dst: 10.244.2.8
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>AWS VPC route bình thường (knows 10.0.1.x)
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Worker-2 nhận, Cilium decapsulate
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Pod B nhận original packet
+</span></span></code></pre></td></tr></table></div></div><p><strong>Tại sao dùng VXLAN trên AWS</strong>:</p><ul><li><p>AWS VPC không support custom routing cho pod IPs</p></li><li><p>VXLAN &ldquo;hide&rdquo; pod IPs bên trong node IPs</p></li><li><p>Alternative: AWS ENI mode (phức tạp hơn, cần IAM permissions)</p></li></ul><p><strong>4. &ndash;set ipv4NativeRoutingCIDR=10.0.0.0/16</strong></p><ul><li><p><strong>Chức năng</strong>: Define CIDR cho native routing (không encapsulate)</p></li><li><p><strong>Tại sao cần</strong>:</p><ul><li><p>Traffic trong VPC CIDR (10.0.0.0/16) không cần encapsulate</p></li><li><p>Hiệu quả hơn cho pod-to-node communication</p></li><li><p>Node-to-node trong VPC có thể communicate directly</p></li></ul></li></ul><p><strong>Ví dụ</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>VPC CIDR: 10.0.0.0/16
+</span></span><span class=line><span class=cl>Pod CIDR: 10.244.0.0/16
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Traffic từ Pod (10.244.1.5) → Node (10.0.1.12):
+</span></span><span class=line><span class=cl>- Destination trong ipv4NativeRoutingCIDR
+</span></span><span class=line><span class=cl>- Không encapsulate
+</span></span><span class=line><span class=cl>- Direct routing
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Traffic từ Pod (10.244.1.5) → Pod khác (10.244.2.8):
+</span></span><span class=line><span class=cl>- Destination KHÔNG trong ipv4NativeRoutingCIDR
+</span></span><span class=line><span class=cl>- Encapsulate với VXLAN
+</span></span></code></pre></td></tr></table></div></div><p><strong>5. &ndash;set bpf.masquerade=true</strong></p><ul><li><p><strong>Masquerade (NAT)</strong>: Change source IP khi traffic ra ngoài cluster</p></li><li><p><strong>eBPF masquerade</strong>: Implement NAT trong eBPF (fast)</p></li></ul><p><strong>Tại sao cần</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Scenario: Pod muốn access internet
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Pod IP: 10.244.1.5 (private, không routable qua internet)
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Cilium eBPF masquerade:
+</span></span><span class=line><span class=cl>  Change src IP: 10.244.1.5 → 10.0.1.11 (node IP)
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Packet ra internet với src = node IP
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Response về node IP
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Cilium unmasquerade: dst = node IP → 10.244.1.5
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Pod nhận response
+</span></span></code></pre></td></tr></table></div></div><p><strong>Traditional (iptables) vs eBPF masquerade</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>iptables:
+</span></span><span class=line><span class=cl>- Rules trong POSTROUTING chain
+</span></span><span class=line><span class=cl>- O(n) với n là số rules
+</span></span><span class=line><span class=cl>- Slow với nhiều pods
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>eBPF:
+</span></span><span class=line><span class=cl>- Program trong kernel
+</span></span><span class=line><span class=cl>- O(1) lookup
+</span></span><span class=line><span class=cl>- Much faster
+</span></span></code></pre></td></tr></table></div></div><p><strong>6. &ndash;set kubeProxyReplacement=true</strong></p><ul><li><p><strong>Chức năng</strong>: Cilium thay thế kube-proxy hoàn toàn</p></li><li><p><strong>Implementation</strong>: Service load balancing với eBPF</p></li></ul><p><strong>Traditional kube-proxy</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Client → Service ClusterIP
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>kube-proxy (iptables rules):
+</span></span><span class=line><span class=cl>  - 1000s của rules
+</span></span><span class=line><span class=cl>  - DNAT để forward đến pod
+</span></span><span class=line><span class=cl>  - Load balance round-robin
+</span></span><span class=line><span class=cl>↓
+</span></span><span class=line><span class=cl>Pod
+</span></span></code></pre></td></tr></table></div></div><p><strong>Cilium replacement</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>Client</span> <span class=err>→</span> <span class=n>Service</span> <span class=n>ClusterIP</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Cilium</span> <span class=n>eBPF</span> <span class=n>program</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>Hash</span> <span class=n>map</span> <span class=n>lookup</span> <span class=p>(</span><span class=n>O</span><span class=p>(</span><span class=mi>1</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>Load</span> <span class=n>balance</span> <span class=p>(</span><span class=n>consistent</span> <span class=n>hashing</span><span class=p>,</span> <span class=n>least</span> <span class=n>connections</span><span class=p>,</span> <span class=o>...</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>Direct</span> <span class=n>forward</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Pod</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Benefits</span><span class=p>:</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Faster</span> <span class=p>(</span><span class=n>no</span> <span class=n>iptables</span> <span class=n>overhead</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>More</span> <span class=nb>load</span> <span class=n>balancing</span> <span class=n>algorithms</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Better</span> <span class=n>scalability</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Source</span> <span class=ne>IP</span> <span class=n>preservation</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-53-wait-for-cilium-to-be-ready>Bước 5.3: Wait for Cilium to be ready</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Wait for Cilium installation</span>
+</span></span><span class=line><span class=cl>cilium status --wait --wait-duration<span class=o>=</span>5m
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p><code>--wait</code>: Block until Cilium ready</p></li><li><p><code>--wait-duration=5m</code>: Timeout after 5 minutes</p></li><li><p>Command check:</p><ul><li><p>Cilium pods running</p></li><li><p>Cilium agents connected</p></li><li><p>eBPF programs loaded</p></li></ul></li></ul><p><strong>Expected output</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>    /¯¯\
+</span></span><span class=line><span class=cl> /¯¯\__/¯¯\    Cilium:         OK
+</span></span><span class=line><span class=cl> \__/¯¯\__/    Operator:       OK
+</span></span><span class=line><span class=cl> /¯¯\__/¯¯\    Hubble:         disabled
+</span></span><span class=line><span class=cl> \__/¯¯\__/    ClusterMesh:    disabled
+</span></span><span class=line><span class=cl>    \__/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>DaemonSet         cilium             Desired: 3, Ready: 3/3, Available: 3/3
+</span></span><span class=line><span class=cl>Deployment        cilium-operator    Desired: 2, Ready: 2/2, Available: 2/2
+</span></span><span class=line><span class=cl>Containers:       cilium             Running: 3
+</span></span><span class=line><span class=cl>                  cilium-operator    Running: 2
+</span></span><span class=line><span class=cl>Cluster Pods:     3/3 managed by Cilium
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-54-verify-cilium-installation>Bước 5.4: Verify Cilium installation</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Check Cilium pods</span>
+</span></span><span class=line><span class=cl>kubectl get pods -n kube-system -l k8s-app<span class=o>=</span>cilium -o wide
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check Cilium DaemonSet</span>
+</span></span><span class=line><span class=cl>kubectl get ds -n kube-system cilium
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># View Cilium status</span>
+</span></span><span class=line><span class=cl>cilium status
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check Cilium version</span>
+</span></span><span class=line><span class=cl>cilium version
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p><strong>Cilium runs as DaemonSet</strong>: 1 pod trên mỗi node</p></li><li><p><strong>Cilium agent</strong>: Manage networking trên node đó</p></li><li><p><strong>Cilium operator</strong>: Manage cluster-wide resources</p></li></ul><p><strong>Architecture</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Master node:
+</span></span><span class=line><span class=cl>- cilium-xxxxx (agent pod)
+</span></span><span class=line><span class=cl>- Manage networking cho master
+</span></span><span class=line><span class=cl>- Load eBPF programs
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Worker-1:
+</span></span><span class=line><span class=cl>- cilium-yyyyy (agent pod)
+</span></span><span class=line><span class=cl>- Manage networking cho worker-1
+</span></span><span class=line><span class=cl>- Handle pod connectivity
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Worker-2:
+</span></span><span class=line><span class=cl>- cilium-zzzzz (agent pod)
+</span></span><span class=line><span class=cl>- Manage networking cho worker-2
+</span></span><span class=line><span class=cl>- Handle pod connectivity
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Cilium Operator (Deployment, 2 replicas):
+</span></span><span class=line><span class=cl>- Manage CiliumNetworkPolicies
+</span></span><span class=line><span class=cl>- Garbage collection
+</span></span><span class=line><span class=cl>- Syncing
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-55-verify-node-status>Bước 5.5: Verify node status</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Check nodes - should be Ready now</span>
+</span></span><span class=line><span class=cl>kubectl get nodes
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Expected output:</span>
+</span></span><span class=line><span class=cl><span class=c1># NAME           STATUS   ROLES           AGE   VERSION</span>
+</span></span><span class=line><span class=cl><span class=c1># k8s-master     Ready    control-plane   10m   v1.29.x</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p>Sau khi Cilium installed, node chuyển từ NotReady → Ready</p></li><li><p><strong>Tại sao</strong>:</p><ul><li><p>kubelet check network plugin available</p></li><li><p>Cilium provide CNI plugin</p></li><li><p>Node có thể schedule pods</p></li></ul></li></ul><h3 id=bước-56-verify-coredns-pods>Bước 5.6: Verify CoreDNS pods</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Check CoreDNS - should be Running now</span>
+</span></span><span class=line><span class=cl>kubectl get pods -n kube-system -l k8s-app<span class=o>=</span>kube-dns
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Expected output:</span>
+</span></span><span class=line><span class=cl><span class=c1># NAME                      READY   STATUS    RESTARTS   AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># coredns-xxx               1/1     Running   0          10m</span>
+</span></span><span class=line><span class=cl><span class=c1># coredns-yyy               1/1     Running   0          10m</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p>CoreDNS pods trước đó Pending (no network)</p></li><li><p>Sau khi Cilium installed → có network → Running</p></li><li><p>CoreDNS provide DNS service cho cluster</p></li></ul><hr><h2 id=phần-6-join-worker-nodes-trên-worker-1-và-worker-2>PHẦN 6: JOIN WORKER NODES (Trên Worker-1 và Worker-2)</h2><h3 id=bước-61-lấy-join-command-từ-master>Bước 6.1: Lấy join command từ Master</h3><p><strong>Trên Master node:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Generate new join command (nếu mất command từ kubeadm init)</span>
+</span></span><span class=line><span class=cl>kubeadm token create --print-join-command
+</span></span></code></pre></td></tr></table></div></div><p><strong>Output example</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubeadm join 10.0.1.10:6443 <span class=se>\
+</span></span></span><span class=line><span class=cl>  --token abcdef.0123456789abcdef <span class=se>\
+</span></span></span><span class=line><span class=cl>  --discovery-token-ca-cert-hash sha256:1234567890abcdef...
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích join command</strong>:</p><ul><li><strong>10.0.1.10:6443</strong>: API server address (master private IP + API port)</li><li><strong>&ndash;token</strong>: Bootstrap token để authenticate join request</li><li><strong>&ndash;discovery-token-ca-cert-hash</strong>: SHA256 hash của CA cert để verify API server</li></ul><p><strong>Security của join process</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>Worker</span> <span class=err>→</span> <span class=n>Master</span><span class=p>:</span> <span class=s2>&#34;Tôi muốn join với token XYZ&#34;</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Master</span> <span class=n>verify</span> <span class=n>token</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Master</span> <span class=n>gửi</span> <span class=n>CA</span> <span class=n>certificate</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Worker</span> <span class=n>verify</span> <span class=n>CA</span> <span class=n>cert</span> <span class=nb>hash</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Worker</span> <span class=n>trust</span> <span class=n>CA</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Mutual</span> <span class=n>TLS</span> <span class=n>established</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Worker</span> <span class=n>download</span> <span class=n>cluster</span> <span class=n>info</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Worker</span> <span class=n>start</span> <span class=n>kubelet</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Worker</span> <span class=n>registered</span> <span class=n>trong</span> <span class=n>cluster</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Tại sao cần CA cert hash</strong>:</p><ul><li><p>Prevent man-in-the-middle attacks</p></li><li><p>Worker verify đang nói chuyện với đúng master</p></li><li><p>Without hash: Attacker có thể fake master và steal credentials</p></li></ul><h3 id=bước-62-join-workers-vào-cluster>Bước 6.2: Join workers vào cluster</h3><p><strong>Trên Worker-1 và Worker-2:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Run join command với sudo</span>
+</span></span><span class=line><span class=cl>sudo kubeadm join 10.0.1.10:6443 <span class=se>\
+</span></span></span><span class=line><span class=cl>  --token abcdef.0123456789abcdef <span class=se>\
+</span></span></span><span class=line><span class=cl>  --discovery-token-ca-cert-hash sha256:1234567890abcdef... <span class=se>\
+</span></span></span><span class=line><span class=cl>  --v<span class=o>=</span><span class=m>5</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích quá trình join</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>Step</span> <span class=mi>1</span><span class=p>:</span> <span class=p>[</span><span class=n>preflight</span><span class=p>]</span> <span class=n>Pre</span><span class=o>-</span><span class=n>flight</span> <span class=n>checks</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Check</span> <span class=n>swap</span> <span class=n>disabled</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Check</span> <span class=n>required</span> <span class=n>ports</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Check</span> <span class=n>containerd</span> <span class=n>running</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Step</span> <span class=mi>2</span><span class=p>:</span> <span class=p>[</span><span class=n>discovery</span><span class=p>]</span> <span class=n>Discover</span> <span class=n>cluster</span> <span class=n>info</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Connect</span> <span class=n>to</span> <span class=n>API</span> <span class=n>server</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Verify</span> <span class=n>CA</span> <span class=n>certificate</span> <span class=nb>hash</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Download</span> <span class=n>cluster</span> <span class=n>CA</span> <span class=n>certificate</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Step</span> <span class=mi>3</span><span class=p>:</span> <span class=p>[</span><span class=n>kubelet</span><span class=o>-</span><span class=n>start</span><span class=p>]</span> <span class=n>Configure</span> <span class=n>kubelet</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Generate</span> <span class=n>kubelet</span><span class=o>.</span><span class=n>conf</span> <span class=n>with</span> <span class=n>cluster</span> <span class=n>info</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Start</span> <span class=n>kubelet</span> <span class=n>service</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Step</span> <span class=mi>4</span><span class=p>:</span> <span class=p>[</span><span class=n>kubelet</span><span class=o>-</span><span class=n>finalize</span><span class=p>]</span> <span class=n>Finalize</span> <span class=n>kubelet</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Download</span> <span class=n>cluster</span> <span class=n>config</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Register</span> <span class=n>node</span> <span class=n>với</span> <span class=n>API</span> <span class=n>server</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Step</span> <span class=mi>5</span><span class=p>:</span> <span class=n>Bootstrap</span> <span class=n>TLS</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Generate</span> <span class=n>node</span> <span class=n>certificate</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Submit</span> <span class=n>CertificateSigningRequest</span> <span class=p>(</span><span class=n>CSR</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>API</span> <span class=n>server</span> <span class=n>auto</span><span class=o>-</span><span class=n>approve</span> <span class=n>CSR</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=n>Download</span> <span class=n>signed</span> <span class=n>certificate</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Expected output</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=p>[</span><span class=n>preflight</span><span class=p>]</span> <span class=n>Running</span> <span class=n>pre</span><span class=o>-</span><span class=n>flight</span> <span class=n>checks</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=n>discovery</span><span class=p>]</span> <span class=n>Downloading</span> <span class=n>cluster</span> <span class=n>info</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=n>kubelet</span><span class=o>-</span><span class=n>start</span><span class=p>]</span> <span class=n>Writing</span> <span class=n>kubelet</span> <span class=n>configuration</span> <span class=n>to</span> <span class=n>file</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=n>kubelet</span><span class=o>-</span><span class=n>start</span><span class=p>]</span> <span class=n>Starting</span> <span class=n>the</span> <span class=n>kubelet</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=n>kubelet</span><span class=o>-</span><span class=n>finalize</span><span class=p>]</span> <span class=n>Updating</span> <span class=n>kubelet</span> <span class=n>configuration</span>
+</span></span><span class=line><span class=cl><span class=n>This</span> <span class=n>node</span> <span class=n>has</span> <span class=n>joined</span> <span class=n>the</span> <span class=n>cluster</span><span class=p>:</span>
+</span></span><span class=line><span class=cl><span class=o>*</span> <span class=n>Certificate</span> <span class=n>signing</span> <span class=n>request</span> <span class=n>was</span> <span class=n>sent</span> <span class=n>to</span> <span class=n>apiserver</span>
+</span></span><span class=line><span class=cl><span class=o>*</span> <span class=n>Kubelet</span> <span class=n>was</span> <span class=n>informed</span> <span class=n>of</span> <span class=n>the</span> <span class=n>new</span> <span class=n>secure</span> <span class=n>connection</span> <span class=n>details</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Troubleshooting nếu join failed</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Common errors:</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 1. Token expired (24h)</span>
+</span></span><span class=line><span class=cl><span class=c1># Error: &#34;invalid token&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># Solution: Generate new token trên master</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 2. Cannot connect to API server</span>
+</span></span><span class=line><span class=cl><span class=c1># Error: &#34;connection refused&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># Solution: Check Security Group, verify API server running</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 3. CA cert hash mismatch</span>
+</span></span><span class=line><span class=cl><span class=c1># Error: &#34;invalid discovery token CA certificate hash&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># Solution: Get correct hash từ master</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 4. Node already joined</span>
+</span></span><span class=line><span class=cl><span class=c1># Error: &#34;node already exists&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># Solution: kubeadm reset trước, rồi join lại</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-63-verify-join-success-trên-master>Bước 6.3: Verify join success trên Master</h3><p><strong>Trên Master node:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Check tất cả nodes</span>
+</span></span><span class=line><span class=cl>kubectl get nodes
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Expected output:</span>
+</span></span><span class=line><span class=cl><span class=c1># NAME           STATUS   ROLES           AGE   VERSION</span>
+</span></span><span class=line><span class=cl><span class=c1># k8s-master     Ready    control-plane   20m   v1.34.3</span>
+</span></span><span class=line><span class=cl><span class=c1># k8s-worker-1   Ready    &lt;none&gt;          2m    v1.34.3</span>
+</span></span><span class=line><span class=cl><span class=c1># k8s-worker-2   Ready    &lt;none&gt;          2m    v1.34.3</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check với details</span>
+</span></span><span class=line><span class=cl>kubectl get nodes -o wide
+</span></span></code></pre></td></tr></table></div></div><p><strong>Output với details</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>NAME           STATUS   ROLES           AGE   VERSION   INTERNAL-IP   OS-IMAGE             KERNEL-VERSION
+</span></span><span class=line><span class=cl>k8s-master     Ready    control-plane   20m   v1.34.3   10.0.1.10     Ubuntu 22.04.3 LTS   5.15.0-xxx
+</span></span><span class=line><span class=cl>k8s-worker-1   Ready    &lt;none&gt;          2m    v1.34.3   10.0.1.20     Ubuntu 22.04.3 LTS   5.15.0-xxx
+</span></span><span class=line><span class=cl>k8s-worker-2   Ready    &lt;none&gt;          2m    v1.34.3   10.0.2.20     Ubuntu 22.04.3 LTS   5.15.0-xxx
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích columns</strong>:</p><ul><li><p><strong>STATUS</strong>: Ready = node healthy và ready to schedule pods</p></li><li><p><strong>ROLES</strong>: control-plane cho master, none cho workers</p></li><li><p><strong>INTERNAL-IP</strong>: Private IP dùng cho cluster communication</p></li><li><p><strong>VERSION</strong>: K8s version running trên node</p></li></ul><h3 id=bước-64-verify-cilium-agents-trên-workers>Bước 6.4: Verify Cilium agents trên workers</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Check Cilium pods trên tất cả nodes</span>
+</span></span><span class=line><span class=cl>kubectl get pods -n kube-system -l k8s-app<span class=o>=</span>cilium -o wide
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Expected output:</span>
+</span></span><span class=line><span class=cl><span class=c1># NAME          READY   STATUS    NODE</span>
+</span></span><span class=line><span class=cl><span class=c1># cilium-xxxxx  1/1     Running   k8s-master</span>
+</span></span><span class=line><span class=cl><span class=c1># cilium-yyyyy  1/1     Running   k8s-worker-1</span>
+</span></span><span class=line><span class=cl><span class=c1># cilium-zzzzz  1/1     Running   k8s-worker-2</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p>Cilium DaemonSet tự động deploy pods lên workers mới</p></li><li><p>Mỗi worker có 1 Cilium agent pod</p></li><li><p>Agent manage networking trên node đó</p></li></ul><hr><h2 id=phần-7-verify-và-test-cluster-không-làm-cũng-được>PHẦN 7: VERIFY VÀ TEST CLUSTER (KHÔNG LÀM CŨNG ĐƯỢC)</h2><h3 id=bước-71-verify-cluster-health>Bước 7.1: Verify cluster health</h3><p><strong>Trên Master node:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Check component status</span>
+</span></span><span class=line><span class=cl>kubectl get componentstatuses
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check all pods trong kube-system</span>
+</span></span><span class=line><span class=cl>kubectl get pods -n kube-system
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check all nodes</span>
+</span></span><span class=line><span class=cl>kubectl get nodes -o wide
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check Cilium status</span>
+</span></span><span class=line><span class=cl>cilium status
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check Cilium connectivity</span>
+</span></span><span class=line><span class=cl>cilium connectivity <span class=nb>test</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>componentstatuses output</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>NAME                 STATUS    MESSAGE
+</span></span><span class=line><span class=cl>scheduler            Healthy   ok
+</span></span><span class=line><span class=cl>controller-manager   Healthy   ok
+</span></span><span class=line><span class=cl>etcd-0               Healthy   {&#34;health&#34;:&#34;true&#34;}
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p>Tất cả components phải Healthy</p></li><li><p>Nếu có Unhealthy: Check logs của component đó</p></li></ul><h3 id=bước-72-deploy-test-nginx-application>Bước 7.2: Deploy test nginx application</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Create nginx deployment</span>
+</span></span><span class=line><span class=cl>kubectl create deployment nginx --image<span class=o>=</span>nginx --replicas<span class=o>=</span><span class=m>3</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify deployment</span>
+</span></span><span class=line><span class=cl>kubectl get deployments
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check pods được schedule</span>
+</span></span><span class=line><span class=cl>kubectl get pods -o wide
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Expected output:</span>
+</span></span><span class=line><span class=cl><span class=c1># NAME                     READY   STATUS    NODE</span>
+</span></span><span class=line><span class=cl><span class=c1># nginx-xxx                1/1     Running   k8s-worker-1</span>
+</span></span><span class=line><span class=cl><span class=c1># nginx-yyy                1/1     Running   k8s-worker-2</span>
+</span></span><span class=line><span class=cl><span class=c1># nginx-zzz                1/1     Running   k8s-worker-1</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p><strong>replicas=3</strong>: 3 pod instances</p></li><li><p>Scheduler distribute pods across workers</p></li><li><p>Pods có IPs từ pod CIDR (10.244.x.x)</p></li></ul><h3 id=bước-73-expose-nginx-service>Bước 7.3: Expose nginx service</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Expose deployment as NodePort service</span>
+</span></span><span class=line><span class=cl>kubectl expose deployment nginx --port<span class=o>=</span><span class=m>80</span> --type<span class=o>=</span>NodePort
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Get service details</span>
+</span></span><span class=line><span class=cl>kubectl get svc nginx
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Output:</span>
+</span></span><span class=line><span class=cl><span class=c1># NAME    TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># nginx   NodePort   10.96.123.45    &lt;none&gt;        80:32456/TCP   1m</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích Service types</strong>:</p><ul><li><p><strong>ClusterIP</strong> (default): Only accessible within cluster</p></li><li><p><strong>NodePort</strong>: Accessible via any node IP + NodePort</p></li><li><p><strong>LoadBalancer</strong>: Cloud provider load balancer (AWS ELB)</p></li></ul><p><strong>NodePort hoạt động</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>Client</span> <span class=err>→</span> <span class=ne>Node</span> <span class=ne>IP</span><span class=p>:</span><span class=n>NodePort</span> <span class=p>(</span><span class=mf>10.0</span><span class=o>.</span><span class=mf>1.11</span><span class=p>:</span><span class=mi>32456</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Cilium</span> <span class=n>eBPF</span> <span class=nb>load</span> <span class=n>balance</span> <span class=err>đế</span><span class=n>n</span> <span class=n>một</span> <span class=n>trong</span> <span class=mi>3</span> <span class=n>nginx</span> <span class=n>pods</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>nginx</span><span class=o>-</span><span class=n>xxx</span> <span class=p>(</span><span class=mf>10.244</span><span class=o>.</span><span class=mf>1.5</span><span class=p>:</span><span class=mi>80</span><span class=p>)</span> <span class=mi>33</span><span class=o>%</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>nginx</span><span class=o>-</span><span class=n>yyy</span> <span class=p>(</span><span class=mf>10.244</span><span class=o>.</span><span class=mf>2.8</span><span class=p>:</span><span class=mi>80</span><span class=p>)</span> <span class=mi>33</span><span class=o>%</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>nginx</span><span class=o>-</span><span class=n>zzz</span> <span class=p>(</span><span class=mf>10.244</span><span class=o>.</span><span class=mf>1.9</span><span class=p>:</span><span class=mi>80</span><span class=p>)</span> <span class=mi>34</span><span class=o>%</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Pod</span> <span class=n>process</span> <span class=n>request</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Response</span> <span class=n>về</span> <span class=n>client</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-74-test-service-connectivity>Bước 7.4: Test service connectivity</h3><p><strong>Test từ trong cluster:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Test với ClusterIP</span>
+</span></span><span class=line><span class=cl>kubectl run test-pod --image<span class=o>=</span>busybox --rm -it --restart<span class=o>=</span>Never -- <span class=se>\
+</span></span></span><span class=line><span class=cl>  wget -O- http://nginx
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Test với service DNS name</span>
+</span></span><span class=line><span class=cl>kubectl run test-pod --image<span class=o>=</span>busybox --rm -it --restart<span class=o>=</span>Never -- <span class=se>\
+</span></span></span><span class=line><span class=cl>  wget -O- http://nginx.default.svc.cluster.local
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích DNS trong K8s</strong>:</p><ul><li><p><strong>Service DNS format</strong>: <code>&lt;service-name>.&lt;namespace>.svc.cluster.local</code></p></li><li><p><strong>nginx.default.svc.cluster.local</strong>:</p><ul><li><p>nginx: service name</p></li><li><p>default: namespace</p></li><li><p>svc.cluster.local: cluster domain</p></li></ul></li><li><p>CoreDNS resolve service name → ClusterIP</p></li></ul><p><strong>Test từ bên ngoài cluster (từ laptop):</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Get NodePort</span>
+</span></span><span class=line><span class=cl><span class=nv>NODEPORT</span><span class=o>=</span><span class=k>$(</span>kubectl get svc nginx -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.spec.ports[0].nodePort}&#39;</span><span class=k>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Get worker node public IP</span>
+</span></span><span class=line><span class=cl><span class=nv>WORKER_IP</span><span class=o>=</span><span class=k>$(</span>kubectl get nodes k8s-worker-1 -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.status.addresses[?(@.type==&#34;ExternalIP&#34;)].address}&#39;</span><span class=k>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Test với curl</span>
+</span></span><span class=line><span class=cl>curl http://<span class=nv>$WORKER_IP</span>:<span class=nv>$NODEPORT</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Expected output: nginx welcome page HTML</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p>Connect đến bất kỳ node IP nào với NodePort</p></li><li><p>Cilium forward request đến pod (có thể trên node khác)</p></li><li><p>Response route back qua node nhận request</p></li></ul><h3 id=bước-75-test-pod-to-pod-connectivity>Bước 7.5: Test pod-to-pod connectivity</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Get pod IPs</span>
+</span></span><span class=line><span class=cl>kubectl get pods -o wide
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Exec vào một pod</span>
+</span></span><span class=line><span class=cl><span class=nv>POD1</span><span class=o>=</span><span class=k>$(</span>kubectl get pods -l <span class=nv>app</span><span class=o>=</span>nginx -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.items[0].metadata.name}&#39;</span><span class=k>)</span>
+</span></span><span class=line><span class=cl>kubectl <span class=nb>exec</span> -it <span class=nv>$POD1</span> -- /bin/bash
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Trong pod, test connectivity đến pod khác</span>
+</span></span><span class=line><span class=cl><span class=c1># Get IP của pod khác</span>
+</span></span><span class=line><span class=cl><span class=nv>POD2_IP</span><span class=o>=</span><span class=k>$(</span>kubectl get pods -l <span class=nv>app</span><span class=o>=</span>nginx -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.items[1].status.podIP}&#39;</span><span class=k>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Ping pod khác</span>
+</span></span><span class=line><span class=cl>ping -c <span class=m>3</span> <span class=nv>$POD2_IP</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Curl đến pod khác</span>
+</span></span><span class=line><span class=cl>curl http://<span class=nv>$POD2_IP</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Exit pod</span>
+</span></span><span class=line><span class=cl><span class=nb>exit</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p>Test direct pod-to-pod connectivity</p></li><li><p>Verify Cilium overlay network hoạt động</p></li><li><p>Pods trên different nodes phải communicate được</p></li></ul><h3 id=bước-76-test-dns-resolution>Bước 7.6: Test DNS resolution</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Create test pod</span>
+</span></span><span class=line><span class=cl>kubectl run dnstest --image<span class=o>=</span>busybox --rm -it --restart<span class=o>=</span>Never -- sh
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Trong pod, test DNS</span>
+</span></span><span class=line><span class=cl>nslookup kubernetes.default
+</span></span><span class=line><span class=cl>nslookup nginx.default.svc.cluster.local
+</span></span><span class=line><span class=cl>nslookup google.com
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Exit</span>
+</span></span><span class=line><span class=cl><span class=nb>exit</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p><strong>kubernetes.default</strong>: Built-in service để access API server</p></li><li><p><strong>nginx.default.svc.cluster.local</strong>: Service tạo ở bước trước</p></li><li><p><strong>google.com</strong>: External DNS (verify outbound connectivity)</p></li></ul><p><strong>DNS resolution flow</strong>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>Pod</span> <span class=n>query</span><span class=p>:</span> <span class=n>nginx</span><span class=o>.</span><span class=n>default</span><span class=o>.</span><span class=n>svc</span><span class=o>.</span><span class=n>cluster</span><span class=o>.</span><span class=n>local</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Send</span> <span class=n>DNS</span> <span class=n>query</span> <span class=err>đế</span><span class=n>n</span> <span class=n>CoreDNS</span> <span class=p>(</span><span class=mf>10.96</span><span class=o>.</span><span class=mf>0.10</span><span class=p>:</span><span class=mi>53</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>CoreDNS</span> <span class=n>lookup</span> <span class=n>service</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>Check</span> <span class=n>services</span> <span class=n>trong</span> <span class=n>namespace</span> <span class=n>default</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>Find</span> <span class=n>nginx</span> <span class=n>service</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>Return</span> <span class=n>ClusterIP</span><span class=p>:</span> <span class=mf>10.96</span><span class=o>.</span><span class=mf>123.45</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Pod</span> <span class=n>nhận</span> <span class=n>ClusterIP</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Pod</span> <span class=n>connect</span> <span class=err>đế</span><span class=n>n</span> <span class=n>ClusterIP</span>
+</span></span><span class=line><span class=cl><span class=err>↓</span>
+</span></span><span class=line><span class=cl><span class=n>Cilium</span> <span class=n>eBPF</span> <span class=n>intercept</span><span class=p>,</span> <span class=nb>load</span> <span class=n>balance</span> <span class=err>đế</span><span class=n>n</span> <span class=n>pod</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-77-verify-cilium-network-policies-optional>Bước 7.7: Verify Cilium network policies (Optional)</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Cilium connectivity test (comprehensive)</span>
+</span></span><span class=line><span class=cl>cilium connectivity <span class=nb>test</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Test sẽ:</span>
+</span></span><span class=line><span class=cl><span class=c1># - Deploy test pods</span>
+</span></span><span class=line><span class=cl><span class=c1># - Test pod-to-pod connectivity</span>
+</span></span><span class=line><span class=cl><span class=c1># - Test pod-to-service connectivity</span>
+</span></span><span class=line><span class=cl><span class=c1># - Test pod-to-external connectivity</span>
+</span></span><span class=line><span class=cl><span class=c1># - Test network policies</span>
+</span></span><span class=line><span class=cl><span class=c1># - Clean up test resources</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Mất khoảng 5-10 phút</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p><code>cilium connectivity test</code> là comprehensive test suite</p></li><li><p>Verify tất cả aspects của cluster networking</p></li><li><p>Nếu pass: Cluster networking hoàn toàn functional</p></li></ul><h3 id=bước-78-check-cluster-resource-usage>Bước 7.8: Check cluster resource usage</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Check node resources</span>
+</span></span><span class=line><span class=cl>kubectl top nodes
+</span></span><span class=line><span class=cl><span class=c1># Requires metrics-server (optional)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check pod resources</span>
+</span></span><span class=line><span class=cl>kubectl top pods -A
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Describe node</span>
+</span></span><span class=line><span class=cl>kubectl describe node k8s-worker-1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check allocatable resources</span>
+</span></span><span class=line><span class=cl>kubectl get nodes -o json <span class=p>|</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  jq <span class=s1>&#39;.items[] | {name: .metadata.name, capacity: .status.capacity, allocatable: .status.allocatable}&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p><strong>Capacity</strong>: Total resources trên node</p></li><li><p><strong>Allocatable</strong>: Resources available cho pods (capacity - system reserved)</p></li><li><p><strong>top commands</strong>: Requires metrics-server addon</p></li></ul><hr><h2 id=phần-8-cleanup-và-troubleshooting>PHẦN 8: CLEANUP VÀ TROUBLESHOOTING</h2><h3 id=bước-81-cleanup-test-resources>Bước 8.1: Cleanup test resources</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Delete nginx deployment và service</span>
+</span></span><span class=line><span class=cl>kubectl delete deployment nginx
+</span></span><span class=line><span class=cl>kubectl delete service nginx
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify cleanup</span>
+</span></span><span class=line><span class=cl>kubectl get pods
+</span></span><span class=line><span class=cl>kubectl get svc
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-82-common-troubleshooting-commands>Bước 8.2: Common troubleshooting commands</h3><p><strong>Node issues:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Describe node để xem events</span>
+</span></span><span class=line><span class=cl>kubectl describe node &lt;node-name&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check kubelet logs</span>
+</span></span><span class=line><span class=cl>sudo journalctl -u kubelet -f
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check kubelet status</span>
+</span></span><span class=line><span class=cl>sudo systemctl status kubelet
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Restart kubelet nếu cần</span>
+</span></span><span class=line><span class=cl>sudo systemctl restart kubelet
+</span></span></code></pre></td></tr></table></div></div><p><strong>Pod issues:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Describe pod</span>
+</span></span><span class=line><span class=cl>kubectl describe pod &lt;pod-name&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Get pod logs</span>
+</span></span><span class=line><span class=cl>kubectl logs &lt;pod-name&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Get previous pod logs (nếu pod restart)</span>
+</span></span><span class=line><span class=cl>kubectl logs &lt;pod-name&gt; --previous
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Exec vào pod</span>
+</span></span><span class=line><span class=cl>kubectl <span class=nb>exec</span> -it &lt;pod-name&gt; -- /bin/bash
+</span></span></code></pre></td></tr></table></div></div><p><strong>Networking issues:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Check Cilium status</span>
+</span></span><span class=line><span class=cl>cilium status
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check Cilium pods</span>
+</span></span><span class=line><span class=cl>kubectl get pods -n kube-system -l k8s-app<span class=o>=</span>cilium
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Cilium agent logs</span>
+</span></span><span class=line><span class=cl>kubectl logs -n kube-system &lt;cilium-pod-name&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Check connectivity</span>
+</span></span><span class=line><span class=cl>cilium connectivity <span class=nb>test</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify eBPF maps</span>
+</span></span><span class=line><span class=cl>cilium bpf endpoint list
+</span></span></code></pre></td></tr></table></div></div><p><strong>DNS issues:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Check CoreDNS pods</span>
+</span></span><span class=line><span class=cl>kubectl get pods -n kube-system -l k8s-app<span class=o>=</span>kube-dns
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># CoreDNS logs</span>
+</span></span><span class=line><span class=cl>kubectl logs -n kube-system &lt;coredns-pod-name&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Test DNS từ pod</span>
+</span></span><span class=line><span class=cl>kubectl run -it --rm debug --image<span class=o>=</span>busybox --restart<span class=o>=</span>Never -- nslookup kubernetes.default
+</span></span></code></pre></td></tr></table></div></div><p><strong>Certificate issues:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Check certificate expiration</span>
+</span></span><span class=line><span class=cl>sudo kubeadm certs check-expiration
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Renew certificates (nếu cần)</span>
+</span></span><span class=line><span class=cl>sudo kubeadm certs renew all
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-83-reset-cluster-nếu-cần-start-over>Bước 8.3: Reset cluster (nếu cần start over)</h3><p><strong>Trên tất cả nodes:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Reset kubeadm</span>
+</span></span><span class=line><span class=cl>sudo kubeadm reset -f
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Clean up</span>
+</span></span><span class=line><span class=cl>sudo rm -rf /etc/cni/net.d
+</span></span><span class=line><span class=cl>sudo rm -rf /var/lib/cni/
+</span></span><span class=line><span class=cl>sudo rm -rf /var/lib/etcd
+</span></span><span class=line><span class=cl>sudo rm -rf /var/lib/kubelet
+</span></span><span class=line><span class=cl>sudo rm -rf /etc/kubernetes
+</span></span><span class=line><span class=cl>sudo rm -rf ~/.kube
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Clean Cilium</span>
+</span></span><span class=line><span class=cl>sudo rm -rf /var/run/cilium
+</span></span><span class=line><span class=cl>sudo rm -rf /var/lib/cilium
+</span></span><span class=line><span class=cl>sudo rm -rf /sys/fs/bpf/cilium
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Delete Cilium interfaces</span>
+</span></span><span class=line><span class=cl>sudo ip link delete cilium_host 2&gt;/dev/null <span class=o>||</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl>sudo ip link delete cilium_net 2&gt;/dev/null <span class=o>||</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl>sudo ip link delete cilium_vxlan 2&gt;/dev/null <span class=o>||</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Flush iptables</span>
+</span></span><span class=line><span class=cl>sudo iptables -F <span class=o>&amp;&amp;</span> sudo iptables -t nat -F <span class=o>&amp;&amp;</span> sudo iptables -t mangle -F <span class=o>&amp;&amp;</span> sudo iptables -X
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Restart services</span>
+</span></span><span class=line><span class=cl>sudo systemctl restart containerd
+</span></span><span class=line><span class=cl>sudo systemctl restart kubelet
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Reboot (recommended)</span>
+</span></span><span class=line><span class=cl>sudo reboot
+</span></span></code></pre></td></tr></table></div></div><p><strong>Sau khi reboot, có thể init cluster lại từ đầu</strong></p><hr><h2 id=phần-9-post-setup-recommendations>PHẦN 9: POST-SETUP RECOMMENDATIONS</h2><h3 id=bước-91-label-nodes-optional-nhưng-recommended>Bước 9.1: Label nodes (Optional nhưng recommended)</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Label workers với role</span>
+</span></span><span class=line><span class=cl>kubectl label node k8s-worker-1 node-role.kubernetes.io/worker<span class=o>=</span>worker
+</span></span><span class=line><span class=cl>kubectl label node k8s-worker-2 node-role.kubernetes.io/worker<span class=o>=</span>worker
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify</span>
+</span></span><span class=line><span class=cl>kubectl get nodes
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Output sẽ show roles:</span>
+</span></span><span class=line><span class=cl><span class=c1># NAME           ROLES           </span>
+</span></span><span class=line><span class=cl><span class=c1># k8s-master     control-plane   </span>
+</span></span><span class=line><span class=cl><span class=c1># k8s-worker-1   worker          </span>
+</span></span><span class=line><span class=cl><span class=c1># k8s-worker-2   worker          </span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p>Labels giúp organize và select nodes</p></li><li><p>Role labels purely cosmetic nhưng helpful</p></li><li><p>Có thể dùng trong nodeSelector, affinity rules</p></li></ul><h3 id=bước-92-setup-kubectl-autocompletion-quality-of-life>Bước 9.2: Setup kubectl autocompletion (Quality of life)</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># For bash</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s1>&#39;source &lt;(kubectl completion bash)&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s1>&#39;alias k=kubectl&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s1>&#39;complete -o default -F __start_kubectl k&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span class=line><span class=cl><span class=nb>source</span> ~/.bashrc
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Test</span>
+</span></span><span class=line><span class=cl>k get nodes  <span class=c1># Should work</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-93-install-metrics-server-for-resource-monitoring>Bước 9.3: Install metrics-server (For resource monitoring)</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Install metrics-server</span>
+</span></span><span class=line><span class=cl>kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Patch metrics-server để work với self-signed certs</span>
+</span></span><span class=line><span class=cl>kubectl patch deployment metrics-server -n kube-system --type<span class=o>=</span><span class=s1>&#39;json&#39;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  -p<span class=o>=</span><span class=s1>&#39;[{&#34;op&#34;: &#34;add&#34;, &#34;path&#34;: &#34;/spec/template/spec/containers/0/args/-&#34;, &#34;value&#34;: &#34;--kubelet-insecure-tls&#34;}]&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Wait for metrics-server ready</span>
+</span></span><span class=line><span class=cl>kubectl rollout status deployment metrics-server -n kube-system
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Test</span>
+</span></span><span class=line><span class=cl>kubectl top nodes
+</span></span><span class=line><span class=cl>kubectl top pods -A
+</span></span></code></pre></td></tr></table></div></div><p><strong>Giải thích</strong>:</p><ul><li><p>metrics-server collect resource metrics từ kubelets</p></li><li><p>Enable <code>kubectl top</code> commands</p></li><li><p>Required cho Horizontal Pod Autoscaler (HPA)</p></li></ul><h3 id=bước-94-setup-helm-package-manager-for-k8s>Bước 9.4: Setup Helm (Package manager for K8s)</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Download và install Helm</span>
+</span></span><span class=line><span class=cl>curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 <span class=p>|</span> bash
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Verify</span>
+</span></span><span class=line><span class=cl>helm version
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Add popular repos</span>
+</span></span><span class=line><span class=cl>helm repo add stable https://charts.helm.sh/stable
+</span></span><span class=line><span class=cl>helm repo add bitnami https://charts.bitnami.com/bitnami
+</span></span><span class=line><span class=cl>helm repo update
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-95-backup-cluster-config>Bước 9.5: Backup cluster config</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Backup admin kubeconfig</span>
+</span></span><span class=line><span class=cl>cp ~/.kube/config ~/kubeconfig-backup-<span class=k>$(</span>date +%Y%m%d<span class=k>)</span>.yaml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Backup etcd (important!)</span>
+</span></span><span class=line><span class=cl>sudo <span class=nv>ETCDCTL_API</span><span class=o>=</span><span class=m>3</span> etcdctl <span class=se>\
+</span></span></span><span class=line><span class=cl>  --endpoints<span class=o>=</span>https://127.0.0.1:2379 <span class=se>\
+</span></span></span><span class=line><span class=cl>  --cacert<span class=o>=</span>/etc/kubernetes/pki/etcd/ca.crt <span class=se>\
+</span></span></span><span class=line><span class=cl>  --cert<span class=o>=</span>/etc/kubernetes/pki/etcd/server.crt <span class=se>\
+</span></span></span><span class=line><span class=cl>  --key<span class=o>=</span>/etc/kubernetes/pki/etcd/server.key <span class=se>\
+</span></span></span><span class=line><span class=cl>  snapshot save /tmp/etcd-backup-<span class=k>$(</span>date +%Y%m%d<span class=k>)</span>.db
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Download backup về laptop</span>
+</span></span><span class=line><span class=cl>scp ubuntu@&lt;master-ip&gt;:/tmp/etcd-backup-*.db ./
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=tóm-tắt-workflow>TÓM TẮT WORKFLOW</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>1. CHUẨN BỊ (Tất cả nodes)
+</span></span><span class=line><span class=cl>   - Update system
+</span></span><span class=line><span class=cl>   - Set hostname và /etc/hosts
+</span></span><span class=line><span class=cl>   - Tắt swap
+</span></span><span class=line><span class=cl>   - Load kernel modules
+</span></span><span class=line><span class=cl>   - Configure sysctl
+</span></span><span class=line><span class=cl>   - Disable firewall
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>2. CONTAINER RUNTIME (Tất cả nodes)
+</span></span><span class=line><span class=cl>   - Install containerd
+</span></span><span class=line><span class=cl>   - Configure containerd với SystemdCgroup
+</span></span><span class=line><span class=cl>   - Start containerd
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>3. K8S COMPONENTS (Tất cả nodes)
+</span></span><span class=line><span class=cl>   - Install kubeadm, kubelet, kubectl
+</span></span><span class=line><span class=cl>   - Enable kubelet
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>4. INIT MASTER (Master only)
+</span></span><span class=line><span class=cl>   - kubeadm init với proper flags
+</span></span><span class=line><span class=cl>   - Setup kubeconfig
+</span></span><span class=line><span class=cl>   - Verify control plane
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>5. INSTALL CILIUM (Master only)
+</span></span><span class=line><span class=cl>   - Install Cilium CLI
+</span></span><span class=line><span class=cl>   - cilium install với proper config
+</span></span><span class=line><span class=cl>   - Verify Cilium ready
+</span></span><span class=line><span class=cl>   - Nodes chuyển Ready
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>1. JOIN WORKERS (Workers only
+</span></span><span class=line><span class=cl>   - Get join command từ master
+</span></span><span class=line><span class=cl>   - kubeadm join
+</span></span><span class=line><span class=cl>   - Verify nodes joined
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>7. VERIFY CLUSTER
+</span></span><span class=line><span class=cl>   - Check nodes Ready
+</span></span><span class=line><span class=cl>   - Deploy test app
+</span></span><span class=line><span class=cl>   - Test connectivity
+</span></span><span class=line><span class=cl>   - Test DNS
+</span></span><span class=line><span class=cl>   - Cilium connectivity test
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>8. POST-SETUP
+</span></span><span class=line><span class=cl>   - Label nodes
+</span></span><span class=line><span class=cl>   - Setup autocompletion
+</span></span><span class=line><span class=cl>   - Install metrics-server
+</span></span><span class=line><span class=cl>   - Backup config
+</span></span></code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags><a href=/tags/cilium/>Cilium</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><footer class=site-footer><section class=copyright>&copy;
+2025 -
+2026 Vuong Manh Nghia</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.33.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

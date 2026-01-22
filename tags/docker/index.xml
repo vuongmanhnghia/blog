@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Docker on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/tags/docker/</link>
+        <description>Recent content in Docker on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Fri, 21 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/docker/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hướng dẫn cấu hình Nginx làm Reverse Proxy kết hợp Certbot thông qua Docker</title>
+        <link>https://blog.nagih.io.vn/posts/proxy/nginx/how-to-config-nginx-use-docker/</link>
+        <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/proxy/nginx/how-to-config-nginx-use-docker/</guid>
+        <description>&lt;p&gt;Hướng dẫn xây dựng mô hình &lt;strong&gt;Nginx làm Reverse Proxy&lt;/strong&gt; kết hợp với &lt;strong&gt;Certbot&lt;/strong&gt; theo mô hình &lt;strong&gt;Sidecar&lt;/strong&gt; (hoặc chạy định kỳ) để quản lý SSL.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Dưới đây là hướng dẫn triển khai theo chuẩn &lt;strong&gt;Infrastructure as Code (IaC)&lt;/strong&gt;. Toàn bộ cấu hình nằm trong file, có thể đẩy lên Git.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;kiến-trúc&#34;&gt;Kiến trúc
+&lt;/h2&gt;&lt;p&gt;Chúng ta sẽ có 1 file &lt;code&gt;docker-compose.yml&lt;/code&gt; quản lý &lt;strong&gt;Gateway&lt;/strong&gt;, bao gồm:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Service Nginx:&lt;/strong&gt; Chịu trách nhiệm routing và hứng traffic (Port 80/443).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Service Certbot:&lt;/strong&gt; Chịu trách nhiệm xin và gia hạn SSL.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Shared Volumes:&lt;/strong&gt; Để Nginx và Certbot cùng đọc/ghi được file chứng chỉ.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;các-bước-cấu-hình&#34;&gt;Các bước cấu hình
+&lt;/h2&gt;&lt;h3 id=&#34;bước-1-chuẩn-bị-cấu-trúc-thư-mục&#34;&gt;Bước 1: Chuẩn bị cấu trúc thư mục
+&lt;/h3&gt;&lt;p&gt;Tạo một thư mục quản lý Gateway riêng biệt (để tách biệt với code ứng dụng).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir -p ~/nginx-gateway/&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;conf.d,certbot/conf,certbot/www&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~/nginx-gateway
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;conf.d&lt;/code&gt;: Chứa file config của các domain (Virtual Hosts).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;certbot/conf&lt;/code&gt;: Nơi lưu chứng chỉ SSL thật.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;certbot/www&lt;/code&gt;: Nơi lưu file xác thực (ACME Challenge) để Let&amp;rsquo;s Encrypt kiểm tra.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Các folders và file này là để ánh xạ vào volumes của nginx container&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;bước-2-tạo-file-docker-compose&#34;&gt;Bước 2: Tạo file Docker Compose
+&lt;/h3&gt;&lt;p&gt;Tạo file &lt;code&gt;compose.yml&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;services&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;nginx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;nginx:alpine&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;container_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;nginx-gateway&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;restart&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;unless-stopped&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ports&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;80:80&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;443:443&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;volumes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./conf.d:/etc/nginx/conf.d&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./certbot/conf:/etc/letsencrypt&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./certbot/www:/var/www/certbot&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;command&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/bin/sh -c &amp;#39;while :; do sleep 6h &amp;amp; wait $${!}; nginx -s reload; done &amp;amp; nginx -g \&amp;#34;daemon off;\&amp;#34;&amp;#39;&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;certbot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;certbot/certbot&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;container_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;certbot&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;volumes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./certbot/conf:/etc/letsencrypt&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;./certbot/www:/var/www/certbot&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;entrypoint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/bin/sh -c &amp;#39;trap exit TERM; while :; do certbot renew; sleep 12h &amp;amp; wait $${!}; done;&amp;#39;&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;networks&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;default&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;nginx-network&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;external&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nginx Command:&lt;/strong&gt; Đoạn script nhỏ giúp Nginx tự động reload config mỗi 6 tiếng để cập nhật SSL mới (nếu có) mà không cần restart container (Zero Downtime).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Certbot Entrypoint:&lt;/strong&gt; Chạy vòng lặp kiểm tra gia hạn SSL mỗi 12 tiếng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Network:&lt;/strong&gt; Sử dụng &lt;code&gt;nginx-network&lt;/code&gt; để kết nối với các container ứng dụng khác.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;bước-3-config-nginx-vấn-đề-con-gà---quả-trứng&#34;&gt;Bước 3: Config Nginx (Vấn đề &amp;ldquo;Con gà - Quả trứng&amp;rdquo;)
+&lt;/h3&gt;&lt;p&gt;Đây là điểm khó chịu nhất khi làm thủ công: &lt;strong&gt;Nginx cần file SSL để khởi động, nhưng chưa có SSL thì Nginx không chạy để Certbot xin SSL được.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Giải pháp:&lt;/strong&gt; Chúng ta config 2 giai đoạn.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Giai đoạn 1: Config HTTP để xin SSL&lt;/p&gt;
+&lt;p&gt;Tạo file config cho domain của bạn: &lt;code&gt;nano conf.d/domain.com.conf&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nginx&#34; data-lang=&#34;nginx&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;server&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;listen&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;80&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;server_name&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;domain.com&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;www.domain.com&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# Cho phép Certbot truy cập thư mục này để xác thực
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;location&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/.well-known/acme-challenge/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kn&#34;&gt;root&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/var/www/certbot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;location&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kn&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;301&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;https://&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$host$request_uri&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# Redirect tạm, nhưng chưa có HTTPS thì cứ để đó
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Run Nginx:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker compose up -d nginx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Giai đoạn 2: Xin SSL bằng Certbot&lt;/p&gt;
+&lt;p&gt;Chạy lệnh này một lần duy nhất để lấy chứng chỉ:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker compose run --rm --entrypoint certbot certonly --webroot --webroot-path /var/www/certbot -d domain.com -d www.domain.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;em&gt;Nếu thành công, nó sẽ báo &amp;ldquo;Successfully received certificate&amp;rdquo;.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Giai đoạn 3: Config HTTPS hoàn chỉnh (Production)&lt;/p&gt;
+&lt;p&gt;Bây giờ đã có file SSL trong thư mục &lt;code&gt;./certbot/conf&lt;/code&gt;, bạn sửa lại file &lt;code&gt;conf.d/domain.com.conf&lt;/code&gt; để cấu hình đầy đủ:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nginx&#34; data-lang=&#34;nginx&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;server&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;listen&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;80&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;server_name&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;domain.com&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;www.domain.com&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;location&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/.well-known/acme-challenge/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kn&#34;&gt;root&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/var/www/certbot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;location&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kn&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;301&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;https://&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$host$request_uri&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;server&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;listen&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;443&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;ssl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;server_name&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;domain.com&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;www.domain.com&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# Đường dẫn này được map từ volume docker
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;ssl_certificate&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/etc/letsencrypt/live/domain.com/fullchain.pem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;ssl_certificate_key&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/etc/letsencrypt/live/domain.com/privkey.pem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# Best Practice SSL Params (Optional but recommended)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;ssl_protocols&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;TLSv1.2&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;TLSv1.3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;ssl_ciphers&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;HIGH:!aNULL:!MD5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kn&#34;&gt;location&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;# Proxy pass vào tên container của App (trong cùng network)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kn&#34;&gt;proxy_pass&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;http://my-website-container:80&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kn&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;Host&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$host&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kn&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;X-Real-IP&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$remote_addr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kn&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;X-Forwarded-For&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kn&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;X-Forwarded-Proto&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$scheme&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Cuối cùng, reload Nginx để nhận config mới:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker compose &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; nginx nginx -s reload
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;bước-4-quy-trình-vận-hành-workflow&#34;&gt;Bước 4: Quy trình vận hành (Workflow)
+&lt;/h3&gt;&lt;p&gt;Từ giờ, khi bạn muốn thêm một domain mới (ví dụ: &lt;code&gt;api.domain.com&lt;/code&gt;), quy trình là:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tạo file config:&lt;/strong&gt; Tạo &lt;code&gt;conf.d/api.domain.com.conf&lt;/code&gt; (chỉ có block port 80).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Reload Nginx:&lt;/strong&gt; &lt;code&gt;docker compose exec nginx nginx -s reload&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Xin SSL:&lt;/strong&gt; Chạy lệnh &lt;code&gt;docker compose run --rm certbot ...&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Update config:&lt;/strong&gt; Thêm block port 443 vào file config.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Reload Nginx:&lt;/strong&gt; Lần cuối.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;lưu-ý&#34;&gt;Lưu ý
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker compose run --rm --entrypoint certbot certonly --webroot --webroot-path /var/www/certbot -d domain.com -d www.domain.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Sau khi run command Xin SSL bằng Certbot, hãy lưu ý các điều này để tránh xảy ra các lỗi thường gặp&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Tắt &lt;strong&gt;Cloudflare Proxy&lt;/strong&gt; (Đám mây màu cam) nếu đang sử dụng &lt;strong&gt;Cloudflare&lt;/strong&gt; để trỏ tên miền tới server&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kiểm tra &lt;strong&gt;Tường lửa (Firewall)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Kiểm tra ufw đã mở &lt;code&gt;port 80/tcp&lt;/code&gt; và &lt;code&gt;443/tcp&lt;/code&gt; chưa&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw status
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu chưa, chạy command sau để mở port:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw allow 80/tcp 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw allow 443/tcp 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw reload
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kiểm tra tình trạng của Nginx Container&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Chú ý cú pháp các file trong &lt;code&gt;./conf.d&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>6 Level Deploy</title>
+        <link>https://blog.nagih.io.vn/posts/cicd/6-level-deploy/</link>
+        <pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/cicd/6-level-deploy/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/images/image-placeholder.png" alt="Featured image of post 6 Level Deploy" /&gt;&lt;p&gt;6 Cấp Độ Trưởng Thành Từ Deploy Thủ Công Đến Vận Hành Tinh Gọn&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;level-0-deploy-thủ-công&#34;&gt;Level 0: Deploy Thủ Công
+&lt;/h2&gt;&lt;h3 id=&#34;công-cụ-và-quy-trình&#34;&gt;Công cụ và Quy trình
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quy trình thủ công:&lt;/strong&gt; Việc triển khai được thực hiện bằng cách kết nối thủ công đến máy chủ thông qua các giao thức như FTP, SCP, hoặc SSH, sau đó sao chép từng tệp.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quản lý mã nguồn hỗn loạn:&lt;/strong&gt; Nếu có sử dụng Git, quy trình làm việc thường là &amp;ldquo;Centralized Workflow&amp;rdquo;, nơi mọi người đều đẩy (push) mã nguồn trực tiếp lên nhánh chính (&lt;code&gt;main&lt;/code&gt; hoặc &lt;code&gt;master&lt;/code&gt;), gây ra sự bất ổn định và khó theo dõi.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;rủi-ro-và-nỗi-đau&#34;&gt;Rủi ro và Nỗi đau
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Rủi ro bảo mật:&lt;/strong&gt; Giao thức FTP truyền thông tin đăng nhập (username, password) dưới dạng văn bản thuần (plain text), khiến chúng dễ dàng bị &amp;ldquo;bắt&amp;rdquo; bởi bất kỳ ai trên mạng. Dữ liệu truyền đi cũng không được mã hóa, có nguy cơ bị tấn công xen giữa (man-in-the-middle), nơi kẻ tấn công có thể chèn mã độc vào các tệp đang được triển khai mà không bị phát hiện.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Hệ thống cực kỳ mong manh:&lt;/strong&gt; Quy trình này rất dễ xảy ra lỗi. Chỉ cần quên một tệp, sao chép sai thư mục, hoặc một tệp truyền bị lỗi cũng có thể làm sập toàn bộ hệ thống.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Không có cơ chế Rollback:&lt;/strong&gt; Khi một lần triển khai thất bại, không có cách nào dễ dàng và tự động để quay trở lại phiên bản ổn định trước đó.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;level-1-script-và-quản-lý-mã-nguồn-có-cấu-trúc&#34;&gt;Level 1: Script và Quản Lý Mã Nguồn Có Cấu Trúc
+&lt;/h2&gt;&lt;h3 id=&#34;công-cụ-và-quy-trình-1&#34;&gt;Công cụ và Quy trình
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sự ra đời của Script:&lt;/strong&gt; &amp;ldquo;Deployment checklist&amp;rdquo; từ &lt;code&gt;level 0&lt;/code&gt; được mã hóa thành một kịch bản (script) triển khai đơn giản, thường sử dụng Bash. Script này tự động hóa các bước kết nối đến máy chủ, lấy mã nguồn mới nhất từ kho chứa, và khởi động lại các dịch vụ.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quy trình Git có cấu trúc:&lt;/strong&gt; Nhóm nhận ra rằng việc đẩy trực tiếp lên nhánh &lt;code&gt;main&lt;/code&gt; là không bền vững. Họ áp dụng một chiến lược phân nhánh chính thức, phổ biến nhất là &lt;strong&gt;Feature Branch Workflow&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nhánh &lt;code&gt;main&lt;/code&gt; giờ đây được coi là &amp;ldquo;bất khả xâm phạm&amp;rdquo; và luôn ở trạng thái sẵn sàng để triển khai.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tất cả công việc mới (tính năng, sửa lỗi) được thực hiện trên các nhánh riêng biệt.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Các thay đổi được tích hợp trở lại vào &lt;code&gt;main&lt;/code&gt; thông qua Pull Request (hoặc Merge Request), cho phép thực hiện quy trình đánh giá mã nguồn (code review).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;lợi-ích-và-những-vấn-đề-còn-tồn-tại&#34;&gt;Lợi ích và Những Vấn đề Còn Tồn Tại
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lợi ích:&lt;/strong&gt; Bản thân quy trình triển khai giờ đây đã đáng tin cậy và nhất quán hơn. Nhánh &lt;code&gt;main&lt;/code&gt; ổn định hơn. Việc đánh giá mã nguồn giúp cải thiện chất lượng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vấn đề còn tồn tại:&lt;/strong&gt; Script không xử lý tốt các trường hợp thất bại. Không có kiểm thử tự động, lỗi vẫn được triển khai, chỉ là một cách nhất quán hơn. Các môi trường (development, staging, production) vẫn được cấu hình thủ công và không nhất quán, dẫn đến vấn đề kinh điển &amp;ldquo;nó chạy trên máy của tôi&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;level-2-cicd&#34;&gt;Level 2: CI/CD
+&lt;/h2&gt;&lt;p&gt;Đây là một bước nhảy vọt. Trọng tâm chuyển từ một script triển khai đơn lẻ sang một &lt;strong&gt;đường ống (pipeline)&lt;/strong&gt; tự động hóa hoàn toàn, hoạt động như một &amp;ldquo;nhà máy&amp;rdquo; trung tâm cho việc phân phối phần mềm. Đây là nơi thế giới &amp;ldquo;Dev&amp;rdquo; và &amp;ldquo;Ops&amp;rdquo; thực sự bắt đầu hợp nhất.&lt;/p&gt;
+&lt;h3 id=&#34;cốt-lõi&#34;&gt;Cốt Lõi
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tích hợp Liên tục (Continuous Integration - CI):&lt;/strong&gt; Là thực tiễn tự động hóa việc tích hợp các thay đổi mã nguồn từ nhiều nhà phát triển vào một dự án duy nhất. Mỗi lần đẩy mã nguồn lên một nhánh sẽ kích hoạt một quy trình xây dựng (build) tự động và một bộ các bài kiểm thử tự động (unit test, integration test).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Phân phối Liên tục (Continuous Delivery - CD):&lt;/strong&gt; Là một phần mở rộng của CI. Sau khi các giai đoạn xây dựng và kiểm thử thành công, phần mềm sẽ được đóng gói và triển khai tự động đến một hoặc nhiều môi trường phi sản xuất (như staging). Việc triển khai lên production thường là một bước thủ công, chỉ cần một cú nhấp chuột.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Triển khai Liên tục (Continuous Deployment - cũng là CD):&lt;/strong&gt; Là hình thức tiên tiến nhất, nơi mọi thay đổi vượt qua tất cả các bài kiểm thử tự động đều được &lt;em&gt;triển khai tự động&lt;/em&gt; lên production mà không cần sự can thiệp của con người.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;công-cụ&#34;&gt;Công cụ
+&lt;/h3&gt;&lt;p&gt;Việc lựa chọn một công cụ CI/CD là một quyết định quan trọng ở giai đoạn này. Bảng dưới đây so sánh các lựa chọn phổ biến nhất.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Tính năng&lt;/th&gt;
+          &lt;th&gt;Jenkins&lt;/th&gt;
+          &lt;th&gt;GitLab CI&lt;/th&gt;
+          &lt;th&gt;GitHub Actions&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Thiết lập &amp;amp; Lưu trữ&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Cần cài đặt thủ công, thiết lập agent, tự lưu trữ (on-premise/cloud).&lt;/td&gt;
+          &lt;td&gt;Tích hợp sẵn trong GitLab, không cần cài đặt riêng.&lt;/td&gt;
+          &lt;td&gt;Tích hợp sẵn trong GitHub, không cần cài đặt riêng.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Cấu hình&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Jenkinsfile (viết bằng Groovy) hoặc qua giao diện người dùng (UI).&lt;/td&gt;
+          &lt;td&gt;Tệp YAML (&lt;code&gt;.gitlab-ci.yml&lt;/code&gt;) trong kho mã nguồn.&lt;/td&gt;
+          &lt;td&gt;Tệp YAML trong thư mục &lt;code&gt;.github/workflows&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Hệ sinh thái &amp;amp; Mở rộng&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Cực kỳ mạnh mẽ với hơn 1800 plugin, tùy biến cao nhưng có thể phức tạp và dễ gặp vấn đề tương thích.&lt;/td&gt;
+          &lt;td&gt;Tích hợp sâu với các tính năng của GitLab. Hệ sinh thái plugin nhỏ hơn Jenkins.&lt;/td&gt;
+          &lt;td&gt;Thị trường (Marketplace) rộng lớn với các &amp;ldquo;Actions&amp;rdquo; tái sử dụng. Dễ dàng tạo action tùy chỉnh.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Trường hợp sử dụng lý tưởng&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Các quy trình phức tạp, yêu cầu tùy biến sâu, môi trường on-premise hoặc các hệ thống cũ (legacy).&lt;/td&gt;
+          &lt;td&gt;Các nhóm đã và đang sử dụng GitLab làm nền tảng chính, muốn một giải pháp &amp;ldquo;tất cả trong một&amp;rdquo;.&lt;/td&gt;
+          &lt;td&gt;Các nhóm ưu tiên GitHub, dự án mã nguồn mở, startup, cần sự đơn giản và khởi đầu nhanh chóng.&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;lợi-ích-và-thách-thức-mới&#34;&gt;Lợi ích và Thách thức Mới
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lợi ích:&lt;/strong&gt; Vòng lặp phản hồi nhanh hơn đáng kể, chất lượng mã nguồn được cải thiện, giảm rủi ro triển khai và tăng năng suất của nhà phát triển.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thách thức:&lt;/strong&gt; Bản thân &amp;ldquo;đường ống CI/CD&amp;rdquo; trở thành một phần mềm phức tạp cần được bảo trì. Các nhóm giờ đây phải đối mặt với những vấn đề mới như các bài kiểm thử chạy chậm hoặc không ổn định (flaky tests), quản lý các phụ thuộc phức tạp, và vấn đề dai dẳng về &amp;ldquo;trôi dạt môi trường&amp;rdquo; (environment drift), nơi môi trường staging và production không giống hệt nhau.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;level-3-hạ-tầng-dưới-dạng-mã-iac-và-container-hóa&#34;&gt;Level 3: Hạ Tầng Dưới Dạng Mã (IaC) và Container Hóa
+&lt;/h2&gt;&lt;p&gt;Để giải quyết vấn đề trôi dạt môi trường và làm cho việc quản lý hạ tầng trở nên nghiêm ngặt như phát triển ứng dụng, các nhóm áp dụng triết lý &amp;ldquo;mọi thứ đều là mã nguồn&amp;rdquo;.&lt;/p&gt;
+&lt;h3 id=&#34;cốt-lõi-1&#34;&gt;Cốt Lõi
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Hạ tầng dưới dạng mã (Infrastructure as Code - IaC):&lt;/strong&gt; Là việc quản lý và cấp phát hạ tầng (máy chủ, mạng, cơ sở dữ liệu) thông qua các tệp định nghĩa mà máy có thể đọc được (mã nguồn), thay vì cấu hình thủ công. Có hai cách tiếp cận chính:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Declarative:&lt;/strong&gt; Bạn định nghĩa &lt;em&gt;trạng thái cuối cùng&lt;/em&gt; mong muốn của hạ tầng. Công cụ (ví dụ: Terraform) sẽ tự tìm cách để đạt được trạng thái đó. Đây là cách tiếp cận chủ đạo trong IaC hiện đại.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Imperative:&lt;/strong&gt; Bạn viết các kịch bản chỉ định các &lt;em&gt;bước chính xác&lt;/em&gt; cần thực hiện để cấu hình hạ tầng (ví dụ: Ansible, Chef, Puppet).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Container hóa với Docker:&lt;/strong&gt; Là người bạn đồng hành hoàn hảo của IaC. Docker giải quyết vấn đề &amp;ldquo;nó chạy trên máy của tôi&amp;rdquo; bằng cách đóng gói một ứng dụng và tất cả các phụ thuộc của nó vào một đơn vị duy nhất, được tiêu chuẩn hóa và bị cô lập gọi là &lt;strong&gt;container&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Dockerfile:&lt;/strong&gt; &amp;ldquo;Công thức&amp;rdquo; hay bản thiết kế để xây dựng một image.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Image:&lt;/strong&gt; Một mẫu chỉ đọc (read-only) chứa ứng dụng và môi trường của nó.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Container:&lt;/strong&gt; Một thực thể đang chạy (running instance) của một image. Nó nhẹ và có tính di động cao.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;quy-trình-mới&#34;&gt;Quy trình Mới
+&lt;/h3&gt;&lt;p&gt;Đường ống CI/CD được nâng cấp. Nó không còn chỉ triển khai mã nguồn; nó xây dựng một Docker image (một tạo phẩm nhất quán được đảm bảo) và sử dụng các công cụ IaC như Terraform để cấp phát một môi trường giống hệt nơi container sẽ chạy.&lt;/p&gt;
+&lt;h3 id=&#34;lợi-ích-và-nút-thắt-cổ-chai-tiếp-theo&#34;&gt;Lợi ích và Nút thắt Cổ chai Tiếp theo
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lợi ích:&lt;/strong&gt; Vấn đề trôi dạt môi trường được loại bỏ. Các lần triển khai giờ đây có tính nhất quán và độ tin cậy cao trên các môi trường dev, staging và production. Các thay đổi về hạ tầng được quản lý phiên bản, được đánh giá và có thể kiểm tra lại.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nút thắt cổ chai tiếp theo:&lt;/strong&gt; Tổ chức bây giờ đã thành công và có hàng trăm hoặc hàng nghìn container. Làm thế nào để quản lý chúng? Làm thế nào để xử lý mạng, mở rộng quy mô và kiểm tra sức khỏe cho tất cả các container này? Đây là vấn đề của việc &lt;strong&gt;điều phối (orchestration)&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;level-4-điều-phối-container-và-kiến-trúc-cloud-native&#34;&gt;Level 4: Điều Phối Container và Kiến Trúc Cloud-Native
+&lt;/h2&gt;&lt;p&gt;Trọng tâm chuyển từ việc quản lý các container riêng lẻ sang quản lý một ứng dụng phân tán bao gồm nhiều container ở quy mô lớn. Điều này đòi hỏi một &amp;ldquo;nhạc trưởng&amp;rdquo; cho &amp;ldquo;dàn nhạc&amp;rdquo; container.&lt;/p&gt;
+&lt;h3 id=&#34;cốt-lõi-kubernetes-k8s&#34;&gt;Cốt Lõi: Kubernetes (K8s)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kubernetes:&lt;/strong&gt; Là hệ thống mã nguồn mở, tiêu chuẩn de-facto của ngành công nghiệp, dùng để tự động hóa việc triển khai, mở rộng quy mô và quản lý các ứng dụng được container hóa. Nó giải quyết vấn đề chạy các hệ thống phân tán một cách linh hoạt và có khả năng phục hồi.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;**Các đối tượng Kubernetes chính:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Pod:&lt;/strong&gt; Đơn vị triển khai nhỏ nhất, cơ bản nhất trong Kubernetes. Nó là một lớp vỏ bọc quanh một hoặc nhiều container, chia sẻ tài nguyên lưu trữ và mạng. Hãy coi nó như &amp;ldquo;nguyên tử&amp;rdquo; cơ bản của một ứng dụng K8s.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Deployment:&lt;/strong&gt; Một đối tượng cấp cao hơn mô tả &lt;em&gt;trạng thái mong muốn&lt;/em&gt; cho ứng dụng của bạn. Nó nói với Kubernetes rằng &amp;ldquo;Tôi muốn có 3 bản sao (replica) của pod máy chủ web của tôi chạy mọi lúc.&amp;rdquo; Bộ điều khiển Deployment (Deployment Controller) sẽ làm việc để biến trạng thái này thành hiện thực.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Service:&lt;/strong&gt; Một lớp trừu tượng định nghĩa một tập hợp logic các Pod và một chính sách để truy cập chúng. Nó cung cấp một địa chỉ IP và tên DNS ổn định, để các phần khác của ứng dụng (hoặc người dùng bên ngoài) có thể kết nối đến các Pod, ngay cả khi chúng được tạo ra và phá hủy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;lợi-ích-và-sự-phức-tạp-mới&#34;&gt;Lợi ích và Sự Phức Tạp Mới
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lợi ích:&lt;/strong&gt; Tổ chức đạt được khả năng mở rộng quy mô thực sự, tự phục hồi (Kubernetes tự động khởi động lại các container bị lỗi), và tính sẵn sàng cao. Các bản cập nhật và quay lui (rolling updates and rollbacks) giờ đây được quản lý một cách khai báo và an toàn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sự phức tạp mới:&lt;/strong&gt; Bản thân Kubernetes là một hệ thống cực kỳ phức tạp. Việc học nó rất khó khăn. Quản lý, giám sát và bảo mật một cụm Kubernetes (cluster) trở thành một công việc toàn thời gian. Thách thức mới không còn là &amp;ldquo;làm thế nào để chạy ứng dụng của chúng ta?&amp;rdquo; mà là &amp;ldquo;làm thế nào để chạy Kubernetes một cách đáng tin cậy?&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;level-5-vận-hành-dựa-trên-dữ-liệu-sre-gitops--observability&#34;&gt;Level 5: Vận Hành Dựa Trên Dữ Liệu (SRE, GitOps, &amp;amp; Observability)
+&lt;/h2&gt;&lt;p&gt;Đây là level cao nhất. Các hoạt động vận hành không còn là bị động hay thậm chí chỉ là tự động; chúng trở nên chủ động, được điều khiển bằng dữ liệu và được xem như một ngành kỹ thuật phần mềm.&lt;/p&gt;
+&lt;h3 id=&#34;cốt-lõi-2&#34;&gt;Cốt Lõi
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Site Reliability Engineering - SRE:&lt;/strong&gt; Một phương pháp triển khai cụ thể của DevOps, bắt nguồn từ Google. Nó coi các vấn đề vận hành như những bài toán phần mềm.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;SLI, SLO, và Ngân sách Lỗi (Error Budgets):&lt;/strong&gt; SRE cung cấp một khung làm việc toán học cho độ tin cậy.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;SLI (Service Level Indicator - Chỉ số Cấp độ Dịch vụ):&lt;/strong&gt; Một thước đo định lượng về một khía cạnh nào đó của dịch vụ (ví dụ: độ trễ yêu cầu, tỷ lệ lỗi).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;SLO (Service Level Objective - Mục tiêu Cấp độ Dịch vụ):&lt;/strong&gt; Một giá trị mục tiêu cho một SLI trong một khoảng thời gian (ví dụ: 99.9% yêu cầu được phục vụ trong &amp;lt;200ms).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Error Budget (Ngân sách Lỗi):&lt;/strong&gt; Là phần nghịch đảo của SLO (100%−SLO). Đây là lượng &amp;ldquo;không đáng tin cậy&amp;rdquo; mà nhóm được phép &amp;ldquo;tiêu thụ&amp;rdquo;. Nếu ngân sách lỗi còn dương, nhóm có thể phát hành tính năng mới. Nếu nó cạn kiệt, mọi công việc phải chuyển sang cải thiện độ tin cậy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;SRE và DevOps:&lt;/strong&gt; SRE trả lời câu hỏi &amp;ldquo;làm thế nào&amp;rdquo; cho cái &amp;ldquo;gì&amp;rdquo; của DevOps.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;GitOps:&lt;/strong&gt; Sự tiến hóa của IaC và CI/CD. Git là &lt;strong&gt;nguồn chân lý duy nhất (single source of truth)&lt;/strong&gt; cho &lt;em&gt;toàn bộ&lt;/em&gt; trạng thái hệ thống (hạ tầng và ứng dụng).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quy trình làm việc:&lt;/strong&gt; Các thay đổi được thực hiện thông qua Pull Request đến một kho chứa Git. Một agent bên trong cụm Kubernetes (như Argo CD hoặc Flux) liên tục so sánh trạng thái thực tế với trạng thái được khai báo trong Git và tự động điều chỉnh bất kỳ sự khác biệt nào.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Argo CD và Flux:&lt;/strong&gt; Argo CD giống một nền tảng hoàn chỉnh, có giao diện người dùng, trong khi Flux là một bộ công cụ mô-đun hơn, tập trung vào dòng lệnh và thường được coi là gần gũi hơn với cách tiếp cận &amp;ldquo;thuần Kubernetes&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Khả năng Quan sát (Observability):&lt;/strong&gt; Vượt ra ngoài việc giám sát đơn giản (&amp;ldquo;máy chủ có hoạt động không?&amp;rdquo;) để đạt đến sự hiểu biết sâu sắc về hệ thống (&amp;ldquo;tại sao máy chủ lại chậm đối với người dùng ở khu vực cụ thể này?&amp;rdquo;).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ba Trụ cột của Observability:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Logs:&lt;/strong&gt; Các bản ghi chi tiết, có dấu thời gian về các sự kiện riêng lẻ.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Metrics:&lt;/strong&gt; Dữ liệu số, được tổng hợp theo thời gian (ví dụ: mức sử dụng CPU, số lượng yêu cầu).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Traces:&lt;/strong&gt; Cho thấy hành trình từ đầu đến cuối của một yêu cầu khi nó di chuyển qua một hệ thống phân tán.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Công cụ:&lt;/strong&gt; Các ngăn xếp công cụ phổ biến bao gồm Prometheus &amp;amp; Grafana để theo dõi số liệu và trực quan hóa, và ELK Stack (Elasticsearch, Logstash, Kibana) để quản lý nhật ký.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;kết-luận&#34;&gt;Kết luận
+&lt;/h2&gt;&lt;h3 id=&#34;hành-động&#34;&gt;Hành động
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Đánh giá Mức độ Trưởng thành:&lt;/strong&gt; Các tổ chức nên sử dụng mô hình này để xác định vị trí hiện tại của nhóm mình.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tập trung vào Nút thắt Cổ chai Tiếp theo:&lt;/strong&gt; Thay vì cố gắng nhảy từ Cấp độ 0 lên Cấp độ 5, chìa khóa là xác định điểm yếu lớn nhất hiện tại và áp dụng các thực tiễn của cấp độ tiếp theo để giải quyết nó. Quá trình này nên diễn ra từ từ và có kế hoạch.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lộ trình Kỹ năng Tóm tắt:&lt;/strong&gt; Để phát triển cá nhân hoặc xây dựng đội ngũ, một lộ trình kỹ năng có cấu trúc là cần thiết:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nền tảng:&lt;/strong&gt; Ngôn ngữ lập trình (Python/Go), Linux/Shell Scripting, Git.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;DevOps Cốt lõi:&lt;/strong&gt; Công cụ CI/CD (Jenkins, GitLab CI, GitHub Actions), IaC (Terraform), Containers (Docker).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nâng cao/Cloud-Native:&lt;/strong&gt; Kubernetes, Nền tảng Đám mây (AWS/GCP/Azure), Giám sát/Quan sát (Prometheus, Grafana).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tinh hoa/SRE:&lt;/strong&gt; Hiểu biết sâu về hệ thống phân tán, triển khai SLI/SLO, tự động hóa nâng cao.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

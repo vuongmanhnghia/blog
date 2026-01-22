@@ -1,0 +1,2399 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>System on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/categories/system/</link>
+        <description>Recent content in System on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/categories/system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Điều gì sẽ xảy ra khi gõ bất kỳ command nào trong terminal trên Linux ?</title>
+        <link>https://blog.nagih.io.vn/posts/linux/system-calls/</link>
+        <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/linux/system-calls/</guid>
+        <description>&lt;p&gt;Để trả lời câu này sâu sắc, chúng ta không chỉ nhìn ở bề nổi (gõ lệnh -&amp;gt; ra kết quả), mà phải nhìn xuống tầng &lt;strong&gt;Kernel&lt;/strong&gt; và &lt;strong&gt;System Calls&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;1-phân-tích-cú-pháp-parsing--tokenization&#34;&gt;1. Phân tích cú pháp (Parsing) &amp;amp; Tokenization
+&lt;/h3&gt;&lt;p&gt;Khi bạn gõ ví dụ: &lt;code&gt;ls -l /var/log&lt;/code&gt; và nhấn Enter:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Shell (Bash/Zsh)&lt;/strong&gt; sẽ đọc dòng chữ đó.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó cắt chuỗi thành các &lt;strong&gt;Tokens&lt;/strong&gt; (từ đơn):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Command: &lt;code&gt;ls&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Argument: &lt;code&gt;-l&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Argument: &lt;code&gt;/var/log&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-kiểm-tra-alias-và-hàm-aliases--functions&#34;&gt;2. Kiểm tra Alias và Hàm (Aliases &amp;amp; Functions)
+&lt;/h3&gt;&lt;p&gt;Trước khi tìm file để chạy, Shell kiểm tra &lt;strong&gt;Alias&lt;/strong&gt; trước:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Alias:&lt;/strong&gt; Có phải bạn đã đặt &lt;code&gt;alias ls=&#39;ls --color=auto&#39;&lt;/code&gt; không? Nếu có, nó sẽ thay thế &lt;code&gt;ls&lt;/code&gt; bằng lệnh đầy đủ.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Functions:&lt;/strong&gt; Có hàm nào tên là &lt;code&gt;ls&lt;/code&gt; được định nghĩa trong &lt;code&gt;.bashrc&lt;/code&gt; không?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;3-kiểm-tra-shell-built-in-lệnh-nội-tại&#34;&gt;3. Kiểm tra Shell Built-in (Lệnh nội tại)
+&lt;/h3&gt;&lt;p&gt;Shell kiểm tra xem lệnh này có phải là &lt;strong&gt;Built-in&lt;/strong&gt; không.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Built-in:&lt;/strong&gt; Là lệnh nằm ngay trong code của Shell, không cần gọi file bên ngoài (Ví dụ: &lt;code&gt;cd&lt;/code&gt;, &lt;code&gt;echo&lt;/code&gt;, &lt;code&gt;alias&lt;/code&gt;, &lt;code&gt;export&lt;/code&gt;).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Tại sao &lt;code&gt;cd&lt;/code&gt; phải là built-in?&lt;/em&gt; Vì nếu &lt;code&gt;cd&lt;/code&gt; là một chương trình bên ngoài, khi chạy nó sẽ tạo ra một tiến trình con (child process), tiến trình con đổi thư mục rồi tắt đi, tiến trình cha (Shell hiện tại) vẫn ở thư mục cũ. Do đó &lt;code&gt;cd&lt;/code&gt; phải do chính Shell thực hiện.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;External:&lt;/strong&gt; &lt;code&gt;ls&lt;/code&gt; không phải built-in, nên Shell tiếp tục bước sau.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-mở-rộng-expansion&#34;&gt;4. Mở rộng (Expansion)
+&lt;/h3&gt;&lt;p&gt;Shell xử lý các ký tự đặc biệt trước khi chạy lệnh:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Brace expansion:&lt;/strong&gt; &lt;code&gt;echo {a,b}&lt;/code&gt; -&amp;gt; &lt;code&gt;a b&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Variable expansion:&lt;/strong&gt; &lt;code&gt;$HOME&lt;/code&gt; -&amp;gt; &lt;code&gt;/home/user&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Command substitution:&lt;/strong&gt; &lt;code&gt;$(date)&lt;/code&gt; -&amp;gt; &lt;code&gt;Sun Nov 30...&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Globbing (Wildcards):&lt;/strong&gt; &lt;code&gt;*.txt&lt;/code&gt; -&amp;gt; danh sách file đuôi txt.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;5-tìm-kiếm-đường-dẫn-path-resolution&#34;&gt;5. Tìm kiếm đường dẫn (Path Resolution)
+&lt;/h3&gt;&lt;p&gt;Nếu lệnh không chứa đường dẫn tuyệt đối (như &lt;code&gt;/bin/ls&lt;/code&gt;) mà chỉ là &lt;code&gt;ls&lt;/code&gt;, Shell sẽ tìm trong biến môi trường &lt;strong&gt;&lt;code&gt;$PATH&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nó quét lần lượt: &lt;code&gt;/usr/local/bin&lt;/code&gt; -&amp;gt; &lt;code&gt;/usr/bin&lt;/code&gt; -&amp;gt; &lt;code&gt;/bin&lt;/code&gt;&amp;hellip;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Để tối ưu, Shell thường dùng &lt;strong&gt;Hash Table&lt;/strong&gt; (bảng băm) để nhớ vị trí các lệnh đã chạy trước đó (gõ &lt;code&gt;hash&lt;/code&gt; để xem).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;6-cơ-chế-fork---exec---wait-trái-tim-của-linux-process&#34;&gt;6. Cơ chế Fork - Exec - Wait (Trái tim của Linux Process)
+&lt;/h3&gt;&lt;p&gt;Đây là bước quan trọng nhất về mặt hệ thống (System Internals). Khi đã tìm thấy file thực thi &lt;code&gt;/usr/bin/ls&lt;/code&gt;, Shell thực hiện 3 bước thần thánh:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;fork()&lt;/code&gt; (Phân thân):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Shell (Process cha - Parent) gọi system call &lt;code&gt;fork()&lt;/code&gt; để tạo ra một bản sao y hệt của chính nó (Process con - Child).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Lúc này, ta có 2 tiến trình giống hệt nhau đang chạy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;exec()&lt;/code&gt; (Thay thế - Cụ thể là &lt;code&gt;execve&lt;/code&gt;):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Trong Process con, nó gọi system call &lt;code&gt;execve()&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Lệnh này sẽ &lt;strong&gt;xóa sạch&lt;/strong&gt; bộ nhớ của Process con và nạp mã nguồn của chương trình mới (&lt;code&gt;/usr/bin/ls&lt;/code&gt;) vào thay thế.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Process con giờ đây chính thức biến thành chương trình &lt;code&gt;ls&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;wait()&lt;/code&gt; (Chờ đợi):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Process cha (Shell) gọi &lt;code&gt;wait()&lt;/code&gt; và tạm dừng hoạt động (ngủ) để chờ Process con chạy xong.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;7-nạp-thư-viện-động-dynamic-linking&#34;&gt;7. Nạp thư viện động (Dynamic Linking)
+&lt;/h3&gt;&lt;p&gt;Trước khi &lt;code&gt;ls&lt;/code&gt; thực sự chạy code của nó, Kernel thấy file này cần các thư viện &lt;code&gt;.so&lt;/code&gt; (Shared Objects, giống &lt;code&gt;.dll&lt;/code&gt; bên Windows).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Trình liên kết động (&lt;code&gt;ld-linux.so&lt;/code&gt;) sẽ được gọi để load các thư viện cần thiết (như &lt;code&gt;libc.so&lt;/code&gt;, &lt;code&gt;libselinux.so&lt;/code&gt;&amp;hellip;) vào bộ nhớ.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;DevOps Tip:&lt;/em&gt; Dùng lệnh &lt;code&gt;ldd /bin/ls&lt;/code&gt; để xem nó cần thư viện nào.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;8-thực-thi-và-io&#34;&gt;8. Thực thi và I/O
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Chương trình &lt;code&gt;ls&lt;/code&gt; chạy, đọc thư mục, format kết quả.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó ghi kết quả ra &lt;strong&gt;Standard Output (stdout - File Descriptor 1)&lt;/strong&gt;. Mặc định stdout trỏ về màn hình terminal của bạn nên bạn thấy chữ hiện lên.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;9-kết-thúc-termination&#34;&gt;9. Kết thúc (Termination)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Khi &lt;code&gt;ls&lt;/code&gt; chạy xong, nó gọi &lt;code&gt;exit(0)&lt;/code&gt; (0 nghĩa là thành công).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kernel gửi tín hiệu &lt;strong&gt;SIGCHLD&lt;/strong&gt; cho Process cha (Shell) báo rằng &amp;ldquo;Con ông xong việc rồi&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Shell thức dậy từ lệnh &lt;code&gt;wait()&lt;/code&gt;, thu thập &lt;strong&gt;Exit Code&lt;/strong&gt; (mã thoát).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;DevOps Tip:&lt;/em&gt; Mã này được lưu vào biến &lt;code&gt;$?&lt;/code&gt;. Bạn có thể &lt;code&gt;echo $?&lt;/code&gt; để xem. (0 = OK, khác 0 = Lỗi).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;10-prompt-quay-lại&#34;&gt;10. Prompt quay lại
+&lt;/h3&gt;&lt;p&gt;Shell in lại dấu nhắc lệnh (ví dụ: &lt;code&gt;user@host:~$&lt;/code&gt;) và chờ đợi lệnh tiếp theo của bạn.&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>Điều gì xảy ra khi bạn sử dụng lệnh Sudo ?</title>
+        <link>https://blog.nagih.io.vn/posts/linux/sudo/</link>
+        <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/linux/sudo/</guid>
+        <description>&lt;p&gt;Khi bạn gõ &lt;code&gt;sudo apt update&lt;/code&gt;, không đơn giản là hệ thống &amp;ldquo;bật công tắc&amp;rdquo; quyền admin. Đó là một chuỗi các thao tác kiểm tra nghiêm ngặt, thay đổi định danh (Identity) và làm sạch môi trường.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Trước khi tìm hiểu về &lt;strong&gt;Sudo&lt;/strong&gt;, bạn nên hiểu về Điều gì sảy ra sau khi sử dụng Command (non-sudo) tại &lt;a href=&#34;https://blog.nagih.io.vn/posts/linux/system-calls/&#34;&gt;System Calls&lt;/a&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;giai-đoạn-1-tại-shell-user-space&#34;&gt;Giai đoạn 1: Tại Shell (User Space)
+&lt;/h3&gt;&lt;p&gt;Ngay khi bạn nhấn Enter, Shell (Bash/Zsh) của bạn bắt đầu làm việc:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Parsing (Phân tích cú pháp):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Shell cắt chuỗi &lt;code&gt;sudo fdisk -l&lt;/code&gt; thành các token:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Main Command: &lt;code&gt;sudo&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Argument 1: &lt;code&gt;fdisk&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Argument 2: &lt;code&gt;-l&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Path Resolution (Tìm đường dẫn):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Shell tìm xem &lt;code&gt;sudo&lt;/code&gt; nằm ở đâu bằng cách quét biến &lt;code&gt;$PATH&lt;/code&gt; của user hiện tại (&lt;code&gt;/usr/local/bin&lt;/code&gt;, &lt;code&gt;/usr/bin&lt;/code&gt;, &lt;code&gt;/bin&lt;/code&gt;&amp;hellip;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó tìm thấy &lt;code&gt;/usr/bin/sudo&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;giai-đoạn-2-khởi-chạy-sudo---quyền-lực-ngầm-suid&#34;&gt;Giai đoạn 2: Khởi chạy Sudo - Quyền lực ngầm (SUID)
+&lt;/h3&gt;&lt;p&gt;Trước khi lệnh chạy, hãy nhìn vào file thực thi của &lt;code&gt;sudo&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ls -l /usr/bin/sudo
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Kết quả: -rwsr-xr-x 1 root root ...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Bạn thấy chữ &lt;strong&gt;&lt;code&gt;s&lt;/code&gt;&lt;/strong&gt; ở phần quyền hạn (&lt;code&gt;rws&lt;/code&gt;) không? Đó là &lt;strong&gt;SUID bit&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bình thường:&lt;/strong&gt; Khi bạn chạy một chương trình, nó chạy với quyền của &lt;strong&gt;bạn&lt;/strong&gt; (User ID của bạn).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Với SUID:&lt;/strong&gt; Khi bạn chạy &lt;code&gt;sudo&lt;/code&gt;, hệ điều hành sẽ chạy nó với quyền của &lt;strong&gt;người sở hữu file&lt;/strong&gt; (ở đây là &lt;code&gt;root&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Shell gọi Kernel để chạy &lt;code&gt;/usr/bin/sudo&lt;/code&gt;. Đây là điểm mấu chốt đầu tiên:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cơ chế SUID (Set User ID):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Kernel nhìn vào metadata (Inode) của file &lt;code&gt;/usr/bin/sudo&lt;/code&gt; và thấy bit &lt;strong&gt;s&lt;/strong&gt; (&lt;code&gt;-rwsr-xr-x&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Thay vì chạy &lt;code&gt;sudo&lt;/code&gt; với quyền của user &lt;code&gt;devops&lt;/code&gt;, Kernel khởi chạy tiến trình &lt;code&gt;sudo&lt;/code&gt; với quyền của người sở hữu file này -&amp;gt; &lt;strong&gt;Root&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kết quả:&lt;/strong&gt; Tiến trình sudo vừa sinh ra đã có &lt;strong&gt;Effective UID = 0&lt;/strong&gt; (Quyền tối cao).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;giai-đoạn-3-policy-check---etcsudoers&#34;&gt;Giai đoạn 3. Policy Check - &lt;code&gt;/etc/sudoers&lt;/code&gt;
+&lt;/h3&gt;&lt;p&gt;Dù &lt;code&gt;sudo&lt;/code&gt; đang chạy với quyền root, nó chưa vội thực thi lệnh của bạn. Nó phải kiểm tra xem bạn có &amp;ldquo;đủ tuổi&amp;rdquo; không.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nó đọc file &lt;code&gt;/etc/sudoers&lt;/code&gt; (và thư mục &lt;code&gt;/etc/sudoers.d/&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó kiểm tra:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;User của bạn có nằm trong nhóm được phép (thường là &lt;code&gt;wheel&lt;/code&gt; hoặc &lt;code&gt;sudo&lt;/code&gt;) không?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bạn được phép chạy lệnh gì? (ALL commands hay chỉ một số lệnh cụ thể).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bạn có cần nhập mật khẩu không? (&lt;code&gt;NOPASSWD&lt;/code&gt; hay mặc định).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;giai-đoạn-4-xác-thực-qua-pam-pluggable-authentication-modules&#34;&gt;Giai đoạn 4. Xác thực qua PAM (Pluggable Authentication Modules)
+&lt;/h3&gt;&lt;p&gt;Nếu cấu hình yêu cầu mật khẩu, &lt;code&gt;sudo&lt;/code&gt; không tự kiểm tra mật khẩu (nó không đọc &lt;code&gt;/etc/shadow&lt;/code&gt;). Nó nhờ một &amp;ldquo;bảo vệ&amp;rdquo; chuyên nghiệp tên là &lt;strong&gt;PAM&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sudo&lt;/code&gt; gửi yêu cầu đến thư viện PAM.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;PAM hỏi mật khẩu của &lt;strong&gt;User hiện tại&lt;/strong&gt; (không phải mật khẩu root).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu nhập sai 3 lần -&amp;gt; PAM báo lỗi -&amp;gt; &lt;code&gt;sudo&lt;/code&gt; ghi log cảnh báo và thoát.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Cơ chế Timestamp:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Nếu bạn nhập đúng, &lt;code&gt;sudo&lt;/code&gt; sẽ tạo một file timestamp (thường ở &lt;code&gt;/run/sudo/ts/&lt;/code&gt;). Trong vòng 15 phút (mặc định), nếu bạn gọi lại &lt;code&gt;sudo&lt;/code&gt;, nó kiểm tra timestamp này còn hạn không. Nếu còn, nó bỏ qua bước hỏi mật khẩu.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;giai-đoạn-5-làm-sạch-và-thiết-lập-môi-trường-environment-sanitization&#34;&gt;Giai đoạn 5. Làm sạch và Thiết lập Môi trường (Environment Sanitization)
+&lt;/h3&gt;&lt;p&gt;Để tránh việc user lợi dụng các biến môi trường để hack quyền root, &lt;code&gt;sudo&lt;/code&gt; sẽ:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Xóa bỏ các biến nguy hiểm:&lt;/strong&gt; Đặc biệt là &lt;code&gt;LD_PRELOAD&lt;/code&gt; (biến này cho phép chèn mã độc vào thư viện động) và &lt;code&gt;LD_LIBRARY_PATH&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Reset &lt;code&gt;$PATH&lt;/code&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sudo&lt;/code&gt; ghi đè biến &lt;code&gt;$PATH&lt;/code&gt; cũ bằng giá trị &lt;code&gt;secure_path&lt;/code&gt; trong &lt;code&gt;/etc/sudoers&lt;/code&gt; (để bao gồm &lt;code&gt;/sbin&lt;/code&gt;, &lt;code&gt;/usr/sbin&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;*Nhờ bước này, hệ thống mới &amp;ldquo;nhìn thấy&amp;rdquo; lệnh &lt;code&gt;fdisk&lt;/code&gt; nằm trong &lt;code&gt;/usr/sbin*&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thiết lập biến định danh:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;$HOME&lt;/code&gt; trỏ về &lt;code&gt;/root&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;$USER&lt;/code&gt;, &lt;code&gt;$LOGNAME&lt;/code&gt; chuyển thành &lt;code&gt;root&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;(Trừ khi bạn dùng &lt;code&gt;sudo -E&lt;/code&gt; để giữ nguyên môi trường cũ - nhưng rất rủi ro).&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;giai-đoạn-6-ghi-log-logging&#34;&gt;Giai đoạn 6. Ghi Log (Logging)
+&lt;/h3&gt;&lt;p&gt;Trước khi thực sự chạy lệnh, &lt;code&gt;sudo&lt;/code&gt; ghi lại hành động này để làm bằng chứng (Audit trail).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ghi vào: &lt;code&gt;/var/log/auth.log&lt;/code&gt; (Ubuntu/Debian) hoặc &lt;code&gt;/var/log/secure&lt;/code&gt; (RHEL/CentOS).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nội dung: &amp;ldquo;User A đã chạy lệnh B vào giờ C tại thư mục D&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;giai-đoạn-7-fork-và-exec-chuyển-giao-quyền-lực&#34;&gt;Giai đoạn 7. Fork và Exec (Chuyển giao quyền lực)
+&lt;/h3&gt;&lt;p&gt;Bây giờ mọi thủ tục đã xong, &lt;code&gt;sudo&lt;/code&gt; thực hiện bước cuối cùng để chạy lệnh bạn muốn (ví dụ: &lt;code&gt;apt update&lt;/code&gt;).&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;fork()&lt;/code&gt;:&lt;/strong&gt; &lt;code&gt;sudo&lt;/code&gt; tạo ra một tiến trình con (Child process).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Trong tiến trình con:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Gọi system call &lt;code&gt;setuid(0)&lt;/code&gt; và &lt;code&gt;setgid(0)&lt;/code&gt;: Lệnh này chính thức đóng dấu &amp;ldquo;Tôi là Root&amp;rdquo; vào tiến trình con này vĩnh viễn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Gọi &lt;code&gt;execve()&lt;/code&gt;: Thay thế mã nguồn của &lt;code&gt;sudo&lt;/code&gt; bằng mã nguồn của lệnh đích (&lt;code&gt;apt&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Trong tiến trình cha (&lt;code&gt;sudo&lt;/code&gt;):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nó vẫn chạy và đợi (wait) tiến trình con.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó đóng vai trò trung gian chuyển tiếp tín hiệu (Signals). Ví dụ: Bạn bấm &lt;code&gt;Ctrl+C&lt;/code&gt;, &lt;code&gt;sudo&lt;/code&gt; nhận được và chuyển nó cho tiến trình con đang chạy &lt;code&gt;apt&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;giai-đoạn-8-kết-thúc&#34;&gt;Giai đoạn 8. Kết thúc
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Lệnh &lt;code&gt;apt&lt;/code&gt; chạy xong và trả về Exit Code (0).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sudo&lt;/code&gt; nhận Exit Code đó và trả lại cho Shell của bạn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Shell hiển thị lại dấu nhắc lệnh.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;tóm-tắt-luồng-đi-flowchart-dạng-text&#34;&gt;Tóm tắt luồng đi (Flowchart dạng text)
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;User gõ lệnh:&lt;/strong&gt; &lt;code&gt;sudo vim /etc/hosts&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kernel:&lt;/strong&gt; Chạy binary &lt;code&gt;sudo&lt;/code&gt; với quyền Root (do SUID bit).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sudo:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Đọc &lt;code&gt;/etc/sudoers&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hỏi PAM: &amp;ldquo;Mật khẩu thằng này đúng không?&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;PAM: &amp;ldquo;Đúng&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ghi log vào &lt;code&gt;/var/log/auth.log&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Xóa biến môi trường độc hại, set lại &lt;code&gt;$PATH&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;fork()&lt;/code&gt; -&amp;gt; Tạo process con.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Process Con:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;setuid(0)&lt;/code&gt; (Thành root thật sự).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;execve(&amp;quot;vim&amp;quot;)&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vim:&lt;/strong&gt; Mở ra với quyền &lt;code&gt;root&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+        </item>
+        <item>
+        <title>Inode trong Linux File System</title>
+        <link>https://blog.nagih.io.vn/posts/linux/inode/</link>
+        <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/linux/inode/</guid>
+        <description>&lt;p&gt;&lt;strong&gt;Inode&lt;/strong&gt; (viết tắt của &lt;strong&gt;Index Node&lt;/strong&gt;) là một khái niệm cốt lõi và cực kỳ quan trọng trong các hệ thống tập tin (filesystem) của Linux và Unix.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Để hiểu đơn giản: Nếu coi dữ liệu của một file là &amp;ldquo;nội dung cuốn sách&amp;rdquo;, thì &lt;strong&gt;Inode&lt;/strong&gt; chính là &amp;ldquo;thẻ mục lục&amp;rdquo; của cuốn sách đó trong thư viện.&lt;/p&gt;
+&lt;h3 id=&#34;1-inode-chứa-những-gì&#34;&gt;1. Inode chứa những gì?
+&lt;/h3&gt;&lt;p&gt;Mỗi file trên Linux được gán một số định danh duy nhất gọi là &lt;strong&gt;Inode number&lt;/strong&gt;. Inode là một cấu trúc dữ liệu lưu trữ tất cả thông tin về file (metadata), &lt;strong&gt;trừ tên file và nội dung thực sự của file&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Thông tin trong một Inode bao gồm:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Loại file:&lt;/strong&gt; (File thường, thư mục, symbolic link, block device&amp;hellip;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quyền hạn (Permissions):&lt;/strong&gt; Read, Write, Execute cho Owner, Group, và Others.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chủ sở hữu (Owner/Group):&lt;/strong&gt; User ID (UID) và Group ID (GID).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kích thước file (File size):&lt;/strong&gt; Dung lượng tính bằng byte.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tem thời gian (Timestamps):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Created (thời điểm tạo).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Modified (lần cuối sửa nội dung).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Accessed (lần cuối mở file).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Số lượng liên kết cứng (Hard link count):&lt;/strong&gt; Có bao nhiêu tên file trỏ vào inode này.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vị trí dữ liệu (Pointers to data blocks):&lt;/strong&gt; Quan trọng nhất, nó chỉ ra vị trí cụ thể trên ổ cứng nơi dữ liệu thực sự của file được lưu trữ.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-cái-gì-không-nằm-trong-inode&#34;&gt;2. Cái gì KHÔNG nằm trong Inode?
+&lt;/h3&gt;&lt;p&gt;Đây là điểm thú vị nhất: &lt;strong&gt;Tên file (Filename) không nằm trong Inode.&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Tên file được lưu trong dữ liệu của &lt;strong&gt;Thư mục (Directory)&lt;/strong&gt; chứa file đó.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Thư mục thực chất là một file đặc biệt, nội dung của nó chỉ là một danh sách ánh xạ giữa &lt;strong&gt;Tên file&lt;/strong&gt; và &lt;strong&gt;Số Inode&lt;/strong&gt; tương ứng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-quy-trình-truy-cập-một-file-diễn-ra-như-thế-nào&#34;&gt;3. Quy trình truy cập một file diễn ra như thế nào?
+&lt;/h3&gt;&lt;p&gt;Khi bạn gõ lệnh &lt;code&gt;cat data.txt&lt;/code&gt; hoặc mở một file, hệ thống sẽ làm như sau:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Đọc thư mục hiện tại để tìm tên &lt;code&gt;data.txt&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Lấy số Inode tương ứng với tên &lt;code&gt;data.txt&lt;/code&gt; (ví dụ: Inode #12345).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Truy cập vào Inode #12345 để kiểm tra quyền hạn (bạn có quyền đọc không?).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu có quyền, nó dùng các &amp;ldquo;con trỏ&amp;rdquo; trong Inode để tìm đến các khối (blocks) trên ổ cứng chứa nội dung văn bản.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hiển thị nội dung lên màn hình.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;4-tại-sao-inode-lại-quan-trọng&#34;&gt;4. Tại sao Inode lại quan trọng?
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;a. Hard Links (Liên kết cứng)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Vì tên file và dữ liệu file (Inode) tách biệt nhau, nên Linux cho phép nhiều tên file khác nhau cùng trỏ vào một số Inode duy nhất.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu bạn tạo một hard link cho File A thành File B, cả hai đều trỏ vào cùng một Inode.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Xóa File A không làm mất dữ liệu, vì Inode vẫn còn (do File B vẫn giữ liên kết). Dữ liệu chỉ thực sự bị xóa khi số lượng liên kết (link count) trong Inode giảm về 0.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;b. Di chuyển file (Move) rất nhanh&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Khi bạn dùng lệnh &lt;code&gt;mv&lt;/code&gt; để di chuyển file trong cùng một phân vùng (partition), hệ thống không hề sao chép dữ liệu của file. Nó chỉ đơn giản là cập nhật lại đường dẫn trong các thư mục để trỏ về số Inode cũ. Do đó, việc di chuyển file 10GB diễn ra tức thì.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;c. Lỗi &amp;ldquo;No space left on device&amp;rdquo; dù ổ cứng còn trống&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Mỗi phân vùng (partition) có một số lượng Inode giới hạn được định sẵn khi format (định dạng).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu bạn tạo hàng triệu file cực nhỏ (ví dụ 1KB), bạn có thể dùng hết số lượng Inode cho phép dù dung lượng ổ cứng (GB) vẫn còn trống rất nhiều.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Khi hết Inode, bạn không thể tạo thêm file mới nào nữa.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;5-các-lệnh-thường-dùng-với-inode&#34;&gt;5. Các lệnh thường dùng với Inode
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Xem số Inode của file:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ls -i ten_file
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Hoặc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ls -li
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Xem chi tiết thông tin Inode:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;stat ten_file
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm tra dung lượng và số lượng Inode còn trống:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;df -i
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Cột IUse% cho biết bạn đã dùng bao nhiêu phần trăm Inode.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>Linux File System</title>
+        <link>https://blog.nagih.io.vn/posts/linux/file-system/</link>
+        <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/linux/file-system/</guid>
+        <description>&lt;hr&gt;
+&lt;h3 id=&#34;1-everything-is-a-file&#34;&gt;1. &amp;ldquo;Everything is a file&amp;rdquo;
+&lt;/h3&gt;&lt;p&gt;Trong Linux, mọi thứ đều là tập tin (hoặc được biểu diễn như một tập tin):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Dữ liệu:&lt;/strong&gt; Văn bản, hình ảnh, code.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thiết bị phần cứng:&lt;/strong&gt; Ổ cứng (&lt;code&gt;/dev/sda&lt;/code&gt;), bàn phím, chuột.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tiến trình (Process):&lt;/strong&gt; Thông tin về RAM, CPU (&lt;code&gt;/proc&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Socket/Pipe:&lt;/strong&gt; Giao tiếp mạng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;2-cấu-trúc-thư-mục-chuẩn-filesystem-hierarchy-standard---fhs&#34;&gt;2. Cấu trúc thư mục chuẩn (Filesystem Hierarchy Standard - FHS)
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Folder&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Meaning&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;/&lt;/code&gt; (Root)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Gốc của hệ thống. Chỉ user &lt;code&gt;root&lt;/code&gt; mới có quyền ghi.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;/bin&lt;/code&gt; &amp;amp; &lt;code&gt;/usr/bin&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Chứa các lệnh cơ bản (&lt;code&gt;ls&lt;/code&gt;, &lt;code&gt;cp&lt;/code&gt;, &lt;code&gt;docker&lt;/code&gt;).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;/sbin&lt;/code&gt; &amp;amp; &lt;code&gt;/usr/sbin&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Chứa lệnh quản trị hệ thống (&lt;code&gt;iptables&lt;/code&gt;, &lt;code&gt;reboot&lt;/code&gt;).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;&lt;code&gt;/etc&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Quan trọng:&lt;/strong&gt; Chứa file cấu hình (Nginx, SSH, Systemd). Đây là nơi Configuration Management (Ansible/Chef) tác động nhiều nhất.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;&lt;code&gt;/var&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Quan trọng:&lt;/strong&gt; Chứa dữ liệu biến đổi (Variable). &lt;br&gt; - &lt;code&gt;/var/log&lt;/code&gt;: Log hệ thống (cần monitor để tránh đầy ổ cứng). &lt;br&gt; - &lt;code&gt;/var/lib&lt;/code&gt;: Dữ liệu database (MySQL, Docker containers).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;/home&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Thư mục cá nhân của user.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;/root&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Thư mục cá nhân của user root.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;/tmp&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;File tạm. Sẽ bị xóa khi reboot. &lt;strong&gt;Cảnh báo:&lt;/strong&gt; Đừng lưu data quan trọng ở đây.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;/boot&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Kernel và Bootloader.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;/opt&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Phần mềm bên thứ 3 (thường dùng cho các ứng dụng cài thủ công như Java, Tomcat).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;&lt;code&gt;/proc&lt;/code&gt; &amp;amp; &lt;code&gt;/sys&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Virtual Filesystem:&lt;/strong&gt; Không chiếm dung lượng ổ cứng, nằm trên RAM. Chứa thông tin kernel, process. Monitoring tool (Prometheus/Nagios) đọc data từ đây.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;/dev&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Device files (&lt;code&gt;/dev/null&lt;/code&gt;, &lt;code&gt;/dev/zero&lt;/code&gt;, &lt;code&gt;/dev/random&lt;/code&gt;).&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;3-cơ-chế-hoạt-động-under-the-hood&#34;&gt;3. Cơ chế hoạt động (Under the Hood)
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;A. Inode (Index Node)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Mỗi file có 2 phần:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Data:&lt;/strong&gt; Nội dung thực sự của file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Inode:&lt;/strong&gt; Metadata (Quyền hạn, chủ sở hữu, kích thước, vị trí block trên ổ cứng, thời gian tạo&amp;hellip;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Kịch bản:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lỗi:&lt;/strong&gt; &amp;ldquo;No space left on device&amp;rdquo; nhưng &lt;code&gt;df -h&lt;/code&gt; thấy ổ cứng vẫn còn trống 50%.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên nhân:&lt;/strong&gt; Hết &lt;strong&gt;Inode&lt;/strong&gt; (do tạo quá nhiều file nhỏ, ví dụ: session files của PHP hoặc cache).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Check:&lt;/strong&gt; &lt;code&gt;df -i&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;B. Superblock&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Chứa thông tin về chính File System đó (tổng số block, kích thước block, trạng thái mount). Nếu Superblock hỏng, FS sẽ không thể mount được.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;C. Journaling (Nhật ký)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Các FS hiện đại (ext4, xfs) đều là Journaling File System. Nó ghi lại các thay đổi dự kiến vào một vùng log trước khi ghi thật sự.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Lợi ích:&lt;/strong&gt; Giúp phục hồi dữ liệu nhanh chóng nếu mất điện đột ngột, giảm thiểu rủi ro lỗi file system (&lt;code&gt;fsck&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;4-các-loại-file-system-phổ-biến&#34;&gt;4. Các loại File System phổ biến
+&lt;/h3&gt;&lt;p&gt;Khi format ổ đĩa hoặc mount volume cho Database, bạn cần chọn đúng loại:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ext4 (Fourth Extended Filesystem):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Chuẩn mực, ổn định, tương thích tốt.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dùng cho: OS disk, General purpose.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;XFS:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hiệu năng cao với file lớn, mở rộng tốt (Scalability). Là mặc định của RHEL/CentOS.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dùng cho: Database server, CI/CD artifacts storage.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Lưu ý:&lt;/em&gt; XFS không thể thu nhỏ (shrink) partition, chỉ có thể mở rộng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Btrfs &amp;amp; ZFS:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hỗ trợ nâng cao: Snapshot, Pooling, Checksum (chống bit rot).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dùng cho: Storage Server, Backup server, Container storage driver.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;5-quyền-hạn-permissions--security&#34;&gt;5. Quyền hạn (Permissions) &amp;amp; Security
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;A. Cơ bản (UGO - User Group Other)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Read (4), Write (2), Execute (1).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Lệnh: &lt;code&gt;chmod&lt;/code&gt;, &lt;code&gt;chown&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;B. Nâng cao (Special Permissions)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;SUID (Set User ID):&lt;/strong&gt; Chạy file với quyền của người sở hữu file (thường là root) thay vì người chạy lệnh. (Ví dụ: lệnh &lt;code&gt;passwd&lt;/code&gt;). &lt;em&gt;Nguy cơ bảo mật cao.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;SGID:&lt;/strong&gt; File tạo ra trong thư mục sẽ thừa kế Group của thư mục đó (Hữu ích cho Shared Folder).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sticky Bit:&lt;/strong&gt; Chỉ người tạo file mới xóa được file trong thư mục chung (Ví dụ: &lt;code&gt;/tmp&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;C. ACL (Access Control Lists)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Khi quyền UGO không đủ chi tiết (VD: Muốn user A đọc, user B ghi, user C không làm gì trên cùng 1 file), dùng &lt;code&gt;setfacl&lt;/code&gt; và &lt;code&gt;getfacl&lt;/code&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;6-quản-lý-lưu-trữ-storage-management&#34;&gt;6. Quản lý lưu trữ (Storage Management)
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;A. Mounting&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Gắn một thiết bị lưu trữ vào cây thư mục.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Lệnh: &lt;code&gt;mount /dev/sdb1 /mnt/data&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Persist (Bền vững):&lt;/strong&gt; Cấu hình trong &lt;code&gt;/etc/fstab&lt;/code&gt; để tự mount khi khởi động lại. &lt;em&gt;Lưu ý: Sai cú pháp fstab có thể làm máy không boot được.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;B. LVM (Logical Volume Manager)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Lớp trừu tượng giữa ổ cứng vật lý và File System.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Physical Volume (PV):&lt;/strong&gt; Ổ cứng thật.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Volume Group (VG):&lt;/strong&gt; Gom các PV lại thành 1 cục to.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Logical Volume (LV):&lt;/strong&gt; Cắt VG ra để dùng (giống partition).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lợi ích cho DevOps:&lt;/strong&gt; Có thể mở rộng dung lượng ổ cứng (Resize) online mà không cần tắt server (Zero downtime).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;7-file-system-trong-thế-giới-container-dockerk8s&#34;&gt;7. File System trong thế giới Container (Docker/K8s)
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;A. Union File System (OverlayFS)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Docker images được xây dựng từ các &lt;strong&gt;Layers&lt;/strong&gt; (lớp).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;LowerDir:&lt;/strong&gt; Các lớp Read-only (Base image).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;UpperDir:&lt;/strong&gt; Lớp Read-write (Container layer).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Merged:&lt;/strong&gt; Cái bạn nhìn thấy khi chạy container.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cơ chế Copy-on-Write (CoW):&lt;/strong&gt; Khi container sửa một file từ image gốc, nó copy file đó lên lớp UpperDir để sửa, file gốc vẫn nguyên vẹn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;B. Volumes &amp;amp; Bind Mounts&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Dữ liệu trong container là &lt;strong&gt;Ephemeral&lt;/strong&gt; (mất khi container chết).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Để lưu dữ liệu bền vững (Database), phải dùng &lt;strong&gt;Volume&lt;/strong&gt; (Docker quản lý tại &lt;code&gt;/var/lib/docker/volumes&lt;/code&gt;) hoặc &lt;strong&gt;Bind Mount&lt;/strong&gt; (map thư mục host vào container).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;8-các-lệnh-và-kỹ-năng-troubleshooting-cần-thiết&#34;&gt;8. Các lệnh và kỹ năng Troubleshooting cần thiết
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm tra dung lượng:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;df -hT&lt;/code&gt;: Xem dung lượng tổng quát và loại FS.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;du -sh *&lt;/code&gt;: Xem thư mục nào chiếm nhiều chỗ nhất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;ncdu&lt;/code&gt;: Công cụ giao diện dòng lệnh để soi dung lượng (rất tiện).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm tra I/O Performance:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;iostat -xz 1&lt;/code&gt;: Xem tốc độ đọc ghi, %iowait.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;iotop&lt;/code&gt;: Xem tiến trình nào đang &amp;ldquo;ăn&amp;rdquo; ổ cứng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Xử lý file đang mở (Locked files):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;lsof | grep deleted&lt;/code&gt;: Tìm các file đã bị xóa nhưng process vẫn đang giữ (nguyên nhân phổ biến khiến xóa log rồi mà dung lượng không giảm).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Giải pháp: Restart process đó (ví dụ: &lt;code&gt;systemctl reload nginx&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Mount/Unmount:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;mount -a&lt;/code&gt;: Mount tất cả trong fstab.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;umount -l&lt;/code&gt;: Lazy unmount (dùng khi thư mục đang bị busy/treo).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/inode.md/&#34;&gt;Inode trong Linux File System&lt;/a&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/linux/system-calls/&#34;&gt;Điều gì sẽ xảy ra sau khi Command được gửi đi trên Linux&lt;/a&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/sudo.md/&#34;&gt;Điều gì sẽ xảy ra sau khi sử dụng Sudo&lt;/a&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</title>
+        <link>https://blog.nagih.io.vn/posts/system/manage/server-hardening-checklist/</link>
+        <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/system/manage/server-hardening-checklist/</guid>
+        <description>&lt;hr&gt;
+&lt;h3 id=&#34;1-tạo-user-thường--tắt-ssh-root&#34;&gt;1. &lt;strong&gt;Tạo user thường + tắt SSH root&lt;/strong&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adduser nagih
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;usermod -aG sudo nagih
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Copy SSH key:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rsync -av /root/.ssh /home/nagih/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chown -R nagih:nagih /home/nagih/.ssh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Disable SSH root:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /etc/ssh/sshd_config
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Sửa:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PermitRootLogin no
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PasswordAuthentication no     &lt;span class=&#34;c1&#34;&gt;# nếu bạn dùng SSH key&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Reload:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl reload sshd
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;2-đặt-hostname-timezone-locale-đúng&#34;&gt;2. &lt;strong&gt;Đặt hostname, timezone, locale đúng&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Log hợp lệ để debug. Script không phát điên khi timezone sai.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo hostnamectl set-hostname server-01
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo timedatectl set-timezone Asia/Ho_Chi_Minh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;3-cập-nhật-hệ-thống--bật-auto-security-updates&#34;&gt;3. &lt;strong&gt;Cập nhật hệ thống + bật auto security updates&lt;/strong&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt upgrade -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Bật auto security patch:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install unattended-upgrades -y
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo dpkg-reconfigure unattended-upgrades
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;4-firewall-ufwnftables&#34;&gt;4. &lt;strong&gt;Firewall: UFW/NFTABLES&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Ngăn dịch vụ lạ bị expose.&lt;/p&gt;
+&lt;p&gt;UFW cách đơn giản:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw default deny incoming
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw default allow outgoing
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw allow 22/tcp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw allow 80/tcp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw allow 443/tcp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Nếu bạn DevOps hardcore, dùng nftables hoặc firewalld.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;5-fail2ban-chống-brute-force&#34;&gt;5. &lt;strong&gt;Fail2ban chống brute force&lt;/strong&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install fail2ban -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Tạo cấu hình:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /etc/fail2ban/jail.local
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Ví dụ:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;sshd&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;enabled&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;maxretry&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;bantime&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 1h
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Restart:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl restart fail2ban
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;6-ssh-hardening-nâng-cao&#34;&gt;6. &lt;strong&gt;SSH hardening nâng cao&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Trong &lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt; thêm:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Protocol &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;X11Forwarding no
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AllowAgentForwarding no
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AllowTcpForwarding no
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ClientAliveInterval &lt;span class=&#34;m&#34;&gt;300&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ClientAliveCountMax &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PasswordAuthentication no
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Nếu bạn muốn whitelist user:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AllowUsers nagih deploy
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;7giới-hạn-sudo-để-tránh-phá-server&#34;&gt;7.&lt;strong&gt;Giới hạn sudo để tránh phá server&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Rất nên có &lt;code&gt;/etc/sudoers.d/99-safe&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nagih &lt;span class=&#34;nv&#34;&gt;ALL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=(&lt;/span&gt;ALL&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; NOPASSWD: /usr/bin/systemctl, /usr/bin/journalctl, /usr/bin/docker
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nagih &lt;span class=&#34;nv&#34;&gt;ALL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=(&lt;/span&gt;ALL&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; !/bin/rm -rf /
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Tuỳ nhu cầu.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;8-swap-nếu-server-ít-ram&#34;&gt;8. &lt;strong&gt;Swap (nếu server ít RAM)&lt;/strong&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo fallocate -l 2G /swapfile
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo chmod &lt;span class=&#34;m&#34;&gt;600&lt;/span&gt; /swapfile
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo mkswap /swapfile
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo swapon /swapfile
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Thêm vào &lt;code&gt;/etc/fstab&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/swapfile swap swap defaults &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;9-ứng-dụng-logs-chuẩn-hóa&#34;&gt;9. &lt;strong&gt;Ứng dụng logs chuẩn hóa&lt;/strong&gt;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;journalctl -u service&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Logrotate cho file log custom&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Đồng bộ giờ với NTP&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cài chrony:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install chrony -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;10-disable-dịch-vụ-không-cần&#34;&gt;10. &lt;strong&gt;Disable dịch vụ không cần&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Giảm attack surface:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl list-unit-files --type&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;service
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl disable --now bluetooth.service
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl disable --now cups.service
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl disable --now avahi-daemon.service
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;11-bật-apparmor-hoặc-selinux-nếu-dùng-ubuntu-hoặc-centos&#34;&gt;11. &lt;strong&gt;Bật AppArmor hoặc SELinux (nếu dùng Ubuntu hoặc CentOS)&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Ubuntu:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo aa-status
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;CentOS:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sestatus
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;12-cấu-hình-phân-quyền-file&#34;&gt;12. &lt;strong&gt;Cấu hình phân quyền file&lt;/strong&gt;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Không cho world-writable file&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check SUID/SGID&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo find / -perm /6000 -type f 2&amp;gt;/dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Nếu không hiểu file nào → mình đọc giúp.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;13-cài-monitoring-tối-thiểu&#34;&gt;13. &lt;strong&gt;Cài monitoring tối thiểu&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Prometheus Node Exporter:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo useradd -rs /bin/false node_exporter
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Cài binary → systemd → kết nối Grafana.&lt;/p&gt;
+&lt;p&gt;Còn không thì dùng Netdata cho nhanh.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;14-cấu-hình-backups&#34;&gt;14. &lt;strong&gt;Cấu hình backups&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Tối thiểu:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;backup &lt;code&gt;/etc&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;backup database&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;snapshot volume (nếu cloud)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;script cron: rsync → S3/Backblaze&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;15-nếu-chạy-docker&#34;&gt;15. &lt;strong&gt;Nếu chạy Docker&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Hardening Docker:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo usermod -aG docker nagih
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Cấu hình daemon:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/etc/docker/daemon.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;log-driver&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;json-file&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;log-opts&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;max-size&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;10m&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;max-file&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Cài compose plugin:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;16-nếu-chạy-web-service&#34;&gt;16. &lt;strong&gt;Nếu chạy web service&lt;/strong&gt;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Reverse proxy: Nginx / Caddy&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HSTS&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Certbot hoặc Traefik cert auto&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Rate-limit&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;17-tắt-ipv6-nếu-không-dùng&#34;&gt;17. &lt;strong&gt;Tắt IPv6 nếu không dùng&lt;/strong&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo nano /etc/sysctl.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Thêm:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv6.conf.all.disable_ipv6 &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv6.conf.default.disable_ipv6 &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo sysctl -p
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;18-kiểm-thử-security-tổng-quan&#34;&gt;18. &lt;strong&gt;Kiểm thử security tổng quan&lt;/strong&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -tulpn
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Đảm bảo chỉ có:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;22&lt;/li&gt;
+&lt;li&gt;80&lt;/li&gt;
+&lt;li&gt;443&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kiểm tra SSH:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -v yourserver
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Test brute-force protection:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;fail2ban-client status sshd
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;19-automation-lại-toàn-bộ&#34;&gt;19. &lt;strong&gt;Automation lại toàn bộ&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Dùng:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ansible&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Terraform + cloud-init&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;bash script&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Sản xuất không ai setup tay hoài được.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;20-viết-tài-liệu-1-trang-về-server&#34;&gt;20. &lt;strong&gt;Viết tài liệu 1 trang về server&lt;/strong&gt;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;OS version&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dịch vụ đang chạy&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;User có quyền sudo&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Port mở&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Backup location&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cách restart service&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SSH key location&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cực hữu ích khi giao server cho team khác.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;bunus-scripts-tự-động-setup-cơ-bản&#34;&gt;Bunus: Scripts tự động setup cơ bản
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;SERVER-BASELINE.SH&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo bash server-baseline.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;server-baseline.sh&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;73
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;74
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -e
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;USERNAME&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;nagih&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;PUBKEY&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;ssh-ed25519 AAAA...YOUR_KEY_HERE&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;[1/10] Creating user...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; ! id &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$USERNAME&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &amp;gt;/dev/null 2&amp;gt;&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    adduser --disabled-password --gecos &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$USERNAME&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    usermod -aG sudo &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$USERNAME&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;User already exists, skipping.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;[2/10] Installing SSH key...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir -p /home/&lt;span class=&#34;nv&#34;&gt;$USERNAME&lt;/span&gt;/.ssh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PUBKEY&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &amp;gt; /home/&lt;span class=&#34;nv&#34;&gt;$USERNAME&lt;/span&gt;/.ssh/authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;700&lt;/span&gt; /home/&lt;span class=&#34;nv&#34;&gt;$USERNAME&lt;/span&gt;/.ssh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;600&lt;/span&gt; /home/&lt;span class=&#34;nv&#34;&gt;$USERNAME&lt;/span&gt;/.ssh/authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chown -R &lt;span class=&#34;nv&#34;&gt;$USERNAME&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$USERNAME&lt;/span&gt; /home/&lt;span class=&#34;nv&#34;&gt;$USERNAME&lt;/span&gt;/.ssh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;[3/10] SSH Hardening...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;SSHCONF&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/etc/ssh/sshd_config&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/#\?PasswordAuthentication .*/PasswordAuthentication no/&amp;#39;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SSHCONF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/#\?PermitRootLogin .*/PermitRootLogin no/&amp;#39;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SSHCONF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/#\?X11Forwarding .*/X11Forwarding no/&amp;#39;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SSHCONF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/#\?AllowAgentForwarding .*/AllowAgentForwarding no/&amp;#39;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SSHCONF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/#\?AllowTcpForwarding .*/AllowTcpForwarding no/&amp;#39;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SSHCONF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Thêm AllowUsers nếu chưa có&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; ! grep -q &lt;span class=&#34;s2&#34;&gt;&amp;#34;AllowUsers&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SSHCONF&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;AllowUsers &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$USERNAME&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class=&#34;nv&#34;&gt;$SSHCONF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl reload sshd
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;[4/10] Updating system...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt upgrade -y
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;[5/10] Installing essential tools...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install -y unattended-upgrades fail2ban ufw htop curl
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;[6/10] Enabling auto security updates...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dpkg-reconfigure --priority&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;low unattended-upgrades
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;[7/10] Configuring UFW firewall...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ufw default deny incoming
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ufw default allow outgoing
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ufw allow 22/tcp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ufw allow 80/tcp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ufw allow 443/tcp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ufw --force &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;[8/10] Configuring Fail2ban...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat &amp;gt;/etc/fail2ban/jail.local &lt;span class=&#34;s&#34;&gt;&amp;lt;&amp;lt;EOF
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s&#34;&gt;[sshd]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s&#34;&gt;enabled = true
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s&#34;&gt;maxretry = 5
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s&#34;&gt;bantime = 1h
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s&#34;&gt;EOF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart fail2ban
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;[9/10] Setting timezone to Asia/Ho_Chi_Minh...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;timedatectl set-timezone Asia/Ho_Chi_Minh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;[10/10] Cleaning up...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt autoremove -y
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;======================================&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34; Baseline complete!&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34; Login using: ssh &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$USERNAME&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;@your-server&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;======================================&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Thay SSH key&lt;/p&gt;
+&lt;p&gt;Trong script:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;PUBKEY&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;ssh-ed25519 AAAA...YOUR_KEY_HERE&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Dán public key của bạn vào.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Lưu file, chạy:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x server-baseline.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ./server-baseline.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>Tất cả các commands quản lý quan trọng trên linux</title>
+        <link>https://blog.nagih.io.vn/posts/linux/management-command/</link>
+        <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/linux/management-command/</guid>
+        <description>&lt;hr&gt;
+&lt;h2 id=&#34;1-user-management-command&#34;&gt;1. &lt;strong&gt;User&lt;/strong&gt; management command
+&lt;/h2&gt;&lt;h3 id=&#34;useradd&#34;&gt;&lt;strong&gt;useradd&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Tạo user mới.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo useradd nagih
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo useradd -m -s /bin/bash nagih
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-m&lt;/code&gt; tạo home&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-s&lt;/code&gt; set shell.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;adduser-wrapper-dễ-dùng-hơn&#34;&gt;&lt;strong&gt;adduser&lt;/strong&gt; (wrapper dễ dùng hơn)
+&lt;/h3&gt;&lt;p&gt;Ubuntu thường dùng cái này.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo adduser nagih
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;userdel&#34;&gt;&lt;strong&gt;userdel&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Xoá user.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo userdel nagih
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo userdel -r nagih   &lt;span class=&#34;c1&#34;&gt;# xoá cả home&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;usermod&#34;&gt;&lt;strong&gt;usermod&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Sửa thông tin user.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# thêm user vào group&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo usermod -aG docker nagih
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# đổi shell   &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo usermod -s /bin/zsh nagih
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# đổi home directory&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo usermod -d /new/home nagih  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;passwd&#34;&gt;&lt;strong&gt;passwd&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Đổi mật khẩu user.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo passwd nagih
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# lock password&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo passwd -l nagih   
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# unlock&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo passwd -u nagih   
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;chage&#34;&gt;&lt;strong&gt;chage&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Quản lý tuổi mật khẩu (password aging).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo chage -l nagih
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo chage -E 2025-01-01 nagih
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;id&#34;&gt;&lt;strong&gt;id&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Xem UID/GID của user.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;id nagih
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;whoami&#34;&gt;&lt;strong&gt;whoami&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Xem user hiện tại.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;whoami
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;last--lastlog&#34;&gt;&lt;strong&gt;last / lastlog&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Xem lịch sử login.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;last
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lastlog
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;su&#34;&gt;&lt;strong&gt;su&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Switch user.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;su - nagih
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;loginctl&#34;&gt;&lt;strong&gt;loginctl&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Nếu dùng systemd – quản lý session của user.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;loginctl list-sessions
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;loginctl show-user nagih
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;2-group-management-command&#34;&gt;2. &lt;strong&gt;Group&lt;/strong&gt; management command
+&lt;/h2&gt;&lt;h3 id=&#34;groupadd&#34;&gt;&lt;strong&gt;groupadd&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Tạo group.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo groupadd devops
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo groupadd -g &lt;span class=&#34;m&#34;&gt;1500&lt;/span&gt; customgroup
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-g&lt;/code&gt; &lt;strong&gt;GID&lt;/strong&gt; flag (Group ID)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;groupdel&#34;&gt;&lt;strong&gt;groupdel&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Xoá group.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo groupdel devops
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;groupmod&#34;&gt;&lt;strong&gt;groupmod&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Sửa group.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo groupmod -n newname oldname
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo groupmod -g &lt;span class=&#34;m&#34;&gt;1600&lt;/span&gt; devops
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-n&lt;/code&gt; change group name&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-g&lt;/code&gt; GID&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;gpasswd&#34;&gt;&lt;strong&gt;gpasswd&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Quản lý member của group.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo gpasswd -a nagih docker
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo gpasswd -d nagih docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-a&lt;/code&gt; add &lt;code&gt;member&lt;/code&gt; to &lt;code&gt;group&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-d&lt;/code&gt; delete &lt;code&gt;member&lt;/code&gt; from &lt;code&gt;group&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;newgrp&#34;&gt;&lt;strong&gt;newgrp&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Switch group tạm thời.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;newgrp docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Tạo &lt;strong&gt;một shell mới&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Shell này dùng &lt;strong&gt;docker&lt;/strong&gt; như nhóm chính (effective GID).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Các quyền file và lệnh yêu cầu group &lt;code&gt;docker&lt;/code&gt; hoạt động ngay lập tức.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Khi bạn &lt;code&gt;exit&lt;/code&gt;, bạn quay lại shell cũ (vẫn chưa có quyền).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-important-user-related-files&#34;&gt;3. Important user related files
+&lt;/h2&gt;&lt;p&gt;Không phải command nhưng bạn luôn gặp:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# danh sách user&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/passwd
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# danh sách group&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/group       
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# mật khẩu (hash)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/shadow     
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# quyền sudo &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/sudoers     
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Xem file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /etc/passwd
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /etc/group
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo visudo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;4-tool-to-check-what-user-is-running&#34;&gt;4. Tool to check what user is running
+&lt;/h2&gt;&lt;h3 id=&#34;who--w&#34;&gt;&lt;strong&gt;who / w&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Ai đang đăng nhập.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;who
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;w
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;finger-nếu-cài&#34;&gt;&lt;strong&gt;finger&lt;/strong&gt; (nếu cài)
+&lt;/h3&gt;&lt;p&gt;Thông tin user.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;finger nagih
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;5--permission-control-tool&#34;&gt;5.  Permission control tool
+&lt;/h2&gt;&lt;h3 id=&#34;chown&#34;&gt;&lt;strong&gt;chown&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Đổi chủ sở hữu file.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo chown nagih:devops file.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;chmod&#34;&gt;&lt;strong&gt;chmod&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;Đổi permission.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; script.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;6-bonus-command-devops-thường-dùng-liên-quan-user-trong-container&#34;&gt;6. Bonus: command DevOps thường dùng liên quan user trong container
+&lt;/h2&gt;&lt;h3 id=&#34;useradd-trong-dockerfile&#34;&gt;&lt;strong&gt;useradd trong Dockerfile&lt;/strong&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RUN groupadd -g &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt; app &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; useradd -u &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt; -g app -m app
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;USER app
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;id-trong-container&#34;&gt;&lt;strong&gt;id trong container&lt;/strong&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; app id
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>Hướng dẫn tạo USB Boot Windows trên Linux</title>
+        <link>https://blog.nagih.io.vn/posts/system/os/windows/usb-boot-windows-on-linux/</link>
+        <pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/system/os/windows/usb-boot-windows-on-linux/</guid>
+        <description>&lt;p&gt;Có một số cách để tạo USB boot Windows trên Linux. Đây là phương pháp phổ biến nhất:&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;sử-dụng-woeusb-ng&#34;&gt;Sử dụng WoeUSB-ng
+&lt;/h2&gt;&lt;h3 id=&#34;cài-đặt&#34;&gt;Cài đặt
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Ubuntu/Debian&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install git p7zip-full python3-pip python3-wxgtk4.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo pip3 install WoeUSB-ng
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Fedora&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo dnf install WoeUSB-ng
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;sử-dụng&#34;&gt;Sử dụng
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo woeusb --device /đường/dẫn/tới/Windows.iso /dev/sdX
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;em&gt;(Thay &lt;code&gt;/dev/sdX&lt;/code&gt; bằng USB của bạn, ví dụ &lt;code&gt;/dev/sdb&lt;/code&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;cách-nhận-biết-tên-thiết-bị-usb-trên-linux&#34;&gt;Cách nhận biết tên thiết bị USB trên Linux
+&lt;/h2&gt;&lt;h3 id=&#34;1-command-lsblk&#34;&gt;1. Command &lt;code&gt;lsblk&lt;/code&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lsblk
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Kết quả sẽ hiển thị dạng:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sda      8:0    &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; 238.5G  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; disk 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├─sda1   8:1    &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;   512M  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; part /boot/efi
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└─sda2   8:2    &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;   238G  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; part /
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sdb      8:16   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  14.9G  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; disk           &amp;lt;-- Đây là USB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└─sdb1   8:17   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  14.9G  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; part /media/user/USB
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Nhận biết:&lt;/strong&gt; USB thường có &lt;code&gt;RM&lt;/code&gt; = 1 (removable), dung lượng nhỏ hơn ổ cứng chính.&lt;/p&gt;
+&lt;h3 id=&#34;2-command-sudo-fdisk--l&#34;&gt;2. Command &lt;code&gt;sudo fdisk -l&lt;/code&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo fdisk -l
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Tìm thiết bị có nhãn như &amp;ldquo;USB&amp;rdquo; hoặc dung lượng khớp với USB của bạn.&lt;/p&gt;
+&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi</title>
+        <link>https://blog.nagih.io.vn/posts/system/pi/fix-authorized/</link>
+        <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/system/pi/fix-authorized/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/image-placeholder.png" alt="Featured image of post Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi" /&gt;&lt;p&gt;Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;sửa-trực-tiếp-trên-thẻ-nhớ&#34;&gt;Sửa trực tiếp trên Thẻ nhớ
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Tắt Pi và tháo thẻ nhớ SD.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cắm thẻ nhớ vào máy tính của bạn (bạn có thể cần một đầu đọc thẻ).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Truy cập vào phân vùng có tên &lt;code&gt;rootfs&lt;/code&gt; (hoặc phân vùng có dung lượng lớn hơn).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Đi đến đường dẫn &lt;code&gt;/home/nagih/.ssh/&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm tra file &lt;code&gt;authorized_keys&lt;/code&gt;&lt;/strong&gt;: Mở nó ra và đảm bảo nội dung của file &lt;code&gt;~/.ssh/id_ed25519.pub&lt;/code&gt; trên máy tính của bạn được chép chính xác vào đây, trên một dòng duy nhất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm tra quyền (khó hơn)&lt;/strong&gt;: Việc kiểm tra và sửa quyền file trên thẻ SD từ một máy tính khác (như Windows) là không khả thi. Nếu bạn dùng Linux, bạn có thể &lt;code&gt;mount&lt;/code&gt; thẻ nhớ và dùng &lt;code&gt;chmod&lt;/code&gt; để sửa.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        <item>
+        <title>Hướng dẫn tùy biến phân vùng EFI khi cài windows</title>
+        <link>https://blog.nagih.io.vn/posts/system/os/windows/custom-windows-efi/</link>
+        <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/system/os/windows/custom-windows-efi/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/images/image-placeholder.png" alt="Featured image of post Hướng dẫn tùy biến phân vùng EFI khi cài windows" /&gt;&lt;p&gt;Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;Sử dụng Command Prompt trong quá trình cài đặt&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bước 1:&lt;/strong&gt; Khởi động từ USB/DVD cài Windows&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Khi màn hình xuất hiện, nhấn &lt;code&gt;Shift + F10&lt;/code&gt; để mở &lt;code&gt;Command Prompt&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bước 2:&lt;/strong&gt; Sử dụng DiskPart để tạo phân vùng&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;diskpart
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;list disk
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt; disk &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Chọn ổ đĩa cần cài&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;clean
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;convert gpt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bước 3:&lt;/strong&gt; Tạo phân vùng EFI với size tùy chỉnh&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;create partition efi &lt;span class=&#34;nv&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;format quick &lt;span class=&#34;nv&#34;&gt;fs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;fat32 &lt;span class=&#34;nv&#34;&gt;label&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;System&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;assign &lt;span class=&#34;nv&#34;&gt;letter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;S
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;active
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;em&gt;Thay 4096 bằng size bạn muốn (MB)&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bước 4:&lt;/strong&gt; Tạo phân vùng MSR&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;create partition msr &lt;span class=&#34;nv&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;128&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bước 5:&lt;/strong&gt; Tạo phân vùng chính cho Windows&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;create partition primary
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;format quick &lt;span class=&#34;nv&#34;&gt;fs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ntfs &lt;span class=&#34;nv&#34;&gt;label&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Windows&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;assign &lt;span class=&#34;nv&#34;&gt;letter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;C
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;active
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;em&gt;Thông thường hay xảy ra trường hợp ổ C đang được định nghĩa là USB Boot, lúc này hãy cứ thao tác bằng giao diện như bình thường&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>Các chính sách &#39;Dọn Dẹp&#39; Cache</title>
+        <link>https://blog.nagih.io.vn/posts/system/cache/cache-hit--cache-miss/</link>
+        <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/system/cache/cache-hit--cache-miss/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/image-placeholder.png" alt="Featured image of post Các chính sách &#39;Dọn Dẹp&#39; Cache" /&gt;&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;các-chính-sách-dọn-dẹp&#34;&gt;Các Chính Sách &amp;ldquo;Dọn Dẹp&amp;rdquo;
+&lt;/h2&gt;&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;
+&lt;p&gt;Điều này dẫn đến một vấn đề không thể tránh khỏi: khi cache đã đầy và một mục dữ liệu mới cần được thêm vào, hệ thống phải quyết định loại bỏ một mục dữ liệu cũ để nhường chỗ. Quá trình này được gọi là &lt;strong&gt;Eviction&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Thuật toán được sử dụng để quyết định &lt;em&gt;mục nào&lt;/em&gt; sẽ bị loại bỏ được gọi là &lt;strong&gt;Chính sách dọn dẹp (Eviction Policy)&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;các-chiến-lược-dọn-dẹp-phổ-biến&#34;&gt;Các chiến lược dọn dẹp phổ biến
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;FIFO (First-In, First-Out - Vào trước, Ra trước):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên tắc:&lt;/strong&gt; Nó loại bỏ mục dữ liệu cũ nhất, bất kể nó có được sử dụng thường xuyên hay không. Nó hoạt động giống như một hàng đợi (queue).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ưu điểm:&lt;/strong&gt; Rất dễ cài đặt và có chi phí quản lý thấp.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhược điểm:&lt;/strong&gt; Thường không hiệu quả vì nó có thể loại bỏ một mục rất phổ biến chỉ vì nó được nạp vào cache từ lâu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;LRU (Least Recently Used - Ít được sử dụng gần đây nhất):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên tắc:&lt;/strong&gt; Loại bỏ mục dữ liệu mà đã không được truy cập trong khoảng thời gian dài nhất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ưu điểm:&lt;/strong&gt; Hiệu quả hơn FIFO rất nhiều trong hầu hết các trường hợp thực tế, vì nó giữ lại những dữ liệu đang được sử dụng tích cực.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhược điểm:&lt;/strong&gt; Phức tạp hơn trong việc triển khai vì nó đòi hỏi phải theo dõi thời gian truy cập của mỗi mục, gây tốn thêm một chút bộ nhớ và xử lý.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;LFU (Least Frequently Used - Ít được sử dụng thường xuyên nhất):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên tắc:&lt;/strong&gt; Loại bỏ mục dữ liệu được truy cập với số lần ít nhất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ưu điểm:&lt;/strong&gt; Rất tốt trong việc xác định và giữ lại các mục dữ liệu &amp;ldquo;hot&amp;rdquo; (phổ biến) trong một thời gian dài, ngay cả khi chúng không được truy cập gần đây.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhược điểm:&lt;/strong&gt; Phức tạp để triển khai hiệu quả. (ví dụ: một mục từng rất hot nhưng giờ không còn ai dùng nữa vẫn có thể chiếm chỗ trong cache một thời gian dài). Nó cũng có thể loại bỏ một mục mới được thêm vào nhưng chưa có cơ hội tích lũy đủ số lần truy cập.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;bảng-so-sánh-các-chính-sách-dọn-dẹp&#34;&gt;Bảng so sánh các chính sách dọn dẹp
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Chính sách&lt;/th&gt;
+          &lt;th&gt;Nguyên tắc cốt lõi&lt;/th&gt;
+          &lt;th&gt;Ví dụ tương tự&lt;/th&gt;
+          &lt;th&gt;Ưu điểm&lt;/th&gt;
+          &lt;th&gt;Nhược điểm&lt;/th&gt;
+          &lt;th&gt;Phù hợp nhất cho&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;FIFO&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Loại bỏ mục vào cache sớm nhất.&lt;/td&gt;
+          &lt;td&gt;Xếp hàng mua vé: người đến trước được phục vụ trước.&lt;/td&gt;
+          &lt;td&gt;Đơn giản, chi phí thấp.&lt;/td&gt;
+          &lt;td&gt;Không thông minh, có thể loại bỏ dữ liệu quan trọng.&lt;/td&gt;
+          &lt;td&gt;Các hệ thống có mẫu truy cập tuần tự, không lặp lại.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;LRU&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Loại bỏ mục ít được dùng đến gần đây nhất.&lt;/td&gt;
+          &lt;td&gt;Dọn dẹp bàn làm việc: trả lại cuốn sách bạn không đụng đến lâu nhất.&lt;/td&gt;
+          &lt;td&gt;Hiệu quả cao trong hầu hết các trường hợp, thích ứng tốt với sự thay đổi.&lt;/td&gt;
+          &lt;td&gt;Phức tạp hơn, cần theo dõi thời gian truy cập.&lt;/td&gt;
+          &lt;td&gt;Các ứng dụng thông thường, nơi dữ liệu gần đây có khả năng được tái sử dụng cao (ví dụ: trang tin tức, mạng xã hội).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;LFU&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Loại bỏ mục có số lần truy cập ít nhất.&lt;/td&gt;
+          &lt;td&gt;Thư viện cho mượn sách: loại bỏ những cuốn ít người mượn nhất.&lt;/td&gt;
+          &lt;td&gt;Giữ lại được các mục &amp;ldquo;hot&amp;rdquo; một cách ổn định.&lt;/td&gt;
+          &lt;td&gt;Phức tạp, có thể giữ lại dữ liệu &amp;ldquo;hot&amp;rdquo; đã lỗi thời, không thích ứng nhanh.&lt;/td&gt;
+          &lt;td&gt;Các hệ thống có một số dữ liệu cực kỳ phổ biến và ổn định (ví dụ: sản phẩm bán chạy, video viral).&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;giữ-cho-dữ-liệu-đồng-nhất-các-chính-sách-ghi&#34;&gt;Giữ Cho Dữ Liệu Đồng Nhất: Các Chính Sách Ghi
+&lt;/h2&gt;&lt;p&gt;Khi một ứng dụng thực hiện thao tác ghi (write) hoặc cập nhật (update), một vấn đề nghiêm trọng nảy sinh. Bây giờ chúng ta có hai bản sao của cùng một dữ liệu: một trong cache và một trong cơ sở dữ liệu. Nếu chúng không được cập nhật đồng bộ, cache sẽ chứa dữ liệu cũ. Việc phục vụ stale data cho người dùng có thể dẫn đến các lỗi nghiêm trọng, thông tin sai lệch và trải nghiệm tồi tệ.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Chính sách ghi (Write Policy)&lt;/strong&gt; là quy tắc xác định cách hệ thống xử lý các thao tác ghi để giải quyết vấn đề về tính nhất quán này.&lt;/p&gt;
+&lt;h3 id=&#34;các-chính-sách-ghi-cốt-lõi&#34;&gt;Các chính sách ghi cốt lõi
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Write-Through (Ghi Xuyên)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quy trình:&lt;/strong&gt; Khi ứng dụng ghi dữ liệu, nó sẽ ghi &lt;strong&gt;đồng thời&lt;/strong&gt; vào cả cache và cơ sở dữ liệu. Thao tác chỉ được coi là hoàn tất khi cả hai nơi đều đã ghi xong.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lưu đồ:&lt;/strong&gt; &lt;code&gt;Ứng dụng -&amp;gt; Ghi vào Cache -&amp;gt; Ghi vào Database -&amp;gt; Hoàn tất&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ưu điểm:&lt;/strong&gt; Tính nhất quán dữ liệu rất cao. Cache và database luôn đồng bộ. Đơn giản để triển khai và đáng tin cậy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhược điểm:&lt;/strong&gt; Độ trễ của thao tác ghi cao, vì ứng dụng phải chờ cả hai thao tác ghi hoàn tất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Trường hợp sử dụng:&lt;/strong&gt; Các ứng dụng quan trọng nơi tính nhất quán dữ liệu là tối thượng, ví dụ như hệ thống ngân hàng, quản lý kho hàng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Write-Back (Ghi Sau / Write-Behind)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quy trình:&lt;/strong&gt; Khi ứng dụng ghi dữ liệu, nó chỉ ghi vào cache tốc độ cao trước. Thao tác được xác nhận hoàn tất ngay lập tức. Việc ghi vào cơ sở dữ liệu sẽ được trì hoãn và thực hiện sau đó, có thể là sau một khoảng thời gian nhất định hoặc khi mục cache đó sắp bị dọn dẹp. Hệ thống thường dùng một &amp;ldquo;bit bẩn&amp;rdquo; (dirty bit) để đánh dấu các mục trong cache đã bị thay đổi và cần được ghi lại vào database.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lưu đồ:&lt;/strong&gt; &lt;code&gt;Ứng dụng -&amp;gt; Ghi vào Cache -&amp;gt; Hoàn tất. (Background: Cache -&amp;gt; Ghi vào Database)&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ưu điểm:&lt;/strong&gt; Độ trễ ghi cực thấp và thông lượng cao. Giảm tải cho database bằng cách gộp nhiều lần ghi vào cùng một đối tượng thành một lần ghi duy nhất (write-coalescing).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhược điểm:&lt;/strong&gt; Có nguy cơ mất dữ liệu nếu cache bị lỗi trước khi dữ liệu kịp ghi vào database. Phức tạp hơn để triển khai.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Trường hợp sử dụng:&lt;/strong&gt; Các ứng dụng có lượng ghi lớn, nơi hiệu năng là ưu tiên hàng đầu và có thể chấp nhận một rủi ro nhỏ về mất mát dữ liệu, ví dụ như ghi log hành vi người dùng, cập nhật số lượt xem bài viết.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Write-Around (Ghi Vòng)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quy trình:&lt;/strong&gt; Khi ứng dụng ghi dữ liệu, nó sẽ ghi &lt;strong&gt;trực tiếp&lt;/strong&gt; vào cơ sở dữ liệu, hoàn toàn bỏ qua cache. Dữ liệu chỉ được nạp vào cache sau này, khi có một yêu cầu đọc bị cache miss.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lưu đồ:&lt;/strong&gt; &lt;code&gt;Ứng dụng -&amp;gt; Ghi vào Database -&amp;gt; Hoàn tất&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ưu điểm:&lt;/strong&gt; Tránh &amp;ldquo;làm ô nhiễm&amp;rdquo; cache bằng những dữ liệu có thể không bao giờ được đọc lại.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhược điểm:&lt;/strong&gt; Một yêu cầu đọc ngay sau khi ghi sẽ luôn luôn là cache miss, dẫn đến độ trễ đọc cao cho dữ liệu vừa được ghi.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Trường hợp sử dụng:&lt;/strong&gt; Các ứng dụng ghi dữ liệu nhưng hiếm khi đọc lại ngay sau đó, ví dụ như các hệ thống nhập dữ liệu hàng loạt (bulk data ingestion), lưu trữ log.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Các chính sách ghi không tồn tại một cách độc lập. Chúng liên kết chặt chẽ với cách hệ thống xử lý một &lt;strong&gt;write miss&lt;/strong&gt; (khi ứng dụng muốn ghi vào một mục không có trong cache). Có hai lựa chọn:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Write Allocate (Fetch on Write):&lt;/strong&gt; Khi có write miss, hệ thống sẽ tải khối dữ liệu đó từ database vào cache trước, rồi mới thực hiện thao tác ghi.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;No-Write Allocate:&lt;/strong&gt; Khi có write miss, hệ thống sẽ ghi thẳng vào database, không tải dữ liệu đó vào cache.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+        </item>
+        <item>
+        <title>Giới thiệu về Cache</title>
+        <link>https://blog.nagih.io.vn/posts/system/cache/introdution-to-cache/</link>
+        <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/system/cache/introdution-to-cache/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/images/image-placeholder.png" alt="Featured image of post Giới thiệu về Cache" /&gt;&lt;p&gt;Nhiều người đã nghe về cache, có thể là &amp;ldquo;xóa cache trình duyệt&amp;rdquo; hay &amp;ldquo;cache của CPU&amp;rdquo;. Nhưng cache thực sự là gì? Nó hoạt động ra sao và tại sao nó lại quan trọng đến vậy?&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;cache-là-gì&#34;&gt;Cache Là Gì?
+&lt;/h2&gt;&lt;h3 id=&#34;câu-chuyện-về-thư-viện-và-chiếc-bàn-làm-việc&#34;&gt;Câu chuyện về Thư viện và Chiếc bàn làm việc
+&lt;/h3&gt;&lt;p&gt;Hãy tưởng tượng bạn là một nhà nghiên cứu cần rất nhiều sách cho công việc của mình. Toàn bộ sách được lưu trữ trong một thư viện khổng lồ ở phía bên kia thành phố. Mỗi khi cần một thông tin, bạn phải mất công di chuyển đến thư viện, tìm đúng cuốn sách, đọc, rồi lại đi về. Quá trình này rất chậm chạp và tốn thời gian.&lt;/p&gt;
+&lt;p&gt;Bây giờ, bạn nghĩ ra một giải pháp thông minh hơn. Thay vì mỗi lần cần lại chạy đi, bạn sẽ mang những cuốn sách hay dùng nhất về đặt ngay trên chiếc bàn làm việc của mình. Chiếc bàn này tuy nhỏ, không thể chứa cả thư viện, nhưng nó ở ngay trước mặt bạn. Lần tới, khi cần thông tin từ những cuốn sách đó, bạn chỉ cần với tay là có ngay, nhanh hơn gấp trăm lần so với việc đi đến thư viện.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thư viện khổng lồ&lt;/strong&gt; chính là nơi lưu trữ dữ liệu chính, ví dụ như ổ cứng (HDD/SSD) hoặc Database. Nơi này có dung lượng lớn nhưng tốc độ truy cập khá chậm.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chiếc bàn làm việc&lt;/strong&gt; của bạn chính là &lt;strong&gt;Cache&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Cache&lt;/strong&gt; là một lớp lưu trữ dữ liệu tốc độ cao, có kích thước nhỏ, dùng để chứa một tập hợp con của dữ liệu gốc. Mục đích của nó là để các yêu cầu truy xuất dữ liệu trong tương lai được phục vụ nhanh hơn rất nhiều so với việc phải lấy dữ liệu từ database. Về cơ bản, cache cho phép chúng ta tái sử dụng một cách hiệu quả những dữ liệu đã được truy xuất hoặc tính toán trước đó.&lt;/p&gt;
+&lt;h3 id=&#34;tại-sao-cache-lại-quan-trọng-&#34;&gt;Tại sao Cache lại quan trọng ?
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tăng tốc độ một cách chóng mặt (Performance):&lt;/strong&gt; Đây là mục đích chính. Cache thường được triển khai trên các phần cứng truy cập nhanh như RAM (Bộ nhớ truy cập ngẫu nhiên). Tốc độ truy cập RAM nhanh hơn hàng trăm, thậm chí hàng nghìn lần so với ổ đĩa.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Giảm tải cho hệ thống Backend:&lt;/strong&gt; Thay vì mọi yêu cầu đều phải truy cập vào cơ sở dữ liệu, phần lớn các yêu cầu đọc sẽ được cache xử lý. Điều này giúp cơ sở dữ liệu không bị quá tải, đặc biệt là trong những thời điểm có lưu lượng truy cập tăng đột biến, và giữ cho toàn bộ hệ thống ổn định.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tiết kiệm chi phí (Cost Efficiency):&lt;/strong&gt; Ở quy mô lớn, việc phục vụ dữ liệu từ cache trong bộ nhớ (in-memory) có thể rẻ hơn đáng kể so với việc phải nâng cấp liên tục các máy chủ cơ sở dữ liệu hoặc trả chi phí cho lưu lượng mạng cao khi truy xuất dữ liệu từ các dịch vụ đám mây.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;cache-hit-và-cache-miss&#34;&gt;Cache Hit và Cache Miss
+&lt;/h2&gt;&lt;p&gt;Hoạt động của cache xoay quanh hai case chính: &lt;strong&gt;Cache Hit&lt;/strong&gt; và &lt;strong&gt;Cache Miss&lt;/strong&gt;. Khi một client (có thể là CPU, trình duyệt web, hoặc ứng dụng của bạn) cần dữ liệu, nó sẽ luôn hỏi cache trước tiên.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cache Hit (Tìm thấy trong Cache):&lt;/strong&gt; Đây là case lý tưởng. Cache sẽ ngay lập tức trả về dữ liệu này cho client. Quá trình này cực kỳ nhanh chóng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cache Miss (Không tìm thấy trong Cache):&lt;/strong&gt; Đây là case không mong muốn. Khi đó, hệ thống buộc phải truy cập đến database để lấy dữ liệu. Sau khi lấy được, dữ liệu này sẽ được sao chép một bản vào cache để những lần yêu cầu sau sẽ trở thành cache hit, rồi mới được trả về cho client.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Cache không phải là một phép màu tăng tốc miễn phí. Nó đi kèm với sự đánh đổi và chi phí. Một cache miss vốn dĩ còn &lt;strong&gt;chậm hơn&lt;/strong&gt; một hệ thống không có cache. Bởi vì trong một hệ thống không cache, thời gian truy xuất chỉ đơn giản là thời gian lấy dữ liệu từ nguồn chính. Còn trong một cache miss, tổng thời gian là &lt;code&gt;Thời gian kiểm tra cache (và thất bại)&lt;/code&gt; + &lt;code&gt;Thời gian lấy dữ liệu từ database&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Do đó, mục tiêu của mọi chiến lược caching không chỉ đơn giản là &amp;ldquo;có cache&amp;rdquo;, mà là thiết kế một hệ thống nơi tổng thời gian tiết kiệm được từ vô số các cache hit phải lớn hơn rất nhiều so với tổng thời gian bị mất đi do các cache miss không thể tránh khỏi.&lt;/p&gt;
+&lt;h3 id=&#34;tỷ-lệ-cache-hit-cache-hit-ratio&#34;&gt;Tỷ lệ Cache Hit (Cache Hit Ratio)
+&lt;/h3&gt;&lt;p&gt;Công thức tính rất đơn giản&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Tỷ lệ Cache Hit= Cache Hit​ / (Cache Hit + Cache Miss)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Một tỷ lệ cache hit cao (thường từ 80-95% trở lên đối với nội dung tĩnh) cho thấy cache đang hoạt động rất hiệu quả. Ngược lại, một tỷ lệ thấp cho thấy cache đang không được sử dụng tốt, có thể do cấu hình sai, chính sách dọn dẹp không phù hợp, hoặc kích thước cache quá nhỏ.&lt;/p&gt;
+&lt;h3 id=&#34;cache-phần-cứng-cpu-cache&#34;&gt;Cache Phần cứng (CPU Cache)
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Hệ thống phân cấp bộ nhớ (Memory Hierarchy)&lt;/strong&gt;. Đây là một mô hình tổ chức bộ nhớ trong máy tính thành nhiều cấp, giống như một kim tự tháp. Càng ở đỉnh kim tự tháp, bộ nhớ càng nhanh, càng đắt và dung lượng càng nhỏ. Càng xuống đáy, bộ nhớ càng chậm, càng rẻ và dung lượng càng lớn.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(1) Register
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(2) L1 Cache
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(3) L2 Cache
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(4) L3 Cache
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(5) RAM &amp;lt;- Redis
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(6) SSD
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(7) HDD
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;CPU cache được chia thành nhiều Level, thường là L1, L2, và L3:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;L1 Cache (Level 1):&lt;/strong&gt; Đây là bộ nhớ cache nhỏ nhất và nhanh nhất, được tích hợp ngay trong từng nhân (core) của CPU&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;L2 Cache (Level 2):&lt;/strong&gt; Lớn hơn L1 nhưng chậm hơn một chút. L2 cache có thể nằm riêng cho từng nhân hoặc chung cho một vài nhân, tùy vào kiến trúc CPU.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;L3 Cache (Level 3):&lt;/strong&gt; Lớn nhất và chậm nhất trong các cấp CPU cache. L3 cache thường được dùng chung cho tất cả các nhân trên một con chip. Nó giúp tăng tốc độ giao tiếp giữa các nhân và giảm thiểu việc phải truy cập ra RAM.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;cache-phần-mềm&#34;&gt;Cache Phần mềm
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cache Trình duyệt (Browser Cache):&lt;/strong&gt; Khi bạn truy cập một trang web, trình duyệt của bạn sẽ tự động lưu các tài nguyên tĩnh như hình ảnh, file CSS, JavaScript vào một thư mục trên ổ cứng. Lần sau khi bạn quay lại trang đó, trình duyệt sẽ tải các tài nguyên này từ ổ cứng thay vì phải tải lại từ server, giúp trang web hiển thị gần như ngay lập tức. Đây là một dạng cache phía client (client-side), riêng tư cho mỗi người dùng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cache Mạng Phân phối Nội dung (CDN - Content Delivery Network):&lt;/strong&gt; Đây là một mạng lưới các máy chủ proxy được đặt ở nhiều vị trí địa lý trên toàn cầu. Các máy chủ này lưu trữ (cache) bản sao của nội dung trang web (như video, hình ảnh, file tĩnh). Ví dụ điển hình là Netflix hay YouTube. Khi bạn ở Việt Nam và xem một video, rất có thể bạn đang nhận dữ liệu từ một máy chủ CDN đặt tại Singapore hoặc Hồng Kông, chứ không phải từ máy chủ gốc ở Mỹ. Điều này giúp giảm đáng kể độ trễ và tăng tốc độ tải.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cache Cơ sở dữ liệu (Database Cache):&lt;/strong&gt; Hầu hết các hệ quản trị cơ sở dữ liệu như MySQL, PostgreSQL đều có một bộ đệm cache nội bộ. Nó lưu lại kết quả của các câu truy vấn (query) được thực thi thường xuyên. Khi nhận được một câu truy vấn giống hệt, thay vì phải quét lại toàn bộ bảng dữ liệu, database sẽ trả về kết quả từ cache của nó.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cache Ứng dụng (Application Cache / In-Memory Cache):&lt;/strong&gt; Thường sử dụng các công cụ chuyên dụng như &lt;strong&gt;Redis&lt;/strong&gt; hoặc &lt;strong&gt;Memcached&lt;/strong&gt;. Lớp cache này có thể lưu trữ bất cứ thứ gì. Việc này giúp ứng dụng không phải tính toán lại hoặc truy vấn lại những thông tin tốn kém trên mỗi yêu cầu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Tool on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/categories/tool/</link>
+        <description>Recent content in Tool on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/categories/tool/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Netstat - Công cụ giám sát Networking</title>
+        <link>https://blog.nagih.io.vn/posts/networking/netstat/</link>
+        <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/networking/netstat/</guid>
+        <description>&lt;p&gt;&lt;strong&gt;Netstat&lt;/strong&gt; là công cụ dòng lệnh dùng để hiển thị chi tiết các kết nối mạng (TCP/UDP), bảng định tuyến và các cổng đang lắng nghe, giúp quản trị viên giám sát và xử lý sự cố hệ thống.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;1-tư-duy-cốt-lõi-tại-sao-cần-netstat&#34;&gt;1. Tư duy cốt lõi: Tại sao cần Netstat?
+&lt;/h3&gt;&lt;p&gt;Khi một ứng dụng bị lỗi kết nối, DevOps Engineer sẽ đặt ra các câu hỏi sau và &lt;code&gt;netstat&lt;/code&gt; là công cụ trả lời:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Availability:&lt;/strong&gt; Port của service có đang mở (Listening) không?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Binding:&lt;/strong&gt; Service đang lắng nghe trên IP nào? (Localhost &lt;code&gt;127.0.0.1&lt;/code&gt; hay Public &lt;code&gt;0.0.0.0&lt;/code&gt;)?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Process Mapping:&lt;/strong&gt; Process nào (PID) đang chiếm dụng port đó?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Performance:&lt;/strong&gt; Có bao nhiêu kết nối đang ở trạng thái chờ (TIME_WAIT, CLOSE_WAIT)?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Security:&lt;/strong&gt; Có IP lạ nào đang kết nối vào server không?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;2-vũ-khí-thường-dùng-các-flag-quan-trọng&#34;&gt;2. &amp;ldquo;Vũ khí&amp;rdquo; thường dùng: Các Flag quan trọng
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Combo: &lt;code&gt;netstat -tulpn&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Đây là lệnh đầu tiên tôi gõ khi debug network.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-t&lt;/code&gt; (TCP): Chỉ hiện các kết nối TCP.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-u&lt;/code&gt; (UDP): Chỉ hiện các kết nối UDP.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-l&lt;/code&gt; (Listening): Chỉ hiện các socket đang lắng nghe (Server mode).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-p&lt;/code&gt; (Process): Hiển thị PID và tên chương trình (Cần quyền &lt;code&gt;sudo&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-n&lt;/code&gt; (Numeric): &lt;strong&gt;Rất quan trọng&lt;/strong&gt;. Hiển thị IP và Port bằng số thay vì phân giải tên miền (DNS resolution). Nếu không có &lt;code&gt;-n&lt;/code&gt;, lệnh sẽ chạy rất chậm khi DNS server gặp vấn đề.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Ví dụ output:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tcp        &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;      &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; 0.0.0.0:80              0.0.0.0:*               LISTEN      1234/nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tcp        &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;      &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; 127.0.0.1:3306          0.0.0.0:*               LISTEN      5678/mysqld
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Phân tích:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nginx&lt;/strong&gt; đang mở port 80 cho tất cả IP (&lt;code&gt;0.0.0.0&lt;/code&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;MySQL&lt;/strong&gt; chỉ cho phép kết nối từ nội bộ (&lt;code&gt;127.0.0.1&lt;/code&gt;). Đây là một check-point về bảo mật.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;3-phân-tích-sâu-về-tcp-states-quan-trọng-cho-performance&#34;&gt;3. Phân tích sâu về TCP States (Quan trọng cho Performance)
+&lt;/h3&gt;&lt;p&gt;Cần đặc biệt chú ý đến cột &lt;strong&gt;State&lt;/strong&gt;. Nó phản ánh sức khỏe của ứng dụng.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;a. &lt;code&gt;ESTABLISHED&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Kết nối đang hoạt động bình thường.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Use case:&lt;/strong&gt; Đếm số lượng user đang online (concurrent connections).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netstat -anp &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep :80 &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep ESTABLISHED &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; wc -l
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-a&lt;/code&gt; (All):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Tất cả các socket, bao gồm cả các socket đang lắng nghe (Listening) và các socket đã thiết lập kết nối.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu không có cờ này, mặc định netstat thường chỉ hiện các kết nối đã thiết lập.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-n&lt;/code&gt; (Numeric): Đã giải thích ở trên&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-p&lt;/code&gt; (Program):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hiển thị &lt;strong&gt;PID&lt;/strong&gt; (Process ID) và &lt;strong&gt;tên chương trình&lt;/strong&gt; đang sở hữu kết nối đó (ví dụ: 1234/nginx)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cần &lt;code&gt;root&lt;/code&gt; hoặc &lt;code&gt;sudo&lt;/code&gt; để thấy PID của các process không thuộc user hiện tại&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;wc -l&lt;/code&gt;:  Công cụ đếm&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-l&lt;/code&gt; (Lines Flag này bảo wc chỉ đếm &lt;strong&gt;số dòng&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;-&amp;gt; Kết quả cuối cùng trả về một con số duy nhất (Ví dụ: 50 nghĩa là có 50 người đang kết nối vào web server).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;b. &lt;code&gt;TIME_WAIT&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Kết nối đã đóng, nhưng kernel giữ lại socket một lúc để đảm bảo các gói tin lạc đường được xử lý xong.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vấn đề:&lt;/strong&gt; Nếu server có quá nhiều &lt;code&gt;TIME_WAIT&lt;/code&gt; (hàng nghìn), server có thể bị cạn kiệt &lt;strong&gt;Ephemeral Ports&lt;/strong&gt; (hết port để mở kết nối mới).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Giải pháp:&lt;/strong&gt; Tinh chỉnh sysctl (&lt;code&gt;net.ipv4.tcp_tw_reuse&lt;/code&gt;, &lt;code&gt;net.ipv4.tcp_fin_timeout&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;c. &lt;code&gt;CLOSE_WAIT&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Đây là trạng thái nguy hiểm nhất.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ý nghĩa:&lt;/strong&gt; Phía bên kia đã đóng kết nối, nhưng ứng dụng trên server của bạn &lt;strong&gt;chưa&lt;/strong&gt; đóng socket.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên nhân:&lt;/strong&gt; Thường là do &lt;strong&gt;bug trong code&lt;/strong&gt; (quên &lt;code&gt;socket.close()&lt;/code&gt;) hoặc ứng dụng bị treo/deadlock.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Hành động:&lt;/strong&gt; Báo ngay cho team Dev hoặc restart service để giải phóng tài nguyên.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;d. &lt;code&gt;SYN_SENT&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Server gửi yêu cầu kết nối nhưng không nhận được phản hồi.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Nguyên nhân:&lt;/strong&gt; Thường do Firewall chặn hoặc IP đích không tồn tại.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;4-netstat-trong-security--audit-bảo-mật&#34;&gt;4. Netstat trong Security &amp;amp; Audit (Bảo mật)
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;a. Phát hiện DDoS hoặc Traffic bất thường&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bạn muốn biết IP nào đang kết nối nhiều nhất vào server?&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netstat -ntu &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; awk &lt;span class=&#34;s1&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; cut -d: -f1 &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; uniq -c &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort -nr &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; head -10
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Lệnh này sẽ liệt kê Top 10 IP đang kết nối.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;b. Kiểm tra Backdoor/Malware&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Nếu thấy một port lạ mở (ví dụ: 4444, 6666) và process name lạ hoặc không có tên:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netstat -tulpn
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Kiểm tra PID đó là gì: &lt;code&gt;ps -ef | grep &amp;lt;PID&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;5-routing-và-interface-statistics&#34;&gt;5. Routing và Interface Statistics
+&lt;/h3&gt;&lt;p&gt;Ngoài socket, &lt;code&gt;netstat&lt;/code&gt; còn dùng để check tầng mạng thấp hơn.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;a. Routing Table (&lt;code&gt;netstat -r&lt;/code&gt; hoặc &lt;code&gt;netstat -rn&lt;/code&gt;)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Tương đương lệnh &lt;code&gt;route -n&lt;/code&gt; hoặc &lt;code&gt;ip route&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dùng để kiểm tra Default Gateway (&lt;code&gt;0.0.0.0&lt;/code&gt;) có đúng không khi server không ra được internet.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;b. Interface Statistics (&lt;code&gt;netstat -i&lt;/code&gt;)&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Iface      MTU    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;eth0      &lt;span class=&#34;m&#34;&gt;1500&lt;/span&gt;   &lt;span class=&#34;m&#34;&gt;12345&lt;/span&gt;      &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;      &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;      &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;    &lt;span class=&#34;m&#34;&gt;12345&lt;/span&gt;      &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;      &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;      &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; BMRU
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;RX-ERR / TX-ERR:&lt;/strong&gt; Nếu số này tăng, có thể do cáp mạng hỏng, switch lỗi hoặc duplex mismatch.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;RX-DRP (Drop):&lt;/strong&gt; Server quá tải, CPU không xử lý kịp gói tin, hoặc firewall (iptables) đang drop gói tin.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;6-sự-chuyển-dịch-netstat-vs-ss-socket-statistics&#34;&gt;6. Sự chuyển dịch: Netstat vs. SS (Socket Statistics)
+&lt;/h3&gt;&lt;p&gt;Đây là kiến thức phân biệt giữa Junior và Senior.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Netstat:&lt;/strong&gt; Đọc thông tin từ &lt;code&gt;/proc/net/tcp&lt;/code&gt;. Khi hệ thống có hàng chục nghìn kết nối, việc đọc file này rất chậm và tốn CPU.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;SS (&lt;code&gt;iproute2&lt;/code&gt; package):&lt;/strong&gt; Lấy thông tin trực tiếp từ kernel space qua &lt;strong&gt;Netlink API&lt;/strong&gt;. Nhanh hơn rất nhiều.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Bảng chuyển đổi cho DevOps:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Mục đích&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Lệnh Netstat (Cũ)&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Lệnh SS (Mới - Khuyên dùng)&lt;/th&gt;
+          &lt;th&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Xem tất cả TCP/UDP port đang listen&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;netstat -tulpn&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;ss -tulpn&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Xem kết nối đã thiết lập&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;netstat -atn&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;ss -atn&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Xem tóm tắt thống kê (Summary)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;netstat -s&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;ss -s&lt;/code&gt; (Rất gọn và đẹp)&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Lọc theo port&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;netstat -an | grep :80&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;ss -tn sport = :80&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;7-tổng-kết-checklist-cho-devops-engineer&#34;&gt;7. Tổng kết: Checklist cho DevOps Engineer
+&lt;/h3&gt;&lt;p&gt;Khi sử dụng &lt;code&gt;netstat&lt;/code&gt;, hãy luôn nhớ quy trình tư duy này:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Check Listening:&lt;/strong&gt; Service có chạy và bind đúng IP/Port không? (&lt;code&gt;-tulpn&lt;/code&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Check Connection:&lt;/strong&gt; Ai đang kết nối vào? (&lt;code&gt;-an&lt;/code&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Check State:&lt;/strong&gt; Có bị leak connection (&lt;code&gt;CLOSE_WAIT&lt;/code&gt;) hay cạn resource (&lt;code&gt;TIME_WAIT&lt;/code&gt;) không?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Check Bottleneck:&lt;/strong&gt; Có IP nào spam kết nối không? (Dùng &lt;code&gt;awk&lt;/code&gt; để lọc).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Performance:&lt;/strong&gt; Nếu server tải cao, hãy chuyển sang dùng &lt;code&gt;ss&lt;/code&gt; thay vì &lt;code&gt;netstat&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>Hướng dẫn thiết lập khóa SSH cho github</title>
+        <link>https://blog.nagih.io.vn/posts/git/setup-ssh-for-github/</link>
+        <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/git/setup-ssh-for-github/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/thumb/setup-ssh.png" alt="Featured image of post Hướng dẫn thiết lập khóa SSH cho github" /&gt;&lt;p&gt;Hướng dẫn chi tiết từng bước để tạo và cấu hình khóa SSH cho tài khoản GitHub&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;bước-1-tạo-cặp-khóa-ssh-với-ssh-keygen&#34;&gt;Bước 1: Tạo Cặp Khóa SSH với &lt;code&gt;ssh-keygen&lt;/code&gt;
+&lt;/h2&gt;&lt;h3 id=&#34;thuật-toán-mã-hóa&#34;&gt;Thuật toán Mã hóa
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ed25519 (Khuyến nghị):&lt;/strong&gt; Đây là thuật toán hiện đại, được khuyến nghị sử dụng. Ed25519 cung cấp mức độ bảo mật rất cao với độ dài khóa ngắn hơn, giúp quá trình xác thực diễn ra nhanh hơn.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen -t ed25519 -C &lt;span class=&#34;s2&#34;&gt;&amp;#34;your_email@example.com&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;RSA (Lựa chọn thay thế):&lt;/strong&gt; RSA là một thuật toán cũ. Nếu bạn cần hỗ trợ các hệ thống cũ không tương thích với Ed25519.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen -t rsa -b &lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt; -C &lt;span class=&#34;s2&#34;&gt;&amp;#34;your_email@example.com&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhập passphrase&lt;/strong&gt; (Nếu cần)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Passphrase này sẽ mã hóa file khóa riêng tư của bạn trên đĩa&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ngay cả khi máy tính của bạn bị đánh cắp và kẻ tấn công có được file khóa riêng tư, họ cũng không thể sử dụng nó nếu không biết passphrase.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;lưu-khóa-và-đặt-tên-file&#34;&gt;Lưu khóa và Đặt tên file
+&lt;/h3&gt;&lt;p&gt;Mặc định, &lt;code&gt;ssh-keygen&lt;/code&gt; sẽ lưu cặp khóa vào thư mục &lt;code&gt;~/.ssh/&lt;/code&gt; với tên file là &lt;code&gt;id_ed25519&lt;/code&gt; và &lt;code&gt;id_ed25519.pub&lt;/code&gt; (hoặc &lt;code&gt;id_rsa&lt;/code&gt; cho RSA). Có thể đặt tên là &lt;code&gt;~/.ssh/id_ed25519_personal&lt;/code&gt; cho tài khoản cá nhân và &lt;code&gt;~/.ssh/id_ed25519_work&lt;/code&gt; cho tài khoản công việc.&lt;/p&gt;
+&lt;h2 id=&#34;bước-2-quản-lý-khóa-với-ssh-agent&#34;&gt;Bước 2: Quản Lý Khóa với &lt;code&gt;ssh-agent&lt;/code&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Khởi động ssh-agent:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Chạy lệnh sau trong terminal để khởi động agent cho phiên làm việc hiện tại.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;ssh-agent -s&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thêm khóa riêng tư vào ssh-agent:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bạn sẽ được yêu cầu nhập &lt;strong&gt;passphrase&lt;/strong&gt; nếu đã tạo.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-add ~/.ssh/id_ed25519
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;bước-3-thêm-public-key-vào-github-account&#34;&gt;Bước 3: Thêm Public Key vào GitHub Account
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Copy Public Key&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;macOS:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pbcopy &amp;lt; ~/.ssh/id_ed25519_personal.pub
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Linux/Windows (Git Bash hoặc WSL):&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat ~/.ssh/id_ed25519.pub
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Copy public key được in ra màn hình.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thêm khóa vào GitHub:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Truy cập tài khoản GitHub của bạn trên Browser.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Vào &lt;strong&gt;Settings&lt;/strong&gt; (Cài đặt)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trong thanh bên trái, chọn &lt;strong&gt;SSH and GPG keys&lt;/strong&gt; (Khóa SSH và GPG).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nhấp vào nút &lt;strong&gt;New SSH key&lt;/strong&gt; (Khóa SSH mới).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trong trường &lt;strong&gt;Title&lt;/strong&gt;, đặt một cái tên mang tính mô tả cho khóa của bạn (ví dụ: &amp;ldquo;MacBook Pro Cá Nhân&amp;rdquo;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trong trường &lt;strong&gt;Key&lt;/strong&gt;, dán nội dung khóa công khai bạn đã sao chép.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nhấp vào Add SSH key (Thêm khóa SSH) để hoàn tất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;bước-4-kiểm-tra-kết-nối&#34;&gt;Bước 4: Kiểm Tra Kết Nối
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Chạy lệnh kiểm tra:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -T git@github.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Xác thực máy chủ (lần đầu tiên):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;The authenticity of host &lt;span class=&#34;s1&#34;&gt;&amp;#39;github.com (IP_ADDRESS)&amp;#39;&lt;/span&gt; can&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;t be established.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Are you sure you want to &lt;span class=&#34;k&#34;&gt;continue&lt;/span&gt; connecting &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;yes/no&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;?
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Đây là một tính năng bảo mật của SSH để chống lại các cuộc tấn công xen giữa (man-in-the-middle). Sau khi xác nhận, gõ &lt;code&gt;yes&lt;/code&gt; và nhấn Enter.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kết quả thành công:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Hi username! You&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Điều này xác nhận rằng cặp khóa SSH của bạn đã được thiết lập chính xác và GitHub đã xác thực thành công danh tính của bạn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>SSH - Github</title>
+        <link>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https--ssh/</link>
+        <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https--ssh/</guid>
+        <description>&lt;p&gt;Những hạn chế của xác thực qua HTTPS và sự thay thế SSH&lt;/p&gt;
+&lt;p&gt;Trong hệ sinh thái phát triển phần mềm hiện đại, GitHub không chỉ là một kho lưu trữ mã nguồn mà còn là trung tâm cộng tác, quản lý dự án và triển khai ứng dụng. Việc tương tác hiệu quả và an toàn với nền tảng này là một kỹ năng cơ bản đối với mọi nhà phát triển. Mặc dù HTTPS cung cấp một phương thức kết nối ban đầu đơn giản, việc chuyển sang sử dụng giao thức SSH (Secure Shell) là một bước tiến quan trọng, không chỉ nâng cao đáng kể mức độ bảo mật mà còn tối ưu hóa quy trình làm việc hàng ngày.&lt;/p&gt;
+&lt;h3 id=&#34;1-những-hạn-chế-của-xác-thực-qua-https&#34;&gt;1. Những Hạn Chế của Xác thực qua HTTPS
+&lt;/h3&gt;&lt;p&gt;Khi bắt đầu với Git và GitHub, hầu hết người dùng đều chọn HTTPS vì sự đơn giản của nó. Tuy nhiên, phương thức này có những hạn chế cố hữu. Xác thực qua HTTPS yêu cầu sử dụng Personal Access Token (PAT), một chuỗi ký tự hoạt động tương tự như mật khẩu.&lt;/p&gt;
+&lt;p&gt;Mặc dù dễ thiết lập, quy trình này bộc lộ sự bất tiện trong quá trình sử dụng lâu dài. Git sẽ thường xuyên yêu cầu người dùng nhập thông tin xác thực, làm gián đoạn luồng công việc. Mặc dù các công cụ hỗ trợ quản lý thông tin đăng nhập (credential helpers) có thể lưu trữ token, nhưng chúng lại đặt ra một vấn đề khác về mức độ an toàn của việc lưu trữ này. Quan trọng hơn, một PAT bị rò rỉ có thể cấp cho kẻ tấn công quyền truy cập không chỉ vào các kho lưu trữ mà còn có thể vào toàn bộ tài khoản GitHub, tùy thuộc vào phạm vi quyền hạn được cấp cho token đó.&lt;/p&gt;
+&lt;h3 id=&#34;so-sánh-nhanh-https-và-ssh-trên-github&#34;&gt;So Sánh Nhanh: HTTPS và SSH trên GitHub
+&lt;/h3&gt;&lt;p&gt;Để tóm tắt những khác biệt chính, bảng dưới đây cung cấp một cái nhìn tổng quan về hai phương thức xác thực.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Tiêu chí&lt;/th&gt;
+          &lt;th&gt;HTTPS (với Personal Access Token)&lt;/th&gt;
+          &lt;th&gt;SSH&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Cơ chế Xác thực&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Dựa trên token (hoạt động như mật khẩu)&lt;/td&gt;
+          &lt;td&gt;Cặp khóa Public/Private (mật mã bất đối xứng)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Mức độ Bảo mật&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Dễ bị lộ nếu token không được bảo vệ cẩn thận&lt;/td&gt;
+          &lt;td&gt;Rất cao; khóa riêng tư không bao giờ truyền qua mạng&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Sự tiện lợi&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Yêu cầu nhập lại token hoặc phụ thuộc vào credential helper&lt;/td&gt;
+          &lt;td&gt;Rất tiện lợi sau khi thiết lập, không cần nhập lại thông tin&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Thiết lập ban đầu&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Đơn giản, chỉ cần tạo token&lt;/td&gt;
+          &lt;td&gt;Phức tạp hơn một chút, yêu cầu tạo và quản lý cặp khóa&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Quản lý Truy cập&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Phân quyền thông qua phạm vi của token trên GitHub&lt;/td&gt;
+          &lt;td&gt;Có thể quản lý truy cập chi tiết qua từng khóa riêng lẻ&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

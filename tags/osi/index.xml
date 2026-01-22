@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>OSI on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/tags/osi/</link>
+        <description>Recent content in OSI on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Sun, 12 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/osi/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Tổng quan về mô hình OSI</title>
+        <link>https://blog.nagih.io.vn/posts/networking/osi/</link>
+        <pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/networking/osi/</guid>
+        <description>&lt;p&gt;Open Systems Interconnection - OSI là một khung khái niệm chia các chức năng truyền thông mạng thành 7 lớp hay 7 tầng riêng biệt. Được phát triển bởi Tổ chức Tiêu chuẩn hóa Quốc tế (ISO)&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;cấu-trúc-7-tầng-của-mô-hình-osi&#34;&gt;Cấu trúc 7 tầng của mô hình OSI
+&lt;/h2&gt;&lt;p&gt;Quá trình truyền dữ liệu trong mô hình OSI diễn ra theo thứ tự từ tầng ứng dụng (tầng 7) đi xuống tầng vật lý (tầng 1) ở máy gửi, và ngược lại ở máy nhận. Mỗi tầng có những chức năng cụ thể và có thêm thêm header (thông tin điều khiển) của riêng mình vào dữ liệu trước khi chuyển xuống tầng tiếp theo. Quá trình này gọi là &amp;ldquo;đóng gói dữ liệu&amp;rdquo;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;tầng-7-application-layer&#34;&gt;Tầng 7: Application Layer
+&lt;/h3&gt;&lt;p&gt;Đây là tầng gần gũi nhất với người dùng. Nó cung cấp giao diện để các ứng dụng phần mềm có thể truy cập và sử dụng các dịch vụ mạng.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chức năng chính:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cung cấp các dịch vụ mạng cho ứng dụng của người dùng như truy cập web, gửi/nhận email, truyền file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Xác định các giao thức mà ứng dụng sử dụng để trao đổi dữ liệu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ví dụ thực tế:&lt;/strong&gt; Khi bạn sử dụng trình duyệt web, email hoặc một phần mềm chat, bạn đang tương tác với tầng ứng dụng. Các giao thức phổ biến ở tầng này bao gồm HTTP/HTTPS (truy cập web), FTP (truyền tệp), SMTP (gửi email), và DNS (hệ thống phân giải tên miền).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;tầng-6-presentation-layer&#34;&gt;Tầng 6: Presentation Layer
+&lt;/h3&gt;&lt;p&gt;Tầng này hoạt động như một &amp;ldquo;người phiên dịch&amp;rdquo; của mạng, đảm bảo rằng dữ liệu được gửi từ tầng ứng dụng của một hệ thống có thể được đọc và hiểu bởi tầng ứng dụng của hệ thống khác.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chức năng chính:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Định dạng dữ liệu:&lt;/strong&gt; Chuyển đổi dữ liệu sang một định dạng chung mà mạng có thể hiểu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Mã hóa và giải mã:&lt;/strong&gt; Đảm bảo tính bảo mật và bí mật của dữ liệu trong quá trình truyền.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nén và giải nén:&lt;/strong&gt; Giảm kích thước dữ liệu để truyền đi nhanh hơn và tiết kiệm băng thông.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ví dụ thực tế:&lt;/strong&gt; Mã hóa HTTPS thông qua SSL/TLS thường được coi là hoạt động ở tầng này. Các định dạng tệp hình ảnh (JPEG, GIF) và video (MPEG) cũng là ví dụ về hoạt động của tầng trình bày.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;tầng-5-session-layer&#34;&gt;Tầng 5: Session Layer
+&lt;/h3&gt;&lt;p&gt;Tầng này chịu trách nhiệm thiết lập, quản lý và kết thúc các phiên giao tiếp (kết nối) giữa hai máy tính.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chức năng chính:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thiết lập và quản lý phiên:&lt;/strong&gt; Tạo, duy trì và đồng bộ hóa các phiên giao tiếp giữa các ứng dụng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Điều khiển đối thoại:&lt;/strong&gt; Xác định lượt truyền dữ liệu (ai gửi, ai nhận, và trong bao lâu).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Khôi phục phiên:&lt;/strong&gt; Nếu một phiên bị gián đoạn, tầng này có thể giúp khôi phục lại từ một điểm kiểm tra (checkpoint), tránh việc phải truyền lại toàn bộ dữ liệu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ví dụ thực tế:&lt;/strong&gt; Khi bạn thực hiện một cuộc gọi video, tầng phiên sẽ duy trì kết nối ổn định trong suốt cuộc gọi. Các giao thức như NetBIOS, RPC cũng hoạt động ở tầng này.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;tầng-4-transport-layer&#34;&gt;Tầng 4: Transport Layer
+&lt;/h3&gt;&lt;p&gt;Tầng vận chuyển đảm bảo việc truyền dữ liệu hoàn chỉnh và đáng tin cậy từ một tiến trình trên máy gửi đến một tiến trình trên máy nhận.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chức năng chính:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Phân đoạn và tái lắp ráp:&lt;/strong&gt; Chia nhỏ dữ liệu từ tầng phiên thành các đoạn (segment) nhỏ hơn để truyền đi và tập hợp chúng lại ở phía nhận.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm soát luồng:&lt;/strong&gt; Điều chỉnh tốc độ truyền dữ liệu để tránh làm quá tải thiết bị nhận.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm soát lỗi:&lt;/strong&gt; Đảm bảo dữ liệu đến nơi một cách chính xác, không bị lỗi, mất mát hay trùng lặp.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cung cấp hai loại giao thức chính:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;TCP (Transmission Control Protocol):&lt;/strong&gt; Hướng kết nối, đảm bảo độ tin cậy cao (dữ liệu được gửi đầy đủ và đúng thứ tự). Thích hợp cho việc tải tệp, gửi email.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;UDP (User Datagram Protocol):&lt;/strong&gt; Không kết nối, truyền dữ liệu nhanh hơn nhưng không đảm bảo độ tin cậy. Thích hợp cho streaming video, game online.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;tầng-3-network-layer&#34;&gt;Tầng 3: Network Layer
+&lt;/h3&gt;&lt;p&gt;Tầng mạng chịu trách nhiệm cho việc định địa chỉ logic và định tuyến các gói tin (packet) qua các mạng khác nhau để đến đúng đích.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chức năng chính:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Định địa chỉ logic (Logical Addressing):&lt;/strong&gt; Gán địa chỉ IP cho các thiết bị để xác định chúng trên mạng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Định tuyến (Routing):&lt;/strong&gt; Xác định con đường tốt nhất để các gói tin di chuyển từ nguồn đến đích qua nhiều mạng khác nhau. Các thiết bị định tuyến (router) hoạt động ở tầng này.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ví dụ thực tế:&lt;/strong&gt; Khi bạn truy cập một trang web, tầng mạng sẽ xác định đường đi cho dữ liệu của bạn qua Internet để đến được máy chủ của trang web đó. Giao thức IP (Internet Protocol) là giao thức chính ở tầng này.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;tầng-2-data-link-layer&#34;&gt;Tầng 2: Data Link Layer
+&lt;/h3&gt;&lt;p&gt;Tầng này cung cấp phương tiện truyền dữ liệu đáng tin cậy qua một liên kết vật lý trực tiếp. Nó nhận các gói tin từ tầng mạng và đóng gói chúng thành các khung (frame).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chức năng chính:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Định địa chỉ vật lý (Physical Addressing):&lt;/strong&gt; Thêm địa chỉ MAC (Media Access Control) của thiết bị gửi và nhận vào mỗi khung. Địa chỉ MAC là duy nhất cho mỗi card mạng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm soát lỗi:&lt;/strong&gt; Phát hiện và sửa lỗi có thể xảy ra ở tầng vật lý.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm soát truy cập môi trường (Media Access Control - MAC):&lt;/strong&gt; Điều khiển việc các thiết bị trên cùng một mạng chia sẻ truy cập vào môi trường truyền.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ví dụ thực tế:&lt;/strong&gt; Các thiết bị chuyển mạch (switch) hoạt động ở tầng này. Giao thức Ethernet là một ví dụ điển hình.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;tầng-1-physical-layer&#34;&gt;Tầng 1: Physical Layer
+&lt;/h3&gt;&lt;p&gt;Đây là tầng thấp nhất, chịu trách nhiệm truyền các bit dữ liệu (0 và 1) qua môi trường truyền vật lý.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chức năng chính:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Định nghĩa các đặc tính vật lý:&lt;/strong&gt; Quy định về các thiết bị phần cứng như cáp mạng, đầu nối, card mạng, cũng như các đặc tính về điện, cơ và quang.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Biểu diễn bit:&lt;/strong&gt; Chuyển đổi các bit 0 và 1 thành các tín hiệu điện, ánh sáng hoặc sóng vô tuyến để truyền đi.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tốc độ dữ liệu:&lt;/strong&gt; Xác định số bit được truyền đi mỗi giây.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ví dụ thực tế:&lt;/strong&gt; Cáp đồng, cáp quang, sóng Wi-Fi, hub, và repeater là những ví dụ về các thành phần hoạt động ở tầng vật lý.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ưu-và-nhược-điểm-của-mô-hình-osi&#34;&gt;Ưu và nhược điểm của mô hình OSI
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Ưu điểm:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chuẩn hóa:&lt;/strong&gt; Tạo ra một tiêu chuẩn chung, giúp các nhà sản xuất khác nhau tạo ra các sản phẩm tương thích.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Giảm độ phức tạp:&lt;/strong&gt; Chia nhỏ quá trình truyền thông phức tạp thành các phần đơn giản, dễ quản lý và dễ hiểu hơn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Hỗ trợ kỹ thuật module:&lt;/strong&gt; Cho phép thay đổi hoặc phát triển công nghệ ở một tầng mà không ảnh hưởng đến các tầng khác.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Dễ dàng khắc phục sự cố:&lt;/strong&gt; Giúp các kỹ sư mạng xác định vấn đề xảy ra ở tầng nào một cách nhanh chóng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Nhược điểm:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tính lý thuyết:&lt;/strong&gt; Mô hình OSI chỉ là một mô hình tham chiếu và không được triển khai rộng rãi trong thực tế như mô hình TCP/IP.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Phức tạp:&lt;/strong&gt; Một số người cho rằng mô hình 7 tầng là quá phức tạp và một số tầng có chức năng không thực sự cần thiết trong nhiều ứng dụng thực tế.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Command on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/tags/command/</link>
+        <description>Recent content in Command on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Sat, 17 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/command/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hướng dẫn đầy đủ command `du`</title>
+        <link>https://blog.nagih.io.vn/posts/linux/du-command/</link>
+        <pubDate>Sat, 17 Jan 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/linux/du-command/</guid>
+        <description>&lt;p&gt;Lệnh &lt;code&gt;du&lt;/code&gt; (&lt;strong&gt;D&lt;/strong&gt;isk &lt;strong&gt;U&lt;/strong&gt;sage) là công cụ mạnh mẽ để kiểm tra dung lượng ổ đĩa, nhưng nếu chỉ gõ &lt;code&gt;du&lt;/code&gt; trần thì kết quả trả về sẽ rất rối mắt và khó đọc&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Để dùng &lt;code&gt;du&lt;/code&gt; như một &amp;ldquo;Pro&amp;rdquo; (chuyên nghiệp, hiệu quả), bạn cần kết hợp các cờ (flags) và đường ống (pipe) để lọc dữ liệu. Dưới đây là các tuyệt chiêu hay dùng nhất:&lt;/p&gt;
+&lt;h3 id=&#34;1-combo-huyền-thoại-xem-tổng-dung-lượng-thư-mục-hiện-tại&#34;&gt;1. Combo &amp;ldquo;Huyền thoại&amp;rdquo;: Xem tổng dung lượng thư mục hiện tại
+&lt;/h3&gt;&lt;p&gt;Đây là lệnh bạn sẽ dùng 90% thời gian.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;du -sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Hoặc xem cụ thể từng thư mục con cấp 1:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;du -sh *
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;-s&lt;/code&gt; (summary):&lt;/strong&gt; Chỉ hiện tổng số, không liệt kê từng file nhỏ bên trong.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;-h&lt;/code&gt; (human-readable):&lt;/strong&gt; Hiển thị đơn vị dễ đọc (K, M, G) thay vì số block.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-combo-thám-tử-tìm-10-thư-mụcfile-nặng-nhất-quan-trọng&#34;&gt;2. Combo &amp;ldquo;Thám tử&amp;rdquo;: Tìm 10 thư mục/file nặng nhất (Quan trọng)
+&lt;/h3&gt;&lt;p&gt;Khi ổ cứng bị đầy, bạn cần biết thằng nào đang chiếm chỗ. Lệnh &lt;code&gt;du&lt;/code&gt; không tự sắp xếp, nên ta phải kết hợp với &lt;code&gt;sort&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;du -ah . &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort -rh &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; head -n &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;-a&lt;/code&gt; (all):&lt;/strong&gt; Hiển thị cả file lẫn thư mục (để bắt được các file log hoặc backup lẻ tẻ nhưng nặng).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;.&lt;/code&gt;&lt;/strong&gt;: Thư mục hiện tại (hoặc thay bằng &lt;code&gt;/var&lt;/code&gt;, &lt;code&gt;/home&lt;/code&gt;&amp;hellip;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;sort -rh&lt;/code&gt;&lt;/strong&gt;: Sắp xếp (sort) theo dạng đảo ngược (&lt;strong&gt;r&lt;/strong&gt;everse) và hiểu được đơn vị K/M/G (&lt;strong&gt;h&lt;/strong&gt;uman-numeric-sort).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;head -n 10&lt;/code&gt;&lt;/strong&gt;: Chỉ lấy 10 dòng đầu tiên (top 10 nặng nhất).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-combo-khoan-cắt-bê-tông-giới-hạn-độ-sâu-thư-mục&#34;&gt;3. Combo &amp;ldquo;Khoan cắt bê tông&amp;rdquo;: Giới hạn độ sâu thư mục
+&lt;/h3&gt;&lt;p&gt;Nếu bạn muốn kiểm tra thư mục gốc &lt;code&gt;/&lt;/code&gt; nhưng sợ nó liệt kê hàng triệu file, hãy dùng &lt;code&gt;--max-depth&lt;/code&gt; (hoặc &lt;code&gt;-d&lt;/code&gt;).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo du -h --max-depth&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; /
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;--max-depth=1&lt;/code&gt; (hoặc &lt;code&gt;-d 1&lt;/code&gt;):&lt;/strong&gt; Chỉ hiển thị dung lượng của các thư mục con cấp 1, không đi sâu hơn. Rất gọn gàng để nhìn tổng quan.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-combo-tính-tổng-cộng-dồn-dung-lượng&#34;&gt;4. Combo &amp;ldquo;Tính tổng&amp;rdquo;: Cộng dồn dung lượng
+&lt;/h3&gt;&lt;p&gt;Đôi khi bạn muốn check dung lượng của một vài folder cụ thể và muốn biết tổng của chúng là bao nhiêu.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;du -ch folder1 folder2 folder3
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;-c&lt;/code&gt; (total):&lt;/strong&gt; Thêm một dòng &amp;ldquo;total&amp;rdquo; ở cuối cùng cộng dồn tất cả lại.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;5-combo-lọc-rác-loại-trừ-file-không-cần-thiết&#34;&gt;5. Combo &amp;ldquo;Lọc rác&amp;rdquo;: Loại trừ file không cần thiết
+&lt;/h3&gt;&lt;p&gt;Bạn muốn tính dung lượng thư mục web nhưng muốn bỏ qua các file log hoặc cache?&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;du -sh --exclude&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;*.log&amp;#34;&lt;/span&gt; --exclude&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;cache&amp;#34;&lt;/span&gt; /var/www/html
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;--exclude&lt;/code&gt;:&lt;/strong&gt; Bỏ qua các file hoặc thư mục khớp với mẫu.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;6-combo-thời-gian-xem-thư-mục-nào-mới-được-sửa-đổi&#34;&gt;6. Combo &amp;ldquo;Thời gian&amp;rdquo;: Xem thư mục nào mới được sửa đổi
+&lt;/h3&gt;&lt;p&gt;Vừa thấy dung lượng tăng vọt? Hãy xem thư mục nào vừa được cập nhật dung lượng gần đây kèm thời gian:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;du -ha --time &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort -rh &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; head -n &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;--time&lt;/code&gt;&lt;/strong&gt;: Hiển thị thêm cột ngày giờ sửa đổi lần cuối của file/folder.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;bảng-tóm-tắt-các-phím-tắt-cho-pro&#34;&gt;Bảng tóm tắt các phím tắt cho &amp;ldquo;Pro&amp;rdquo;
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Flag&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Ý nghĩa (Dễ nhớ)&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-h&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;H&lt;/strong&gt;uman (Dễ đọc: KB, MB, GB)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-s&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;S&lt;/strong&gt;ummary (Tóm tắt, không in dài dòng)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-a&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;A&lt;/strong&gt;ll (Hiện cả file lẻ, không chỉ folder)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-c&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;C&lt;/strong&gt;ount/Total (Tính tổng ở dòng cuối)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-d N&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;D&lt;/strong&gt;epth (Độ sâu N cấp thư mục)&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;-pro-tip-dùng-ncdu-nếu-được-phép-cài-đặt&#34;&gt;⭐ Pro Tip: Dùng &lt;code&gt;ncdu&lt;/code&gt; (Nếu được phép cài đặt)
+&lt;/h3&gt;&lt;p&gt;Nếu bạn được quyền cài thêm phần mềm, hãy quên &lt;code&gt;du&lt;/code&gt; đi và cài &lt;code&gt;ncdu&lt;/code&gt;. Đây là phiên bản &lt;code&gt;du&lt;/code&gt; có giao diện đồ họa dòng lệnh, cho phép bạn dùng phím mũi tên để đi vào/ra các thư mục và xóa file trực tiếp cực nhanh.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Cài đặt:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install ncdu
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Sử dụng:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ncdu /
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

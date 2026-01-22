@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Security on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/categories/security/</link>
+        <description>Recent content in Security on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Tue, 16 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/categories/security/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>AWS - Networking</title>
+        <link>https://blog.nagih.io.vn/posts/aws/aws---networking/</link>
+        <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/aws/aws---networking/</guid>
+        <description>&lt;p&gt;Hệ thống mạng (Networking) &lt;strong&gt;đầy đủ, bảo mật và chuẩn doanh nghiệp (Enterprise-grade)&lt;/strong&gt; trên AWS&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;1-core-infrastructure&#34;&gt;1. Core Infrastructure
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;VPC (Virtual Private Cloud):&lt;/strong&gt; Mạng ảo riêng biệt của bạn trên đám mây AWS. Đây là container chứa tất cả các tài nguyên mạng khác.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Subnets (Mạng con):&lt;/strong&gt; Chia nhỏ VPC thành các mạng nhỏ hơn. Một kiến trúc chuẩn thường chia làm 3 tầng (3-tier architecture) trên mỗi Availability Zone (AZ):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Public Subnet:&lt;/strong&gt; Chứa các resource cần truy cập trực tiếp từ Internet (Load Balancer, Bastion Host, NAT Gateway).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Private Subnet (App):&lt;/strong&gt; Chứa các ứng dụng backend. Có thể ra Internet qua NAT nhưng không nhận kết nối trực tiếp từ ngoài vào.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Database/Isolated Subnet:&lt;/strong&gt; Chứa Database. Hoàn toàn cô lập, không có đường ra Internet (chỉ nhận kết nối từ App Subnet).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;CIDR Block:&lt;/strong&gt; Dải địa chỉ IP cho VPC và Subnets (VD: &lt;code&gt;10.0.0.0/16&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-internet-connectivity&#34;&gt;2. Internet Connectivity
+&lt;/h3&gt;&lt;p&gt;Để các resource giao tiếp với thế giới bên ngoài:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Internet Gateway (IGW):&lt;/strong&gt; Cổng kết nối giúp Public Subnet giao tiếp 2 chiều với Internet.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;NAT Gateway (Network Address Translation):&lt;/strong&gt; Đặt tại Public Subnet. Giúp các instance trong &lt;strong&gt;Private Subnet&lt;/strong&gt; đi ra Internet (để tải update, patch) nhưng chặn Internet truy cập ngược vào trong.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Egress-only Internet Gateway:&lt;/strong&gt; Tương tự NAT Gateway nhưng dành cho &lt;strong&gt;IPv6&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-routing--traffic-management&#34;&gt;3. Routing &amp;amp; Traffic Management
+&lt;/h3&gt;&lt;p&gt;Điều hướng dòng chảy của dữ liệu:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Route Tables:&lt;/strong&gt; Bảng chỉ đường. Mỗi Subnet phải liên kết với một Route Table để biết traffic đi đâu (VD: Traffic &lt;code&gt;0.0.0.0/0&lt;/code&gt; trỏ về IGW hay NAT Gateway).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Elastic Load Balancer (ELB):&lt;/strong&gt; Phân phối tải.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ALB (Application Load Balancer):&lt;/strong&gt; Layer 7 (HTTP/HTTPS), xử lý routing thông minh dựa trên path, host.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;NLB (Network Load Balancer):&lt;/strong&gt; Layer 4 (TCP/UDP), hiệu năng cực cao, độ trễ thấp.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Route 53:&lt;/strong&gt; Dịch vụ DNS của AWS. Dùng để phân giải tên miền và health check.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-security&#34;&gt;4. Security
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Security Groups (SG):&lt;/strong&gt; Firewall cấp độ &lt;strong&gt;Instance&lt;/strong&gt; (Stateful). Bạn quy định port nào được mở (VD: Chỉ cho phép port 80 từ Load Balancer vào Web Server).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Network ACLs (NACLs):&lt;/strong&gt; Firewall cấp độ &lt;strong&gt;Subnet&lt;/strong&gt; (Stateless). Dùng để chặn (Deny) các IP cụ thể hoặc làm lớp bảo vệ thô.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;AWS WAF (Web Application Firewall):&lt;/strong&gt; Bảo vệ ứng dụng web khỏi các cuộc tấn công phổ biến (SQL Injection, XSS) - thường gắn vào ALB hoặc CloudFront.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;AWS Network Firewall:&lt;/strong&gt; Firewall cao cấp cho toàn bộ VPC, hỗ trợ Deep Packet Inspection (IPS/IDS) và lọc domain.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;AWS Shield:&lt;/strong&gt; Chống tấn công DDoS.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;5-private-connectivity&#34;&gt;5. Private Connectivity
+&lt;/h3&gt;&lt;p&gt;Kết nối các dịch vụ AWS hoặc các VPC với nhau mà không đi qua Internet công cộng:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;VPC Endpoints (AWS PrivateLink):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Interface Endpoint:&lt;/strong&gt; Giúp EC2 trong Private Subnet kết nối tới các dịch vụ AWS (như CloudWatch, SNS, Systems Manager) qua mạng nội bộ AWS, không cần NAT Gateway.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Gateway Endpoint:&lt;/strong&gt; Dành riêng cho &lt;strong&gt;S3&lt;/strong&gt; và &lt;strong&gt;DynamoDB&lt;/strong&gt; (miễn phí và hiệu năng cao hơn).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;VPC Peering:&lt;/strong&gt; Kết nối trực tiếp 2 VPC với nhau (như thể chúng cùng 1 mạng).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Transit Gateway (TGW):&lt;/strong&gt; &amp;ldquo;Hub&amp;rdquo; trung tâm để kết nối hàng trăm VPC và mạng On-premise với nhau. Đây là giải pháp thay thế VPC Peering khi hệ thống lớn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;6-hybrid-connectivity&#34;&gt;6. Hybrid Connectivity
+&lt;/h3&gt;&lt;p&gt;Kết nối AWS với Data Center vật lý hoặc văn phòng:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Site-to-Site VPN:&lt;/strong&gt; Kết nối qua đường truyền Internet nhưng được mã hóa (IPsec).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;AWS Direct Connect (DX):&lt;/strong&gt; Đường dây cáp vật lý riêng nối từ Data Center của bạn thẳng đến AWS (băng thông cao, ổn định, bảo mật).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Client VPN:&lt;/strong&gt; Cho phép nhân viên kết nối từ xa vào VPC (như OpenVPN).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;7-monitoring--observability&#34;&gt;7. Monitoring &amp;amp; Observability
+&lt;/h3&gt;&lt;p&gt;Để biết chuyện gì đang xảy ra trong mạng:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;VPC Flow Logs:&lt;/strong&gt; Ghi lại thông tin về traffic đi vào/ra các network interface (cho biết IP nào đang kết nối, port nào bị chặn&amp;hellip;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Traffic Mirroring:&lt;/strong&gt; Sao chép traffic mạng để gửi tới các công cụ phân tích bảo mật (IDS) hoặc giám sát chuyên sâu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;p/s:&lt;/strong&gt; &lt;em&gt;Nếu bạn đang viết Terraform, mỗi gạch đầu dòng trên sẽ tương ứng với một &lt;code&gt;resource&lt;/code&gt; hoặc &lt;code&gt;module&lt;/code&gt; trong code của bạn.&lt;/em&gt;&lt;/p&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

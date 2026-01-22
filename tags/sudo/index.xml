@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Sudo on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/tags/sudo/</link>
+        <description>Recent content in Sudo on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/sudo/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Điều gì xảy ra khi bạn sử dụng lệnh Sudo ?</title>
+        <link>https://blog.nagih.io.vn/posts/linux/sudo/</link>
+        <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/linux/sudo/</guid>
+        <description>&lt;p&gt;Khi bạn gõ &lt;code&gt;sudo apt update&lt;/code&gt;, không đơn giản là hệ thống &amp;ldquo;bật công tắc&amp;rdquo; quyền admin. Đó là một chuỗi các thao tác kiểm tra nghiêm ngặt, thay đổi định danh (Identity) và làm sạch môi trường.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Trước khi tìm hiểu về &lt;strong&gt;Sudo&lt;/strong&gt;, bạn nên hiểu về Điều gì sảy ra sau khi sử dụng Command (non-sudo) tại &lt;a href=&#34;https://blog.nagih.io.vn/posts/linux/system-calls/&#34;&gt;System Calls&lt;/a&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;giai-đoạn-1-tại-shell-user-space&#34;&gt;Giai đoạn 1: Tại Shell (User Space)
+&lt;/h3&gt;&lt;p&gt;Ngay khi bạn nhấn Enter, Shell (Bash/Zsh) của bạn bắt đầu làm việc:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Parsing (Phân tích cú pháp):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Shell cắt chuỗi &lt;code&gt;sudo fdisk -l&lt;/code&gt; thành các token:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Main Command: &lt;code&gt;sudo&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Argument 1: &lt;code&gt;fdisk&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Argument 2: &lt;code&gt;-l&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Path Resolution (Tìm đường dẫn):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Shell tìm xem &lt;code&gt;sudo&lt;/code&gt; nằm ở đâu bằng cách quét biến &lt;code&gt;$PATH&lt;/code&gt; của user hiện tại (&lt;code&gt;/usr/local/bin&lt;/code&gt;, &lt;code&gt;/usr/bin&lt;/code&gt;, &lt;code&gt;/bin&lt;/code&gt;&amp;hellip;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó tìm thấy &lt;code&gt;/usr/bin/sudo&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;giai-đoạn-2-khởi-chạy-sudo---quyền-lực-ngầm-suid&#34;&gt;Giai đoạn 2: Khởi chạy Sudo - Quyền lực ngầm (SUID)
+&lt;/h3&gt;&lt;p&gt;Trước khi lệnh chạy, hãy nhìn vào file thực thi của &lt;code&gt;sudo&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ls -l /usr/bin/sudo
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Kết quả: -rwsr-xr-x 1 root root ...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Bạn thấy chữ &lt;strong&gt;&lt;code&gt;s&lt;/code&gt;&lt;/strong&gt; ở phần quyền hạn (&lt;code&gt;rws&lt;/code&gt;) không? Đó là &lt;strong&gt;SUID bit&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bình thường:&lt;/strong&gt; Khi bạn chạy một chương trình, nó chạy với quyền của &lt;strong&gt;bạn&lt;/strong&gt; (User ID của bạn).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Với SUID:&lt;/strong&gt; Khi bạn chạy &lt;code&gt;sudo&lt;/code&gt;, hệ điều hành sẽ chạy nó với quyền của &lt;strong&gt;người sở hữu file&lt;/strong&gt; (ở đây là &lt;code&gt;root&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Shell gọi Kernel để chạy &lt;code&gt;/usr/bin/sudo&lt;/code&gt;. Đây là điểm mấu chốt đầu tiên:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cơ chế SUID (Set User ID):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Kernel nhìn vào metadata (Inode) của file &lt;code&gt;/usr/bin/sudo&lt;/code&gt; và thấy bit &lt;strong&gt;s&lt;/strong&gt; (&lt;code&gt;-rwsr-xr-x&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Thay vì chạy &lt;code&gt;sudo&lt;/code&gt; với quyền của user &lt;code&gt;devops&lt;/code&gt;, Kernel khởi chạy tiến trình &lt;code&gt;sudo&lt;/code&gt; với quyền của người sở hữu file này -&amp;gt; &lt;strong&gt;Root&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kết quả:&lt;/strong&gt; Tiến trình sudo vừa sinh ra đã có &lt;strong&gt;Effective UID = 0&lt;/strong&gt; (Quyền tối cao).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;giai-đoạn-3-policy-check---etcsudoers&#34;&gt;Giai đoạn 3. Policy Check - &lt;code&gt;/etc/sudoers&lt;/code&gt;
+&lt;/h3&gt;&lt;p&gt;Dù &lt;code&gt;sudo&lt;/code&gt; đang chạy với quyền root, nó chưa vội thực thi lệnh của bạn. Nó phải kiểm tra xem bạn có &amp;ldquo;đủ tuổi&amp;rdquo; không.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nó đọc file &lt;code&gt;/etc/sudoers&lt;/code&gt; (và thư mục &lt;code&gt;/etc/sudoers.d/&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó kiểm tra:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;User của bạn có nằm trong nhóm được phép (thường là &lt;code&gt;wheel&lt;/code&gt; hoặc &lt;code&gt;sudo&lt;/code&gt;) không?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bạn được phép chạy lệnh gì? (ALL commands hay chỉ một số lệnh cụ thể).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bạn có cần nhập mật khẩu không? (&lt;code&gt;NOPASSWD&lt;/code&gt; hay mặc định).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;giai-đoạn-4-xác-thực-qua-pam-pluggable-authentication-modules&#34;&gt;Giai đoạn 4. Xác thực qua PAM (Pluggable Authentication Modules)
+&lt;/h3&gt;&lt;p&gt;Nếu cấu hình yêu cầu mật khẩu, &lt;code&gt;sudo&lt;/code&gt; không tự kiểm tra mật khẩu (nó không đọc &lt;code&gt;/etc/shadow&lt;/code&gt;). Nó nhờ một &amp;ldquo;bảo vệ&amp;rdquo; chuyên nghiệp tên là &lt;strong&gt;PAM&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sudo&lt;/code&gt; gửi yêu cầu đến thư viện PAM.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;PAM hỏi mật khẩu của &lt;strong&gt;User hiện tại&lt;/strong&gt; (không phải mật khẩu root).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu nhập sai 3 lần -&amp;gt; PAM báo lỗi -&amp;gt; &lt;code&gt;sudo&lt;/code&gt; ghi log cảnh báo và thoát.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Cơ chế Timestamp:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Nếu bạn nhập đúng, &lt;code&gt;sudo&lt;/code&gt; sẽ tạo một file timestamp (thường ở &lt;code&gt;/run/sudo/ts/&lt;/code&gt;). Trong vòng 15 phút (mặc định), nếu bạn gọi lại &lt;code&gt;sudo&lt;/code&gt;, nó kiểm tra timestamp này còn hạn không. Nếu còn, nó bỏ qua bước hỏi mật khẩu.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;giai-đoạn-5-làm-sạch-và-thiết-lập-môi-trường-environment-sanitization&#34;&gt;Giai đoạn 5. Làm sạch và Thiết lập Môi trường (Environment Sanitization)
+&lt;/h3&gt;&lt;p&gt;Để tránh việc user lợi dụng các biến môi trường để hack quyền root, &lt;code&gt;sudo&lt;/code&gt; sẽ:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Xóa bỏ các biến nguy hiểm:&lt;/strong&gt; Đặc biệt là &lt;code&gt;LD_PRELOAD&lt;/code&gt; (biến này cho phép chèn mã độc vào thư viện động) và &lt;code&gt;LD_LIBRARY_PATH&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Reset &lt;code&gt;$PATH&lt;/code&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sudo&lt;/code&gt; ghi đè biến &lt;code&gt;$PATH&lt;/code&gt; cũ bằng giá trị &lt;code&gt;secure_path&lt;/code&gt; trong &lt;code&gt;/etc/sudoers&lt;/code&gt; (để bao gồm &lt;code&gt;/sbin&lt;/code&gt;, &lt;code&gt;/usr/sbin&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;*Nhờ bước này, hệ thống mới &amp;ldquo;nhìn thấy&amp;rdquo; lệnh &lt;code&gt;fdisk&lt;/code&gt; nằm trong &lt;code&gt;/usr/sbin*&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thiết lập biến định danh:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;$HOME&lt;/code&gt; trỏ về &lt;code&gt;/root&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;$USER&lt;/code&gt;, &lt;code&gt;$LOGNAME&lt;/code&gt; chuyển thành &lt;code&gt;root&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;(Trừ khi bạn dùng &lt;code&gt;sudo -E&lt;/code&gt; để giữ nguyên môi trường cũ - nhưng rất rủi ro).&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;giai-đoạn-6-ghi-log-logging&#34;&gt;Giai đoạn 6. Ghi Log (Logging)
+&lt;/h3&gt;&lt;p&gt;Trước khi thực sự chạy lệnh, &lt;code&gt;sudo&lt;/code&gt; ghi lại hành động này để làm bằng chứng (Audit trail).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ghi vào: &lt;code&gt;/var/log/auth.log&lt;/code&gt; (Ubuntu/Debian) hoặc &lt;code&gt;/var/log/secure&lt;/code&gt; (RHEL/CentOS).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nội dung: &amp;ldquo;User A đã chạy lệnh B vào giờ C tại thư mục D&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;giai-đoạn-7-fork-và-exec-chuyển-giao-quyền-lực&#34;&gt;Giai đoạn 7. Fork và Exec (Chuyển giao quyền lực)
+&lt;/h3&gt;&lt;p&gt;Bây giờ mọi thủ tục đã xong, &lt;code&gt;sudo&lt;/code&gt; thực hiện bước cuối cùng để chạy lệnh bạn muốn (ví dụ: &lt;code&gt;apt update&lt;/code&gt;).&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;fork()&lt;/code&gt;:&lt;/strong&gt; &lt;code&gt;sudo&lt;/code&gt; tạo ra một tiến trình con (Child process).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Trong tiến trình con:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Gọi system call &lt;code&gt;setuid(0)&lt;/code&gt; và &lt;code&gt;setgid(0)&lt;/code&gt;: Lệnh này chính thức đóng dấu &amp;ldquo;Tôi là Root&amp;rdquo; vào tiến trình con này vĩnh viễn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Gọi &lt;code&gt;execve()&lt;/code&gt;: Thay thế mã nguồn của &lt;code&gt;sudo&lt;/code&gt; bằng mã nguồn của lệnh đích (&lt;code&gt;apt&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Trong tiến trình cha (&lt;code&gt;sudo&lt;/code&gt;):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nó vẫn chạy và đợi (wait) tiến trình con.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó đóng vai trò trung gian chuyển tiếp tín hiệu (Signals). Ví dụ: Bạn bấm &lt;code&gt;Ctrl+C&lt;/code&gt;, &lt;code&gt;sudo&lt;/code&gt; nhận được và chuyển nó cho tiến trình con đang chạy &lt;code&gt;apt&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;giai-đoạn-8-kết-thúc&#34;&gt;Giai đoạn 8. Kết thúc
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Lệnh &lt;code&gt;apt&lt;/code&gt; chạy xong và trả về Exit Code (0).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;sudo&lt;/code&gt; nhận Exit Code đó và trả lại cho Shell của bạn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Shell hiển thị lại dấu nhắc lệnh.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;tóm-tắt-luồng-đi-flowchart-dạng-text&#34;&gt;Tóm tắt luồng đi (Flowchart dạng text)
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;User gõ lệnh:&lt;/strong&gt; &lt;code&gt;sudo vim /etc/hosts&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kernel:&lt;/strong&gt; Chạy binary &lt;code&gt;sudo&lt;/code&gt; với quyền Root (do SUID bit).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sudo:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Đọc &lt;code&gt;/etc/sudoers&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hỏi PAM: &amp;ldquo;Mật khẩu thằng này đúng không?&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;PAM: &amp;ldquo;Đúng&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ghi log vào &lt;code&gt;/var/log/auth.log&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Xóa biến môi trường độc hại, set lại &lt;code&gt;$PATH&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;fork()&lt;/code&gt; -&amp;gt; Tạo process con.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Process Con:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;setuid(0)&lt;/code&gt; (Thành root thật sự).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;execve(&amp;quot;vim&amp;quot;)&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vim:&lt;/strong&gt; Mở ra với quyền &lt;code&gt;root&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

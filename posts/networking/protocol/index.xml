@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Protocol on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/posts/networking/protocol/</link>
+        <description>Recent content in Protocol on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Mon, 13 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/posts/networking/protocol/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Tổng quan về TCP</title>
+        <link>https://blog.nagih.io.vn/posts/networking/protocol/tcp/</link>
+        <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/networking/protocol/tcp/</guid>
+        <description>&lt;p&gt;&lt;strong&gt;Transmission Control Protocol&lt;/strong&gt; (Giao thức điều khiển truyền vận), là một giao thức cốt lõi trong bộ giao thức Internet (TCP/IP)&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tcp-là-gì&#34;&gt;TCP là gì?
+&lt;/h2&gt;&lt;p&gt;TCP hoạt động ở tầng Giao vận (Transport Layer - Tầng 4 trong mô hình OSI. Nhiệm vụ chính của TCP là đảm bảo dữ liệu được truyền đi một cách &lt;strong&gt;đáng tin cậy&lt;/strong&gt; và &lt;strong&gt;đúng thứ tự&lt;/strong&gt; giữa các ứng dụng trên các thiết bị mạng khác nhau.&lt;/p&gt;
+&lt;p&gt;Hãy tưởng tượng bạn gửi một bức thư dài qua đường bưu điện. Thay vì gửi cả tập giấy dày, bạn chia nhỏ nó thành nhiều trang, đánh số thứ tự mỗi trang và gửi từng trang riêng lẻ. TCP cũng làm điều tương tự với dữ liệu của bạn. Nó chia dòng dữ liệu lớn thành các gói tin nhỏ hơn gọi là &lt;strong&gt;segment&lt;/strong&gt; (phân đoạn).&lt;/p&gt;
+&lt;p&gt;TCP thường hoạt động cùng với Giao thức IP. Trong khi IP chịu trách nhiệm tìm đường và gửi các gói tin đến đúng địa chỉ đích, TCP đảm bảo rằng tất cả các gói tin này đến nơi an toàn, không lỗi và được lắp ráp lại theo đúng thứ tự ban đầu. Sự kết hợp này được gọi là &lt;strong&gt;TCP/IP&lt;/strong&gt;, là nền tảng cho hầu hết các hoạt động trên Internet ngày nay.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;các-đặc-điểm-chính-của-tcp&#34;&gt;Các đặc điểm chính của TCP
+&lt;/h2&gt;&lt;p&gt;TCP được biết đến là một giao thức &amp;ldquo;hướng kết nối&amp;rdquo; (connection-oriented) và đáng tin cậy. Điều này có nghĩa là trước khi bất kỳ dữ liệu nào được gửi đi, một kết nối ảo phải được thiết lập giữa máy gửi và máy nhận. Các đặc điểm nổi bật của TCP bao gồm:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Độ tin cậy cao:&lt;/strong&gt; TCP đảm bảo dữ liệu đến đích một cách toàn vẹn. Nó sử dụng cơ chế kiểm tra lỗi (checksum), gửi lại các gói tin bị mất và loại bỏ các gói tin trùng lặp.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Đảm bảo đúng thứ tự:&lt;/strong&gt; Mỗi segment được gán một &amp;ldquo;số thứ tự&amp;rdquo; (sequence number). Bên nhận sẽ dựa vào số này để sắp xếp lại các segment theo đúng thứ tự ban đầu, đảm bảo dữ liệu không bị xáo trộn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm soát luồng (Flow Control):&lt;/strong&gt; TCP sử dụng một cơ chế gọi là &amp;ldquo;cửa sổ trượt&amp;rdquo; (sliding window) để điều chỉnh tốc độ truyền dữ liệu. Điều này giúp bên gửi không làm quá tải bên nhận bằng cách gửi dữ liệu nhanh hơn khả năng xử lý của nó.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm soát tắc nghẽn (Congestion Control):&lt;/strong&gt; TCP có khả năng phát hiện tình trạng tắc nghẽn mạng và tự động giảm tốc độ truyền để tránh làm tình hình tệ hơn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tcp-hoạt-động-như-thế-nào-quy-trình-bắt-tay-ba-bước&#34;&gt;TCP hoạt động như thế nào? Quy trình &amp;ldquo;Bắt tay ba bước&amp;rdquo;
+&lt;/h2&gt;&lt;p&gt;Hoạt động của TCP có thể được chia thành ba giai đoạn chính: thiết lập kết nối, truyền dữ liệu và kết thúc kết nối.&lt;/p&gt;
+&lt;h3 id=&#34;1-thiết-lập-kết-nối-bắt-tay-ba-bước-three-way-handshake&#34;&gt;1. Thiết lập kết nối: Bắt tay ba bước (Three-Way Handshake)
+&lt;/h3&gt;&lt;p&gt;Đây là quy trình bắt buộc để thiết lập một kết nối TCP đáng tin cậy. Quá trình này diễn ra như sau:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bước 1 (SYN):&lt;/strong&gt; Máy khách (Client) muốn bắt đầu kết nối sẽ gửi một gói tin có cờ &lt;strong&gt;SYN&lt;/strong&gt; (Synchronize) đến máy chủ (Server). Gói tin này về cơ bản là một lời chào: &amp;ldquo;Chào Server, tôi muốn kết nối. Số thứ tự bắt đầu của tôi là X.&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bước 2 (SYN-ACK):&lt;/strong&gt; Server nhận được gói SYN, nếu đồng ý kết nối, nó sẽ gửi lại một gói tin có cả cờ &lt;strong&gt;SYN&lt;/strong&gt; và &lt;strong&gt;ACK&lt;/strong&gt; (Acknowledgement). Gói tin này có ý nghĩa: &amp;ldquo;Chào Client, tôi đã nhận được yêu cầu của bạn (ACK X+1). Tôi cũng sẵn sàng kết nối. Số thứ tự bắt đầu của tôi là Y.&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bước 3 (ACK):&lt;/strong&gt; Client nhận được gói SYN-ACK từ Server. Để hoàn tất quá trình, Client gửi lại một gói tin chỉ có cờ &lt;strong&gt;ACK&lt;/strong&gt;. Gói tin này xác nhận: &amp;ldquo;Tôi đã nhận được gói tin của Server (ACK Y+1). Kết nối đã được thiết lập!&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Sau khi hoàn thành 3 bước này, một kết nối ổn định được tạo ra và quá trình truyền dữ liệu có thể bắt đầu.&lt;/p&gt;
+&lt;h3 id=&#34;2-truyền-dữ-liệu&#34;&gt;2. Truyền dữ liệu
+&lt;/h3&gt;&lt;p&gt;Khi kết nối đã được thiết lập, dữ liệu sẽ được chia thành các segment và gửi đi.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Bên gửi sẽ gửi một lượng dữ liệu (trong giới hạn của cửa sổ trượt).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bên nhận sau khi nhận được dữ liệu sẽ gửi lại một gói tin ACK để xác nhận.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu bên gửi không nhận được ACK trong một khoảng thời gian nhất định, nó sẽ tự động gửi lại segment đó.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-kết-thúc-kết-nối-bắt-tay-bốn-bước-four-way-handshake&#34;&gt;3. Kết thúc kết nối: Bắt tay bốn bước (Four-Way Handshake)
+&lt;/h3&gt;&lt;p&gt;Khi quá trình truyền dữ liệu hoàn tất, kết nối sẽ được đóng lại thông qua một quy trình &amp;ldquo;bắt tay bốn bước&amp;rdquo; để đảm bảo cả hai bên đều đồng ý chấm dứt.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Một bên (ví dụ: Client) gửi một gói tin &lt;strong&gt;FIN&lt;/strong&gt; (Finish) để thông báo muốn kết thúc.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bên kia (Server) gửi lại một gói &lt;strong&gt;ACK&lt;/strong&gt; để xác nhận đã nhận được yêu cầu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Sau đó, Server cũng gửi một gói &lt;strong&gt;FIN&lt;/strong&gt; của riêng mình.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cuối cùng, Client gửi lại một gói &lt;strong&gt;ACK&lt;/strong&gt; để xác nhận, và kết nối được đóng hoàn toàn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;so-sánh-tcp-và-udp&#34;&gt;So sánh TCP và UDP
+&lt;/h2&gt;&lt;p&gt;Trong tầng Giao vận, ngoài TCP còn có một giao thức quan trọng khác là &lt;strong&gt;UDP (User Datagram Protocol)&lt;/strong&gt;. Dưới đây là bảng so sánh nhanh giữa hai giao thức này:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Đặc điểm&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;TCP (Transmission Control Protocol)&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;UDP (User Datagram Protocol)&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Kiểu kết nối&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Hướng kết nối (Connection-oriented)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Không kết nối (Connectionless)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Độ tin cậy&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Rất cao. Đảm bảo dữ liệu đến nơi, đúng thứ tự, không lỗi.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Không đáng tin cậy. Không đảm bảo dữ liệu có đến đích hay không, không sắp xếp thứ tự.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Tốc độ&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Chậm hơn do các cơ chế kiểm tra, xác nhận và thiết lập kết nối.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Rất nhanh do không có các quy trình phức tạp.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Kiểm soát luồng&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Có&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Không&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Header&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Lớn hơn (tối thiểu 20 bytes) do chứa nhiều thông tin điều khiển.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Nhỏ hơn (8 bytes), giúp giảm thiểu dữ liệu thừa.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Ứng dụng phổ biến&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Truy cập web (HTTP/HTTPS), gửi email (SMTP), truyền file (FTP).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Streaming video/audio, game online, gọi VoIP, DNS.&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;khi-nào-nên-sử-dụng-tcp&#34;&gt;Khi nào nên sử dụng TCP?
+&lt;/h3&gt;&lt;p&gt;TCP là lựa chọn lý tưởng cho các ứng dụng đòi hỏi &lt;strong&gt;tính toàn vẹn và độ chính xác của dữ liệu là ưu tiên hàng đầu&lt;/strong&gt;. Nếu việc mất một vài gói tin có thể gây ra lỗi nghiêm trọng (ví dụ như tải một tệp tin bị hỏng, email bị mất nội dung), thì TCP là giao thức bắt buộc phải sử dụng.&lt;/p&gt;
+&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>REST và gRPC</title>
+        <link>https://blog.nagih.io.vn/posts/networking/protocol/rest--grpc/</link>
+        <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/networking/protocol/rest--grpc/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/image-placeholder.png" alt="Featured image of post REST và gRPC" /&gt;&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại | Rest &amp;amp; gRPC&lt;/p&gt;
+&lt;h2 id=&#34;giới-thiệu&#34;&gt;Giới thiệu
+&lt;/h2&gt;&lt;p&gt;REST, với tư cách là một kiểu kiến trúc, đã định hình nên các API web trong hơn hai thập kỷ, trở thành tiêu chuẩn de facto nhờ tính linh hoạt và khả năng tiếp cận phổ quát. Mặt khác, gRPC, một framework mã nguồn mở hiệu suất cao do Google phát triển, nổi lên như một giải pháp được thiết kế đặc biệt cho kỷ nguyên microservice, nơi hiệu suất, độ trễ thấp và các hợp đồng dịch vụ nghiêm ngặt là tối quan trọng.&lt;/p&gt;
+&lt;h2 id=&#34;rest&#34;&gt;REST
+&lt;/h2&gt;&lt;p&gt;REST không phải là một giao thức hay một tiêu chuẩn, mà là một &lt;em&gt;kiểu kiến trúc&lt;/em&gt; (architectural style) được định nghĩa bởi Roy Fielding vào năm 2000. Một hệ thống được coi là &amp;ldquo;RESTful&amp;rdquo; khi nó tuân thủ một tập hợp các ràng buộc kiến trúc được thiết kế để tối ưu hóa cho một hệ thống phân tán quy mô lớn như World Wide Web.&lt;/p&gt;
+&lt;h3 id=&#34;kiến-trúc-cốt-lõi-của-rest&#34;&gt;Kiến trúc cốt lõi của REST
+&lt;/h3&gt;&lt;p&gt;Sức mạnh và sự phổ biến của REST bắt nguồn từ sáu ràng buộc sau:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tách Biệt Client-Server (Client-Server Decoupling):&lt;/strong&gt; Server và client chỉ tương tác thông qua một giao diện chuẩn hóa. Sự tách biệt này cho phép chúng phát triển độc lập - client không cần biết về logic nghiệp vụ của server, và server không cần biết về giao diện của client miễn là hợp đồng giao diện không thay đổi.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vô Trạng Thái (Statelessness):&lt;/strong&gt; Trong kiến trúc REST, mỗi yêu cầu từ client đến server phải chứa tất cả thông tin cần thiết để server hiểu và xử lý nó. Server không lưu trữ bất kỳ trạng thái phiên nào của client giữa các yêu cầu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Giao Diện Đồng Nhất (Uniform Interface):&lt;/strong&gt; Được thiết kế để đơn giản hóa và tách rời kiến trúc. Nó bao gồm 4 ràng buộc con:Đ&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Identification of resources:&lt;/strong&gt; Mọi tài nguyên đều được định danh duy nhất thông qua một URI (Uniform Resource Identifier).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ví dụ: &lt;code&gt;https://.../osers/123&lt;/code&gt; thì 123 là ID duy nhất của order đó.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Manipulation of resources through representations:&lt;/strong&gt; Client tương tác với tài nguyên thông qua các biểu diễn của chúng (ví dụ: một tài liệu JSON hoặc XML). Biểu diễn này chứa đủ thông tin để client có thể sửa đổi hoặc xóa tài nguyên trên server.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Self-descriptive:&lt;/strong&gt; Mỗi thông điệp chứa đủ thông tin để mô tả cách xử lý nó. Ví dụ, một header &lt;code&gt;Content-Type&lt;/code&gt; cho biết định dạng media của thông điệp.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;HATEOAS:&lt;/strong&gt; Client chỉ cần biết URI khởi đầu. Sau đó, tất cả các hành động và tài nguyên trong tương lai mà client có thể truy cập đều được khám phá thông qua các siêu liên kết có trong các phản hồi từ server.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cacheability:&lt;/strong&gt; Cho phép client hoặc các máy chủ trung gian lưu trữ các phản hồi, giúp giảm độ trễ và tải cho server.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Layered System:&lt;/strong&gt; Client không thể biết liệu nó đang kết nối trực tiếp đến server cuối cùng hay một máy chủ trung gian &lt;em&gt;(microservices)&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Code on Demand:&lt;/strong&gt; Đây là ràng buộc duy nhất không bắt buộc. Nó cho phép server tạm thời mở rộng hoặc tùy chỉnh chức năng của client bằng cách truyền mã thực thi (ví dụ: JavaScript).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;triển-khai-đển-hình&#34;&gt;Triển khai đển hình
+&lt;/h3&gt;&lt;p&gt;Thông thường, REST được triển khai trên HTTP/1.1. Các tài nguyên được thao tác bằng HTTP tiêu chuẩn (GET, POST, PUT, DELETE), và dữ liệu thường được trao đổi bằng định dạng JSON.&lt;/p&gt;
+&lt;h2 id=&#34;framework-grpc---hiệu-suất-và-gọi-thủ-tục-từ-xa&#34;&gt;Framework gRPC - Hiệu Suất và Gọi Thủ Tục Từ Xa
+&lt;/h2&gt;&lt;p&gt;gRPC (gRPC Remote Procedure Call) là một framework RPC hiện đại, được xây dựng trên nền tảng các công nghệ hiệu suất cao. Thay vì tập trung vào tài nguyên, gRPC tập trung vào các dịch vụ và các thủ tục (hàm) mà client có thể gọi từ xa. Kiến trúc của nó được xây dựng trên ba trụ cột chính: Protocol Buffers, HTTP/2, và các mô hình streaming tiên tiến.&lt;/p&gt;
+&lt;h3 id=&#34;mô-hình-rpc&#34;&gt;Mô Hình RPC
+&lt;/h3&gt;&lt;p&gt;Cốt lõi của gRPC là mô hình Gọi Thủ Tục Từ Xa (Remote Procedure Call). Ý tưởng là cho phép một client gọi một hàm trên một server từ xa một cách minh bạch, như thể nó là một lời gọi hàm cục bộ. Framework sẽ trừu tượng hóa toàn bộ quá trình giao tiếp mạng phức tạp, bao gồm tuần tự hóa dữ liệu, kết nối và xử lý lỗi.&lt;/p&gt;
+&lt;h3 id=&#34;1-protocol-buffers-protobuf&#34;&gt;1. Protocol Buffers (Protobuf)
+&lt;/h3&gt;&lt;p&gt;Protobuf là Ngôn ngữ Định nghĩa Giao diện (Interface Definition Language - IDL) mặc định của gRPC. Nó đóng vai trò là bản thiết kế cho cả dịch vụ và cấu trúc dữ liệu.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Design-first:&lt;/strong&gt; Với gRPC, bắt đầu bằng cách định nghĩa các dịch vụ cấu trúc dữ liệu trong một tệp &lt;code&gt;.proto&lt;/code&gt;. Tệp này hoạt động như một hợp đồng chính thức giữa client và server.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tạo mã tự động:&lt;/strong&gt; Trình biên dịch &lt;code&gt;protoc&lt;/code&gt; của Protobuf sau đó sẽ đọc tệp &lt;code&gt;.proto&lt;/code&gt; này và tự động tạo ra các client stub (phía client) và server skeleton (phía server) với kiểu dữ liệu mạnh (strongly-typed).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-giao-thức-http2&#34;&gt;2. Giao thức HTTP/2
+&lt;/h3&gt;&lt;p&gt;gRPC được xây dựng nguyên bản trên HTTP/2, một bản nâng cấp lớn so với HTTP/1.1, và tận dụng triệt để các tính năng của nó để đạt được hiệu suất vượt trội.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Binary Framing:&lt;/strong&gt; HTTP/2 truyền dữ liệu dưới dạng các khung nhị phân, hiệu quả hơn so với định dạng văn bản của HTTP/1.1.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Full Multiplexing:&lt;/strong&gt; Đây là tính năng đột phá nhất. HTTP/2 cho phép gửi và nhận nhiều yêu cầu và phản hồi đồng thời trên một kết nối TCP duy nhất, loại bỏ hoàn toàn vấn đề &amp;ldquo;chặn đầu hàng&amp;rdquo; (head-of-line blocking) của HTTP/1.1.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Header Compression:&lt;/strong&gt; Sử dụng thuật toán HPACK, HTTP/2 nén các header của yêu cầu và phản hồi, giảm đáng kể dữ liệu dư thừa và chi phí mạng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Hỗ trợ streaming nguyên bản:&lt;/strong&gt; HTTP/2 được thiết kế để hỗ trợ streaming dữ liệu, một nền tảng cơ bản cho các mô hình giao tiếp tiên tiến của gRPC.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-các-mô-hình-streaming-tiên-tiến&#34;&gt;3. Các mô hình Streaming tiên tiến
+&lt;/h3&gt;&lt;p&gt;Nhờ vào nền tảng HTTP/2, gRPC hỗ trợ bốn mô hình giao tiếp, mang lại sự linh hoạt vượt trội so với mô hình yêu cầu-phản hồi đơn lẻ của REST:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Unary RPC:&lt;/strong&gt; Mô hình yêu cầu-phản hồi cổ điển, tương tự như một lời gọi REST. Client gửi một yêu cầu duy nhất và nhận lại một phản hồi duy nhất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Server Streaming RPC:&lt;/strong&gt; Client gửi một yêu cầu và nhận lại một luồng (stream) các phản hồi từ server. Rất hữu ích cho các trường hợp như đăng ký nhận thông báo hoặc cập nhật dữ liệu trực tiếp.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Client Streaming RPC:&lt;/strong&gt; Client gửi một luồng các thông điệp đến server, và server sẽ phản hồi bằng một thông điệp duy nhất sau khi đã nhận tất cả. Thích hợp cho việc tải lên các tệp lớn hoặc gửi dữ liệu đo lường từ xa.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bidirectional Streaming RPC:&lt;/strong&gt; Cả client và server đều có thể gửi các luồng thông điệp cho nhau một cách độc lập trên cùng một kết nối. Mô hình này lý tưởng cho các ứng dụng tương tác thời gian thực như chat hoặc game nhiều người chơi.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;bảng-so-sánh-tổng-quan&#34;&gt;Bảng So Sánh Tổng Quan
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Tiêu Chí&lt;/th&gt;
+          &lt;th&gt;REST&lt;/th&gt;
+          &lt;th&gt;gRPC&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Mô hình&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Dựa trên tài nguyên (Resource-based)&lt;/td&gt;
+          &lt;td&gt;Gọi thủ tục từ xa (RPC)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Tiêu chuẩn hóa&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Không có tiêu chuẩn chính thức, là một tập hợp các nguyên tắc&lt;/td&gt;
+          &lt;td&gt;Được định nghĩa rõ ràng và chi tiết&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Giao thức vận chuyển&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Thường là HTTP/1.1 (có thể dùng HTTP/2)&lt;/td&gt;
+          &lt;td&gt;HTTP/2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Định dạng dữ liệu mặc định&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;JSON (cũng hỗ trợ XML, text, v.v.)&lt;/td&gt;
+          &lt;td&gt;Protocol Buffers (Protobuf)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Các chế độ dịch vụ&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Chỉ Unary (yêu cầu-phản hồi đơn lẻ)&lt;/td&gt;
+          &lt;td&gt;Unary, Client streaming, Server streaming, Bidirectional streaming&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Thiết kế API&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Thường là Code-first (mã trước)&lt;/td&gt;
+          &lt;td&gt;Design-first (thiết kế trước)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Mức độ ghép nối&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Ghép nối lỏng (Loosely coupled)&lt;/td&gt;
+          &lt;td&gt;Ghép nối chặt (Tightly coupled)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Tạo mã&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Yêu cầu công cụ bên thứ ba (ví dụ: OpenAPI Generator)&lt;/td&gt;
+          &lt;td&gt;Tích hợp sẵn (thông qua trình biên dịch &lt;code&gt;protoc&lt;/code&gt;)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Hỗ trợ trình duyệt&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Hỗ trợ nguyên bản và phổ quát&lt;/td&gt;
+          &lt;td&gt;Yêu cầu lớp proxy (gRPC-Web)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Lưu cache&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Hỗ trợ tốt thông qua các cơ chế HTTP tiêu chuẩn&lt;/td&gt;
+          &lt;td&gt;Không hỗ trợ mặc định, cần tự triển khai&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;triết-lý-và-thiết-kế&#34;&gt;Triết Lý và Thiết Kế
+&lt;/h2&gt;&lt;p&gt;Sự khác biệt cơ bản nhất giữa REST và gRPC nằm ở triết lý thiết kế của chúng: &amp;ldquo;cái gì&amp;rdquo; so với &amp;ldquo;làm gì&amp;rdquo;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;REST:&lt;/strong&gt; Tập trung vào việc phơi bày các &lt;em&gt;thực thể&lt;/em&gt; hoặc &lt;em&gt;tài nguyên&lt;/em&gt; (danh từ). Client tương tác với các tài nguyên này bằng CRUD (Create, Read, Update, Delete) và các nguyên tắc lập trình hướng đối tượng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;gRPC:&lt;/strong&gt; Tập trung vào việc phơi bày các &lt;em&gt;hành động&lt;/em&gt; hoặc &lt;em&gt;thủ tục&lt;/em&gt; (động từ). Client gọi các hàm cụ thể trên server, ví dụ &lt;code&gt;CreateUser(user_details)&lt;/code&gt;. Đây là một thiết kế hướng dịch vụ, ánh xạ trực tiếp đến logic ứng dụng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Có một mối quan hệ nghịch đảo giữa sự dễ dàng trong thiết lập/gỡ lỗi ban đầu và khả năng bảo trì lâu dài trong các hệ thống đa ngôn ngữ. REST rất dễ bắt đầu, nhưng có thể dẫn đến các vấn đề tích hợp sau này do thiếu một hợp đồng chính thức. gRPC đòi hỏi nhiều công sức thiết lập hơn (định nghĩa tệp &lt;code&gt;.proto&lt;/code&gt;, tạo mã), nhưng nó cung cấp một nền tảng vững chắc, an toàn về kiểu dữ liệu giúp ngăn ngừa các lỗi tích hợp, đặc biệt là trong kiến trúc microservices với nhiều nhóm và ngôn ngữ khác nhau.&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Pi on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/tags/pi/</link>
+        <description>Recent content in Pi on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Fri, 26 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/pi/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi</title>
+        <link>https://blog.nagih.io.vn/posts/system/pi/fix-authorized/</link>
+        <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/system/pi/fix-authorized/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/image-placeholder.png" alt="Featured image of post Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi" /&gt;&lt;p&gt;Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;sửa-trực-tiếp-trên-thẻ-nhớ&#34;&gt;Sửa trực tiếp trên Thẻ nhớ
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Tắt Pi và tháo thẻ nhớ SD.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cắm thẻ nhớ vào máy tính của bạn (bạn có thể cần một đầu đọc thẻ).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Truy cập vào phân vùng có tên &lt;code&gt;rootfs&lt;/code&gt; (hoặc phân vùng có dung lượng lớn hơn).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Đi đến đường dẫn &lt;code&gt;/home/nagih/.ssh/&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm tra file &lt;code&gt;authorized_keys&lt;/code&gt;&lt;/strong&gt;: Mở nó ra và đảm bảo nội dung của file &lt;code&gt;~/.ssh/id_ed25519.pub&lt;/code&gt; trên máy tính của bạn được chép chính xác vào đây, trên một dòng duy nhất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm tra quyền (khó hơn)&lt;/strong&gt;: Việc kiểm tra và sửa quyền file trên thẻ SD từ một máy tính khác (như Windows) là không khả thi. Nếu bạn dùng Linux, bạn có thể &lt;code&gt;mount&lt;/code&gt; thẻ nhớ và dùng &lt;code&gt;chmod&lt;/code&gt; để sửa.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

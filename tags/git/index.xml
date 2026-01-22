@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Git on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/tags/git/</link>
+        <description>Recent content in Git on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Wed, 10 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/git/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hướng dẫn thiết lập khóa SSH cho github</title>
+        <link>https://blog.nagih.io.vn/posts/git/setup-ssh-for-github/</link>
+        <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/git/setup-ssh-for-github/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/thumb/setup-ssh.png" alt="Featured image of post Hướng dẫn thiết lập khóa SSH cho github" /&gt;&lt;p&gt;Hướng dẫn chi tiết từng bước để tạo và cấu hình khóa SSH cho tài khoản GitHub&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;bước-1-tạo-cặp-khóa-ssh-với-ssh-keygen&#34;&gt;Bước 1: Tạo Cặp Khóa SSH với &lt;code&gt;ssh-keygen&lt;/code&gt;
+&lt;/h2&gt;&lt;h3 id=&#34;thuật-toán-mã-hóa&#34;&gt;Thuật toán Mã hóa
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ed25519 (Khuyến nghị):&lt;/strong&gt; Đây là thuật toán hiện đại, được khuyến nghị sử dụng. Ed25519 cung cấp mức độ bảo mật rất cao với độ dài khóa ngắn hơn, giúp quá trình xác thực diễn ra nhanh hơn.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen -t ed25519 -C &lt;span class=&#34;s2&#34;&gt;&amp;#34;your_email@example.com&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;RSA (Lựa chọn thay thế):&lt;/strong&gt; RSA là một thuật toán cũ. Nếu bạn cần hỗ trợ các hệ thống cũ không tương thích với Ed25519.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen -t rsa -b &lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt; -C &lt;span class=&#34;s2&#34;&gt;&amp;#34;your_email@example.com&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhập passphrase&lt;/strong&gt; (Nếu cần)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Passphrase này sẽ mã hóa file khóa riêng tư của bạn trên đĩa&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ngay cả khi máy tính của bạn bị đánh cắp và kẻ tấn công có được file khóa riêng tư, họ cũng không thể sử dụng nó nếu không biết passphrase.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;lưu-khóa-và-đặt-tên-file&#34;&gt;Lưu khóa và Đặt tên file
+&lt;/h3&gt;&lt;p&gt;Mặc định, &lt;code&gt;ssh-keygen&lt;/code&gt; sẽ lưu cặp khóa vào thư mục &lt;code&gt;~/.ssh/&lt;/code&gt; với tên file là &lt;code&gt;id_ed25519&lt;/code&gt; và &lt;code&gt;id_ed25519.pub&lt;/code&gt; (hoặc &lt;code&gt;id_rsa&lt;/code&gt; cho RSA). Có thể đặt tên là &lt;code&gt;~/.ssh/id_ed25519_personal&lt;/code&gt; cho tài khoản cá nhân và &lt;code&gt;~/.ssh/id_ed25519_work&lt;/code&gt; cho tài khoản công việc.&lt;/p&gt;
+&lt;h2 id=&#34;bước-2-quản-lý-khóa-với-ssh-agent&#34;&gt;Bước 2: Quản Lý Khóa với &lt;code&gt;ssh-agent&lt;/code&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Khởi động ssh-agent:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Chạy lệnh sau trong terminal để khởi động agent cho phiên làm việc hiện tại.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;ssh-agent -s&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thêm khóa riêng tư vào ssh-agent:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bạn sẽ được yêu cầu nhập &lt;strong&gt;passphrase&lt;/strong&gt; nếu đã tạo.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-add ~/.ssh/id_ed25519
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;bước-3-thêm-public-key-vào-github-account&#34;&gt;Bước 3: Thêm Public Key vào GitHub Account
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Copy Public Key&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;macOS:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pbcopy &amp;lt; ~/.ssh/id_ed25519_personal.pub
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Linux/Windows (Git Bash hoặc WSL):&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat ~/.ssh/id_ed25519.pub
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Copy public key được in ra màn hình.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thêm khóa vào GitHub:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Truy cập tài khoản GitHub của bạn trên Browser.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Vào &lt;strong&gt;Settings&lt;/strong&gt; (Cài đặt)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trong thanh bên trái, chọn &lt;strong&gt;SSH and GPG keys&lt;/strong&gt; (Khóa SSH và GPG).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nhấp vào nút &lt;strong&gt;New SSH key&lt;/strong&gt; (Khóa SSH mới).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trong trường &lt;strong&gt;Title&lt;/strong&gt;, đặt một cái tên mang tính mô tả cho khóa của bạn (ví dụ: &amp;ldquo;MacBook Pro Cá Nhân&amp;rdquo;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trong trường &lt;strong&gt;Key&lt;/strong&gt;, dán nội dung khóa công khai bạn đã sao chép.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nhấp vào Add SSH key (Thêm khóa SSH) để hoàn tất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;bước-4-kiểm-tra-kết-nối&#34;&gt;Bước 4: Kiểm Tra Kết Nối
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Chạy lệnh kiểm tra:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -T git@github.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Xác thực máy chủ (lần đầu tiên):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;The authenticity of host &lt;span class=&#34;s1&#34;&gt;&amp;#39;github.com (IP_ADDRESS)&amp;#39;&lt;/span&gt; can&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;t be established.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Are you sure you want to &lt;span class=&#34;k&#34;&gt;continue&lt;/span&gt; connecting &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;yes/no&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;?
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Đây là một tính năng bảo mật của SSH để chống lại các cuộc tấn công xen giữa (man-in-the-middle). Sau khi xác nhận, gõ &lt;code&gt;yes&lt;/code&gt; và nhấn Enter.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kết quả thành công:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Hi username! You&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Điều này xác nhận rằng cặp khóa SSH của bạn đã được thiết lập chính xác và GitHub đã xác thực thành công danh tính của bạn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>SSH - Github</title>
+        <link>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https--ssh/</link>
+        <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https--ssh/</guid>
+        <description>&lt;p&gt;Những hạn chế của xác thực qua HTTPS và sự thay thế SSH&lt;/p&gt;
+&lt;p&gt;Trong hệ sinh thái phát triển phần mềm hiện đại, GitHub không chỉ là một kho lưu trữ mã nguồn mà còn là trung tâm cộng tác, quản lý dự án và triển khai ứng dụng. Việc tương tác hiệu quả và an toàn với nền tảng này là một kỹ năng cơ bản đối với mọi nhà phát triển. Mặc dù HTTPS cung cấp một phương thức kết nối ban đầu đơn giản, việc chuyển sang sử dụng giao thức SSH (Secure Shell) là một bước tiến quan trọng, không chỉ nâng cao đáng kể mức độ bảo mật mà còn tối ưu hóa quy trình làm việc hàng ngày.&lt;/p&gt;
+&lt;h3 id=&#34;1-những-hạn-chế-của-xác-thực-qua-https&#34;&gt;1. Những Hạn Chế của Xác thực qua HTTPS
+&lt;/h3&gt;&lt;p&gt;Khi bắt đầu với Git và GitHub, hầu hết người dùng đều chọn HTTPS vì sự đơn giản của nó. Tuy nhiên, phương thức này có những hạn chế cố hữu. Xác thực qua HTTPS yêu cầu sử dụng Personal Access Token (PAT), một chuỗi ký tự hoạt động tương tự như mật khẩu.&lt;/p&gt;
+&lt;p&gt;Mặc dù dễ thiết lập, quy trình này bộc lộ sự bất tiện trong quá trình sử dụng lâu dài. Git sẽ thường xuyên yêu cầu người dùng nhập thông tin xác thực, làm gián đoạn luồng công việc. Mặc dù các công cụ hỗ trợ quản lý thông tin đăng nhập (credential helpers) có thể lưu trữ token, nhưng chúng lại đặt ra một vấn đề khác về mức độ an toàn của việc lưu trữ này. Quan trọng hơn, một PAT bị rò rỉ có thể cấp cho kẻ tấn công quyền truy cập không chỉ vào các kho lưu trữ mà còn có thể vào toàn bộ tài khoản GitHub, tùy thuộc vào phạm vi quyền hạn được cấp cho token đó.&lt;/p&gt;
+&lt;h3 id=&#34;so-sánh-nhanh-https-và-ssh-trên-github&#34;&gt;So Sánh Nhanh: HTTPS và SSH trên GitHub
+&lt;/h3&gt;&lt;p&gt;Để tóm tắt những khác biệt chính, bảng dưới đây cung cấp một cái nhìn tổng quan về hai phương thức xác thực.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Tiêu chí&lt;/th&gt;
+          &lt;th&gt;HTTPS (với Personal Access Token)&lt;/th&gt;
+          &lt;th&gt;SSH&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Cơ chế Xác thực&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Dựa trên token (hoạt động như mật khẩu)&lt;/td&gt;
+          &lt;td&gt;Cặp khóa Public/Private (mật mã bất đối xứng)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Mức độ Bảo mật&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Dễ bị lộ nếu token không được bảo vệ cẩn thận&lt;/td&gt;
+          &lt;td&gt;Rất cao; khóa riêng tư không bao giờ truyền qua mạng&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Sự tiện lợi&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Yêu cầu nhập lại token hoặc phụ thuộc vào credential helper&lt;/td&gt;
+          &lt;td&gt;Rất tiện lợi sau khi thiết lập, không cần nhập lại thông tin&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Thiết lập ban đầu&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Đơn giản, chỉ cần tạo token&lt;/td&gt;
+          &lt;td&gt;Phức tạp hơn một chút, yêu cầu tạo và quản lý cặp khóa&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Quản lý Truy cập&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Phân quyền thông qua phạm vi của token trên GitHub&lt;/td&gt;
+          &lt;td&gt;Có thể quản lý truy cập chi tiết qua từng khóa riêng lẻ&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

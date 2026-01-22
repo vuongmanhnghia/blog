@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Sql on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/tags/sql/</link>
+        <description>Recent content in Sql on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Tue, 12 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/sql/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>9 MySQL Table Design Rules &amp; Skills</title>
+        <link>https://blog.nagih.io.vn/posts/database/9-mysql-table-design-rules--skills/</link>
+        <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/database/9-mysql-table-design-rules--skills/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/images/image-placeholder.png" alt="Featured image of post 9 MySQL Table Design Rules &amp; Skills" /&gt;&lt;p&gt;9 nguyên tắc cốt lõi và một số kỹ năng mở rộng khi khởi tạo bảng trong MySQL, đảm bảo ứng dụng không chỉ chạy đúng mà còn hiệu quả và dễ bảo trì&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;1. Mọi Table Luôn Phải Có Các Column Mặc Định&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Một thiết kế table hoàn chỉnh cần có ít nhất 5 trường mặc định để theo dõi lịch sử và tính nhất quán của dữ liệu:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;version&lt;/strong&gt;: Ghi lại số lần chỉnh sửa của table, đồng thời liên quan đến các khái niệm khóa lạc quan (optimistic lock) và khóa bi quan (pessimistic lock)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;creator_id&lt;/strong&gt;: (Tùy chọn, tùy thuộc vào công ty) Ai là người tạo bản ghi này&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;modifier&lt;/strong&gt;: Ai là người cuối cùng sửa đổi bản ghi, quan trọng để biết hành động cuối cùng trên table&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;create_at&lt;/strong&gt;: Thời gian bản ghi được tạo&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;update_at&lt;/strong&gt;: Thời gian bản ghi được cập nhật lần cuối&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2. Giải Thích Ngữ Nghĩa Các Column Bằng Comment&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Khi viết DDL (Data Definition Language) cho MySQL, PostgreSQL, hoặc bất kỳ hệ quản trị cơ sở dữ liệu nào, &lt;strong&gt;hãy luôn thêm comment giải thích ý nghĩa của từng column&lt;/strong&gt;. Việc comment rõ ràng giúp các thành viên mới gia nhập team dễ dàng hiểu và làm quen với cấu trúc dữ liệu, tránh sự hiểu lầm về ngữ nghĩa của các trường&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. Xóa Dữ Liệu Không Phải Xóa &amp;ldquo;Bay&amp;rdquo; (Xóa Logic)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Không bao giờ sử dụng lệnh&lt;/strong&gt; &lt;strong&gt;DELETE&lt;/strong&gt; &lt;strong&gt;để xóa vật lý dữ liệu trực tiếp trong môi trường sản phẩm&lt;/strong&gt;. Thay vào đó, hãy sử dụng phương pháp &lt;strong&gt;xóa logic (soft delete)&lt;/strong&gt; bằng cách thêm một trường để đánh dấu bản ghi đã bị xóa hay chưa, và thời gian xóa&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ban đầu có thể sử dụng hai trường: &lt;code&gt;is_deleted&lt;/code&gt; (0: hoạt động, 1: đã xóa) và &lt;code&gt;deleted_at&lt;/code&gt; (thời gian xóa)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cách tối ưu hơn là &lt;strong&gt;chỉ sử dụng một trường&lt;/strong&gt; &lt;strong&gt;deleted_at&lt;/strong&gt;: Nếu giá trị là &lt;code&gt;NULL&lt;/code&gt; nghĩa là bản ghi chưa bị xóa; nếu có giá trị thời gian, đó là thời gian bản ghi bị xóa&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lưu ý&lt;/strong&gt;: Giá trị &lt;code&gt;NULL&lt;/code&gt; có thể gây nhược điểm nghiêm trọng về hiệu suất index khi dữ liệu lớn, do đó cần cân nhắc kỹ hoặc tìm hiểu sâu hơn về &lt;code&gt;NULL&lt;/code&gt; trong database&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;4. Quy Ước Đặt Tên Với Prefix (Tiền Tố)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Các trường (field) trong table nên có các tiền tố (prefix) để dễ dàng xác định nguồn gốc khi các bảng được join lại với nhau. Ví dụ, bảng &lt;code&gt;account&lt;/code&gt; có thể có trường &lt;code&gt;acc_number&lt;/code&gt;. Việc này cực kỳ quan trọng vì trong thực tế, chúng ta ít khi làm việc với dữ liệu độc lập mà thường phải join nhiều bảng (ít nhất 3 bảng là nguyên tắc làm việc). Nếu không có prefix, việc phân biệt &lt;code&gt;ID&lt;/code&gt; hay &lt;code&gt;create_at&lt;/code&gt; thuộc về bảng nào khi join sẽ gây ra sự hiểu nhầm và lỗi&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5. Tách Bảng Khi Có Quá Nhiều Trường (Vertical Partitioning)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Một table không nên có quá nhiều trường (column), &lt;strong&gt;tối đa khoảng 20 trường&lt;/strong&gt;. Nếu vượt quá, cần phải tách bảng dọc (vertical partition). Bảng có nhiều trường sẽ làm dữ liệu lưu trữ lớn, giảm hiệu suất truy vấn và tốn bộ nhớ&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tách bảng&lt;/strong&gt;: Chia thành một bảng chính chứa các trường được truy cập thường xuyên và quan trọng (ví dụ: &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;status&lt;/code&gt;, &lt;code&gt;thumbnail&lt;/code&gt; của một bài post), và một bảng chi tiết chứa các trường ít quan trọng hơn hoặc chỉ hiển thị khi người dùng click vào (ví dụ: &lt;code&gt;content&lt;/code&gt;, &lt;code&gt;description&lt;/code&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Mối quan hệ giữa hai bảng này thường là &lt;strong&gt;1-1&lt;/strong&gt;, giúp việc join đơn giản và hiệu quả, không ảnh hưởng đến hiệu suất&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;6. Chọn Kiểu Dữ Liệu và Độ Dài Thích Hợp&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Một hệ thống tốt không chỉ chạy đúng mà còn phải chạy hiệu quả. Việc chọn kiểu dữ liệu và độ dài phù hợp giúp:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tiết kiệm bộ nhớ (memory)&lt;/strong&gt; và dung lượng đĩa (disk)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tối ưu tốc độ query&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Giảm tỷ lệ Input/Output (I/O)&lt;/strong&gt;. Ví dụ:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Trường &lt;code&gt;title&lt;/code&gt; không nên để &lt;code&gt;VARCHAR(255)&lt;/code&gt; nếu độ dài thực tế chỉ khoảng 100 ký tự (như tiêu đề video YouTube/TikTok)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trường &lt;code&gt;language&lt;/code&gt; chỉ cần &lt;code&gt;CHAR(2)&lt;/code&gt; (ví dụ: &amp;ldquo;en&amp;rdquo;, &amp;ldquo;vi&amp;rdquo;) thay vì &lt;code&gt;VARCHAR&lt;/code&gt; dài&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trường &lt;code&gt;status&lt;/code&gt; chỉ nên dùng &lt;strong&gt;TINYINT&lt;/strong&gt; (kích thước 1 byte, lưu trữ 0-255) thay vì &lt;code&gt;INT&lt;/code&gt; (kích thước 4 byte, lưu trữ 0-4 tỷ ID) nếu các giá trị chỉ là 1, 2, 3&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;7. Nguyên Tắc Not NULL&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Không nên cho phép giá trị&lt;/strong&gt; &lt;strong&gt;NULL&lt;/strong&gt; &lt;strong&gt;bừa bãi&lt;/strong&gt;. &lt;code&gt;NULL&lt;/code&gt; không phải là một số, một chuỗi hay một biến boolean; nó là một vùng không xác định. &lt;code&gt;NULL&lt;/code&gt; có thể:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Làm hỏng logic nghiệp vụ nếu quên xử lý&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Gây lỗi index khi so sánh bằng &lt;code&gt;NULL&lt;/code&gt; (ví dụ &lt;code&gt;WHERE column IS NULL&lt;/code&gt; thường không sử dụng index hiệu quả). Các trường bắt buộc phải có giá trị (như &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;status&lt;/code&gt;, &lt;code&gt;create_at&lt;/code&gt;) nên được khai báo là &lt;strong&gt;NOT NULL&lt;/strong&gt;. Khi không có giá trị, hãy sử dụng &lt;strong&gt;DEFAULT&lt;/strong&gt; đi kèm với &lt;code&gt;NOT NULL&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;8. Chiến Lược Đánh Index&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Index là chìa khóa để tối ưu hiệu suất truy vấn&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nên đánh index&lt;/strong&gt; cho các trường ít trùng lặp và thường xuyên được sử dụng trong truy vấn, ví dụ: &lt;code&gt;creator_id&lt;/code&gt; và &lt;code&gt;create_at&lt;/code&gt; (quan trọng khi truy vấn theo thời gian). Luôn có prefix &lt;code&gt;idx_&lt;/code&gt; cho các index&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Trường&lt;/strong&gt; &lt;strong&gt;deleted_at&lt;/strong&gt; &lt;strong&gt;luôn cần được đánh index&lt;/strong&gt; để tránh hiển thị các bản ghi đã bị xóa ra công khai, điều này có thể dẫn đến các vấn đề pháp lý (ví dụ: GDPR của Châu Âu)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;QUY TẮC VÀNG&lt;/strong&gt;: &lt;strong&gt;Không nên đánh index cho các trường có dữ liệu lặp lại quá nhiều&lt;/strong&gt; (ví dụ: trường &lt;code&gt;status&lt;/code&gt; mà 90% bản ghi có cùng một giá trị). Việc đánh index trong trường hợp này thậm chí có thể làm chậm truy vấn hơn so với không đánh index, vì database sẽ quét toàn bộ table thay vì sử dụng index&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Giải pháp thay thế khi cần truy vấn các trường có nhiều giá trị trùng lặp&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thêm trường tiền tố phạm vi thời gian&lt;/strong&gt;: Ví dụ, kết hợp &lt;code&gt;status&lt;/code&gt; với &lt;code&gt;create_at&lt;/code&gt; theo phạm vi thời gian (&lt;code&gt;WHERE status = 1 AND create_at BETWEEN &#39;2025-06-15 00:00 :00&#39; AND &#39;2025-06-15 23:59:59&#39;&lt;/code&gt;) để giúp index hoạt động hiệu quả hơn&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chia table thành các phân vùng (Partition)&lt;/strong&gt;: Phù hợp với dữ liệu lớn, giúp chia nhỏ dữ liệu. Tuy nhiên, Partition không thay thế được index và có nhược điểm riêng, chỉ nên dùng khi thực sự cần và hiểu rõ&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tạo View&lt;/strong&gt;: View có thể hoạt động rất tốt trong các truy vấn với stored procedure hoặc function, giúp truy vấn nhanh hơn khi dữ liệu được lặp lại và cảm thấy đúng đánh lặp lại&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;9. Nguyên Tắc Normal Form (3NF, 4NF, 5NF)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Normalization là một nguyên tắc cơ bản trong thiết kế database nhằm giảm thiểu sự dư thừa dữ liệu và cải thiện tính toàn vẹn dữ liệu&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;3NF (Third Normal Form)&lt;/strong&gt; là một nguyên tắc cơ bản cần nắm vững&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ngoài ra, còn có các dạng chuẩn mở rộng hơn như &lt;strong&gt;4NF (Fourth Normal Form)&lt;/strong&gt; và &lt;strong&gt;5NF (Fifth Normal Form)&lt;/strong&gt;, giúp tối ưu hóa hơn nữa về sự mở rộng và tính linh hoạt của database&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Việc tìm hiểu sâu về các Normal Form này sẽ giúp bạn thiết kế database hiệu quả hơn cho các mô hình kinh doanh phức tạp&lt;/p&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

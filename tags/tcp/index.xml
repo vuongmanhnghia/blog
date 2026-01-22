@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>TCP on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/tags/tcp/</link>
+        <description>Recent content in TCP on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Mon, 13 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/tcp/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Tổng quan về TCP</title>
+        <link>https://blog.nagih.io.vn/posts/networking/protocol/tcp/</link>
+        <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/networking/protocol/tcp/</guid>
+        <description>&lt;p&gt;&lt;strong&gt;Transmission Control Protocol&lt;/strong&gt; (Giao thức điều khiển truyền vận), là một giao thức cốt lõi trong bộ giao thức Internet (TCP/IP)&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tcp-là-gì&#34;&gt;TCP là gì?
+&lt;/h2&gt;&lt;p&gt;TCP hoạt động ở tầng Giao vận (Transport Layer - Tầng 4 trong mô hình OSI. Nhiệm vụ chính của TCP là đảm bảo dữ liệu được truyền đi một cách &lt;strong&gt;đáng tin cậy&lt;/strong&gt; và &lt;strong&gt;đúng thứ tự&lt;/strong&gt; giữa các ứng dụng trên các thiết bị mạng khác nhau.&lt;/p&gt;
+&lt;p&gt;Hãy tưởng tượng bạn gửi một bức thư dài qua đường bưu điện. Thay vì gửi cả tập giấy dày, bạn chia nhỏ nó thành nhiều trang, đánh số thứ tự mỗi trang và gửi từng trang riêng lẻ. TCP cũng làm điều tương tự với dữ liệu của bạn. Nó chia dòng dữ liệu lớn thành các gói tin nhỏ hơn gọi là &lt;strong&gt;segment&lt;/strong&gt; (phân đoạn).&lt;/p&gt;
+&lt;p&gt;TCP thường hoạt động cùng với Giao thức IP. Trong khi IP chịu trách nhiệm tìm đường và gửi các gói tin đến đúng địa chỉ đích, TCP đảm bảo rằng tất cả các gói tin này đến nơi an toàn, không lỗi và được lắp ráp lại theo đúng thứ tự ban đầu. Sự kết hợp này được gọi là &lt;strong&gt;TCP/IP&lt;/strong&gt;, là nền tảng cho hầu hết các hoạt động trên Internet ngày nay.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;các-đặc-điểm-chính-của-tcp&#34;&gt;Các đặc điểm chính của TCP
+&lt;/h2&gt;&lt;p&gt;TCP được biết đến là một giao thức &amp;ldquo;hướng kết nối&amp;rdquo; (connection-oriented) và đáng tin cậy. Điều này có nghĩa là trước khi bất kỳ dữ liệu nào được gửi đi, một kết nối ảo phải được thiết lập giữa máy gửi và máy nhận. Các đặc điểm nổi bật của TCP bao gồm:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Độ tin cậy cao:&lt;/strong&gt; TCP đảm bảo dữ liệu đến đích một cách toàn vẹn. Nó sử dụng cơ chế kiểm tra lỗi (checksum), gửi lại các gói tin bị mất và loại bỏ các gói tin trùng lặp.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Đảm bảo đúng thứ tự:&lt;/strong&gt; Mỗi segment được gán một &amp;ldquo;số thứ tự&amp;rdquo; (sequence number). Bên nhận sẽ dựa vào số này để sắp xếp lại các segment theo đúng thứ tự ban đầu, đảm bảo dữ liệu không bị xáo trộn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm soát luồng (Flow Control):&lt;/strong&gt; TCP sử dụng một cơ chế gọi là &amp;ldquo;cửa sổ trượt&amp;rdquo; (sliding window) để điều chỉnh tốc độ truyền dữ liệu. Điều này giúp bên gửi không làm quá tải bên nhận bằng cách gửi dữ liệu nhanh hơn khả năng xử lý của nó.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm soát tắc nghẽn (Congestion Control):&lt;/strong&gt; TCP có khả năng phát hiện tình trạng tắc nghẽn mạng và tự động giảm tốc độ truyền để tránh làm tình hình tệ hơn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tcp-hoạt-động-như-thế-nào-quy-trình-bắt-tay-ba-bước&#34;&gt;TCP hoạt động như thế nào? Quy trình &amp;ldquo;Bắt tay ba bước&amp;rdquo;
+&lt;/h2&gt;&lt;p&gt;Hoạt động của TCP có thể được chia thành ba giai đoạn chính: thiết lập kết nối, truyền dữ liệu và kết thúc kết nối.&lt;/p&gt;
+&lt;h3 id=&#34;1-thiết-lập-kết-nối-bắt-tay-ba-bước-three-way-handshake&#34;&gt;1. Thiết lập kết nối: Bắt tay ba bước (Three-Way Handshake)
+&lt;/h3&gt;&lt;p&gt;Đây là quy trình bắt buộc để thiết lập một kết nối TCP đáng tin cậy. Quá trình này diễn ra như sau:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bước 1 (SYN):&lt;/strong&gt; Máy khách (Client) muốn bắt đầu kết nối sẽ gửi một gói tin có cờ &lt;strong&gt;SYN&lt;/strong&gt; (Synchronize) đến máy chủ (Server). Gói tin này về cơ bản là một lời chào: &amp;ldquo;Chào Server, tôi muốn kết nối. Số thứ tự bắt đầu của tôi là X.&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bước 2 (SYN-ACK):&lt;/strong&gt; Server nhận được gói SYN, nếu đồng ý kết nối, nó sẽ gửi lại một gói tin có cả cờ &lt;strong&gt;SYN&lt;/strong&gt; và &lt;strong&gt;ACK&lt;/strong&gt; (Acknowledgement). Gói tin này có ý nghĩa: &amp;ldquo;Chào Client, tôi đã nhận được yêu cầu của bạn (ACK X+1). Tôi cũng sẵn sàng kết nối. Số thứ tự bắt đầu của tôi là Y.&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bước 3 (ACK):&lt;/strong&gt; Client nhận được gói SYN-ACK từ Server. Để hoàn tất quá trình, Client gửi lại một gói tin chỉ có cờ &lt;strong&gt;ACK&lt;/strong&gt;. Gói tin này xác nhận: &amp;ldquo;Tôi đã nhận được gói tin của Server (ACK Y+1). Kết nối đã được thiết lập!&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Sau khi hoàn thành 3 bước này, một kết nối ổn định được tạo ra và quá trình truyền dữ liệu có thể bắt đầu.&lt;/p&gt;
+&lt;h3 id=&#34;2-truyền-dữ-liệu&#34;&gt;2. Truyền dữ liệu
+&lt;/h3&gt;&lt;p&gt;Khi kết nối đã được thiết lập, dữ liệu sẽ được chia thành các segment và gửi đi.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Bên gửi sẽ gửi một lượng dữ liệu (trong giới hạn của cửa sổ trượt).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bên nhận sau khi nhận được dữ liệu sẽ gửi lại một gói tin ACK để xác nhận.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu bên gửi không nhận được ACK trong một khoảng thời gian nhất định, nó sẽ tự động gửi lại segment đó.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-kết-thúc-kết-nối-bắt-tay-bốn-bước-four-way-handshake&#34;&gt;3. Kết thúc kết nối: Bắt tay bốn bước (Four-Way Handshake)
+&lt;/h3&gt;&lt;p&gt;Khi quá trình truyền dữ liệu hoàn tất, kết nối sẽ được đóng lại thông qua một quy trình &amp;ldquo;bắt tay bốn bước&amp;rdquo; để đảm bảo cả hai bên đều đồng ý chấm dứt.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Một bên (ví dụ: Client) gửi một gói tin &lt;strong&gt;FIN&lt;/strong&gt; (Finish) để thông báo muốn kết thúc.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bên kia (Server) gửi lại một gói &lt;strong&gt;ACK&lt;/strong&gt; để xác nhận đã nhận được yêu cầu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Sau đó, Server cũng gửi một gói &lt;strong&gt;FIN&lt;/strong&gt; của riêng mình.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cuối cùng, Client gửi lại một gói &lt;strong&gt;ACK&lt;/strong&gt; để xác nhận, và kết nối được đóng hoàn toàn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;so-sánh-tcp-và-udp&#34;&gt;So sánh TCP và UDP
+&lt;/h2&gt;&lt;p&gt;Trong tầng Giao vận, ngoài TCP còn có một giao thức quan trọng khác là &lt;strong&gt;UDP (User Datagram Protocol)&lt;/strong&gt;. Dưới đây là bảng so sánh nhanh giữa hai giao thức này:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Đặc điểm&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;TCP (Transmission Control Protocol)&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;UDP (User Datagram Protocol)&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Kiểu kết nối&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Hướng kết nối (Connection-oriented)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Không kết nối (Connectionless)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Độ tin cậy&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Rất cao. Đảm bảo dữ liệu đến nơi, đúng thứ tự, không lỗi.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Không đáng tin cậy. Không đảm bảo dữ liệu có đến đích hay không, không sắp xếp thứ tự.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Tốc độ&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Chậm hơn do các cơ chế kiểm tra, xác nhận và thiết lập kết nối.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Rất nhanh do không có các quy trình phức tạp.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Kiểm soát luồng&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Có&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Không&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Header&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Lớn hơn (tối thiểu 20 bytes) do chứa nhiều thông tin điều khiển.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Nhỏ hơn (8 bytes), giúp giảm thiểu dữ liệu thừa.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Ứng dụng phổ biến&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Truy cập web (HTTP/HTTPS), gửi email (SMTP), truyền file (FTP).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Streaming video/audio, game online, gọi VoIP, DNS.&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;khi-nào-nên-sử-dụng-tcp&#34;&gt;Khi nào nên sử dụng TCP?
+&lt;/h3&gt;&lt;p&gt;TCP là lựa chọn lý tưởng cho các ứng dụng đòi hỏi &lt;strong&gt;tính toàn vẹn và độ chính xác của dữ liệu là ưu tiên hàng đầu&lt;/strong&gt;. Nếu việc mất một vài gói tin có thể gây ra lỗi nghiêm trọng (ví dụ như tải một tệp tin bị hỏng, email bị mất nội dung), thì TCP là giao thức bắt buộc phải sử dụng.&lt;/p&gt;
+&lt;hr&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

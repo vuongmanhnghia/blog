@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Cache on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/posts/system/cache/</link>
+        <description>Recent content in Cache on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/posts/system/cache/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Các chính sách &#39;Dọn Dẹp&#39; Cache</title>
+        <link>https://blog.nagih.io.vn/posts/system/cache/cache-hit--cache-miss/</link>
+        <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/system/cache/cache-hit--cache-miss/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/image-placeholder.png" alt="Featured image of post Các chính sách &#39;Dọn Dẹp&#39; Cache" /&gt;&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;các-chính-sách-dọn-dẹp&#34;&gt;Các Chính Sách &amp;ldquo;Dọn Dẹp&amp;rdquo;
+&lt;/h2&gt;&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;
+&lt;p&gt;Điều này dẫn đến một vấn đề không thể tránh khỏi: khi cache đã đầy và một mục dữ liệu mới cần được thêm vào, hệ thống phải quyết định loại bỏ một mục dữ liệu cũ để nhường chỗ. Quá trình này được gọi là &lt;strong&gt;Eviction&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Thuật toán được sử dụng để quyết định &lt;em&gt;mục nào&lt;/em&gt; sẽ bị loại bỏ được gọi là &lt;strong&gt;Chính sách dọn dẹp (Eviction Policy)&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;các-chiến-lược-dọn-dẹp-phổ-biến&#34;&gt;Các chiến lược dọn dẹp phổ biến
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;FIFO (First-In, First-Out - Vào trước, Ra trước):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên tắc:&lt;/strong&gt; Nó loại bỏ mục dữ liệu cũ nhất, bất kể nó có được sử dụng thường xuyên hay không. Nó hoạt động giống như một hàng đợi (queue).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ưu điểm:&lt;/strong&gt; Rất dễ cài đặt và có chi phí quản lý thấp.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhược điểm:&lt;/strong&gt; Thường không hiệu quả vì nó có thể loại bỏ một mục rất phổ biến chỉ vì nó được nạp vào cache từ lâu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;LRU (Least Recently Used - Ít được sử dụng gần đây nhất):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên tắc:&lt;/strong&gt; Loại bỏ mục dữ liệu mà đã không được truy cập trong khoảng thời gian dài nhất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ưu điểm:&lt;/strong&gt; Hiệu quả hơn FIFO rất nhiều trong hầu hết các trường hợp thực tế, vì nó giữ lại những dữ liệu đang được sử dụng tích cực.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhược điểm:&lt;/strong&gt; Phức tạp hơn trong việc triển khai vì nó đòi hỏi phải theo dõi thời gian truy cập của mỗi mục, gây tốn thêm một chút bộ nhớ và xử lý.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;LFU (Least Frequently Used - Ít được sử dụng thường xuyên nhất):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên tắc:&lt;/strong&gt; Loại bỏ mục dữ liệu được truy cập với số lần ít nhất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ưu điểm:&lt;/strong&gt; Rất tốt trong việc xác định và giữ lại các mục dữ liệu &amp;ldquo;hot&amp;rdquo; (phổ biến) trong một thời gian dài, ngay cả khi chúng không được truy cập gần đây.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhược điểm:&lt;/strong&gt; Phức tạp để triển khai hiệu quả. (ví dụ: một mục từng rất hot nhưng giờ không còn ai dùng nữa vẫn có thể chiếm chỗ trong cache một thời gian dài). Nó cũng có thể loại bỏ một mục mới được thêm vào nhưng chưa có cơ hội tích lũy đủ số lần truy cập.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;bảng-so-sánh-các-chính-sách-dọn-dẹp&#34;&gt;Bảng so sánh các chính sách dọn dẹp
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Chính sách&lt;/th&gt;
+          &lt;th&gt;Nguyên tắc cốt lõi&lt;/th&gt;
+          &lt;th&gt;Ví dụ tương tự&lt;/th&gt;
+          &lt;th&gt;Ưu điểm&lt;/th&gt;
+          &lt;th&gt;Nhược điểm&lt;/th&gt;
+          &lt;th&gt;Phù hợp nhất cho&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;FIFO&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Loại bỏ mục vào cache sớm nhất.&lt;/td&gt;
+          &lt;td&gt;Xếp hàng mua vé: người đến trước được phục vụ trước.&lt;/td&gt;
+          &lt;td&gt;Đơn giản, chi phí thấp.&lt;/td&gt;
+          &lt;td&gt;Không thông minh, có thể loại bỏ dữ liệu quan trọng.&lt;/td&gt;
+          &lt;td&gt;Các hệ thống có mẫu truy cập tuần tự, không lặp lại.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;LRU&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Loại bỏ mục ít được dùng đến gần đây nhất.&lt;/td&gt;
+          &lt;td&gt;Dọn dẹp bàn làm việc: trả lại cuốn sách bạn không đụng đến lâu nhất.&lt;/td&gt;
+          &lt;td&gt;Hiệu quả cao trong hầu hết các trường hợp, thích ứng tốt với sự thay đổi.&lt;/td&gt;
+          &lt;td&gt;Phức tạp hơn, cần theo dõi thời gian truy cập.&lt;/td&gt;
+          &lt;td&gt;Các ứng dụng thông thường, nơi dữ liệu gần đây có khả năng được tái sử dụng cao (ví dụ: trang tin tức, mạng xã hội).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;LFU&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Loại bỏ mục có số lần truy cập ít nhất.&lt;/td&gt;
+          &lt;td&gt;Thư viện cho mượn sách: loại bỏ những cuốn ít người mượn nhất.&lt;/td&gt;
+          &lt;td&gt;Giữ lại được các mục &amp;ldquo;hot&amp;rdquo; một cách ổn định.&lt;/td&gt;
+          &lt;td&gt;Phức tạp, có thể giữ lại dữ liệu &amp;ldquo;hot&amp;rdquo; đã lỗi thời, không thích ứng nhanh.&lt;/td&gt;
+          &lt;td&gt;Các hệ thống có một số dữ liệu cực kỳ phổ biến và ổn định (ví dụ: sản phẩm bán chạy, video viral).&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;giữ-cho-dữ-liệu-đồng-nhất-các-chính-sách-ghi&#34;&gt;Giữ Cho Dữ Liệu Đồng Nhất: Các Chính Sách Ghi
+&lt;/h2&gt;&lt;p&gt;Khi một ứng dụng thực hiện thao tác ghi (write) hoặc cập nhật (update), một vấn đề nghiêm trọng nảy sinh. Bây giờ chúng ta có hai bản sao của cùng một dữ liệu: một trong cache và một trong cơ sở dữ liệu. Nếu chúng không được cập nhật đồng bộ, cache sẽ chứa dữ liệu cũ. Việc phục vụ stale data cho người dùng có thể dẫn đến các lỗi nghiêm trọng, thông tin sai lệch và trải nghiệm tồi tệ.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Chính sách ghi (Write Policy)&lt;/strong&gt; là quy tắc xác định cách hệ thống xử lý các thao tác ghi để giải quyết vấn đề về tính nhất quán này.&lt;/p&gt;
+&lt;h3 id=&#34;các-chính-sách-ghi-cốt-lõi&#34;&gt;Các chính sách ghi cốt lõi
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Write-Through (Ghi Xuyên)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quy trình:&lt;/strong&gt; Khi ứng dụng ghi dữ liệu, nó sẽ ghi &lt;strong&gt;đồng thời&lt;/strong&gt; vào cả cache và cơ sở dữ liệu. Thao tác chỉ được coi là hoàn tất khi cả hai nơi đều đã ghi xong.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lưu đồ:&lt;/strong&gt; &lt;code&gt;Ứng dụng -&amp;gt; Ghi vào Cache -&amp;gt; Ghi vào Database -&amp;gt; Hoàn tất&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ưu điểm:&lt;/strong&gt; Tính nhất quán dữ liệu rất cao. Cache và database luôn đồng bộ. Đơn giản để triển khai và đáng tin cậy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhược điểm:&lt;/strong&gt; Độ trễ của thao tác ghi cao, vì ứng dụng phải chờ cả hai thao tác ghi hoàn tất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Trường hợp sử dụng:&lt;/strong&gt; Các ứng dụng quan trọng nơi tính nhất quán dữ liệu là tối thượng, ví dụ như hệ thống ngân hàng, quản lý kho hàng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Write-Back (Ghi Sau / Write-Behind)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quy trình:&lt;/strong&gt; Khi ứng dụng ghi dữ liệu, nó chỉ ghi vào cache tốc độ cao trước. Thao tác được xác nhận hoàn tất ngay lập tức. Việc ghi vào cơ sở dữ liệu sẽ được trì hoãn và thực hiện sau đó, có thể là sau một khoảng thời gian nhất định hoặc khi mục cache đó sắp bị dọn dẹp. Hệ thống thường dùng một &amp;ldquo;bit bẩn&amp;rdquo; (dirty bit) để đánh dấu các mục trong cache đã bị thay đổi và cần được ghi lại vào database.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lưu đồ:&lt;/strong&gt; &lt;code&gt;Ứng dụng -&amp;gt; Ghi vào Cache -&amp;gt; Hoàn tất. (Background: Cache -&amp;gt; Ghi vào Database)&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ưu điểm:&lt;/strong&gt; Độ trễ ghi cực thấp và thông lượng cao. Giảm tải cho database bằng cách gộp nhiều lần ghi vào cùng một đối tượng thành một lần ghi duy nhất (write-coalescing).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhược điểm:&lt;/strong&gt; Có nguy cơ mất dữ liệu nếu cache bị lỗi trước khi dữ liệu kịp ghi vào database. Phức tạp hơn để triển khai.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Trường hợp sử dụng:&lt;/strong&gt; Các ứng dụng có lượng ghi lớn, nơi hiệu năng là ưu tiên hàng đầu và có thể chấp nhận một rủi ro nhỏ về mất mát dữ liệu, ví dụ như ghi log hành vi người dùng, cập nhật số lượt xem bài viết.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Write-Around (Ghi Vòng)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quy trình:&lt;/strong&gt; Khi ứng dụng ghi dữ liệu, nó sẽ ghi &lt;strong&gt;trực tiếp&lt;/strong&gt; vào cơ sở dữ liệu, hoàn toàn bỏ qua cache. Dữ liệu chỉ được nạp vào cache sau này, khi có một yêu cầu đọc bị cache miss.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Lưu đồ:&lt;/strong&gt; &lt;code&gt;Ứng dụng -&amp;gt; Ghi vào Database -&amp;gt; Hoàn tất&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ưu điểm:&lt;/strong&gt; Tránh &amp;ldquo;làm ô nhiễm&amp;rdquo; cache bằng những dữ liệu có thể không bao giờ được đọc lại.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nhược điểm:&lt;/strong&gt; Một yêu cầu đọc ngay sau khi ghi sẽ luôn luôn là cache miss, dẫn đến độ trễ đọc cao cho dữ liệu vừa được ghi.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Trường hợp sử dụng:&lt;/strong&gt; Các ứng dụng ghi dữ liệu nhưng hiếm khi đọc lại ngay sau đó, ví dụ như các hệ thống nhập dữ liệu hàng loạt (bulk data ingestion), lưu trữ log.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Các chính sách ghi không tồn tại một cách độc lập. Chúng liên kết chặt chẽ với cách hệ thống xử lý một &lt;strong&gt;write miss&lt;/strong&gt; (khi ứng dụng muốn ghi vào một mục không có trong cache). Có hai lựa chọn:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Write Allocate (Fetch on Write):&lt;/strong&gt; Khi có write miss, hệ thống sẽ tải khối dữ liệu đó từ database vào cache trước, rồi mới thực hiện thao tác ghi.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;No-Write Allocate:&lt;/strong&gt; Khi có write miss, hệ thống sẽ ghi thẳng vào database, không tải dữ liệu đó vào cache.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+        </item>
+        <item>
+        <title>Giới thiệu về Cache</title>
+        <link>https://blog.nagih.io.vn/posts/system/cache/introdution-to-cache/</link>
+        <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/system/cache/introdution-to-cache/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/images/image-placeholder.png" alt="Featured image of post Giới thiệu về Cache" /&gt;&lt;p&gt;Nhiều người đã nghe về cache, có thể là &amp;ldquo;xóa cache trình duyệt&amp;rdquo; hay &amp;ldquo;cache của CPU&amp;rdquo;. Nhưng cache thực sự là gì? Nó hoạt động ra sao và tại sao nó lại quan trọng đến vậy?&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;cache-là-gì&#34;&gt;Cache Là Gì?
+&lt;/h2&gt;&lt;h3 id=&#34;câu-chuyện-về-thư-viện-và-chiếc-bàn-làm-việc&#34;&gt;Câu chuyện về Thư viện và Chiếc bàn làm việc
+&lt;/h3&gt;&lt;p&gt;Hãy tưởng tượng bạn là một nhà nghiên cứu cần rất nhiều sách cho công việc của mình. Toàn bộ sách được lưu trữ trong một thư viện khổng lồ ở phía bên kia thành phố. Mỗi khi cần một thông tin, bạn phải mất công di chuyển đến thư viện, tìm đúng cuốn sách, đọc, rồi lại đi về. Quá trình này rất chậm chạp và tốn thời gian.&lt;/p&gt;
+&lt;p&gt;Bây giờ, bạn nghĩ ra một giải pháp thông minh hơn. Thay vì mỗi lần cần lại chạy đi, bạn sẽ mang những cuốn sách hay dùng nhất về đặt ngay trên chiếc bàn làm việc của mình. Chiếc bàn này tuy nhỏ, không thể chứa cả thư viện, nhưng nó ở ngay trước mặt bạn. Lần tới, khi cần thông tin từ những cuốn sách đó, bạn chỉ cần với tay là có ngay, nhanh hơn gấp trăm lần so với việc đi đến thư viện.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thư viện khổng lồ&lt;/strong&gt; chính là nơi lưu trữ dữ liệu chính, ví dụ như ổ cứng (HDD/SSD) hoặc Database. Nơi này có dung lượng lớn nhưng tốc độ truy cập khá chậm.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chiếc bàn làm việc&lt;/strong&gt; của bạn chính là &lt;strong&gt;Cache&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Cache&lt;/strong&gt; là một lớp lưu trữ dữ liệu tốc độ cao, có kích thước nhỏ, dùng để chứa một tập hợp con của dữ liệu gốc. Mục đích của nó là để các yêu cầu truy xuất dữ liệu trong tương lai được phục vụ nhanh hơn rất nhiều so với việc phải lấy dữ liệu từ database. Về cơ bản, cache cho phép chúng ta tái sử dụng một cách hiệu quả những dữ liệu đã được truy xuất hoặc tính toán trước đó.&lt;/p&gt;
+&lt;h3 id=&#34;tại-sao-cache-lại-quan-trọng-&#34;&gt;Tại sao Cache lại quan trọng ?
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tăng tốc độ một cách chóng mặt (Performance):&lt;/strong&gt; Đây là mục đích chính. Cache thường được triển khai trên các phần cứng truy cập nhanh như RAM (Bộ nhớ truy cập ngẫu nhiên). Tốc độ truy cập RAM nhanh hơn hàng trăm, thậm chí hàng nghìn lần so với ổ đĩa.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Giảm tải cho hệ thống Backend:&lt;/strong&gt; Thay vì mọi yêu cầu đều phải truy cập vào cơ sở dữ liệu, phần lớn các yêu cầu đọc sẽ được cache xử lý. Điều này giúp cơ sở dữ liệu không bị quá tải, đặc biệt là trong những thời điểm có lưu lượng truy cập tăng đột biến, và giữ cho toàn bộ hệ thống ổn định.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tiết kiệm chi phí (Cost Efficiency):&lt;/strong&gt; Ở quy mô lớn, việc phục vụ dữ liệu từ cache trong bộ nhớ (in-memory) có thể rẻ hơn đáng kể so với việc phải nâng cấp liên tục các máy chủ cơ sở dữ liệu hoặc trả chi phí cho lưu lượng mạng cao khi truy xuất dữ liệu từ các dịch vụ đám mây.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;cache-hit-và-cache-miss&#34;&gt;Cache Hit và Cache Miss
+&lt;/h2&gt;&lt;p&gt;Hoạt động của cache xoay quanh hai case chính: &lt;strong&gt;Cache Hit&lt;/strong&gt; và &lt;strong&gt;Cache Miss&lt;/strong&gt;. Khi một client (có thể là CPU, trình duyệt web, hoặc ứng dụng của bạn) cần dữ liệu, nó sẽ luôn hỏi cache trước tiên.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cache Hit (Tìm thấy trong Cache):&lt;/strong&gt; Đây là case lý tưởng. Cache sẽ ngay lập tức trả về dữ liệu này cho client. Quá trình này cực kỳ nhanh chóng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cache Miss (Không tìm thấy trong Cache):&lt;/strong&gt; Đây là case không mong muốn. Khi đó, hệ thống buộc phải truy cập đến database để lấy dữ liệu. Sau khi lấy được, dữ liệu này sẽ được sao chép một bản vào cache để những lần yêu cầu sau sẽ trở thành cache hit, rồi mới được trả về cho client.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Cache không phải là một phép màu tăng tốc miễn phí. Nó đi kèm với sự đánh đổi và chi phí. Một cache miss vốn dĩ còn &lt;strong&gt;chậm hơn&lt;/strong&gt; một hệ thống không có cache. Bởi vì trong một hệ thống không cache, thời gian truy xuất chỉ đơn giản là thời gian lấy dữ liệu từ nguồn chính. Còn trong một cache miss, tổng thời gian là &lt;code&gt;Thời gian kiểm tra cache (và thất bại)&lt;/code&gt; + &lt;code&gt;Thời gian lấy dữ liệu từ database&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Do đó, mục tiêu của mọi chiến lược caching không chỉ đơn giản là &amp;ldquo;có cache&amp;rdquo;, mà là thiết kế một hệ thống nơi tổng thời gian tiết kiệm được từ vô số các cache hit phải lớn hơn rất nhiều so với tổng thời gian bị mất đi do các cache miss không thể tránh khỏi.&lt;/p&gt;
+&lt;h3 id=&#34;tỷ-lệ-cache-hit-cache-hit-ratio&#34;&gt;Tỷ lệ Cache Hit (Cache Hit Ratio)
+&lt;/h3&gt;&lt;p&gt;Công thức tính rất đơn giản&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Tỷ lệ Cache Hit= Cache Hit​ / (Cache Hit + Cache Miss)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Một tỷ lệ cache hit cao (thường từ 80-95% trở lên đối với nội dung tĩnh) cho thấy cache đang hoạt động rất hiệu quả. Ngược lại, một tỷ lệ thấp cho thấy cache đang không được sử dụng tốt, có thể do cấu hình sai, chính sách dọn dẹp không phù hợp, hoặc kích thước cache quá nhỏ.&lt;/p&gt;
+&lt;h3 id=&#34;cache-phần-cứng-cpu-cache&#34;&gt;Cache Phần cứng (CPU Cache)
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Hệ thống phân cấp bộ nhớ (Memory Hierarchy)&lt;/strong&gt;. Đây là một mô hình tổ chức bộ nhớ trong máy tính thành nhiều cấp, giống như một kim tự tháp. Càng ở đỉnh kim tự tháp, bộ nhớ càng nhanh, càng đắt và dung lượng càng nhỏ. Càng xuống đáy, bộ nhớ càng chậm, càng rẻ và dung lượng càng lớn.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(1) Register
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(2) L1 Cache
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(3) L2 Cache
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(4) L3 Cache
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(5) RAM &amp;lt;- Redis
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(6) SSD
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(7) HDD
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;CPU cache được chia thành nhiều Level, thường là L1, L2, và L3:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;L1 Cache (Level 1):&lt;/strong&gt; Đây là bộ nhớ cache nhỏ nhất và nhanh nhất, được tích hợp ngay trong từng nhân (core) của CPU&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;L2 Cache (Level 2):&lt;/strong&gt; Lớn hơn L1 nhưng chậm hơn một chút. L2 cache có thể nằm riêng cho từng nhân hoặc chung cho một vài nhân, tùy vào kiến trúc CPU.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;L3 Cache (Level 3):&lt;/strong&gt; Lớn nhất và chậm nhất trong các cấp CPU cache. L3 cache thường được dùng chung cho tất cả các nhân trên một con chip. Nó giúp tăng tốc độ giao tiếp giữa các nhân và giảm thiểu việc phải truy cập ra RAM.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;cache-phần-mềm&#34;&gt;Cache Phần mềm
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cache Trình duyệt (Browser Cache):&lt;/strong&gt; Khi bạn truy cập một trang web, trình duyệt của bạn sẽ tự động lưu các tài nguyên tĩnh như hình ảnh, file CSS, JavaScript vào một thư mục trên ổ cứng. Lần sau khi bạn quay lại trang đó, trình duyệt sẽ tải các tài nguyên này từ ổ cứng thay vì phải tải lại từ server, giúp trang web hiển thị gần như ngay lập tức. Đây là một dạng cache phía client (client-side), riêng tư cho mỗi người dùng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cache Mạng Phân phối Nội dung (CDN - Content Delivery Network):&lt;/strong&gt; Đây là một mạng lưới các máy chủ proxy được đặt ở nhiều vị trí địa lý trên toàn cầu. Các máy chủ này lưu trữ (cache) bản sao của nội dung trang web (như video, hình ảnh, file tĩnh). Ví dụ điển hình là Netflix hay YouTube. Khi bạn ở Việt Nam và xem một video, rất có thể bạn đang nhận dữ liệu từ một máy chủ CDN đặt tại Singapore hoặc Hồng Kông, chứ không phải từ máy chủ gốc ở Mỹ. Điều này giúp giảm đáng kể độ trễ và tăng tốc độ tải.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cache Cơ sở dữ liệu (Database Cache):&lt;/strong&gt; Hầu hết các hệ quản trị cơ sở dữ liệu như MySQL, PostgreSQL đều có một bộ đệm cache nội bộ. Nó lưu lại kết quả của các câu truy vấn (query) được thực thi thường xuyên. Khi nhận được một câu truy vấn giống hệt, thay vì phải quét lại toàn bộ bảng dữ liệu, database sẽ trả về kết quả từ cache của nó.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cache Ứng dụng (Application Cache / In-Memory Cache):&lt;/strong&gt; Thường sử dụng các công cụ chuyên dụng như &lt;strong&gt;Redis&lt;/strong&gt; hoặc &lt;strong&gt;Memcached&lt;/strong&gt;. Lớp cache này có thể lưu trữ bất cứ thứ gì. Việc này giúp ứng dụng không phải tính toán lại hoặc truy vấn lại những thông tin tốn kém trên mỗi yêu cầu.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

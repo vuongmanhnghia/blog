@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Unionfs on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/tags/unionfs/</link>
+        <description>Recent content in Unionfs on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Sun, 28 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/unionfs/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume và Bind Mount ?</title>
+        <link>https://blog.nagih.io.vn/posts/storage/overlay2-vs-volume--bind-mount/</link>
+        <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/storage/overlay2-vs-volume--bind-mount/</guid>
+        <description>&lt;p&gt;Nguyên nhân cốt lõi nằm ở &lt;strong&gt;Cơ chế Copy-on-Write (CoW)&lt;/strong&gt; và &lt;strong&gt;lớp trung gian (Overhead)&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Mặc dù &lt;code&gt;overlay2&lt;/code&gt; là driver lưu trữ (storage driver) tốt nhất và được khuyến nghị mặc định cho Docker hiện nay, nhưng về mặt vật lý và logic, nó &lt;strong&gt;không thể nhanh bằng&lt;/strong&gt; Volume hoặc Bind Mount.&lt;/p&gt;
+&lt;p&gt;Dưới đây là 4 lý do kỹ thuật chi tiết giải thích tại sao &lt;code&gt;overlay2&lt;/code&gt; lại chậm hơn, đi sâu vào cơ chế xử lý file:&lt;/p&gt;
+&lt;h3 id=&#34;1-cơ-chế-copy_up-ở-cấp-độ-file-file-level-copy-on-write---nguyên-nhân-lớn-nhất&#34;&gt;1. Cơ chế &lt;code&gt;copy_up&lt;/code&gt; ở cấp độ File (File-level Copy-on-Write) - Nguyên nhân lớn nhất
+&lt;/h3&gt;&lt;p&gt;Đây là sự khác biệt chí mạng giữa &lt;code&gt;overlay2&lt;/code&gt; và Volume.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Volume/Bind Mount (Native Filesystem - ext4/xfs):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Khi bạn sửa một file 1GB, hệ thống file (filesystem) chỉ đơn giản là tìm đến địa chỉ (block) của file đó trên ổ cứng và ghi đè dữ liệu mới vào.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu bạn chỉ sửa 1KB cuối file, nó chỉ ghi đúng 1KB đó. &lt;strong&gt;Chi phí gần như bằng 0.&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Overlay2:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;overlay2&lt;/code&gt; hoạt động ở cấp độ &lt;strong&gt;File&lt;/strong&gt;, không phải cấp độ Block.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Khi bạn sửa một file (vốn nằm ở lớp Image/Read-only), &lt;code&gt;overlay2&lt;/code&gt; buộc phải kích hoạt quy trình &lt;code&gt;copy_up&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quy trình:&lt;/strong&gt; Nó phải đọc &lt;strong&gt;toàn bộ file gốc&lt;/strong&gt; từ lớp dưới $\rightarrow$ Tạo một file mới ở lớp trên (UpperDir) $\rightarrow$ Ghi toàn bộ dữ liệu cũ vào $\rightarrow$ Sau đó mới áp dụng thay đổi của bạn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Hệ quả:&lt;/strong&gt; Nếu bạn sửa 1 byte trong file log nặng 1GB nằm trong Image, hệ thống phải tốn công Copy cả 1GB đó sang lớp ghi. Điều này gây ra độ trễ (latency) cực lớn (I/O burst) ngay tại thời điểm ghi lần đầu tiên.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-overhead-của-vfs-virtual-file-system-và-tra-cứu-inode&#34;&gt;2. Overhead của VFS (Virtual File System) và Tra cứu Inode
+&lt;/h3&gt;&lt;p&gt;Volume là đường thẳng, &lt;code&gt;overlay2&lt;/code&gt; là đường vòng.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Volume:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ứng dụng gọi lệnh &lt;code&gt;open()&lt;/code&gt; $\rightarrow$ Hệ điều hành trỏ thẳng tới Inode trên đĩa $\rightarrow$ Xong.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Đường đi ngắn nhất, ít rào cản nhất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Overlay2:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Khi ứng dụng gọi lệnh &lt;code&gt;open()&lt;/code&gt; hoặc &lt;code&gt;ls&lt;/code&gt;, Kernel không thể đi thẳng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó phải đi qua lớp logic của OverlayFS driver.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Driver này phải kiểm tra xem file đó nằm ở &lt;code&gt;UpperDir&lt;/code&gt; hay &lt;code&gt;LowerDir&lt;/code&gt;? (Quét các lớp).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó phải kiểm tra xem file đó có bị đánh dấu là &amp;ldquo;Whiteout&amp;rdquo; (đã xóa giả) hay không?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Việc logic &amp;ldquo;nếu - thì&amp;rdquo; này tốn CPU cycles. Mặc dù rất nhỏ cho mỗi file, nhưng với các ứng dụng web đọc/ghi hàng nghìn file nhỏ (như PHP, Node.js &lt;code&gt;node_modules&lt;/code&gt;), độ trễ sẽ cộng dồn lại thành đáng kể.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-vấn-đề-với-các-thao-tác-metadata-rename-chmod-chown&#34;&gt;3. Vấn đề với các thao tác Metadata (Rename, chmod, chown)
+&lt;/h3&gt;&lt;p&gt;Một số thao tác tưởng chừng đơn giản lại trở nên phức tạp trên OverlayFS:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Rename (Đổi tên thư mục):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Trên Volume (ext4), đổi tên thư mục chỉ là việc sửa đổi metadata, tốn vài mili-giây bất kể thư mục nặng bao nhiêu GB.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trên OverlayFS, chuẩn POSIX không hỗ trợ đầy đủ việc đổi tên thư mục nếu nó nằm ở lớp Read-only. Hệ thống có thể phải thực hiện việc &amp;ldquo;Copy toàn bộ thư mục sang tên mới rồi xóa cũ&amp;rdquo;. Nếu thư mục đó chứa nhiều data, đây là thảm họa hiệu năng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Lưu ý: Các phiên bản Kernel mới có tính năng &amp;ldquo;redirect_dir&amp;rdquo; để giảm nhẹ vấn đề này, nhưng nó vẫn phức tạp hơn native.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-không-tận-dụng-được-tối-đa-các-tính-năng-của-filesystem-gốc&#34;&gt;4. Không tận dụng được tối đa các tính năng của Filesystem gốc
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Volume nằm trực tiếp trên ext4 hoặc xfs của máy chủ (Host). Nó hưởng trọn vẹn các tính năng tối ưu của các hệ thống file này (như extent mapping, delayed allocation&amp;hellip;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;OverlayFS là một lớp phủ. Mọi yêu cầu phải đi qua nó trước khi xuống ext4/xfs. Lớp trung gian này đôi khi làm cản trở các thuật toán tối ưu hóa luồng I/O của hệ điều hành.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;5-tóm-tắt-so-sánh-trực-quan&#34;&gt;5. Tóm tắt so sánh trực quan
+&lt;/h3&gt;&lt;p&gt;Hãy tưởng tượng bạn muốn sửa một dòng chữ trong một trang sách:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Volume/Bind Mount:&lt;/strong&gt; Bạn cầm bút, viết thẳng lên trang sách đó. (Nhanh, trực tiếp).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Overlay2:&lt;/strong&gt; Trang sách đó được ép plastic (Read-only).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Bạn phải lấy một tờ giấy trắng (Upper layer).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bạn phải đặt tờ giấy trắng lên trên trang sách.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bạn phải &lt;strong&gt;đồ lại (trace)&lt;/strong&gt; toàn bộ nội dung của trang sách cũ lên tờ giấy mới (&lt;code&gt;copy_up&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Sau đó bạn mới sửa dòng chữ trên tờ giấy mới.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Kết luận:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Chính vì thao tác &amp;ldquo;đồ lại&amp;rdquo; (&lt;code&gt;copy_up&lt;/code&gt;) và việc phải quản lý nhiều tờ giấy xếp chồng lên nhau khiến &lt;code&gt;overlay2&lt;/code&gt; luôn chậm hơn việc viết trực tiếp (Volume).&lt;/p&gt;
+&lt;p&gt;Đó là lý do tại sao quy tắc vàng trong Docker luôn là: &lt;strong&gt;Code để trong Container (Overlay2) vì ít khi sửa đổi, nhưng Data (Database, Logs) bắt buộc phải để trong Volume.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/storage/unionfs/&#34;&gt;UnionFS&lt;/a&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/storage/overlayfs/&#34;&gt;OverlayFS&lt;/a&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>UnionFS - Union File System</title>
+        <link>https://blog.nagih.io.vn/posts/storage/unionfs/</link>
+        <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/storage/unionfs/</guid>
+        <description>&lt;p&gt;UnionFS cho phép bạn &amp;ldquo;xếp chồng&amp;rdquo; nhiều thư mục (hoặc ổ đĩa) khác nhau lên nhau để tạo thành một hệ thống tệp tin duy nhất và thống nhất&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;UnionFS&lt;/strong&gt; (&lt;strong&gt;Union File System&lt;/strong&gt;) là một dịch vụ hệ thống tệp tin (filesystem service) cho Linux, FreeBSD và NetBSD.&lt;/p&gt;
+&lt;h3 id=&#34;1-cơ-chế-hoạt-động-hãy-tưởng-tượng-về-các-layer&#34;&gt;1. Cơ chế hoạt động (Hãy tưởng tượng về các &amp;ldquo;Layer&amp;rdquo;)
+&lt;/h3&gt;&lt;p&gt;Để dễ hình dung, hãy tưởng tượng UnionFS giống như các &lt;strong&gt;Layer (lớp) trong Photoshop&lt;/strong&gt; hoặc các tấm phim trong suốt xếp chồng lên nhau:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Xếp chồng:&lt;/strong&gt; Bạn có thư mục A và thư mục B. UnionFS cho phép bạn gộp chúng lại thành thư mục C.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thứ tự ưu tiên:&lt;/strong&gt; Khi bạn nhìn vào thư mục C, bạn sẽ thấy nội dung của cả A và B. Nếu cả A và B đều có một file tên là &lt;code&gt;text.txt&lt;/code&gt;, thì file nằm ở lớp trên (ví dụ là A) sẽ được hiển thị, file ở lớp dưới (B) sẽ bị che khuất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Trong suốt:&lt;/strong&gt; Người dùng hoặc ứng dụng khi truy cập vào thư mục C sẽ không biết nó được ghép từ A và B, họ chỉ thấy một thư mục bình thường.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-hai-tính-năng-kỹ-thuật-quan-trọng&#34;&gt;2. Hai tính năng kỹ thuật quan trọng
+&lt;/h3&gt;&lt;p&gt;UnionFS trở nên mạnh mẽ nhờ hai cơ chế xử lý file:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Copy-on-Write (CoW):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Thường thì lớp dưới cùng là &lt;strong&gt;Read-only&lt;/strong&gt; (Chỉ đọc - không thể sửa), và lớp trên cùng là &lt;strong&gt;Writeable&lt;/strong&gt; (Có thể ghi).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu bạn muốn sửa một file nằm ở &lt;strong&gt;Read-only&lt;/strong&gt; layer, UnionFS sẽ tự động &lt;strong&gt;copy&lt;/strong&gt; file đó lên lớp &lt;strong&gt;Writeable&lt;/strong&gt; layer, sau đó áp dụng thay đổi trên bản copy đó. File gốc ở dưới vẫn giữ nguyên.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Whiteout (Xóa giả):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu bạn xóa một file nằm ở &lt;strong&gt;Read-only&lt;/strong&gt; layer, UnionFS không thể xóa nó thật (vì là chỉ đọc).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Thay vào đó, nó tạo ra một &amp;ldquo;dấu hiệu&amp;rdquo; (whiteout) ở lớp trên cùng để che file đó đi. Hệ thống nhìn vào sẽ tưởng là file đã bị xóa.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-ứng-dụng-thực-tế-tại-sao-lại-cần-unionfs&#34;&gt;3. Ứng dụng thực tế (Tại sao lại cần UnionFS?)
+&lt;/h3&gt;&lt;p&gt;UnionFS (và các biến thể hiện đại hơn như &lt;strong&gt;OverlayFS&lt;/strong&gt;, &lt;strong&gt;AuFS&lt;/strong&gt;) là công nghệ cốt lõi của nhiều công cụ phổ biến:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Docker &amp;amp; Container:&lt;/strong&gt; Đây là ứng dụng nổi tiếng nhất.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Một Docker Image gồm nhiều lớp (layers) xếp chồng lên nhau (ví dụ: lớp OS, lớp thư viện, lớp ứng dụng).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Khi bạn chạy container, Docker dùng công nghệ kiểu UnionFS để gộp các lớp read-only đó lại và thêm một lớp writable mỏng ở trên cùng để bạn thao tác. Điều này giúp tiết kiệm dung lượng ổ cứng cực lớn (các container có thể dùng chung các lớp dưới).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Live CD / Live USB Linux:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Khi bạn chạy Ubuntu từ USB mà không cài đặt, hệ điều hành nằm trên USB là dạng nén, chỉ đọc (Read-only).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Mọi thay đổi bạn làm (tạo file, cài phần mềm) được lưu vào RAM (lớp Writable).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;UnionFS gộp lớp USB và lớp RAM lại để bạn dùng như một máy tính bình thường. Khi tắt máy, lớp RAM mất đi, USB vẫn nguyên vẹn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Firmware Router/IoT:&lt;/strong&gt; Giúp khôi phục cài đặt gốc dễ dàng. Hệ điều hành gốc nằm ở lớp dưới (bảo vệ tuyệt đối), cài đặt của người dùng nằm ở lớp trên. Khi &amp;ldquo;Reset&amp;rdquo;, chỉ cần xóa lớp trên là xong.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-tình-trạng-hiện-nay&#34;&gt;4. Tình trạng hiện nay
+&lt;/h3&gt;&lt;p&gt;Mặc dù thuật ngữ &amp;ldquo;UnionFS&amp;rdquo; vẫn hay được dùng để chỉ chung cho công nghệ này, nhưng dự án &lt;strong&gt;UnionFS&lt;/strong&gt; gốc hiện nay ít được sử dụng trực tiếp trong các nhân Linux hiện đại.&lt;/p&gt;
+&lt;p&gt;Thay vào đó, &lt;strong&gt;OverlayFS&lt;/strong&gt; là công nghệ kế thừa, ổn định hơn và đã được tích hợp chính thức vào Linux Kernel, đang được sử dụng bởi Docker và hầu hết các hệ thống hiện nay.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tóm lại:&lt;/strong&gt; UnionFS là công nghệ &amp;ldquo;xếp hình&amp;rdquo; các thư mục, cho phép giữ nguyên file gốc trong khi vẫn có thể chỉnh sửa trên một lớp ảo phủ lên trên.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/storage/overlayfs/&#34;&gt;OverlayFS&lt;/a&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/overlay2-vs-volume-&amp;amp;-bind-mount/&#34;&gt;Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume/Bind Mount ?&lt;/a&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

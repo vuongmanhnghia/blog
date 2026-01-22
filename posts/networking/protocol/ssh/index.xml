@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Ssh on Nagih | Blog</title>
+        <link>https://blog.nagih.io.vn/posts/networking/protocol/ssh/</link>
+        <description>Recent content in Ssh on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Sat, 20 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/posts/networking/protocol/ssh/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Vai trò và cách hoạt động của OpenSSH Suite</title>
+        <link>https://blog.nagih.io.vn/posts/networking/protocol/ssh/openssh-suite/</link>
+        <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/networking/protocol/ssh/openssh-suite/</guid>
+        <description>&lt;p&gt;&lt;strong&gt;OpenSSH (Open Secure Shell)&lt;/strong&gt; là bộ công cụ mã nguồn mở triển khai giao thức SSH. Đây là &amp;ldquo;tiêu chuẩn vàng&amp;rdquo; được cài đặt mặc định trên hầu hết các hệ điều hành Linux, macOS và cả Windows hiện đại&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Để hiểu rõ cách nó hoạt động, chúng ta sẽ mổ xẻ từng thành phần trong bộ OpenSSH Suite theo chức năng của chúng: &lt;strong&gt;Server&lt;/strong&gt;, &lt;strong&gt;Client&lt;/strong&gt;, &lt;strong&gt;Quản lý khóa&lt;/strong&gt;, và &lt;strong&gt;Truyền tải&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;i-kết-nối-cơ-bản&#34;&gt;I. Kết nối cơ bản
+&lt;/h2&gt;&lt;h3 id=&#34;1-sshd-ssh-daemon---người-gác-cổng&#34;&gt;1. &lt;code&gt;sshd&lt;/code&gt; (SSH Daemon) - &amp;ldquo;Người gác cổng&amp;rdquo;
+&lt;/h3&gt;&lt;p&gt;Đây là thành phần quan trọng nhất chạy trên &lt;strong&gt;Server&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vai trò:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Luôn luôn chạy ngầm (background process) trên máy chủ.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Lắng nghe tại cổng 22 (mặc định) để chờ kết nối từ bên ngoài.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Quyết định ai được vào, ai bị chặn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cách hoạt động:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Khi nhận được tín hiệu kết nối từ Client, &lt;code&gt;sshd&lt;/code&gt; sẽ thực hiện bắt tay (handshake) để thiết lập mã hóa.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó kiểm tra danh tính người dùng (dựa trên Password hoặc SSH Key).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu xác thực thành công, &lt;code&gt;sshd&lt;/code&gt; sẽ tạo ra một phiên làm việc (session) mới và khởi chạy môi trường dòng lệnh (shell) cho người dùng đó.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Mọi lệnh bạn gõ từ máy mình sẽ được &lt;code&gt;sshd&lt;/code&gt; nhận, thực thi trên server, rồi gửi kết quả trả về cho bạn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;File cấu hình:&lt;/strong&gt; &lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt; (Nơi bạn chỉnh port, tắt login root, tắt password&amp;hellip;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;2-ssh-ssh-client---khách&#34;&gt;2. &lt;code&gt;ssh&lt;/code&gt; (SSH Client) - &amp;ldquo;Khách&amp;rdquo;
+&lt;/h3&gt;&lt;p&gt;Đây là lệnh bạn gõ trên máy tính cá nhân (&lt;strong&gt;Client&lt;/strong&gt;).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vai trò:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Khởi tạo kết nối đến Server.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Đọc các file cấu hình của người dùng để biết nên kết nối thế nào (dùng key nào, port nào).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Mã hóa dữ liệu bạn gõ và gửi đi.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cách hoạt động:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Bạn gõ &lt;code&gt;ssh user@host&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;ssh&lt;/code&gt; tìm file &lt;code&gt;~/.ssh/config&lt;/code&gt; (nếu có) để xem có cài đặt đặc biệt nào không.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó kết nối đến &lt;code&gt;sshd&lt;/code&gt; ở phía kia.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó kiểm tra &lt;code&gt;~/.ssh/known_hosts&lt;/code&gt; để xem server này có phải server quen không (tránh giả mạo).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Sau khi kết nối xong, nó biến thành cái &amp;ldquo;loa&amp;rdquo;: Bạn gõ gì nó gửi đi, Server trả lời gì nó hiện lên màn hình.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ii-bộ-công-cụ-quản-lý-khóa-key-management&#34;&gt;II. Bộ công cụ quản lý khóa (Key Management)
+&lt;/h2&gt;&lt;h3 id=&#34;1-ssh-keygen---máy-đúc-chìa&#34;&gt;1. &lt;code&gt;ssh-keygen&lt;/code&gt; - &amp;ldquo;Máy đúc chìa&amp;rdquo;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vai trò:&lt;/strong&gt; Tạo ra cặp khóa Public/Private.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cách hoạt động:&lt;/strong&gt; Nó dùng thuật toán toán học (RSA, Ed25519) để sinh ra 2 chuỗi ký tự ngẫu nhiên có liên kết toán học với nhau.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nó tạo file &lt;code&gt;id_rsa&lt;/code&gt; (Private - Cất kỹ).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó tạo file &lt;code&gt;id_rsa.pub&lt;/code&gt; (Public - Mang đi phát).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-ssh-copy-id---người-đưa-thư&#34;&gt;2. &lt;code&gt;ssh-copy-id&lt;/code&gt; - &amp;ldquo;Người đưa thư&amp;rdquo;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vai trò:&lt;/strong&gt; Copy Public Key lên Server một cách an toàn và đúng chuẩn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cách hoạt động:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Nó kết nối SSH vào server (lần này vẫn cần mật khẩu).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó lấy nội dung file &lt;code&gt;id_rsa.pub&lt;/code&gt; của bạn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó tự động tạo thư mục &lt;code&gt;~/.ssh&lt;/code&gt; trên server (nếu chưa có).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó ghi nội dung key vào file &lt;code&gt;~/.ssh/authorized_keys&lt;/code&gt; trên server.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó set quyền (permission) cho file đó thật chặt chẽ để chỉ user đó mới đọc được (nếu quyền lỏng lẻo, SSH sẽ từ chối key).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-ssh-agent--ssh-add---quản-gia-giữ-chìa&#34;&gt;3. &lt;code&gt;ssh-agent&lt;/code&gt; &amp;amp; &lt;code&gt;ssh-add&lt;/code&gt; - &amp;ldquo;Quản gia giữ chìa&amp;rdquo;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vấn đề:&lt;/strong&gt; Để bảo mật, khi tạo Private Key, bạn thường đặt thêm mật khẩu (passphrase) cho chính cái Key đó. Nghĩa là mỗi lần dùng Key để login, bạn lại phải nhập pass của Key. Rất phiền.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Giải pháp:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;ssh-agent&lt;/code&gt;:&lt;/strong&gt; Là một chương trình chạy ngầm trong RAM máy bạn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;ssh-add&lt;/code&gt;:&lt;/strong&gt; Bạn gõ lệnh này, nhập pass của Key &lt;strong&gt;một lần duy nhất&lt;/strong&gt;. &lt;code&gt;ssh-agent&lt;/code&gt; sẽ giải mã Key đó và giữ nó trong RAM.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kết quả:&lt;/strong&gt; Từ đó về sau, khi bạn &lt;code&gt;ssh&lt;/code&gt; đi đâu, &lt;code&gt;ssh&lt;/code&gt; sẽ hỏi mượn Key từ &lt;code&gt;ssh-agent&lt;/code&gt; chứ không hỏi bạn nữa. Bạn không cần gõ pass lại cho đến khi tắt máy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iii-bộ-công-cụ-truyền-file&#34;&gt;III. Bộ công cụ truyền file
+&lt;/h2&gt;&lt;p&gt;OpenSSH tận dụng đường hầm bảo mật đã thiết lập để truyền file.&lt;/p&gt;
+&lt;h3 id=&#34;1-scp-secure-copy&#34;&gt;1. &lt;code&gt;scp&lt;/code&gt; (Secure Copy)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vai trò:&lt;/strong&gt; Copy file nhanh gọn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cách hoạt động:&lt;/strong&gt; Nó mở một kết nối SSH, nhưng thay vì chạy shell, nó chạy một quy trình copy dữ liệu. Nó đọc file nguồn, mã hóa, gửi qua đường hầm, và bên kia ghi lại thành file đích.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Lưu ý:&lt;/em&gt; &lt;code&gt;scp&lt;/code&gt; đang dần bị thay thế bởi &lt;code&gt;sftp&lt;/code&gt; trong các phiên bản mới vì lý do kiến trúc bảo mật, nhưng cách dùng vẫn y hệt.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-sftp-secure-file-transfer-protocol&#34;&gt;2. &lt;code&gt;sftp&lt;/code&gt; (Secure File Transfer Protocol)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Vai trò:&lt;/strong&gt; Quản lý file từ xa (giống FTP nhưng an toàn).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cách hoạt động:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Nó là một &lt;strong&gt;Subsystem&lt;/strong&gt; (hệ thống con) của SSH.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Khi kết nối, &lt;code&gt;sshd&lt;/code&gt; sẽ kích hoạt phân hệ SFTP server.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nó cho phép bạn thực hiện nhiều thao tác hơn &lt;code&gt;scp&lt;/code&gt;: liệt kê file, đổi tên, xóa file, tạo thư mục, resume (tải tiếp) file bị đứt quãng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iv-các-file-cấu-hình-quan-trọng-cần-nhớ&#34;&gt;IV. Các file cấu hình quan trọng (Cần nhớ)
+&lt;/h2&gt;&lt;p&gt;Để làm chủ OpenSSH, bạn phải biết các file này nằm đâu:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Vị trí&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Tên file&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Vai trò&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Thuộc về&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Trên Server&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Cấu hình toàn bộ hành vi của Server (Port, Quyền login&amp;hellip;).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;sshd&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Trên Server&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;~/.ssh/authorized_keys&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Danh sách các Public Key được phép mở cửa vào nhà.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;sshd&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Trên Client&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;/etc/ssh/ssh_config&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Cấu hình mặc định cho mọi user trên máy client.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;ssh&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Trên Client&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;~/.ssh/config&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Cấu hình riêng cho cá nhân bạn (Alias, User, Port riêng cho từng server).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;ssh&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Trên Client&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;~/.ssh/known_hosts&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Lưu &amp;ldquo;vân tay&amp;rdquo; (fingerprint) của các server đã từng kết nối. Nếu server bị thay đổi (hoặc bị hack), vân tay thay đổi, file này sẽ cảnh báo bạn.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;ssh&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;v-tóm-tắt-quy-trình-phối-hợp&#34;&gt;V. Tóm tắt quy trình phối hợp:
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bạn&lt;/strong&gt; dùng &lt;code&gt;ssh-keygen&lt;/code&gt; tạo khóa.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bạn&lt;/strong&gt; dùng &lt;code&gt;ssh-copy-id&lt;/code&gt; ném khóa sang Server (vào file &lt;code&gt;authorized_keys&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bạn&lt;/strong&gt; gõ &lt;code&gt;ssh&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Client&lt;/strong&gt; (&lt;code&gt;ssh&lt;/code&gt;) hỏi &lt;strong&gt;Agent&lt;/strong&gt; (&lt;code&gt;ssh-agent&lt;/code&gt;) lấy khóa.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Client&lt;/strong&gt; nói chuyện với &lt;strong&gt;Server&lt;/strong&gt; (&lt;code&gt;sshd&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Server&lt;/strong&gt; kiểm tra &lt;code&gt;authorized_keys&lt;/code&gt;, thấy khớp -&amp;gt; Cho vào.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị</title>
+        <link>https://blog.nagih.io.vn/posts/networking/protocol/ssh/all-in-one/</link>
+        <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/networking/protocol/ssh/all-in-one/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/thumb/ssh" alt="Featured image of post Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị" /&gt;&lt;p&gt;biến SSH từ một công cụ kết nối đơn thuần thành một hệ thống quản lý danh tính hiệu quả&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;giới-thiệu-sshconfig&#34;&gt;Giới thiệu &lt;code&gt;~/.ssh/config&lt;/code&gt;
+&lt;/h2&gt;&lt;p&gt;File &lt;code&gt;~/.ssh/config&lt;/code&gt; cho phép bạn tạo các bí danh (alias) và các quy tắc kết nối cụ thể cho từng máy chủ. Thay vì phải gõ các lệnh dài dòng với các tùy chọn phức tạp, bạn có thể định nghĩa tất cả trong file này. Cấu trúc của file bao gồm các khối &lt;code&gt;Host&lt;/code&gt;, mỗi khối chứa các chỉ thị áp dụng cho host đó.&lt;/p&gt;
+&lt;h2 id=&#34;kịch-bản-quản-lý-nhiều-tài-khoản-github-cá-nhân--công-việc&#34;&gt;Kịch bản: Quản lý nhiều tài khoản GitHub (Cá nhân &amp;amp; Công việc)
+&lt;/h2&gt;&lt;p&gt;Đây là một kịch bản rất phổ biến. Mục tiêu là có thể làm việc trên các kho lưu trữ của cả hai tài khoản trên cùng một máy tính mà không cần phải thay đổi cấu hình thủ công mỗi lần chuyển đổi.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tạo khóa SSH thứ hai:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Hãy chắc chắn rằng bạn đã tạo 1 cặp khóa mới dành cho công việc và đặt một tên file khác biệt, ví dụ: &lt;code&gt;id_ed25519_work&lt;/code&gt;. Sau đó, thêm khóa công khai này vào tài khoản GitHub công việc.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cấu hình ~/.ssh/config:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Mở file ~/.ssh/config (nếu chưa có, hãy tạo nó) và thêm vào nội dung sau:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Tài khoản GitHub cá nhân&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Host github.com-personal
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  HostName github.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  User git
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  IdentityFile ~/.ssh/id_ed25519_personal
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  IdentitiesOnly yes
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Tài khoản GitHub công việc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Host github.com-work
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  HostName github.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  User git
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  IdentityFile ~/.ssh/id_ed25519_work
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  IdentitiesOnly yes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;phân-tích&#34;&gt;Phân tích
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Host github.com-personal&lt;/code&gt;: Đây là bí danh (alias) bạn sẽ sử dụng. Khi Git hoặc SSH thấy host này, nó sẽ áp dụng các quy tắc bên dưới.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;HostName github.com&lt;/code&gt;: Đây là tên máy chủ thực tế mà SSH sẽ kết nối đến.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;User git&lt;/code&gt;: GitHub yêu cầu tất cả các kết nối SSH sử dụng user &lt;code&gt;git&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;IdentityFile ~/.ssh/id_ed25519_personal&lt;/code&gt;: Yêu cầu SSH sử dụng file khóa riêng tư cụ thể này để xác thực.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;IdentitiesOnly yes&lt;/code&gt;: Cực kỳ quan trọng. Theo mặc định, SSH client có thể thử tất cả các khóa có sẵn trong &lt;code&gt;ssh-agent&lt;/code&gt; hoặc các file mặc định. Khi kết nối đến GitHub, nếu gửi sai khóa, kết nối có thể bị từ chối sau vài lần thử. &lt;code&gt;IdentitiesOnly yes&lt;/code&gt; buộc SSH client chỉ sử dụng duy nhất khóa được chỉ định trong &lt;code&gt;IdentityFile&lt;/code&gt; cho host này, loại bỏ sự mơ hồ và ngăn ngừa lỗi xác thực.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;áp-dụng-cấu-hình-vào-git&#34;&gt;Áp dụng cấu hình vào Git
+&lt;/h3&gt;&lt;p&gt;Sau khi đã cấu hình &lt;code&gt;~/.ssh/config&lt;/code&gt;, bạn cần cập nhật URL của các kho lưu trữ Git để chúng sử dụng các bí danh mới.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Đối với kho lưu trữ mới (khi git clone):
+Thay vì sử dụng URL SSH mặc định, hãy thay thế github.com bằng bí danh bạn đã tạo.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Clone kho lưu trữ công việc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ git clone git@github.com-work:work-organization/project.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Đối với kho lưu trữ đã có:
+Sử dụng lệnh git remote set-url để cập nhật URL của remote origin.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Điều hướng đến thư mục kho lưu trữ công việc của bạn&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; path/to/work/project
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Cập nhật URL của remote&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ git remote set-url origin git@github.com-work:work-organization/project.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Bạn có thể kiểm tra lại bằng lệnh &lt;code&gt;git remote -v&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Với thiết lập này, quy trình làm việc của bạn sẽ trở nên hoàn toàn tự động. Khi bạn ở trong một thư mục dự án công việc, các lệnh Git sẽ tự động sử dụng khóa công việc. Khi ở trong dự án cá nhân, chúng sẽ sử dụng khóa cá nhân.&lt;/p&gt;</description>
+        </item>
+        <item>
+        <title>Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH</title>
+        <link>https://blog.nagih.io.vn/posts/networking/protocol/ssh/error-handler/</link>
+        <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/networking/protocol/ssh/error-handler/</guid>
+        <description>&lt;img src="https://blog.nagih.io.vn/thumb/ssh-error.png" alt="Featured image of post Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH" /&gt;&lt;p&gt;Ngay cả với một thiết lập cẩn thận, các vấn đề vẫn có thể phát sinh. Việc hiểu rõ cách chẩn đoán và khắc phục các lỗi SSH phổ biến là một kỹ năng quan trọng.&lt;/p&gt;
+&lt;h2 id=&#34;chế-độ-verbose&#34;&gt;Chế độ Verbose
+&lt;/h2&gt;&lt;p&gt;Trước khi thử bất kỳ giải pháp nào, bước đầu tiên luôn là thu thập thêm thông tin. Tùy chọn &lt;code&gt;-v&lt;/code&gt; (verbose) của lệnh &lt;code&gt;ssh&lt;/code&gt; sẽ in ra chi tiết quá trình kết nối, cho bạn biết file cấu hình nào đang được đọc, khóa nào đang được thử, và chính xác lỗi xảy ra ở đâu.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ ssh -vT git@github.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;error-1-permission-denied-publickey&#34;&gt;Error 1: &lt;code&gt;Permission denied (publickey)&lt;/code&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ý nghĩa:&lt;/strong&gt; Đây là lỗi xác thực phổ biến nhất. Nó có nghĩa là máy chủ GitHub đã từ chối tất cả các khóa SSH mà client của bạn cung cấp.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Các bước kiểm tra và khắc phục:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm tra khóa trên GitHub:&lt;/strong&gt; Đảm bảo rằng khóa công khai của bạn đã được thêm chính xác vào tài khoản GitHub.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm tra &lt;code&gt;ssh-agent&lt;/code&gt;:&lt;/strong&gt; Chạy &lt;code&gt;ssh-add -l&lt;/code&gt; để xem các khóa hiện có trong agent. Nếu danh sách trống hoặc không chứa khóa bạn cần, hãy chạy lại &lt;code&gt;ssh-add ~/.ssh/your_private_key&lt;/code&gt; để thêm nó vào.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm tra quyền truy cập file:&lt;/strong&gt; SSH yêu cầu quyền truy cập rất nghiêm ngặt. Thư mục &lt;code&gt;~/.ssh&lt;/code&gt; phải có quyền là &lt;code&gt;700&lt;/code&gt; (drwx−−−−−−), và file khóa riêng tư của bạn phải có quyền là &lt;code&gt;600&lt;/code&gt; (−rw−−−−−−−). Sử dụng các lệnh sau để sửa:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ chmod &lt;span class=&#34;m&#34;&gt;700&lt;/span&gt; ~/.ssh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ chmod &lt;span class=&#34;m&#34;&gt;600&lt;/span&gt; ~/.ssh/your_private_key
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm tra &lt;code&gt;~/.ssh/config&lt;/code&gt;:&lt;/strong&gt; Nếu bạn đang sử dụng file cấu hình, hãy kiểm tra kỹ lưỡng xem &lt;code&gt;Host&lt;/code&gt; alias có khớp với URL remote của Git không, và &lt;code&gt;IdentityFile&lt;/code&gt; có trỏ đến đúng file khóa riêng tư không.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;error-2-host-key-verification-failed&#34;&gt;Error 2: &lt;code&gt;Host key verification failed&lt;/code&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ý nghĩa:&lt;/strong&gt; Dấu vân tay của máy chủ GitHub đã thay đổi so với lần cuối bạn kết nối. Đây là một cơ chế bảo mật quan trọng để cảnh báo về khả năng có một cuộc tấn công Man-in-the-Middle.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cách khắc phục an toàn:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Không bao giờ&lt;/strong&gt; bỏ qua cảnh báo này một cách mù quáng.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Truy cập trang tài liệu chính thức của GitHub để xác minh dấu vân tay máy chủ mới nhất của họ.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nếu dấu vân tay khớp, bạn có thể an toàn xóa khóa cũ khỏi file &lt;code&gt;~/.ssh/known_hosts&lt;/code&gt; bằng lệnh:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ ssh-keygen -R github.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;error-3-agent-admitted-failure-to-sign-using-the-key&#34;&gt;Error 3: &lt;code&gt;Agent admitted failure to sign using the key&lt;/code&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ý nghĩa:&lt;/strong&gt; &lt;code&gt;ssh-agent&lt;/code&gt; đang chạy nhưng không thể sử dụng khóa để tạo chữ ký số cần thiết cho việc xác thực. Lỗi này đôi khi xảy ra trên các hệ thống Linux.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cách khắc phục:&lt;/strong&gt; Giải pháp thường rất đơn giản là tải lại khóa vào agent. Chạy lệnh &lt;code&gt;ssh-add&lt;/code&gt; thường sẽ giải quyết được vấn đề này.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;error-4-key-is-already-in-use&#34;&gt;Error 4: &lt;code&gt;Key is already in use&lt;/code&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ý nghĩa:&lt;/strong&gt; Bạn đang cố gắng thêm một khóa công khai vào tài khoản GitHub, nhưng khóa đó đã được sử dụng ở một nơi khác - hoặc trên một tài khoản người dùng khác, hoặc trong một kho lưu trữ khác dưới dạng &amp;ldquo;deploy key&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên tắc:&lt;/strong&gt; Một khóa SSH phải là định danh duy nhất cho một người dùng trên toàn bộ nền tảng GitHub. Khi được sử dụng làm deploy key, nó cũng phải là duy nhất cho mỗi kho lưu trữ.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cách khắc phục:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Sử dụng lệnh sau để xác định tài khoản nào đang sử dụng khóa đó:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ ssh -T -ai ~/.ssh/your_key git@github.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Gỡ khóa khỏi tài khoản hoặc kho lưu trữ cũ, hoặc đơn giản là tạo một cặp khóa hoàn toàn mới cho mục đích sử dụng mới.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;error-5-các-phương-pháp-bảo-mật-tốt-nhất-best-practices-và-tổng-kết&#34;&gt;Error 5: Các Phương Pháp Bảo Mật Tốt Nhất (Best Practices) và Tổng Kết
+&lt;/h2&gt;&lt;p&gt;Làm chủ SSH không chỉ dừng lại ở việc thiết lập thành công. Việc duy trì một tư thế bảo mật vững chắc đòi hỏi sự chú ý liên tục. Các phương pháp tốt nhất có thể được tóm gọn trong một vòng đời bảo mật của khóa SSH.&lt;/p&gt;
+&lt;h3 id=&#34;vòng-đời-bảo-mật-của-khóa-ssh&#34;&gt;Vòng Đời Bảo Mật Của Khóa SSH
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tạo (Creation):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Thuật toán mạnh:&lt;/strong&gt; Luôn ưu tiên sử dụng &lt;strong&gt;&lt;code&gt;Ed25519&lt;/code&gt;&lt;/strong&gt; vì hiệu suất và bảo mật vượt trội.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Passphrase mạnh:&lt;/strong&gt; Luôn đặt một passphrase mạnh và duy nhất cho mỗi khóa. Sử dụng trình quản lý mật khẩu để lưu trữ an toàn các passphrase này.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bảo vệ (Protection):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quyền truy cập file:&lt;/strong&gt; Duy trì quyền truy cập file chính xác là điều bắt buộc: &lt;code&gt;chmod 700 ~/.ssh&lt;/code&gt; và &lt;code&gt;chmod 600 ~/.ssh/private_key&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bí mật tuyệt đối:&lt;/strong&gt; &lt;strong&gt;Không bao giờ&lt;/strong&gt; chia sẻ, gửi qua email, hoặc lưu trữ khóa riêng tư của bạn ở bất kỳ đâu ngoài máy tính cá nhân đã được bảo vệ. Chỉ có khóa công khai là an toàn để chia sẻ.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sử dụng (Usage):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sử dụng &lt;code&gt;ssh-agent&lt;/code&gt;:&lt;/strong&gt; Tận dụng &lt;code&gt;ssh-agent&lt;/code&gt; để giảm thiểu số lần phải nhập passphrase, qua đó giảm nguy cơ bị keylogger ghi lại.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cấu hình timeout cho agent:&lt;/strong&gt; Để tăng cường bảo mật, hãy đặt thời gian tồn tại cho các khóa trong agent bằng tùy chọn &lt;code&gt;-t&lt;/code&gt;. Lệnh &lt;code&gt;ssh-add -t 3600&lt;/code&gt; sẽ yêu cầu agent &amp;ldquo;quên&amp;rdquo; khóa sau một giờ (3600 giây) không hoạt động. Điều này cực kỳ hữu ích để bảo vệ chống lại việc truy cập trái phép nếu máy tính của bạn bị bỏ lại mà không được khóa.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bảo trì (Maintenance):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kiểm tra định kỳ (Audit):&lt;/strong&gt; Lên lịch (ví dụ: hàng quý) để truy cập trang cài đặt SSH trên GitHub và xem lại danh sách các khóa đã được cấp quyền. Xóa ngay lập tức bất kỳ khóa nào bạn không nhận ra, không còn sử dụng, hoặc thuộc về các thiết bị đã mất.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Xoay vòng khóa (Rotation):&lt;/strong&gt; Một thực hành bảo mật nâng cao là định kỳ tạo một cặp khóa mới và thay thế các khóa cũ. Việc này giới hạn &amp;ldquo;cửa sổ cơ hội&amp;rdquo; cho một kẻ tấn công nếu một khóa cũ bị xâm phạm mà bạn không hề hay biết.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</description>
+        </item>
+        <item>
+        <title>SSH - Github</title>
+        <link>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https--ssh/</link>
+        <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.nagih.io.vn/posts/networking/protocol/ssh/https--ssh/</guid>
+        <description>&lt;p&gt;Những hạn chế của xác thực qua HTTPS và sự thay thế SSH&lt;/p&gt;
+&lt;p&gt;Trong hệ sinh thái phát triển phần mềm hiện đại, GitHub không chỉ là một kho lưu trữ mã nguồn mà còn là trung tâm cộng tác, quản lý dự án và triển khai ứng dụng. Việc tương tác hiệu quả và an toàn với nền tảng này là một kỹ năng cơ bản đối với mọi nhà phát triển. Mặc dù HTTPS cung cấp một phương thức kết nối ban đầu đơn giản, việc chuyển sang sử dụng giao thức SSH (Secure Shell) là một bước tiến quan trọng, không chỉ nâng cao đáng kể mức độ bảo mật mà còn tối ưu hóa quy trình làm việc hàng ngày.&lt;/p&gt;
+&lt;h3 id=&#34;1-những-hạn-chế-của-xác-thực-qua-https&#34;&gt;1. Những Hạn Chế của Xác thực qua HTTPS
+&lt;/h3&gt;&lt;p&gt;Khi bắt đầu với Git và GitHub, hầu hết người dùng đều chọn HTTPS vì sự đơn giản của nó. Tuy nhiên, phương thức này có những hạn chế cố hữu. Xác thực qua HTTPS yêu cầu sử dụng Personal Access Token (PAT), một chuỗi ký tự hoạt động tương tự như mật khẩu.&lt;/p&gt;
+&lt;p&gt;Mặc dù dễ thiết lập, quy trình này bộc lộ sự bất tiện trong quá trình sử dụng lâu dài. Git sẽ thường xuyên yêu cầu người dùng nhập thông tin xác thực, làm gián đoạn luồng công việc. Mặc dù các công cụ hỗ trợ quản lý thông tin đăng nhập (credential helpers) có thể lưu trữ token, nhưng chúng lại đặt ra một vấn đề khác về mức độ an toàn của việc lưu trữ này. Quan trọng hơn, một PAT bị rò rỉ có thể cấp cho kẻ tấn công quyền truy cập không chỉ vào các kho lưu trữ mà còn có thể vào toàn bộ tài khoản GitHub, tùy thuộc vào phạm vi quyền hạn được cấp cho token đó.&lt;/p&gt;
+&lt;h3 id=&#34;so-sánh-nhanh-https-và-ssh-trên-github&#34;&gt;So Sánh Nhanh: HTTPS và SSH trên GitHub
+&lt;/h3&gt;&lt;p&gt;Để tóm tắt những khác biệt chính, bảng dưới đây cung cấp một cái nhìn tổng quan về hai phương thức xác thực.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Tiêu chí&lt;/th&gt;
+          &lt;th&gt;HTTPS (với Personal Access Token)&lt;/th&gt;
+          &lt;th&gt;SSH&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Cơ chế Xác thực&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Dựa trên token (hoạt động như mật khẩu)&lt;/td&gt;
+          &lt;td&gt;Cặp khóa Public/Private (mật mã bất đối xứng)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Mức độ Bảo mật&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Dễ bị lộ nếu token không được bảo vệ cẩn thận&lt;/td&gt;
+          &lt;td&gt;Rất cao; khóa riêng tư không bao giờ truyền qua mạng&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Sự tiện lợi&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Yêu cầu nhập lại token hoặc phụ thuộc vào credential helper&lt;/td&gt;
+          &lt;td&gt;Rất tiện lợi sau khi thiết lập, không cần nhập lại thông tin&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Thiết lập ban đầu&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Đơn giản, chỉ cần tạo token&lt;/td&gt;
+          &lt;td&gt;Phức tạp hơn một chút, yêu cầu tạo và quản lý cặp khóa&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Quản lý Truy cập&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Phân quyền thông qua phạm vi của token trên GitHub&lt;/td&gt;
+          &lt;td&gt;Có thể quản lý truy cập chi tiết qua từng khóa riêng lẻ&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
