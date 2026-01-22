@@ -20,11 +20,19 @@ bash generate_index.sh
 echo ""
 echo "✅ Content prepared successfully!"
 echo ""
-echo "📋 Next steps:"
-echo "  1. Review changes:    git status"
-echo "  2. Stage changes:     git add ."
-echo "  3. Commit:            git commit -m 'Update content'"
-echo "  4. Deploy:            git push origin main"
+
+git add .
+git commit -m "Update content"
+git push origin main
+
+echo "Update content successfully!"
+echo ""
+echo ""
+# echo "📋 Next steps:"
+# echo "  1. Review changes:    git status"
+# echo "  2. Stage changes:     git add ."
+# echo "  3. Commit:            git commit -m 'Update content'"
+# echo "  4. Deploy:            git push origin main"
 echo ""
 echo "💡 GitHub Actions will automatically build and deploy to the deploy branch"
 echo "🌐 Site will be live at: https://blog.nagih.io.vn"
