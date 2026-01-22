@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/file/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Inode trong Linux File System</title>
-        <link>https://nagih.nooblearn2code.com/p/inode-trong-linux-file-system/</link>
+        <link>https://nagih.nooblearn2code.com/posts/inode-trong-linux-file-system/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/inode-trong-linux-file-system/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/inode-trong-linux-file-system/</guid>
         <description>&lt;p&gt;&lt;strong&gt;Inode&lt;/strong&gt; (viết tắt của &lt;strong&gt;Index Node&lt;/strong&gt;) là một khái niệm cốt lõi và cực kỳ quan trọng trong các hệ thống tập tin (filesystem) của Linux và Unix.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Để hiểu đơn giản: Nếu coi dữ liệu của một file là &amp;ldquo;nội dung cuốn sách&amp;rdquo;, thì &lt;strong&gt;Inode&lt;/strong&gt; chính là &amp;ldquo;thẻ mục lục&amp;rdquo; của cuốn sách đó trong thư viện.&lt;/p&gt;
@@ -151,10 +151,10 @@
         </item>
         <item>
         <title>Linux File System</title>
-        <link>https://nagih.nooblearn2code.com/p/linux-file-system/</link>
+        <link>https://nagih.nooblearn2code.com/posts/linux-file-system/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/linux-file-system/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/linux-file-system/</guid>
         <description>&lt;hr&gt;
 &lt;h3 id=&#34;1-everything-is-a-file&#34;&gt;1. &amp;ldquo;Everything is a file&amp;rdquo;
 &lt;/h3&gt;&lt;p&gt;Trong Linux, mọi thứ đều là tập tin (hoặc được biểu diễn như một tập tin):&lt;/p&gt;

@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Sat, 20 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/ssh/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Vai trò và cách hoạt động của OpenSSH Suite</title>
-        <link>https://nagih.nooblearn2code.com/p/vai-tr%C3%B2-v%C3%A0-c%C3%A1ch-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-c%E1%BB%A7a-openssh-suite/</link>
+        <link>https://nagih.nooblearn2code.com/posts/vai-tr%C3%B2-v%C3%A0-c%C3%A1ch-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-c%E1%BB%A7a-openssh-suite/</link>
         <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/vai-tr%C3%B2-v%C3%A0-c%C3%A1ch-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-c%E1%BB%A7a-openssh-suite/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/vai-tr%C3%B2-v%C3%A0-c%C3%A1ch-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-c%E1%BB%A7a-openssh-suite/</guid>
         <description>&lt;p&gt;&lt;strong&gt;OpenSSH (Open Secure Shell)&lt;/strong&gt; là bộ công cụ mã nguồn mở triển khai giao thức SSH. Đây là &amp;ldquo;tiêu chuẩn vàng&amp;rdquo; được cài đặt mặc định trên hầu hết các hệ điều hành Linux, macOS và cả Windows hiện đại&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Để hiểu rõ cách nó hoạt động, chúng ta sẽ mổ xẻ từng thành phần trong bộ OpenSSH Suite theo chức năng của chúng: &lt;strong&gt;Server&lt;/strong&gt;, &lt;strong&gt;Client&lt;/strong&gt;, &lt;strong&gt;Quản lý khóa&lt;/strong&gt;, và &lt;strong&gt;Truyền tải&lt;/strong&gt;.&lt;/p&gt;
@@ -265,10 +265,10 @@
         </item>
         <item>
         <title>Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi</title>
-        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-authorized-khi-ssh-v%C3%A0o-raspberry-pi/</link>
+        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-authorized-khi-ssh-v%C3%A0o-raspberry-pi/</link>
         <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-authorized-khi-ssh-v%C3%A0o-raspberry-pi/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-authorized-khi-ssh-v%C3%A0o-raspberry-pi/</guid>
         <description>&lt;img src="https://nagih.nooblearn2code.com/image-placeholder.png" alt="Featured image of post Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi" /&gt;&lt;p&gt;Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;sửa-trực-tiếp-trên-thẻ-nhớ&#34;&gt;Sửa trực tiếp trên Thẻ nhớ
@@ -295,10 +295,10 @@
         </item>
         <item>
         <title>Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị</title>
-        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-qu%E1%BA%A3n-l%C3%BD-nhi%E1%BB%81u-kh%C3%B3a-ssh-tr%C3%AAn-1-thi%E1%BA%BFt-b%E1%BB%8B/</link>
+        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-qu%E1%BA%A3n-l%C3%BD-nhi%E1%BB%81u-kh%C3%B3a-ssh-tr%C3%AAn-1-thi%E1%BA%BFt-b%E1%BB%8B/</link>
         <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-qu%E1%BA%A3n-l%C3%BD-nhi%E1%BB%81u-kh%C3%B3a-ssh-tr%C3%AAn-1-thi%E1%BA%BFt-b%E1%BB%8B/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-qu%E1%BA%A3n-l%C3%BD-nhi%E1%BB%81u-kh%C3%B3a-ssh-tr%C3%AAn-1-thi%E1%BA%BFt-b%E1%BB%8B/</guid>
         <description>&lt;img src="https://nagih.nooblearn2code.com/thumb/ssh" alt="Featured image of post Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị" /&gt;&lt;p&gt;biến SSH từ một công cụ kết nối đơn thuần thành một hệ thống quản lý danh tính hiệu quả&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;giới-thiệu-sshconfig&#34;&gt;Giới thiệu &lt;code&gt;~/.ssh/config&lt;/code&gt;
@@ -408,10 +408,10 @@ Sử dụng lệnh git remote set-url để cập nhật URL của remote origin
         </item>
         <item>
         <title>Hướng dẫn thiết lập khóa SSH cho github</title>
-        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</link>
+        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</link>
         <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</guid>
         <description>&lt;img src="https://nagih.nooblearn2code.com/thumb/setup-ssh.png" alt="Featured image of post Hướng dẫn thiết lập khóa SSH cho github" /&gt;&lt;hr&gt;
 &lt;h2 id=&#34;bước-1-tạo-cặp-khóa-ssh-với-ssh-keygen&#34;&gt;Bước 1: Tạo Cặp Khóa SSH với &lt;code&gt;ssh-keygen&lt;/code&gt;
 &lt;/h2&gt;&lt;h3 id=&#34;thuật-toán-mã-hóa&#34;&gt;Thuật toán Mã hóa
@@ -583,10 +583,10 @@ Sử dụng lệnh git remote set-url để cập nhật URL của remote origin
         </item>
         <item>
         <title>Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH</title>
-        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-s%E1%BB%B1-c%E1%BB%91-v%C3%A0-c%C3%A1c-l%E1%BB%97i-th%C6%B0%E1%BB%9Dng-g%E1%BA%B7p-khi-thi%E1%BA%BFt-l%E1%BA%ADp-ssh/</link>
+        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-s%E1%BB%B1-c%E1%BB%91-v%C3%A0-c%C3%A1c-l%E1%BB%97i-th%C6%B0%E1%BB%9Dng-g%E1%BA%B7p-khi-thi%E1%BA%BFt-l%E1%BA%ADp-ssh/</link>
         <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-s%E1%BB%B1-c%E1%BB%91-v%C3%A0-c%C3%A1c-l%E1%BB%97i-th%C6%B0%E1%BB%9Dng-g%E1%BA%B7p-khi-thi%E1%BA%BFt-l%E1%BA%ADp-ssh/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-s%E1%BB%B1-c%E1%BB%91-v%C3%A0-c%C3%A1c-l%E1%BB%97i-th%C6%B0%E1%BB%9Dng-g%E1%BA%B7p-khi-thi%E1%BA%BFt-l%E1%BA%ADp-ssh/</guid>
         <description>&lt;img src="https://nagih.nooblearn2code.com/thumb/ssh-error.png" alt="Featured image of post Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH" /&gt;&lt;p&gt;Ngay cả với một thiết lập cẩn thận, các vấn đề vẫn có thể phát sinh. Việc hiểu rõ cách chẩn đoán và khắc phục các lỗi SSH phổ biến là một kỹ năng quan trọng.&lt;/p&gt;
 &lt;h2 id=&#34;chế-độ-verbose&#34;&gt;Chế độ Verbose
 &lt;/h2&gt;&lt;p&gt;Trước khi thử bất kỳ giải pháp nào, bước đầu tiên luôn là thu thập thêm thông tin. Tùy chọn &lt;code&gt;-v&lt;/code&gt; (verbose) của lệnh &lt;code&gt;ssh&lt;/code&gt; sẽ in ra chi tiết quá trình kết nối, cho bạn biết file cấu hình nào đang được đọc, khóa nào đang được thử, và chính xác lỗi xảy ra ở đâu.&lt;/p&gt;
@@ -749,10 +749,10 @@ Sử dụng lệnh git remote set-url để cập nhật URL của remote origin
         </item>
         <item>
         <title>SSH - Github</title>
-        <link>https://nagih.nooblearn2code.com/p/ssh-github/</link>
+        <link>https://nagih.nooblearn2code.com/posts/ssh-github/</link>
         <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/ssh-github/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/ssh-github/</guid>
         <description>&lt;p&gt;Những hạn chế của xác thực qua HTTPS và sự thay thế SSH&lt;/p&gt;
 &lt;p&gt;Trong hệ sinh thái phát triển phần mềm hiện đại, GitHub không chỉ là một kho lưu trữ mã nguồn mà còn là trung tâm cộng tác, quản lý dự án và triển khai ứng dụng. Việc tương tác hiệu quả và an toàn với nền tảng này là một kỹ năng cơ bản đối với mọi nhà phát triển. Mặc dù HTTPS cung cấp một phương thức kết nối ban đầu đơn giản, việc chuyển sang sử dụng giao thức SSH (Secure Shell) là một bước tiến quan trọng, không chỉ nâng cao đáng kể mức độ bảo mật mà còn tối ưu hóa quy trình làm việc hàng ngày.&lt;/p&gt;
 &lt;h3 id=&#34;1-những-hạn-chế-của-xác-thực-qua-https&#34;&gt;1. Những Hạn Chế của Xác thực qua HTTPS

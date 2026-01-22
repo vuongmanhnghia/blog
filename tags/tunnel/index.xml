@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Sun, 19 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/tunnel/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hướng dẫn setup cloudflared tunnel cơ bản</title>
-        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</link>
+        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</link>
         <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</guid>
         <description>&lt;p&gt;Thiết lập Cloudflare Tunnel là một bước nâng cao cực kỳ mạnh mẽ cho server của bạn. Nó giúp bạn phơi bày (expose) các dịch vụ đang chạy trên server ra internet một cách an toàn mà không cần mở bất kỳ cổng nào trên &lt;strong&gt;Firewall&lt;/strong&gt;.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;mục-tiêu&#34;&gt;&lt;strong&gt;Mục tiêu:&lt;/strong&gt;

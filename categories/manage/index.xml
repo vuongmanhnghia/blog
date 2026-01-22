@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Fri, 14 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/manage/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</title>
-        <link>https://nagih.nooblearn2code.com/p/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</link>
+        <link>https://nagih.nooblearn2code.com/posts/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</link>
         <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</guid>
         <description>&lt;hr&gt;
 &lt;h3 id=&#34;1-tạo-user-thường--tắt-ssh-root&#34;&gt;1. &lt;strong&gt;Tạo user thường + tắt SSH root&lt;/strong&gt;
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -712,10 +712,10 @@
         </item>
         <item>
         <title>Tất cả các commands quản lý quan trọng trên linux</title>
-        <link>https://nagih.nooblearn2code.com/p/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</link>
+        <link>https://nagih.nooblearn2code.com/posts/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</link>
         <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</guid>
         <description>&lt;hr&gt;
 &lt;h2 id=&#34;1-user-management-command&#34;&gt;1. &lt;strong&gt;User&lt;/strong&gt; management command
 &lt;/h2&gt;&lt;h3 id=&#34;useradd&#34;&gt;&lt;strong&gt;useradd&lt;/strong&gt;

@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Sat, 17 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/swap/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hướng dẫn setup Swap trên Linux</title>
-        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-swap-tr%C3%AAn-linux/</link>
+        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-swap-tr%C3%AAn-linux/</link>
         <pubDate>Sat, 17 Jan 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-swap-tr%C3%AAn-linux/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-swap-tr%C3%AAn-linux/</guid>
         <description>&lt;p&gt;Để bật Swap (bộ nhớ ảo) cho Ubuntu, cách đơn giản và phổ biến nhất hiện nay là tạo một &lt;strong&gt;Swap File&lt;/strong&gt; (tệp hoán đổi). Cách này linh hoạt hơn so với việc chia phân vùng ổ cứng (Swap Partition)&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;bước-1-kiểm-tra-swap-hiện-có&#34;&gt;Bước 1: Kiểm tra Swap hiện có

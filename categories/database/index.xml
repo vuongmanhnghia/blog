@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Fri, 21 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/database/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hướng dẫn backup database postgres trong container và sử dụng trong server mới</title>
-        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-backup-database-postgres-trong-container-v%C3%A0-s%E1%BB%AD-d%E1%BB%A5ng-trong-server-m%E1%BB%9Bi/</link>
+        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-backup-database-postgres-trong-container-v%C3%A0-s%E1%BB%AD-d%E1%BB%A5ng-trong-server-m%E1%BB%9Bi/</link>
         <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-backup-database-postgres-trong-container-v%C3%A0-s%E1%BB%AD-d%E1%BB%A5ng-trong-server-m%E1%BB%9Bi/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-backup-database-postgres-trong-container-v%C3%A0-s%E1%BB%AD-d%E1%BB%A5ng-trong-server-m%E1%BB%9Bi/</guid>
         <description>&lt;hr&gt;
 &lt;h2 id=&#34;bước-1-backup-database-tại-server-cũ&#34;&gt;Bước 1: Backup Database tại Server cũ
 &lt;/h2&gt;&lt;p&gt;Sử dụng &lt;code&gt;pg_dump&lt;/code&gt;&lt;/p&gt;
@@ -52,10 +52,10 @@
         </item>
         <item>
         <title>Kĩ thuật backup dữ liệu Database định kỳ</title>
-        <link>https://nagih.nooblearn2code.com/p/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</link>
+        <link>https://nagih.nooblearn2code.com/posts/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</link>
         <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</guid>
         <description>&lt;p&gt;Kỹ thuật backup database định kỳ là một kỹ năng cực kỳ quan trọng đối với bất kỳ ai làm DevOps. Một chiến lược backup tốt sẽ giúp bạn cứu sống cả hệ thống khi có sự cố.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;i-các-nguyên-tắc-vàng&#34;&gt;I. Các Nguyên Tắc Vàng
@@ -537,10 +537,10 @@
         </item>
         <item>
         <title>9 MySQL Table Design Rules &amp; Skills</title>
-        <link>https://nagih.nooblearn2code.com/p/9-mysql-table-design-rules-skills/</link>
+        <link>https://nagih.nooblearn2code.com/posts/9-mysql-table-design-rules-skills/</link>
         <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/9-mysql-table-design-rules-skills/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/9-mysql-table-design-rules-skills/</guid>
         <description>&lt;img src="https://nagih.nooblearn2code.com/images/image-placeholder.png" alt="Featured image of post 9 MySQL Table Design Rules &amp; Skills" /&gt;&lt;p&gt;9 nguyên tắc cốt lõi và một số kỹ năng mở rộng khi khởi tạo bảng trong MySQL, đảm bảo ứng dụng không chỉ chạy đúng mà còn hiệu quả và dễ bảo trì&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;1. Mọi Table Luôn Phải Có Các Column Mặc Định&lt;/strong&gt;&lt;/p&gt;

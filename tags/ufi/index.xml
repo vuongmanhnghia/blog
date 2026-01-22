@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Mon, 08 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/ufi/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hướng dẫn tùy biến phân vùng EFI khi cài windows</title>
-        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</link>
+        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</link>
         <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</guid>
         <description>&lt;img src="https://nagih.nooblearn2code.com/images/image-placeholder.png" alt="Featured image of post Hướng dẫn tùy biến phân vùng EFI khi cài windows" /&gt;&lt;p&gt;Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;em&gt;Sử dụng Command Prompt trong quá trình cài đặt&lt;/em&gt;&lt;/p&gt;

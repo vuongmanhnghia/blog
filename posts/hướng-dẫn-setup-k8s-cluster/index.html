@@ -1,0 +1,192 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Hướng dẫn chi tiết sử dụng kubeadm để dựng một cluster trên Ubuntu (20.04 hoặc 22.04). Sử dụng Containerd làm Container Runtime (thay thế cho Docker đã cũ).\n"><title>Hướng dẫn setup K8S Cluster</title><link rel=canonical href=https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/><link rel=stylesheet href=/scss/style.min.833d6eed45de56f48306bf57268d5b8cdfc8a60e8e7bdc99810464fcd033f7c6.css><meta property='og:title' content="Hướng dẫn setup K8S Cluster"><meta property='og:description' content="Hướng dẫn chi tiết sử dụng kubeadm để dựng một cluster trên Ubuntu (20.04 hoặc 22.04). Sử dụng Containerd làm Container Runtime (thay thế cho Docker đã cũ).\n"><meta property='og:url' content='https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/'><meta property='og:site_name' content='Nagih | Blog'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='k8s'><meta property='article:published_time' content='2025-12-31T00:00:00+00:00'><meta property='article:modified_time' content='2025-12-31T00:00:00+00:00'><meta name=twitter:title content="Hướng dẫn setup K8S Cluster"><meta name=twitter:description content="Hướng dẫn chi tiết sử dụng kubeadm để dựng một cluster trên Ubuntu (20.04 hoặc 22.04). Sử dụng Containerd làm Container Runtime (thay thế cho Docker đã cũ).\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/images/VuongManhNghia_hu_d72cb41bfd209668.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Nagih | Blog</a></h1><h2 class=site-description>Hi there, I'm Vuong Manh Nghia.</h2></div></header><ol class=menu-social><li><a href=https://discord.gg/nagih_isme target=_blank title=Discord rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12a1 1 0 102 0 1 1 0 00-2 0"/><path d="M14 12a1 1 0 102 0 1 1 0 00-2 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-.972 1.923a11.913 11.913.0 00-4.053.0L9 4c-1.5.16-3.043.485-4.5 1.5-2 5.667-2.167 9.833-1.5 11.5.667 1.333 2 3 3.5 3 .5.0 2-2 2-3"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/></svg></a></li><li><a href=https://www.facebook.com/vmn.isme target=_blank title=Facebook rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v4h3v7h4v-7h3l1-4h-4V8a1 1 0 011-1h3V3h-3a5 5 0 00-5 5v2H7"/></svg></a></li><li><a href=https://github.com/vuongmanhnghia target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.linkedin.com/in/vuongmanhnghia target=_blank title=LinkedIn rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4m0 2a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 00-4 0"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>Categories</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#mô-hình-lab>Mô hình Lab</a></li><li><a href=#phần-1-cấu-hình-chung-thực-hiện-trên-tất-cả-các-node>PHẦN 1: CẤU HÌNH CHUNG (Thực hiện trên TẤT CẢ các Node)</a><ol><li><a href=#bước-1-tắt-swap-memory>Bước 1: Tắt Swap Memory</a></li><li><a href=#bước-2-cấu-hình-kernel-module-và-network>Bước 2: Cấu hình Kernel Module và Network</a></li><li><a href=#bước-3-cài-đặt-container-runtime-containerd>Bước 3: Cài đặt Container Runtime (Containerd)</a></li><li><a href=#bước-4-cài-đặt-kubeadm-kubelet-và-kubectl>Bước 4: Cài đặt kubeadm, kubelet và kubectl</a></li></ol></li><li><a href=#phần-2-khởi-tạo-master-node-chỉ-làm-trên-master>PHẦN 2: KHỞI TẠO MASTER NODE (Chỉ làm trên Master)</a><ol><li><a href=#bước-1-khởi-tạo-cluster>Bước 1: Khởi tạo Cluster</a></li><li><a href=#bước-2-cấu-hình-kubectl-cho-user-hiện-tại>Bước 2: Cấu hình kubectl cho user hiện tại</a></li><li><a href=#bước-3-cài-đặt-network-plugin-cni>Bước 3: Cài đặt Network Plugin (CNI)</a></li></ol></li><li><a href=#phần-3-join-worker-nodes-làm-trên-các-worker>PHẦN 3: JOIN WORKER NODES (Làm trên các Worker)</a><ol><li><a href=#bước-1-lấy-lệnh-join>Bước 1: Lấy lệnh Join</a></li><li><a href=#bước-2-thực-thi-trên-worker>Bước 2: Thực thi trên Worker</a></li></ol></li><li><a href=#phần-4-kiểm-tra-verify>PHẦN 4: KIỂM TRA (Verify)</a></li><li><a href=#tổng-kết-kiến-trúc>Tổng kết kiến trúc:</a></li><li><a href=#bài-viết-liên-quan>BÀI VIẾT LIÊN QUAN</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/linux/>Linux
+</a><a href=/categories/server/>Server</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/>Hướng dẫn setup K8S Cluster</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2025-12-31T00:00:00Z>December 31, 2025</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>6 minute read</time></div></footer></div></header><section class=article-content><p>Hướng dẫn chi tiết sử dụng <strong><code>kubeadm</code></strong> để dựng một cluster trên <strong>Ubuntu (20.04 hoặc 22.04)</strong>. Sử dụng <strong>Containerd</strong> làm Container Runtime (thay thế cho Docker đã cũ).</p><hr><p>Hướng dẫn chi tiết sử dụng <strong><code>kubeadm</code></strong> để dựng một cluster trên <strong>Ubuntu (20.04 hoặc 22.04)</strong>. Sử dụng <strong>Containerd</strong> làm Container Runtime (thay thế cho Docker đã cũ).</p><h2 id=mô-hình-lab>Mô hình Lab</h2><ul><li><p><strong>1 Master Node</strong> (Control Plane): Điều khiển cluster.</p></li><li><p><strong>2 Worker Nodes</strong>: Nơi chạy các ứng dụng (Pod).</p></li><li><p><strong>Yêu cầu phần cứng:</strong> Tối thiểu 2 CPU, 2GB RAM mỗi node.</p></li></ul><hr><h2 id=phần-1-cấu-hình-chung-thực-hiện-trên-tất-cả-các-node>PHẦN 1: CẤU HÌNH CHUNG (Thực hiện trên TẤT CẢ các Node)</h2><p><em>Làm các bước này trên cả Master và Worker.</em></p><h3 id=bước-1-tắt-swap-memory>Bước 1: Tắt Swap Memory</h3><p>Kubernetes yêu cầu tắt Swap để hoạt động ổn định.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo swapoff -a
+</span></span><span class=line><span class=cl>sudo sed -i /swap/d /etc/fstab
+</span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>Giải thích:</strong> K8s Scheduler cần biết chính xác lượng RAM khả dụng để phân phối Pod. Nếu dùng Swap (RAM ảo trên ổ cứng), hiệu năng sẽ giảm và K8s không tính toán được tài nguyên thực tế, dẫn đến crash.</p></blockquote><h3 id=bước-2-cấu-hình-kernel-module-và-network>Bước 2: Cấu hình Kernel Module và Network</h3><p>Load các module cần thiết và cấu hình IP forwarding.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Load module overlay và br_netfilter</span>
+</span></span><span class=line><span class=cl>cat <span class=s>&lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
+</span></span></span><span class=line><span class=cl><span class=s>overlay
+</span></span></span><span class=line><span class=cl><span class=s>br_netfilter
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo modprobe overlay
+</span></span><span class=line><span class=cl>sudo modprobe br_netfilter
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Cấu hình sysctl</span>
+</span></span><span class=line><span class=cl>cat <span class=s>&lt;&lt;EOF | sudo tee /etc/sysctl.d/k8s.conf
+</span></span></span><span class=line><span class=cl><span class=s>net.bridge.bridge-nf-call-iptables  = 1
+</span></span></span><span class=line><span class=cl><span class=s>net.bridge.bridge-nf-call-ip6tables = 1
+</span></span></span><span class=line><span class=cl><span class=s>net.ipv4.ip_forward                 = 1
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo sysctl --system
+</span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>Giải thích:</strong></p><ul><li><code>br_netfilter</code>: Cho phép traffic đi qua cầu nối mạng (bridge) được xử lý bởi iptables (tường lửa Linux). Điều này cần thiết để K8s quản lý mạng giữa các Pod.</li><li><code>ip_forward</code>: Cho phép Linux chuyển tiếp gói tin IP, biến server thành một router mềm để Pods có thể giao tiếp với bên ngoài.</li></ul></blockquote><h3 id=bước-3-cài-đặt-container-runtime-containerd>Bước 3: Cài đặt Container Runtime (Containerd)</h3><p>K8s cần một phần mềm để chạy các container. Chúng ta dùng <code>containerd</code>.</p><ol><li><p><strong>Cài đặt containerd:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Cài đặt các gói phụ thuộc</span>
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install -y ca-certificates curl gnupg
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Thêm Docker GPG key (Containerd nằm trong repo của Docker)</span>
+</span></span><span class=line><span class=cl>sudo install -m <span class=m>0755</span> -d /etc/apt/keyrings
+</span></span><span class=line><span class=cl>curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class=p>|</span> sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+</span></span><span class=line><span class=cl>sudo chmod a+r /etc/apt/keyrings/docker.gpg
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Thêm repository</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  <span class=s2>&#34;deb [arch=&#34;</span><span class=k>$(</span>dpkg --print-architecture<span class=k>)</span><span class=s2>&#34; signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+</span></span></span><span class=line><span class=cl><span class=s2>  &#34;</span><span class=k>$(</span>. /etc/os-release <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$VERSION_CODENAME</span><span class=s2>&#34;</span><span class=k>)</span><span class=s2>&#34; stable&#34;</span> <span class=p>|</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Cài đặt containerd</span>
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install -y containerd.io
+</span></span></code></pre></td></tr></table></div></div></li><li><p><strong>Cấu hình Cgroup cho Containerd (RẤT QUAN TRỌNG):</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Tạo file config mặc định</span>
+</span></span><span class=line><span class=cl>sudo mkdir -p /etc/containerd
+</span></span><span class=line><span class=cl>sudo containerd config default <span class=p>|</span> sudo tee /etc/containerd/config.toml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Sửa SystemdCgroup = true</span>
+</span></span><span class=line><span class=cl>sudo sed -i <span class=s1>&#39;s/SystemdCgroup = false/SystemdCgroup = true/g&#39;</span> /etc/containerd/config.toml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Restart containerd</span>
+</span></span><span class=line><span class=cl>sudo systemctl restart containerd
+</span></span></code></pre></td></tr></table></div></div></li></ol><blockquote><p><strong>Giải thích:</strong></p><ul><li><strong>Cgroup (Control Group):</strong> Là tính năng Linux để giới hạn tài nguyên (CPU/RAM) cho process.</li><li><strong>Tại sao phải sửa config?</strong> Ubuntu dùng <code>systemd</code> để quản lý init system. Nếu Containerd dùng <code>cgroupfs</code> (mặc định) còn Kubelet dùng <code>systemd</code>, sẽ xảy ra xung đột quản lý tài nguyên. Ta phải ép cả 2 cùng dùng <code>systemd</code>.</li></ul></blockquote><h3 id=bước-4-cài-đặt-kubeadm-kubelet-và-kubectl>Bước 4: Cài đặt kubeadm, kubelet và kubectl</h3><ul><li><p><code>kubeadm</code>: Tool để dựng cluster.</p></li><li><p><code>kubelet</code>: Agent chạy trên mọi node để quản lý container.</p></li><li><p><code>kubectl</code>: Tool dòng lệnh để user điều khiển cluster.</p></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Cài đặt các gói cần thiết</span>
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Download public signing key của Kubernetes</span>
+</span></span><span class=line><span class=cl>curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key <span class=p>|</span> sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Thêm repository K8s</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s1>&#39;deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /&#39;</span> <span class=p>|</span> sudo tee /etc/apt/sources.list.d/kubernetes.list
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Cài đặt</span>
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install -y kubelet kubeadm kubectl
+</span></span><span class=line><span class=cl>sudo apt-mark hold kubelet kubeadm kubectl
+</span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>Giải thích:</strong> <code>apt-mark hold</code> dùng để khóa phiên bản, ngăn không cho lệnh <code>apt upgrade</code> tự động nâng cấp K8s, vì việc nâng cấp K8s cần quy trình riêng thủ công để tránh sập hệ thống.</p></blockquote><hr><h2 id=phần-2-khởi-tạo-master-node-chỉ-làm-trên-master>PHẦN 2: KHỞI TẠO MASTER NODE (Chỉ làm trên Master)</h2><h3 id=bước-1-khởi-tạo-cluster>Bước 1: Khởi tạo Cluster</h3><p>Chạy lệnh sau trên Master Node.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo kubeadm init
+</span></span></code></pre></td></tr></table></div></div><p><em>Quá trình này mất vài phút. Nó sẽ tải các image của K8s (API Server, Etcd, Scheduler&mldr;) về và chạy chúng.</em></p><h3 id=bước-2-cấu-hình-kubectl-cho-user-hiện-tại>Bước 2: Cấu hình kubectl cho user hiện tại</h3><p>Sau khi lệnh trên chạy xong, nó sẽ hiện ra hướng dẫn. Bạn cần chạy 3 lệnh này để có thể dùng lệnh <code>kubectl</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir -p <span class=nv>$HOME</span>/.kube
+</span></span><span class=line><span class=cl>sudo cp -i /etc/kubernetes/admin.conf <span class=nv>$HOME</span>/.kube/config
+</span></span><span class=line><span class=cl>sudo chown <span class=k>$(</span>id -u<span class=k>)</span>:<span class=k>$(</span>id -g<span class=k>)</span> <span class=nv>$HOME</span>/.kube/config
+</span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>Giải thích:</strong> <code>admin.conf</code> chứa &ldquo;chìa khóa&rdquo; (certificate) để truy cập vào API Server với quyền admin cao nhất.</p></blockquote><h3 id=bước-3-cài-đặt-network-plugin-cni>Bước 3: Cài đặt Network Plugin (CNI)</h3><p>Cluster đã chạy nhưng các Pod chưa thể nói chuyện với nhau. Ta cần cài CNI. Ở đây dùng <strong>Cilium</strong>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>CILIUM_CLI_VERSION</span><span class=o>=</span><span class=k>$(</span>curl -s https://raw.githubusercontent.com/cilium/cilium-cli/main/stable.txt<span class=k>)</span>
+</span></span><span class=line><span class=cl><span class=nv>CLI_ARCH</span><span class=o>=</span>amd64
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>[</span> <span class=s2>&#34;</span><span class=k>$(</span>uname -m<span class=k>)</span><span class=s2>&#34;</span> <span class=o>=</span> <span class=s2>&#34;aarch64&#34;</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span> <span class=nv>CLI_ARCH</span><span class=o>=</span>arm64<span class=p>;</span> <span class=k>fi</span>
+</span></span><span class=line><span class=cl>curl -L --fail --remote-name-all https://github.com/cilium/cilium-cli/releases/download/<span class=si>${</span><span class=nv>CILIUM_CLI_VERSION</span><span class=si>}</span>/cilium-linux-<span class=si>${</span><span class=nv>CLI_ARCH</span><span class=si>}</span>.tar.gz<span class=o>{</span>,.sha256sum<span class=o>}</span>
+</span></span><span class=line><span class=cl>sha256sum --check cilium-linux-<span class=si>${</span><span class=nv>CLI_ARCH</span><span class=si>}</span>.tar.gz.sha256sum
+</span></span><span class=line><span class=cl>sudo tar xzvfC cilium-linux-<span class=si>${</span><span class=nv>CLI_ARCH</span><span class=si>}</span>.tar.gz /usr/local/bin
+</span></span><span class=line><span class=cl>rm cilium-linux-<span class=si>${</span><span class=nv>CLI_ARCH</span><span class=si>}</span>.tar.gz<span class=o>{</span>,.sha256sum<span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cilium install <span class=se>\
+</span></span></span><span class=line><span class=cl>  --version &lt;latest-version&gt; <span class=se>\
+</span></span></span><span class=line><span class=cl>  --set <span class=nv>kubeProxyReplacement</span><span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>  --set <span class=nv>k8sServiceHost</span><span class=o>=</span>&lt;IP control-plane&gt; <span class=se>\
+</span></span></span><span class=line><span class=cl>  --set <span class=nv>k8sServicePort</span><span class=o>=</span><span class=m>6443</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Kiểm tra</span>
+</span></span><span class=line><span class=cl>cilium status --wait
+</span></span><span class=line><span class=cl>kubectl get nodes
+</span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>Giải thích:</strong></p><ul><li>K8s không tự cung cấp mạng cho Pod, nó chỉ đưa ra chuẩn CNI (Container Network Interface).</li><li>Cilium là một plugin thực thi chuẩn đó, giúp tạo ra mạng ảo (Overlay Network) để Pod ở Node A có thể ping thấy Pod ở Node B.</li></ul></blockquote><hr><h2 id=phần-3-join-worker-nodes-làm-trên-các-worker>PHẦN 3: JOIN WORKER NODES (Làm trên các Worker)</h2><h3 id=bước-1-lấy-lệnh-join>Bước 1: Lấy lệnh Join</h3><p>Khi chạy <code>kubeadm init</code> ở Phần 2 xong, dòng cuối cùng của output sẽ là lệnh join. Nếu lỡ quên hoặc xóa mất, hãy chạy lệnh này trên <strong>Master</strong> để lấy lại:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubeadm token create --print-join-command
+</span></span></code></pre></td></tr></table></div></div><h3 id=bước-2-thực-thi-trên-worker>Bước 2: Thực thi trên Worker</h3><p>Copy lệnh output ở trên và dán vào terminal của các máy <strong>Worker Node</strong>. Ví dụ:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo kubeadm join &lt;MASTER_IP&gt;:6443 --token &lt;token&gt; --discovery-token-ca-cert-hash sha256:&lt;hash&gt;
+</span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>Giải thích:</strong></p><ul><li>Lệnh này giúp Worker Node xác thực với Master Node thông qua Token.</li><li>Sau khi xác thực, Kubelet trên Worker sẽ nhận chỉ đạo từ Master.</li></ul></blockquote><hr><h2 id=phần-4-kiểm-tra-verify>PHẦN 4: KIỂM TRA (Verify)</h2><p>Quay lại <strong>Master Node</strong>, chạy lệnh:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl get nodes
+</span></span></code></pre></td></tr></table></div></div><p><strong>Kết quả mong đợi:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>NAME       STATUS   ROLES           AGE     VERSION
+</span></span><span class=line><span class=cl>master     Ready    control-plane   10m     v1.29.0
+</span></span><span class=line><span class=cl>worker-1   Ready    &lt;none&gt;          2m      v1.29.0
+</span></span><span class=line><span class=cl>worker-2   Ready    &lt;none&gt;          2m      v1.29.0
+</span></span></code></pre></td></tr></table></div></div><ul><li>Nếu trạng thái là <code>NotReady</code>: Chờ khoảng 1-2 phút để CNI khởi động xong.</li><li>Nếu vẫn <code>NotReady</code>: Kiểm tra lại bước tắt Swap hoặc file config của containerd.</li></ul><h2 id=tổng-kết-kiến-trúc>Tổng kết kiến trúc:</h2><ol><li><p><strong>OS Layer:</strong> Ubuntu + Tắt Swap + IP Forwarding.</p></li><li><p><strong>Runtime Layer:</strong> Containerd (quản lý container).</p></li><li><p><strong>K8s Layer:</strong> Kubelet (giao tiếp với Master), Kube-proxy (quản lý mạng).</p></li><li><p><strong>Network Layer:</strong> Cilium (kết nối các Pod).</p></li></ol><h2 id=bài-viết-liên-quan>BÀI VIẾT LIÊN QUAN</h2><ul><li><a href=/setup-k8s-cluster-bare-metal/>Hướng dẫn setup K8S Cluster Bare-metal</a></li></ul></section><footer class=article-footer><section class=article-tags><a href=/tags/k8s/>K8s</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/c%C3%A1c-tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-tri%E1%BB%83n-khai-k8s-cluster/><div class=article-details><h2 class=article-title>Các trường hợp triển khai K8S Cluster</h2></div></a></article><article><a href=/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-premise/><div class=article-details><h2 class=article-title>Hướng dẫn setup K8S Cluster on Premise</h2></div></a></article><article><a href=/posts/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/><div class=article-details><h2 class=article-title>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</h2></div></a></article><article><a href=/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-swap-tr%C3%AAn-linux/><div class=article-details><h2 class=article-title>Hướng dẫn setup Swap trên Linux</h2></div></a></article><article><a href=/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-%C4%91%E1%BA%A7y-%C4%91%E1%BB%A7-command-du/><div class=article-details><h2 class=article-title>Hướng dẫn đầy đủ command `du`</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2025 -
+2026 Vuong Manh Nghia</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.33.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

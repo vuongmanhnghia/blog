@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/workflow/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Điều gì sẽ xảy ra khi gõ bất kỳ command nào trong terminal trên Linux ?</title>
-        <link>https://nagih.nooblearn2code.com/p/%C4%91i%E1%BB%81u-g%C3%AC-s%E1%BA%BD-x%E1%BA%A3y-ra-khi-g%C3%B5-b%E1%BA%A5t-k%E1%BB%B3-command-n%C3%A0o-trong-terminal-tr%C3%AAn-linux/</link>
+        <link>https://nagih.nooblearn2code.com/posts/%C4%91i%E1%BB%81u-g%C3%AC-s%E1%BA%BD-x%E1%BA%A3y-ra-khi-g%C3%B5-b%E1%BA%A5t-k%E1%BB%B3-command-n%C3%A0o-trong-terminal-tr%C3%AAn-linux/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/%C4%91i%E1%BB%81u-g%C3%AC-s%E1%BA%BD-x%E1%BA%A3y-ra-khi-g%C3%B5-b%E1%BA%A5t-k%E1%BB%B3-command-n%C3%A0o-trong-terminal-tr%C3%AAn-linux/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/%C4%91i%E1%BB%81u-g%C3%AC-s%E1%BA%BD-x%E1%BA%A3y-ra-khi-g%C3%B5-b%E1%BA%A5t-k%E1%BB%B3-command-n%C3%A0o-trong-terminal-tr%C3%AAn-linux/</guid>
         <description>&lt;p&gt;Để trả lời câu này sâu sắc, chúng ta không chỉ nhìn ở bề nổi (gõ lệnh -&amp;gt; ra kết quả), mà phải nhìn xuống tầng &lt;strong&gt;Kernel&lt;/strong&gt; và &lt;strong&gt;System Calls&lt;/strong&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;1-phân-tích-cú-pháp-parsing--tokenization&#34;&gt;1. Phân tích cú pháp (Parsing) &amp;amp; Tokenization
@@ -159,10 +159,10 @@
         </item>
         <item>
         <title>Hướng dẫn setup cloudflared tunnel cơ bản</title>
-        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</link>
+        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</link>
         <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</guid>
         <description>&lt;p&gt;Thiết lập Cloudflare Tunnel là một bước nâng cao cực kỳ mạnh mẽ cho server của bạn. Nó giúp bạn phơi bày (expose) các dịch vụ đang chạy trên server ra internet một cách an toàn mà không cần mở bất kỳ cổng nào trên &lt;strong&gt;Firewall&lt;/strong&gt;.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;mục-tiêu&#34;&gt;&lt;strong&gt;Mục tiêu:&lt;/strong&gt;
@@ -600,10 +600,10 @@
         </item>
         <item>
         <title>Hướng dẫn setup môi trường server cơ bản chạy web và các dịch vụ nền cho Raspberry Pi (Debian)</title>
-        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</link>
+        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</link>
         <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</guid>
         <description>&lt;hr&gt;
 &lt;h2 id=&#34;phase-1-server-initialization--basic-configuration&#34;&gt;Phase 1: Server Initialization &amp;amp; Basic Configuration
 &lt;/h2&gt;&lt;h3 id=&#34;1-first-connect&#34;&gt;1. First Connect

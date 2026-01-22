@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Wed, 31 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/server/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Các trường hợp triển khai K8S Cluster</title>
-        <link>https://nagih.nooblearn2code.com/p/c%C3%A1c-tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-tri%E1%BB%83n-khai-k8s-cluster/</link>
+        <link>https://nagih.nooblearn2code.com/posts/c%C3%A1c-tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-tri%E1%BB%83n-khai-k8s-cluster/</link>
         <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/c%C3%A1c-tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-tri%E1%BB%83n-khai-k8s-cluster/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/c%C3%A1c-tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-tri%E1%BB%83n-khai-k8s-cluster/</guid>
         <description>&lt;p&gt;Thông thường, trong thực tế triển khai Kubernetes (K8s), các kiến trúc sẽ biến thiên tùy vào nhu cầu về hiệu năng, chi phí và độ tin cậy.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Dưới đây là câu trả lời chi tiết và bảng xếp hạng các trường hợp từ phổ biến nhất đến ít phổ biến hơn (từ dễ đến khó).&lt;/p&gt;
@@ -149,10 +149,10 @@
         </item>
         <item>
         <title>Hướng dẫn setup K8S Cluster</title>
-        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/</link>
+        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/</link>
         <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/</guid>
         <description>&lt;p&gt;Hướng dẫn chi tiết sử dụng &lt;strong&gt;&lt;code&gt;kubeadm&lt;/code&gt;&lt;/strong&gt; để dựng một cluster trên &lt;strong&gt;Ubuntu (20.04 hoặc 22.04)&lt;/strong&gt;. Sử dụng &lt;strong&gt;Containerd&lt;/strong&gt; làm Container Runtime (thay thế cho Docker đã cũ).&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Hướng dẫn chi tiết sử dụng &lt;strong&gt;&lt;code&gt;kubeadm&lt;/code&gt;&lt;/strong&gt; để dựng một cluster trên &lt;strong&gt;Ubuntu (20.04 hoặc 22.04)&lt;/strong&gt;. Sử dụng &lt;strong&gt;Containerd&lt;/strong&gt; làm Container Runtime (thay thế cho Docker đã cũ).&lt;/p&gt;
@@ -536,10 +536,10 @@
         </item>
         <item>
         <title>Hướng dẫn setup K8S Cluster on Premise</title>
-        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-premise/</link>
+        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-premise/</link>
         <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-premise/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-premise/</guid>
         <description>&lt;p&gt;Đây là một bài toán thực tế rất thú vị (thường gọi là &lt;strong&gt;Bare-metal Kubernetes&lt;/strong&gt;). Khi chuyển từ môi trường ảo hóa (VM) sang 3 thiết bị vật lý thật&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Đây là một bài toán thực tế rất thú vị (thường gọi là &lt;strong&gt;Bare-metal Kubernetes&lt;/strong&gt;). Khi chuyển từ môi trường ảo hóa (VM) sang 3 thiết bị vật lý thật (ví dụ: 3 chiếc Laptop cũ, hoặc 1 PC + 2 Laptop, hoặc Raspberry Pi) kết nối qua Wi-Fi, thách thức lớn nhất không phải là cài đặt K8s, mà là &lt;strong&gt;Mạng (Networking)&lt;/strong&gt;.&lt;/p&gt;
@@ -852,10 +852,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</title>
-        <link>https://nagih.nooblearn2code.com/p/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</link>
+        <link>https://nagih.nooblearn2code.com/posts/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</link>
         <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</guid>
         <description>&lt;hr&gt;
 &lt;h3 id=&#34;1-tạo-user-thường--tắt-ssh-root&#34;&gt;1. &lt;strong&gt;Tạo user thường + tắt SSH root&lt;/strong&gt;
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1555,10 +1555,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Tất cả các commands quản lý quan trọng trên linux</title>
-        <link>https://nagih.nooblearn2code.com/p/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</link>
+        <link>https://nagih.nooblearn2code.com/posts/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</link>
         <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</guid>
         <description>&lt;hr&gt;
 &lt;h2 id=&#34;1-user-management-command&#34;&gt;1. &lt;strong&gt;User&lt;/strong&gt; management command
 &lt;/h2&gt;&lt;h3 id=&#34;useradd&#34;&gt;&lt;strong&gt;useradd&lt;/strong&gt;
@@ -1910,10 +1910,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Hướng dẫn setup môi trường server cơ bản chạy web và các dịch vụ nền cho Raspberry Pi (Debian)</title>
-        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</link>
+        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</link>
         <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</guid>
         <description>&lt;hr&gt;
 &lt;h2 id=&#34;phase-1-server-initialization--basic-configuration&#34;&gt;Phase 1: Server Initialization &amp;amp; Basic Configuration
 &lt;/h2&gt;&lt;h3 id=&#34;1-first-connect&#34;&gt;1. First Connect
