@@ -1,0 +1,178 @@
+baseURL: "https://blog.nagih.io.vn"
+canonifyURLs: false  # (đã có)
+relativeURLs: false  # (đã có)
+
+title: Nagih | Blog
+pagination:
+  pagerSize: 5
+theme: PaperMod
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+permalinks:
+  posts: "/posts/:sections[1:]/:slugorcontentbasename/"
+  posts/*: "/posts/:sections[1:]/:slugorcontentbasename/"
+  posts/*/*: "/posts/:sections[1:]/:slugorcontentbasename/"
+  posts/*/*/*: "/posts/:sections[1:]/:slugorcontentbasename/"
+
+params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  title: Nagih | Blog
+  description: "Nagih | Blog"
+  keywords: [Blog, Portfolio, PaperMod]
+  author: Nagih
+  # author: ["Me", "You"] # multiple authors
+  images: ["<link or path of image for opengraph, twitter-cards>"]
+  DateFormat: "January 2, 2006"
+  defaultTheme: auto # dark, light
+  disableThemeToggle: false
+
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: true
+  hidemeta: false
+  hideSummary: false
+  showtoc: true
+  tocopen: false
+
+  assets:
+    disableHLJS: true # to disable highlight.js
+    # disableFingerprinting: true
+    favicon: "<link / abs url>"
+    favicon16x16: "<link / abs url>"
+    favicon32x32: "<link / abs url>"
+    apple_touch_icon: "<link / abs url>"
+    safari_pinned_tab: "<link / abs url>"
+
+  label:
+    text: "Home"
+    icon: /apple-touch-icon.png
+    iconHeight: 35
+
+  # profile-mode
+  profileMode:
+    enabled: false # needs to be explicitly set
+    title: Nagih | Blog
+    subtitle: "This is subtitle"
+    imageUrl: "<img location>"
+    imageWidth: 120
+    imageHeight: 120
+    imageTitle: my image
+    buttons:
+      - name: Posts
+        url: posts
+      - name: Tags
+        url: tags
+
+  # home-info mode
+  homeInfoParams:
+    Title: "Nagih's Blog \U0001F44B"
+    Content: Welcome to my blog. A place to share fascinating stories from the journey of exploring technology, valuable lessons learned from real-world experience, and small tips to help you feel more confident in problem-solving.
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/vuongmanhnghia"
+    - name: discord
+      url: "https://discord.gg/nagih_isme"
+    - name: facebook
+      url: "https://www.facebook.com/vmn.isme"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/vuongmanhnghia"
+    # - name: x
+    #   url: "https://x.com/nagihdayo"
+    # - name: stackoverflow
+    #   url: "https://stackoverflow.com"
+
+  analytics:
+    google:
+      SiteVerificationTag: "XYZabc"
+    bing:
+      SiteVerificationTag: "XYZabc"
+    yandex:
+      SiteVerificationTag: "XYZabc"
+  
+
+  cover:
+    responsiveImages: true
+    linkFullImages: true
+    hidden: true # hide everywhere but not in structured data
+    hiddenInList: true # hide on list pages and home
+    hiddenInSingle: true # hide on single page
+
+  editPost:
+    URL: "https://github.com/vuongmanhnghia/posts/content"
+    Text: "Suggest Changes" # edit text
+    appendFilePath: true # to append file path to Edit link
+
+  # for search
+  # https://fusejs.io/api/options.html
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+    keys: ["title", "permalink", "summary", "content"]
+menu:
+  main:
+    - identifier: search
+      name: Search
+      url: /search/
+      weight: 10
+    - identifier: archive
+      name: Archive
+      url: /archives/
+      weight: 20
+    - identifier: categories
+      name: Categories
+      url: /categories/
+      weight: 30
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 40
+    - identifier: nagih
+      name: Home
+      url: https://nagih.io.vn
+      weight: 50
+# Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
+pygmentsUseClasses: true
+markup:
+  goldmark:
+    parser:
+      attribute:
+        block: true
+        title: true
+    renderer:
+      unsafe: true
+    highlight:
+      # anchorLineNos: true
+      codeFences: true
+      guessSyntax: true
+      lineNos: true
+      # noClasses: false
+      style: monokai
