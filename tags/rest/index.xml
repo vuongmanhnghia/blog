@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Thu, 28 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/rest/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>REST và gRPC</title>
-        <link>https://nagih.nooblearn2code.com/posts/rest-v%C3%A0-grpc/</link>
+        <link>https://nagih.nooblearn2code.com/posts/rest-grpc/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/posts/rest-v%C3%A0-grpc/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/rest-grpc/</guid>
         <description>&lt;img src="https://nagih.nooblearn2code.com/image-placeholder.png" alt="Featured image of post REST và gRPC" /&gt;&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại | Rest &amp;amp; gRPC&lt;/p&gt;
 &lt;h2 id=&#34;giới-thiệu&#34;&gt;Giới thiệu
 &lt;/h2&gt;&lt;p&gt;REST, với tư cách là một kiểu kiến trúc, đã định hình nên các API web trong hơn hai thập kỷ, trở thành tiêu chuẩn de facto nhờ tính linh hoạt và khả năng tiếp cận phổ quát. Mặt khác, gRPC, một framework mã nguồn mở hiệu suất cao do Google phát triển, nổi lên như một giải pháp được thiết kế đặc biệt cho kỷ nguyên microservice, nơi hiệu suất, độ trễ thấp và các hợp đồng dịch vụ nghiêm ngặt là tối quan trọng.&lt;/p&gt;

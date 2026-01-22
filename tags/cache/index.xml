@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/cache/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Các chính sách &#39;Dọn Dẹp&#39; Cache</title>
-        <link>https://nagih.nooblearn2code.com/posts/c%C3%A1c-ch%C3%ADnh-s%C3%A1ch-d%E1%BB%8Dn-d%E1%BA%B9p-cache/</link>
+        <link>https://nagih.nooblearn2code.com/posts/cache-hit-cache-miss/</link>
         <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/posts/c%C3%A1c-ch%C3%ADnh-s%C3%A1ch-d%E1%BB%8Dn-d%E1%BA%B9p-cache/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/cache-hit-cache-miss/</guid>
         <description>&lt;img src="https://nagih.nooblearn2code.com/image-placeholder.png" alt="Featured image of post Các chính sách &#39;Dọn Dẹp&#39; Cache" /&gt;&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;các-chính-sách-dọn-dẹp&#34;&gt;Các Chính Sách &amp;ldquo;Dọn Dẹp&amp;rdquo;
@@ -181,10 +181,10 @@
         </item>
         <item>
         <title>Giới thiệu về Cache</title>
-        <link>https://nagih.nooblearn2code.com/posts/gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-cache/</link>
+        <link>https://nagih.nooblearn2code.com/posts/introdution-to-cache/</link>
         <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/posts/gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-cache/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/introdution-to-cache/</guid>
         <description>&lt;img src="https://nagih.nooblearn2code.com/images/image-placeholder.png" alt="Featured image of post Giới thiệu về Cache" /&gt;&lt;p&gt;Nhiều người đã nghe về cache, có thể là &amp;ldquo;xóa cache trình duyệt&amp;rdquo; hay &amp;ldquo;cache của CPU&amp;rdquo;. Nhưng cache thực sự là gì? Nó hoạt động ra sao và tại sao nó lại quan trọng đến vậy?&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;cache-là-gì&#34;&gt;Cache Là Gì?

@@ -17,10 +17,10 @@
     <loc>https://nagih.nooblearn2code.com/tags/command/</loc>
     <lastmod>2026-01-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-%C4%91%E1%BA%A7y-%C4%91%E1%BB%A7-command-du/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/du-command/</loc>
     <lastmod>2026-01-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-swap-tr%C3%AAn-linux/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/setup-swap/</loc>
     <lastmod>2026-01-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/categories/linux/</loc>
@@ -38,19 +38,19 @@
     <loc>https://nagih.nooblearn2code.com/categories/cloud/</loc>
     <lastmod>2026-01-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-cloud/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/setup-k8s-cluster-on-cloud/</loc>
     <lastmod>2026-01-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/categories/k8s/</loc>
     <lastmod>2026-01-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/c%C3%A1c-tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-tri%E1%BB%83n-khai-k8s-cluster/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/cluster-case/</loc>
     <lastmod>2025-12-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/setup-k8s-cluster/</loc>
     <lastmod>2025-12-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-premise/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/setup-k8s-cluster-bare-metal/</loc>
     <lastmod>2025-12-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/k8s/</loc>
@@ -68,19 +68,19 @@
     <loc>https://nagih.nooblearn2code.com/tags/overlayfs/</loc>
     <lastmod>2025-12-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/overlayfs-overlay2-on-docker/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/overlayfs/</loc>
     <lastmod>2025-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/categories/storage/</loc>
     <lastmod>2025-12-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/overlay2-vs-volume--bind-mount/</loc>
     <lastmod>2025-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/unionfs/</loc>
     <lastmod>2025-12-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/unionfs-union-file-system/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/unionfs/</loc>
     <lastmod>2025-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/categories/protocol/</loc>
@@ -89,7 +89,7 @@
     <loc>https://nagih.nooblearn2code.com/tags/ssh/</loc>
     <lastmod>2025-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/vai-tr%C3%B2-v%C3%A0-c%C3%A1ch-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-c%E1%BB%A7a-openssh-suite/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/openssh-suite/</loc>
     <lastmod>2025-12-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/categories/aws/</loc>
@@ -110,28 +110,28 @@
     <loc>https://nagih.nooblearn2code.com/categories/architechture/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/%C4%91i%E1%BB%81u-g%C3%AC-s%E1%BA%BD-x%E1%BA%A3y-ra-khi-g%C3%B5-b%E1%BA%A5t-k%E1%BB%B3-command-n%C3%A0o-trong-terminal-tr%C3%AAn-linux/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/system-calls/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/%C4%91i%E1%BB%81u-g%C3%AC-x%E1%BA%A3y-ra-khi-b%E1%BA%A1n-s%E1%BB%AD-d%E1%BB%A5ng-l%E1%BB%87nh-sudo/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/sudo/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/file/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/inode-trong-linux-file-system/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/inode/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/kernel/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/linux-file-system/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/file-system/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/netstat/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/netstat-c%C3%B4ng-c%E1%BB%A5-gi%C3%A1m-s%C3%A1t-networking/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/netstat/</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/sudo/</loc>
@@ -155,10 +155,10 @@
     <loc>https://nagih.nooblearn2code.com/tags/docker/</loc>
     <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-backup-database-postgres-trong-container-v%C3%A0-s%E1%BB%AD-d%E1%BB%A5ng-trong-server-m%E1%BB%9Bi/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/how-to-backup-postgres-database-in-docker-container/</loc>
     <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%E1%BA%A5u-h%C3%ACnh-nginx-l%C3%A0m-reverse-proxy-k%E1%BA%BFt-h%E1%BB%A3p-certbot-th%C3%B4ng-qua-docker/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/how-to-config-nginx-use-docker/</loc>
     <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/nginx/</loc>
@@ -173,10 +173,10 @@
     <loc>https://nagih.nooblearn2code.com/categories/manage/</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/server-hardening-checklist/</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/management-command/</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/tips/</loc>
@@ -188,10 +188,10 @@
     <loc>https://nagih.nooblearn2code.com/tags/bridge/</loc>
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-network-bridge-gi%E1%BB%AFa-m%C3%A1y-host-v%C3%A0-m%C3%A1y-%E1%BA%A3o/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/setup-bridge-network/</loc>
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-docker-stats-kh%C3%B4ng-hi%E1%BB%83n-th%E1%BB%8B-m%E1%BB%A9c-s%E1%BB%AD-d%E1%BB%A5ng-memory/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/fix-error-docker-stats/</loc>
     <lastmod>2025-11-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/backup/</loc>
@@ -200,31 +200,31 @@
     <loc>https://nagih.nooblearn2code.com/categories/cloudflare/</loc>
     <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/cloudflared-tunnel-workflow/</loc>
     <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/backup-database/</loc>
     <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/tunnel/</loc>
     <lastmod>2025-10-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/raspberry-pi-basic-server-workflow/</loc>
     <lastmod>2025-10-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/tcp/</loc>
     <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/t%E1%BB%95ng-quan-v%E1%BB%81-tcp/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/tcp/</loc>
     <lastmod>2025-10-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/osi/</loc>
     <lastmod>2025-10-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/t%E1%BB%95ng-quan-v%E1%BB%81-m%C3%B4-h%C3%ACnh-osi/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/osi/</loc>
     <lastmod>2025-10-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%E1%BA%A1o-usb-boot-windows-tr%C3%AAn-linux/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/usb-boot-windows-on-linux/</loc>
     <lastmod>2025-10-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/categories/os/</loc>
@@ -236,7 +236,7 @@
     <loc>https://nagih.nooblearn2code.com/categories/experience/</loc>
     <lastmod>2025-09-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-authorized-khi-ssh-v%C3%A0o-raspberry-pi/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/fix-authorized/</loc>
     <lastmod>2025-09-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/pi/</loc>
@@ -245,7 +245,7 @@
     <loc>https://nagih.nooblearn2code.com/tags/backend/</loc>
     <lastmod>2025-09-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/c%C3%A1c-v%E1%BA%A5n-%C4%91%E1%BB%81-v%E1%BB%81-internet-v%C3%A0-c%C3%A1ch-kh%E1%BA%AFc-ph%E1%BB%A5c/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/internet-errors/</loc>
     <lastmod>2025-09-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/dns/</loc>
@@ -260,28 +260,28 @@
     <loc>https://nagih.nooblearn2code.com/tags/ip/</loc>
     <lastmod>2025-09-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/m%E1%BA%ABu-documentation-cho-backend/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/backend-documentation/</loc>
     <lastmod>2025-09-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/git/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-qu%E1%BA%A3n-l%C3%BD-nhi%E1%BB%81u-kh%C3%B3a-ssh-tr%C3%AAn-1-thi%E1%BA%BFt-b%E1%BB%8B/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/all-in-one/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/setup-ssh-for-github/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-s%E1%BB%B1-c%E1%BB%91-v%C3%A0-c%C3%A1c-l%E1%BB%97i-th%C6%B0%E1%BB%9Dng-g%E1%BA%B7p-khi-thi%E1%BA%BFt-l%E1%BA%ADp-ssh/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/error-handler/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/ssh-github/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/https-ssh/</loc>
     <lastmod>2025-09-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/boot/</loc>
     <lastmod>2025-09-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/custom-windows-efi/</loc>
     <lastmod>2025-09-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/ufi/</loc>
@@ -293,7 +293,7 @@
     <loc>https://nagih.nooblearn2code.com/tags/rest/</loc>
     <lastmod>2025-08-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/rest-v%C3%A0-grpc/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/rest-grpc/</loc>
     <lastmod>2025-08-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/posts/6-level-deploy/</loc>
@@ -308,13 +308,13 @@
     <loc>https://nagih.nooblearn2code.com/tags/sql/</loc>
     <lastmod>2025-08-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/c%C3%A1c-ch%C3%ADnh-s%C3%A1ch-d%E1%BB%8Dn-d%E1%BA%B9p-cache/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/cache-hit-cache-miss/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/cache/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-cache/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/introdution-to-cache/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/archives/</loc>

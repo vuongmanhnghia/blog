@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Fri, 21 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/nginx/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hướng dẫn cấu hình Nginx làm Reverse Proxy kết hợp Certbot thông qua Docker</title>
-        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%E1%BA%A5u-h%C3%ACnh-nginx-l%C3%A0m-reverse-proxy-k%E1%BA%BFt-h%E1%BB%A3p-certbot-th%C3%B4ng-qua-docker/</link>
+        <link>https://nagih.nooblearn2code.com/posts/how-to-config-nginx-use-docker/</link>
         <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%E1%BA%A5u-h%C3%ACnh-nginx-l%C3%A0m-reverse-proxy-k%E1%BA%BFt-h%E1%BB%A3p-certbot-th%C3%B4ng-qua-docker/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/how-to-config-nginx-use-docker/</guid>
         <description>&lt;p&gt;Hướng dẫn xây dựng mô hình &lt;strong&gt;Nginx làm Reverse Proxy&lt;/strong&gt; kết hợp với &lt;strong&gt;Certbot&lt;/strong&gt; theo mô hình &lt;strong&gt;Sidecar&lt;/strong&gt; (hoặc chạy định kỳ) để quản lý SSL.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Dưới đây là hướng dẫn triển khai theo chuẩn &lt;strong&gt;Infrastructure as Code (IaC)&lt;/strong&gt;. Toàn bộ cấu hình nằm trong file, có thể đẩy lên Git.&lt;/p&gt;

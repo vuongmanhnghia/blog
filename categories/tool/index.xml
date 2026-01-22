@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/tool/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Netstat - Công cụ giám sát Networking</title>
-        <link>https://nagih.nooblearn2code.com/posts/netstat-c%C3%B4ng-c%E1%BB%A5-gi%C3%A1m-s%C3%A1t-networking/</link>
+        <link>https://nagih.nooblearn2code.com/posts/netstat/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/posts/netstat-c%C3%B4ng-c%E1%BB%A5-gi%C3%A1m-s%C3%A1t-networking/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/netstat/</guid>
         <description>&lt;p&gt;&lt;strong&gt;Netstat&lt;/strong&gt; là công cụ dòng lệnh dùng để hiển thị chi tiết các kết nối mạng (TCP/UDP), bảng định tuyến và các cổng đang lắng nghe, giúp quản trị viên giám sát và xử lý sự cố hệ thống.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;1-tư-duy-cốt-lõi-tại-sao-cần-netstat&#34;&gt;1. Tư duy cốt lõi: Tại sao cần Netstat?
@@ -290,10 +290,10 @@
         </item>
         <item>
         <title>Hướng dẫn thiết lập khóa SSH cho github</title>
-        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</link>
+        <link>https://nagih.nooblearn2code.com/posts/setup-ssh-for-github/</link>
         <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/setup-ssh-for-github/</guid>
         <description>&lt;img src="https://nagih.nooblearn2code.com/thumb/setup-ssh.png" alt="Featured image of post Hướng dẫn thiết lập khóa SSH cho github" /&gt;&lt;hr&gt;
 &lt;h2 id=&#34;bước-1-tạo-cặp-khóa-ssh-với-ssh-keygen&#34;&gt;Bước 1: Tạo Cặp Khóa SSH với &lt;code&gt;ssh-keygen&lt;/code&gt;
 &lt;/h2&gt;&lt;h3 id=&#34;thuật-toán-mã-hóa&#34;&gt;Thuật toán Mã hóa
@@ -465,10 +465,10 @@
         </item>
         <item>
         <title>SSH - Github</title>
-        <link>https://nagih.nooblearn2code.com/posts/ssh-github/</link>
+        <link>https://nagih.nooblearn2code.com/posts/https-ssh/</link>
         <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/posts/ssh-github/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/https-ssh/</guid>
         <description>&lt;p&gt;Những hạn chế của xác thực qua HTTPS và sự thay thế SSH&lt;/p&gt;
 &lt;p&gt;Trong hệ sinh thái phát triển phần mềm hiện đại, GitHub không chỉ là một kho lưu trữ mã nguồn mà còn là trung tâm cộng tác, quản lý dự án và triển khai ứng dụng. Việc tương tác hiệu quả và an toàn với nền tảng này là một kỹ năng cơ bản đối với mọi nhà phát triển. Mặc dù HTTPS cung cấp một phương thức kết nối ban đầu đơn giản, việc chuyển sang sử dụng giao thức SSH (Secure Shell) là một bước tiến quan trọng, không chỉ nâng cao đáng kể mức độ bảo mật mà còn tối ưu hóa quy trình làm việc hàng ngày.&lt;/p&gt;
 &lt;h3 id=&#34;1-những-hạn-chế-của-xác-thực-qua-https&#34;&gt;1. Những Hạn Chế của Xác thực qua HTTPS

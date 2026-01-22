@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Fri, 26 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/pi/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi</title>
-        <link>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-authorized-khi-ssh-v%C3%A0o-raspberry-pi/</link>
+        <link>https://nagih.nooblearn2code.com/posts/fix-authorized/</link>
         <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/posts/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-authorized-khi-ssh-v%C3%A0o-raspberry-pi/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/fix-authorized/</guid>
         <description>&lt;img src="https://nagih.nooblearn2code.com/image-placeholder.png" alt="Featured image of post Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi" /&gt;&lt;p&gt;Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;sửa-trực-tiếp-trên-thẻ-nhớ&#34;&gt;Sửa trực tiếp trên Thẻ nhớ

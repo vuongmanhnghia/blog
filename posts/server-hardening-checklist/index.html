@@ -1,0 +1,316 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content><title>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</title><link rel=canonical href=https://nagih.nooblearn2code.com/posts/server-hardening-checklist/><link rel=stylesheet href=/scss/style.min.833d6eed45de56f48306bf57268d5b8cdfc8a60e8e7bdc99810464fcd033f7c6.css><meta property='og:title' content="Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)"><meta property='og:description' content><meta property='og:url' content='https://nagih.nooblearn2code.com/posts/server-hardening-checklist/'><meta property='og:site_name' content='Nagih | Blog'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='tips'><meta property='article:published_time' content='2025-11-14T00:00:00+00:00'><meta property='article:modified_time' content='2025-11-14T00:00:00+00:00'><meta name=twitter:title content="Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)"><meta name=twitter:description content></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/images/VuongManhNghia_hu_d72cb41bfd209668.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Nagih | Blog</a></h1><h2 class=site-description>Hi there, I'm Vuong Manh Nghia.</h2></div></header><ol class=menu-social><li><a href=https://discord.gg/nagih_isme target=_blank title=Discord rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12a1 1 0 102 0 1 1 0 00-2 0"/><path d="M14 12a1 1 0 102 0 1 1 0 00-2 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-.972 1.923a11.913 11.913.0 00-4.053.0L9 4c-1.5.16-3.043.485-4.5 1.5-2 5.667-2.167 9.833-1.5 11.5.667 1.333 2 3 3.5 3 .5.0 2-2 2-3"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/></svg></a></li><li><a href=https://www.facebook.com/vmn.isme target=_blank title=Facebook rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v4h3v7h4v-7h3l1-4h-4V8a1 1 0 011-1h3V3h-3a5 5 0 00-5 5v2H7"/></svg></a></li><li><a href=https://github.com/vuongmanhnghia target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.linkedin.com/in/vuongmanhnghia target=_blank title=LinkedIn rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4m0 2a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 00-4 0"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>Categories</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><ol><li><a href=#1-tạo-user-thường--tắt-ssh-root>1. <strong>Tạo user thường + tắt SSH root</strong></a></li><li><a href=#2-đặt-hostname-timezone-locale-đúng>2. <strong>Đặt hostname, timezone, locale đúng</strong></a></li><li><a href=#3-cập-nhật-hệ-thống--bật-auto-security-updates>3. <strong>Cập nhật hệ thống + bật auto security updates</strong></a></li><li><a href=#4-firewall-ufwnftables>4. <strong>Firewall: UFW/NFTABLES</strong></a></li><li><a href=#5-fail2ban-chống-brute-force>5. <strong>Fail2ban chống brute force</strong></a></li><li><a href=#6-ssh-hardening-nâng-cao>6. <strong>SSH hardening nâng cao</strong></a></li><li><a href=#7giới-hạn-sudo-để-tránh-phá-server>7.<strong>Giới hạn sudo để tránh phá server</strong></a></li><li><a href=#8-swap-nếu-server-ít-ram>8. <strong>Swap (nếu server ít RAM)</strong></a></li><li><a href=#9-ứng-dụng-logs-chuẩn-hóa>9. <strong>Ứng dụng logs chuẩn hóa</strong></a></li><li><a href=#10-disable-dịch-vụ-không-cần>10. <strong>Disable dịch vụ không cần</strong></a></li><li><a href=#11-bật-apparmor-hoặc-selinux-nếu-dùng-ubuntu-hoặc-centos>11. <strong>Bật AppArmor hoặc SELinux (nếu dùng Ubuntu hoặc CentOS)</strong></a></li><li><a href=#12-cấu-hình-phân-quyền-file>12. <strong>Cấu hình phân quyền file</strong></a></li><li><a href=#13-cài-monitoring-tối-thiểu>13. <strong>Cài monitoring tối thiểu</strong></a></li><li><a href=#14-cấu-hình-backups>14. <strong>Cấu hình backups</strong></a></li><li><a href=#15-nếu-chạy-docker>15. <strong>Nếu chạy Docker</strong></a></li><li><a href=#16-nếu-chạy-web-service>16. <strong>Nếu chạy web service</strong></a></li><li><a href=#17-tắt-ipv6-nếu-không-dùng>17. <strong>Tắt IPv6 nếu không dùng</strong></a></li><li><a href=#18-kiểm-thử-security-tổng-quan>18. <strong>Kiểm thử security tổng quan</strong></a></li><li><a href=#19-automation-lại-toàn-bộ>19. <strong>Automation lại toàn bộ</strong></a></li><li><a href=#20-viết-tài-liệu-1-trang-về-server>20. <strong>Viết tài liệu 1 trang về server</strong></a></li><li><a href=#bunus-scripts-tự-động-setup-cơ-bản>Bunus: Scripts tự động setup cơ bản</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/manage/>Manage
+</a><a href=/categories/server/>Server
+</a><a href=/categories/linux/>Linux
+</a><a href=/categories/system/>System</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/server-hardening-checklist/>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2025-11-14T00:00:00Z>November 14, 2025</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>5 minute read</time></div></footer></div></header><section class=article-content><hr><h3 id=1-tạo-user-thường--tắt-ssh-root>1. <strong>Tạo user thường + tắt SSH root</strong></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>adduser nagih
+</span></span><span class=line><span class=cl>usermod -aG sudo nagih
+</span></span></code></pre></td></tr></table></div></div><p>Copy SSH key:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rsync -av /root/.ssh /home/nagih/
+</span></span><span class=line><span class=cl>chown -R nagih:nagih /home/nagih/.ssh
+</span></span></code></pre></td></tr></table></div></div><p>Disable SSH root:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo nano /etc/ssh/sshd_config
+</span></span></code></pre></td></tr></table></div></div><p>Sửa:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>PermitRootLogin no
+</span></span><span class=line><span class=cl>PasswordAuthentication no     <span class=c1># nếu bạn dùng SSH key</span>
+</span></span></code></pre></td></tr></table></div></div><p>Reload:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo systemctl reload sshd
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=2-đặt-hostname-timezone-locale-đúng>2. <strong>Đặt hostname, timezone, locale đúng</strong></h3><p>Log hợp lệ để debug. Script không phát điên khi timezone sai.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo hostnamectl set-hostname server-01
+</span></span><span class=line><span class=cl>sudo timedatectl set-timezone Asia/Ho_Chi_Minh
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=3-cập-nhật-hệ-thống--bật-auto-security-updates>3. <strong>Cập nhật hệ thống + bật auto security updates</strong></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt update <span class=o>&amp;&amp;</span> sudo apt upgrade -y
+</span></span></code></pre></td></tr></table></div></div><p>Bật auto security patch:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt install unattended-upgrades -y
+</span></span><span class=line><span class=cl>sudo dpkg-reconfigure unattended-upgrades
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=4-firewall-ufwnftables>4. <strong>Firewall: UFW/NFTABLES</strong></h3><p>Ngăn dịch vụ lạ bị expose.</p><p>UFW cách đơn giản:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo ufw default deny incoming
+</span></span><span class=line><span class=cl>sudo ufw default allow outgoing
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo ufw allow 22/tcp
+</span></span><span class=line><span class=cl>sudo ufw allow 80/tcp
+</span></span><span class=line><span class=cl>sudo ufw allow 443/tcp
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo ufw <span class=nb>enable</span>
+</span></span></code></pre></td></tr></table></div></div><p>Nếu bạn DevOps hardcore, dùng nftables hoặc firewalld.</p><hr><h3 id=5-fail2ban-chống-brute-force>5. <strong>Fail2ban chống brute force</strong></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt install fail2ban -y
+</span></span></code></pre></td></tr></table></div></div><p>Tạo cấu hình:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo nano /etc/fail2ban/jail.local
+</span></span></code></pre></td></tr></table></div></div><p>Ví dụ:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>sshd<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>enabled</span> <span class=o>=</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=nv>maxretry</span> <span class=o>=</span> <span class=m>5</span>
+</span></span><span class=line><span class=cl><span class=nv>bantime</span> <span class=o>=</span> 1h
+</span></span></code></pre></td></tr></table></div></div><p>Restart:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo systemctl restart fail2ban
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=6-ssh-hardening-nâng-cao>6. <strong>SSH hardening nâng cao</strong></h3><p>Trong <code>/etc/ssh/sshd_config</code> thêm:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Protocol <span class=m>2</span>
+</span></span><span class=line><span class=cl>X11Forwarding no
+</span></span><span class=line><span class=cl>AllowAgentForwarding no
+</span></span><span class=line><span class=cl>AllowTcpForwarding no
+</span></span><span class=line><span class=cl>ClientAliveInterval <span class=m>300</span>
+</span></span><span class=line><span class=cl>ClientAliveCountMax <span class=m>2</span>
+</span></span><span class=line><span class=cl>PasswordAuthentication no
+</span></span></code></pre></td></tr></table></div></div><p>Nếu bạn muốn whitelist user:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>AllowUsers nagih deploy
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=7giới-hạn-sudo-để-tránh-phá-server>7.<strong>Giới hạn sudo để tránh phá server</strong></h3><p>Rất nên có <code>/etc/sudoers.d/99-safe</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nagih <span class=nv>ALL</span><span class=o>=(</span>ALL<span class=o>)</span> NOPASSWD: /usr/bin/systemctl, /usr/bin/journalctl, /usr/bin/docker
+</span></span><span class=line><span class=cl>nagih <span class=nv>ALL</span><span class=o>=(</span>ALL<span class=o>)</span> !/bin/rm -rf /
+</span></span></code></pre></td></tr></table></div></div><p>Tuỳ nhu cầu.</p><hr><h3 id=8-swap-nếu-server-ít-ram>8. <strong>Swap (nếu server ít RAM)</strong></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo fallocate -l 2G /swapfile
+</span></span><span class=line><span class=cl>sudo chmod <span class=m>600</span> /swapfile
+</span></span><span class=line><span class=cl>sudo mkswap /swapfile
+</span></span><span class=line><span class=cl>sudo swapon /swapfile
+</span></span></code></pre></td></tr></table></div></div><p>Thêm vào <code>/etc/fstab</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/swapfile swap swap defaults <span class=m>0</span> <span class=m>0</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=9-ứng-dụng-logs-chuẩn-hóa>9. <strong>Ứng dụng logs chuẩn hóa</strong></h3><ul><li><p><code>journalctl -u service</code></p></li><li><p>Logrotate cho file log custom</p></li><li><p>Đồng bộ giờ với NTP</p></li></ul><p>Cài chrony:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt install chrony -y
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=10-disable-dịch-vụ-không-cần>10. <strong>Disable dịch vụ không cần</strong></h3><p>Giảm attack surface:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl list-unit-files --type<span class=o>=</span>service
+</span></span><span class=line><span class=cl>sudo systemctl disable --now bluetooth.service
+</span></span><span class=line><span class=cl>sudo systemctl disable --now cups.service
+</span></span><span class=line><span class=cl>sudo systemctl disable --now avahi-daemon.service
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=11-bật-apparmor-hoặc-selinux-nếu-dùng-ubuntu-hoặc-centos>11. <strong>Bật AppArmor hoặc SELinux (nếu dùng Ubuntu hoặc CentOS)</strong></h3><p>Ubuntu:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo aa-status
+</span></span></code></pre></td></tr></table></div></div><p>CentOS:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sestatus
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=12-cấu-hình-phân-quyền-file>12. <strong>Cấu hình phân quyền file</strong></h3><ul><li><p>Không cho world-writable file</p></li><li><p>Check SUID/SGID</p></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo find / -perm /6000 -type f 2&gt;/dev/null
+</span></span></code></pre></td></tr></table></div></div><p>Nếu không hiểu file nào → mình đọc giúp.</p><hr><h3 id=13-cài-monitoring-tối-thiểu>13. <strong>Cài monitoring tối thiểu</strong></h3><p>Prometheus Node Exporter:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo useradd -rs /bin/false node_exporter
+</span></span></code></pre></td></tr></table></div></div><p>Cài binary → systemd → kết nối Grafana.</p><p>Còn không thì dùng Netdata cho nhanh.</p><hr><h3 id=14-cấu-hình-backups>14. <strong>Cấu hình backups</strong></h3><p>Tối thiểu:</p><ul><li><p>backup <code>/etc</code></p></li><li><p>backup database</p></li><li><p>snapshot volume (nếu cloud)</p></li><li><p>script cron: rsync → S3/Backblaze</p></li></ul><hr><h3 id=15-nếu-chạy-docker>15. <strong>Nếu chạy Docker</strong></h3><p>Hardening Docker:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo usermod -aG docker nagih
+</span></span><span class=line><span class=cl>sudo systemctl <span class=nb>enable</span> docker
+</span></span></code></pre></td></tr></table></div></div><p>Cấu hình daemon:</p><p><code>/etc/docker/daemon.json</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;log-driver&#34;</span><span class=p>:</span> <span class=s2>&#34;json-file&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;log-opts&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;max-size&#34;</span><span class=p>:</span> <span class=s2>&#34;10m&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;max-file&#34;</span><span class=p>:</span> <span class=s2>&#34;3&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>Cài compose plugin:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=16-nếu-chạy-web-service>16. <strong>Nếu chạy web service</strong></h3><ul><li><p>Reverse proxy: Nginx / Caddy</p></li><li><p>HSTS</p></li><li><p>Certbot hoặc Traefik cert auto</p></li><li><p>Rate-limit</p></li></ul><hr><h3 id=17-tắt-ipv6-nếu-không-dùng>17. <strong>Tắt IPv6 nếu không dùng</strong></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo nano /etc/sysctl.conf
+</span></span></code></pre></td></tr></table></div></div><p>Thêm:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>net.ipv6.conf.all.disable_ipv6 <span class=o>=</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>net.ipv6.conf.default.disable_ipv6 <span class=o>=</span> <span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo sysctl -p
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=18-kiểm-thử-security-tổng-quan>18. <strong>Kiểm thử security tổng quan</strong></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>ss -tulpn
+</span></span></code></pre></td></tr></table></div></div><p>Đảm bảo chỉ có:</p><ul><li>22</li><li>80</li><li>443</li></ul><p>Kiểm tra SSH:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>ssh -v yourserver
+</span></span></code></pre></td></tr></table></div></div><p>Test brute-force protection:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>fail2ban-client status sshd
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=19-automation-lại-toàn-bộ>19. <strong>Automation lại toàn bộ</strong></h3><p>Dùng:</p><ul><li><p>Ansible</p></li><li><p>Terraform + cloud-init</p></li><li><p>bash script</p></li></ul><p>Sản xuất không ai setup tay hoài được.</p><hr><h3 id=20-viết-tài-liệu-1-trang-về-server>20. <strong>Viết tài liệu 1 trang về server</strong></h3><ul><li><p>OS version</p></li><li><p>Dịch vụ đang chạy</p></li><li><p>User có quyền sudo</p></li><li><p>Port mở</p></li><li><p>Backup location</p></li><li><p>Cách restart service</p></li><li><p>SSH key location</p></li></ul><p>Cực hữu ích khi giao server cho team khác.</p><hr><h3 id=bunus-scripts-tự-động-setup-cơ-bản>Bunus: Scripts tự động setup cơ bản</h3><p><strong>SERVER-BASELINE.SH</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo bash server-baseline.sh
+</span></span></code></pre></td></tr></table></div></div><hr><p><strong>server-baseline.sh</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>set</span> -e
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>USERNAME</span><span class=o>=</span><span class=s2>&#34;nagih&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>PUBKEY</span><span class=o>=</span><span class=s2>&#34;ssh-ed25519 AAAA...YOUR_KEY_HERE&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;[1/10] Creating user...&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> ! id <span class=s2>&#34;</span><span class=nv>$USERNAME</span><span class=s2>&#34;</span> &gt;/dev/null 2&gt;<span class=p>&amp;</span>1<span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>    adduser --disabled-password --gecos <span class=s2>&#34;&#34;</span> <span class=s2>&#34;</span><span class=nv>$USERNAME</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>    usermod -aG sudo <span class=s2>&#34;</span><span class=nv>$USERNAME</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>else</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;User already exists, skipping.&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;[2/10] Installing SSH key...&#34;</span>
+</span></span><span class=line><span class=cl>mkdir -p /home/<span class=nv>$USERNAME</span>/.ssh
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$PUBKEY</span><span class=s2>&#34;</span> &gt; /home/<span class=nv>$USERNAME</span>/.ssh/authorized_keys
+</span></span><span class=line><span class=cl>chmod <span class=m>700</span> /home/<span class=nv>$USERNAME</span>/.ssh
+</span></span><span class=line><span class=cl>chmod <span class=m>600</span> /home/<span class=nv>$USERNAME</span>/.ssh/authorized_keys
+</span></span><span class=line><span class=cl>chown -R <span class=nv>$USERNAME</span>:<span class=nv>$USERNAME</span> /home/<span class=nv>$USERNAME</span>/.ssh
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;[3/10] SSH Hardening...&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>SSHCONF</span><span class=o>=</span><span class=s2>&#34;/etc/ssh/sshd_config&#34;</span>
+</span></span><span class=line><span class=cl>sed -i <span class=s1>&#39;s/#\?PasswordAuthentication .*/PasswordAuthentication no/&#39;</span> <span class=nv>$SSHCONF</span>
+</span></span><span class=line><span class=cl>sed -i <span class=s1>&#39;s/#\?PermitRootLogin .*/PermitRootLogin no/&#39;</span> <span class=nv>$SSHCONF</span>
+</span></span><span class=line><span class=cl>sed -i <span class=s1>&#39;s/#\?X11Forwarding .*/X11Forwarding no/&#39;</span> <span class=nv>$SSHCONF</span>
+</span></span><span class=line><span class=cl>sed -i <span class=s1>&#39;s/#\?AllowAgentForwarding .*/AllowAgentForwarding no/&#39;</span> <span class=nv>$SSHCONF</span>
+</span></span><span class=line><span class=cl>sed -i <span class=s1>&#39;s/#\?AllowTcpForwarding .*/AllowTcpForwarding no/&#39;</span> <span class=nv>$SSHCONF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Thêm AllowUsers nếu chưa có</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> ! grep -q <span class=s2>&#34;AllowUsers&#34;</span> <span class=nv>$SSHCONF</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;AllowUsers </span><span class=nv>$USERNAME</span><span class=s2>&#34;</span> &gt;&gt; <span class=nv>$SSHCONF</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>systemctl reload sshd
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;[4/10] Updating system...&#34;</span>
+</span></span><span class=line><span class=cl>apt update <span class=o>&amp;&amp;</span> apt upgrade -y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;[5/10] Installing essential tools...&#34;</span>
+</span></span><span class=line><span class=cl>apt install -y unattended-upgrades fail2ban ufw htop curl
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;[6/10] Enabling auto security updates...&#34;</span>
+</span></span><span class=line><span class=cl>dpkg-reconfigure --priority<span class=o>=</span>low unattended-upgrades
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;[7/10] Configuring UFW firewall...&#34;</span>
+</span></span><span class=line><span class=cl>ufw default deny incoming
+</span></span><span class=line><span class=cl>ufw default allow outgoing
+</span></span><span class=line><span class=cl>ufw allow 22/tcp
+</span></span><span class=line><span class=cl>ufw allow 80/tcp
+</span></span><span class=line><span class=cl>ufw allow 443/tcp
+</span></span><span class=line><span class=cl>ufw --force <span class=nb>enable</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;[8/10] Configuring Fail2ban...&#34;</span>
+</span></span><span class=line><span class=cl>cat &gt;/etc/fail2ban/jail.local <span class=s>&lt;&lt;EOF
+</span></span></span><span class=line><span class=cl><span class=s>[sshd]
+</span></span></span><span class=line><span class=cl><span class=s>enabled = true
+</span></span></span><span class=line><span class=cl><span class=s>maxretry = 5
+</span></span></span><span class=line><span class=cl><span class=s>bantime = 1h
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>systemctl restart fail2ban
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;[9/10] Setting timezone to Asia/Ho_Chi_Minh...&#34;</span>
+</span></span><span class=line><span class=cl>timedatectl set-timezone Asia/Ho_Chi_Minh
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;[10/10] Cleaning up...&#34;</span>
+</span></span><span class=line><span class=cl>apt autoremove -y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;======================================&#34;</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34; Baseline complete!&#34;</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34; Login using: ssh </span><span class=nv>$USERNAME</span><span class=s2>@your-server&#34;</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;======================================&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><hr><ol><li><p>Thay SSH key</p><p>Trong script:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>PUBKEY</span><span class=o>=</span><span class=s2>&#34;ssh-ed25519 AAAA...YOUR_KEY_HERE&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>Dán public key của bạn vào.</p></li><li><p>Lưu file, chạy:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod +x server-baseline.sh
+</span></span><span class=line><span class=cl>sudo ./server-baseline.sh
+</span></span></code></pre></td></tr></table></div></div></li></ol><hr></section><footer class=article-footer><section class=article-tags><a href=/tags/tips/>Tips</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/management-command/><div class=article-details><h2 class=article-title>Tất cả các commands quản lý quan trọng trên linux</h2></div></a></article><article><a href=/posts/cluster-case/><div class=article-details><h2 class=article-title>Các trường hợp triển khai K8S Cluster</h2></div></a></article><article><a href=/posts/setup-k8s-cluster/><div class=article-details><h2 class=article-title>Hướng dẫn setup K8S Cluster</h2></div></a></article><article><a href=/posts/setup-k8s-cluster-bare-metal/><div class=article-details><h2 class=article-title>Hướng dẫn setup K8S Cluster on Premise</h2></div></a></article><article><a href=/posts/inode/><div class=article-details><h2 class=article-title>Inode trong Linux File System</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2025 -
+2026 Vuong Manh Nghia</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.33.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

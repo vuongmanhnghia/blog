@@ -9,10 +9,10 @@
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/architechture/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Linux File System</title>
-        <link>https://nagih.nooblearn2code.com/posts/linux-file-system/</link>
+        <link>https://nagih.nooblearn2code.com/posts/file-system/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://nagih.nooblearn2code.com/posts/linux-file-system/</guid>
+        <guid>https://nagih.nooblearn2code.com/posts/file-system/</guid>
         <description>&lt;hr&gt;
 &lt;h3 id=&#34;1-everything-is-a-file&#34;&gt;1. &amp;ldquo;Everything is a file&amp;rdquo;
 &lt;/h3&gt;&lt;p&gt;Trong Linux, mọi thứ đều là tập tin (hoặc được biểu diễn như một tập tin):&lt;/p&gt;
