@@ -18,7 +18,7 @@ pagination:
 
 # Stack theme recommends simpler permalinks
 permalinks:
-  posts: /posts/:slug/
+  posts: /posts/:filename/
   page: /:slug/
 
 outputs:
