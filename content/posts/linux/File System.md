@@ -203,10 +203,4 @@ Docker images được xây dựng từ các **Layers** (lớp).
 ---
 ### Bài viết liên quan
 	
-- [Inode trong Linux File System](inode.md)
-	
-- [Điều gì sẽ xảy ra sau khi Command được gửi đi trên Linux](posts/linux/system-calls)
-	
-- [Điều gì sẽ xảy ra sau khi sử dụng Sudo](sudo.md)
-
----
+- [Inode](posts/inode)

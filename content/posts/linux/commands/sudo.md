@@ -16,7 +16,7 @@ Khi bạn gõ `sudo apt update`, không đơn giản là hệ thống "bật cô
 
 ---
 
-Trước khi tìm hiểu về **Sudo**, bạn nên hiểu về Điều gì sảy ra sau khi sử dụng Command (non-sudo) tại [System Calls](posts/linux/system-calls)
+Trước khi tìm hiểu về **Sudo**, bạn nên hiểu về Điều gì sảy ra sau khi sử dụng Command (non-sudo)
 
 ### Giai đoạn 1: Tại Shell (User Space)
 
