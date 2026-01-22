@@ -2,6 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.nagih.io.vn/posts/linux/</loc>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/posts/linux/linux/</loc>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/</loc>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/posts/</loc>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog.nagih.io.vn/categories/</loc>
     <lastmod>2026-01-17T00:00:00+00:00</lastmod>
   </url><url>
@@ -15,15 +27,6 @@
     <lastmod>2026-01-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/categories/linux/</loc>
-    <lastmod>2026-01-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/posts/linux/</loc>
-    <lastmod>2026-01-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/</loc>
-    <lastmod>2026-01-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.nagih.io.vn/posts/</loc>
     <lastmod>2026-01-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nagih.io.vn/tags/swap/</loc>
@@ -385,6 +388,8 @@
   </url><url>
     <loc>https://blog.nagih.io.vn/posts/system/cache/introdution-to-cache/</loc>
     <lastmod>2025-08-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nagih.io.vn/posts/git/untitled/</loc>
   </url><url>
     <loc>https://blog.nagih.io.vn/archives/</loc>
   </url><url>
