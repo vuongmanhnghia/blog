@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Aws on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/categories/aws/</link>
+        <link>https://nagih.nooblearn2code.com/categories/aws/</link>
         <description>Recent content in Aws on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Tue, 16 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/categories/aws/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 16 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/aws/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>AWS - Networking</title>
-        <link>https://blog.nagih.io.vn/p/aws-networking/</link>
+        <link>https://nagih.nooblearn2code.com/p/aws-networking/</link>
         <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/aws-networking/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/aws-networking/</guid>
         <description>&lt;p&gt;Hệ thống mạng (Networking) &lt;strong&gt;đầy đủ, bảo mật và chuẩn doanh nghiệp (Enterprise-grade)&lt;/strong&gt; trên AWS&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;1-core-infrastructure&#34;&gt;1. Core Infrastructure

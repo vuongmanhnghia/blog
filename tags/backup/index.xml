@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Backup on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/tags/backup/</link>
+        <link>https://nagih.nooblearn2code.com/tags/backup/</link>
         <description>Recent content in Backup on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Sun, 19 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/backup/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 19 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/backup/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Kĩ thuật backup dữ liệu Database định kỳ</title>
-        <link>https://blog.nagih.io.vn/p/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</link>
+        <link>https://nagih.nooblearn2code.com/p/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</link>
         <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</guid>
         <description>&lt;p&gt;Kỹ thuật backup database định kỳ là một kỹ năng cực kỳ quan trọng đối với bất kỳ ai làm DevOps. Một chiến lược backup tốt sẽ giúp bạn cứu sống cả hệ thống khi có sự cố.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;i-các-nguyên-tắc-vàng&#34;&gt;I. Các Nguyên Tắc Vàng

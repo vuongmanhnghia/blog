@@ -2,36 +2,36 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Docs on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/categories/docs/</link>
+        <link>https://nagih.nooblearn2code.com/categories/docs/</link>
         <description>Recent content in Docs on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Tue, 16 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/categories/docs/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 16 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/docs/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Mẫu Documentation cho Backend</title>
-        <link>https://blog.nagih.io.vn/p/m%E1%BA%ABu-documentation-cho-backend/</link>
+        <link>https://nagih.nooblearn2code.com/p/m%E1%BA%ABu-documentation-cho-backend/</link>
         <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/m%E1%BA%ABu-documentation-cho-backend/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/m%E1%BA%ABu-documentation-cho-backend/</guid>
         <description>&lt;p&gt;Chia sẻ mẫu Documentation cho lập trình viên Backend&lt;/p&gt;
 &lt;h1 id=&#34;e-library-management-system---backend-documentation&#34;&gt;E-Library Management System - Backend Documentation
 &lt;/h1&gt;&lt;h2 id=&#34;-table-of-contents&#34;&gt;📋 Table of Contents
 &lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#system-overview/&#34;&gt;System Overview&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#system-overview/&#34;&gt;System Overview&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#architecture/&#34;&gt;Architecture&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#architecture/&#34;&gt;Architecture&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#api-documentation/&#34;&gt;API Documentation&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#api-documentation/&#34;&gt;API Documentation&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#database-schema/&#34;&gt;Database Schema&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#database-schema/&#34;&gt;Database Schema&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#authentication--security/&#34;&gt;Authentication &amp;amp; Security&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#authentication--security/&#34;&gt;Authentication &amp;amp; Security&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#setup--deployment/&#34;&gt;Setup &amp;amp; Deployment&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#setup--deployment/&#34;&gt;Setup &amp;amp; Deployment&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#testing/&#34;&gt;Testing&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#testing/&#34;&gt;Testing&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#monitoring--logging/&#34;&gt;Monitoring &amp;amp; Logging&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#monitoring--logging/&#34;&gt;Monitoring &amp;amp; Logging&lt;/a&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
@@ -1364,13 +1364,13 @@
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;-support--contact&#34;&gt;📞 Support &amp;amp; Contact
-&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Development Team&lt;/strong&gt;: &lt;a href=&#34;https://blog.nagih.io.vn/mailto:backend-team@company.com/&#34;&gt;backend-team@company.com&lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Development Team&lt;/strong&gt;: &lt;a href=&#34;https://nagih.nooblearn2code.com/mailto:backend-team@company.com/&#34;&gt;backend-team@company.com&lt;/a&gt;
 &lt;br&gt;
-&lt;strong&gt;DevOps Team&lt;/strong&gt;: &lt;a href=&#34;https://blog.nagih.io.vn/mailto:devops@company.com/&#34;&gt;devops@company.com&lt;/a&gt;
+&lt;strong&gt;DevOps Team&lt;/strong&gt;: &lt;a href=&#34;https://nagih.nooblearn2code.com/mailto:devops@company.com/&#34;&gt;devops@company.com&lt;/a&gt;
 &lt;br&gt;
-&lt;strong&gt;Documentation&lt;/strong&gt;: &lt;a href=&#34;https://blog.nagih.io.vn/https://docs.elibrary.com/&#34;&gt;https://docs.elibrary.com&lt;/a&gt;
+&lt;strong&gt;Documentation&lt;/strong&gt;: &lt;a href=&#34;https://nagih.nooblearn2code.com/https://docs.elibrary.com/&#34;&gt;https://docs.elibrary.com&lt;/a&gt;
 &lt;br&gt;
-&lt;strong&gt;Issue Tracker&lt;/strong&gt;: &lt;a href=&#34;https://blog.nagih.io.vn/https://github.com/company/elibrary-backend/issues/&#34;&gt;https://github.com/company/elibrary-backend/issues&lt;/a&gt;
+&lt;strong&gt;Issue Tracker&lt;/strong&gt;: &lt;a href=&#34;https://nagih.nooblearn2code.com/https://github.com/company/elibrary-backend/issues/&#34;&gt;https://github.com/company/elibrary-backend/issues&lt;/a&gt;
 &lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;em&gt;Last updated: September 16, 2025&lt;/em&gt;&lt;/p&gt;</description>

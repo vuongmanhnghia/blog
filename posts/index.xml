@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/posts/</link>
+        <link>https://nagih.nooblearn2code.com/posts/</link>
         <description>Recent content in Posts on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Thu, 22 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/posts/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 22 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/posts/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Linux</title>
-        <link>https://blog.nagih.io.vn/p/linux/</link>
+        <link>https://nagih.nooblearn2code.com/p/linux/</link>
         <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/linux/</guid>
-        <description>&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/file-system/&#34;&gt;File System&lt;/a&gt;
+        <guid>https://nagih.nooblearn2code.com/p/linux/</guid>
+        <description>&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/file-system/&#34;&gt;File System&lt;/a&gt;
 &lt;/p&gt;
 </description>
         </item>
         <item>
         <title>Hướng dẫn đầy đủ command `du`</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-%C4%91%E1%BA%A7y-%C4%91%E1%BB%A7-command-du/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-%C4%91%E1%BA%A7y-%C4%91%E1%BB%A7-command-du/</link>
         <pubDate>Sat, 17 Jan 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-%C4%91%E1%BA%A7y-%C4%91%E1%BB%A7-command-du/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-%C4%91%E1%BA%A7y-%C4%91%E1%BB%A7-command-du/</guid>
         <description>&lt;p&gt;Lệnh &lt;code&gt;du&lt;/code&gt; (&lt;strong&gt;D&lt;/strong&gt;isk &lt;strong&gt;U&lt;/strong&gt;sage) là công cụ mạnh mẽ để kiểm tra dung lượng ổ đĩa, nhưng nếu chỉ gõ &lt;code&gt;du&lt;/code&gt; trần thì kết quả trả về sẽ rất rối mắt và khó đọc&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Để dùng &lt;code&gt;du&lt;/code&gt; như một &amp;ldquo;Pro&amp;rdquo; (chuyên nghiệp, hiệu quả), bạn cần kết hợp các cờ (flags) và đường ống (pipe) để lọc dữ liệu. Dưới đây là các tuyệt chiêu hay dùng nhất:&lt;/p&gt;
@@ -185,10 +185,10 @@
         </item>
         <item>
         <title>Hướng dẫn setup Swap trên Linux</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-swap-tr%C3%AAn-linux/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-swap-tr%C3%AAn-linux/</link>
         <pubDate>Sat, 17 Jan 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-swap-tr%C3%AAn-linux/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-swap-tr%C3%AAn-linux/</guid>
         <description>&lt;p&gt;Để bật Swap (bộ nhớ ảo) cho Ubuntu, cách đơn giản và phổ biến nhất hiện nay là tạo một &lt;strong&gt;Swap File&lt;/strong&gt; (tệp hoán đổi). Cách này linh hoạt hơn so với việc chia phân vùng ổ cứng (Swap Partition)&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;bước-1-kiểm-tra-swap-hiện-có&#34;&gt;Bước 1: Kiểm tra Swap hiện có
@@ -338,10 +338,10 @@
         </item>
         <item>
         <title>Hướng dẫn setup K8S Cluster on Cloud</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-cloud/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-cloud/</link>
         <pubDate>Fri, 16 Jan 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-cloud/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-cloud/</guid>
         <description>&lt;p&gt;Hướng dẫn chi tiết dựng một cluster &lt;strong&gt;on Cloud&lt;/strong&gt;. Sử dụng &lt;strong&gt;Containerd&lt;/strong&gt; làm Container Runtime (thay thế cho Docker đã cũ).&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;giả-định-ban-đầu&#34;&gt;Giả định ban đầu
@@ -3878,10 +3878,10 @@
         </item>
         <item>
         <title>Các trường hợp triển khai K8S Cluster</title>
-        <link>https://blog.nagih.io.vn/p/c%C3%A1c-tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-tri%E1%BB%83n-khai-k8s-cluster/</link>
+        <link>https://nagih.nooblearn2code.com/p/c%C3%A1c-tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-tri%E1%BB%83n-khai-k8s-cluster/</link>
         <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/c%C3%A1c-tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-tri%E1%BB%83n-khai-k8s-cluster/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/c%C3%A1c-tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-tri%E1%BB%83n-khai-k8s-cluster/</guid>
         <description>&lt;p&gt;Thông thường, trong thực tế triển khai Kubernetes (K8s), các kiến trúc sẽ biến thiên tùy vào nhu cầu về hiệu năng, chi phí và độ tin cậy.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Dưới đây là câu trả lời chi tiết và bảng xếp hạng các trường hợp từ phổ biến nhất đến ít phổ biến hơn (từ dễ đến khó).&lt;/p&gt;
@@ -4018,10 +4018,10 @@
         </item>
         <item>
         <title>Hướng dẫn setup K8S Cluster</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/</link>
         <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster/</guid>
         <description>&lt;p&gt;Hướng dẫn chi tiết sử dụng &lt;strong&gt;&lt;code&gt;kubeadm&lt;/code&gt;&lt;/strong&gt; để dựng một cluster trên &lt;strong&gt;Ubuntu (20.04 hoặc 22.04)&lt;/strong&gt;. Sử dụng &lt;strong&gt;Containerd&lt;/strong&gt; làm Container Runtime (thay thế cho Docker đã cũ).&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Hướng dẫn chi tiết sử dụng &lt;strong&gt;&lt;code&gt;kubeadm&lt;/code&gt;&lt;/strong&gt; để dựng một cluster trên &lt;strong&gt;Ubuntu (20.04 hoặc 22.04)&lt;/strong&gt;. Sử dụng &lt;strong&gt;Containerd&lt;/strong&gt; làm Container Runtime (thay thế cho Docker đã cũ).&lt;/p&gt;
@@ -4399,16 +4399,16 @@
 &lt;/ol&gt;
 &lt;h2 id=&#34;bài-viết-liên-quan&#34;&gt;BÀI VIẾT LIÊN QUAN
 &lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/setup-k8s-cluster-bare-metal/&#34;&gt;Hướng dẫn setup K8S Cluster Bare-metal&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/setup-k8s-cluster-bare-metal/&#34;&gt;Hướng dẫn setup K8S Cluster Bare-metal&lt;/a&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description>
         </item>
         <item>
         <title>Hướng dẫn setup K8S Cluster on Premise</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-premise/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-premise/</link>
         <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-premise/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-premise/</guid>
         <description>&lt;p&gt;Đây là một bài toán thực tế rất thú vị (thường gọi là &lt;strong&gt;Bare-metal Kubernetes&lt;/strong&gt;). Khi chuyển từ môi trường ảo hóa (VM) sang 3 thiết bị vật lý thật&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Đây là một bài toán thực tế rất thú vị (thường gọi là &lt;strong&gt;Bare-metal Kubernetes&lt;/strong&gt;). Khi chuyển từ môi trường ảo hóa (VM) sang 3 thiết bị vật lý thật (ví dụ: 3 chiếc Laptop cũ, hoặc 1 PC + 2 Laptop, hoặc Raspberry Pi) kết nối qua Wi-Fi, thách thức lớn nhất không phải là cài đặt K8s, mà là &lt;strong&gt;Mạng (Networking)&lt;/strong&gt;.&lt;/p&gt;
@@ -4721,10 +4721,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>OverlayFS - overlay2 on Docker</title>
-        <link>https://blog.nagih.io.vn/p/overlayfs-overlay2-on-docker/</link>
+        <link>https://nagih.nooblearn2code.com/p/overlayfs-overlay2-on-docker/</link>
         <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/overlayfs-overlay2-on-docker/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/overlayfs-overlay2-on-docker/</guid>
         <description>&lt;p&gt;Nếu UnionFS là ý tưởng, thì OverlayFS là bản thực thi xuất sắc nhất hiện nay trên Linux. Nó khắc phục được sự cồng kềnh và chậm chạp của các thế hệ trước (như AUFS hay Device Mapper)&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Tiếp nối câu chuyện về UnionFS, chúng ta sẽ đi sâu vào &lt;strong&gt;OverlayFS&lt;/strong&gt; (cụ thể là driver &lt;code&gt;overlay2&lt;/code&gt; trong Docker).&lt;/p&gt;
@@ -4876,11 +4876,11 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
 &lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/storage/unionfs/&#34;&gt;UnionFS&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/storage/unionfs/&#34;&gt;UnionFS&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/overlay2-vs-volume-&amp;amp;-bind-mount/&#34;&gt;Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume/Bind Mount ?&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/overlay2-vs-volume-&amp;amp;-bind-mount/&#34;&gt;Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume/Bind Mount ?&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -4888,10 +4888,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume và Bind Mount ?</title>
-        <link>https://blog.nagih.io.vn/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</link>
+        <link>https://nagih.nooblearn2code.com/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</link>
         <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</guid>
         <description>&lt;p&gt;Nguyên nhân cốt lõi nằm ở &lt;strong&gt;Cơ chế Copy-on-Write (CoW)&lt;/strong&gt; và &lt;strong&gt;lớp trung gian (Overhead)&lt;/strong&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Mặc dù &lt;code&gt;overlay2&lt;/code&gt; là driver lưu trữ (storage driver) tốt nhất và được khuyến nghị mặc định cho Docker hiện nay, nhưng về mặt vật lý và logic, nó &lt;strong&gt;không thể nhanh bằng&lt;/strong&gt; Volume hoặc Bind Mount.&lt;/p&gt;
@@ -5022,11 +5022,11 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
 &lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/storage/unionfs/&#34;&gt;UnionFS&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/storage/unionfs/&#34;&gt;UnionFS&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/storage/overlayfs/&#34;&gt;OverlayFS&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/storage/overlayfs/&#34;&gt;OverlayFS&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -5034,10 +5034,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>UnionFS - Union File System</title>
-        <link>https://blog.nagih.io.vn/p/unionfs-union-file-system/</link>
+        <link>https://nagih.nooblearn2code.com/p/unionfs-union-file-system/</link>
         <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/unionfs-union-file-system/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/unionfs-union-file-system/</guid>
         <description>&lt;p&gt;UnionFS cho phép bạn &amp;ldquo;xếp chồng&amp;rdquo; nhiều thư mục (hoặc ổ đĩa) khác nhau lên nhau để tạo thành một hệ thống tệp tin duy nhất và thống nhất&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;UnionFS&lt;/strong&gt; (&lt;strong&gt;Union File System&lt;/strong&gt;) là một dịch vụ hệ thống tệp tin (filesystem service) cho Linux, FreeBSD và NetBSD.&lt;/p&gt;
@@ -5120,11 +5120,11 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
 &lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/storage/overlayfs/&#34;&gt;OverlayFS&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/storage/overlayfs/&#34;&gt;OverlayFS&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/overlay2-vs-volume-&amp;amp;-bind-mount/&#34;&gt;Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume/Bind Mount ?&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/overlay2-vs-volume-&amp;amp;-bind-mount/&#34;&gt;Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume/Bind Mount ?&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -5132,10 +5132,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Vai trò và cách hoạt động của OpenSSH Suite</title>
-        <link>https://blog.nagih.io.vn/p/vai-tr%C3%B2-v%C3%A0-c%C3%A1ch-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-c%E1%BB%A7a-openssh-suite/</link>
+        <link>https://nagih.nooblearn2code.com/p/vai-tr%C3%B2-v%C3%A0-c%C3%A1ch-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-c%E1%BB%A7a-openssh-suite/</link>
         <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/vai-tr%C3%B2-v%C3%A0-c%C3%A1ch-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-c%E1%BB%A7a-openssh-suite/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/vai-tr%C3%B2-v%C3%A0-c%C3%A1ch-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-c%E1%BB%A7a-openssh-suite/</guid>
         <description>&lt;p&gt;&lt;strong&gt;OpenSSH (Open Secure Shell)&lt;/strong&gt; là bộ công cụ mã nguồn mở triển khai giao thức SSH. Đây là &amp;ldquo;tiêu chuẩn vàng&amp;rdquo; được cài đặt mặc định trên hầu hết các hệ điều hành Linux, macOS và cả Windows hiện đại&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Để hiểu rõ cách nó hoạt động, chúng ta sẽ mổ xẻ từng thành phần trong bộ OpenSSH Suite theo chức năng của chúng: &lt;strong&gt;Server&lt;/strong&gt;, &lt;strong&gt;Client&lt;/strong&gt;, &lt;strong&gt;Quản lý khóa&lt;/strong&gt;, và &lt;strong&gt;Truyền tải&lt;/strong&gt;.&lt;/p&gt;
@@ -5388,10 +5388,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>AWS - Networking</title>
-        <link>https://blog.nagih.io.vn/p/aws-networking/</link>
+        <link>https://nagih.nooblearn2code.com/p/aws-networking/</link>
         <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/aws-networking/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/aws-networking/</guid>
         <description>&lt;p&gt;Hệ thống mạng (Networking) &lt;strong&gt;đầy đủ, bảo mật và chuẩn doanh nghiệp (Enterprise-grade)&lt;/strong&gt; trên AWS&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;1-core-infrastructure&#34;&gt;1. Core Infrastructure
@@ -5518,10 +5518,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Điều gì sẽ xảy ra khi gõ bất kỳ command nào trong terminal trên Linux ?</title>
-        <link>https://blog.nagih.io.vn/p/%C4%91i%E1%BB%81u-g%C3%AC-s%E1%BA%BD-x%E1%BA%A3y-ra-khi-g%C3%B5-b%E1%BA%A5t-k%E1%BB%B3-command-n%C3%A0o-trong-terminal-tr%C3%AAn-linux/</link>
+        <link>https://nagih.nooblearn2code.com/p/%C4%91i%E1%BB%81u-g%C3%AC-s%E1%BA%BD-x%E1%BA%A3y-ra-khi-g%C3%B5-b%E1%BA%A5t-k%E1%BB%B3-command-n%C3%A0o-trong-terminal-tr%C3%AAn-linux/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/%C4%91i%E1%BB%81u-g%C3%AC-s%E1%BA%BD-x%E1%BA%A3y-ra-khi-g%C3%B5-b%E1%BA%A5t-k%E1%BB%B3-command-n%C3%A0o-trong-terminal-tr%C3%AAn-linux/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/%C4%91i%E1%BB%81u-g%C3%AC-s%E1%BA%BD-x%E1%BA%A3y-ra-khi-g%C3%B5-b%E1%BA%A5t-k%E1%BB%B3-command-n%C3%A0o-trong-terminal-tr%C3%AAn-linux/</guid>
         <description>&lt;p&gt;Để trả lời câu này sâu sắc, chúng ta không chỉ nhìn ở bề nổi (gõ lệnh -&amp;gt; ra kết quả), mà phải nhìn xuống tầng &lt;strong&gt;Kernel&lt;/strong&gt; và &lt;strong&gt;System Calls&lt;/strong&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;1-phân-tích-cú-pháp-parsing--tokenization&#34;&gt;1. Phân tích cú pháp (Parsing) &amp;amp; Tokenization
@@ -5668,13 +5668,13 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Điều gì xảy ra khi bạn sử dụng lệnh Sudo ?</title>
-        <link>https://blog.nagih.io.vn/p/%C4%91i%E1%BB%81u-g%C3%AC-x%E1%BA%A3y-ra-khi-b%E1%BA%A1n-s%E1%BB%AD-d%E1%BB%A5ng-l%E1%BB%87nh-sudo/</link>
+        <link>https://nagih.nooblearn2code.com/p/%C4%91i%E1%BB%81u-g%C3%AC-x%E1%BA%A3y-ra-khi-b%E1%BA%A1n-s%E1%BB%AD-d%E1%BB%A5ng-l%E1%BB%87nh-sudo/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/%C4%91i%E1%BB%81u-g%C3%AC-x%E1%BA%A3y-ra-khi-b%E1%BA%A1n-s%E1%BB%AD-d%E1%BB%A5ng-l%E1%BB%87nh-sudo/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/%C4%91i%E1%BB%81u-g%C3%AC-x%E1%BA%A3y-ra-khi-b%E1%BA%A1n-s%E1%BB%AD-d%E1%BB%A5ng-l%E1%BB%87nh-sudo/</guid>
         <description>&lt;p&gt;Khi bạn gõ &lt;code&gt;sudo apt update&lt;/code&gt;, không đơn giản là hệ thống &amp;ldquo;bật công tắc&amp;rdquo; quyền admin. Đó là một chuỗi các thao tác kiểm tra nghiêm ngặt, thay đổi định danh (Identity) và làm sạch môi trường.&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;Trước khi tìm hiểu về &lt;strong&gt;Sudo&lt;/strong&gt;, bạn nên hiểu về Điều gì sảy ra sau khi sử dụng Command (non-sudo) tại &lt;a href=&#34;https://blog.nagih.io.vn/posts/linux/system-calls/&#34;&gt;System Calls&lt;/a&gt;
+&lt;p&gt;Trước khi tìm hiểu về &lt;strong&gt;Sudo&lt;/strong&gt;, bạn nên hiểu về Điều gì sảy ra sau khi sử dụng Command (non-sudo) tại &lt;a href=&#34;https://nagih.nooblearn2code.com/posts/linux/system-calls/&#34;&gt;System Calls&lt;/a&gt;
 &lt;/p&gt;
 &lt;h3 id=&#34;giai-đoạn-1-tại-shell-user-space&#34;&gt;Giai đoạn 1: Tại Shell (User Space)
 &lt;/h3&gt;&lt;p&gt;Ngay khi bạn nhấn Enter, Shell (Bash/Zsh) của bạn bắt đầu làm việc:&lt;/p&gt;
@@ -5923,10 +5923,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Inode trong Linux File System</title>
-        <link>https://blog.nagih.io.vn/p/inode-trong-linux-file-system/</link>
+        <link>https://nagih.nooblearn2code.com/p/inode-trong-linux-file-system/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/inode-trong-linux-file-system/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/inode-trong-linux-file-system/</guid>
         <description>&lt;p&gt;&lt;strong&gt;Inode&lt;/strong&gt; (viết tắt của &lt;strong&gt;Index Node&lt;/strong&gt;) là một khái niệm cốt lõi và cực kỳ quan trọng trong các hệ thống tập tin (filesystem) của Linux và Unix.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Để hiểu đơn giản: Nếu coi dữ liệu của một file là &amp;ldquo;nội dung cuốn sách&amp;rdquo;, thì &lt;strong&gt;Inode&lt;/strong&gt; chính là &amp;ldquo;thẻ mục lục&amp;rdquo; của cuốn sách đó trong thư viện.&lt;/p&gt;
@@ -6065,10 +6065,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Linux File System</title>
-        <link>https://blog.nagih.io.vn/p/linux-file-system/</link>
+        <link>https://nagih.nooblearn2code.com/p/linux-file-system/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/linux-file-system/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/linux-file-system/</guid>
         <description>&lt;hr&gt;
 &lt;h3 id=&#34;1-everything-is-a-file&#34;&gt;1. &amp;ldquo;Everything is a file&amp;rdquo;
 &lt;/h3&gt;&lt;p&gt;Trong Linux, mọi thứ đều là tập tin (hoặc được biểu diễn như một tập tin):&lt;/p&gt;
@@ -6353,15 +6353,15 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
 &lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/inode.md/&#34;&gt;Inode trong Linux File System&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/inode.md/&#34;&gt;Inode trong Linux File System&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/linux/system-calls/&#34;&gt;Điều gì sẽ xảy ra sau khi Command được gửi đi trên Linux&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/linux/system-calls/&#34;&gt;Điều gì sẽ xảy ra sau khi Command được gửi đi trên Linux&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/sudo.md/&#34;&gt;Điều gì sẽ xảy ra sau khi sử dụng Sudo&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/sudo.md/&#34;&gt;Điều gì sẽ xảy ra sau khi sử dụng Sudo&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -6369,10 +6369,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Netstat - Công cụ giám sát Networking</title>
-        <link>https://blog.nagih.io.vn/p/netstat-c%C3%B4ng-c%E1%BB%A5-gi%C3%A1m-s%C3%A1t-networking/</link>
+        <link>https://nagih.nooblearn2code.com/p/netstat-c%C3%B4ng-c%E1%BB%A5-gi%C3%A1m-s%C3%A1t-networking/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/netstat-c%C3%B4ng-c%E1%BB%A5-gi%C3%A1m-s%C3%A1t-networking/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/netstat-c%C3%B4ng-c%E1%BB%A5-gi%C3%A1m-s%C3%A1t-networking/</guid>
         <description>&lt;p&gt;&lt;strong&gt;Netstat&lt;/strong&gt; là công cụ dòng lệnh dùng để hiển thị chi tiết các kết nối mạng (TCP/UDP), bảng định tuyến và các cổng đang lắng nghe, giúp quản trị viên giám sát và xử lý sự cố hệ thống.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;1-tư-duy-cốt-lõi-tại-sao-cần-netstat&#34;&gt;1. Tư duy cốt lõi: Tại sao cần Netstat?
@@ -6650,10 +6650,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Hướng dẫn backup database postgres trong container và sử dụng trong server mới</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-backup-database-postgres-trong-container-v%C3%A0-s%E1%BB%AD-d%E1%BB%A5ng-trong-server-m%E1%BB%9Bi/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-backup-database-postgres-trong-container-v%C3%A0-s%E1%BB%AD-d%E1%BB%A5ng-trong-server-m%E1%BB%9Bi/</link>
         <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-backup-database-postgres-trong-container-v%C3%A0-s%E1%BB%AD-d%E1%BB%A5ng-trong-server-m%E1%BB%9Bi/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-backup-database-postgres-trong-container-v%C3%A0-s%E1%BB%AD-d%E1%BB%A5ng-trong-server-m%E1%BB%9Bi/</guid>
         <description>&lt;hr&gt;
 &lt;h2 id=&#34;bước-1-backup-database-tại-server-cũ&#34;&gt;Bước 1: Backup Database tại Server cũ
 &lt;/h2&gt;&lt;p&gt;Sử dụng &lt;code&gt;pg_dump&lt;/code&gt;&lt;/p&gt;
@@ -6693,10 +6693,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Hướng dẫn cấu hình Nginx làm Reverse Proxy kết hợp Certbot thông qua Docker</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%E1%BA%A5u-h%C3%ACnh-nginx-l%C3%A0m-reverse-proxy-k%E1%BA%BFt-h%E1%BB%A3p-certbot-th%C3%B4ng-qua-docker/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%E1%BA%A5u-h%C3%ACnh-nginx-l%C3%A0m-reverse-proxy-k%E1%BA%BFt-h%E1%BB%A3p-certbot-th%C3%B4ng-qua-docker/</link>
         <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%E1%BA%A5u-h%C3%ACnh-nginx-l%C3%A0m-reverse-proxy-k%E1%BA%BFt-h%E1%BB%A3p-certbot-th%C3%B4ng-qua-docker/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%E1%BA%A5u-h%C3%ACnh-nginx-l%C3%A0m-reverse-proxy-k%E1%BA%BFt-h%E1%BB%A3p-certbot-th%C3%B4ng-qua-docker/</guid>
         <description>&lt;p&gt;Hướng dẫn xây dựng mô hình &lt;strong&gt;Nginx làm Reverse Proxy&lt;/strong&gt; kết hợp với &lt;strong&gt;Certbot&lt;/strong&gt; theo mô hình &lt;strong&gt;Sidecar&lt;/strong&gt; (hoặc chạy định kỳ) để quản lý SSL.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Dưới đây là hướng dẫn triển khai theo chuẩn &lt;strong&gt;Infrastructure as Code (IaC)&lt;/strong&gt;. Toàn bộ cấu hình nằm trong file, có thể đẩy lên Git.&lt;/p&gt;
@@ -7044,10 +7044,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Những điều cần làm ngay sau khi sở hữu 1 server Linux (VPS, Cloud)</title>
-        <link>https://blog.nagih.io.vn/p/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</link>
+        <link>https://nagih.nooblearn2code.com/p/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</link>
         <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-l%C3%A0m-ngay-sau-khi-s%E1%BB%9F-h%E1%BB%AFu-1-server-linux-vps-cloud/</guid>
         <description>&lt;hr&gt;
 &lt;h3 id=&#34;1-tạo-user-thường--tắt-ssh-root&#34;&gt;1. &lt;strong&gt;Tạo user thường + tắt SSH root&lt;/strong&gt;
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -7747,10 +7747,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Tất cả các commands quản lý quan trọng trên linux</title>
-        <link>https://blog.nagih.io.vn/p/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</link>
+        <link>https://nagih.nooblearn2code.com/p/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</link>
         <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-commands-qu%E1%BA%A3n-l%C3%BD-quan-tr%E1%BB%8Dng-tr%C3%AAn-linux/</guid>
         <description>&lt;hr&gt;
 &lt;h2 id=&#34;1-user-management-command&#34;&gt;1. &lt;strong&gt;User&lt;/strong&gt; management command
 &lt;/h2&gt;&lt;h3 id=&#34;useradd&#34;&gt;&lt;strong&gt;useradd&lt;/strong&gt;
@@ -8102,10 +8102,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Hướng dẫn thiết lập Network Bridge giữa máy Host và máy ảo</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-network-bridge-gi%E1%BB%AFa-m%C3%A1y-host-v%C3%A0-m%C3%A1y-%E1%BA%A3o/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-network-bridge-gi%E1%BB%AFa-m%C3%A1y-host-v%C3%A0-m%C3%A1y-%E1%BA%A3o/</link>
         <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-network-bridge-gi%E1%BB%AFa-m%C3%A1y-host-v%C3%A0-m%C3%A1y-%E1%BA%A3o/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-network-bridge-gi%E1%BB%AFa-m%C3%A1y-host-v%C3%A0-m%C3%A1y-%E1%BA%A3o/</guid>
         <description>&lt;p&gt;&lt;strong&gt;bridged network&lt;/strong&gt; là phương pháp chuyên nghiệp và linh hoạt nhất cho máy chủ ảo, vì nó cho phép máy ảo của bạn hoạt động như một thiết bị vật lý thực thụ trên mạng của bạn.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;tổng-quan-workflow&#34;&gt;Tổng quan Workflow
@@ -8411,10 +8411,10 @@ Thêm dòng sau vào phần &lt;code&gt;command&lt;/code&gt;:&lt;/p&gt;
         </item>
         <item>
         <title>Hướng dẫn sửa lỗi Docker Stats không hiển thị mức sử dụng memory</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-docker-stats-kh%C3%B4ng-hi%E1%BB%83n-th%E1%BB%8B-m%E1%BB%A9c-s%E1%BB%AD-d%E1%BB%A5ng-memory/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-docker-stats-kh%C3%B4ng-hi%E1%BB%83n-th%E1%BB%8B-m%E1%BB%A9c-s%E1%BB%AD-d%E1%BB%A5ng-memory/</link>
         <pubDate>Sun, 02 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-docker-stats-kh%C3%B4ng-hi%E1%BB%83n-th%E1%BB%8B-m%E1%BB%A9c-s%E1%BB%AD-d%E1%BB%A5ng-memory/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-docker-stats-kh%C3%B4ng-hi%E1%BB%83n-th%E1%BB%8B-m%E1%BB%A9c-s%E1%BB%AD-d%E1%BB%A5ng-memory/</guid>
         <description>&lt;p&gt;Việc lệnh &lt;code&gt;docker stats&lt;/code&gt; không hiển thị thông tin về bộ nhớ (MEM USAGE / LIMIT) cho các container là một sự cố khá phổ biến. Nguyên nhân chính thường liên quan đến tính năng theo dõi bộ nhớ của &lt;code&gt;cgroups&lt;/code&gt; chưa được kích hoạt.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Việc lệnh &lt;code&gt;docker stats&lt;/code&gt; không hiển thị thông tin về bộ nhớ (MEM USAGE / LIMIT) cho các container là một sự cố khá phổ biến. Nguyên nhân chính thường liên quan đến tính năng theo dõi bộ nhớ của &lt;code&gt;cgroups&lt;/code&gt; chưa được kích hoạt.&lt;/p&gt;
@@ -8471,10 +8471,10 @@ WARNING: No swap limit support&lt;/p&gt;
         </item>
         <item>
         <title>Hướng dẫn setup cloudflared tunnel cơ bản</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</link>
         <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-cloudflared-tunnel-c%C6%A1-b%E1%BA%A3n/</guid>
         <description>&lt;p&gt;Thiết lập Cloudflare Tunnel là một bước nâng cao cực kỳ mạnh mẽ cho server của bạn. Nó giúp bạn phơi bày (expose) các dịch vụ đang chạy trên server ra internet một cách an toàn mà không cần mở bất kỳ cổng nào trên &lt;strong&gt;Firewall&lt;/strong&gt;.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;mục-tiêu&#34;&gt;&lt;strong&gt;Mục tiêu:&lt;/strong&gt;
@@ -8912,10 +8912,10 @@ WARNING: No swap limit support&lt;/p&gt;
         </item>
         <item>
         <title>Kĩ thuật backup dữ liệu Database định kỳ</title>
-        <link>https://blog.nagih.io.vn/p/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</link>
+        <link>https://nagih.nooblearn2code.com/p/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</link>
         <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/k%C4%A9-thu%E1%BA%ADt-backup-d%E1%BB%AF-li%E1%BB%87u-database-%C4%91%E1%BB%8Bnh-k%E1%BB%B3/</guid>
         <description>&lt;p&gt;Kỹ thuật backup database định kỳ là một kỹ năng cực kỳ quan trọng đối với bất kỳ ai làm DevOps. Một chiến lược backup tốt sẽ giúp bạn cứu sống cả hệ thống khi có sự cố.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;i-các-nguyên-tắc-vàng&#34;&gt;I. Các Nguyên Tắc Vàng
@@ -9397,10 +9397,10 @@ WARNING: No swap limit support&lt;/p&gt;
         </item>
         <item>
         <title>Hướng dẫn setup môi trường server cơ bản chạy web và các dịch vụ nền cho Raspberry Pi (Debian)</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</link>
         <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-server-c%C6%A1-b%E1%BA%A3n-ch%E1%BA%A1y-web-v%C3%A0-c%C3%A1c-d%E1%BB%8Bch-v%E1%BB%A5-n%E1%BB%81n-cho-raspberry-pi-debian/</guid>
         <description>&lt;hr&gt;
 &lt;h2 id=&#34;phase-1-server-initialization--basic-configuration&#34;&gt;Phase 1: Server Initialization &amp;amp; Basic Configuration
 &lt;/h2&gt;&lt;h3 id=&#34;1-first-connect&#34;&gt;1. First Connect
@@ -9547,16 +9547,16 @@ WARNING: No swap limit support&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo reboot
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;cloudflared-tunnel-workflow&#34;&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/workflow/cloudflared-tunnel-workflow/&#34;&gt;Cloudflared Tunnel Workflow&lt;/a&gt;
+&lt;/div&gt;&lt;h3 id=&#34;cloudflared-tunnel-workflow&#34;&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/workflow/cloudflared-tunnel-workflow/&#34;&gt;Cloudflared Tunnel Workflow&lt;/a&gt;
 
 &lt;/h3&gt;</description>
         </item>
         <item>
         <title>Tổng quan về TCP</title>
-        <link>https://blog.nagih.io.vn/p/t%E1%BB%95ng-quan-v%E1%BB%81-tcp/</link>
+        <link>https://nagih.nooblearn2code.com/p/t%E1%BB%95ng-quan-v%E1%BB%81-tcp/</link>
         <pubDate>Mon, 13 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/t%E1%BB%95ng-quan-v%E1%BB%81-tcp/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/t%E1%BB%95ng-quan-v%E1%BB%81-tcp/</guid>
         <description>&lt;p&gt;&lt;strong&gt;Transmission Control Protocol&lt;/strong&gt; (Giao thức điều khiển truyền vận), là một giao thức cốt lõi trong bộ giao thức Internet (TCP/IP)&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;tcp-là-gì&#34;&gt;TCP là gì?
@@ -9675,10 +9675,10 @@ WARNING: No swap limit support&lt;/p&gt;
         </item>
         <item>
         <title>Tổng quan về mô hình OSI</title>
-        <link>https://blog.nagih.io.vn/p/t%E1%BB%95ng-quan-v%E1%BB%81-m%C3%B4-h%C3%ACnh-osi/</link>
+        <link>https://nagih.nooblearn2code.com/p/t%E1%BB%95ng-quan-v%E1%BB%81-m%C3%B4-h%C3%ACnh-osi/</link>
         <pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/t%E1%BB%95ng-quan-v%E1%BB%81-m%C3%B4-h%C3%ACnh-osi/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/t%E1%BB%95ng-quan-v%E1%BB%81-m%C3%B4-h%C3%ACnh-osi/</guid>
         <description>&lt;p&gt;Open Systems Interconnection - OSI là một khung khái niệm chia các chức năng truyền thông mạng thành 7 lớp hay 7 tầng riêng biệt. Được phát triển bởi Tổ chức Tiêu chuẩn hóa Quốc tế (ISO)&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;cấu-trúc-7-tầng-của-mô-hình-osi&#34;&gt;Cấu trúc 7 tầng của mô hình OSI
@@ -9867,10 +9867,10 @@ WARNING: No swap limit support&lt;/p&gt;
         </item>
         <item>
         <title>Hướng dẫn tạo USB Boot Windows trên Linux</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%E1%BA%A1o-usb-boot-windows-tr%C3%AAn-linux/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%E1%BA%A1o-usb-boot-windows-tr%C3%AAn-linux/</link>
         <pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%E1%BA%A1o-usb-boot-windows-tr%C3%AAn-linux/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%E1%BA%A1o-usb-boot-windows-tr%C3%AAn-linux/</guid>
         <description>&lt;p&gt;Có một số cách để tạo USB boot Windows trên Linux. Đây là phương pháp phổ biến nhất:&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;sử-dụng-woeusb-ng&#34;&gt;Sử dụng WoeUSB-ng
@@ -9947,11 +9947,11 @@ WARNING: No swap limit support&lt;/p&gt;
         </item>
         <item>
         <title>Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-authorized-khi-ssh-v%C3%A0o-raspberry-pi/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-authorized-khi-ssh-v%C3%A0o-raspberry-pi/</link>
         <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-authorized-khi-ssh-v%C3%A0o-raspberry-pi/</guid>
-        <description>&lt;img src="https://blog.nagih.io.vn/image-placeholder.png" alt="Featured image of post Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi" /&gt;&lt;p&gt;Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi&lt;/p&gt;
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-authorized-khi-ssh-v%C3%A0o-raspberry-pi/</guid>
+        <description>&lt;img src="https://nagih.nooblearn2code.com/image-placeholder.png" alt="Featured image of post Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi" /&gt;&lt;p&gt;Hướng dẫn sửa lỗi authorized khi SSH vào raspberry pi&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;sửa-trực-tiếp-trên-thẻ-nhớ&#34;&gt;Sửa trực tiếp trên Thẻ nhớ
 &lt;/h2&gt;&lt;ul&gt;
@@ -9977,10 +9977,10 @@ WARNING: No swap limit support&lt;/p&gt;
         </item>
         <item>
         <title>Các vấn đề về Internet và cách khắc phục</title>
-        <link>https://blog.nagih.io.vn/p/c%C3%A1c-v%E1%BA%A5n-%C4%91%E1%BB%81-v%E1%BB%81-internet-v%C3%A0-c%C3%A1ch-kh%E1%BA%AFc-ph%E1%BB%A5c/</link>
+        <link>https://nagih.nooblearn2code.com/p/c%C3%A1c-v%E1%BA%A5n-%C4%91%E1%BB%81-v%E1%BB%81-internet-v%C3%A0-c%C3%A1ch-kh%E1%BA%AFc-ph%E1%BB%A5c/</link>
         <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/c%C3%A1c-v%E1%BA%A5n-%C4%91%E1%BB%81-v%E1%BB%81-internet-v%C3%A0-c%C3%A1ch-kh%E1%BA%AFc-ph%E1%BB%A5c/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/c%C3%A1c-v%E1%BA%A5n-%C4%91%E1%BB%81-v%E1%BB%81-internet-v%C3%A0-c%C3%A1ch-kh%E1%BA%AFc-ph%E1%BB%A5c/</guid>
         <description>&lt;p&gt;Các vấn đề về kết nối Internet phổ biến và cách khắc phục chi tiết&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;i-chuẩn-đoán-vấn-đề&#34;&gt;I. CHUẨN ĐOÁN VẤN ĐỀ
@@ -10607,29 +10607,29 @@ WARNING: No swap limit support&lt;/p&gt;
         </item>
         <item>
         <title>Mẫu Documentation cho Backend</title>
-        <link>https://blog.nagih.io.vn/p/m%E1%BA%ABu-documentation-cho-backend/</link>
+        <link>https://nagih.nooblearn2code.com/p/m%E1%BA%ABu-documentation-cho-backend/</link>
         <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/m%E1%BA%ABu-documentation-cho-backend/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/m%E1%BA%ABu-documentation-cho-backend/</guid>
         <description>&lt;p&gt;Chia sẻ mẫu Documentation cho lập trình viên Backend&lt;/p&gt;
 &lt;h1 id=&#34;e-library-management-system---backend-documentation&#34;&gt;E-Library Management System - Backend Documentation
 &lt;/h1&gt;&lt;h2 id=&#34;-table-of-contents&#34;&gt;📋 Table of Contents
 &lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#system-overview/&#34;&gt;System Overview&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#system-overview/&#34;&gt;System Overview&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#architecture/&#34;&gt;Architecture&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#architecture/&#34;&gt;Architecture&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#api-documentation/&#34;&gt;API Documentation&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#api-documentation/&#34;&gt;API Documentation&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#database-schema/&#34;&gt;Database Schema&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#database-schema/&#34;&gt;Database Schema&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#authentication--security/&#34;&gt;Authentication &amp;amp; Security&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#authentication--security/&#34;&gt;Authentication &amp;amp; Security&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#setup--deployment/&#34;&gt;Setup &amp;amp; Deployment&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#setup--deployment/&#34;&gt;Setup &amp;amp; Deployment&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#testing/&#34;&gt;Testing&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#testing/&#34;&gt;Testing&lt;/a&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.nagih.io.vn/#monitoring--logging/&#34;&gt;Monitoring &amp;amp; Logging&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/#monitoring--logging/&#34;&gt;Monitoring &amp;amp; Logging&lt;/a&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
@@ -11962,24 +11962,24 @@ WARNING: No swap limit support&lt;/p&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;-support--contact&#34;&gt;📞 Support &amp;amp; Contact
-&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Development Team&lt;/strong&gt;: &lt;a href=&#34;https://blog.nagih.io.vn/mailto:backend-team@company.com/&#34;&gt;backend-team@company.com&lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Development Team&lt;/strong&gt;: &lt;a href=&#34;https://nagih.nooblearn2code.com/mailto:backend-team@company.com/&#34;&gt;backend-team@company.com&lt;/a&gt;
 &lt;br&gt;
-&lt;strong&gt;DevOps Team&lt;/strong&gt;: &lt;a href=&#34;https://blog.nagih.io.vn/mailto:devops@company.com/&#34;&gt;devops@company.com&lt;/a&gt;
+&lt;strong&gt;DevOps Team&lt;/strong&gt;: &lt;a href=&#34;https://nagih.nooblearn2code.com/mailto:devops@company.com/&#34;&gt;devops@company.com&lt;/a&gt;
 &lt;br&gt;
-&lt;strong&gt;Documentation&lt;/strong&gt;: &lt;a href=&#34;https://blog.nagih.io.vn/https://docs.elibrary.com/&#34;&gt;https://docs.elibrary.com&lt;/a&gt;
+&lt;strong&gt;Documentation&lt;/strong&gt;: &lt;a href=&#34;https://nagih.nooblearn2code.com/https://docs.elibrary.com/&#34;&gt;https://docs.elibrary.com&lt;/a&gt;
 &lt;br&gt;
-&lt;strong&gt;Issue Tracker&lt;/strong&gt;: &lt;a href=&#34;https://blog.nagih.io.vn/https://github.com/company/elibrary-backend/issues/&#34;&gt;https://github.com/company/elibrary-backend/issues&lt;/a&gt;
+&lt;strong&gt;Issue Tracker&lt;/strong&gt;: &lt;a href=&#34;https://nagih.nooblearn2code.com/https://github.com/company/elibrary-backend/issues/&#34;&gt;https://github.com/company/elibrary-backend/issues&lt;/a&gt;
 &lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;em&gt;Last updated: September 16, 2025&lt;/em&gt;&lt;/p&gt;</description>
         </item>
         <item>
         <title>Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-qu%E1%BA%A3n-l%C3%BD-nhi%E1%BB%81u-kh%C3%B3a-ssh-tr%C3%AAn-1-thi%E1%BA%BFt-b%E1%BB%8B/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-qu%E1%BA%A3n-l%C3%BD-nhi%E1%BB%81u-kh%C3%B3a-ssh-tr%C3%AAn-1-thi%E1%BA%BFt-b%E1%BB%8B/</link>
         <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-qu%E1%BA%A3n-l%C3%BD-nhi%E1%BB%81u-kh%C3%B3a-ssh-tr%C3%AAn-1-thi%E1%BA%BFt-b%E1%BB%8B/</guid>
-        <description>&lt;img src="https://blog.nagih.io.vn/thumb/ssh" alt="Featured image of post Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị" /&gt;&lt;p&gt;biến SSH từ một công cụ kết nối đơn thuần thành một hệ thống quản lý danh tính hiệu quả&lt;/p&gt;
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-qu%E1%BA%A3n-l%C3%BD-nhi%E1%BB%81u-kh%C3%B3a-ssh-tr%C3%AAn-1-thi%E1%BA%BFt-b%E1%BB%8B/</guid>
+        <description>&lt;img src="https://nagih.nooblearn2code.com/thumb/ssh" alt="Featured image of post Hướng dẫn quản lý nhiều khóa SSH trên 1 thiết bị" /&gt;&lt;p&gt;biến SSH từ một công cụ kết nối đơn thuần thành một hệ thống quản lý danh tính hiệu quả&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;giới-thiệu-sshconfig&#34;&gt;Giới thiệu &lt;code&gt;~/.ssh/config&lt;/code&gt;
 &lt;/h2&gt;&lt;p&gt;File &lt;code&gt;~/.ssh/config&lt;/code&gt; cho phép bạn tạo các bí danh (alias) và các quy tắc kết nối cụ thể cho từng máy chủ. Thay vì phải gõ các lệnh dài dòng với các tùy chọn phức tạp, bạn có thể định nghĩa tất cả trong file này. Cấu trúc của file bao gồm các khối &lt;code&gt;Host&lt;/code&gt;, mỗi khối chứa các chỉ thị áp dụng cho host đó.&lt;/p&gt;
@@ -12088,11 +12088,11 @@ Sử dụng lệnh git remote set-url để cập nhật URL của remote origin
         </item>
         <item>
         <title>Hướng dẫn thiết lập khóa SSH cho github</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</link>
         <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</guid>
-        <description>&lt;img src="https://blog.nagih.io.vn/thumb/setup-ssh.png" alt="Featured image of post Hướng dẫn thiết lập khóa SSH cho github" /&gt;&lt;hr&gt;
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-kh%C3%B3a-ssh-cho-github/</guid>
+        <description>&lt;img src="https://nagih.nooblearn2code.com/thumb/setup-ssh.png" alt="Featured image of post Hướng dẫn thiết lập khóa SSH cho github" /&gt;&lt;hr&gt;
 &lt;h2 id=&#34;bước-1-tạo-cặp-khóa-ssh-với-ssh-keygen&#34;&gt;Bước 1: Tạo Cặp Khóa SSH với &lt;code&gt;ssh-keygen&lt;/code&gt;
 &lt;/h2&gt;&lt;h3 id=&#34;thuật-toán-mã-hóa&#34;&gt;Thuật toán Mã hóa
 &lt;/h3&gt;&lt;ul&gt;
@@ -12263,11 +12263,11 @@ Sử dụng lệnh git remote set-url để cập nhật URL của remote origin
         </item>
         <item>
         <title>Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-s%E1%BB%B1-c%E1%BB%91-v%C3%A0-c%C3%A1c-l%E1%BB%97i-th%C6%B0%E1%BB%9Dng-g%E1%BA%B7p-khi-thi%E1%BA%BFt-l%E1%BA%ADp-ssh/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-s%E1%BB%B1-c%E1%BB%91-v%C3%A0-c%C3%A1c-l%E1%BB%97i-th%C6%B0%E1%BB%9Dng-g%E1%BA%B7p-khi-thi%E1%BA%BFt-l%E1%BA%ADp-ssh/</link>
         <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-s%E1%BB%B1-c%E1%BB%91-v%C3%A0-c%C3%A1c-l%E1%BB%97i-th%C6%B0%E1%BB%9Dng-g%E1%BA%B7p-khi-thi%E1%BA%BFt-l%E1%BA%ADp-ssh/</guid>
-        <description>&lt;img src="https://blog.nagih.io.vn/thumb/ssh-error.png" alt="Featured image of post Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH" /&gt;&lt;p&gt;Ngay cả với một thiết lập cẩn thận, các vấn đề vẫn có thể phát sinh. Việc hiểu rõ cách chẩn đoán và khắc phục các lỗi SSH phổ biến là một kỹ năng quan trọng.&lt;/p&gt;
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-s%E1%BB%B1-c%E1%BB%91-v%C3%A0-c%C3%A1c-l%E1%BB%97i-th%C6%B0%E1%BB%9Dng-g%E1%BA%B7p-khi-thi%E1%BA%BFt-l%E1%BA%ADp-ssh/</guid>
+        <description>&lt;img src="https://nagih.nooblearn2code.com/thumb/ssh-error.png" alt="Featured image of post Hướng dẫn xử lý sự cố và các lỗi thường gặp khi thiết lập SSH" /&gt;&lt;p&gt;Ngay cả với một thiết lập cẩn thận, các vấn đề vẫn có thể phát sinh. Việc hiểu rõ cách chẩn đoán và khắc phục các lỗi SSH phổ biến là một kỹ năng quan trọng.&lt;/p&gt;
 &lt;h2 id=&#34;chế-độ-verbose&#34;&gt;Chế độ Verbose
 &lt;/h2&gt;&lt;p&gt;Trước khi thử bất kỳ giải pháp nào, bước đầu tiên luôn là thu thập thêm thông tin. Tùy chọn &lt;code&gt;-v&lt;/code&gt; (verbose) của lệnh &lt;code&gt;ssh&lt;/code&gt; sẽ in ra chi tiết quá trình kết nối, cho bạn biết file cấu hình nào đang được đọc, khóa nào đang được thử, và chính xác lỗi xảy ra ở đâu.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -12429,10 +12429,10 @@ Sử dụng lệnh git remote set-url để cập nhật URL của remote origin
         </item>
         <item>
         <title>SSH - Github</title>
-        <link>https://blog.nagih.io.vn/p/ssh-github/</link>
+        <link>https://nagih.nooblearn2code.com/p/ssh-github/</link>
         <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/ssh-github/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/ssh-github/</guid>
         <description>&lt;p&gt;Những hạn chế của xác thực qua HTTPS và sự thay thế SSH&lt;/p&gt;
 &lt;p&gt;Trong hệ sinh thái phát triển phần mềm hiện đại, GitHub không chỉ là một kho lưu trữ mã nguồn mà còn là trung tâm cộng tác, quản lý dự án và triển khai ứng dụng. Việc tương tác hiệu quả và an toàn với nền tảng này là một kỹ năng cơ bản đối với mọi nhà phát triển. Mặc dù HTTPS cung cấp một phương thức kết nối ban đầu đơn giản, việc chuyển sang sử dụng giao thức SSH (Secure Shell) là một bước tiến quan trọng, không chỉ nâng cao đáng kể mức độ bảo mật mà còn tối ưu hóa quy trình làm việc hàng ngày.&lt;/p&gt;
 &lt;h3 id=&#34;1-những-hạn-chế-của-xác-thực-qua-https&#34;&gt;1. Những Hạn Chế của Xác thực qua HTTPS
@@ -12479,11 +12479,11 @@ Sử dụng lệnh git remote set-url để cập nhật URL của remote origin
         </item>
         <item>
         <title>Hướng dẫn tùy biến phân vùng EFI khi cài windows</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</link>
         <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</guid>
-        <description>&lt;img src="https://blog.nagih.io.vn/images/image-placeholder.png" alt="Featured image of post Hướng dẫn tùy biến phân vùng EFI khi cài windows" /&gt;&lt;p&gt;Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI&lt;/p&gt;
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%B9y-bi%E1%BA%BFn-ph%C3%A2n-v%C3%B9ng-efi-khi-c%C3%A0i-windows/</guid>
+        <description>&lt;img src="https://nagih.nooblearn2code.com/images/image-placeholder.png" alt="Featured image of post Hướng dẫn tùy biến phân vùng EFI khi cài windows" /&gt;&lt;p&gt;Thông thường khi cài windows, mặc định sẽ tự tạo phân vùng Boot EFI 512MB, bài viết này sẽ hướng dẫn bạn cách tùy biến size phân vùng EFI&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;em&gt;Sử dụng Command Prompt trong quá trình cài đặt&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -12566,11 +12566,11 @@ Sử dụng lệnh git remote set-url để cập nhật URL của remote origin
         </item>
         <item>
         <title>REST và gRPC</title>
-        <link>https://blog.nagih.io.vn/p/rest-v%C3%A0-grpc/</link>
+        <link>https://nagih.nooblearn2code.com/p/rest-v%C3%A0-grpc/</link>
         <pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/rest-v%C3%A0-grpc/</guid>
-        <description>&lt;img src="https://blog.nagih.io.vn/image-placeholder.png" alt="Featured image of post REST và gRPC" /&gt;&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại | Rest &amp;amp; gRPC&lt;/p&gt;
+        <guid>https://nagih.nooblearn2code.com/p/rest-v%C3%A0-grpc/</guid>
+        <description>&lt;img src="https://nagih.nooblearn2code.com/image-placeholder.png" alt="Featured image of post REST và gRPC" /&gt;&lt;p&gt;Phân Tích về Kiến Trúc API Hiện Đại | Rest &amp;amp; gRPC&lt;/p&gt;
 &lt;h2 id=&#34;giới-thiệu&#34;&gt;Giới thiệu
 &lt;/h2&gt;&lt;p&gt;REST, với tư cách là một kiểu kiến trúc, đã định hình nên các API web trong hơn hai thập kỷ, trở thành tiêu chuẩn de facto nhờ tính linh hoạt và khả năng tiếp cận phổ quát. Mặt khác, gRPC, một framework mã nguồn mở hiệu suất cao do Google phát triển, nổi lên như một giải pháp được thiết kế đặc biệt cho kỷ nguyên microservice, nơi hiệu suất, độ trễ thấp và các hợp đồng dịch vụ nghiêm ngặt là tối quan trọng.&lt;/p&gt;
 &lt;h2 id=&#34;rest&#34;&gt;REST
@@ -12740,11 +12740,11 @@ Sử dụng lệnh git remote set-url để cập nhật URL của remote origin
         </item>
         <item>
         <title>6 Level Deploy</title>
-        <link>https://blog.nagih.io.vn/p/6-level-deploy/</link>
+        <link>https://nagih.nooblearn2code.com/p/6-level-deploy/</link>
         <pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/6-level-deploy/</guid>
-        <description>&lt;img src="https://blog.nagih.io.vn/images/image-placeholder.png" alt="Featured image of post 6 Level Deploy" /&gt;&lt;p&gt;6 Cấp Độ Trưởng Thành Từ Deploy Thủ Công Đến Vận Hành Tinh Gọn&lt;/p&gt;
+        <guid>https://nagih.nooblearn2code.com/p/6-level-deploy/</guid>
+        <description>&lt;img src="https://nagih.nooblearn2code.com/images/image-placeholder.png" alt="Featured image of post 6 Level Deploy" /&gt;&lt;p&gt;6 Cấp Độ Trưởng Thành Từ Deploy Thủ Công Đến Vận Hành Tinh Gọn&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;level-0-deploy-thủ-công&#34;&gt;Level 0: Deploy Thủ Công
 &lt;/h2&gt;&lt;h3 id=&#34;công-cụ-và-quy-trình&#34;&gt;Công cụ và Quy trình
@@ -13022,11 +13022,11 @@ Sử dụng lệnh git remote set-url để cập nhật URL của remote origin
         </item>
         <item>
         <title>9 MySQL Table Design Rules &amp; Skills</title>
-        <link>https://blog.nagih.io.vn/p/9-mysql-table-design-rules-skills/</link>
+        <link>https://nagih.nooblearn2code.com/p/9-mysql-table-design-rules-skills/</link>
         <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/9-mysql-table-design-rules-skills/</guid>
-        <description>&lt;img src="https://blog.nagih.io.vn/images/image-placeholder.png" alt="Featured image of post 9 MySQL Table Design Rules &amp; Skills" /&gt;&lt;p&gt;9 nguyên tắc cốt lõi và một số kỹ năng mở rộng khi khởi tạo bảng trong MySQL, đảm bảo ứng dụng không chỉ chạy đúng mà còn hiệu quả và dễ bảo trì&lt;/p&gt;
+        <guid>https://nagih.nooblearn2code.com/p/9-mysql-table-design-rules-skills/</guid>
+        <description>&lt;img src="https://nagih.nooblearn2code.com/images/image-placeholder.png" alt="Featured image of post 9 MySQL Table Design Rules &amp; Skills" /&gt;&lt;p&gt;9 nguyên tắc cốt lõi và một số kỹ năng mở rộng khi khởi tạo bảng trong MySQL, đảm bảo ứng dụng không chỉ chạy đúng mà còn hiệu quả và dễ bảo trì&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;1. Mọi Table Luôn Phải Có Các Column Mặc Định&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Một thiết kế table hoàn chỉnh cần có ít nhất 5 trường mặc định để theo dõi lịch sử và tính nhất quán của dữ liệu:&lt;/p&gt;
@@ -13149,11 +13149,11 @@ Sử dụng lệnh git remote set-url để cập nhật URL của remote origin
         </item>
         <item>
         <title>Các chính sách &#39;Dọn Dẹp&#39; Cache</title>
-        <link>https://blog.nagih.io.vn/p/c%C3%A1c-ch%C3%ADnh-s%C3%A1ch-d%E1%BB%8Dn-d%E1%BA%B9p-cache/</link>
+        <link>https://nagih.nooblearn2code.com/p/c%C3%A1c-ch%C3%ADnh-s%C3%A1ch-d%E1%BB%8Dn-d%E1%BA%B9p-cache/</link>
         <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/c%C3%A1c-ch%C3%ADnh-s%C3%A1ch-d%E1%BB%8Dn-d%E1%BA%B9p-cache/</guid>
-        <description>&lt;img src="https://blog.nagih.io.vn/image-placeholder.png" alt="Featured image of post Các chính sách &#39;Dọn Dẹp&#39; Cache" /&gt;&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;
+        <guid>https://nagih.nooblearn2code.com/p/c%C3%A1c-ch%C3%ADnh-s%C3%A1ch-d%E1%BB%8Dn-d%E1%BA%B9p-cache/</guid>
+        <description>&lt;img src="https://nagih.nooblearn2code.com/image-placeholder.png" alt="Featured image of post Các chính sách &#39;Dọn Dẹp&#39; Cache" /&gt;&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;các-chính-sách-dọn-dẹp&#34;&gt;Các Chính Sách &amp;ldquo;Dọn Dẹp&amp;rdquo;
 &lt;/h2&gt;&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;
@@ -13321,11 +13321,11 @@ Sử dụng lệnh git remote set-url để cập nhật URL của remote origin
         </item>
         <item>
         <title>Giới thiệu về Cache</title>
-        <link>https://blog.nagih.io.vn/p/gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-cache/</link>
+        <link>https://nagih.nooblearn2code.com/p/gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-cache/</link>
         <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-cache/</guid>
-        <description>&lt;img src="https://blog.nagih.io.vn/images/image-placeholder.png" alt="Featured image of post Giới thiệu về Cache" /&gt;&lt;p&gt;Nhiều người đã nghe về cache, có thể là &amp;ldquo;xóa cache trình duyệt&amp;rdquo; hay &amp;ldquo;cache của CPU&amp;rdquo;. Nhưng cache thực sự là gì? Nó hoạt động ra sao và tại sao nó lại quan trọng đến vậy?&lt;/p&gt;
+        <guid>https://nagih.nooblearn2code.com/p/gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-cache/</guid>
+        <description>&lt;img src="https://nagih.nooblearn2code.com/images/image-placeholder.png" alt="Featured image of post Giới thiệu về Cache" /&gt;&lt;p&gt;Nhiều người đã nghe về cache, có thể là &amp;ldquo;xóa cache trình duyệt&amp;rdquo; hay &amp;ldquo;cache của CPU&amp;rdquo;. Nhưng cache thực sự là gì? Nó hoạt động ra sao và tại sao nó lại quan trọng đến vậy?&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;cache-là-gì&#34;&gt;Cache Là Gì?
 &lt;/h2&gt;&lt;h3 id=&#34;câu-chuyện-về-thư-viện-và-chiếc-bàn-làm-việc&#34;&gt;Câu chuyện về Thư viện và Chiếc bàn làm việc

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>File on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/tags/file/</link>
+        <link>https://nagih.nooblearn2code.com/tags/file/</link>
         <description>Recent content in File on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/file/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/file/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Inode trong Linux File System</title>
-        <link>https://blog.nagih.io.vn/p/inode-trong-linux-file-system/</link>
+        <link>https://nagih.nooblearn2code.com/p/inode-trong-linux-file-system/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/inode-trong-linux-file-system/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/inode-trong-linux-file-system/</guid>
         <description>&lt;p&gt;&lt;strong&gt;Inode&lt;/strong&gt; (viết tắt của &lt;strong&gt;Index Node&lt;/strong&gt;) là một khái niệm cốt lõi và cực kỳ quan trọng trong các hệ thống tập tin (filesystem) của Linux và Unix.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Để hiểu đơn giản: Nếu coi dữ liệu của một file là &amp;ldquo;nội dung cuốn sách&amp;rdquo;, thì &lt;strong&gt;Inode&lt;/strong&gt; chính là &amp;ldquo;thẻ mục lục&amp;rdquo; của cuốn sách đó trong thư viện.&lt;/p&gt;
@@ -151,10 +151,10 @@
         </item>
         <item>
         <title>Linux File System</title>
-        <link>https://blog.nagih.io.vn/p/linux-file-system/</link>
+        <link>https://nagih.nooblearn2code.com/p/linux-file-system/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/linux-file-system/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/linux-file-system/</guid>
         <description>&lt;hr&gt;
 &lt;h3 id=&#34;1-everything-is-a-file&#34;&gt;1. &amp;ldquo;Everything is a file&amp;rdquo;
 &lt;/h3&gt;&lt;p&gt;Trong Linux, mọi thứ đều là tập tin (hoặc được biểu diễn như một tập tin):&lt;/p&gt;
@@ -439,15 +439,15 @@
 &lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/inode.md/&#34;&gt;Inode trong Linux File System&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/inode.md/&#34;&gt;Inode trong Linux File System&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/linux/system-calls/&#34;&gt;Điều gì sẽ xảy ra sau khi Command được gửi đi trên Linux&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/linux/system-calls/&#34;&gt;Điều gì sẽ xảy ra sau khi Command được gửi đi trên Linux&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/sudo.md/&#34;&gt;Điều gì sẽ xảy ra sau khi sử dụng Sudo&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/sudo.md/&#34;&gt;Điều gì sẽ xảy ra sau khi sử dụng Sudo&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;

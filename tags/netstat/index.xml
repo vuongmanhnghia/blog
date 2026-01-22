@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Netstat on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/tags/netstat/</link>
+        <link>https://nagih.nooblearn2code.com/tags/netstat/</link>
         <description>Recent content in Netstat on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/netstat/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/netstat/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Netstat - Công cụ giám sát Networking</title>
-        <link>https://blog.nagih.io.vn/p/netstat-c%C3%B4ng-c%E1%BB%A5-gi%C3%A1m-s%C3%A1t-networking/</link>
+        <link>https://nagih.nooblearn2code.com/p/netstat-c%C3%B4ng-c%E1%BB%A5-gi%C3%A1m-s%C3%A1t-networking/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/netstat-c%C3%B4ng-c%E1%BB%A5-gi%C3%A1m-s%C3%A1t-networking/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/netstat-c%C3%B4ng-c%E1%BB%A5-gi%C3%A1m-s%C3%A1t-networking/</guid>
         <description>&lt;p&gt;&lt;strong&gt;Netstat&lt;/strong&gt; là công cụ dòng lệnh dùng để hiển thị chi tiết các kết nối mạng (TCP/UDP), bảng định tuyến và các cổng đang lắng nghe, giúp quản trị viên giám sát và xử lý sự cố hệ thống.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;1-tư-duy-cốt-lõi-tại-sao-cần-netstat&#34;&gt;1. Tư duy cốt lõi: Tại sao cần Netstat?

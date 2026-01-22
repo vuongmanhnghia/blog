@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>OSI on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/tags/osi/</link>
+        <link>https://nagih.nooblearn2code.com/tags/osi/</link>
         <description>Recent content in OSI on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Sun, 12 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/osi/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 12 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/osi/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Tổng quan về mô hình OSI</title>
-        <link>https://blog.nagih.io.vn/p/t%E1%BB%95ng-quan-v%E1%BB%81-m%C3%B4-h%C3%ACnh-osi/</link>
+        <link>https://nagih.nooblearn2code.com/p/t%E1%BB%95ng-quan-v%E1%BB%81-m%C3%B4-h%C3%ACnh-osi/</link>
         <pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/t%E1%BB%95ng-quan-v%E1%BB%81-m%C3%B4-h%C3%ACnh-osi/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/t%E1%BB%95ng-quan-v%E1%BB%81-m%C3%B4-h%C3%ACnh-osi/</guid>
         <description>&lt;p&gt;Open Systems Interconnection - OSI là một khung khái niệm chia các chức năng truyền thông mạng thành 7 lớp hay 7 tầng riêng biệt. Được phát triển bởi Tổ chức Tiêu chuẩn hóa Quốc tế (ISO)&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;cấu-trúc-7-tầng-của-mô-hình-osi&#34;&gt;Cấu trúc 7 tầng của mô hình OSI

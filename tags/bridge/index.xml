@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Bridge on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/tags/bridge/</link>
+        <link>https://nagih.nooblearn2code.com/tags/bridge/</link>
         <description>Recent content in Bridge on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Mon, 10 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/bridge/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 10 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/bridge/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hướng dẫn thiết lập Network Bridge giữa máy Host và máy ảo</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-network-bridge-gi%E1%BB%AFa-m%C3%A1y-host-v%C3%A0-m%C3%A1y-%E1%BA%A3o/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-network-bridge-gi%E1%BB%AFa-m%C3%A1y-host-v%C3%A0-m%C3%A1y-%E1%BA%A3o/</link>
         <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-network-bridge-gi%E1%BB%AFa-m%C3%A1y-host-v%C3%A0-m%C3%A1y-%E1%BA%A3o/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-thi%E1%BA%BFt-l%E1%BA%ADp-network-bridge-gi%E1%BB%AFa-m%C3%A1y-host-v%C3%A0-m%C3%A1y-%E1%BA%A3o/</guid>
         <description>&lt;p&gt;&lt;strong&gt;bridged network&lt;/strong&gt; là phương pháp chuyên nghiệp và linh hoạt nhất cho máy chủ ảo, vì nó cho phép máy ảo của bạn hoạt động như một thiết bị vật lý thực thụ trên mạng của bạn.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;tổng-quan-workflow&#34;&gt;Tổng quan Workflow

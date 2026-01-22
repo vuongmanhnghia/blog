@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Architechture on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/categories/architechture/</link>
+        <link>https://nagih.nooblearn2code.com/categories/architechture/</link>
         <description>Recent content in Architechture on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/categories/architechture/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/architechture/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Linux File System</title>
-        <link>https://blog.nagih.io.vn/p/linux-file-system/</link>
+        <link>https://nagih.nooblearn2code.com/p/linux-file-system/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/linux-file-system/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/linux-file-system/</guid>
         <description>&lt;hr&gt;
 &lt;h3 id=&#34;1-everything-is-a-file&#34;&gt;1. &amp;ldquo;Everything is a file&amp;rdquo;
 &lt;/h3&gt;&lt;p&gt;Trong Linux, mọi thứ đều là tập tin (hoặc được biểu diễn như một tập tin):&lt;/p&gt;
@@ -297,15 +297,15 @@
 &lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/inode.md/&#34;&gt;Inode trong Linux File System&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/inode.md/&#34;&gt;Inode trong Linux File System&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/linux/system-calls/&#34;&gt;Điều gì sẽ xảy ra sau khi Command được gửi đi trên Linux&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/linux/system-calls/&#34;&gt;Điều gì sẽ xảy ra sau khi Command được gửi đi trên Linux&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/sudo.md/&#34;&gt;Điều gì sẽ xảy ra sau khi sử dụng Sudo&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/sudo.md/&#34;&gt;Điều gì sẽ xảy ra sau khi sử dụng Sudo&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Cache on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/tags/cache/</link>
+        <link>https://nagih.nooblearn2code.com/tags/cache/</link>
         <description>Recent content in Cache on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/cache/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/cache/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Các chính sách &#39;Dọn Dẹp&#39; Cache</title>
-        <link>https://blog.nagih.io.vn/p/c%C3%A1c-ch%C3%ADnh-s%C3%A1ch-d%E1%BB%8Dn-d%E1%BA%B9p-cache/</link>
+        <link>https://nagih.nooblearn2code.com/p/c%C3%A1c-ch%C3%ADnh-s%C3%A1ch-d%E1%BB%8Dn-d%E1%BA%B9p-cache/</link>
         <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/c%C3%A1c-ch%C3%ADnh-s%C3%A1ch-d%E1%BB%8Dn-d%E1%BA%B9p-cache/</guid>
-        <description>&lt;img src="https://blog.nagih.io.vn/image-placeholder.png" alt="Featured image of post Các chính sách &#39;Dọn Dẹp&#39; Cache" /&gt;&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;
+        <guid>https://nagih.nooblearn2code.com/p/c%C3%A1c-ch%C3%ADnh-s%C3%A1ch-d%E1%BB%8Dn-d%E1%BA%B9p-cache/</guid>
+        <description>&lt;img src="https://nagih.nooblearn2code.com/image-placeholder.png" alt="Featured image of post Các chính sách &#39;Dọn Dẹp&#39; Cache" /&gt;&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;các-chính-sách-dọn-dẹp&#34;&gt;Các Chính Sách &amp;ldquo;Dọn Dẹp&amp;rdquo;
 &lt;/h2&gt;&lt;p&gt;Chúng ta đã biết cache rất hữu ích, nhưng nó có một giới hạn cố hữu: dung lượng nhỏ. Bộ nhớ tốc độ cao (như RAM) rất đắt đỏ, vì vậy cache không thể lưu trữ mọi thứ.&lt;/p&gt;
@@ -181,11 +181,11 @@
         </item>
         <item>
         <title>Giới thiệu về Cache</title>
-        <link>https://blog.nagih.io.vn/p/gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-cache/</link>
+        <link>https://nagih.nooblearn2code.com/p/gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-cache/</link>
         <pubDate>Sun, 10 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-cache/</guid>
-        <description>&lt;img src="https://blog.nagih.io.vn/images/image-placeholder.png" alt="Featured image of post Giới thiệu về Cache" /&gt;&lt;p&gt;Nhiều người đã nghe về cache, có thể là &amp;ldquo;xóa cache trình duyệt&amp;rdquo; hay &amp;ldquo;cache của CPU&amp;rdquo;. Nhưng cache thực sự là gì? Nó hoạt động ra sao và tại sao nó lại quan trọng đến vậy?&lt;/p&gt;
+        <guid>https://nagih.nooblearn2code.com/p/gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-cache/</guid>
+        <description>&lt;img src="https://nagih.nooblearn2code.com/images/image-placeholder.png" alt="Featured image of post Giới thiệu về Cache" /&gt;&lt;p&gt;Nhiều người đã nghe về cache, có thể là &amp;ldquo;xóa cache trình duyệt&amp;rdquo; hay &amp;ldquo;cache của CPU&amp;rdquo;. Nhưng cache thực sự là gì? Nó hoạt động ra sao và tại sao nó lại quan trọng đến vậy?&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;cache-là-gì&#34;&gt;Cache Là Gì?
 &lt;/h2&gt;&lt;h3 id=&#34;câu-chuyện-về-thư-viện-và-chiếc-bàn-làm-việc&#34;&gt;Câu chuyện về Thư viện và Chiếc bàn làm việc

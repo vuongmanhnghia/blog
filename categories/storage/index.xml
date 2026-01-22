@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Storage on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/categories/storage/</link>
+        <link>https://nagih.nooblearn2code.com/categories/storage/</link>
         <description>Recent content in Storage on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Sun, 28 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/categories/storage/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 28 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/storage/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>OverlayFS - overlay2 on Docker</title>
-        <link>https://blog.nagih.io.vn/p/overlayfs-overlay2-on-docker/</link>
+        <link>https://nagih.nooblearn2code.com/p/overlayfs-overlay2-on-docker/</link>
         <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/overlayfs-overlay2-on-docker/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/overlayfs-overlay2-on-docker/</guid>
         <description>&lt;p&gt;Nếu UnionFS là ý tưởng, thì OverlayFS là bản thực thi xuất sắc nhất hiện nay trên Linux. Nó khắc phục được sự cồng kềnh và chậm chạp của các thế hệ trước (như AUFS hay Device Mapper)&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Tiếp nối câu chuyện về UnionFS, chúng ta sẽ đi sâu vào &lt;strong&gt;OverlayFS&lt;/strong&gt; (cụ thể là driver &lt;code&gt;overlay2&lt;/code&gt; trong Docker).&lt;/p&gt;
@@ -164,11 +164,11 @@
 &lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/storage/unionfs/&#34;&gt;UnionFS&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/storage/unionfs/&#34;&gt;UnionFS&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/overlay2-vs-volume-&amp;amp;-bind-mount/&#34;&gt;Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume/Bind Mount ?&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/overlay2-vs-volume-&amp;amp;-bind-mount/&#34;&gt;Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume/Bind Mount ?&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -176,10 +176,10 @@
         </item>
         <item>
         <title>Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume và Bind Mount ?</title>
-        <link>https://blog.nagih.io.vn/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</link>
+        <link>https://nagih.nooblearn2code.com/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</link>
         <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</guid>
         <description>&lt;p&gt;Nguyên nhân cốt lõi nằm ở &lt;strong&gt;Cơ chế Copy-on-Write (CoW)&lt;/strong&gt; và &lt;strong&gt;lớp trung gian (Overhead)&lt;/strong&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Mặc dù &lt;code&gt;overlay2&lt;/code&gt; là driver lưu trữ (storage driver) tốt nhất và được khuyến nghị mặc định cho Docker hiện nay, nhưng về mặt vật lý và logic, nó &lt;strong&gt;không thể nhanh bằng&lt;/strong&gt; Volume hoặc Bind Mount.&lt;/p&gt;
@@ -310,11 +310,11 @@
 &lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/storage/unionfs/&#34;&gt;UnionFS&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/storage/unionfs/&#34;&gt;UnionFS&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/storage/overlayfs/&#34;&gt;OverlayFS&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/storage/overlayfs/&#34;&gt;OverlayFS&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -322,10 +322,10 @@
         </item>
         <item>
         <title>UnionFS - Union File System</title>
-        <link>https://blog.nagih.io.vn/p/unionfs-union-file-system/</link>
+        <link>https://nagih.nooblearn2code.com/p/unionfs-union-file-system/</link>
         <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/unionfs-union-file-system/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/unionfs-union-file-system/</guid>
         <description>&lt;p&gt;UnionFS cho phép bạn &amp;ldquo;xếp chồng&amp;rdquo; nhiều thư mục (hoặc ổ đĩa) khác nhau lên nhau để tạo thành một hệ thống tệp tin duy nhất và thống nhất&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;UnionFS&lt;/strong&gt; (&lt;strong&gt;Union File System&lt;/strong&gt;) là một dịch vụ hệ thống tệp tin (filesystem service) cho Linux, FreeBSD và NetBSD.&lt;/p&gt;
@@ -408,11 +408,11 @@
 &lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/storage/overlayfs/&#34;&gt;OverlayFS&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/storage/overlayfs/&#34;&gt;OverlayFS&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/overlay2-vs-volume-&amp;amp;-bind-mount/&#34;&gt;Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume/Bind Mount ?&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/overlay2-vs-volume-&amp;amp;-bind-mount/&#34;&gt;Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume/Bind Mount ?&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;

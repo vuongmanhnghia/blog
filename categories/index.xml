@@ -2,201 +2,201 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/categories/</link>
+        <link>https://nagih.nooblearn2code.com/categories/</link>
         <description>Recent content in Categories on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Sat, 17 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 17 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Linux</title>
-        <link>https://blog.nagih.io.vn/categories/linux/</link>
+        <link>https://nagih.nooblearn2code.com/categories/linux/</link>
         <pubDate>Sat, 17 Jan 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/linux/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/linux/</guid>
         <description></description>
         </item>
         <item>
         <title>Cloud</title>
-        <link>https://blog.nagih.io.vn/categories/cloud/</link>
+        <link>https://nagih.nooblearn2code.com/categories/cloud/</link>
         <pubDate>Fri, 16 Jan 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/cloud/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/cloud/</guid>
         <description></description>
         </item>
         <item>
         <title>K8s</title>
-        <link>https://blog.nagih.io.vn/categories/k8s/</link>
+        <link>https://nagih.nooblearn2code.com/categories/k8s/</link>
         <pubDate>Fri, 16 Jan 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/k8s/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/k8s/</guid>
         <description></description>
         </item>
         <item>
         <title>Server</title>
-        <link>https://blog.nagih.io.vn/categories/server/</link>
+        <link>https://nagih.nooblearn2code.com/categories/server/</link>
         <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/server/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/server/</guid>
         <description></description>
         </item>
         <item>
         <title>Docker</title>
-        <link>https://blog.nagih.io.vn/categories/docker/</link>
+        <link>https://nagih.nooblearn2code.com/categories/docker/</link>
         <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/docker/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/docker/</guid>
         <description></description>
         </item>
         <item>
         <title>Storage</title>
-        <link>https://blog.nagih.io.vn/categories/storage/</link>
+        <link>https://nagih.nooblearn2code.com/categories/storage/</link>
         <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/storage/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/storage/</guid>
         <description></description>
         </item>
         <item>
         <title>Protocol</title>
-        <link>https://blog.nagih.io.vn/categories/protocol/</link>
+        <link>https://nagih.nooblearn2code.com/categories/protocol/</link>
         <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/protocol/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/protocol/</guid>
         <description></description>
         </item>
         <item>
         <title>Aws</title>
-        <link>https://blog.nagih.io.vn/categories/aws/</link>
+        <link>https://nagih.nooblearn2code.com/categories/aws/</link>
         <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/aws/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/aws/</guid>
         <description></description>
         </item>
         <item>
         <title>Internet</title>
-        <link>https://blog.nagih.io.vn/categories/internet/</link>
+        <link>https://nagih.nooblearn2code.com/categories/internet/</link>
         <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/internet/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/internet/</guid>
         <description></description>
         </item>
         <item>
         <title>Network</title>
-        <link>https://blog.nagih.io.vn/categories/network/</link>
+        <link>https://nagih.nooblearn2code.com/categories/network/</link>
         <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/network/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/network/</guid>
         <description></description>
         </item>
         <item>
         <title>Security</title>
-        <link>https://blog.nagih.io.vn/categories/security/</link>
+        <link>https://nagih.nooblearn2code.com/categories/security/</link>
         <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/security/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/security/</guid>
         <description></description>
         </item>
         <item>
         <title>Architechture</title>
-        <link>https://blog.nagih.io.vn/categories/architechture/</link>
+        <link>https://nagih.nooblearn2code.com/categories/architechture/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/architechture/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/architechture/</guid>
         <description></description>
         </item>
         <item>
         <title>System</title>
-        <link>https://blog.nagih.io.vn/categories/system/</link>
+        <link>https://nagih.nooblearn2code.com/categories/system/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/system/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/system/</guid>
         <description></description>
         </item>
         <item>
         <title>Tool</title>
-        <link>https://blog.nagih.io.vn/categories/tool/</link>
+        <link>https://nagih.nooblearn2code.com/categories/tool/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/tool/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/tool/</guid>
         <description></description>
         </item>
         <item>
         <title>Workflow</title>
-        <link>https://blog.nagih.io.vn/categories/workflow/</link>
+        <link>https://nagih.nooblearn2code.com/categories/workflow/</link>
         <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/workflow/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/workflow/</guid>
         <description></description>
         </item>
         <item>
         <title>Backup</title>
-        <link>https://blog.nagih.io.vn/categories/backup/</link>
+        <link>https://nagih.nooblearn2code.com/categories/backup/</link>
         <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/backup/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/backup/</guid>
         <description></description>
         </item>
         <item>
         <title>Database</title>
-        <link>https://blog.nagih.io.vn/categories/database/</link>
+        <link>https://nagih.nooblearn2code.com/categories/database/</link>
         <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/database/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/database/</guid>
         <description></description>
         </item>
         <item>
         <title>Proxy</title>
-        <link>https://blog.nagih.io.vn/categories/proxy/</link>
+        <link>https://nagih.nooblearn2code.com/categories/proxy/</link>
         <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/proxy/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/proxy/</guid>
         <description></description>
         </item>
         <item>
         <title>Manage</title>
-        <link>https://blog.nagih.io.vn/categories/manage/</link>
+        <link>https://nagih.nooblearn2code.com/categories/manage/</link>
         <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/manage/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/manage/</guid>
         <description></description>
         </item>
         <item>
         <title>Cloudflare</title>
-        <link>https://blog.nagih.io.vn/categories/cloudflare/</link>
+        <link>https://nagih.nooblearn2code.com/categories/cloudflare/</link>
         <pubDate>Sun, 19 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/cloudflare/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/cloudflare/</guid>
         <description></description>
         </item>
         <item>
         <title>Os</title>
-        <link>https://blog.nagih.io.vn/categories/os/</link>
+        <link>https://nagih.nooblearn2code.com/categories/os/</link>
         <pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/os/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/os/</guid>
         <description></description>
         </item>
         <item>
         <title>Experience</title>
-        <link>https://blog.nagih.io.vn/categories/experience/</link>
+        <link>https://nagih.nooblearn2code.com/categories/experience/</link>
         <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/experience/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/experience/</guid>
         <description></description>
         </item>
         <item>
         <title>Docs</title>
-        <link>https://blog.nagih.io.vn/categories/docs/</link>
+        <link>https://nagih.nooblearn2code.com/categories/docs/</link>
         <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/docs/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/docs/</guid>
         <description></description>
         </item>
         <item>
         <title>Devops</title>
-        <link>https://blog.nagih.io.vn/categories/devops/</link>
+        <link>https://nagih.nooblearn2code.com/categories/devops/</link>
         <pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/categories/devops/</guid>
+        <guid>https://nagih.nooblearn2code.com/categories/devops/</guid>
         <description></description>
         </item>
         

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Sql on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/tags/sql/</link>
+        <link>https://nagih.nooblearn2code.com/tags/sql/</link>
         <description>Recent content in Sql on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Tue, 12 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/sql/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 12 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/sql/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>9 MySQL Table Design Rules &amp; Skills</title>
-        <link>https://blog.nagih.io.vn/p/9-mysql-table-design-rules-skills/</link>
+        <link>https://nagih.nooblearn2code.com/p/9-mysql-table-design-rules-skills/</link>
         <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/9-mysql-table-design-rules-skills/</guid>
-        <description>&lt;img src="https://blog.nagih.io.vn/images/image-placeholder.png" alt="Featured image of post 9 MySQL Table Design Rules &amp; Skills" /&gt;&lt;p&gt;9 nguyên tắc cốt lõi và một số kỹ năng mở rộng khi khởi tạo bảng trong MySQL, đảm bảo ứng dụng không chỉ chạy đúng mà còn hiệu quả và dễ bảo trì&lt;/p&gt;
+        <guid>https://nagih.nooblearn2code.com/p/9-mysql-table-design-rules-skills/</guid>
+        <description>&lt;img src="https://nagih.nooblearn2code.com/images/image-placeholder.png" alt="Featured image of post 9 MySQL Table Design Rules &amp; Skills" /&gt;&lt;p&gt;9 nguyên tắc cốt lõi và một số kỹ năng mở rộng khi khởi tạo bảng trong MySQL, đảm bảo ứng dụng không chỉ chạy đúng mà còn hiệu quả và dễ bảo trì&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;1. Mọi Table Luôn Phải Có Các Column Mặc Định&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Một thiết kế table hoàn chỉnh cần có ít nhất 5 trường mặc định để theo dõi lịch sử và tính nhất quán của dữ liệu:&lt;/p&gt;

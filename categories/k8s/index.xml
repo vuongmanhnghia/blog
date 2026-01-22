@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>K8s on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/categories/k8s/</link>
+        <link>https://nagih.nooblearn2code.com/categories/k8s/</link>
         <description>Recent content in K8s on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Fri, 16 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/categories/k8s/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 16 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/k8s/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hướng dẫn setup K8S Cluster on Cloud</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-cloud/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-cloud/</link>
         <pubDate>Fri, 16 Jan 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-cloud/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-setup-k8s-cluster-on-cloud/</guid>
         <description>&lt;p&gt;Hướng dẫn chi tiết dựng một cluster &lt;strong&gt;on Cloud&lt;/strong&gt;. Sử dụng &lt;strong&gt;Containerd&lt;/strong&gt; làm Container Runtime (thay thế cho Docker đã cũ).&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;giả-định-ban-đầu&#34;&gt;Giả định ban đầu

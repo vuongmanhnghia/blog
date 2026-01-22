@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Docker on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/categories/docker/</link>
+        <link>https://nagih.nooblearn2code.com/categories/docker/</link>
         <description>Recent content in Docker on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Sun, 28 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/categories/docker/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 28 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/categories/docker/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Tại sao overlay2 trên Docker lại có hiệu năng kém hơn Volume và Bind Mount ?</title>
-        <link>https://blog.nagih.io.vn/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</link>
+        <link>https://nagih.nooblearn2code.com/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</link>
         <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/t%E1%BA%A1i-sao-overlay2-tr%C3%AAn-docker-l%E1%BA%A1i-c%C3%B3-hi%E1%BB%87u-n%C4%83ng-k%C3%A9m-h%C6%A1n-volume-v%C3%A0-bind-mount/</guid>
         <description>&lt;p&gt;Nguyên nhân cốt lõi nằm ở &lt;strong&gt;Cơ chế Copy-on-Write (CoW)&lt;/strong&gt; và &lt;strong&gt;lớp trung gian (Overhead)&lt;/strong&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Mặc dù &lt;code&gt;overlay2&lt;/code&gt; là driver lưu trữ (storage driver) tốt nhất và được khuyến nghị mặc định cho Docker hiện nay, nhưng về mặt vật lý và logic, nó &lt;strong&gt;không thể nhanh bằng&lt;/strong&gt; Volume hoặc Bind Mount.&lt;/p&gt;
@@ -143,11 +143,11 @@
 &lt;h3 id=&#34;bài-viết-liên-quan&#34;&gt;Bài viết liên quan
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/storage/unionfs/&#34;&gt;UnionFS&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/storage/unionfs/&#34;&gt;UnionFS&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.nagih.io.vn/posts/storage/overlayfs/&#34;&gt;OverlayFS&lt;/a&gt;
+&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/storage/overlayfs/&#34;&gt;OverlayFS&lt;/a&gt;
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -155,10 +155,10 @@
         </item>
         <item>
         <title>Hướng dẫn sửa lỗi Docker Stats không hiển thị mức sử dụng memory</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-docker-stats-kh%C3%B4ng-hi%E1%BB%83n-th%E1%BB%8B-m%E1%BB%A9c-s%E1%BB%AD-d%E1%BB%A5ng-memory/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-docker-stats-kh%C3%B4ng-hi%E1%BB%83n-th%E1%BB%8B-m%E1%BB%A9c-s%E1%BB%AD-d%E1%BB%A5ng-memory/</link>
         <pubDate>Sun, 02 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-docker-stats-kh%C3%B4ng-hi%E1%BB%83n-th%E1%BB%8B-m%E1%BB%A9c-s%E1%BB%AD-d%E1%BB%A5ng-memory/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%ADa-l%E1%BB%97i-docker-stats-kh%C3%B4ng-hi%E1%BB%83n-th%E1%BB%8B-m%E1%BB%A9c-s%E1%BB%AD-d%E1%BB%A5ng-memory/</guid>
         <description>&lt;p&gt;Việc lệnh &lt;code&gt;docker stats&lt;/code&gt; không hiển thị thông tin về bộ nhớ (MEM USAGE / LIMIT) cho các container là một sự cố khá phổ biến. Nguyên nhân chính thường liên quan đến tính năng theo dõi bộ nhớ của &lt;code&gt;cgroups&lt;/code&gt; chưa được kích hoạt.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Việc lệnh &lt;code&gt;docker stats&lt;/code&gt; không hiển thị thông tin về bộ nhớ (MEM USAGE / LIMIT) cho các container là một sự cố khá phổ biến. Nguyên nhân chính thường liên quan đến tính năng theo dõi bộ nhớ của &lt;code&gt;cgroups&lt;/code&gt; chưa được kích hoạt.&lt;/p&gt;

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Command on Nagih | Blog</title>
-        <link>https://blog.nagih.io.vn/tags/command/</link>
+        <link>https://nagih.nooblearn2code.com/tags/command/</link>
         <description>Recent content in Command on Nagih | Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
-        <lastBuildDate>Sat, 17 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.nagih.io.vn/tags/command/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 17 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/command/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hướng dẫn đầy đủ command `du`</title>
-        <link>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-%C4%91%E1%BA%A7y-%C4%91%E1%BB%A7-command-du/</link>
+        <link>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-%C4%91%E1%BA%A7y-%C4%91%E1%BB%A7-command-du/</link>
         <pubDate>Sat, 17 Jan 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.nagih.io.vn/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-%C4%91%E1%BA%A7y-%C4%91%E1%BB%A7-command-du/</guid>
+        <guid>https://nagih.nooblearn2code.com/p/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-%C4%91%E1%BA%A7y-%C4%91%E1%BB%A7-command-du/</guid>
         <description>&lt;p&gt;Lệnh &lt;code&gt;du&lt;/code&gt; (&lt;strong&gt;D&lt;/strong&gt;isk &lt;strong&gt;U&lt;/strong&gt;sage) là công cụ mạnh mẽ để kiểm tra dung lượng ổ đĩa, nhưng nếu chỉ gõ &lt;code&gt;du&lt;/code&gt; trần thì kết quả trả về sẽ rất rối mắt và khó đọc&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Để dùng &lt;code&gt;du&lt;/code&gt; như một &amp;ldquo;Pro&amp;rdquo; (chuyên nghiệp, hiệu quả), bạn cần kết hợp các cờ (flags) và đường ống (pipe) để lọc dữ liệu. Dưới đây là các tuyệt chiêu hay dùng nhất:&lt;/p&gt;
