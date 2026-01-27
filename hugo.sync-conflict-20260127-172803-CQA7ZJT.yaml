@@ -1,0 +1,242 @@
+baseURL: "https://nagih.nooblearn2code.com"
+languageCode: en
+DefaultContentLanguage: en
+theme: hugo-theme-stack
+title: Nagih | Blog
+copyright: Vuong Manh Nghia
+
+# Set hasCJKLanguage to true if you use Vietnamese heavily
+hasCJKLanguage: true
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+pagination:
+  pagerSize: 5
+
+# Stack theme recommends simpler permalinks
+permalinks:
+  posts: /posts/:contentbasename/
+  page: /:slug/
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+# Related content configuration
+related:
+  includeNewer: true
+  threshold: 60
+  toLower: false
+  indices:
+    - name: tags
+      weight: 100
+    - name: categories
+      weight: 200
+
+params:
+  # Main sections - Stack will show posts from this section on homepage
+  mainSections:
+    - posts
+  
+  # Featured image field name in frontmatter
+  featuredImageField: image
+  
+  # Include full content in RSS feed
+  rssFullContent: true
+  
+  # Favicon (you have favicon.png in assets/images, need to copy to static/)
+  # After copying to static/favicon.ico, uncomment this:
+  # favicon: /favicon.ico
+
+  # Footer configuration
+  footer:
+    since: 2025
+    customText: ""
+
+  # Date format
+  dateFormat:
+    published: "January 2, 2006"
+    lastUpdated: "January 2, 2006 15:04 MST"
+
+  # Sidebar configuration - LEFT SIDE OF THE SITE
+  sidebar:
+    emoji: 🍥
+    subtitle: "Hi there, I'm Vuong Manh Nghia."
+    avatar:
+      enabled: true
+      local: true
+      src: images/VuongManhNghia.jpg  # Your existing avatar in assets/images/
+
+  # Article page configuration
+  article:
+    math: false  # Set to true if you need LaTeX/Math formulas
+    toc: true    # Table of contents
+    readingTime: true
+    license:
+      enabled: true
+      default: Licensed under CC BY-NC-SA 4.0
+
+  # Comments configuration
+  comments:
+    enabled: false  # Enable and configure provider when ready
+    provider: disqus
+    
+    disqus:
+      shortname: ""  # Add your Disqus shortname here
+    
+    # Or use other providers like giscus, utterances, etc.
+    giscus:
+      repo: ""
+      repoID: ""
+      category: ""
+      categoryID: ""
+      mapping: pathname
+      lightTheme: light
+      darkTheme: dark
+      reactionsEnabled: 1
+      emitMetadata: 0
+
+  # Widgets configuration - RIGHT SIDEBAR
+  widgets:
+    homepage:
+      - type: search
+      - type: archives
+        params:
+          limit: 5
+      - type: categories
+        params:
+          limit: 10
+      - type: tag-cloud
+        params:
+          limit: 10
+    page:
+      - type: toc  # Table of contents on article pages
+
+  # OpenGraph configuration for social media
+  opengraph:
+    twitter:
+      site: ""  # Your Twitter username if you have one
+      card: summary_large_image
+
+  # Default image for OpenGraph
+  defaultImage:
+    opengraph:
+      enabled: false
+      local: false
+      src: ""
+
+  # Color scheme
+  colorScheme:
+    toggle: true      # Show dark/light mode toggle
+    default: auto     # auto, light, or dark
+
+  # Image processing
+  imageProcessing:
+    cover:
+      enabled: true
+    content:
+      enabled: true
+
+# Menu configuration
+menu:
+  # Main menu - appears at the top
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 10
+      params:
+        icon: home
+    - identifier: search
+      name: Search
+      url: /search/
+      weight: 20
+      params:
+        icon: search
+    - identifier: archives
+      name: Archives
+      url: /archives/
+      weight: 30
+      params:
+        icon: archives
+    - identifier: categories
+      name: Categories
+      url: /categories/
+      weight: 40
+      params:
+        icon: categories
+    # - identifier: tags
+    #   name: Tags
+    #   url: /tags/
+    #   weight: 40
+    #   params:
+    #     icon: tag
+
+  # Social menu - appears in sidebar
+  social:
+    - identifier: github
+      name: GitHub
+      url: "https://github.com/vuongmanhnghia"
+      params:
+        icon: brand-github
+
+    - identifier: discord
+      name: Discord
+      url: "https://discord.gg/nagih_isme"
+      params:
+        icon: brand-discord
+
+    - identifier: facebook
+      name: Facebook
+      url: "https://www.facebook.com/vmn.isme"
+      params:
+        icon: brand-facebook
+
+    - identifier: linkedin
+      name: LinkedIn
+      url: "https://www.linkedin.com/in/vuongmanhnghia"
+      params:
+        icon: brand-linkedin
+
+# Analytics (optional)
+services:
+  googleAnalytics:
+    id: ""  # Add your GA tracking ID here
+
+# Markup configuration
+markup:
+  goldmark:
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block:
+            - - \[
+              - \]
+            - - $$
+              - $$
+          inline:
+            - - \(
+              - \)
+    renderer:
+      unsafe: true  # Allow HTML in markdown
+  tableOfContents:
+    endLevel: 4
+    ordered: true
+    startLevel: 2
+  highlight:
+    noClasses: false
+    codeFences: true
+    guessSyntax: true
+    lineNos: true
+    lineNumbersInTable: true
+    tabWidth: 4

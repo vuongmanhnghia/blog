@@ -8,4 +8,4 @@ tags:
 draft: true
 ---
 ---
-[SSH](posts/ssh)
+[posts/instruction/ssh/SSH](posts/postsinstructionsshssh)
