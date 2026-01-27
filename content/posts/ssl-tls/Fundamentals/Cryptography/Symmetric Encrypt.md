@@ -60,7 +60,7 @@ This answer lies in **Performance**
 
 ### Solution in SSL/TLS
 
-Use the key exchange algorithm (like [Diffie-Hellman](posts/diffie-hellman) or [RSA](posts/rsa)) during the Handshake process allows both parties to generate a **Symmetric Key** without send direct the `Key` over network
+Use the key exchange algorithm (like **[Diffie-Hellman](posts/diffie-hellman)** or **[RSA](posts/rsa)**) during the Handshake process allows both parties to generate a **Symmetric Key** without send direct the `Key` over network
 
 ## 4. Popular Algorithms
 
@@ -98,8 +98,7 @@ Encrypt each bite/byte (like flowing water)
 
 Cut data to fixed blocks (ex: `128-bit`) next encrypt each block (ex: AES)
 
-## Canvas: [Symmetric Encrypt (canvas).canvas](posts/symmetric-encrypt-canvascanvas)
-
+![Pasted image 20260127194225.png](posts/pasted-image-20260127194225png)
 
 
 
