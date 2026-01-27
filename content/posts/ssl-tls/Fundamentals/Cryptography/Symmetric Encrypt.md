@@ -98,8 +98,6 @@ Encrypt each bite/byte (like flowing water)
 
 Cut data to fixed blocks (ex: `128-bit`) next encrypt each block (ex: AES)
 
-![Pasted image 20260127194225.png](posts/pasted-image-20260127194225png)
-
 
 
 
