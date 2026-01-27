@@ -3,7 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nagih.nooblearn2code.com/categories/</loc>
-    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://nagih.nooblearn2code.com/</loc>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://nagih.nooblearn2code.com/posts/</loc>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://nagih.nooblearn2code.com/categories/ssl/tls/</loc>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://nagih.nooblearn2code.com/posts/ssl-tls/</loc>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://nagih.nooblearn2code.com/tags/symmetric/</loc>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://nagih.nooblearn2code.com/posts/symmetric-encrypt/</loc>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://nagih.nooblearn2code.com/tags/</loc>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/posts/restore-git-commits/</loc>
     <lastmod>2026-01-22T00:00:00+00:00</lastmod>
@@ -12,15 +33,6 @@
     <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/categories/instruction/</loc>
-    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://nagih.nooblearn2code.com/</loc>
-    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/</loc>
-    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://nagih.nooblearn2code.com/tags/</loc>
     <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/command/</loc>
@@ -44,19 +56,16 @@
     <loc>https://nagih.nooblearn2code.com/categories/cloud/</loc>
     <lastmod>2026-01-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/setup-k8s-cluster-on-cloud/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/k8s-on-cloud/</loc>
     <lastmod>2026-01-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/categories/k8s/</loc>
     <lastmod>2026-01-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/cluster-case/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/cluster-cases/</loc>
     <lastmod>2025-12-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/setup-k8s-cluster/</loc>
-    <lastmod>2025-12-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://nagih.nooblearn2code.com/posts/setup-k8s-cluster-bare-metal/</loc>
+    <loc>https://nagih.nooblearn2code.com/posts/k8s-on-premise/</loc>
     <lastmod>2025-12-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://nagih.nooblearn2code.com/tags/k8s/</loc>

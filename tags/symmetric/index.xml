@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Symmetric on Nagih | Blog</title>
+        <link>https://nagih.nooblearn2code.com/tags/symmetric/</link>
+        <description>Recent content in Symmetric on Nagih | Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Vuong Manh Nghia</copyright>
+        <lastBuildDate>Tue, 27 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/tags/symmetric/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Symmetric Encrypt</title>
+        <link>https://nagih.nooblearn2code.com/posts/symmetric-encrypt/</link>
+        <pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://nagih.nooblearn2code.com/posts/symmetric-encrypt/</guid>
+        <description>&lt;hr&gt;
+&lt;h2 id=&#34;1-principle&#34;&gt;1. Principle
+&lt;/h2&gt;&lt;p&gt;Imagine you have a &lt;strong&gt;safes&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Encryption:&lt;/strong&gt; You drop documents to safes, use &lt;code&gt;Key A&lt;/code&gt; for locked&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Decryption:&lt;/strong&gt; Receiver want to take documents, they require have exactly &lt;code&gt;Key A&lt;/code&gt; to open&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;technique&#34;&gt;Technique
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Plaintext:&lt;/strong&gt; Original Data (password, credit number,&amp;hellip;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ciphertext&lt;/strong&gt;: The Data has been scrambled, can&amp;rsquo;t understand&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Secret Key:&lt;/strong&gt; String Data use to scramble and restore&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;recipe&#34;&gt;Recipe
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Plaintext + Key = Ciphertext&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ciphertext + Key = Plaintext&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2-why-ssltls-need-symmetric-encryption-&#34;&gt;2. Why SSL/TLS need Symmetric Encryption ?
+&lt;/h2&gt;&lt;p&gt;May you ask: &lt;em&gt;&amp;ldquo;Why not use Asymmetric Encryption for security, no need to worry about &lt;code&gt;Key&lt;/code&gt;&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This answer lies in &lt;strong&gt;Performance&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Speed:&lt;/strong&gt; Symmetric Encrypt so speed, Modern CPUs (like Intel, AMD) even have their own hardware instruction set (AES - NI) to handle this in a snap&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Resource&lt;/strong&gt;: It consumes significantly less CPU and RAM than Symmetric Encryption&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;in-ssltls&#34;&gt;In SSL/TLS:
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;When you download a file about 1GB throught HTTPS&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;System only use asymmetric encryption in the first few miliseconds to agree on the key&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;After, the entire 1GB of data was encrypted using &lt;strong&gt;Symmetric Encryption&lt;/strong&gt; to ensure fast downloads without overloading the server&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;3-fatal-weakness&#34;&gt;3. Fatal Weakness
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If I want to send confidential data for you, I have to sent you the &lt;code&gt;Key&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If I send &lt;code&gt;Key&lt;/code&gt; via email/chat, and a hacker intercepts the &lt;code&gt;Key&lt;/code&gt;, all my data will be exposed&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If I meet  you to give you the USB containing the &lt;code&gt;Key&lt;/code&gt; -&amp;gt; That&amp;rsquo;s not feasible with global internet&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;solution-in-ssltls&#34;&gt;Solution in SSL/TLS
+&lt;/h3&gt;&lt;p&gt;Use the key exchange algorithm (like &lt;a href=&#34;https://nagih.nooblearn2code.com/posts/diffie-hellman/&#34;&gt;Diffie-Hellman&lt;/a&gt;
+ or &lt;a href=&#34;https://nagih.nooblearn2code.com/posts/rsa/&#34;&gt;RSA&lt;/a&gt;
+) during the Handshake process allows both parties to generate a &lt;strong&gt;Symmetric Key&lt;/strong&gt; without send direct the &lt;code&gt;Key&lt;/code&gt; over network&lt;/p&gt;
+&lt;h2 id=&#34;4-popular-algorithms&#34;&gt;4. Popular Algorithms
+&lt;/h2&gt;&lt;h3 id=&#34;a-aes-advanced-encryption-standard&#34;&gt;A. AES (Advanced Encryption Standard)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Is it currently the most popular and security algorithm&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Key length:&lt;/strong&gt; &lt;code&gt;128-bit&lt;/code&gt; or &lt;code&gt;256-bit&lt;/code&gt; (AES-128, AES-256)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Note: AES-128 is slightly faster, AES-256 safer, but currently AES-128 still extremely safe&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;b-chacha20---new-star&#34;&gt;B. ChaCha20 - New Star
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Strongly supported by Google&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Advantage:&lt;/strong&gt; Extremely fast on mobile devices, or CPU older version do not have hardware support for AES&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Often used in conjounction with Poly1305 (ChaCha20-Poly1305)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;c-3des-triple-des---dead&#34;&gt;C. 3DES (Triple DES) - Dead
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;It is old technology. Very slow and no longer safe&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If you see your server still enable 3DES, disable it immediately. Modern browsers will warning &amp;ldquo;Not Secure&amp;rdquo; or block this connect&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;5-block-ciphers--stream-ciphers&#34;&gt;5. Block Ciphers &amp;amp; Stream Ciphers
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Symmetric Encryption&lt;/strong&gt; handle data via 2 ways&lt;/p&gt;
+&lt;h3 id=&#34;a-stream-ciphers&#34;&gt;A. Stream Ciphers
+&lt;/h3&gt;&lt;p&gt;Encrypt each bite/byte (like flowing water)&lt;/p&gt;
+&lt;h3 id=&#34;b-block-ciphers&#34;&gt;B. Block Ciphers
+&lt;/h3&gt;&lt;p&gt;Cut data to fixed blocks (ex: &lt;code&gt;128-bit&lt;/code&gt;) next encrypt each block (ex: AES)&lt;/p&gt;
+&lt;h2 id=&#34;canvas-symmetric-encrypt-canvascanvas&#34;&gt;Canvas: &lt;a href=&#34;https://nagih.nooblearn2code.com/posts/symmetric-encrypt-canvascanvas/&#34;&gt;Symmetric Encrypt (canvas).canvas&lt;/a&gt;
+
+&lt;/h2&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
