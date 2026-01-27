@@ -8,17 +8,6 @@
         <language>en</language>
         <copyright>Vuong Manh Nghia</copyright>
         <lastBuildDate>Tue, 27 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://nagih.nooblearn2code.com/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>SSL/TLS</title>
-        <link>https://nagih.nooblearn2code.com/posts/ssl-tls/</link>
-        <pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate>
-        
-        <guid>https://nagih.nooblearn2code.com/posts/ssl-tls/</guid>
-        <description>&lt;hr&gt;
-&lt;p&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/cryptography/&#34;&gt;Cryptography&lt;/a&gt;
-&lt;/p&gt;
-</description>
-        </item>
-        <item>
         <title>Symmetric Encrypt</title>
         <link>https://nagih.nooblearn2code.com/posts/symmetric-encrypt/</link>
         <pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate>
@@ -94,9 +83,9 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;solution-in-ssltls&#34;&gt;Solution in SSL/TLS
-&lt;/h3&gt;&lt;p&gt;Use the key exchange algorithm (like &lt;a href=&#34;https://nagih.nooblearn2code.com/posts/diffie-hellman/&#34;&gt;Diffie-Hellman&lt;/a&gt;
- or &lt;a href=&#34;https://nagih.nooblearn2code.com/posts/rsa/&#34;&gt;RSA&lt;/a&gt;
-) during the Handshake process allows both parties to generate a &lt;strong&gt;Symmetric Key&lt;/strong&gt; without send direct the &lt;code&gt;Key&lt;/code&gt; over network&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;Use the key exchange algorithm (like &lt;strong&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/diffie-hellman/&#34;&gt;Diffie-Hellman&lt;/a&gt;
+&lt;/strong&gt; or &lt;strong&gt;&lt;a href=&#34;https://nagih.nooblearn2code.com/posts/rsa/&#34;&gt;RSA&lt;/a&gt;
+&lt;/strong&gt;) during the Handshake process allows both parties to generate a &lt;strong&gt;Symmetric Key&lt;/strong&gt; without send direct the &lt;code&gt;Key&lt;/code&gt; over network&lt;/p&gt;
 &lt;h2 id=&#34;4-popular-algorithms&#34;&gt;4. Popular Algorithms
 &lt;/h2&gt;&lt;h3 id=&#34;a-aes-advanced-encryption-standard&#34;&gt;A. AES (Advanced Encryption Standard)
 &lt;/h3&gt;&lt;ul&gt;
@@ -137,9 +126,17 @@
 &lt;/h3&gt;&lt;p&gt;Encrypt each bite/byte (like flowing water)&lt;/p&gt;
 &lt;h3 id=&#34;b-block-ciphers&#34;&gt;B. Block Ciphers
 &lt;/h3&gt;&lt;p&gt;Cut data to fixed blocks (ex: &lt;code&gt;128-bit&lt;/code&gt;) next encrypt each block (ex: AES)&lt;/p&gt;
-&lt;h2 id=&#34;canvas-symmetric-encrypt-canvascanvas&#34;&gt;Canvas: &lt;a href=&#34;https://nagih.nooblearn2code.com/posts/symmetric-encrypt-canvascanvas/&#34;&gt;Symmetric Encrypt (canvas).canvas&lt;/a&gt;
-
-&lt;/h2&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://nagih.nooblearn2code.com/posts/pasted-image-20260127194225png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Pasted image 20260127194225.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>Completely restore Git commits (Orphan Branch)</title>
